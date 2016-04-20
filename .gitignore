@@ -1,5 +1,4 @@
-
-  # ignore all bin directories
+# ignore all bin directories
   # matches "bin" in any subfolder
   bin/
   # ignore all target directories
@@ -12,7 +11,7 @@
   *~
   # ignore metadata directories
   .metadata
-  # ignore DS_Store and files starting with ._ 
+  # ignore DS_Store and files starting with ._
   .DS_Store
   ._*
-
+/target/
