@@ -14,4 +14,3 @@
   # ignore DS_Store and files starting with ._ (for Mac)
   .DS_Store
   ._*
-/target/
