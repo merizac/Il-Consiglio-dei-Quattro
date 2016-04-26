@@ -24,7 +24,7 @@ public class Regione {
 		throw new UnsupportedOperationException();
 	}
 
-	private void creaCitt‡() {
+	private void creaCitt√†() {
 		throw new UnsupportedOperationException();
 	}
 

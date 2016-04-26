@@ -6,12 +6,12 @@ import Bonus.*;
 
 public class TesseraPermesso {
 
-	private ArrayList<Citt‡> citt‡;
+	private ArrayList<Citt√†> citt√†;
 	private ArrayList<Bonus> bonus;
 	private String regione;
 
-	public ArrayList<Citt‡> getCitt‡() {
-		return this.citt‡;
+	public ArrayList<Citt√†> getCitt√†() {
+		return this.citt√†;
 	}
 
 	public ArrayList<Bonus> getBonus() {
