@@ -9,7 +9,7 @@ public class PlanciaRe {
 	private Balcone balconeRe;
 	private ArrayList<Bonus> bonusPremioRe;
 	private ArrayList<Bonus> bonusColore;
-	private ArrayList<Game.PunteggioNobilt‡> percorsoNobilt‡;
+	private ArrayList<Game.PunteggioNobilt√†> percorsoNobilt√†;
 
 	private void creaBalcone() {
 		throw new UnsupportedOperationException();
@@ -35,7 +35,7 @@ public class PlanciaRe {
 		throw new UnsupportedOperationException();
 	}
 
-	public ArrayList<Game.PunteggioNobilt‡> getPercorsoNobilt‡() {
-		return this.percorsoNobilt‡;
+	public ArrayList<Game.PunteggioNobilt√†> getPercorsoNobilt√†() {
+		return this.percorsoNobilt√†;
 	}
 }

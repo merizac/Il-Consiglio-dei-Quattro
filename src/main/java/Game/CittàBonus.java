@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import Bonus.*;
 
-public class Citt‡Bonus extends Citt‡ {
+public class Citt√†Bonus extends Citt√† {
 
 	private ArrayList<Bonus> bonus;
 

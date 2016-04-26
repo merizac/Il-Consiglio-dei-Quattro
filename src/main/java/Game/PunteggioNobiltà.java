@@ -4,16 +4,16 @@ import java.util.ArrayList;
 
 import Bonus.*;
 
-public class PunteggioNobilt‡ {
+public class PunteggioNobilt√† {
 
-	private int puntiNobilt‡;
+	private int puntiNobilt√†;
 	private ArrayList<Bonus> bonus;
 
 	public ArrayList<Bonus> getBonus() {
 		return this.bonus;
 	}
 
-	public int getPuntiNobilt‡() {
-		return this.puntiNobilt‡;
+	public int getPuntiNobilt√†() {
+		return this.puntiNobilt√†;
 	}
 }

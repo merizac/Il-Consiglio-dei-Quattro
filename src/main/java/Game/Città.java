@@ -1,12 +1,12 @@
 package Game;
 
-public class Citt‡ {
+public class Citt√† {
 
 	private String nome;
 	private Regione regione;
 	private Color colore;
 	private Emporio[] empori;
-	private Citt‡[] citt‡Collegate;
+	private Citt√†[] citt√†Collegate;
 
 	public String getNome() {
 		throw new UnsupportedOperationException();

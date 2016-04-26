@@ -14,7 +14,7 @@ public class Giocatore {
 	private Aiutante aiutanti;
 	private PunteggioVittoria punteggioVittoria;
 	private PunteggioRicchezza punteggioRicchezza;
-	private PunteggioNobilt‡ punteggioNobilt‡;
+	private PunteggioNobilt√† punteggioNobilt√†;
 
 	private void creaEmpori() {
 		throw new UnsupportedOperationException();
@@ -44,8 +44,8 @@ public class Giocatore {
 		throw new UnsupportedOperationException();
 	}
 
-	public PunteggioNobilt‡ getPunteggioNobilt‡() {
-		return this.punteggioNobilt‡;
+	public PunteggioNobilt√† getPunteggioNobilt√†() {
+		return this.punteggioNobilt√†;
 	}
 
 	public void scegliAzione() {
