@@ -8,7 +8,6 @@
   .project
   .classpath
   .settings
-  .class
   # ignore all files ending with ~
   *~
   # ignore metadata directories
@@ -17,4 +16,3 @@
   .DS_Store
   ._*
 
-/target/
