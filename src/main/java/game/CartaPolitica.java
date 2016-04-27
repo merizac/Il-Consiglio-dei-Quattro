@@ -1,14 +1,26 @@
 package game;
 
-public class CartaPolitica {
+public final class CartaPolitica {
 
-	private Color colore;
+	private final Colore colore;
+	
+	
 
-	public Color getColoreCarta() {
-		throw new UnsupportedOperationException();
+	
+	/**
+	 * @param colore
+	 */
+	public CartaPolitica(Colore colore) {
+		this.colore = colore;
 	}
 
-	public void usaCarta() {
-		throw new UnsupportedOperationException();
+
+	/**
+	 * @return the colore
+	 */
+	public Colore getColore() {
+		return colore;
 	}
+
+
 }
