@@ -6,14 +6,14 @@ import bonus.*;
 
 public class Giocatore {
 
-	private Color coloreGiocatore;
+	private Colore coloreGiocatore;
 	private ArrayList<game.CartaPolitica> cartePolitica;
 	private ArrayList<game.TesseraPermesso> tesserePermesso;
 	private ArrayList<game.TesseraPermesso> tesserePermessoUsate;
 	private ArrayList<Bonus> tessereBonus;
 	private Aiutante aiutanti;
-	private PunteggioVittoria punteggioVittoria;
-	private PunteggioRicchezza punteggioRicchezza;
+	private int punteggioVittoria;
+	private int punteggioRicchezza;
 	private PunteggioNobiltà punteggioNobiltà;
 
 	private void creaEmpori() {
@@ -36,11 +36,11 @@ public class Giocatore {
 		return this.tessereBonus;
 	}
 
-	public PunteggioVittoria getPunteggioVittoria() {
+	public int getPunteggioVittoria() {
 		return this.punteggioVittoria;
 	}
 
-	public PunteggioRicchezza getPunteggioRIcchezza() {
+	public int getPunteggioRIcchezza() {
 		throw new UnsupportedOperationException();
 	}
 
