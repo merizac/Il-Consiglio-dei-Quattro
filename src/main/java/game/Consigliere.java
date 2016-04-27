@@ -5,8 +5,8 @@ public class Consigliere {
 	private final Colore colore;
 	private Boolean balcone;
 	
-	public Consigliere(String colore){
-		this.colore=new Colore(colore);
+	public Consigliere(Colore colore){
+		this.colore=colore;
 		this.balcone=false;
 	}
 	/**
