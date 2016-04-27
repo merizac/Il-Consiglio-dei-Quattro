@@ -4,25 +4,47 @@ import java.util.ArrayList;
 
 import bonus.*;
 
-public class TesseraPermesso {
+public final class TesseraPermesso {
 
-	private ArrayList<Città> città;
-	private ArrayList<Bonus> bonus;
-	private String regione;
+	private final ArrayList<Città> città;
+	private final ArrayList<Bonus> bonus;
+	private final String regione;
 
+
+	/**
+	 * @param città
+	 * @param bonus
+	 * @param regione
+	 */
+	public TesseraPermesso(ArrayList<Città> città, ArrayList<Bonus> bonus, String regione) {
+		super();
+		this.città = città;
+		this.bonus = bonus;
+		this.regione = regione;
+	}
+
+
+	/**
+	 * @return the città
+	 */
 	public ArrayList<Città> getCittà() {
-		return this.città;
+		return città;
 	}
 
+
+	/**
+	 * @return the bonus
+	 */
 	public ArrayList<Bonus> getBonus() {
-		return this.bonus;
+		return bonus;
 	}
 
+
+	/**
+	 * @return the regione
+	 */
 	public String getRegione() {
-		throw new UnsupportedOperationException();
+		return regione;
 	}
 
-	private void creaBonus() {
-		throw new UnsupportedOperationException();
-	}
 }
