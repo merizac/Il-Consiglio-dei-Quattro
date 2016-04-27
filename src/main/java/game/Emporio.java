@@ -2,8 +2,22 @@ package game;
 
 public class Emporio {
 
-	private Colore colore;
+	private final Colore colore;
 
+	
+	/**
+	 * @param colore
+	 */
+	public Emporio(Colore colore) {
+		this.colore = colore;
+	}
+
+
+	public Colore getColore() {
+	/**
+	 * 
+	 * @return colore of the emporio
+	 */
 	public Colore getColore() {
 		return this.colore;
 	}
