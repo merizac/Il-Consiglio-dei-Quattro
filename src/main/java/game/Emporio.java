@@ -13,7 +13,6 @@ public class Emporio {
 	}
 
 
-	public Colore getColore() {
 	/**
 	 * 
 	 * @return colore of the emporio
