@@ -2,9 +2,9 @@ package game;
 
 public class Emporio {
 
-	private Color colore;
+	private Colore colore;
 
-	public Color getColore() {
+	public Colore getColore() {
 		return this.colore;
 	}
 }

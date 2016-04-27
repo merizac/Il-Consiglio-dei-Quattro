@@ -6,7 +6,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 
 public class Balcone {
 
-	private Queue<Consigliere> consiglieri;
+	private final Queue<Consigliere> consiglieri;
 	/**
 	 * constructor of Balcone
 	 * @param numConsiglieri the size of Balcone

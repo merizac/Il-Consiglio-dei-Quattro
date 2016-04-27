@@ -4,7 +4,7 @@ public class Città {
 
 	private String nome;
 	private Regione regione;
-	private Color colore;
+	private Colore colore;
 	private Emporio[] empori;
 	private Città[] cittàCollegate;
 

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Mazzo<T> {
 
-	private ArrayList<T> carte;
+	private final ArrayList<T> carte;
 
 	public ArrayList<T> pescaCarte() {
 		throw new UnsupportedOperationException();

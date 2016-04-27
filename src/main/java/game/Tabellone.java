@@ -3,30 +3,13 @@ package game;
 import java.util.ArrayList;
 
 public class Tabellone {
+	private final Map;
+	private final ArrayList<Regione> regioni;
+	private final PlanciaRe planciaRe;
+	private final Re pedinaRe;
+	private final ArrayList<Consigliere> consiglieri;
+	private final Mazzo<CartaPolitica> mazzoCartePolitica;
 
-	private ArrayList<Regione> regioni;
-	private PlanciaRe planciaRe;
-	private Re pedinaRe;
-	private ArrayList<game.Consigliere> consiglieri;
-	private Mazzo mazzoCartePolitica;
+	
 
-	private void creaRegioni() {
-		throw new UnsupportedOperationException();
-	}
-
-	private void creaPlanciaRe() {
-		throw new UnsupportedOperationException();
-	}
-
-	private void creaRe() {
-		throw new UnsupportedOperationException();
-	}
-
-	private void creaMazzoCartePolitica() {
-		throw new UnsupportedOperationException();
-	}
-
-	public void mescolaCartePolitica() {
-		throw new UnsupportedOperationException();
-	}
 }
