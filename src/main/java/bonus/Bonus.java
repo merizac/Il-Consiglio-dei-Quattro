@@ -1,13 +1,23 @@
 package bonus;
 
-import game.Giocatore;
 import game.Partita;
 
 public abstract class Bonus {
+	private final Partita partita;
 	
-	private Partita partita;
-
-	public void usaBonus() {
-		throw new UnsupportedOperationException();
+	/**constructore of Bonus
+	 * @param partita
+	 */
+	public Bonus(Partita partita) {
+		this.partita = partita;
 	}
+
+	/**
+	 * @return the partita
+	 */
+	protected Partita getPartita() {
+		return partita;
+	}
+	
+	abstract public void usaBonus();
 }

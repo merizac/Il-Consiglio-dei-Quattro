@@ -6,57 +6,123 @@ import bonus.*;
 
 public class Giocatore {
 
-	private Colore coloreGiocatore;
-	private ArrayList<game.CartaPolitica> cartePolitica;
-	private ArrayList<game.TesseraPermesso> tesserePermesso;
-	private ArrayList<game.TesseraPermesso> tesserePermessoUsate;
-	private ArrayList<Bonus> tessereBonus;
-	private Aiutante aiutanti;
+	private final Colore coloreGiocatore;
+	private final ArrayList<CartaPolitica> cartePolitica;
+	private final ArrayList<TesseraPermesso> tesserePermesso;
+	private final ArrayList<TesseraPermesso> tesserePermessoUsate;
+	private final ArrayList<Bonus> tessereBonus;
+	private final Aiutante aiutanti;
 	private int punteggioVittoria;
 	private int punteggioRicchezza;
 	private PunteggioNobiltà punteggioNobiltà;
 
-	private void creaEmpori() {
-		throw new UnsupportedOperationException();
-	}
+	
 
-	public void pescaCartaPolitica(int MazzoCartaPolitica) {
-		throw new UnsupportedOperationException();
+	/**
+	 * @param coloreGiocatore
+	 * @param cartePolitica
+	 * @param tesserePermesso
+	 * @param tesserePermessoUsate
+	 * @param tessereBonus
+	 * @param aiutanti
+	 * @param punteggioVittoria
+	 * @param punteggioRicchezza
+	 * @param punteggioNobiltà
+	 */
+	public Giocatore(Colore coloreGiocatore, ArrayList<CartaPolitica> cartePolitica,
+			ArrayList<TesseraPermesso> tesserePermesso, ArrayList<TesseraPermesso> tesserePermessoUsate,
+			ArrayList<Bonus> tessereBonus, Aiutante aiutanti, int punteggioVittoria, int punteggioRicchezza,
+			PunteggioNobiltà punteggioNobiltà) {
+		super();
+		this.coloreGiocatore = coloreGiocatore;
+		this.cartePolitica = cartePolitica;
+		this.tesserePermesso = tesserePermesso;
+		this.tesserePermessoUsate = tesserePermessoUsate;
+		this.tessereBonus = tessereBonus;
+		this.aiutanti = aiutanti;
+		this.punteggioVittoria = punteggioVittoria;
+		this.punteggioRicchezza = punteggioRicchezza;
+		this.punteggioNobiltà = punteggioNobiltà;
 	}
-
-	public ArrayList<game.CartaPolitica> getCartePolitica() {
-		return this.cartePolitica;
-	}
-
-	public ArrayList<game.TesseraPermesso> getTesserePermesso() {
-		return this.tesserePermesso;
-	}
-
-	public ArrayList<Bonus> getTessereBonus() {
-		return this.tessereBonus;
-	}
-
-	public int getPunteggioVittoria() {
-		return this.punteggioVittoria;
-	}
-
-	public int getPunteggioRIcchezza() {
-		throw new UnsupportedOperationException();
-	}
-
+	
+	
+	/**
+	 * @return the punteggioNobiltà
+	 */
 	public PunteggioNobiltà getPunteggioNobiltà() {
-		return this.punteggioNobiltà;
+		return punteggioNobiltà;
 	}
 
-	public void scegliAzione() {
-		throw new UnsupportedOperationException();
+
+	/**
+	 * @return the coloreGiocatore
+	 */
+	public Colore getColoreGiocatore() {
+		return coloreGiocatore;
 	}
 
-	private void creaAzionePrincipale() {
-		throw new UnsupportedOperationException();
+
+	/**
+	 * @return the cartePolitica
+	 */
+	public ArrayList<CartaPolitica> getCartePolitica() {
+		return cartePolitica;
 	}
 
-	private void creaAzioneVeloce() {
-		throw new UnsupportedOperationException();
+
+	/**
+	 * @return the tesserePermesso
+	 */
+	public ArrayList<TesseraPermesso> getTesserePermesso() {
+		return tesserePermesso;
 	}
+
+
+	/**
+	 * @return the tesserePermessoUsate
+	 */
+	public ArrayList<TesseraPermesso> getTesserePermessoUsate() {
+		return tesserePermessoUsate;
+	}
+
+
+	/**
+	 * @return the tessereBonus
+	 */
+	public ArrayList<Bonus> getTessereBonus() {
+		return tessereBonus;
+	}
+
+
+	/**
+	 * @return the aiutanti
+	 */
+	public Aiutante getAiutanti() {
+		return aiutanti;
+	}
+	
+	/**
+	 * @param punteggioNobiltà the punteggioNobiltà to set
+	 */
+	public void setPunteggioNobiltà(PunteggioNobiltà punteggioNobiltà) {
+		this.punteggioNobiltà = punteggioNobiltà;
+	}
+
+	/**
+	 * add monete to variable punteggioRicchezza
+	 * @param monete
+	 */
+	public void aumentaRicchezza(int monete){
+		this.punteggioRicchezza=this.punteggioRicchezza + monete;
+	}
+	/**
+	 * add puntiVittoria to variable punteggioVittoria
+	 * @param puntiVittoria
+	 */
+	public void aumentaPuntiVittoria(int puntiVittoria){
+		this.punteggioVittoria=this.punteggioVittoria + puntiVittoria;
+	}
+	
+	
+
 }

@@ -14,7 +14,21 @@ public class Partita {
 		throw new UnsupportedOperationException();
 	}*/
 
+	/**
+	 * @return the giocatoreCorrente
+	 */
+	public Giocatore getGiocatoreCorrente() {
+		return giocatoreCorrente;
+	}
+
+	/**
+	 * @param giocatoreCorrente the giocatoreCorrente to set
+	 */
+	public void setGiocatoreCorrente(Giocatore giocatoreCorrente) {
+		this.giocatoreCorrente = giocatoreCorrente;
+	}
+
 	public void gestisciPartita() {
-		throw new UnsupportedOperationException();
+		
 	}
 }

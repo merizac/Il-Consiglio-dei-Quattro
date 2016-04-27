@@ -1,12 +1,22 @@
 package bonus;
 
-import game.Giocatore;
+import game.Partita;
 
 public class BonusPuntiVittoria extends Bonus {
 
 	private int puntiVittoria;
 
-	public void usaBonus(Giocatore giocatore) {
-		throw new UnsupportedOperationException();
+	/**
+	 * @param partita
+	 */
+	public BonusPuntiVittoria(int puntiVittoria, Partita partita) {
+		super(partita);
+		this.puntiVittoria=puntiVittoria;	
+	}
+	/**
+	 * add puntiVittoria to variable punteggioVittoria of Giocatore
+	 */
+	public void usaBonus() {
+		this.getPartita().getGiocatoreCorrente().aumentaPuntiVittoria(puntiVittoria);
 	}
 }
