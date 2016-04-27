@@ -4,11 +4,29 @@ public class Re {
 
 	private Città città;
 
-	public void muoviRe(Città città) {
-		throw new UnsupportedOperationException();
+	
+	/**
+	 * @param città
+	 */
+	public Re(Città città) {
+		this.città = città;
 	}
 
+
+	/**
+	 * @return the città
+	 */
 	public Città getCittà() {
-		throw new UnsupportedOperationException();
+		return città;
 	}
+
+
+	/**
+	 * @param città the città to set
+	 */
+	public void setCittà(Città città) {
+		this.città = città;
+	}
+
+	
 }

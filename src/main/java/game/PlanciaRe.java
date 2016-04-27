@@ -6,36 +6,49 @@ import bonus.*;
 
 public class PlanciaRe {
 
-	private Balcone balconeRe;
-	private ArrayList<Bonus> bonusPremioRe;
-	private ArrayList<Bonus> bonusColore;
-	private ArrayList<game.PunteggioNobiltà> percorsoNobiltà;
-
-	private void creaBalcone() {
-		throw new UnsupportedOperationException();
+	private final Balcone balconeRe;
+	private final ArrayList<Bonus> bonusPremioRe;
+	private final ArrayList<Bonus> bonusColore;
+	private final ArrayList<PunteggioNobiltà> percorsoNobiltà;
+	/**
+	 * @param balconeRe
+	 * @param bonusPremioRe
+	 * @param bonusColore
+	 * @param percorsoNobiltà
+	 */
+	public PlanciaRe(Balcone balconeRe, ArrayList<Bonus> bonusPremioRe, ArrayList<Bonus> bonusColore,
+			ArrayList<PunteggioNobiltà> percorsoNobiltà) {
+		this.balconeRe = balconeRe;
+		this.bonusPremioRe = bonusPremioRe;
+		this.bonusColore = bonusColore;
+		this.percorsoNobiltà = percorsoNobiltà;
 	}
-
-	private void creaBonusPremioRe() {
-		throw new UnsupportedOperationException();
-	}
-
-	private void creaBonusColore() {
-		throw new UnsupportedOperationException();
-	}
-
-	public Bonus getBonusPremioRe() {
-		throw new UnsupportedOperationException();
-	}
-
-	public Bonus getBonusColore() {
-		throw new UnsupportedOperationException();
-	}
-
+	/**
+	 * @return the balconeRe
+	 */
 	public Balcone getBalconeRe() {
-		throw new UnsupportedOperationException();
+		return balconeRe;
 	}
+	/**
+	 * @return the bonusPremioRe
+	 */
+	public ArrayList<Bonus> getBonusPremioRe() {
+		return bonusPremioRe;
+	}
+	/**
+	 * @return the bonusColore
+	 */
+	public ArrayList<Bonus> getBonusColore() {
+		return bonusColore;
+	}
+	/**
+	 * @return the percorsoNobiltà
+	 */
+	public ArrayList<PunteggioNobiltà> getPercorsoNobiltà() {
+		return percorsoNobiltà;
+	}
+	
+	
 
-	public ArrayList<game.PunteggioNobiltà> getPercorsoNobiltà() {
-		return this.percorsoNobiltà;
-	}
+	
 }
