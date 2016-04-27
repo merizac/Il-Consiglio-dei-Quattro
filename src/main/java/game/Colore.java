@@ -1,13 +1,12 @@
-package Game;
+package game;
 
-public class Color {
+public class Colore {
 	private final String colore;
 
-	public Color(String colore){
+	public Colore(String colore){
 	
 		this.colore=colore;
 	}
-
 
 	public String getColore() {
 		return colore;

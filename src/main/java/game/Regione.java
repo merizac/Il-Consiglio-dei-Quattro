@@ -1,8 +1,8 @@
-package Game;
+package game;
 
 import java.util.ArrayList;
 
-import Bonus.Bonus;
+import bonus.Bonus;
 
 public class Regione {
 

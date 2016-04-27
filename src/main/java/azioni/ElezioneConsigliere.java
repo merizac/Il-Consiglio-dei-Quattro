@@ -1,4 +1,4 @@
-package Azioni;
+package azioni;
 
 public class ElezioneConsigliere extends AzionePrincipale {
 }

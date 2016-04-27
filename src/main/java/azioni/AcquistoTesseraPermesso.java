@@ -1,6 +1,6 @@
-package Azioni;
+package azioni;
 
-import Game.Partita;
+import game.Partita;
 
 public class AcquistoTesseraPermesso extends AzionePrincipale {
 

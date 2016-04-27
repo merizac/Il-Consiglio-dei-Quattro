@@ -1,4 +1,4 @@
-package Game;
+package game;
 
 import java.util.ArrayList;
 
@@ -7,7 +7,7 @@ public class Tabellone {
 	private ArrayList<Regione> regioni;
 	private PlanciaRe planciaRe;
 	private Re pedinaRe;
-	private ArrayList<Game.Consigliere> consiglieri;
+	private ArrayList<game.Consigliere> consiglieri;
 	private Mazzo mazzoCartePolitica;
 
 	private void creaRegioni() {

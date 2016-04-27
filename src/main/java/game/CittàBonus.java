@@ -1,8 +1,8 @@
-package Game;
+package game;
 
 import java.util.ArrayList;
 
-import Bonus.*;
+import bonus.*;
 
 public class CittàBonus extends Città {
 

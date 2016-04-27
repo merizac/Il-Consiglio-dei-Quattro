@@ -1,15 +1,15 @@
-package Game;
+package game;
 
 import java.util.ArrayList;
 
-import Bonus.*;
+import bonus.*;
 
 public class PlanciaRe {
 
 	private Balcone balconeRe;
 	private ArrayList<Bonus> bonusPremioRe;
 	private ArrayList<Bonus> bonusColore;
-	private ArrayList<Game.PunteggioNobiltà> percorsoNobiltà;
+	private ArrayList<game.PunteggioNobiltà> percorsoNobiltà;
 
 	private void creaBalcone() {
 		throw new UnsupportedOperationException();
@@ -35,7 +35,7 @@ public class PlanciaRe {
 		throw new UnsupportedOperationException();
 	}
 
-	public ArrayList<Game.PunteggioNobiltà> getPercorsoNobiltà() {
+	public ArrayList<game.PunteggioNobiltà> getPercorsoNobiltà() {
 		return this.percorsoNobiltà;
 	}
 }

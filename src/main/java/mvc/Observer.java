@@ -1,4 +1,4 @@
-package utility;
+package mvc;
 
 public interface Observer {
 

@@ -1,15 +1,15 @@
-package Game;
+package game;
 
 import java.util.ArrayList;
 
-import Bonus.*;
+import bonus.*;
 
 public class Giocatore {
 
 	private Color coloreGiocatore;
-	private ArrayList<Game.CartaPolitica> cartePolitica;
-	private ArrayList<Game.TesseraPermesso> tesserePermesso;
-	private ArrayList<Game.TesseraPermesso> tesserePermessoUsate;
+	private ArrayList<game.CartaPolitica> cartePolitica;
+	private ArrayList<game.TesseraPermesso> tesserePermesso;
+	private ArrayList<game.TesseraPermesso> tesserePermessoUsate;
 	private ArrayList<Bonus> tessereBonus;
 	private Aiutante aiutanti;
 	private PunteggioVittoria punteggioVittoria;
@@ -24,11 +24,11 @@ public class Giocatore {
 		throw new UnsupportedOperationException();
 	}
 
-	public ArrayList<Game.CartaPolitica> getCartePolitica() {
+	public ArrayList<game.CartaPolitica> getCartePolitica() {
 		return this.cartePolitica;
 	}
 
-	public ArrayList<Game.TesseraPermesso> getTesserePermesso() {
+	public ArrayList<game.TesseraPermesso> getTesserePermesso() {
 		return this.tesserePermesso;
 	}
 

@@ -1,6 +1,6 @@
-package Bonus;
+package bonus;
 
-import Game.Giocatore;
+import game.Giocatore;
 
 public class BonusAiutanti extends Bonus {
 
