@@ -12,7 +12,7 @@ public class Città {
 		throw new UnsupportedOperationException();
 	}
 
-	public Color getColore() {
+	public Colore getColore() {
 		return this.colore;
 	}
 
