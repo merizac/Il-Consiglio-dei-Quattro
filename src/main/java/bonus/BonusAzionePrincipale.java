@@ -1,10 +1,19 @@
 package bonus;
 
-import game.Giocatore;
+
+import game.Partita;
 
 public class BonusAzionePrincipale extends Bonus {
 
-	public void usaBonus(Giocatore giocatore) {
-		throw new UnsupportedOperationException();
+
+	public BonusAzionePrincipale(Partita partita) {
+		super(partita);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void usaBonus() {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -1,10 +1,20 @@
 package bonus;
 
-import game.Giocatore;
+
+import game.Partita;
 
 public class BonusTesseraPermessoUsata extends Bonus {
 
-	public void usaBonus(Giocatore giocatore) {
-		throw new UnsupportedOperationException();
+	public BonusTesseraPermessoUsata(Partita partita) {
+		super(partita);
+		// TODO Auto-generated constructor stub
 	}
+
+	@Override
+	public void usaBonus() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 }
