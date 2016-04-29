@@ -6,41 +6,55 @@ import bonus.Bonus;
 
 public class Regione {
 
-	private String nome;
-	private Mazzo mazzoTesserePermesso;
-	private ArrayList<TesseraPermesso> tesserePermessoScoperte;
-	private Bonus bonusRegione;
-	private Balcone balcone;
-
-	private void creaMazzoTesserePermesso() {
-		throw new UnsupportedOperationException();
+	private final String nome;
+	private final Mazzo<TesseraPermesso> mazzoTesserePermesso;
+	private final ArrayList<TesseraPermesso> tesserePermessoScoperte;
+	private final Bonus bonusRegione;
+	private final Balcone balcone;
+	/**
+	 * @param nome
+	 * @param mazzoTesserePermesso
+	 * @param tesserePermessoScoperte
+	 * @param bonusRegione
+	 * @param balcone
+	 */
+	public Regione(String nome, Mazzo<TesseraPermesso> mazzoTesserePermesso, ArrayList<TesseraPermesso> tesserePermessoScoperte,
+			Bonus bonusRegione, Balcone balcone) {
+		this.nome = nome;
+		this.mazzoTesserePermesso = mazzoTesserePermesso;
+		this.tesserePermessoScoperte = tesserePermessoScoperte;
+		this.bonusRegione = bonusRegione;
+		this.balcone = balcone;
 	}
-
-	private void creaBonusRegione() {
-		throw new UnsupportedOperationException();
+	/**
+	 * @return the nome
+	 */
+	public String getNome() {
+		return nome;
 	}
-
-	private void creaBalcone() {
-		throw new UnsupportedOperationException();
+	/**
+	 * @return the mazzoTesserePermesso
+	 */
+	public Mazzo<TesseraPermesso> getMazzoTesserePermesso() {
+		return mazzoTesserePermesso;
 	}
-
-	private void creaCittà() {
-		throw new UnsupportedOperationException();
-	}
-
-	public String getNomeRegione() {
-		throw new UnsupportedOperationException();
-	}
-
-	public Mazzo getMazzoTesserePermesso() {
-		return this.mazzoTesserePermesso;
-	}
-
+	/**
+	 * @return the tesserePermessoScoperte
+	 */
 	public ArrayList<TesseraPermesso> getTesserePermessoScoperte() {
-		return this.tesserePermessoScoperte;
+		return tesserePermessoScoperte;
 	}
-
+	/**
+	 * @return the bonusRegione
+	 */
 	public Bonus getBonusRegione() {
-		return this.bonusRegione;
+		return bonusRegione;
 	}
+	/**
+	 * @return the balcone
+	 */
+	public Balcone getBalcone() {
+		return balcone;
+	}
+	
 }
