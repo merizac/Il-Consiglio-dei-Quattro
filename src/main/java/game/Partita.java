@@ -5,6 +5,8 @@ public class Partita {
 	private Tabellone tabellone;
 	private Giocatore[] giocatori;
 	private Giocatore giocatoreCorrente;
+	
+	
 
 	/*private void creaTabellone() {
 		throw new UnsupportedOperationException();
@@ -13,6 +15,13 @@ public class Partita {
 	private void creaGiocatori() {
 		throw new UnsupportedOperationException();
 	}*/
+
+	/**
+	 * @return the tabellone
+	 */
+	public Tabellone getTabellone() {
+		return tabellone;
+	}
 
 	/**
 	 * @return the giocatoreCorrente
