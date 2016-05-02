@@ -9,10 +9,8 @@ public class ElezioneConsigliere extends AzionePrincipale {
 	private final Balcone balcone;
 	private final Consigliere consigliere;
 	
-	
 
 	/**constructor
-	 * @param partita
 	 * @param balcone
 	 * @param consigliere
 	 */

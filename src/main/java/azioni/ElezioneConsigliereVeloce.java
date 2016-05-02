@@ -1,17 +1,22 @@
 package azioni;
 
+import game.Balcone;
+import game.Consigliere;
 import game.Partita;
 
 public class ElezioneConsigliereVeloce extends AzioneVeloce {
+	
+	private final Balcone balcone;
+	private final Consigliere consigliere;
 
-	public ElezioneConsigliereVeloce(Partita partita) {
+	public ElezioneConsigliereVeloce(Partita partita, Balcone balcone, Consigliere consigliere) {
 		super(partita);
-		// TODO Auto-generated constructor stub
+		this.balcone = balcone;
+		this.consigliere = consigliere;
 	}
 
 	@Override
 	public boolean eseguiAzione() {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 }

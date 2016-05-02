@@ -1,15 +1,17 @@
 package azioni;
+
 import game.Partita;
 
 public abstract class AzioneVeloce implements Azione {
-	private final Partita partita;
+
+	protected final Partita partita;
 
 	/**
-	 * @param giocatoreCorrente
+	 * @param partita
 	 */
 	public AzioneVeloce(Partita partita) {
+		super();
 		this.partita = partita;
 	}
-	
 	
 }
