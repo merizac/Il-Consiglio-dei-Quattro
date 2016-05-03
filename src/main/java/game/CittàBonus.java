@@ -20,7 +20,7 @@ public class CittàBonus extends Città {
 	 */
 	public CittàBonus(String nome, Regione regione, ColoreCittà colore, HashSet<Emporio> empori,
 			ArrayList<Città> cittàCollegate, ArrayList<Bonus> bonus) {
-		super(nome, regione, colore, empori, cittàCollegate);
+		super(nome, regione, colore);
 		this.bonus = bonus;
 		this.colore.getCittà().add(this);
 	}

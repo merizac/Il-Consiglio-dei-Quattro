@@ -1,6 +1,5 @@
 package game;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Città {
@@ -9,7 +8,7 @@ public class Città {
 	private final Regione regione;
 	protected final ColoreCittà colore;
 	private final HashSet<Emporio> empori;
-	private final ArrayList<Città> cittàCollegate;
+	private final HashSet<Città> cittàCollegate;
 	
 	
 
@@ -20,14 +19,13 @@ public class Città {
 	 * @param empori
 	 * @param cittàCollegate
 	 */
-	public Città(String nome, Regione regione, ColoreCittà colore, HashSet<Emporio> empori,
-			ArrayList<Città> cittàCollegate) {
+	public Città(String nome, Regione regione, ColoreCittà colore) {
 		super();
 		this.nome = nome;
 		this.regione = regione;
 		this.colore = colore;
-		this.empori = empori;
-		this.cittàCollegate = cittàCollegate;
+		this.empori = new HashSet<Emporio>();
+		this.cittàCollegate = new HashSet<Città>();
 		this.regione.getCittàRegione().add(this);
 	}
 	
@@ -67,8 +65,20 @@ public class Città {
 	/**
 	 * @return the cittàCollegate
 	 */
-	public ArrayList<Città> getCittàCollegate() {
+	public HashSet<Città> getCittàCollegate() {
 		return cittàCollegate;
+	}
+	
+	/**
+	 * check if it is possible to add the emporium , and if it is possible add the emporium
+	 * @param emporio
+	 * @return true if it is possible, false in the other case
+	 */
+	public boolean aggiungiEmporio(Emporio emporio){
+		if(empori.add(emporio))
+			return true;
+		else 
+			return false;
 	}
 
 
