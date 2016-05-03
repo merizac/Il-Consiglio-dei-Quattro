@@ -116,6 +116,18 @@ public class Giocatore {
 		this.punteggioRicchezza=this.punteggioRicchezza + monete;
 	}
 	/**
+	 * sub monete to variable punteggioRicchezza
+	 * @param monete
+	 * @return true if it is possible to execute else false
+	 */
+	public boolean diminuisciRicchezza(int monete){
+		if(this.punteggioRicchezza>=monete){
+			this.punteggioRicchezza=this.punteggioRicchezza - monete;
+			return true;
+		}
+		else return false;
+	}
+	/**
 	 * add puntiVittoria to variable punteggioVittoria
 	 * @param puntiVittoria
 	 */
