@@ -2,25 +2,28 @@ package azioni;
 
 import java.util.ArrayList;
 
-import game.Balcone;
+import game.Regione;
 import game.CartaPolitica;
 import game.Consigliere;
 import game.Partita;
+import game.TesseraPermesso;
 
 public class AcquistoTesseraPermesso extends AzionePrincipale {
 
 	private final ArrayList<CartaPolitica> carteGiocatore;
-	private final Balcone balcone;
+	private final Regione regione;
+	private final int indiceTesseraScoperta;
 	/**
 	 * constructor
 	 * @param partita
 	 * @param carteGiocatore
-	 * @param balcone
+	 * @param regione
 	 */
-	public AcquistoTesseraPermesso(Partita partita, ArrayList<CartaPolitica> carteGiocatore, Balcone balcone) {
+	public AcquistoTesseraPermesso(Partita partita, ArrayList<CartaPolitica> carteGiocatore, Regione regione, int indiceTesseraScoperta) {
 		super(partita);
 		this.carteGiocatore=carteGiocatore;
-		this.balcone=balcone;
+		this.regione=regione;
+		this.indiceTesseraScoperta = indiceTesseraScoperta;
 		}
 	/**
 	 * check if the color of cards passed are the same of balcone, and check if the player has enough
@@ -28,9 +31,9 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 	 */
 	@Override
 	public boolean eseguiAzione() {
-		if (carteGiocatore.size()>balcone.getConsigliere().size())
+		if (carteGiocatore.size()>regione.getBalcone().getConsigliere().size())
 			return false;
-		ArrayList<Consigliere> consiglieri=new ArrayList<Consigliere>(balcone.getConsigliere());
+		ArrayList<Consigliere> consiglieri=new ArrayList<Consigliere>(regione.getBalcone().getConsigliere());
 		
 		int carteUguali=0;
 		int monete=0;
@@ -68,9 +71,18 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 		default: break;
 		}
 		
-		if(partita.getGiocatoreCorrente().diminuisciRicchezza(monete))
-			return true;
+		if(partita.getGiocatoreCorrente().diminuisciRicchezza(monete)){
+			for(CartaPolitica c: carteGiocatore){
+				this.partita.getGiocatoreCorrente().getCartePolitica().remove(carteGiocatore);
+				this.partita.getTabellone().getMazzoCartePolitica().aggiungiCarta(carteGiocatore);
+			}
+			TesseraPermesso tesseraScelta = regione.getTesserePermessoScoperte().get(indiceTesseraScoperta);
+			partita.getGiocatoreCorrente().getTesserePermesso().add(tesseraScelta);
+			
 		
-		return false;	
+			return true;
+		}
+			return false;	
 	}
+
 }
