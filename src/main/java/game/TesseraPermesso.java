@@ -8,7 +8,7 @@ public final class TesseraPermesso {
 
 	private final ArrayList<Città> città;
 	private final ArrayList<Bonus> bonus;
-	private final String regione;
+	private final Regione regione;
 
 
 	/**
@@ -16,7 +16,7 @@ public final class TesseraPermesso {
 	 * @param bonus
 	 * @param regione
 	 */
-	public TesseraPermesso(ArrayList<Città> città, ArrayList<Bonus> bonus, String regione) {
+	public TesseraPermesso(ArrayList<Città> città, ArrayList<Bonus> bonus, Regione regione) {
 		super();
 		this.città = città;
 		this.bonus = bonus;
@@ -43,7 +43,7 @@ public final class TesseraPermesso {
 	/**
 	 * @return the regione
 	 */
-	public String getRegione() {
+	public Regione getRegione() {
 		return regione;
 	}
 
