@@ -1,23 +1,26 @@
 package bonus;
 
+import game.CartaPolitica;
+import game.Mazzo;
 import game.Partita;
 
 public class BonusCartePolitica extends Bonus {
 
-	private int cartePolitica;
+	private final int cartePolitica;
 	
-	public BonusCartePolitica(Partita partita) {
+	public BonusCartePolitica(Partita partita, int cartePolitica) {
 		super(partita);
-		// TODO Auto-generated constructor stub
+		this.cartePolitica=cartePolitica;
 	}
-
-
-	
-
-
+	/**
+	 * add politic cards to the player 
+	 */
 	@Override
 	public void usaBonus() {
-		// TODO Auto-generated method stub
+		Mazzo<CartaPolitica> mazzo = partita.getTabellone().getMazzoCartePolitica();
+		for(int numCarte=0; numCarte<cartePolitica; numCarte++){
+			partita.getGiocatoreCorrente().aggiungiCartePolitica(mazzo.pescaCarte());
+		}
 		
 	}
 }
