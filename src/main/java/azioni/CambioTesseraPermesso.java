@@ -32,7 +32,7 @@ public class CambioTesseraPermesso extends AzioneVeloce {
 	}
 	
 	/**
-	 * 
+	 * remove cards from TesserePermesseScoperte and add to MazzoTesserePermesso
 	 */
 	private void RimozioneCarte(){
 		
@@ -44,6 +44,9 @@ public class CambioTesseraPermesso extends AzioneVeloce {
 		}
 	}
 	
+	/**
+	 * remove cards from MazzoTesserePermesso and add cards to TesserePermessoScoperte
+	 */
 	private void SostituzioneCarte(){
 		
 		ArrayList<TesseraPermesso> tessereRegione = regione.getTesserePermessoScoperte();
