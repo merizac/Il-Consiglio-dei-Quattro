@@ -18,6 +18,6 @@ public class BonusAiutanti extends Bonus {
 	 * add aiutanti to the variable aiutanti of Giocatore
 	 */
 	public void usaBonus() {
-		this.getPartita().getGiocatoreCorrente().getAiutanti().aggiungiAiutanti(this.aiutanti);
+		this.partita.getGiocatoreCorrente().getAiutanti().aggiungiAiutanti(this.aiutanti);
 	}
 }

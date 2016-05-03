@@ -17,6 +17,6 @@ public class BonusPuntiVittoria extends Bonus {
 	 * add puntiVittoria to variable punteggioVittoria of Giocatore
 	 */
 	public void usaBonus() {
-		this.getPartita().getGiocatoreCorrente().aumentaPuntiVittoria(puntiVittoria);
+		this.partita.getGiocatoreCorrente().aumentaPuntiVittoria(puntiVittoria);
 	}
 }

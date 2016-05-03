@@ -18,6 +18,6 @@ public class BonusMoneta extends Bonus {
 	 * add monete to variable punteggioRicchezza of Giocatore
 	 */
 	public void usaBonus() {
-		this.getPartita().getGiocatoreCorrente().aumentaRicchezza(monete);
+		this.partita.getGiocatoreCorrente().aumentaRicchezza(monete);
 	}
 }
