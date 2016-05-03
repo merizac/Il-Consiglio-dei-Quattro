@@ -133,13 +133,11 @@ public class Giocatore {
 		this.punteggioVittoria=this.punteggioVittoria + puntiVittoria;
 	}
 	/**
-	 * add politic cards to the ArrayList CartePolitca of the player
+	 * add politic card to the ArrayList CartePolitca of the player
 	 * @param carteDaAggiungere
 	 */
-	public void aggiungiCartePolitica(ArrayList<CartaPolitica> carteDaAggiungere){
-		for(CartaPolitica c: carteDaAggiungere){
-			this.cartePolitica.add(c);
-		}
+	public void aggiungiCartePolitica(CartaPolitica cartaDaAggiungere){
+			this.cartePolitica.add(cartaDaAggiungere);
 	}
 	
 	
