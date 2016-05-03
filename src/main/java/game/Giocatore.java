@@ -30,15 +30,13 @@ public class Giocatore {
 	 * @param punteggioNobiltà
 	 */
 	public Giocatore(Colore coloreGiocatore, ArrayList<CartaPolitica> cartePolitica,
-			ArrayList<TesseraPermesso> tesserePermesso, ArrayList<TesseraPermesso> tesserePermessoUsate,
-			ArrayList<Bonus> tessereBonus, Aiutante aiutanti, int punteggioVittoria, int punteggioRicchezza,
+			Aiutante aiutanti, int punteggioVittoria, int punteggioRicchezza,
 			PunteggioNobiltà punteggioNobiltà) {
-		super();
 		this.coloreGiocatore = coloreGiocatore;
 		this.cartePolitica = cartePolitica;
-		this.tesserePermesso = tesserePermesso;
-		this.tesserePermessoUsate = tesserePermessoUsate;
-		this.tessereBonus = tessereBonus;
+		this.tesserePermesso = new ArrayList<TesseraPermesso>();
+		this.tesserePermessoUsate = new ArrayList<TesseraPermesso>();
+		this.tessereBonus = new ArrayList<Bonus>();
 		this.aiutanti = aiutanti;
 		this.punteggioVittoria = punteggioVittoria;
 		this.punteggioRicchezza = punteggioRicchezza;
