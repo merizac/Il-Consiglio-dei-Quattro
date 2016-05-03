@@ -1,18 +1,39 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import bonus.*;
 
 public class CittàBonus extends Città {
 
-	private ArrayList<Bonus> bonus;
+	private final ArrayList<Bonus> bonus;
+	
+	
 
+	/**
+	 * @param nome
+	 * @param regione
+	 * @param colore
+	 * @param empori
+	 * @param cittàCollegate
+	 */
+	public CittàBonus(String nome, Regione regione, ColoreCittà colore, HashSet<Emporio> empori,
+			ArrayList<Città> cittàCollegate, ArrayList<Bonus> bonus) {
+		super(nome, regione, colore, empori, cittàCollegate);
+		this.bonus = bonus;
+		this.colore.getCittà().add(this);
+	}
+
+
+	/**
+	 * @return the bonus
+	 */
 	public ArrayList<Bonus> getBonus() {
-		return this.bonus;
+		return bonus;
 	}
 
-	private void creaBonus() {
-		throw new UnsupportedOperationException();
-	}
+	
+
+	
 }

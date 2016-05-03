@@ -11,7 +11,7 @@ public abstract class Bonus {
 	public Bonus(Partita partita) {
 		this.partita = partita;
 	}
-
+	
 	/**
 	 * @return the partita
 	 */

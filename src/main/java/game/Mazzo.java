@@ -44,6 +44,6 @@ public class Mazzo<T> {
 	 * @param carta
 	 */
 	public void aggiungiCarta(T carta) {
-		carte.add(carta);
+			carte.add(carta);
 	}
 }
