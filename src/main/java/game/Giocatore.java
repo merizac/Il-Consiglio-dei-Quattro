@@ -136,7 +136,7 @@ public class Giocatore {
 	 * add politic card to the ArrayList CartePolitca of the player
 	 * @param carteDaAggiungere
 	 */
-	public void aggiungiCartePolitica(CartaPolitica cartaDaAggiungere){
+	public void aggiungiCartaPolitica(CartaPolitica cartaDaAggiungere){
 			this.cartePolitica.add(cartaDaAggiungere);
 	}
 	

@@ -19,7 +19,7 @@ public class BonusCartePolitica extends Bonus {
 	public void usaBonus() {
 		Mazzo<CartaPolitica> mazzo = partita.getTabellone().getMazzoCartePolitica();
 		for(int numCarte=0; numCarte<cartePolitica; numCarte++){
-			partita.getGiocatoreCorrente().aggiungiCartePolitica(mazzo.pescaCarte());
+			partita.getGiocatoreCorrente().aggiungiCartaPolitica(mazzo.pescaCarte());
 		}
 		
 	}
