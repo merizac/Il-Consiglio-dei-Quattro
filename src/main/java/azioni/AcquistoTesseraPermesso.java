@@ -54,26 +54,11 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 				}
 			}		
 		
-		switch (carteUguali){
-		case 1: if(carteUguali==1){
-		monete=monete+10;
-		}
-		break;
-		
-		case 2: if(carteUguali==2){
-		monete=monete+7;
-		}
-		break;
-		case 3: if(carteUguali==3){
-		monete=monete+4;
-		}
-		break;
-		default: break;
-		}
+	pagaCarte(monete, carteUguali);
 		
 		if(partita.getGiocatoreCorrente().diminuisciRicchezza(monete)){
 			for(CartaPolitica c: carteGiocatore){
-				this.partita.getGiocatoreCorrente().getCartePolitica().remove(carteGiocatore);
+				this.partita.getGiocatoreCorrente().getCartePolitica().remove(c);
 				this.partita.getTabellone().getMazzoCartePolitica().aggiungiCarta(carteGiocatore);
 			}
 			TesseraPermesso tesseraScelta = regione.getTesserePermessoScoperte().get(indiceTesseraScoperta);
@@ -83,6 +68,28 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 			return true;
 		}
 			return false;	
+	}
+	
+	private int pagaCarte (int monete,int carteUguali){
+		switch (carteUguali){
+		case 1: if(carteUguali==1){
+		 monete=monete+10;
+		}
+		break;
+		
+		case 2: if(carteUguali==2){
+		 monete=monete+7;
+		}
+		break;
+		case 3: if(carteUguali==3){
+		 monete=monete+4;
+		}
+		break;
+		default: 
+		break;
+		}
+		return monete;
+		
 	}
 
 }

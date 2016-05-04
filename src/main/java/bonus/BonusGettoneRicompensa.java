@@ -3,11 +3,11 @@ package bonus;
 
 import game.Partita;
 
-public class BonusGettoreRicompensa extends Bonus {
+public class BonusGettoneRicompensa extends Bonus {
 
 	private int numeroGettoni;
 	
-	public BonusGettoreRicompensa(Partita partita) {
+	public BonusGettoneRicompensa(Partita partita) {
 		super(partita);
 		// TODO Auto-generated constructor stub
 	}
