@@ -34,13 +34,35 @@ public final class PunteggioNobiltà {
 	public int getPuntiNobiltà() {
 		return this.puntiNobiltà;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + puntiNobiltà;
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PunteggioNobiltà other = (PunteggioNobiltà) obj;
+		if (puntiNobiltà != other.puntiNobiltà)
+			return false;
+		return true;
+	}
 	
-	/*public void aggiungiPuntiNobiltà(int puntiNobiltà){
-		this.puntiNobiltà=this.puntiNobiltà + puntiNobiltà;
-		if (bonus.isEmpty()) {
-			for(Bonus bonus: bonus){
-				bonus.usaBonus();
-			}
-		}
-	}*/
+	
+	
 }
