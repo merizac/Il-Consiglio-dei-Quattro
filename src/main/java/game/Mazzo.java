@@ -40,12 +40,19 @@ public class Mazzo<T> {
 	}
 
 	/**
-	 * Add the card at the end of the deck
+	 * Add the list of cards at the end of the deck
 	 * @param carta
 	 */
 	public void aggiungiCarta(ArrayList<T> carta) {
 		for(T t: carta){	
 		carte.add(t);
 		}
+	}
+	/**
+	 * Add the card at the end of the deck
+	 * @param carta
+	 */
+	public void aggiungiCarta(T carta) {
+		carte.add(carta);
 	}
 }
