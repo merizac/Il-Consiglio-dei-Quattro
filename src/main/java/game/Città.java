@@ -80,6 +80,18 @@ public class Città {
 		else 
 			return false;
 	}
+	/**
+	 * check if there is a emporio of the same color of parameter colore
+	 * @param colore
+	 * @return true if empori contains a emporio of the same colore, false in the other case
+	 */
+	public boolean emporioColore(Colore colore){
+		if(empori.contains(new Emporio(colore)))
+			return true;
+		else 
+			return false;
+			
+	}
 
 
 	/* (non-Javadoc)

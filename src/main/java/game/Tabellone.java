@@ -3,7 +3,7 @@ package game;
 import java.util.ArrayList;
 
 public class Tabellone {
-	private final Map mappa;
+	private final Mappa mappa;
 	private final ArrayList<Regione> regioni;
 	private final PlanciaRe planciaRe;
 	private final Re pedinaRe;
@@ -17,7 +17,7 @@ public class Tabellone {
 	 * @param consiglieri
 	 * @param mazzoCartePolitica
 	 */
-	public Tabellone(Map mappa, ArrayList<Regione> regioni, PlanciaRe planciaRe, Re pedinaRe,
+	public Tabellone(Mappa mappa, ArrayList<Regione> regioni, PlanciaRe planciaRe, Re pedinaRe,
 			ArrayList<Consigliere> consiglieri, Mazzo<CartaPolitica> mazzoCartePolitica) {
 		this.mappa = mappa;
 		this.regioni = regioni;
@@ -29,7 +29,7 @@ public class Tabellone {
 	/**
 	 * @return the mappa
 	 */
-	public Map getMappa() {
+	public Mappa getMappa() {
 		return mappa;
 	}
 	/**
