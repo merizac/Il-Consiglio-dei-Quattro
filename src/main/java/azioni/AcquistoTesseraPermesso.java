@@ -31,57 +31,46 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 	 */
 	@Override
 	public boolean eseguiAzione() {
-		if (carteGiocatore.size()>regione.getBalcone().getConsigliere().size())
+		if(!controllaColori())
 			return false;
-		ArrayList<Consigliere> consiglieri=new ArrayList<Consigliere>(regione.getBalcone().getConsigliere());
+		if(!paga(calcolaMonete()))
+			return false;
+		    for(CartaPolitica c: carteGiocatore){
+		      this.partita.getGiocatoreCorrente().getCartePolitica().remove(c);
+		      this.partita.getTabellone().getMazzoCartePolitica().aggiungiCarta(carteGiocatore);
+		    }
+		    TesseraPermesso tesseraScelta = regione.getTesserePermessoScoperte().get(indiceTesseraScoperta);
+		    partita.getGiocatoreCorrente().getTesserePermesso().add(tesseraScelta);
+		return true;
+	}
+
+	private boolean paga(int moneteDovute) {
+		if(!this.partita.getGiocatoreCorrente().diminuisciRicchezza(moneteDovute))
+			return false;
+		return true;
+	}
+
+	private int calcolaMonete() {
 		
-		int carteUguali=0;
 		int monete=0;
-		
+		int carte=carteGiocatore.size();
 		for (CartaPolitica carta: carteGiocatore ){
 			if (carta.getColore().getColore()=="multicolor"){
-				carteUguali++;
 				monete++;
-				continue;
 			}
-				
-			for (Consigliere consigliere: consiglieri){
-					if (consigliere.getColore().getColore()==carta.getColore().getColore()){
-						consiglieri.remove(consigliere);
-						carteUguali++;
-					}
-					return false; //se la carta non matcha
-				}
-			}		
-		
-	pagaCarte(monete, carteUguali);
-		
-		if(partita.getGiocatoreCorrente().diminuisciRicchezza(monete)){
-			for(CartaPolitica c: carteGiocatore){
-				this.partita.getGiocatoreCorrente().getCartePolitica().remove(c);
-				this.partita.getTabellone().getMazzoCartePolitica().aggiungiCarta(carteGiocatore);
-			}
-			TesseraPermesso tesseraScelta = regione.getTesserePermessoScoperte().get(indiceTesseraScoperta);
-			partita.getGiocatoreCorrente().getTesserePermesso().add(tesseraScelta);
-			
-		
-			return true;
 		}
-			return false;	
-	}
-	
-	private int pagaCarte (int monete,int carteUguali){
-		switch (carteUguali){
-		case 1: if(carteUguali==1){
+		
+		switch (carte){
+		case 1: if(carte==1){
 		 monete=monete+10;
 		}
 		break;
 		
-		case 2: if(carteUguali==2){
+		case 2: if(carte==2){
 		 monete=monete+7;
 		}
 		break;
-		case 3: if(carteUguali==3){
+		case 3: if(carte==3){
 		 monete=monete+4;
 		}
 		break;
@@ -89,6 +78,26 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 		break;
 		}
 		return monete;
+		
+		
+	}
+
+	private boolean controllaColori() {
+		for (CartaPolitica carta: carteGiocatore ){
+			if (carta.getColore().getColore()=="multicolor"){
+				continue;
+			}
+				
+			for (Consigliere consigliere: regione.getBalcone().getConsigliere()){
+					if (consigliere.getColore().getColore()==carta.getColore().getColore()){
+						regione.getBalcone().getConsigliere().remove(consigliere);
+					}
+					
+					else
+						return false; //se la carta non matcha
+				}
+			}
+		return true;
 		
 	}
 
