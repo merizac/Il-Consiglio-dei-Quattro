@@ -1,17 +1,77 @@
 package azioni;
 
+import java.util.HashSet;
+
+import bonus.Bonus;
+import game.Città;
+import game.CittàBonus;
+import game.Colore;
+import game.Emporio;
 import game.Partita;
+import game.TesseraPermesso;
 
 public class CostruzioneTesseraPermesso extends AzionePrincipale {
 
-	public CostruzioneTesseraPermesso(Partita partita) {
+	private TesseraPermesso tesseraPermessoScoperta;
+	private Città cittàCostruzione;
+
+	/**
+	 * @param partita
+	 * @param tesseraPermessoScoperta
+	 * @param cittàCostruzione
+	 */
+	public CostruzioneTesseraPermesso(Partita partita, TesseraPermesso tesseraPermessoScoperta,
+			Città cittàCostruzione) {
 		super(partita);
-		// TODO Auto-generated constructor stub
+		this.tesseraPermessoScoperta = tesseraPermessoScoperta;
+		this.cittàCostruzione = cittàCostruzione;
 	}
+
+
 
 	@Override
 	public boolean eseguiAzione() {
-		// TODO Auto-generated method stub
+		if(!pagoAiutanti())
+			return false;
+		costruisci();
+		prendiBonus();
+		copriTessera();
+		
+		return true;
+	}
+	
+	private void copriTessera() {
+		this.partita.getGiocatoreCorrente().getTesserePermesso().remove(tesseraPermessoScoperta);
+		this.partita.getGiocatoreCorrente().getTesserePermessoUsate().add(tesseraPermessoScoperta);
+	}
+
+
+
+	private boolean pagoAiutanti(){
+		int numeroEmpori = cittàCostruzione.getEmpori().size(); 
+	
+		if(!cittàCostruzione.getEmpori().isEmpty()) { 
+			if(this.partita.getGiocatoreCorrente().getAiutanti().togliAiutanti(numeroEmpori)){
+				return true;
+			}
+		}
 		return false;
 	}
+	
+	private void costruisci(){
+		Emporio emporio = this.partita.getGiocatoreCorrente().getEmpori().remove(0);
+		this.cittàCostruzione.aggiungiEmporio(emporio);
+	}
+	
+	private void prendiBonus(){
+		Colore coloreEmporio = this.partita.getGiocatoreCorrente().getColoreGiocatore();
+		HashSet<CittàBonus> cittàCollegate = this.partita.getTabellone().getMappa().trovaCittà(cittàCostruzione, coloreEmporio);
+		for ( CittàBonus c: cittàCollegate){
+				for(Bonus b: c.getBonus()){
+					b.usaBonus();
+		}
+		}
+	}
+	
+	
 }

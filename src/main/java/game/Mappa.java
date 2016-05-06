@@ -56,11 +56,11 @@ public class Mappa {
 	 * @param emporio
 	 * @return a set of city connected to cittàEmporio with the same color of Emporio 
 	 */
-	public HashSet<Città> trovaCittà(Città cittàEmporio, Emporio emporio){
+	public HashSet<CittàBonus> trovaCittà(Città cittàEmporio, Colore coloreEmporio){
 		
 		CittàCollegate cittàCollegate = new CittàCollegate();
 		
-		return cittàCollegate.cittàBonusEmporio(grafo, emporio, cittàEmporio);
+		return cittàCollegate.cittàBonusEmporio(grafo, coloreEmporio, cittàEmporio);
 		
 	}
 	

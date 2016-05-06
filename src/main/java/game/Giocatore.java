@@ -11,12 +11,12 @@ public class Giocatore {
 	private final ArrayList<TesseraPermesso> tesserePermesso;
 	private final ArrayList<TesseraPermesso> tesserePermessoUsate;
 	private final ArrayList<Bonus> tessereBonus;
+	private final ArrayList<Emporio> empori;
 	private final Aiutante aiutanti;
 	private int punteggioVittoria;
 	private int punteggioRicchezza;
 	private PunteggioNobiltà punteggioNobiltà;
 
-	
 
 	/**
 	 * @param coloreGiocatore
@@ -31,18 +31,26 @@ public class Giocatore {
 	 */
 	public Giocatore(Colore coloreGiocatore, ArrayList<CartaPolitica> cartePolitica,
 			Aiutante aiutanti, int punteggioVittoria, int punteggioRicchezza,
-			PunteggioNobiltà punteggioNobiltà) {
+			PunteggioNobiltà punteggioNobiltà, ArrayList<Emporio> empori) {
 		this.coloreGiocatore = coloreGiocatore;
 		this.cartePolitica = cartePolitica;
 		this.tesserePermesso = new ArrayList<TesseraPermesso>();
 		this.tesserePermessoUsate = new ArrayList<TesseraPermesso>();
 		this.tessereBonus = new ArrayList<Bonus>();
+		this.empori = new ArrayList<Emporio>();
 		this.aiutanti = aiutanti;
 		this.punteggioVittoria = punteggioVittoria;
 		this.punteggioRicchezza = punteggioRicchezza;
 		this.punteggioNobiltà = punteggioNobiltà;
 	}
 	
+
+	/**
+	 * @return the empori
+	 */
+	public ArrayList<Emporio> getEmpori() {
+		return empori;
+	}
 	
 	/**
 	 * @return the punteggioNobiltà

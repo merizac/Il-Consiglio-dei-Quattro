@@ -1,20 +1,19 @@
 package game;
 
 import java.util.HashSet;
-import java.util.Set;
 
 import org.jgrapht.graph.SimpleGraph;
 import org.jgrapht.alg.ConnectivityInspector;
 
 public class CittàCollegate {
 	
-	private final Set<Città> cittàCollegate;
-	private final Set<Città> cittàVisitate;
+	private final HashSet<CittàBonus> cittàCollegate;
+	private final HashSet<Città> cittàVisitate;
 	/**
 	 * constructor 
 	 */
 	public CittàCollegate() {
-		this.cittàCollegate= new HashSet<Città>();
+		this.cittàCollegate= new HashSet<CittàBonus>();
 		this.cittàVisitate = new HashSet<Città>();
 	}
 	/**
@@ -24,9 +23,9 @@ public class CittàCollegate {
 	 * @param città
 	 * @return HashSet of cities connected to the city where the player has built
 	 */
-	public HashSet<Città> cittàBonusEmporio(SimpleGraph<Città, Strada> grafo, Emporio emporio, Città città){
-		aggiungiCittà(grafo, emporio, città);
-		return (HashSet<Città>) cittàCollegate;
+	public HashSet<CittàBonus> cittàBonusEmporio(SimpleGraph<Città, Strada> grafo, Colore coloreEmporio, Città città){
+		aggiungiCittà(grafo, coloreEmporio, città);
+		return cittàCollegate;
 	}
 	/**
 	 * find city connected to città with the same color of Emporio and add to cittàCollegate
@@ -34,15 +33,17 @@ public class CittàCollegate {
 	 * @param emporio
 	 * @param città
 	 */
-	private void aggiungiCittà(SimpleGraph<Città, Strada> grafo, Emporio emporio, Città città) {
+	private void aggiungiCittà(SimpleGraph<Città, Strada> grafo, Colore coloreEmporio, Città città) {
 		ConnectivityInspector<Città, Strada> inspector= new ConnectivityInspector<>(grafo);
 		for(Città c: inspector.connectedSetOf(città)){
-			if(!c.emporioColore(emporio.getColore()) || cittàVisitate.contains(c))
+			if(!c.emporioColore(coloreEmporio) || cittàVisitate.contains(c))
 				return;
 			else {
 					cittàVisitate.add(c);
-					cittàCollegate.add(c);
-					aggiungiCittà(grafo, emporio, c);
+					if( c instanceof CittàBonus){
+						cittàCollegate.add((CittàBonus)c);
+					}
+					aggiungiCittà(grafo, coloreEmporio, c);
 			}
 					
 		}
