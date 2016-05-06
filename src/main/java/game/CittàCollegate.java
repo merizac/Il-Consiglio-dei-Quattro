@@ -2,6 +2,7 @@ package game;
 
 import java.util.HashSet;
 
+import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.SimpleGraph;
 import org.jgrapht.alg.ConnectivityInspector;
 
@@ -23,7 +24,7 @@ public class CittàCollegate {
 	 * @param città
 	 * @return HashSet of cities connected to the city where the player has built
 	 */
-	public HashSet<CittàBonus> cittàBonusEmporio(SimpleGraph<Città, Strada> grafo, Colore coloreEmporio, Città città){
+	public HashSet<CittàBonus> cittàBonusEmporio(SimpleGraph<Città, DefaultEdge> grafo, Colore coloreEmporio, Città città){
 		aggiungiCittà(grafo, coloreEmporio, città);
 		return cittàCollegate;
 	}
@@ -33,8 +34,8 @@ public class CittàCollegate {
 	 * @param emporio
 	 * @param città
 	 */
-	private void aggiungiCittà(SimpleGraph<Città, Strada> grafo, Colore coloreEmporio, Città città) {
-		ConnectivityInspector<Città, Strada> inspector= new ConnectivityInspector<>(grafo);
+	private void aggiungiCittà(SimpleGraph<Città, DefaultEdge> grafo, Colore coloreEmporio, Città città) {
+		ConnectivityInspector<Città, DefaultEdge> inspector= new ConnectivityInspector<>(grafo);
 		for(Città c: inspector.connectedSetOf(città)){
 			if(!c.emporioColore(coloreEmporio) || cittàVisitate.contains(c))
 				return;

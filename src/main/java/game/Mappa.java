@@ -5,17 +5,18 @@ import java.util.Set;
 
 
 import org.jgrapht.alg.DijkstraShortestPath;
+import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.SimpleGraph;
 
 public class Mappa {
-	private final SimpleGraph<Città, Strada> grafo;
+	private final SimpleGraph<Città, DefaultEdge> grafo;
 	/**
 	 * create the graph
 	 * @param città
 	 */
 	public Mappa(HashSet<Città> città){
 		
-		grafo= new SimpleGraph<Città, Strada>(Strada.class);
+		grafo= new SimpleGraph<Città, DefaultEdge>(DefaultEdge.class);
 		
 		this.aggiungiVertici(città);
 		this.collegaVertici((grafo.vertexSet()));
@@ -72,8 +73,8 @@ public class Mappa {
 	 * @return minimaDistanza
 	 */
 	public int minimaDistanza(Città cittàPartenza, Città cittàDestinazione){
-		DijkstraShortestPath<Città, Strada> distanza 
-			= new DijkstraShortestPath<Città, Strada>(grafo, cittàPartenza, cittàDestinazione);
+		DijkstraShortestPath<Città, DefaultEdge> distanza 
+			= new DijkstraShortestPath<Città, DefaultEdge>(grafo, cittàPartenza, cittàDestinazione);
 		return (int)distanza.getPathLength();
 	}
 	
@@ -82,7 +83,7 @@ public class Mappa {
 	 * 
 	 * @return grafo
 	 */
-	public SimpleGraph<Città, Strada> getGrafo() {
+	public SimpleGraph<Città, DefaultEdge> getGrafo() {
 		return grafo;
 	}
 
