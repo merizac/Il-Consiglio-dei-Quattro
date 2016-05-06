@@ -1,9 +1,11 @@
 package bonus;
 
 
+import java.util.Set;
+
 import game.Partita;
 
-public class BonusTesseraPermesso extends Bonus {
+public class BonusTesseraPermesso extends BonusNobiltà {
 
 	public BonusTesseraPermesso(Partita partita) {
 		super(partita);
@@ -11,10 +13,12 @@ public class BonusTesseraPermesso extends Bonus {
 	}
 
 	@Override
-	public void usaBonus() {
-		// TODO Auto-generated method stub
+	public <T> boolean usaBonus(Set<T> oggetti) {
+		return false;
+		
 		
 	}
 
+	
 	
 }

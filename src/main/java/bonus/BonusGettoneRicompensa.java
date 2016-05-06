@@ -1,22 +1,27 @@
 package bonus;
 
 
+import java.util.Set;
+
 import game.Partita;
 
-public class BonusGettoneRicompensa extends Bonus {
+public class BonusGettoneRicompensa extends BonusNobiltà {
 
-	private int numeroGettoni;
+	private final int numeroGettoni;
 	
-	public BonusGettoneRicompensa(Partita partita) {
+	public BonusGettoneRicompensa(Partita partita, int numeroGettoni) {
 		super(partita);
-		// TODO Auto-generated constructor stub
+		this.numeroGettoni=numeroGettoni;
 	}
 
 	@Override
-	public void usaBonus() {
-		// TODO Auto-generated method stub
-		
+	public <T> boolean usaBonus(Set<T> oggetti) {
+		return false;
+				
 	}
+	
+	
 
+	
 	
 }
