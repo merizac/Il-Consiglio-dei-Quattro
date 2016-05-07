@@ -43,13 +43,21 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 		    partita.getGiocatoreCorrente().getTesserePermesso().add(tesseraScelta);
 		return true;
 	}
-
+	/**
+	 * 
+	 * @param moneteDovute
+	 * @return true if the player can pay the money, false otherwise
+	 */
 	private boolean paga(int moneteDovute) {
 		if(!this.partita.getGiocatoreCorrente().diminuisciRicchezza(moneteDovute))
 			return false;
 		return true;
 	}
 
+	/**
+	 * 
+	 * @return how many money the player have to pay
+	 */
 	private int calcolaMonete() {
 		
 		int monete=0;
@@ -82,13 +90,18 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 		
 	}
 
+	/**
+	 * 
+	 * @return false if the cards of the player didn't match
+	 */
 	private boolean controllaColori() {
+		ArrayList<Consigliere> copiaConsiglieri = new ArrayList<Consigliere>(regione.getBalcone().getConsigliere());
 		for (CartaPolitica carta: carteGiocatore ){
 			if (carta.getColore().getColore()=="multicolor"){
 				continue;
 			}
 				
-			for (Consigliere consigliere: regione.getBalcone().getConsigliere()){
+			for (Consigliere consigliere: copiaConsiglieri){
 					if (consigliere.getColore().getColore()==carta.getColore().getColore()){
 						regione.getBalcone().getConsigliere().remove(consigliere);
 					}
