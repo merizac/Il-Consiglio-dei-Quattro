@@ -18,7 +18,7 @@ public class CittàBonus extends Città {
 	 * @param empori
 	 * @param cittàCollegate
 	 */
-	public CittàBonus(String nome, Regione regione, ColoreCittà colore, HashSet<Emporio> empori,
+	public CittàBonus(String nome, Regione regione, ColoreCittà colore,
 			ArrayList<Città> cittàCollegate, ArrayList<Bonus> bonus) {
 		super(nome, regione, colore);
 		this.bonus = bonus;

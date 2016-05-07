@@ -1,21 +1,18 @@
 package game;
 
+import mvc.View;
+
+import java.util.ArrayList;
+
+import mvc.Controllore;
+
 public class Partita {
 
 	private Tabellone tabellone;
-	private Giocatore[] giocatori;
+	private ArrayList<Giocatore> giocatori;
 	private Giocatore giocatoreCorrente;
-	
-	
-
-	/*private void creaTabellone() {
-		throw new UnsupportedOperationException();
-	}
-
-	private void creaGiocatori() {
-		throw new UnsupportedOperationException();
-	}*/
-
+	private Controllore controllore;
+	private View view;
 	/**
 	 * @return the tabellone
 	 */
@@ -38,6 +35,39 @@ public class Partita {
 	}
 
 	public void gestisciPartita() {
+		
+		Controllore controllore= new Controllore(this);
+		View view= new View(this);
+		
+		controllore.registerObserver(view);
+		view.registerObserver(controllore);
+		
+		while(true){
+			giocatoreCorrente= giocatori.get(0);
+			giocatoreCorrente.aggiungiCartaPolitica(tabellone.getMazzoCartePolitica().pescaCarte());
+		
+			
+			//mostra gioco e giocatore
+			
+			String messaggio=view.scegliAzione();
+			
+			mostraAzione(messaggio);
+			
+			
+		}
+		
+		
+	}
+
+	private void mostraAzione(String messaggio) {
+		switch(messaggio){
+			case "1":
+				view.scegliAzionePrincipale();
+				break;
+			case "2":
+				//view.scegliAzioneVeloce();
+				break;
+		}
 		
 	}
 }

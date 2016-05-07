@@ -2,6 +2,8 @@ package game;
 
 import java.util.ArrayList;
 
+import azioni.AzioneVeloce;
+import azioni.AzionePrincipale;
 import bonus.*;
 
 public class Giocatore {
@@ -12,6 +14,8 @@ public class Giocatore {
 	private final ArrayList<TesseraPermesso> tesserePermessoUsate;
 	private final ArrayList<Bonus> tessereBonus;
 	private final ArrayList<Emporio> empori;
+	private final ArrayList<AzionePrincipale> azioniPrincipali;
+	private final ArrayList<AzioneVeloce> azioneVeloce;
 	private final Aiutante aiutanti;
 	private int punteggioVittoria;
 	private int punteggioRicchezza;
@@ -38,12 +42,30 @@ public class Giocatore {
 		this.tesserePermessoUsate = new ArrayList<TesseraPermesso>();
 		this.tessereBonus = new ArrayList<Bonus>();
 		this.empori = new ArrayList<Emporio>();
+		this.azioniPrincipali= new ArrayList<AzionePrincipale>();
+		this.azioneVeloce = new ArrayList <AzioneVeloce>();
 		this.aiutanti = aiutanti;
 		this.punteggioVittoria = punteggioVittoria;
 		this.punteggioRicchezza = punteggioRicchezza;
 		this.punteggioNobiltà = punteggioNobiltà;
 	}
 	
+
+	/**
+	 * @return the azioniPrincipali
+	 */
+	public ArrayList<AzionePrincipale> getAzioniPrincipali() {
+		return azioniPrincipali;
+	}
+
+
+	/**
+	 * @return the azioneVeloce
+	 */
+	public ArrayList<AzioneVeloce> getAzioneVeloce() {
+		return azioneVeloce;
+	}
+
 
 	/**
 	 * @return the empori
