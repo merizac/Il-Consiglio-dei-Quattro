@@ -31,6 +31,8 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 	 */
 	@Override
 	public boolean eseguiAzione() {
+		if(carteGiocatore.isEmpty())
+			return false;
 		if(!controllaColori())
 			return false;
 		if(!paga(calcolaMonete()))
