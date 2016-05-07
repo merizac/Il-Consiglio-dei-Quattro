@@ -71,19 +71,18 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 		}
 		
 		switch (carte){
-		case 1: if(carte==1){
+		case 1:
 		 monete=monete+10;
-		}
+		 break;
+		
+		case 2:
+		 monete=monete+7;
+		 break;
+		
+		case 3:
+		 monete=monete+4;
 		break;
 		
-		case 2: if(carte==2){
-		 monete=monete+7;
-		}
-		break;
-		case 3: if(carte==3){
-		 monete=monete+4;
-		}
-		break;
 		default: 
 		break;
 		}
