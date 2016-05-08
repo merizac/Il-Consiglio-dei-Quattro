@@ -3,6 +3,7 @@ package azioni;
 import java.util.ArrayList;
 
 import game.CartaPolitica;
+import game.Consigliere;
 import game.Partita;
 import game.Regione;
 
@@ -33,6 +34,14 @@ public class PassaggioParametri {
 		
 	}
 	
+	public Consigliere selezionaConsiglieri() {
+		String consigliereScelto = partita.getView().scegliConsigliere();
+		Consigliere consigliere = partita.getTabellone().getConsigliere(consigliereScelto);
+		if(consigliere==null)
+			consigliere=this.selezionaConsiglieri();
+		return consigliere;
+	}
+	
 	protected ArrayList<CartaPolitica> selezionaCarteGiocatore () {
 
 		ArrayList<String> carteView =partita.getView().scegliCarte();
@@ -48,6 +57,8 @@ public class PassaggioParametri {
 		
 		return cartePolitica;
 	}
+
+
 	
 	
 

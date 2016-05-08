@@ -1,23 +1,21 @@
 package azioni;
 
-import game.Balcone;
 import game.Consigliere;
 import game.Partita;
+import game.Regione;
 
 public class ElezioneConsigliere extends AzionePrincipale {
 
-	private final Balcone balcone;
-	private final Consigliere consigliere;
+	private Regione regione;
+	private Consigliere consigliere;
 	
 
 	/**constructor
 	 * @param balcone
 	 * @param consigliere
 	 */
-	public ElezioneConsigliere(Partita partita, Balcone balcone, Consigliere consigliere) {
+	public ElezioneConsigliere(Partita partita) {
 		super(partita);
-		this.balcone = balcone;
-		this.consigliere = consigliere;
 	}
 /**
  * Remove and add consigliere from the selected balcony
@@ -26,9 +24,14 @@ public class ElezioneConsigliere extends AzionePrincipale {
  */
 	@Override
 	public boolean eseguiAzione() {
-		Consigliere consigliereTolto = this.balcone.aggiungiConsigliere(consigliere);
+		PassaggioParametri passaggioParametri = new PassaggioParametri(partita);
+		consigliere = passaggioParametri.selezionaConsiglieri();
+		regione = passaggioParametri.selezionaRegione();
+
+		Consigliere consigliereTolto = this.regione.getBalcone().aggiungiConsigliere(consigliere);
 		this.partita.getTabellone().getConsiglieri().add(consigliereTolto);
 		this.partita.getGiocatoreCorrente().aumentaRicchezza(4);
 		return true;
 	}
+
 }
