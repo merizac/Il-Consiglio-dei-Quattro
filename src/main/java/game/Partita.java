@@ -1,10 +1,10 @@
 package game;
 
-import mvc.View;
-
 import java.util.ArrayList;
 
 import mvc.Controllore;
+import mvc.View;
+import mvc.ViewCLI;
 
 public class Partita {
 
@@ -33,11 +33,13 @@ public class Partita {
 	public void setGiocatoreCorrente(Giocatore giocatoreCorrente) {
 		this.giocatoreCorrente = giocatoreCorrente;
 	}
+	
+	
 
 	public void gestisciPartita() {
 		
 		Controllore controllore= new Controllore(this);
-		View view= new View(this);
+		ViewCLI view= new ViewCLI(this);
 		
 		controllore.registerObserver(view);
 		view.registerObserver(controllore);
@@ -52,11 +54,23 @@ public class Partita {
 			String messaggio=view.scegliAzione();
 			
 			mostraAzione(messaggio);
-			
-			
 		}
 		
 		
+	}
+
+	/**
+	 * @return the controllore
+	 */
+	public Controllore getControllore() {
+		return controllore;
+	}
+
+	/**
+	 * @return the view
+	 */
+	public View getView() {
+		return view;
 	}
 
 	private void mostraAzione(String messaggio) {
