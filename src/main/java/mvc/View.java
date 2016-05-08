@@ -21,6 +21,11 @@ public abstract class View extends Observable implements Observer {
 	public abstract void scegliAzionePrincipale();
 	
 	public abstract ArrayList<String> scegliCarte();
+	
+	public abstract void scegliAzioneVeloce();
+	
+	public abstract String possibilitàAzioneVeloce();
+
 
 	@Override
 	public void update() {
@@ -37,6 +42,9 @@ public abstract class View extends Observable implements Observer {
 	 public abstract String scegliRegione();
 
 	 public abstract int scegliTesseraScoperta(Regione regione);
+
+	
+
 
 	
 			
