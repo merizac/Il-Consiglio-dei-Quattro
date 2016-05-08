@@ -18,6 +18,11 @@ public abstract class View extends Observable implements Observer {
 	public abstract void scegliAzionePrincipale();
 	
 	public abstract void scegliCarte();
+	
+	public abstract void scegliAzioneVeloce();
+	
+	public abstract String possibilitàAzioneVeloce();
+
 
 	@Override
 	public void update() {
@@ -30,6 +35,9 @@ public abstract class View extends Observable implements Observer {
 		// TODO Auto-generated method stub
 		
 	}
+
+	
+
 
 	
 			
