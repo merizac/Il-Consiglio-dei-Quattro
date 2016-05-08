@@ -13,7 +13,6 @@ public class BonusAzionePrincipale extends Bonus {
 
 	@Override
 	public void usaBonus() {
-		// TODO Auto-generated method stub
 		
 	}
 }

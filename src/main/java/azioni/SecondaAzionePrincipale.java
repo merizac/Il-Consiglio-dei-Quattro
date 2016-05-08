@@ -23,15 +23,15 @@ public class SecondaAzionePrincipale extends AzioneVeloce {
 		ArrayList<AzionePrincipale> azionePrincipale = this.partita.getGiocatoreCorrente().getAzioniPrincipali();
 		this.partita.svuotaAzioniVeloci();
 		if (azionePrincipale.isEmpty()){
-		/*	this.partita.riempiAzioniPrincipali();*/
+		    this.partita.riempiAzioniPrincipali();
 			}
 		
-			this.partita.getView().scegliAzionePrincipale();
-			//AZIONE PRINCIPALE: deve eseguire l'azione principale , controllare il ritorno e se andato 
-			// a buon fine svuotare azione principale
+		this.partita.getView().scegliAzionePrincipale();
+		//AZIONE PRINCIPALE: deve eseguire l'azione principale , controllare il ritorno e se andato 
+		// a buon fine svuotare azione principale
 			
 		if (!azionePrincipale.isEmpty()){
-		/*	this.partita.riempiAzioniPrincipali();*/
+			this.partita.riempiAzioniPrincipali();
 			}
 		
 		

@@ -20,7 +20,7 @@ public class CostruzioneAiutoRe extends AzionePrincipale {
 	private final Balcone balcone;
 	private Set<CartaPolitica> carteGiocatore;
 	
-	public CostruzioneAiutoRe(Partita partita, Città cittàCostruzione, Set<CartaPolitica> carteGiocatore) {
+	public CostruzioneAiutoRe(Partita partita) {
 		super(partita);
 		this.balcone=partita.getTabellone().getPlanciaRe().getBalconeRe();
 	}

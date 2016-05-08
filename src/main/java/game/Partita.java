@@ -6,9 +6,13 @@ import mvc.ViewCLI;
 import java.util.ArrayList;
 
 import azioni.AcquistoTesseraPermesso;
+import azioni.CambioTesseraPermesso;
 import azioni.CostruzioneAiutoRe;
 import azioni.CostruzioneTesseraPermesso;
 import azioni.ElezioneConsigliere;
+import azioni.ElezioneConsigliereVeloce;
+import azioni.IngaggioAiutante;
+import azioni.SecondaAzionePrincipale;
 import mvc.Controllore;
 
 public class Partita {
@@ -64,8 +68,8 @@ public class Partita {
 			giocatoreCorrente= giocatori.get(indiceGiocatore);
 			giocatoreCorrente.aggiungiCartaPolitica(tabellone.getMazzoCartePolitica().pescaCarte());
 		
-		/*	riempiAzioniPrincipali();
-			riempiAzioniVeloci();*/
+			riempiAzioniPrincipali();
+			riempiAzioniVeloci();
 			
 			//mostra gioco e giocatore
 			
@@ -92,7 +96,7 @@ public class Partita {
 		
 	}
 
-	/*public void riempiAzioniPrincipali() {
+	public void riempiAzioniPrincipali() {
 		this.giocatoreCorrente.getAzioniPrincipali().add(new ElezioneConsigliere(this));
 		this.giocatoreCorrente.getAzioniPrincipali().add(new CostruzioneAiutoRe(this));
 		this.giocatoreCorrente.getAzioniPrincipali().add(new CostruzioneTesseraPermesso(this));	
@@ -104,7 +108,7 @@ public class Partita {
 		this.giocatoreCorrente.getAzioneVeloce().add(new CambioTesseraPermesso(this));
 		this.giocatoreCorrente.getAzioneVeloce().add(new ElezioneConsigliereVeloce(this));
 		this.giocatoreCorrente.getAzioneVeloce().add(new SecondaAzionePrincipale(this));
-	}*/
+	}
 	
 	public void svuotaAzioniVeloci(){
 		for (int i = 0; i < this.getGiocatoreCorrente().getAzioneVeloce().size(); i++){
