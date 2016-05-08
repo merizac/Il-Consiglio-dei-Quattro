@@ -17,20 +17,27 @@ public class CambioTesseraPermesso extends AzioneVeloce {
 	 * @param partita
 	 * @param regione
 	 */
-	public CambioTesseraPermesso(Partita partita, Regione regione) {
+	public CambioTesseraPermesso(Partita partita) {
 		super(partita);
-		this.regione = regione;
 	}
 
 
 
 	@Override
 	public boolean eseguiAzione() {
+		regione=scegliRegione();
 		RimozioneCarte();
 		SostituzioneCarte();
 		return true;
 	}
 	
+	private Regione scegliRegione() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
 	/**
 	 * remove cards from TesserePermesseScoperte and add to MazzoTesserePermesso
 	 */

@@ -84,28 +84,13 @@ public String possibilitàAzioneVeloce(){
 	public ArrayList<String> scegliCarte() {
 		Scanner scanner= new Scanner(System.in);
 		ArrayList<String> carte= new ArrayList<String>();
-		System.out.println("Seleziona Carte politica");
-		while(true){
-			System.out.println("Vuoi aggiungere una carta?[Y/N]");
-			if(scanner.nextLine().equals("N"))
+		System.out.println("Seleziona Carte politica[END to exit]");
+	
+		for(int i=0; i<4; i++){
+			if(scanner.nextLine().equals("END"))
 				break;
-			else if(!scanner.nextLine().equals("Y"))
-				System.out.println("Error: Valore non valido");
-			else{
-				while(true){
-					System.out.println("Indice carta");
-					String controlloIndice=scanner.nextLine();
-					try{
-						Integer.parseInt(controlloIndice);
-						carte.add(controlloIndice);
-						break;
-					}
-					catch(NumberFormatException e){
-						System.out.println("Hai inserito " + controlloIndice + " , ma non è un valore valido" );
-					}
-				}
-				
-			}
+			else
+				carte.add(scanner.nextLine());
 		}
 		scanner.close();
 		return carte;
@@ -147,7 +132,18 @@ public String possibilitàAzioneVeloce(){
 			
 				
 		}
+		scanner.close();
 		return Integer.parseInt(indiceTessera) ;
+	}
+
+	@Override
+	public int erroreArrayList(String carta) {
+		System.out.println("indice "+ carta + " inesistente, reinserirlo");
+		String indiceTessera;
+		Scanner scanner= new Scanner(System.in);
+		indiceTessera=scanner.nextLine();
+		scanner.close();
+		return Integer.parseInt(indiceTessera);
 	}
 	
 }

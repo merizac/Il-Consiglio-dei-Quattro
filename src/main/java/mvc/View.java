@@ -43,6 +43,8 @@ public abstract class View extends Observable implements Observer {
 
 	 public abstract int scegliTesseraScoperta(Regione regione);
 
+	public abstract int erroreArrayList(String carta);
+
 	
 
 

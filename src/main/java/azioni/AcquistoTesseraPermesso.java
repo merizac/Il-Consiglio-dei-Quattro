@@ -28,10 +28,10 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 	 */
 	@Override
 	public boolean eseguiAzione() {
-		
-		carteGiocatore=selezionaCarteGiocatore();
-		regione=selezionaRegione();		
-		//indiceTesseraScoperta=selezionaTesseraScoperta(regione);
+		PassaggioParametri passaggioParametri=new PassaggioParametri(partita);
+		carteGiocatore=passaggioParametri.selezionaCarteGiocatore();
+		regione=passaggioParametri.selezionaRegione();		
+		indiceTesseraScoperta=passaggioParametri.selezionaTesseraScoperta(regione);
 		
 		if(carteGiocatore.isEmpty())
 			return false;
@@ -48,10 +48,10 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 		return true;
 	}
 	
-	private int selezionaTesseraScoperta() {
-		//int indice=partita.getView().scegliTesseraScoperta();
+	/*private int selezionaTesseraScoperta() {
+		int indice=partita.getView().scegliTesseraScoperta(regione);
 		
-		return 0;
+		return indice;
 	}
 	private Regione selezionaRegione() {
 		String regione=partita.getView().scegliRegione();
@@ -64,20 +64,22 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 		
 		}
 	
-	private ArrayList<CartaPolitica> selezionaCarteGiocatore () throws ArrayIndexOutOfBoundsException {
+	private ArrayList<CartaPolitica> selezionaCarteGiocatore () {
 
 		ArrayList<String> carteView =partita.getView().scegliCarte();
 		ArrayList<CartaPolitica> cartePolitica = new ArrayList<CartaPolitica>();
 		for(String carta: carteView){
 			int indice = Integer.parseInt(carta);
-			if(indice<1 || indice>partita.getGiocatoreCorrente().getCartePolitica().size())
-				throw new ArrayIndexOutOfBoundsException();
-			else
-				cartePolitica.add(partita.getGiocatoreCorrente().getCartePolitica().get(indice-1));
+			while(indice<1 || indice>partita.getGiocatoreCorrente().getCartePolitica().size())
+			{
+				indice=partita.getView().erroreArrayList(carta);
+			}
+			cartePolitica.add(partita.getGiocatoreCorrente().getCartePolitica().get(indice-1));
 		}
 		
 		return cartePolitica;
-	}
+	}*/
+	
 	/**
 	 * 
 	 * @param moneteDovute
