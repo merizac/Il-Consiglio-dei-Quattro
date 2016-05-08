@@ -26,6 +26,19 @@ public class Tabellone {
 		this.consiglieri = consiglieri;
 		this.mazzoCartePolitica = mazzoCartePolitica;
 	}
+	
+	public Consigliere getConsigliere (String coloreConsigliere){
+		Consigliere consigliere=null;
+		for (Consigliere c: consiglieri){
+			if(c.getColore().getColore().equals(coloreConsigliere)){
+				consigliere = c;
+				break;
+				}
+			}
+		return consigliere;
+	}
+	
+	
 	/**
 	 * @return the mappa
 	 */
