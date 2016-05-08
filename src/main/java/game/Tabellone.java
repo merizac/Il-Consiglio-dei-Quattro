@@ -26,7 +26,11 @@ public class Tabellone {
 		this.consiglieri = consiglieri;
 		this.mazzoCartePolitica = mazzoCartePolitica;
 	}
-	
+	/**
+	 * 
+	 * @param coloreConsigliere
+	 * @return Consigliere of the color which passed the player
+	 */
 	public Consigliere getConsigliere (String coloreConsigliere){
 		Consigliere consigliere=null;
 		for (Consigliere c: consiglieri){

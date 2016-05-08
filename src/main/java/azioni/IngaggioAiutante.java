@@ -8,7 +8,9 @@ public class IngaggioAiutante extends AzioneVeloce {
 		super(partita);
 		
 	}
-
+	/**
+	 * @return true if the player has enough money, and add one aiutante
+	 */
 	@Override
 	public boolean eseguiAzione() {
 		if(partita.getGiocatoreCorrente().diminuisciRicchezza(3))
