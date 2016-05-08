@@ -20,11 +20,8 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale {
 	 * @param tesseraPermessoScoperta
 	 * @param cittàCostruzione
 	 */
-	public CostruzioneTesseraPermesso(Partita partita, TesseraPermesso tesseraPermessoScoperta,
-			Città cittàCostruzione) {
+	public CostruzioneTesseraPermesso(Partita partita) {
 		super(partita);
-		this.tesseraPermessoScoperta = tesseraPermessoScoperta;
-		this.cittàCostruzione = cittàCostruzione;
 	}
 
 
@@ -33,6 +30,10 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale {
 	 */
 	@Override
 	public boolean eseguiAzione() {
+		PassaggioParametri passaggioParametri= new PassaggioParametri(partita);
+		cittàCostruzione=passaggioParametri.selezionaCittà();
+		tesseraPermessoScoperta=passaggioParametri.selezionaTesseraPermesso();
+		
 		if(!pagoAiutanti())
 			return false;
 		costruisci();

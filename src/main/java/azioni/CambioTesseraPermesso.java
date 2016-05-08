@@ -25,19 +25,13 @@ public class CambioTesseraPermesso extends AzioneVeloce {
 
 	@Override
 	public boolean eseguiAzione() {
-		regione=scegliRegione();
+		PassaggioParametri passaggioParametri=new PassaggioParametri(partita);
+		regione=passaggioParametri.selezionaRegione();
 		RimozioneCarte();
 		SostituzioneCarte();
 		return true;
 	}
 	
-	private Regione scegliRegione() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
 	/**
 	 * remove cards from TesserePermesseScoperte and add to MazzoTesserePermesso
 	 */
