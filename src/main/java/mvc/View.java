@@ -1,10 +1,13 @@
 package mvc;
 
+import java.util.ArrayList;
+
 import game.Partita;
+import game.Regione;
 
 public abstract class View extends Observable implements Observer {
 	
-	private Partita partita;
+	protected Partita partita;
 	
 	/**
 	 * 
@@ -17,7 +20,7 @@ public abstract class View extends Observable implements Observer {
 	
 	public abstract void scegliAzionePrincipale();
 	
-	public abstract void scegliCarte();
+	public abstract ArrayList<String> scegliCarte();
 
 	@Override
 	public void update() {
@@ -30,6 +33,10 @@ public abstract class View extends Observable implements Observer {
 		// TODO Auto-generated method stub
 		
 	}
+
+	 public abstract String scegliRegione();
+
+	 public abstract int scegliTesseraScoperta(Regione regione);
 
 	
 			

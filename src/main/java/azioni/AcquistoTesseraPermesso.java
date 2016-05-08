@@ -10,20 +10,17 @@ import game.TesseraPermesso;
 
 public class AcquistoTesseraPermesso extends AzionePrincipale {
 
-	private final ArrayList<CartaPolitica> carteGiocatore;
-	private final Regione regione;
-	private final int indiceTesseraScoperta;
+	private ArrayList<CartaPolitica> carteGiocatore;
+	private Regione regione;
+	private int indiceTesseraScoperta;
 	/**
 	 * constructor
 	 * @param partita
 	 * @param carteGiocatore
 	 * @param regione
 	 */
-	public AcquistoTesseraPermesso(Partita partita, ArrayList<CartaPolitica> carteGiocatore, Regione regione, int indiceTesseraScoperta) {
+	public AcquistoTesseraPermesso(Partita partita) {
 		super(partita);
-		this.carteGiocatore=carteGiocatore;
-		this.regione=regione;
-		this.indiceTesseraScoperta = indiceTesseraScoperta;
 		}
 	/**
 	 * check if the color of cards passed are the same of balcone, and check if the player has enough
@@ -31,6 +28,11 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 	 */
 	@Override
 	public boolean eseguiAzione() {
+		
+		carteGiocatore=selezionaCarteGiocatore();
+		regione=selezionaRegione();		
+		//indiceTesseraScoperta=selezionaTesseraScoperta(regione);
+		
 		if(carteGiocatore.isEmpty())
 			return false;
 		if(!controllaColori())
@@ -44,6 +46,37 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 		    TesseraPermesso tesseraScelta = regione.getTesserePermessoScoperte().get(indiceTesseraScoperta);
 		    partita.getGiocatoreCorrente().getTesserePermesso().add(tesseraScelta);
 		return true;
+	}
+	
+	private int selezionaTesseraScoperta() {
+		//int indice=partita.getView().scegliTesseraScoperta();
+		
+		return 0;
+	}
+	private Regione selezionaRegione() {
+		String regione=partita.getView().scegliRegione();
+		if(regione.equals("mare"))
+			return partita.getTabellone().getRegioni().get(0);
+		else if(regione.equals("montagna"))
+			return partita.getTabellone().getRegioni().get(1);
+		else
+			return partita.getTabellone().getRegioni().get(2);
+		
+		}
+	
+	private ArrayList<CartaPolitica> selezionaCarteGiocatore () throws ArrayIndexOutOfBoundsException {
+
+		ArrayList<String> carteView =partita.getView().scegliCarte();
+		ArrayList<CartaPolitica> cartePolitica = new ArrayList<CartaPolitica>();
+		for(String carta: carteView){
+			int indice = Integer.parseInt(carta);
+			if(indice<1 || indice>partita.getGiocatoreCorrente().getCartePolitica().size())
+				throw new ArrayIndexOutOfBoundsException();
+			else
+				cartePolitica.add(partita.getGiocatoreCorrente().getCartePolitica().get(indice-1));
+		}
+		
+		return cartePolitica;
 	}
 	/**
 	 * 

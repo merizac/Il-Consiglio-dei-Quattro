@@ -62,6 +62,7 @@ public class Tabellone {
 	public Mazzo<CartaPolitica> getMazzoCartePolitica() {
 		return mazzoCartePolitica;
 	}
+	
 
 
 }

@@ -54,6 +54,7 @@ public class Partita {
 			String messaggio=view.scegliAzione();
 			
 			mostraAzione(messaggio);
+	
 		}
 		
 		
