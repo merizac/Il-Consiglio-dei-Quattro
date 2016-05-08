@@ -2,10 +2,7 @@ package mvc;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import game.Consigliere;
 import game.Partita;
-import game.Regione;
 
 public class ViewCLI extends View {
 
@@ -101,14 +98,9 @@ public String possibilitàAzioneVeloce(){
 
 	@Override
 	public String scegliRegione() {
+		System.out.println("Scegli regione");
 		Scanner scanner = new Scanner(System.in);
-		String messaggio;
-		while(true){
-			System.out.println("Scegli regione");
-			messaggio=scanner.nextLine();
-			if(messaggio.equals("mare") || messaggio.equals("collina" ) || messaggio.equals("montagna"))
-				break;
-		}
+		String messaggio=scanner.nextLine();
 		scanner.close();
 		return messaggio;
 	}
@@ -123,37 +115,39 @@ public String possibilitàAzioneVeloce(){
 	}
 
 	@Override
-	public int scegliTesseraScoperta(Regione regione) {
+	public String scegliTesseraScoperta() {
 		Scanner scanner = new Scanner(System.in);
 		String indiceTessera;
-		while(true){
-			System.out.println("Scegli tessera scoperta");
-			indiceTessera=scanner.nextLine();
-			int check;
-			try{
-				check=Integer.parseInt(indiceTessera);
-				if(check>0 || check<=regione.getTesserePermessoScoperte().size())
-					break;
-			}
-			catch(NumberFormatException e){
-				System.out.println("Hai inserito" + indiceTessera + ", ma non è un valore valido");
-				continue;
-			}
-			
-				
-		}
+		indiceTessera=scanner.nextLine();
 		scanner.close();
-		return Integer.parseInt(indiceTessera) ;
+		return indiceTessera;
 	}
 
 	@Override
-	public int erroreArrayList(String carta) {
+	public String erroreArrayList(String carta) {
 		System.out.println("indice "+ carta + " inesistente, reinserirlo");
 		String indiceTessera;
 		Scanner scanner= new Scanner(System.in);
 		indiceTessera=scanner.nextLine();
 		scanner.close();
-		return Integer.parseInt(indiceTessera);
+		return indiceTessera;
+	}
+
+	@Override
+	public String scegliCittà() {
+		System.out.println("Scegli città");
+		Scanner scanner= new Scanner(System.in);
+		String città=scanner.nextLine();
+		scanner.close();
+		return città;
+	}
+
+	@Override
+	public String scegliTesseraPermesso() {
+		Scanner scanner = new Scanner(System.in);
+		String indiceTessera=scanner.nextLine();
+		scanner.close();
+		return indiceTessera;
 	}
 	
 }

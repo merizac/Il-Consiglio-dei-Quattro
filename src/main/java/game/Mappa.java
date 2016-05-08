@@ -86,6 +86,18 @@ public class Mappa {
 	public SimpleGraph<Città, DefaultEdge> getGrafo() {
 		return grafo;
 	}
+	
+	public Città getCittà(String città){
+		Città cittàScelta = null;
+		for(Città c: grafo.vertexSet()){
+			if(c.getNome().equals(città)){
+				cittàScelta = c;
+				break;
+			}
+		}
+		return cittàScelta;
+			
+	}
 
 	
 	/* (non-Javadoc)

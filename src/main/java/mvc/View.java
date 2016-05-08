@@ -1,9 +1,7 @@
 package mvc;
 
 import java.util.ArrayList;
-
 import game.Partita;
-import game.Regione;
 
 public abstract class View extends Observable implements Observer {
 	
@@ -41,9 +39,13 @@ public abstract class View extends Observable implements Observer {
 
 	 public abstract String scegliRegione();
 
-	 public abstract int scegliTesseraScoperta(Regione regione);
+	 public abstract String scegliTesseraScoperta();
 
-	public abstract int erroreArrayList(String carta);
+	public abstract String erroreArrayList(String carta);
+
+	public abstract String scegliCittà();
+
+	public abstract String scegliTesseraPermesso();
 
 	public abstract String scegliConsigliere();
 

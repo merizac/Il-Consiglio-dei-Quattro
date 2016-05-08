@@ -16,15 +16,13 @@ import game.Partita;
 
 public class CostruzioneAiutoRe extends AzionePrincipale {
 
-	private final Città cittàCostruzione;
+	private Città cittàCostruzione;
 	private final Balcone balcone;
-	private final Set<CartaPolitica> carteGiocatore;
+	private Set<CartaPolitica> carteGiocatore;
 	
-	public CostruzioneAiutoRe(Partita partita, Città cittàCostruzione, Balcone balcone, Set<CartaPolitica> carteGiocatore) {
+	public CostruzioneAiutoRe(Partita partita, Città cittàCostruzione, Set<CartaPolitica> carteGiocatore) {
 		super(partita);
-		this.cittàCostruzione=cittàCostruzione;
-		this.balcone=balcone;
-		this.carteGiocatore=carteGiocatore;
+		this.balcone=partita.getTabellone().getPlanciaRe().getBalconeRe();
 	}
 	/**
 	 * execute the action
@@ -32,6 +30,9 @@ public class CostruzioneAiutoRe extends AzionePrincipale {
 	@Override
 	public boolean eseguiAzione() {
 		Mappa mappa= partita.getTabellone().getMappa();
+		PassaggioParametri passaggioParametri= new PassaggioParametri(partita);
+		carteGiocatore= new HashSet<CartaPolitica>(passaggioParametri.selezionaCarteGiocatore());
+		cittàCostruzione=passaggioParametri.selezionaCittà();
 		if(!controllaColori())
 			return false;
 		int moneteDovute= calcolaMonete() + 
