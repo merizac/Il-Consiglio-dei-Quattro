@@ -45,6 +45,8 @@ public abstract class View extends Observable implements Observer {
 
 	public abstract int erroreArrayList(String carta);
 
+	public abstract String scegliConsigliere();
+
 	
 
 

@@ -3,6 +3,7 @@ package mvc;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import game.Consigliere;
 import game.Partita;
 import game.Regione;
 
@@ -108,6 +109,15 @@ public String possibilitàAzioneVeloce(){
 			if(messaggio.equals("mare") || messaggio.equals("collina" ) || messaggio.equals("montagna"))
 				break;
 		}
+		scanner.close();
+		return messaggio;
+	}
+	
+	@Override
+	public String scegliConsigliere(){
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Scegli il colore del consigliere da inserire nel balcone");
+		String messaggio = scanner.nextLine();
 		scanner.close();
 		return messaggio;
 	}
