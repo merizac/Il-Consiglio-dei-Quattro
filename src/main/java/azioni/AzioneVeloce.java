@@ -14,4 +14,5 @@ public abstract class AzioneVeloce implements Azione {
 		this.partita = partita;
 	}
 	
+	
 }
