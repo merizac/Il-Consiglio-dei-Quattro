@@ -14,17 +14,6 @@ public abstract class View extends Observable implements Observer {
 		this.partita=partita;
 	}
 	
-	public abstract String scegliAzione();
-	
-	public abstract void scegliAzionePrincipale();
-	
-	public abstract ArrayList<String> scegliCarte();
-	
-	public abstract void scegliAzioneVeloce();
-	
-	public abstract String possibilitàAzioneVeloce();
-
-
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
@@ -37,18 +26,18 @@ public abstract class View extends Observable implements Observer {
 		
 	}
 
-	 public abstract String scegliRegione();
+	
+	public abstract String scegliAzione();
+	
+	public abstract void scegliAzionePrincipale();
+		
+	public abstract void scegliAzioneVeloce();
+	
+	public abstract String possibilitàAzioneVeloce();
 
-	 public abstract String scegliTesseraScoperta();
-
-	public abstract String erroreArrayList(String carta);
-
-	public abstract String scegliCittà();
-
-	public abstract String scegliTesseraPermesso();
-
-	public abstract String scegliConsigliere();
-
+	public abstract ArrayList<String> scegliCarte();
+	
+	public abstract String richiestaParametro(String string);
 	
 
 

@@ -25,8 +25,9 @@ public class PassaggioParametri {
 	 * @param regione
 	 * @return index of the TesseraScoperta that the player want to catch
 	 */
-	protected int selezionaTesseraScoperta(Regione regione) {
-		String tessera=partita.getView().scegliTesseraScoperta();
+	public int selezionaTesseraScoperta(Regione regione) {
+		String tessera=partita.getView().richiestaParametro("Seleziona tessera "
+				+ "scoperta della regione: "+ regione.getNome());
 		int tesseraPermessoScelta=0;
 		if(!isNumeric(tessera))
 			tesseraPermessoScelta=selezionaTesseraScoperta(regione);
@@ -41,8 +42,8 @@ public class PassaggioParametri {
 	 * 
 	 * @return the object Regione that the player want
 	 */
-	protected Regione selezionaRegione() {
-		String regione=partita.getView().scegliRegione();
+	public Regione selezionaRegione() {
+		String regione=partita.getView().richiestaParametro("Seleziona regione");
 		Regione regioneScelta=null;
 		if(regione.equals("mare"))
 			regioneScelta=partita.getTabellone().getRegioni().get(0);
@@ -61,7 +62,7 @@ public class PassaggioParametri {
 	 * @return the object Consigliere that the player choose
 	 */
 	public Consigliere selezionaConsiglieri() {
-		String consigliereScelto = partita.getView().scegliConsigliere();
+		String consigliereScelto = partita.getView().richiestaParametro("Seleziona consigliere");
 		Consigliere consigliere = partita.getTabellone().getConsigliere(consigliereScelto);
 		if(consigliere==null)
 			consigliere=this.selezionaConsiglieri();
@@ -72,25 +73,33 @@ public class PassaggioParametri {
 	 * 
 	 * @return ArrayList of CartaPolitica: cards that the player choose for match the Balcony
 	 */
-	protected ArrayList<CartaPolitica> selezionaCarteGiocatore () {
+	public ArrayList<CartaPolitica> selezionaCarteGiocatore () {
 
-		ArrayList<String> carteView =partita.getView().scegliCarte();
 		ArrayList<CartaPolitica> cartePolitica = new ArrayList<CartaPolitica>();
-		for(String carta: carteView){
-			int indice = Integer.parseInt(carta);
+		for(int i=0; i<4; i++){
+			String cartaSelezionata=partita.getView().richiestaParametro("Seleziona carta politica");
+			while(!isNumeric(cartaSelezionata) || (Integer.parseInt(cartaSelezionata)<0 
+					|| Integer.parseInt(cartaSelezionata)>partita.getGiocatoreCorrente().getCartePolitica().size()))
+			{
+				
+			}
+				
+			/*if(!isNumeric(carta))
+				carta
 			while(indice<1 || indice>partita.getGiocatoreCorrente().getCartePolitica().size())
 			{
 				//indice=partita.getView().erroreArrayList(carta);
 			}
-			cartePolitica.add(partita.getGiocatoreCorrente().getCartePolitica().get(indice-1));
+			cartePolitica.add(partita.getGiocatoreCorrente().getCartePolitica().get(indice-1));*/
 		}
 		
 		return cartePolitica;
 	}
 
 
-	protected Città selezionaCittà() {
-		String cittàScelta=partita.getView().scegliCittà();
+	
+	public Città selezionaCittà() {
+		String cittàScelta=partita.getView().richiestaParametro("Seleziona città");
 		Città città=partita.getTabellone().getMappa().getCittà(cittàScelta);
 		if(città==null)
 			città=this.selezionaCittà();
@@ -100,7 +109,7 @@ public class PassaggioParametri {
 	}
 
 	public TesseraPermesso selezionaTesseraPermesso() {
-		String tessera= this.partita.getView().scegliTesseraPermesso();
+		String tessera= this.partita.getView().richiestaParametro("Seleziona tessera permesso");
 		int indice=0;
 		TesseraPermesso tesseraPermesso=partita.getGiocatoreCorrente().getTesserePermesso().get(indice);
 		if(!isNumeric(tessera))

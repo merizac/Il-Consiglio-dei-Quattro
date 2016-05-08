@@ -97,57 +97,12 @@ public String possibilitàAzioneVeloce(){
 	}
 
 	@Override
-	public String scegliRegione() {
-		System.out.println("Scegli regione");
-		Scanner scanner = new Scanner(System.in);
+	public String richiestaParametro(String string) {
+		System.out.println(string);
+		Scanner scanner= new Scanner(System.in);
 		String messaggio=scanner.nextLine();
 		scanner.close();
 		return messaggio;
-	}
-	
-	@Override
-	public String scegliConsigliere(){
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("Scegli il colore del consigliere da inserire nel balcone");
-		String messaggio = scanner.nextLine();
-		scanner.close();
-		return messaggio;
-	}
-
-	@Override
-	public String scegliTesseraScoperta() {
-		Scanner scanner = new Scanner(System.in);
-		String indiceTessera;
-		indiceTessera=scanner.nextLine();
-		scanner.close();
-		return indiceTessera;
-	}
-
-	@Override
-	public String erroreArrayList(String carta) {
-		System.out.println("indice "+ carta + " inesistente, reinserirlo");
-		String indiceTessera;
-		Scanner scanner= new Scanner(System.in);
-		indiceTessera=scanner.nextLine();
-		scanner.close();
-		return indiceTessera;
-	}
-
-	@Override
-	public String scegliCittà() {
-		System.out.println("Scegli città");
-		Scanner scanner= new Scanner(System.in);
-		String città=scanner.nextLine();
-		scanner.close();
-		return città;
-	}
-
-	@Override
-	public String scegliTesseraPermesso() {
-		Scanner scanner = new Scanner(System.in);
-		String indiceTessera=scanner.nextLine();
-		scanner.close();
-		return indiceTessera;
 	}
 	
 }
