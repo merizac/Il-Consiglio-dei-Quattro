@@ -17,6 +17,10 @@ public class Mazzo<T> {
 		this.carte = carte;
 	}
 
+	public Mazzo() {
+		super();
+	}
+
 	/**
 	 * @return the carte
 	 */

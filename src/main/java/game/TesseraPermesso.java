@@ -21,6 +21,7 @@ public final class TesseraPermesso {
 		this.città = città;
 		this.bonus = bonus;
 		this.regione = regione;
+		regione.getMazzoTesserePermesso().aggiungiCarta(this);
 	}
 
 
@@ -40,11 +41,5 @@ public final class TesseraPermesso {
 	}
 
 
-	/**
-	 * @return the regione
-	 */
-	public Regione getRegione() {
-		return regione;
-	}
 
 }
