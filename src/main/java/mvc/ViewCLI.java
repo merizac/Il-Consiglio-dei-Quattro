@@ -1,5 +1,6 @@
 package mvc;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import game.Partita;
 
@@ -78,7 +79,7 @@ public String possibilitàAzioneVeloce(){
 		scanner.close();
 	}
 
-	/*public ArrayList<String> scegliCarte() {
+	public ArrayList<String> scegliCarte() {
 		Scanner scanner= new Scanner(System.in);
 		ArrayList<String> carte= new ArrayList<String>();
 		System.out.println("Seleziona Carte politica[END to exit]");
@@ -91,7 +92,9 @@ public String possibilitàAzioneVeloce(){
 		}
 		scanner.close();
 		return carte;
-	}*/
+		
+		
+	}
 
 	@Override
 	public String richiestaParametro(String string) {
@@ -101,5 +104,6 @@ public String possibilitàAzioneVeloce(){
 		scanner.close();
 		return messaggio;
 	}
+
 	
 }

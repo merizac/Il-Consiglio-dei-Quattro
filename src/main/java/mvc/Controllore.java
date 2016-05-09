@@ -55,5 +55,7 @@ public class Controllore extends Observable implements Observer {
 			
 	}
 
+
+
 	
 }
