@@ -5,7 +5,7 @@ import game.Partita;
 
 public class BonusTesseraPermessoUsata extends Bonus {
 
-	public BonusTesseraPermessoUsata(Partita partita) {
+	public BonusTesseraPermessoUsata() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

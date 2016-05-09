@@ -9,7 +9,7 @@ public class BonusPuntiVittoria extends Bonus {
 	/**
 	 * @param partita
 	 */
-	public BonusPuntiVittoria(int puntiVittoria, Partita partita) {
+	public BonusPuntiVittoria(int puntiVittoria) {
 		super();
 		this.puntiVittoria=puntiVittoria;	
 	}

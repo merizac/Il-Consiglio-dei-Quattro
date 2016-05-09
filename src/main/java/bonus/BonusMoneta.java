@@ -10,7 +10,7 @@ public class BonusMoneta extends Bonus {
 	 * @param monete
 	 * @param partita
 	 */
-	public BonusMoneta(int monete,Partita partita){
+	public BonusMoneta(int monete){
 		super();
 		this.monete=monete;
 	}
