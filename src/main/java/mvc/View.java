@@ -1,6 +1,5 @@
 package mvc;
 
-import java.util.ArrayList;
 import game.Partita;
 
 public abstract class View extends Observable implements Observer {
@@ -35,7 +34,7 @@ public abstract class View extends Observable implements Observer {
 	
 	public abstract String possibilitàAzioneVeloce();
 
-	public abstract ArrayList<String> scegliCarte();
+	/*public abstract ArrayList<String> scegliCarte();*/
 	
 	public abstract String richiestaParametro(String string);
 	

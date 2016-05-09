@@ -69,11 +69,39 @@ public class PassaggioParametri {
 		return consigliere;
 	}
 	
+	public ArrayList<CartaPolitica> selezionaCarteGiocatore(){
+		ArrayList<CartaPolitica> carteScelte = new ArrayList<CartaPolitica>();
+		int i = 0;
+	while (i<4) {
+		String cartaSelezionata = partita.getView().richiestaParametro("Scegli l'indice di una carta politica");
+			
+		if (!isNumeric(cartaSelezionata)){
+			System.out.println("non è stato inserito un valore di indice corretto: riprova!");
+			continue;
+			}
+		int indice= Integer.parseInt(cartaSelezionata);
+			
+		if (indice>=0 && indice<this.partita.getGiocatoreCorrente().getCartePolitica().size() ){
+			carteScelte.add(this.partita.getGiocatoreCorrente().getCartePolitica().get(indice-1));
+			String continua = partita.getView().richiestaParametro("Digitare 'Y' per proseguire ed aggiungere un'altra carta, qualsiasi altro tasto per terminare l'aggiunta di carte");
+			if (continua.equals("Y")) 
+					i++;
+			else 
+				break;
+			}
+
+		else 
+			System.out.println("non è stato inserito un valore di indice corretto: riprova!");
+			continue;
+		}
+	return carteScelte;
+	}
+	
 	/**
 	 * 
 	 * @return ArrayList of CartaPolitica: cards that the player choose for match the Balcony
 	 */
-	public ArrayList<CartaPolitica> selezionaCarteGiocatore () {
+	/*public ArrayList<CartaPolitica> selezionaCarteGiocatore () {
 
 		ArrayList<CartaPolitica> cartePolitica = new ArrayList<CartaPolitica>();
 		for(int i=0; i<4; i++){
@@ -90,11 +118,12 @@ public class PassaggioParametri {
 			{
 				//indice=partita.getView().erroreArrayList(carta);
 			}
-			cartePolitica.add(partita.getGiocatoreCorrente().getCartePolitica().get(indice-1));*/
+			cartePolitica.add(partita.getGiocatoreCorrente().getCartePolitica().get(indice-1));
 		}
 		
 		return cartePolitica;
-	}
+	}*/
+
 
 
 	
