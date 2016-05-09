@@ -10,7 +10,7 @@ public class BonusPuntiNobiltà extends Bonus {
 
 	private int puntiNobiltà;
 	
-	public BonusPuntiNobiltà(Partita partita, int puntiNobiltà) {
+	public BonusPuntiNobiltà(int puntiNobiltà) {
 		super();
 		this.puntiNobiltà=puntiNobiltà;
 	}

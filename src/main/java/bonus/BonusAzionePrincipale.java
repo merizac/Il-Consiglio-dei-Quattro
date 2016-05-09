@@ -6,7 +6,7 @@ import game.Partita;
 public class BonusAzionePrincipale extends Bonus {
 
 
-	public BonusAzionePrincipale(Partita partita) {
+	public BonusAzionePrincipale() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
