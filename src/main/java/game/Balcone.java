@@ -2,6 +2,7 @@ package game;
 
 import java.util.ArrayList;
 import java.util.Queue;
+import java.util.Random;
 import java.util.concurrent.ArrayBlockingQueue;
 
 public class Balcone {
@@ -13,9 +14,24 @@ public class Balcone {
 	 * @param consiglieri consiglieri to add at Balcone
 	 */
 	public Balcone(int numConsiglieri, ArrayList<Consigliere> consiglieri){
-		this.consiglieri= new ArrayBlockingQueue<>(numConsiglieri, true,consiglieri);
+		
+		ArrayList<Consigliere> consiglieriDaAggiungere=pescaConsiglieri(consiglieri, numConsiglieri);
+		this.consiglieri=new ArrayBlockingQueue<Consigliere>(numConsiglieri, true, consiglieriDaAggiungere);	
 	}
 	
+	private ArrayList<Consigliere> pescaConsiglieri(ArrayList<Consigliere> consiglieri, int numConsiglieri) {
+		
+		ArrayList<Consigliere> consiglieriNuovi=new ArrayList<>(); 
+		Random random=new Random();
+		for(int i=0; i<numConsiglieri; i++){
+			int indice=random.nextInt(consiglieri.size());
+			consiglieriNuovi.add(consiglieri.get(indice));
+		}
+		
+		return consiglieriNuovi;
+		
+	}
+
 	/**
 	 * add consigliere passed as parameter at tail of the Queue consiglieri and return the head of the Queue consiglieri
 	 * @param consigliere the consigliere that has to be added at the Queue consiglieri

@@ -11,13 +11,13 @@ public class BonusMoneta extends Bonus {
 	 * @param partita
 	 */
 	public BonusMoneta(int monete,Partita partita){
-		super(partita);
+		super();
 		this.monete=monete;
 	}
 	/**
 	 * add monete to variable punteggioRicchezza of Giocatore
 	 */
-	public void usaBonus() {
-		this.partita.getGiocatoreCorrente().aumentaRicchezza(monete);
+	public void usaBonus(Partita partita) {
+		partita.getGiocatoreCorrente().aumentaRicchezza(monete);
 	}
 }

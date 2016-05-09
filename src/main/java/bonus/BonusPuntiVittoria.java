@@ -10,13 +10,13 @@ public class BonusPuntiVittoria extends Bonus {
 	 * @param partita
 	 */
 	public BonusPuntiVittoria(int puntiVittoria, Partita partita) {
-		super(partita);
+		super();
 		this.puntiVittoria=puntiVittoria;	
 	}
 	/**
 	 * add puntiVittoria to variable punteggioVittoria of Giocatore
 	 */
-	public void usaBonus() {
-		this.partita.getGiocatoreCorrente().aumentaPuntiVittoria(puntiVittoria);
+	public void usaBonus(Partita partita) {
+		partita.getGiocatoreCorrente().aumentaPuntiVittoria(puntiVittoria);
 	}
 }
