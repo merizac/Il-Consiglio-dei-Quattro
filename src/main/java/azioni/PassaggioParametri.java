@@ -2,6 +2,7 @@ package azioni;
 
 import java.util.ArrayList;
 
+import game.CittàBonus;
 import game.CartaPolitica;
 import game.Consigliere;
 import game.Città;
@@ -67,6 +68,31 @@ public class PassaggioParametri {
 		if(consigliere==null)
 			consigliere=this.selezionaConsiglieri();
 		return consigliere;
+	}
+	/**
+	 * check if the city is a Bonus city and is part of the city in which the player have the emporio
+	 * this method is used in BonusGettoneRicompensa
+	 * @return cittàScelta of the player 
+	 */
+	public Città scegliCittàEmporio() {
+		String cittàScelta = partita.getView().richiestaParametro("Scegli una città in cui hai l'emporio e vinci il suo gettone bonus");
+		Città città = partita.getTabellone().getMappa().getCittà(cittàScelta);
+		if (!(città instanceof CittàBonus || cittàGiocatore().contains(città)))
+		  città=scegliCittàEmporio();
+		
+		return città;
+	}
+	/**
+	 * 
+	 * @return ArrayList of the city in which the player have the emporio
+	 */
+	private ArrayList<CittàBonus> cittàGiocatore(){
+		ArrayList<CittàBonus> cittàGiocatore = new ArrayList<>();
+		for(Città c: partita.getTabellone().getMappa().getGrafo().vertexSet()){
+			if (c.emporioColore(partita.getGiocatoreCorrente().getColoreGiocatore()) && (c instanceof CittàBonus))
+					cittàGiocatore.add((CittàBonus)c);
+		}
+		return cittàGiocatore;
 	}
 	
 	public ArrayList<CartaPolitica> selezionaCarteGiocatore(){
@@ -157,6 +183,7 @@ public class PassaggioParametri {
 			return false;
 		}
 	}
+	
 		
 
 

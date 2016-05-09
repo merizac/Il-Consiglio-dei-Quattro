@@ -62,7 +62,7 @@ public class CostruzioneAiutoRe extends AzionePrincipale {
 	    HashSet<CittàBonus> cittàCollegate = this.partita.getTabellone().getMappa().trovaCittà(cittàCostruzione, coloreEmporio);
 	    for ( CittàBonus c: cittàCollegate){
 	        for(Bonus b: c.getBonus()){
-	          b.usaBonus();
+	          b.usaBonus(partita);
 	    }
 	    }
 	  }

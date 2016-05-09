@@ -5,7 +5,7 @@ import java.util.Set;
 
 import game.Partita;
 
-public class BonusTesseraPermesso extends BonusNobiltà {
+public class BonusTesseraPermesso extends Bonus {
 
 	public BonusTesseraPermesso() {
 		super();
@@ -13,8 +13,7 @@ public class BonusTesseraPermesso extends BonusNobiltà {
 	}
 
 	@Override
-	public <T> boolean usaBonus(Set<T> oggetti, Partita partita) {
-		return false;
+	public void usaBonus(Partita partita) {
 		
 		
 	}
