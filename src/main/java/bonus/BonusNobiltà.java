@@ -4,12 +4,12 @@ import java.util.Set;
 
 import game.Partita;
 
-public abstract class BonusNobiltà {
+public abstract class BonusNobiltà extends Bonus {
 
 	public BonusNobiltà() {
 		super();
 	}
 	
-	public abstract <T> boolean usaBonus(Set<T> oggetti, Partita partita);
+	public abstract void usaBonus(Partita partita);
 
 }

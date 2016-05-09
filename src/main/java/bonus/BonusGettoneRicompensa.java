@@ -15,8 +15,8 @@ public class BonusGettoneRicompensa extends BonusNobiltà {
 	}
 
 	@Override
-	public <T> boolean usaBonus(Set<T> oggetti, Partita partita) {
-		return false;
+	public void usaBonus(Partita partita) {
+		//return false;
 				
 	}
 	

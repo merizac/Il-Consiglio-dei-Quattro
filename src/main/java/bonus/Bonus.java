@@ -11,5 +11,5 @@ public abstract class Bonus {
 		super();
 	}
 	
-	abstract public void usaBonus(Partita partita);
+	public abstract void usaBonus(Partita partita);
 }
