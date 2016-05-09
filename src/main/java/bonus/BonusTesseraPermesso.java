@@ -15,7 +15,6 @@ public class BonusTesseraPermesso extends Bonus {
 	@Override
 	public void usaBonus(Partita partita) {
 		
-		
 	}
 
 	

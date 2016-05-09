@@ -19,14 +19,12 @@ public class BonusGettoneRicompensa extends Bonus {
 	}
 
 	@Override
-	public void usaBonus(Partita partita) {
-		
+	public void usaBonus(Partita partita) {		
 		PassaggioParametri passaggioParametri = new PassaggioParametri(partita);
 		if(numeroGettoni==1)
 			cittàGiocatore.add((CittàBonus)passaggioParametri.scegliCittàEmporio());
 		else
 			return;
-		
 	}
 	
 	
