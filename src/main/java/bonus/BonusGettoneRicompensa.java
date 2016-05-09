@@ -9,13 +9,13 @@ public class BonusGettoneRicompensa extends BonusNobiltà {
 
 	private final int numeroGettoni;
 	
-	public BonusGettoneRicompensa(Partita partita, int numeroGettoni) {
-		super(partita);
+	public BonusGettoneRicompensa(int numeroGettoni) {
+		super();
 		this.numeroGettoni=numeroGettoni;
 	}
 
 	@Override
-	public <T> boolean usaBonus(Set<T> oggetti) {
+	public <T> boolean usaBonus(Set<T> oggetti, Partita partita) {
 		return false;
 				
 	}

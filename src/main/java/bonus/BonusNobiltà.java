@@ -6,11 +6,10 @@ import game.Partita;
 
 public abstract class BonusNobiltà {
 
-	protected final Partita partita;
-	public BonusNobiltà(Partita partita) {
-		this.partita=partita;
+	public BonusNobiltà() {
+		super();
 	}
 	
-	public abstract <T> boolean usaBonus(Set<T> oggetti);
+	public abstract <T> boolean usaBonus(Set<T> oggetti, Partita partita);
 
 }

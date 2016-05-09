@@ -10,14 +10,14 @@ public class BonusAiutanti extends Bonus {
 	 * @param aiutanti
 	 * @param partita
 	 */
-	public BonusAiutanti(int aiutanti, Partita partita){
-		super(partita);
+	public BonusAiutanti(int aiutanti){
+		super();
 		this.aiutanti = aiutanti;
 	}
 	/**
 	 * add aiutanti to the variable aiutanti of Giocatore
 	 */
-	public void usaBonus() {
-		this.partita.getGiocatoreCorrente().getAiutanti().aggiungiAiutanti(this.aiutanti);
+	public void usaBonus(Partita partita) {
+		partita.getGiocatoreCorrente().getAiutanti().aggiungiAiutanti(this.aiutanti);
 	}
 }

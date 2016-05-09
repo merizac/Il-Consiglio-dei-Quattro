@@ -11,7 +11,7 @@ public class BonusPuntiNobiltà extends Bonus {
 	private int puntiNobiltà;
 	
 	public BonusPuntiNobiltà(Partita partita, int puntiNobiltà) {
-		super(partita);
+		super();
 		this.puntiNobiltà=puntiNobiltà;
 	}
 
@@ -20,18 +20,18 @@ public class BonusPuntiNobiltà extends Bonus {
 	 * if the new position contains bonus, then usaBonus()
 	 */
 	@Override
-	public void usaBonus() {
-		int puntiCorrenti = this.partita.getGiocatoreCorrente().getPunteggioNobiltà().getPuntiNobiltà();
+	public void usaBonus(Partita partita) {
+		int puntiCorrenti = partita.getGiocatoreCorrente().getPunteggioNobiltà().getPuntiNobiltà();
 		int puntiNuovi= puntiCorrenti+puntiNobiltà;
-		PunteggioNobiltà nuovaPosizioneNobiltà = this.partita.getTabellone().getPlanciaRe().getPercorsoNobiltà().get(puntiNuovi);
+		PunteggioNobiltà nuovaPosizioneNobiltà = partita.getTabellone().getPlanciaRe().getPercorsoNobiltà().get(puntiNuovi);
 		
-		this.partita.getGiocatoreCorrente().setPunteggioNobiltà(nuovaPosizioneNobiltà);
+		partita.getGiocatoreCorrente().setPunteggioNobiltà(nuovaPosizioneNobiltà);
 		
-		ArrayList<Bonus> bonusCasella = this.partita.getGiocatoreCorrente().getPunteggioNobiltà().getBonus();
+		ArrayList<Bonus> bonusCasella = partita.getGiocatoreCorrente().getPunteggioNobiltà().getBonus();
 		
 		if (!bonusCasella.isEmpty()) {
 			for(Bonus bonus: bonusCasella){
-				bonus.usaBonus();
+				bonus.usaBonus(partita);
 				}
 			}
 	}

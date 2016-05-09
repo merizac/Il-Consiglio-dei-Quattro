@@ -4,16 +4,16 @@
 package game;
 
 import java.util.ArrayList;
-import bonus.BonusTesseraPermesso;
+import bonus.BonusPuntiVittoria;
 
 public class ColoreCittà extends Colore {
 	
 	private ArrayList<CittàBonus> città;
-	private final BonusTesseraPermesso bonusColore;
+	private final BonusPuntiVittoria bonusColore;
 	/**
 	 * @param colore
 	 */
-	public ColoreCittà(String colore, BonusTesseraPermesso bonus) {
+	public ColoreCittà(String colore, BonusPuntiVittoria bonus) {
 		super(colore);
 		this.bonusColore = bonus;
 		this.città= new ArrayList<CittàBonus>();
@@ -27,7 +27,7 @@ public class ColoreCittà extends Colore {
 	/**
 	 * @return the bonusColore
 	 */
-	public BonusTesseraPermesso getBonusColore() {
+	public BonusPuntiVittoria getBonusColore() {
 		return bonusColore;
 	}
 	
