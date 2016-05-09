@@ -9,24 +9,16 @@ public class PlanciaRe {
 	private final Balcone balconeRe;
 	private final ArrayList<Bonus> bonusPremioRe;
 	private final ArrayList<PunteggioNobiltà> percorsoNobiltà;
-	private final ArrayList<Bonus> bonusColore;
 	/**
 	 * @param balconeRe
 	 * @param bonusPremioRe
 	 * @param percorsoNobiltà
 	 */
-	public PlanciaRe(Balcone balconeRe, ArrayList<Bonus> bonusPremioRe, ArrayList<Bonus> bonusColore,
+	public PlanciaRe(Balcone balconeRe, ArrayList<Bonus> bonusPremioRe,
 			ArrayList<PunteggioNobiltà> percorsoNobiltà) {
 		this.balconeRe = balconeRe;
 		this.bonusPremioRe = bonusPremioRe;
 		this.percorsoNobiltà = percorsoNobiltà;
-		this.bonusColore = bonusColore;
-	}
-	/**
-	 * @return the bonusColore
-	 */
-	public ArrayList<Bonus> getBonusColore() {
-		return bonusColore;
 	}
 	/**
 	 * @return the balconeRe

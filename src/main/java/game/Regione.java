@@ -19,11 +19,10 @@ public class Regione {
 	 * @param bonusRegione
 	 * @param balcone
 	 */
-	public Regione(String nome, Mazzo<TesseraPermesso> mazzoTesserePermesso, ArrayList<TesseraPermesso> tesserePermessoScoperte,
-			Bonus bonusRegione, Balcone balcone) {
+	public Regione(String nome, Mazzo<TesseraPermesso> mazzoTesserePermesso, Bonus bonusRegione, Balcone balcone) {
 		this.nome = nome;
 		this.mazzoTesserePermesso = mazzoTesserePermesso;
-		this.tesserePermessoScoperte = tesserePermessoScoperte;
+		this.tesserePermessoScoperte = new ArrayList<>();
 		this.bonusRegione = bonusRegione;
 		this.balcone = balcone;
 		this.cittàRegione = new ArrayList<Città>();
