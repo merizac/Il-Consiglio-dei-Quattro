@@ -1,14 +1,19 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
-public class Tabellone {
+import utility.Observable;
+
+public class GameState extends Observable<Object> implements Model {
 	private final Mappa mappa;
 	private final ArrayList<Regione> regioni;
 	private final PlanciaRe planciaRe;
 	private final Re pedinaRe;
 	private final ArrayList<Consigliere> consiglieri;
 	private final Mazzo<CartaPolitica> mazzoCartePolitica;
+	private Giocatore giocatoreCorrente;
 	/**
 	 * @param mappa
 	 * @param regioni
@@ -17,7 +22,7 @@ public class Tabellone {
 	 * @param consiglieri
 	 * @param mazzoCartePolitica
 	 */
-	public Tabellone(Mappa mappa, ArrayList<Regione> regioni, PlanciaRe planciaRe, Re pedinaRe,
+	public GameState(Mappa mappa, ArrayList<Regione> regioni, PlanciaRe planciaRe, Re pedinaRe,
 			ArrayList<Consigliere> consiglieri, Mazzo<CartaPolitica> mazzoCartePolitica) {
 		this.mappa = mappa;
 		this.regioni = regioni;
@@ -42,7 +47,18 @@ public class Tabellone {
 		return consigliere;
 	}
 	
-	
+	/**
+	 * @return the giocatoreCorrente
+	 */
+	public Giocatore getGiocatoreCorrente() {
+		return giocatoreCorrente;
+	}
+	/**
+	 * @param giocatoreCorrente the giocatoreCorrente to set
+	 */
+	public void setGiocatoreCorrente(Giocatore giocatoreCorrente) {
+		this.giocatoreCorrente = giocatoreCorrente;
+	}
 	/**
 	 * @return the mappa
 	 */
@@ -52,6 +68,7 @@ public class Tabellone {
 	/**
 	 * @return the regioni
 	 */
+	@Override
 	public ArrayList<Regione> getRegioni() {
 		return regioni;
 	}
@@ -70,6 +87,7 @@ public class Tabellone {
 	/**
 	 * @return the consiglieri
 	 */
+	@Override
 	public ArrayList<Consigliere> getConsiglieri() {
 		return consiglieri;
 	}
@@ -78,6 +96,21 @@ public class Tabellone {
 	 */
 	public Mazzo<CartaPolitica> getMazzoCartePolitica() {
 		return mazzoCartePolitica;
+	}
+	@Override
+	public List<CartaPolitica> getCartePoliticaGiocatore() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<TesseraPermesso> getTesserePermessoGiocatore() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public Set<Città> getCittà() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

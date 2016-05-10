@@ -26,7 +26,7 @@ import game.PlanciaRe;
 import game.PunteggioNobiltà;
 import game.Re;
 import game.Regione;
-import game.Tabellone;
+import game.GameState;
 import game.TesseraPermesso;
 
 public class Main {
@@ -251,8 +251,8 @@ public class Main {
 		PlanciaRe planciaRe = new PlanciaRe(kingBalcony, bonusRe, nobilityTrack); 
 		
 		//creo game table
-		Tabellone gameTable=
-				new Tabellone(mappa, regionList, planciaRe, re, councillorsList, mazzoCartePolitica);
+		GameState gameTable=
+				new GameState(mappa, regionList, planciaRe, re, councillorsList, mazzoCartePolitica);
 		
 		System.out.println(mappa.toString());
 		System.out.println(mappa.minimaDistanza(c, d));

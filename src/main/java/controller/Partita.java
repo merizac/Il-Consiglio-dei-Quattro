@@ -1,8 +1,9 @@
-package game;
+package controller;
 
 import java.util.ArrayList;
 
 import azioni.AcquistoTesseraPermesso;
+import azioni.Azione;
 import azioni.CambioTesseraPermesso;
 import azioni.CostruzioneAiutoRe;
 import azioni.CostruzioneTesseraPermesso;
@@ -10,50 +11,51 @@ import azioni.ElezioneConsigliere;
 import azioni.ElezioneConsigliereVeloce;
 import azioni.IngaggioAiutante;
 import azioni.SecondaAzionePrincipale;
+import game.GameState;
+import game.Giocatore;
+import utility.Observer;
+import view.View;
 
-public class Partita {
+public class Partita implements Observer<Azione> {
 
-	private Tabellone tabellone;
+	private GameState gameState;
 	private ArrayList<Giocatore> giocatori;
-	private Giocatore giocatoreCorrente;
+	
+	public Partita(GameState gameState, ArrayList<Giocatore> giocatori, View view)
+	{
+		this.gameState=gameState;
+		this.giocatori=giocatori;
+		view.registerObserver(this);
+	}
+	
 	/**
 	 * @return the tabellone
 	 */
-	public Tabellone getTabellone() {
-		return tabellone;
+	public GameState getTabellone() {
+		return gameState;
 	}
-
-
-
-	/**
-	 * @return the giocatoreCorrente
-	 */
-	public Giocatore getGiocatoreCorrente() {
-		return giocatoreCorrente;
+	@Override
+	public void update(Azione c) {
+		// TODO Auto-generated method stub
+		
 	}
+	
 
-	/**
-	 * @param giocatoreCorrente the giocatoreCorrente to set
-	 */
-	public void setGiocatoreCorrente(Giocatore giocatoreCorrente) {
-		this.giocatoreCorrente = giocatoreCorrente;
-	}
-
-	public void gestisciPartita() {
+	/*public void gestisciPartita() {
 		
 		int indiceGiocatore =0;
 		
 	
 		while(true){
-			giocatoreCorrente= giocatori.get(indiceGiocatore);
-			giocatoreCorrente.aggiungiCartaPolitica(tabellone.getMazzoCartePolitica().pescaCarte());
+			//tabellone.getGiocatoreCorrente()= giocatori.get(indiceGiocatore);
+			//giocatoreCorrente.aggiungiCartaPolitica(tabellone.getMazzoCartePolitica().pescaCarte());
 		
 			//riempiAzioniPrincipali();
 			//riempiAzioniVeloci();
 			
 			//mostra gioco e giocatore
 			
-			/*String messaggio=view.scegliAzione();
+			String messaggio=view.scegliAzione();
 			mostraAzione(messaggio);
 			
 			if (this.getGiocatoreCorrente().getAzioniPrincipali().isEmpty()){
@@ -71,12 +73,12 @@ public class Partita {
 				indiceGiocatore=0;
 			}
 			else indiceGiocatore ++;	
-		}*/
+		}
 		//condizione fine partita
 		
 	}
 
-	/*public void riempiAzioniPrincipali() {
+	public void riempiAzioniPrincipali() {
 		this.giocatoreCorrente.getAzioniPrincipali().add(new ElezioneConsigliere(this));
 		this.giocatoreCorrente.getAzioniPrincipali().add(new CostruzioneAiutoRe(this));
 		this.giocatoreCorrente.getAzioniPrincipali().add(new CostruzioneTesseraPermesso(this));	
@@ -117,6 +119,6 @@ public class Partita {
 		}
 		
 	}
-*/
-}
+
+}*/
 }
