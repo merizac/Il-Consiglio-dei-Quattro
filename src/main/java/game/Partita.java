@@ -20,7 +20,6 @@ public class Partita {
 	private Tabellone tabellone;
 	private ArrayList<Giocatore> giocatori;
 	private Giocatore giocatoreCorrente;
-	private Controllore controllore;
 	private View view;
 	/**
 	 * @return the tabellone
