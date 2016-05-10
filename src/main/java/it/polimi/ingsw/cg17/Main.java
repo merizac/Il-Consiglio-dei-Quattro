@@ -8,6 +8,7 @@ import java.util.List;
 import bonus.Bonus;
 import bonus.BonusAiutanti;
 import bonus.BonusCartePolitica;
+import bonus.BonusMoneta;
 import bonus.BonusPuntiNobiltà;
 import bonus.BonusPuntiVittoria;
 import game.Aiutante;
@@ -56,8 +57,8 @@ public class Main {
 		
 		
 		//creo ArrayList<PunteggioNobiltà> con bonus main action in casella 1
-			ArrayList<PunteggioNobiltà> nobilityTrack=new ArrayList<PunteggioNobiltà>(20);
-			for(int i=0; i<nobilityTrack.size(); i++)
+			ArrayList<PunteggioNobiltà> nobilityTrack=new ArrayList<PunteggioNobiltà>();
+			for(int i=0; i<10; i++)
 			{
 				nobilityTrack.add(new PunteggioNobiltà(i, bonus));
 			}
@@ -86,7 +87,7 @@ public class Main {
 		}
 		
 		//creo giocatori e li metto in una lista
-		List<Giocatore> Giocatore=new ArrayList<Giocatore>();
+		List<Giocatore> Giocatore=new ArrayList<Giocatore>(10);
 		Giocatore Giocatore1=new Giocatore(new Colore("giallo"),cartaPolitica1,new Aiutante(3),0,8, nobilityTrack.get(0), giocatore1 );
 		Giocatore.add(Giocatore1);
 		Giocatore Giocatore2=new Giocatore(new Colore("verde"),cartaPolitica2,new Aiutante(3),0,9, nobilityTrack.get(0), giocatore2);
@@ -185,8 +186,16 @@ public class Main {
 		//Tutte le permit tile di una regione hanno lo stesso bonus
 		//Di conseguenza il deck di una regione sarà composto da 10 tile uguali
 		List<TesseraPermesso> permitSeaList = new ArrayList<TesseraPermesso>();
+		//System.out.println(x);
 		for(int ind=0;ind<10;ind++){
-			permitSeaList.add(new TesseraPermesso(seaSet, new ArrayList<Bonus>(), seaRegion));
+			System.out.println(seaRegion.toString());
+			ArrayList<Bonus> bonus2 = new ArrayList<>();
+			bonus2.add(new BonusMoneta(10));
+			Bonus bonus3=new BonusMoneta(5);
+			System.out.println(bonus3.toString());
+			System.out.println(bonus2.size());
+			TesseraPermesso tesseraPermesso = new TesseraPermesso(seaSet, bonus2, seaRegion);
+			permitSeaList.add(tesseraPermesso);
 			permitSeaList.get(ind).getBonus().add(new BonusPuntiNobiltà(1));
 		}
 		
@@ -202,7 +211,7 @@ public class Main {
 			permitMountainList.get(ind).getBonus().add(new BonusCartePolitica(2));
 		}
 		
-		//aggiungo collegamenti tra le città
+		//aggiungo collegamenti tra le città*/
 		a.getCittàCollegate().add(c);
 		a.getCittàCollegate().add(b);
 		b.getCittàCollegate().add(d);
@@ -244,6 +253,9 @@ public class Main {
 		//creo game table
 		Tabellone gameTable=
 				new Tabellone(mappa, regionList, planciaRe, re, councillorsList, mazzoCartePolitica);
+		
+		System.out.println(mappa.toString());
+		System.out.println(mappa.minimaDistanza(c, d));
 		
 		//creo game
 		/*Partita game=new Partita(Giocatore, gameTable);

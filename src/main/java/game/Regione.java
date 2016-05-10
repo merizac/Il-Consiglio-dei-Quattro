@@ -27,6 +27,13 @@ public class Regione {
 		this.balcone = balcone;
 		this.cittàRegione = new ArrayList<Città>();
 	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Regione [nome=" + nome + "]";
+	}
 	/**
 	 * @return the nome
 	 */

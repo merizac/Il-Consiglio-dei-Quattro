@@ -131,6 +131,17 @@ public class Città {
 			return false;
 		return true;
 	}
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Città [nome=" + nome + "]";
+	}
+	
+	
 	
 	
 }

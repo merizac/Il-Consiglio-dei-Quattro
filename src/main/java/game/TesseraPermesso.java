@@ -40,6 +40,13 @@ public final class TesseraPermesso {
 		return bonus;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "TesseraPermesso [città=" + città + ", bonus=" + bonus + ", regione=" + regione + "]";
+	}
 
 
 }
