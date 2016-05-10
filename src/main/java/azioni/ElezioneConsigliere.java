@@ -6,16 +6,18 @@ import game.Regione;
 
 public class ElezioneConsigliere extends AzionePrincipale {
 
-	private Regione regione;
-	private Consigliere consigliere;
+	private final Regione regione;
+	private final Consigliere consigliere;
 	
 
 	/**constructor
 	 * @param balcone
 	 * @param consigliere
 	 */
-	public ElezioneConsigliere(Partita partita) {
+	public ElezioneConsigliere(Partita partita, Regione regione, Consigliere consigliere) {
 		super(partita);
+		this.regione=regione;
+		this.consigliere=consigliere;
 	}
 /**
  * Remove and add consigliere from the selected balcony
@@ -24,9 +26,9 @@ public class ElezioneConsigliere extends AzionePrincipale {
  */
 	@Override
 	public boolean eseguiAzione() {
-		PassaggioParametri passaggioParametri = new PassaggioParametri(partita);
+		/*PassaggioParametri passaggioParametri = new PassaggioParametri(partita);
 		consigliere = passaggioParametri.selezionaConsiglieri();
-		regione = passaggioParametri.selezionaRegione();
+		regione = passaggioParametri.selezionaRegione();*/
 
 		Consigliere consigliereTolto = this.regione.getBalcone().aggiungiConsigliere(consigliere);
 		this.partita.getTabellone().getConsiglieri().add(consigliereTolto);

@@ -12,16 +12,18 @@ import game.TesseraPermesso;
 
 public class CostruzioneTesseraPermesso extends AzionePrincipale {
 
-	private TesseraPermesso tesseraPermessoScoperta;
-	private Città cittàCostruzione;
+	private final TesseraPermesso tesseraPermessoScoperta;
+	private final Città cittàCostruzione;
 
 	/**
 	 * @param partita
 	 * @param tesseraPermessoScoperta
 	 * @param cittàCostruzione
 	 */
-	public CostruzioneTesseraPermesso(Partita partita) {
+	public CostruzioneTesseraPermesso(Partita partita, Città cittàCostruzione, TesseraPermesso tesseraPermessoScoperta) {
 		super(partita);
+		this.cittàCostruzione=cittàCostruzione;
+		this.tesseraPermessoScoperta= tesseraPermessoScoperta;
 	}
 
 
@@ -30,9 +32,9 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale {
 	 */
 	@Override
 	public boolean eseguiAzione() {
-		PassaggioParametri passaggioParametri= new PassaggioParametri(partita);
+		/*PassaggioParametri passaggioParametri= new PassaggioParametri(partita);
 		cittàCostruzione=passaggioParametri.selezionaCittà();
-		tesseraPermessoScoperta=passaggioParametri.selezionaTesseraPermesso();
+		tesseraPermessoScoperta=passaggioParametri.selezionaTesseraPermesso();*/
 		
 		if(!pagoAiutanti())
 			return false;

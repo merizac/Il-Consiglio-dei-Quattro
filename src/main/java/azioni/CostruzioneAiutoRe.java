@@ -1,8 +1,7 @@
 package azioni;
 
+import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Set;
-
 import bonus.Bonus;
 import game.Balcone;
 import game.CartaPolitica;
@@ -16,12 +15,14 @@ import game.Partita;
 
 public class CostruzioneAiutoRe extends AzionePrincipale {
 
-	private Città cittàCostruzione;
+	private final Città cittàCostruzione;
 	private final Balcone balcone;
-	private Set<CartaPolitica> carteGiocatore;
+	private final ArrayList<CartaPolitica> carteGiocatore;
 	
-	public CostruzioneAiutoRe(Partita partita) {
+	public CostruzioneAiutoRe(Partita partita, Città cittàCostruzione, ArrayList<CartaPolitica> carteGiocatore) {
 		super(partita);
+		this.cittàCostruzione=cittàCostruzione;
+		this.carteGiocatore=carteGiocatore;
 		this.balcone=partita.getTabellone().getPlanciaRe().getBalconeRe();
 	}
 	/**
@@ -30,9 +31,9 @@ public class CostruzioneAiutoRe extends AzionePrincipale {
 	@Override
 	public boolean eseguiAzione() {
 		Mappa mappa= partita.getTabellone().getMappa();
-		PassaggioParametri passaggioParametri= new PassaggioParametri(partita);
+		/*PassaggioParametri passaggioParametri= new PassaggioParametri(partita);
 		carteGiocatore= new HashSet<CartaPolitica>(passaggioParametri.selezionaCarteGiocatore());
-		cittàCostruzione=passaggioParametri.selezionaCittà();
+		cittàCostruzione=passaggioParametri.selezionaCittà();*/
 		if(!controllaColori())
 			return false;
 		int moneteDovute= calcolaMonete() + 

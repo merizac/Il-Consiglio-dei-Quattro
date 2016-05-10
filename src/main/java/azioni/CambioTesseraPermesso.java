@@ -9,7 +9,7 @@ import game.TesseraPermesso;
 
 public class CambioTesseraPermesso extends AzioneVeloce {
 
-	private Regione regione;
+	private final Regione regione;
 
 	
 
@@ -17,16 +17,17 @@ public class CambioTesseraPermesso extends AzioneVeloce {
 	 * @param partita
 	 * @param regione
 	 */
-	public CambioTesseraPermesso(Partita partita) {
+	public CambioTesseraPermesso(Partita partita, Regione regione) {
 		super(partita);
+		this.regione=regione;
 	}
 
 
 
 	@Override
 	public boolean eseguiAzione() {
-		PassaggioParametri passaggioParametri=new PassaggioParametri(partita);
-		regione=passaggioParametri.selezionaRegione();
+		/*PassaggioParametri passaggioParametri=new PassaggioParametri(partita);
+		regione=passaggioParametri.selezionaRegione();*/
 		RimozioneCarte();
 		SostituzioneCarte();
 		return true;

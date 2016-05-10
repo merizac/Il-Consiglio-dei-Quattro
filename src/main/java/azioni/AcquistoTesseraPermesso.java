@@ -16,11 +16,17 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 	/**
 	 * constructor
 	 * @param partita
+	 * @param carteGiocatore 
 	 * @param carteGiocatore
+	 * @param regione 
 	 * @param regione
+	 * @param indiceTesseraPermesso 
 	 */
-	public AcquistoTesseraPermesso(Partita partita) {
+	public AcquistoTesseraPermesso(Partita partita, ArrayList<CartaPolitica> carteGiocatore, Regione regione, int indiceTesseraPermesso) {
 		super(partita);
+		this.carteGiocatore=carteGiocatore;
+		this.regione=regione;
+		this.indiceTesseraScoperta=indiceTesseraPermesso;
 		}
 	/**
 	 * check if the color of cards passed are the same of balcone, and check if the player has enough
@@ -28,10 +34,10 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 	 */
 	@Override
 	public boolean eseguiAzione() {
-		PassaggioParametri passaggioParametri=new PassaggioParametri(partita);
+		/*PassaggioParametri passaggioParametri=new PassaggioParametri(partita);
 		carteGiocatore=passaggioParametri.selezionaCarteGiocatore();
 		regione=passaggioParametri.selezionaRegione();		
-		indiceTesseraScoperta=passaggioParametri.selezionaTesseraScoperta(regione);
+		indiceTesseraScoperta=passaggioParametri.selezionaTesseraScoperta(regione);*/
 		
 		if(carteGiocatore.isEmpty())
 			return false;

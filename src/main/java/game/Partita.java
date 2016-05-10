@@ -1,8 +1,5 @@
 package game;
 
-import mvc.View;
-import mvc.ViewCLI;
-
 import java.util.ArrayList;
 
 import azioni.AcquistoTesseraPermesso;
@@ -13,28 +10,17 @@ import azioni.ElezioneConsigliere;
 import azioni.ElezioneConsigliereVeloce;
 import azioni.IngaggioAiutante;
 import azioni.SecondaAzionePrincipale;
-import mvc.Controllore;
 
 public class Partita {
 
 	private Tabellone tabellone;
 	private ArrayList<Giocatore> giocatori;
 	private Giocatore giocatoreCorrente;
-	private View view;
 	/**
 	 * @return the tabellone
 	 */
 	public Tabellone getTabellone() {
 		return tabellone;
-	}
-
-	
-	
-	/**
-	 * @return the view
-	 */
-	public View getView() {
-		return view;
 	}
 
 
@@ -55,24 +41,19 @@ public class Partita {
 
 	public void gestisciPartita() {
 		
-		Controllore controllore= new Controllore(this);
-		View view= new ViewCLI(this);
 		int indiceGiocatore =0;
-		
-		controllore.registerObserver(view);
-		view.registerObserver(controllore);
 		
 	
 		while(true){
 			giocatoreCorrente= giocatori.get(indiceGiocatore);
 			giocatoreCorrente.aggiungiCartaPolitica(tabellone.getMazzoCartePolitica().pescaCarte());
 		
-			riempiAzioniPrincipali();
-			riempiAzioniVeloci();
+			//riempiAzioniPrincipali();
+			//riempiAzioniVeloci();
 			
 			//mostra gioco e giocatore
 			
-			String messaggio=view.scegliAzione();
+			/*String messaggio=view.scegliAzione();
 			mostraAzione(messaggio);
 			
 			if (this.getGiocatoreCorrente().getAzioniPrincipali().isEmpty()){
@@ -90,12 +71,12 @@ public class Partita {
 				indiceGiocatore=0;
 			}
 			else indiceGiocatore ++;	
-		}
+		}*/
 		//condizione fine partita
 		
 	}
 
-	public void riempiAzioniPrincipali() {
+	/*public void riempiAzioniPrincipali() {
 		this.giocatoreCorrente.getAzioniPrincipali().add(new ElezioneConsigliere(this));
 		this.giocatoreCorrente.getAzioniPrincipali().add(new CostruzioneAiutoRe(this));
 		this.giocatoreCorrente.getAzioniPrincipali().add(new CostruzioneTesseraPermesso(this));	
@@ -136,5 +117,6 @@ public class Partita {
 		}
 		
 	}
-
+*/
+}
 }
