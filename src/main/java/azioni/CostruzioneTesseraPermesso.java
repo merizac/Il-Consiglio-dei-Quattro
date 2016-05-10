@@ -7,7 +7,7 @@ import game.Città;
 import game.CittàBonus;
 import game.Colore;
 import game.Emporio;
-import game.Partita;
+import game.GameState;
 import game.TesseraPermesso;
 
 public class CostruzioneTesseraPermesso extends AzionePrincipale {
@@ -16,12 +16,12 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale {
 	private final Città cittàCostruzione;
 
 	/**
-	 * @param partita
+	 * @param gameState
 	 * @param tesseraPermessoScoperta
 	 * @param cittàCostruzione
 	 */
-	public CostruzioneTesseraPermesso(Partita partita, Città cittàCostruzione, TesseraPermesso tesseraPermessoScoperta) {
-		super(partita);
+	public CostruzioneTesseraPermesso(GameState gameState, Città cittàCostruzione, TesseraPermesso tesseraPermessoScoperta) {
+		super(gameState);
 		this.cittàCostruzione=cittàCostruzione;
 		this.tesseraPermessoScoperta= tesseraPermessoScoperta;
 	}
@@ -32,7 +32,7 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale {
 	 */
 	@Override
 	public boolean eseguiAzione() {
-		/*PassaggioParametri passaggioParametri= new PassaggioParametri(partita);
+		/*PassaggioParametri passaggioParametri= new PassaggioParametri(gameState);
 		cittàCostruzione=passaggioParametri.selezionaCittà();
 		tesseraPermessoScoperta=passaggioParametri.selezionaTesseraPermesso();*/
 		
@@ -48,8 +48,8 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale {
 	 * move the permit tile used from tesserePermesso to tesserePermessoUsate
 	 */
 	private void copriTessera() {
-		this.partita.getGiocatoreCorrente().getTesserePermesso().remove(tesseraPermessoScoperta);
-		this.partita.getGiocatoreCorrente().getTesserePermessoUsate().add(tesseraPermessoScoperta);
+		this.gameState.getGiocatoreCorrente().getTesserePermesso().remove(tesseraPermessoScoperta);
+		this.gameState.getGiocatoreCorrente().getTesserePermessoUsate().add(tesseraPermessoScoperta);
 	}
 
 
@@ -61,7 +61,7 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale {
 		int numeroEmpori = cittàCostruzione.getEmpori().size(); 
 	
 		if(!cittàCostruzione.getEmpori().isEmpty()) { 
-			if(this.partita.getGiocatoreCorrente().getAiutanti().togliAiutanti(numeroEmpori)){
+			if(this.gameState.getGiocatoreCorrente().getAiutanti().togliAiutanti(numeroEmpori)){
 				return true;
 			}
 		}
@@ -71,18 +71,18 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale {
 	 * build an emporio to the city selected
 	 */
 	private void costruisci(){
-		Emporio emporio = this.partita.getGiocatoreCorrente().getEmpori().remove(0);
+		Emporio emporio = this.gameState.getGiocatoreCorrente().getEmpori().remove(0);
 		this.cittàCostruzione.aggiungiEmporio(emporio);
 	}
 	/**
 	 * give to the player the bonus of the city connected to the city where the player has built
 	 */
 	private void prendiBonus(){
-		Colore coloreEmporio = this.partita.getGiocatoreCorrente().getColoreGiocatore();
-		HashSet<CittàBonus> cittàCollegate = this.partita.getTabellone().getMappa().trovaCittà(cittàCostruzione, coloreEmporio);
+		Colore coloreEmporio = this.gameState.getGiocatoreCorrente().getColoreGiocatore();
+		HashSet<CittàBonus> cittàCollegate = this.gameState.getMappa().trovaCittà(cittàCostruzione, coloreEmporio);
 		for ( CittàBonus c: cittàCollegate){
 				for(Bonus b: c.getBonus()){
-					b.usaBonus(partita);
+					b.usaBonus(gameState);
 		}
 		}
 	}

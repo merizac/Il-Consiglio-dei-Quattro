@@ -2,7 +2,7 @@ package azioni;
 
 import game.Regione;
 import game.Consigliere;
-import game.Partita;
+import game.GameState;
 
 public class ElezioneConsigliereVeloce extends AzioneVeloce {
 	
@@ -10,14 +10,14 @@ public class ElezioneConsigliereVeloce extends AzioneVeloce {
 	private Consigliere consigliere;
 	/**
 	 * constructor
-	 * @param partita
+	 * @param gameState
 	 * @param regione 
 	 * @param consigliere 
 	 * @param balcone
 	 * @param consigliere
 	 */
-	public ElezioneConsigliereVeloce(Partita partita, Regione regione, Consigliere consigliere) {
-		super(partita);
+	public ElezioneConsigliereVeloce(GameState gameState, Regione regione, Consigliere consigliere) {
+		super(gameState);
 		this.regione=regione;
 		this.consigliere=consigliere;
 	}
@@ -26,13 +26,13 @@ public class ElezioneConsigliereVeloce extends AzioneVeloce {
 	 */
 	@Override
 	public boolean eseguiAzione() {
-		/*PassaggioParametri passaggioParametri = new PassaggioParametri(partita);
+		/*PassaggioParametri passaggioParametri = new PassaggioParametri(gameState);
 		consigliere = passaggioParametri.selezionaConsiglieri();
 		regione = passaggioParametri.selezionaRegione();*/
 		
-		if(partita.getGiocatoreCorrente().getAiutanti().togliAiutanti(1)){
+		if(gameState.getGiocatoreCorrente().getAiutanti().togliAiutanti(1)){
 			Consigliere consigliereTolto = this.regione.getBalcone().aggiungiConsigliere(consigliere);
-			this.partita.getTabellone().getConsiglieri().add(consigliereTolto);
+			this.gameState.getConsiglieri().add(consigliereTolto);
 			return true;
 		}
 		

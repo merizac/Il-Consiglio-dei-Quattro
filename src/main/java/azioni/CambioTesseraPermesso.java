@@ -2,8 +2,8 @@ package azioni;
 
 import java.util.ArrayList;
 
+import game.GameState;
 import game.Mazzo;
-import game.Partita;
 import game.Regione;
 import game.TesseraPermesso;
 
@@ -17,8 +17,8 @@ public class CambioTesseraPermesso extends AzioneVeloce {
 	 * @param partita
 	 * @param regione
 	 */
-	public CambioTesseraPermesso(Partita partita, Regione regione) {
-		super(partita);
+	public CambioTesseraPermesso(GameState gameState, Regione regione) {
+		super(gameState);
 		this.regione=regione;
 	}
 

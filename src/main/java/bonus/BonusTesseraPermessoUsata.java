@@ -1,7 +1,6 @@
 package bonus;
 
-
-import game.Partita;
+import game.GameState;
 
 public class BonusTesseraPermessoUsata extends Bonus {
 
@@ -11,7 +10,7 @@ public class BonusTesseraPermessoUsata extends Bonus {
 	}
 
 	@Override
-	public void usaBonus(Partita partita) {
+	public void usaBonus(GameState gameState) {
 		// TODO Auto-generated method stub
 		
 	}

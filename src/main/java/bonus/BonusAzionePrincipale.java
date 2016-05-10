@@ -1,7 +1,6 @@
 package bonus;
 
-
-import game.Partita;
+import game.GameState;
 
 public class BonusAzionePrincipale extends Bonus {
 
@@ -12,7 +11,7 @@ public class BonusAzionePrincipale extends Bonus {
 	}
 
 	@Override
-	public void usaBonus(Partita partita) {
+	public void usaBonus(GameState gameState) {
 		
 	}
 }

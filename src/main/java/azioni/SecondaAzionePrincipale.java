@@ -1,13 +1,12 @@
 package azioni;
 
 import java.util.ArrayList;
-
-import game.Partita;
+import game.GameState;
 
 public class SecondaAzionePrincipale extends AzioneVeloce {
 
-	public SecondaAzionePrincipale(Partita partita) {
-		super(partita);
+	public SecondaAzionePrincipale(GameState gameState) {
+		super(gameState);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -20,18 +19,18 @@ public class SecondaAzionePrincipale extends AzioneVeloce {
 	 */
 	@Override
 	public boolean eseguiAzione() {
-		ArrayList<AzionePrincipale> azionePrincipale = this.partita.getGiocatoreCorrente().getAzioniPrincipali();
-		/*this.partita.svuotaAzioniVeloci();
+		ArrayList<AzionePrincipale> azionePrincipale = this.gameState.getGiocatoreCorrente().getAzioniPrincipali();
+		/*this.gameState.svuotaAzioniVeloci();
 		if (azionePrincipale.isEmpty()){
-		    this.partita.riempiAzioniPrincipali();
+		    this.gameState.riempiAzioniPrincipali();
 			}
 		
-		//this.partita.getView().scegliAzionePrincipale();
+		//this.gameState.getView().scegliAzionePrincipale();
 		//AZIONE PRINCIPALE: deve eseguire l'azione principale , controllare il ritorno e se andato 
 		// a buon fine svuotare azione principale
 			
 		if (!azionePrincipale.isEmpty()){
-			this.partita.riempiAzioniPrincipali();
+			this.gameState.riempiAzioniPrincipali();
 			}*/
 		
 		

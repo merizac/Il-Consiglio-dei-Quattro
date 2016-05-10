@@ -1,16 +1,16 @@
 package azioni;
 
-import game.Partita;
+import game.GameState;
 
 public abstract class AzionePrincipale implements Azione {
-	protected final Partita partita;
+	protected final GameState gameState;
 
 	/**
 	 * @param partita
 	 */
-	public AzionePrincipale(Partita partita) {
+	public AzionePrincipale(GameState gameState) {
 		super();
-		this.partita = partita;
+		this.gameState = gameState;
 	}
 	
 	

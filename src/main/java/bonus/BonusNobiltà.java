@@ -1,5 +1,5 @@
 package bonus;
-import game.Partita;
+import controller.Partita;
 
 public abstract class BonusNobiltà extends Bonus {
 

@@ -1,6 +1,6 @@
 package bonus;
 
-import game.Partita;
+import game.GameState;
 
 public class BonusMoneta extends Bonus {
 
@@ -8,7 +8,7 @@ public class BonusMoneta extends Bonus {
 	/**
 	 * constructor of BonusMoneta
 	 * @param monete
-	 * @param partita
+	 * @param gameState
 	 */
 	public BonusMoneta(int monete){
 		super();
@@ -17,7 +17,7 @@ public class BonusMoneta extends Bonus {
 	/**
 	 * add monete to variable punteggioRicchezza of Giocatore
 	 */
-	public void usaBonus(Partita partita) {
-		partita.getGiocatoreCorrente().aumentaRicchezza(monete);
+	public void usaBonus(GameState gameState) {
+		gameState.getGiocatoreCorrente().aumentaRicchezza(monete);
 	}
 }

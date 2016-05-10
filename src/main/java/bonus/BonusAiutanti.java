@@ -1,6 +1,6 @@
 package bonus;
 
-import game.Partita;
+import game.GameState;
 
 public class BonusAiutanti extends Bonus {
 
@@ -17,7 +17,7 @@ public class BonusAiutanti extends Bonus {
 	/**
 	 * add aiutanti to the variable aiutanti of Giocatore
 	 */
-	public void usaBonus(Partita partita) {
-		partita.getGiocatoreCorrente().getAiutanti().aggiungiAiutanti(this.aiutanti);
+	public void usaBonus(GameState gameState) {
+		gameState.getGiocatoreCorrente().getAiutanti().aggiungiAiutanti(this.aiutanti);
 	}
 }

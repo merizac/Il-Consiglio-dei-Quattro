@@ -18,10 +18,10 @@ import view.View;
 
 public class Partita implements Observer<Azione> {
 
-	private GameState gameState;
+	private Partita gameState;
 	private ArrayList<Giocatore> giocatori;
 	
-	public Partita(GameState gameState, ArrayList<Giocatore> giocatori, View view)
+	public Partita(Partita gameState, ArrayList<Giocatore> giocatori, View view)
 	{
 		this.gameState=gameState;
 		this.giocatori=giocatori;
@@ -31,7 +31,7 @@ public class Partita implements Observer<Azione> {
 	/**
 	 * @return the tabellone
 	 */
-	public GameState getTabellone() {
+	public Partita getTabellone() {
 		return gameState;
 	}
 	@Override

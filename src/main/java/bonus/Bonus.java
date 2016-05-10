@@ -1,15 +1,15 @@
 package bonus;
 
-import game.Partita;
+import game.GameState;
 
 public abstract class Bonus {
 	
 	/**constructore of Bonus
-	 * @param partita
+	 * @param gameState
 	 */
 	public Bonus() {
 		super();
 	}
 	
-	public abstract void usaBonus(Partita partita);
+	public abstract void usaBonus(GameState gameState);
 }

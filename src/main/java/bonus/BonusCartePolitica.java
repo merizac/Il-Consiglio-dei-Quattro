@@ -1,8 +1,8 @@
 package bonus;
 
 import game.CartaPolitica;
+import game.GameState;
 import game.Mazzo;
-import game.Partita;
 
 public class BonusCartePolitica extends Bonus {
 
@@ -16,10 +16,10 @@ public class BonusCartePolitica extends Bonus {
 	 * add politic cards to the player 
 	 */
 	@Override
-	public void usaBonus(Partita partita) {
-		Mazzo<CartaPolitica> mazzo = partita.getTabellone().getMazzoCartePolitica();
+	public void usaBonus(GameState gameState) {
+		Mazzo<CartaPolitica> mazzo = gameState.getMazzoCartePolitica();
 		for(int numCarte=0; numCarte<cartePolitica; numCarte++){
-			partita.getGiocatoreCorrente().aggiungiCartaPolitica(mazzo.pescaCarte());
+			gameState.getGiocatoreCorrente().aggiungiCartaPolitica(mazzo.pescaCarte());
 		}
 		
 	}

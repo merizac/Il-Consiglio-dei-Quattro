@@ -2,9 +2,8 @@ package bonus;
 
 
 import java.util.ArrayList;
-import java.util.Set;
 import game.CittàBonus;
-import game.Partita;
+import game.GameState;
 
 public class BonusGettoneRicompensa extends Bonus {
 
@@ -17,8 +16,8 @@ public class BonusGettoneRicompensa extends Bonus {
 	}
 
 	@Override
-	public void usaBonus(Partita partita) {		
-		/*PassaggioParametri passaggioParametri = new PassaggioParametri(partita);
+	public void usaBonus(GameState gameState) {		
+		/*PassaggioParametri passaggioParametri = new PassaggioParametri(gameState);
 		if(numeroGettoni==1)
 			cittàGiocatore.add((CittàBonus)passaggioParametri.scegliCittàEmporio());
 		else

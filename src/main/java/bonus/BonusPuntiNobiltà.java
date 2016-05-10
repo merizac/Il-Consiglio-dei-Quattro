@@ -2,8 +2,7 @@ package bonus;
 
 
 import java.util.ArrayList;
-
-import game.Partita;
+import game.GameState;
 import game.PunteggioNobiltà;
 
 public class BonusPuntiNobiltà extends Bonus {
@@ -20,18 +19,18 @@ public class BonusPuntiNobiltà extends Bonus {
 	 * if the new position contains bonus, then usaBonus()
 	 */
 	@Override
-	public void usaBonus(Partita partita) {
-		int puntiCorrenti = partita.getGiocatoreCorrente().getPunteggioNobiltà().getPuntiNobiltà();
+	public void usaBonus(GameState gameState) {
+		int puntiCorrenti = gameState.getGiocatoreCorrente().getPunteggioNobiltà().getPuntiNobiltà();
 		int puntiNuovi= puntiCorrenti+puntiNobiltà;
-		PunteggioNobiltà nuovaPosizioneNobiltà = partita.getTabellone().getPlanciaRe().getPercorsoNobiltà().get(puntiNuovi);
+		PunteggioNobiltà nuovaPosizioneNobiltà = gameState.getPlanciaRe().getPercorsoNobiltà().get(puntiNuovi);
 		
-		partita.getGiocatoreCorrente().setPunteggioNobiltà(nuovaPosizioneNobiltà);
+		gameState.getGiocatoreCorrente().setPunteggioNobiltà(nuovaPosizioneNobiltà);
 		
-		ArrayList<Bonus> bonusCasella = partita.getGiocatoreCorrente().getPunteggioNobiltà().getBonus();
+		ArrayList<Bonus> bonusCasella = gameState.getGiocatoreCorrente().getPunteggioNobiltà().getBonus();
 		
 		if (!bonusCasella.isEmpty()) {
 			for(Bonus bonus: bonusCasella){
-				bonus.usaBonus(partita);
+				bonus.usaBonus(gameState);
 				}
 			}
 	}

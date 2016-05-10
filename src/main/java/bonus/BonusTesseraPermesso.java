@@ -1,9 +1,6 @@
 package bonus;
 
-
-import java.util.Set;
-
-import game.Partita;
+import game.GameState;
 
 public class BonusTesseraPermesso extends Bonus {
 
@@ -13,7 +10,7 @@ public class BonusTesseraPermesso extends Bonus {
 	}
 
 	@Override
-	public void usaBonus(Partita partita) {
+	public void usaBonus(GameState gameState) {
 		
 	}
 

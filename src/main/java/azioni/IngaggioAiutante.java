@@ -1,11 +1,11 @@
 package azioni;
 
-import game.Partita;
+import game.GameState;
 
 public class IngaggioAiutante extends AzioneVeloce {
 
-	public IngaggioAiutante(Partita partita) {
-		super(partita);
+	public IngaggioAiutante(GameState gameState) {
+		super(gameState);
 		
 	}
 	/**
@@ -13,9 +13,9 @@ public class IngaggioAiutante extends AzioneVeloce {
 	 */
 	@Override
 	public boolean eseguiAzione() {
-		if(partita.getGiocatoreCorrente().diminuisciRicchezza(3))
+		if(gameState.getGiocatoreCorrente().diminuisciRicchezza(3))
 		{
-			partita.getGiocatoreCorrente().getAiutanti().aggiungiAiutanti(1);
+			gameState.getGiocatoreCorrente().getAiutanti().aggiungiAiutanti(1);
 			return true;
 		}
 		return false;

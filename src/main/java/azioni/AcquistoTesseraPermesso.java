@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import game.Regione;
 import game.CartaPolitica;
 import game.Consigliere;
-import game.Partita;
+import game.GameState;
 import game.TesseraPermesso;
 
 public class AcquistoTesseraPermesso extends AzionePrincipale {
@@ -22,8 +22,8 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 	 * @param regione
 	 * @param indiceTesseraPermesso 
 	 */
-	public AcquistoTesseraPermesso(Partita partita, ArrayList<CartaPolitica> carteGiocatore, Regione regione, int indiceTesseraPermesso) {
-		super(partita);
+	public AcquistoTesseraPermesso(GameState gameState, ArrayList<CartaPolitica> carteGiocatore, Regione regione, int indiceTesseraPermesso) {
+		super(gameState);
 		this.carteGiocatore=carteGiocatore;
 		this.regione=regione;
 		this.indiceTesseraScoperta=indiceTesseraPermesso;
@@ -46,11 +46,13 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 		if(!paga(calcolaMonete()))
 			return false;
 		    for(CartaPolitica c: carteGiocatore){
-		      this.partita.getGiocatoreCorrente().getCartePolitica().remove(c);
-		      this.partita.getTabellone().getMazzoCartePolitica().aggiungiCarta(carteGiocatore);
+		    
+		    	
+		      this.gameState.getGiocatoreCorrente().getCartePolitica().remove(c);
+		      this.gameState.getMazzoCartePolitica().aggiungiCarta(carteGiocatore);
 		    }
 		    TesseraPermesso tesseraScelta = regione.getTesserePermessoScoperte().get(indiceTesseraScoperta);
-		    partita.getGiocatoreCorrente().getTesserePermesso().add(tesseraScelta);
+		    gameState.getGiocatoreCorrente().getTesserePermesso().add(tesseraScelta);
 		return true;
 	}
 	
@@ -92,7 +94,7 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 	 * @return true if the player can pay the money, false otherwise
 	 */
 	private boolean paga(int moneteDovute) {
-		if(!this.partita.getGiocatoreCorrente().diminuisciRicchezza(moneteDovute))
+		if(!this.gameState.getGiocatoreCorrente().diminuisciRicchezza(moneteDovute))
 			return false;
 		return true;
 	}

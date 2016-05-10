@@ -1,13 +1,13 @@
 package bonus;
 
-import game.Partita;
+import game.GameState;
 
 public class BonusPuntiVittoria extends Bonus {
 
 	private int puntiVittoria;
 
 	/**
-	 * @param partita
+	 * @param gameState
 	 */
 	public BonusPuntiVittoria(int puntiVittoria) {
 		super();
@@ -16,7 +16,7 @@ public class BonusPuntiVittoria extends Bonus {
 	/**
 	 * add puntiVittoria to variable punteggioVittoria of Giocatore
 	 */
-	public void usaBonus(Partita partita) {
-		partita.getGiocatoreCorrente().aumentaPuntiVittoria(puntiVittoria);
+	public void usaBonus(GameState gameState) {
+		gameState.getGiocatoreCorrente().aumentaPuntiVittoria(puntiVittoria);
 	}
 }
