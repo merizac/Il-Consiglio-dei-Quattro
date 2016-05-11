@@ -13,6 +13,7 @@ public class GameState extends Observable<Object> implements Model {
 	private final Re pedinaRe;
 	private final ArrayList<Consigliere> consiglieri;
 	private final Mazzo<CartaPolitica> mazzoCartePolitica;
+	private ArrayList<Giocatore> giocatori;
 	private Giocatore giocatoreCorrente;
 	/**
 	 * @param mappa
@@ -23,13 +24,14 @@ public class GameState extends Observable<Object> implements Model {
 	 * @param mazzoCartePolitica
 	 */
 	public GameState(Mappa mappa, ArrayList<Regione> regioni, PlanciaRe planciaRe, Re pedinaRe,
-			ArrayList<Consigliere> consiglieri, Mazzo<CartaPolitica> mazzoCartePolitica) {
+			ArrayList<Consigliere> consiglieri, Mazzo<CartaPolitica> mazzoCartePolitica, ArrayList<Giocatore> giocatori) {
 		this.mappa = mappa;
 		this.regioni = regioni;
 		this.planciaRe = planciaRe;
 		this.pedinaRe = pedinaRe;
 		this.consiglieri = consiglieri;
 		this.mazzoCartePolitica = mazzoCartePolitica;
+		this.giocatori = giocatori;
 	}
 	/**
 	 * 
@@ -111,6 +113,12 @@ public class GameState extends Observable<Object> implements Model {
 	public Set<Città> getCittà() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	/**
+	 * @return the giocatori
+	 */
+	public ArrayList<Giocatore> getGiocatori() {
+		return giocatori;
 	}
 	
 

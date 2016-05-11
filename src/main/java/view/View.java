@@ -20,7 +20,6 @@ public class View extends Observable <Azione> implements Observer <Object>{
 
 	@Override
 	public void update(Object c) {
-		// TODO Auto-generated method stub
 		
 	}
 	

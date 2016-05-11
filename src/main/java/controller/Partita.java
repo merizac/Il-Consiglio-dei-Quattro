@@ -1,30 +1,17 @@
 package controller;
 
-import java.util.ArrayList;
 
-import azioni.AcquistoTesseraPermesso;
 import azioni.Azione;
-import azioni.CambioTesseraPermesso;
-import azioni.CostruzioneAiutoRe;
-import azioni.CostruzioneTesseraPermesso;
-import azioni.ElezioneConsigliere;
-import azioni.ElezioneConsigliereVeloce;
-import azioni.IngaggioAiutante;
-import azioni.SecondaAzionePrincipale;
-import game.GameState;
-import game.Giocatore;
 import utility.Observer;
 import view.View;
 
 public class Partita implements Observer<Azione> {
 
 	private Partita gameState;
-	private ArrayList<Giocatore> giocatori;
 	
-	public Partita(Partita gameState, ArrayList<Giocatore> giocatori, View view)
+	public Partita(Partita gameState, View view)
 	{
 		this.gameState=gameState;
-		this.giocatori=giocatori;
 		view.registerObserver(this);
 	}
 	
