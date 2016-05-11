@@ -10,9 +10,9 @@ public class View extends Observable <Azione> implements Observer <Object>{
 
 	private Model model;
 
-	public View(GameState gameState, Model model){
+	public View(GameState gameState){
 		gameState.registerObserver(this);
-		this.model=model;
+		this.model=gameState;
 	}
 	
 	public void input(String input){
