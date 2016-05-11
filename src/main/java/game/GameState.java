@@ -6,7 +6,7 @@ import java.util.Set;
 
 import utility.Observable;
 
-public class GameState extends Observable<Object> implements Model {
+public class GameState extends Observable<Object> {
 	private final Mappa mappa;
 	private final ArrayList<Regione> regioni;
 	private final PlanciaRe planciaRe;
@@ -70,7 +70,7 @@ public class GameState extends Observable<Object> implements Model {
 	/**
 	 * @return the regioni
 	 */
-	@Override
+	
 	public ArrayList<Regione> getRegioni() {
 		return regioni;
 	}
@@ -89,7 +89,7 @@ public class GameState extends Observable<Object> implements Model {
 	/**
 	 * @return the consiglieri
 	 */
-	@Override
+	
 	public ArrayList<Consigliere> getConsiglieri() {
 		return consiglieri;
 	}
@@ -99,17 +99,17 @@ public class GameState extends Observable<Object> implements Model {
 	public Mazzo<CartaPolitica> getMazzoCartePolitica() {
 		return mazzoCartePolitica;
 	}
-	@Override
+	
 	public List<CartaPolitica> getCartePoliticaGiocatore() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	@Override
+	
 	public List<TesseraPermesso> getTesserePermessoGiocatore() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	@Override
+	
 	public Set<Città> getCittà() {
 		// TODO Auto-generated method stub
 		return null;
