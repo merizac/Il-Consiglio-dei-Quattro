@@ -2,9 +2,9 @@ package game;
 
 import java.util.ArrayList;
 
-import azioni.AzioneVeloce;
-import azioni.AzionePrincipale;
 import bonus.*;
+import game.azioni.AzionePrincipale;
+import game.azioni.AzioneVeloce;
 
 public class Giocatore {
 

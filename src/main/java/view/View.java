@@ -1,7 +1,7 @@
 package view;
 
-import azioni.Azione;
 import game.Model;
+import game.azioni.Azione;
 import game.GameState;
 import utility.Observable;
 import utility.Observer;

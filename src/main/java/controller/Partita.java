@@ -1,7 +1,7 @@
 package controller;
 
 
-import azioni.Azione;
+import game.azioni.Azione;
 import utility.Observer;
 import view.View;
 

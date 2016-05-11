@@ -1,4 +1,4 @@
-package azioni;
+package game.azioni;
 
 import game.Consigliere;
 import game.GameState;

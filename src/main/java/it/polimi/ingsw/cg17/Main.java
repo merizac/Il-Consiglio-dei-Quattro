@@ -250,9 +250,10 @@ public class Main {
 		
 		PlanciaRe planciaRe = new PlanciaRe(kingBalcony, bonusRe, nobilityTrack); 
 		
+		
 		//creo game table
-		GameState gameTable=
-				new GameState(mappa, regionList, planciaRe, re, councillorsList, mazzoCartePolitica);
+		/*GameState gameTable=
+				new GameState(mappa, regionList, planciaRe, re, councillorsList, mazzoCartePolitica, giocatori);*/
 		
 		System.out.println(mappa.toString());
 		System.out.println(mappa.minimaDistanza(c, d));
