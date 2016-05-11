@@ -32,7 +32,7 @@ public class Regione {
 	 */
 	@Override
 	public String toString() {
-		return "Regione [nome=" + nome + "]";
+		return nome;
 	}
 	/**
 	 * @return the nome

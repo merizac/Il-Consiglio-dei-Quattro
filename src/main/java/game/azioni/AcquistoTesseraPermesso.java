@@ -1,7 +1,6 @@
 package game.azioni;
 
 import java.util.ArrayList;
-
 import game.Regione;
 import game.CartaPolitica;
 import game.Consigliere;

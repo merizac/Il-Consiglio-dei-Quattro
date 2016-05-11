@@ -2,17 +2,20 @@ package view;
 
 import game.azioni.Azione;
 import game.GameState;
-import game.Parser;
+import game.Model;
+import game.ParserAzione;
 import utility.Observable;
 import utility.Observer;
 
 public abstract class View extends Observable <Azione> implements Observer <Object>{
 	
-	protected Parser parser;
+	protected ParserAzione parser;
+	protected Model model;
 
-	public View(GameState gameState, Parser parser){
+	public View(GameState gameState, ParserAzione parser){
 		gameState.registerObserver(this);
 		this.parser = parser;
+		this.model=gameState;
 	}
 	
 	public abstract void input(String input);

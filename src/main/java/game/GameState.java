@@ -6,7 +6,7 @@ import java.util.Set;
 
 import utility.Observable;
 
-public class GameState extends Observable<Object> {
+public class GameState extends Observable<Object> implements Model{
 	private final Mappa mappa;
 	private final ArrayList<Regione> regioni;
 	private final PlanciaRe planciaRe;
@@ -89,7 +89,7 @@ public class GameState extends Observable<Object> {
 	/**
 	 * @return the consiglieri
 	 */
-	
+	@Override
 	public ArrayList<Consigliere> getConsiglieri() {
 		return consiglieri;
 	}
@@ -111,8 +111,7 @@ public class GameState extends Observable<Object> {
 	}
 	
 	public Set<Città> getCittà() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.mappa.getGrafo().vertexSet();
 	}
 	/**
 	 * @return the giocatori
