@@ -6,7 +6,7 @@ public class Città {
 
 	private final String nome;
 	private final Regione regione;
-	protected final ColoreCittà colore;
+	protected final Colore colore;
 	private final HashSet<Emporio> empori;
 	private final HashSet<Città> cittàCollegate;
 	
@@ -19,7 +19,7 @@ public class Città {
 	 * @param empori
 	 * @param cittàCollegate
 	 */
-	public Città(String nome, Regione regione, ColoreCittà colore) {
+	public Città(String nome, Regione regione, Colore colore) {
 		super();
 		this.nome = nome;
 		this.regione = regione;

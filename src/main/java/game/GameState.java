@@ -24,14 +24,14 @@ public class GameState extends Observable<Object> implements Model{
 	 * @param mazzoCartePolitica
 	 */
 	public GameState(Mappa mappa, ArrayList<Regione> regioni, PlanciaRe planciaRe, Re pedinaRe,
-			ArrayList<Consigliere> consiglieri, Mazzo<CartaPolitica> mazzoCartePolitica, ArrayList<Giocatore> giocatori) {
+			ArrayList<Consigliere> consiglieri, Mazzo<CartaPolitica> mazzoCartePolitica) {
 		this.mappa = mappa;
 		this.regioni = regioni;
 		this.planciaRe = planciaRe;
 		this.pedinaRe = pedinaRe;
 		this.consiglieri = consiglieri;
 		this.mazzoCartePolitica = mazzoCartePolitica;
-		this.giocatori = giocatori;
+		this.giocatori = new ArrayList<Giocatore>();
 	}
 	/**
 	 * 
