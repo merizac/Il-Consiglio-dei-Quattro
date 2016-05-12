@@ -1,41 +1,78 @@
 package controller;
 
 
-import game.azioni.Azione;
+/*import game.Giocatore;
+import game.azioni.AcquistoTesseraPermesso;
+import game.azioni.CambioTesseraPermesso;
+import game.azioni.CostruzioneAiutoRe;
+import game.azioni.CostruzioneTesseraPermesso;
+import game.azioni.ElezioneConsigliere;
+import game.azioni.ElezioneConsigliereVeloce;
+import game.azioni.IngaggioAiutante;
+import game.azioni.SecondaAzionePrincipale;*/
 import utility.Observer;
+import game.GameState;
+import game.azioni.Azione;
 import view.View;
 
 public class Partita implements Observer<Azione> {
 
-	private Partita gameState;
+	private GameState gameState;
+	private Stato stato;
+	private Azione azioneCorrente;
+	private boolean isActionSelected;
 	
-	public Partita(Partita gameState, View view)
+	
+	public Partita(GameState gameState, View view)
 	{
 		this.gameState=gameState;
 		view.registerObserver(this);
+		this.play();
+		this.isActionSelected=false;
+		this.stato = new StatoStartEnd();
 	}
+	
+	private void play() {
+		while (!this.isActionSelected);
+		this.stato.handleAzione(this, this.azioneCorrente);
+		this.isActionSelected=false;
+		
+	}
+
+
+	@Override
+	public void update(Azione azione) {
+		this.azioneCorrente=azione;
+		this.isActionSelected=true;
+		
+	}
+	
 	
 	/**
 	 * @return the tabellone
 	 */
-	public Partita getTabellone() {
+	public GameState getGameState() {
 		return gameState;
 	}
-	@Override
-	public void update(Azione c) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 
-	/*public void gestisciPartita() {
+	/**
+	 * @param stato the stato to set
+	 */
+	public void setStato(Stato stato) {
+		this.stato = stato;
+	}
+
+/*public void gestisciPartita() {
 		
-		int indiceGiocatore =0;
-		
+		int indiceGiocatore = 0;
+		Giocatore giocatoreCorrente= gameState.getGiocatoreCorrente();
 	
 		while(true){
-			//tabellone.getGiocatoreCorrente()= giocatori.get(indiceGiocatore);
-			//giocatoreCorrente.aggiungiCartaPolitica(tabellone.getMazzoCartePolitica().pescaCarte());
+			
+			giocatoreCorrente = this.gameState.getGiocatori().get(indiceGiocatore);
+			giocatoreCorrente.aggiungiCartaPolitica(this.gameState.getMazzoCartePolitica().pescaCarte());
+		
+			
 		
 			//riempiAzioniPrincipali();
 			//riempiAzioniVeloci();
@@ -66,28 +103,28 @@ public class Partita implements Observer<Azione> {
 	}
 
 	public void riempiAzioniPrincipali() {
-		this.giocatoreCorrente.getAzioniPrincipali().add(new ElezioneConsigliere(this));
-		this.giocatoreCorrente.getAzioniPrincipali().add(new CostruzioneAiutoRe(this));
-		this.giocatoreCorrente.getAzioniPrincipali().add(new CostruzioneTesseraPermesso(this));	
-		this.giocatoreCorrente.getAzioniPrincipali().add(new AcquistoTesseraPermesso(this));	
+		this.gameState.getGiocatoreCorrente().getAzioniPrincipali().add(new ElezioneConsigliere(this.gameState));
+		this.gameState.getGiocatoreCorrente().getAzioniPrincipali().add(new CostruzioneAiutoRe(this));
+		this.gameState.getGiocatoreCorrente().getAzioniPrincipali().add(new CostruzioneTesseraPermesso(this));	
+		this.gameState.getGiocatoreCorrente().getAzioniPrincipali().add(new AcquistoTesseraPermesso(this));	
 	}
 	
 	private void riempiAzioniVeloci(){
-		this.giocatoreCorrente.getAzioneVeloce().add(new IngaggioAiutante(this));
-		this.giocatoreCorrente.getAzioneVeloce().add(new CambioTesseraPermesso(this));
-		this.giocatoreCorrente.getAzioneVeloce().add(new ElezioneConsigliereVeloce(this));
-		this.giocatoreCorrente.getAzioneVeloce().add(new SecondaAzionePrincipale(this));
+		this.gameState.getGiocatoreCorrente().getAzioneVeloce().add(new IngaggioAiutante(this));
+		this.gameState.getGiocatoreCorrente().getAzioneVeloce().add(new CambioTesseraPermesso(this));
+		this.gameState.getGiocatoreCorrente().getAzioneVeloce().add(new ElezioneConsigliereVeloce(this.gameState,));
+		this.gameState.getGiocatoreCorrente().getAzioneVeloce().add(new SecondaAzionePrincipale(this.gameState));
 	}
 	
 	public void svuotaAzioniVeloci(){
-		for (int i = 0; i < this.getGiocatoreCorrente().getAzioneVeloce().size(); i++){
-		this.getGiocatoreCorrente().getAzioneVeloce().remove(i);
+		for (int i = 0; i < this.gameState.getGiocatoreCorrente().getAzioneVeloce().size(); i++){
+		this.gameState.getGiocatoreCorrente().getAzioneVeloce().remove(i);
 		}
 	}
 	
 	public void svuotaAzioniPrincipali(){
-		for (int i = 0; i < this.getGiocatoreCorrente().getAzioniPrincipali().size(); i++){
-		this.getGiocatoreCorrente().getAzioniPrincipali().remove(i);
+		for (int i = 0; i < this.gameState.getGiocatoreCorrente().getAzioniPrincipali().size(); i++){
+		this.gameState.getGiocatoreCorrente().getAzioniPrincipali().remove(i);
 		}
 	}
 	
