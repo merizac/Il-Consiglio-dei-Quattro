@@ -17,10 +17,8 @@ public class Mappa {
 	public Mappa(HashSet<Città> città){
 		
 		grafo= new SimpleGraph<Città, DefaultEdge>(DefaultEdge.class);
-		
 		this.aggiungiVertici(città);
 		this.collegaVertici((grafo.vertexSet()));
-	
 	}
 	
 	/**

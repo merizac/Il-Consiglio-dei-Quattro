@@ -20,7 +20,6 @@ public final class TesseraPermesso {
 		this.città = città;
 		this.bonus = bonus;
 		this.regione = regione;
-		System.out.println(regione.toString());
 		regione.getMazzoTesserePermesso().getCarte().add(this);
 	}
 

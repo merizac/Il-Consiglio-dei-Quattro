@@ -27,7 +27,7 @@ Arkon Burgen Castrum
 Burgen Arkon Esti Dorful
 Castrum Arkon Framek 
 Dorful Burgen Graden
-Esti Burge Hellar
+Esti Burgen Hellar
 Framek Castrum Indur
 Graden Dorful Juvelar
 Hellar Esti Juvelar Merkatim
@@ -36,5 +36,5 @@ Juvelar Graden Hellar Lyram Indur
 Kultos Indur Naris
 Lyram Juvelar Osium
 Merkatim Hellar Osium
-Naris Kultus Osium
+Naris Kultos Osium
 Osium Lyram Merkatim Naris

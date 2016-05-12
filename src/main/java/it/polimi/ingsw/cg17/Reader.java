@@ -68,7 +68,6 @@ public class Reader {
 		b=new BufferedReader(t);
 		String stringaLetta;
 		
-		
 		while(true) {	
 			stringaLetta=b.readLine();
 	     	if(stringaLetta==null)
@@ -80,7 +79,6 @@ public class Reader {
 			     	while(st.hasMoreTokens()){
 			     		cit.add(findCittà(st.nextToken(), cities));		     	
 			     	}
-			     	System.out.println("città"+cit.toString()); 
 			     	//aggiunge i bonus
 			     	stringaLetta=b.readLine();
 			     	StringTokenizer str=new StringTokenizer(stringaLetta);
@@ -96,22 +94,20 @@ public class Reader {
 						}
 						else if(tmp.equals("BonusCartePolitica"))
 							if(st.hasMoreTokens()){
-								System.out.println("bonus");
 								quantità=Integer.parseInt(st.nextToken());
 							}
 							bonus.add(new BonusCartePolitica(quantità));
 						}
-			    	System.out.println(bonus.toString()+"dim: "+bonus.size());
-			     	TesseraPermesso tesseraPermesso=new TesseraPermesso(cit, bonus, r);	
-			     	//System.out.println(tesseraPermesso.toString());
+			     	new TesseraPermesso(cit, bonus, r);	
 			    	stringaLetta=b.readLine();
 					}
-			   
-		     	
-		     	
 		     	}
 			}
 		b.close();
+		/*System.out.println(regioni.get(0).getMazzoTesserePermesso().getCarte().toString());
+		System.out.println(regioni.get(1).getMazzoTesserePermesso().getCarte().toString());
+		System.out.println(regioni.get(2).getMazzoTesserePermesso().getCarte().toString());*/
+		
 		Mappa mappa=new Mappa(new HashSet<Città>(cities));
 		
 		GameState tabellone=new GameState(mappa, regioni, planciaRe, re, consiglieri, cartePolitica);
@@ -309,8 +305,8 @@ public class Reader {
 				if(nome.equals(c.getNome())){
 					while(st.hasMoreTokens()){
 						String cittàCollegata=st.nextToken();
-						Città città2=findCittà(cittàCollegata, cities);
-						c.getCittàCollegate().add(città2);
+						Città cittàToFind=findCittà(cittàCollegata, cities);
+						c.getCittàCollegate().add(cittàToFind);
 					}
 				}
 				else
