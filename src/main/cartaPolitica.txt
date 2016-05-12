@@ -1,0 +1,7 @@
+Bianco
+Nero
+Viola
+Rosa
+Multicolore
+Arancione
+Azzurro

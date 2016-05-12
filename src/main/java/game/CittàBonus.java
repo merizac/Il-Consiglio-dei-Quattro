@@ -1,14 +1,12 @@
 package game;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
 import bonus.*;
 
 public class CittàBonus extends Città {
 
-	private final ArrayList<Bonus> bonus;
-	
+	private ArrayList<Bonus> bonus;
 	
 
 	/**
@@ -21,7 +19,7 @@ public class CittàBonus extends Città {
 	public CittàBonus(String nome, Regione regione, ColoreCittà colore, ArrayList<Bonus> bonus) {
 		super(nome, regione, colore);
 		this.bonus = bonus;
-		this.colore.getCittà().add(this);
+		colore.getCittà().add(this);
 	}
 
 
@@ -31,6 +29,12 @@ public class CittàBonus extends Città {
 	public ArrayList<Bonus> getBonus() {
 		return bonus;
 	}
+	
+	public void setBonus(ArrayList<Bonus> bonus) {
+		this.bonus = bonus;
+	}
+	
+	
 
 	
 

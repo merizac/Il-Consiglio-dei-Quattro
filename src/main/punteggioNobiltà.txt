@@ -1,0 +1,11 @@
+10
+no
+no
+no
+BonusAiutanti 2 BonusCartePolitica 1
+no
+no
+BonusPuntiVittoria 3
+BonusGettoneRicompensa 1
+no
+no
