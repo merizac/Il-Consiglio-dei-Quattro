@@ -19,4 +19,13 @@ public class BonusPuntiVittoria extends Bonus {
 	public void usaBonus(GameState gameState) {
 		gameState.getGiocatoreCorrente().aumentaPuntiVittoria(puntiVittoria);
 	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "BonusPuntiVittoria [puntiVittoria=" + puntiVittoria + "]";
+	}
+	
+	
 }

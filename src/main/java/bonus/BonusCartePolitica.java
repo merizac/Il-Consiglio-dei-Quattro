@@ -23,4 +23,13 @@ public class BonusCartePolitica extends Bonus {
 		}
 		
 	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "BonusCartePolitica [cartePolitica=" + cartePolitica + "]";
+	}
+	
+	
 }

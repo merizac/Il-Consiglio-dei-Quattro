@@ -1,2 +1,0 @@
-BonusCartaPolitica 2 BonusAssistente 2
-BonusTesseraPermesso

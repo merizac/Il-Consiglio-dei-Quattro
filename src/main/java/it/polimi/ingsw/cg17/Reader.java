@@ -42,28 +42,6 @@ public class Reader {
 		Mazzo<CartaPolitica> cartePolitica=letturaCartePolitica();
 		//ArrayListPunteggioNobiltà
 		ArrayList<PunteggioNobiltà> punteggioNobiltà=letturaPunteggioNobiltà();
-		
-		//ArrayListEmporiVuoto
-		//ArrayLisCartePoliticaGiocatoriVuoto
-		//ciclifor riempiono tutto
-		//ArrayListGiocatori
-		/*int numGiocatori=3;
-		List<Giocatore> giocatori=new ArrayList<Giocatore>();
-		for(int i=0;i<numGiocatori;i++){
-			String colore=Integer.toString(i);
-			Colore color=new Colore(colore);
-			ArrayList<Emporio> emporiGiocatore = new ArrayList<>();
-			ArrayList<CartaPolitica> cartePoliticaGiocatore=new ArrayList<>();
-			for(int j=0; j<10; j++){
-				emporiGiocatore.add(new Emporio(color));
-			}
-			for(int k=0; k<4; k++){
-				cartePoliticaGiocatore.add(cartePolitica.pescaCarte());
-			}
-			Giocatore giocatore = new Giocatore(color, cartePoliticaGiocatore, new Aiutante(3), 0, 5+i, punteggioNobiltà.get(0), emporiGiocatore);
-			giocatori.add(giocatore);
-		}*/
-		
 		//ArrayListConsiglieri
 		ArrayList<Consigliere> consiglieri = letturaConsigliere();
 		Collections.shuffle(consiglieri);
@@ -72,7 +50,7 @@ public class Reader {
 		
 		//CREAZIONE CITTA e tutto ciò che comportano
 		ArrayList<Città> cities=letturaCittà(regioni);
-		
+		letturaBonusTondiCittà(cities); 
 		//deve leggere da file la pripria città
 		Re re=new Re(findCittà("Re", cities)); //NON FUNZIONNAAAAAAAAAAAAAAA DEVO CECARE CON IL COLORE
 	
@@ -85,80 +63,69 @@ public class Reader {
 		PlanciaRe planciaRe = new PlanciaRe(balconeRe, bonusRe, punteggioNobiltà); 
 		
 		//TesserePermesso
-		FileReader t=new FileReader("tesseraPermesso.txt");
+		FileReader t=new FileReader("src/main/resources/tesseraPermesso.txt");
 		BufferedReader b;
 		b=new BufferedReader(t);
 		String stringaLetta;
 		
+		
 		while(true) {	
 			stringaLetta=b.readLine();
-	     	if(stringaLetta.equals("FINE"))
+	     	if(stringaLetta==null)
 	     		break;
 			for (Regione r: regioni){
-		     	while(stringaLetta!="FINEREGIONE"){
-					//if(stringaLetta=="FINEREGIONE")
-			     	//	break;
-			     	//aggiunge le città ad un arraylist
-			     	ArrayList<Città> cit=new ArrayList<>();;
+		     	while(!stringaLetta.equals("FINEREGIONE")){
 			     	StringTokenizer st=new StringTokenizer(stringaLetta);
+			     	ArrayList<Città> cit=new ArrayList<>();
 			     	while(st.hasMoreTokens()){
-			     		//c=new ArrayList<>();
 			     		cit.add(findCittà(st.nextToken(), cities));		     	
 			     	}
-			     	
+			     	System.out.println("città"+cit.toString()); 
 			     	//aggiunge i bonus
 			     	stringaLetta=b.readLine();
 			     	StringTokenizer str=new StringTokenizer(stringaLetta);
 			     	ArrayList<Bonus> bonus = new ArrayList<Bonus>();
 			     	while(str.hasMoreTokens()){    	
 						String tmp=str.nextToken();
+						int quantità=Integer.parseInt(str.nextToken());
 						if(tmp.equals("BonusAiutanti")){
-							int quantità=Integer.parseInt(st.nextToken());
+							if(st.hasMoreTokens()){
+								quantità=Integer.parseInt(st.nextToken());
+							}
 							bonus.add(new BonusAiutanti(quantità));
-							continue;
 						}
-						if(tmp.equals("BonusCartePolitica")){
-							int quantità=Integer.parseInt(st.nextToken());
+						else if(tmp.equals("BonusCartePolitica"))
+							if(st.hasMoreTokens()){
+								System.out.println("bonus");
+								quantità=Integer.parseInt(st.nextToken());
+							}
 							bonus.add(new BonusCartePolitica(quantità));
-							continue;
 						}
-						if(tmp.equals("BonusTesseraPermesso")){
-							bonus.add(new BonusTesseraPermesso());
-							continue;
-						}
-						if(tmp.equals("BonusTesseraPermessoUsata")){
-							bonus.add(new BonusTesseraPermessoUsata());
-							continue;
-						}
-						if(tmp.equals("BonusAzionePrincipale")){
-							bonus.add(new BonusAzionePrincipale());
-							continue;
-						}
-						if(tmp.equals("BonusPuntiVittoria")){
-							int quantità=Integer.parseInt(st.nextToken());
-							bonus.add(new BonusPuntiVittoria(quantità));
-							continue;
-						}
+			    	System.out.println(bonus.toString()+"dim: "+bonus.size());
+			     	TesseraPermesso tesseraPermesso=new TesseraPermesso(cit, bonus, r);	
+			     	//System.out.println(tesseraPermesso.toString());
+			    	stringaLetta=b.readLine();
 					}
-		     	TesseraPermesso tesseraPermesso=new TesseraPermesso(cit, bonus, r);	
-		     	stringaLetta=b.readLine();
+			   
+		     	
+		     	
 		     	}
 			}
-			b.close();
-		}
-		
-		
-		//Mappa mappa=new Mappa(creaHashCittà(cities));
+		b.close();
 		Mappa mappa=new Mappa(new HashSet<Città>(cities));
 		
 		GameState tabellone=new GameState(mappa, regioni, planciaRe, re, consiglieri, cartePolitica);
+		}
 		
-	}
+		
+	
+		
+	
 
 	public Mazzo<CartaPolitica> letturaCartePolitica() throws IOException{
 		
 		ArrayList<CartaPolitica> cartaPoliticaList=new ArrayList<CartaPolitica>();
-		FileReader cartaPolitica=new FileReader("cartaPolitica.txt");
+		FileReader cartaPolitica=new FileReader("src/main/resources/cartaPolitica.txt");
 		BufferedReader b;
 		b=new BufferedReader(cartaPolitica);
 		String stringaLetta;
@@ -176,7 +143,7 @@ public class Reader {
 	
 	public ArrayList<PunteggioNobiltà> letturaPunteggioNobiltà() throws NumberFormatException, IOException{
 		
-		FileReader punteggioNobiltà=new FileReader("punteggioNobiltà.txt");
+		FileReader punteggioNobiltà=new FileReader("src/main/resources/punteggioNobiltà.txt");
 		BufferedReader b;
 		b=new BufferedReader(punteggioNobiltà);
 		String stringaLetta;
@@ -187,40 +154,38 @@ public class Reader {
 			ArrayList<Bonus> bonus = new ArrayList<Bonus>();
 			stringaLetta=b.readLine();
 			
-			if(stringaLetta!="no"){
+			if(!stringaLetta.equals("no")){
 			StringTokenizer st=new StringTokenizer(stringaLetta);
 			while(st.hasMoreTokens()){
 				String tmp=st.nextToken();
 				if(tmp.equals("BonusAiutanti")){
 					int quantità=Integer.parseInt(st.nextToken());
 					bonus.add(new BonusAiutanti(quantità));
-					continue;
 				}
-				if(tmp.equals("BonusGettoneRicompensa")){
+				else if(tmp.equals("BonusGettoneRicompensa")){
 					int quantità=Integer.parseInt(st.nextToken());
 					bonus.add(new BonusGettoneRicompensa(quantità));
-					continue;
 				}
-				if(tmp.equals("BonusTesseraPermesso")){
+				else if(tmp.equals("BonusTesseraPermesso")){
 					bonus.add(new BonusTesseraPermesso());
-					continue;
 				}
-				if(tmp.equals("BonusTesseraPermessoUsata")){
+				else if(tmp.equals("BonusTesseraPermessoUsata")){
 					bonus.add(new BonusTesseraPermessoUsata());
-					continue;
 				}
-				if(tmp.equals("BonusAzionePrincipale")){
+				else if(tmp.equals("BonusAzionePrincipale")){
 					bonus.add(new BonusAzionePrincipale());
-					continue;
 				}
-				if(tmp.equals("BonusPuntiVittoria")){
+				else if (tmp.equals("BonusPuntiVittoria")){
 					int quantità=Integer.parseInt(st.nextToken());
 					bonus.add(new BonusPuntiVittoria(quantità));
-					continue;
+				}
+				else if (tmp.equals("BonusCartePolitica")){
+					int quantità=Integer.parseInt(st.nextToken());
+					bonus.add(new BonusCartePolitica(quantità));
 				}
 			}
-			nobiltà.add(new PunteggioNobiltà(i, bonus));
 			}
+			nobiltà.add(new PunteggioNobiltà(i, bonus));
 		}
 		b.close();
 		return nobiltà;
@@ -229,7 +194,7 @@ public class Reader {
 	public ArrayList<Consigliere> letturaConsigliere() throws IOException{
 		
 		ArrayList<Consigliere> consiglieri=new ArrayList<Consigliere>();
-		FileReader cons=new FileReader("consigieri.txt");
+		FileReader cons=new FileReader("src/main/resources/consiglieri.txt");
 		BufferedReader b;
 		b=new BufferedReader(cons);
 		String stringaLetta;
@@ -242,14 +207,14 @@ public class Reader {
 	     	consiglieri.add(consigliere);
 		}
 		b.close();
-		
+	
 		return consiglieri;
 	}
 	
 	public ArrayList<Regione> letturaRegioni(ArrayList<Consigliere> consiglieri) throws IOException{
 		
 		ArrayList<Regione> regioni=new ArrayList<Regione>();
-		FileReader reg=new FileReader("regioni.txt");
+		FileReader reg=new FileReader("src/main/resources/regioni.txt");
 		BufferedReader b;
 		b=new BufferedReader(reg);
 		String stringaLetta;
@@ -261,7 +226,9 @@ public class Reader {
 	     	StringTokenizer st=new StringTokenizer(stringaLetta);
 	     	while(st.hasMoreTokens()){
 	     		String nomeregione=st.nextToken();
-	     		int nbonus=Integer.parseInt(st.nextToken());
+	     		int nbonus=0;
+	     		if(st.hasMoreTokens())
+	     			nbonus=Integer.parseInt(st.nextToken());
 	     		Mazzo<TesseraPermesso> mazzo=new Mazzo<TesseraPermesso>();
 		     	Balcone balcone=new Balcone(4, consiglieri);
 		     	BonusPuntiVittoria bonusPuntiVittoria=new BonusPuntiVittoria(nbonus);
@@ -270,7 +237,6 @@ public class Reader {
 	     	}
 		}
 		b.close();
-
 		return regioni;
 	}
 
@@ -278,29 +244,30 @@ public class Reader {
 	
 		ArrayList<Colore> coloriCittà= new ArrayList<Colore>();
 		ArrayList<Città> cities = new ArrayList<Città>();
-		FileReader città=new FileReader("città.txt");
+		FileReader città=new FileReader("src/main/resources/città.txt");
 		BufferedReader b;
 		b=new BufferedReader(città);
 		String stringaLetta;
 		stringaLetta=b.readLine();
 
 		//Creo coloricittà salvati in un arraylist
-		while(stringaLetta!="CITTA"){
-
+		while(!stringaLetta.equals("CITTA")){
 			StringTokenizer st=new StringTokenizer(stringaLetta);
-	     	//while(st.hasMoreTokens()){
-     		String colore=st.nextToken();
-     		ColoreCittà colorecittà;
-     		ColoreRe coloreRe;
-     		if(colore!="Re"){
-     			colorecittà=new ColoreCittà(colore, new BonusPuntiVittoria(Integer.parseInt(st.nextToken())));
-     			coloriCittà.add(colorecittà);
-     		}
-     		 else {
-     			coloreRe=new ColoreRe(colore);
-     			coloriCittà.add(coloreRe);
-     		 }
-     		//}
+	     	String colore=st.nextToken();
+	    	ColoreCittà colorecittà=null;
+	    	ColoreRe coloreRe=null;
+	   		int puntiBonus=0;
+	   		if(!colore.equals("Re")){
+	   			if(st.hasMoreTokens()){
+     			puntiBonus=Integer.parseInt(st.nextToken());
+	     		colorecittà=new ColoreCittà(colore, new BonusPuntiVittoria(puntiBonus));
+	     		coloriCittà.add(colorecittà);
+	     		}
+	   		}
+	     	else {
+	   			coloreRe=new ColoreRe(colore);
+	   			coloriCittà.add(coloreRe);
+    		}	     	
 	     	stringaLetta=b.readLine();
 		}
 		
@@ -310,11 +277,12 @@ public class Reader {
 			for(int i=0; i<numerocittà;i++){
 				String tmp=b.readLine();
 				StringTokenizer st=new StringTokenizer(tmp);
+				while(st.hasMoreTokens()){
 				String nome=st.nextToken();
 				String col=st.nextToken();
 				for(Colore color: coloriCittà){
 					if(col.equals(color.getColore())){
-						if(col!="Re"){
+						if(!col.equals("Re")){
 						ArrayList<Bonus> bonus=new ArrayList<>();
 						ColoreCittà colore=(ColoreCittà)color;
 						CittàBonus c=new CittàBonus(nome, regione, colore, bonus);
@@ -331,22 +299,27 @@ public class Reader {
 			}
 		}
 			
+		}
 		//città collegate
-		if (b.readLine()=="CITTACOLLEGATE"){
+		if (b.readLine().equals("CITTACOLLEGATE")){
 			for(Città c:cities){
 				StringTokenizer st=new StringTokenizer(b.readLine());
+				if(st.hasMoreTokens()){
 				String nome=st.nextToken();
 				if(nome.equals(c.getNome())){
-					while(st.hasMoreTokens())
-						c.getCittàCollegate().add(findCittà(st.nextToken(), cities));
+					while(st.hasMoreTokens()){
+						String cittàCollegata=st.nextToken();
+						Città città2=findCittà(cittàCollegata, cities);
+						c.getCittàCollegate().add(città2);
+					}
 				}
 				else
 					continue;
 			}
+			}
 		}
 		
 		b.close();
-		
 		return cities;
 	}
 	
@@ -354,7 +327,7 @@ public class Reader {
 
 		ArrayList<Bonus> bonusRe=new ArrayList<>();
 		
-		FileReader bonus=new FileReader("bonusRe.txt");
+		FileReader bonus=new FileReader("src/main/resources/bonusRe.txt");
 		BufferedReader b;
 		b=new BufferedReader(bonus);
 		
@@ -364,15 +337,14 @@ public class Reader {
 	     	break;
 	    	bonusRe.add(new BonusPuntiVittoria(Integer.parseInt(letta)));
 		}
-		b.close();
-				
+		b.close();	
 		return bonusRe;
 	}
 
 	public void letturaBonusTondiCittà(ArrayList<Città> cities) throws IOException{
 		
 		List<ArrayList<Bonus>> listaBonusTondi= new ArrayList<ArrayList<Bonus>>();
-		FileReader bonusDelleCittà=new FileReader("bonusDelleCittà.txt");
+		FileReader bonusDelleCittà=new FileReader("src/main/resources/bonusDelleCittà.txt");
 		BufferedReader b;
 		b=new BufferedReader(bonusDelleCittà);
 		String stringaLetta;
@@ -391,10 +363,9 @@ public class Reader {
 	     		
 	     		String nomeBonus=st.nextToken();
 	     		
-	     		if(nomeBonus.equals("BonusAiutante")){
+	     		if(nomeBonus.equals("BonusCartaPolitica")){
 	     			int quantità=Integer.parseInt(st.nextToken());
-	     			bonus.add(new BonusAiutanti(quantità));
-	     			continue;
+	     			bonus.add(new BonusCartePolitica(quantità));
 	     		}
 	     		
 	     		
@@ -408,7 +379,6 @@ public class Reader {
 	     	
 		}
 		b.close();
-		
 		Collections.shuffle(listaBonusTondi);
 
 		for(Città c:cities){
@@ -442,9 +412,5 @@ public class Reader {
 		return null;
 	}
 
-	public HashSet<Città> creaHashCittà(ArrayList<Città> città){
-		HashSet<Città> cities=new HashSet<Città>(città);
-		return cities;
-	}
 
 }

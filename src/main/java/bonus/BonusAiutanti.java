@@ -20,4 +20,13 @@ public class BonusAiutanti extends Bonus {
 	public void usaBonus(GameState gameState) {
 		gameState.getGiocatoreCorrente().getAiutanti().aggiungiAiutanti(this.aiutanti);
 	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "BonusAiutanti [aiutanti=" + aiutanti + "]";
+	}
+	
+	
 }

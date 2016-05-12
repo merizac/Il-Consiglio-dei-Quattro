@@ -14,6 +14,15 @@ public class Consigliere {
 	public Colore getColore() {
 		return this.colore;
 	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Consigliere [colore=" + colore + "]";
+	}
+	
+	
 
 }
 	

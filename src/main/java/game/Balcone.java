@@ -56,4 +56,14 @@ public class Balcone {
 	public Queue<Consigliere> getConsigliere() {
 		return consiglieri;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Balcone [consiglieri=" + consiglieri + "]";
+	}
+	
+	
 }
