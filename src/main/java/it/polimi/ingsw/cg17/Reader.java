@@ -81,32 +81,43 @@ public class Reader {
 			     	}
 			     	//aggiunge i bonus
 			     	stringaLetta=b.readLine();
-			     	StringTokenizer str=new StringTokenizer(stringaLetta);
 			     	ArrayList<Bonus> bonus = new ArrayList<Bonus>();
-			     	while(str.hasMoreTokens()){    	
+			     	StringTokenizer str=new StringTokenizer(stringaLetta);
+					while(str.hasMoreTokens()){
 						String tmp=str.nextToken();
-						int quantità=Integer.parseInt(str.nextToken());
 						if(tmp.equals("BonusAiutanti")){
-							if(st.hasMoreTokens()){
-								quantità=Integer.parseInt(st.nextToken());
-							}
+							int quantità=Integer.parseInt(str.nextToken());
 							bonus.add(new BonusAiutanti(quantità));
 						}
-						else if(tmp.equals("BonusCartePolitica"))
-							if(st.hasMoreTokens()){
-								quantità=Integer.parseInt(st.nextToken());
-							}
+						else if(tmp.equals("BonusGettoneRicompensa")){
+							int quantità=Integer.parseInt(str.nextToken());
+							bonus.add(new BonusGettoneRicompensa(quantità));
+						}
+						else if(tmp.equals("BonusTesseraPermesso")){
+							bonus.add(new BonusTesseraPermesso());
+						}
+						else if(tmp.equals("BonusTesseraPermessoUsata")){
+							bonus.add(new BonusTesseraPermessoUsata());
+						}
+						else if(tmp.equals("BonusAzionePrincipale")){
+							bonus.add(new BonusAzionePrincipale());
+						}
+						else if (tmp.equals("BonusPuntiVittoria")){
+							int quantità=Integer.parseInt(st.nextToken());
+							bonus.add(new BonusPuntiVittoria(quantità));
+						}
+						else if (tmp.equals("BonusCartePolitica")){
+							int quantità=Integer.parseInt(str.nextToken());
 							bonus.add(new BonusCartePolitica(quantità));
 						}
+					}
 			     	new TesseraPermesso(cit, bonus, r);	
 			    	stringaLetta=b.readLine();
 					}
+		     	stringaLetta=b.readLine();
 		     	}
 			}
 		b.close();
-		/*System.out.println(regioni.get(0).getMazzoTesserePermesso().getCarte().toString());
-		System.out.println(regioni.get(1).getMazzoTesserePermesso().getCarte().toString());
-		System.out.println(regioni.get(2).getMazzoTesserePermesso().getCarte().toString());*/
 		
 		Mappa mappa=new Mappa(new HashSet<Città>(cities));
 		
