@@ -14,6 +14,7 @@ public class Stato10 implements Stato {
 				gameState.setStato(new Stato11());
 				//cambia giocatore
 				//pesca carta
+				gameState.getGiocatoreCorrente().getCartePolitica().add(gameState.getMazzoCartePolitica().pescaCarte());
 			}
 			else
 				gameState.setBonusAzionePrincipale(false);
