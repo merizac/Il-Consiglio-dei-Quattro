@@ -23,4 +23,15 @@ public final class CartaPolitica {
 	}
 
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "CartaPolitica [colore=" + colore + "]";
+	}
+	
+	
+
+
 }

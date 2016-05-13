@@ -48,7 +48,7 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 		    
 		    	
 		      this.gameState.getGiocatoreCorrente().getCartePolitica().remove(c);
-		      this.gameState.getMazzoCartePolitica().aggiungiCarta(carteGiocatore);
+		      this.gameState.getMazzoCartePolitica().aggiungiCarte(carteGiocatore);
 		    }
 		    TesseraPermesso tesseraScelta = regione.getTesserePermessoScoperte().get(indiceTesseraScoperta);
 		    gameState.getGiocatoreCorrente().getTesserePermesso().add(tesseraScelta);

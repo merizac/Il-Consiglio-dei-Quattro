@@ -62,6 +62,16 @@ public final class PunteggioNobiltà {
 			return false;
 		return true;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "PunteggioNobiltà [puntiNobiltà=" + puntiNobiltà + ", bonus=" + bonus + "]";
+	}
+	
+	
 	
 	
 	

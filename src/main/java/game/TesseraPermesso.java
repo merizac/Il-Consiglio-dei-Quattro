@@ -16,12 +16,11 @@ public final class TesseraPermesso {
 	 * @param bonus
 	 * @param regione
 	 */
-	public TesseraPermesso(ArrayList<Città> città, ArrayList<Bonus> bonus, Regione regione) {
-		super();
+	public TesseraPermesso(ArrayList<Città> città, ArrayList<Bonus> bonus, Regione regione){
 		this.città = città;
 		this.bonus = bonus;
 		this.regione = regione;
-		regione.getMazzoTesserePermesso().aggiungiCarta(this);
+		regione.getMazzoTesserePermesso().getCarte().add(this);
 	}
 
 

@@ -20,4 +20,13 @@ public class BonusMoneta extends Bonus {
 	public void usaBonus(GameState gameState) {
 		gameState.getGiocatoreCorrente().aumentaRicchezza(monete);
 	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "BonusMoneta [monete=" + monete + "]";
+	}
+	
+	
 }

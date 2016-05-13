@@ -23,6 +23,16 @@ public class BonusGettoneRicompensa extends Bonus {
 		else
 			return;*/
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "BonusGettoneRicompensa [numeroGettoni=" + numeroGettoni + "]";
+	}
+	
+	
 	
 	
 

@@ -8,17 +8,16 @@ public class Mazzo<T> {
 
 	private ArrayList<T> carte;
 	
-	
-
 	/**
 	 * @param carte
 	 */
 	public Mazzo(ArrayList<T> carte) {
+		super();
 		this.carte = carte;
 	}
 
 	public Mazzo() {
-		super();
+		carte=new ArrayList<>();
 	}
 
 	/**
@@ -47,7 +46,7 @@ public class Mazzo<T> {
 	 * Add the list of cards at the end of the deck
 	 * @param carta
 	 */
-	public void aggiungiCarta(ArrayList<T> carta) {
+	public void aggiungiCarte(ArrayList<T> carta) {
 		for(T t: carta){	
 		carte.add(t);
 		}

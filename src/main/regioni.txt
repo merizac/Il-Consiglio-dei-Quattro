@@ -1,4 +1,0 @@
-Mare 10
-Collina 5
-Montagna 100
-FINEREGIONI
