@@ -1,23 +1,27 @@
 package controller;
 
-import controller.Partita;
+
 import game.ErrorNotify;
-import game.azioni.Azione;
+import game.GameState;
 import game.azioni.AzionePrincipale;
 import game.azioni.AzioneVeloce;
-import game.azioni.SecondaAzionePrincipale;
 
 public class Stato10 implements Stato {
 
-	public void handleAzione(Partita partita, AzionePrincipale azione) {
+	public void handleAzione(GameState gameState, AzionePrincipale azione) {
 		if(azione.eseguiAzione())
-			partita.setStato(new StatoStartEnd());
-			//cambia giocatore
-		
+			if(!gameState.isBonusAzionePrincipale()){
+				gameState.setStato(new Stato11());
+				//cambia giocatore
+				//pesca carta
+			}
+			else
+				gameState.setBonusAzionePrincipale(false);
+			
 	}
 	
-	public void handleAzione(Partita partita, AzioneVeloce azione) {
-		partita.getGameState().notifyObserver(new ErrorNotify());
+	public void handleAzione(GameState gameState, AzioneVeloce azione) {
+		gameState.notifyObserver(new ErrorNotify());
 	
 	}
 	

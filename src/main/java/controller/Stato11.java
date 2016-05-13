@@ -1,21 +1,24 @@
 package controller;
 
-import controller.Partita;
-import game.azioni.Azione;
+
+import game.GameState;
 import game.azioni.AzionePrincipale;
 import game.azioni.AzioneVeloce;
 
 public class Stato11 implements Stato {
 
 	
-	public void handleAzione(Partita partita, AzionePrincipale azione) {
+	public void handleAzione(GameState gameState, AzionePrincipale azione) {
 		if(azione.eseguiAzione())
-			partita.setStato(new Stato01());
-		
+			if(!gameState.isBonusAzionePrincipale())
+			gameState.setStato(new Stato01());
+			else
+				gameState.setBonusAzionePrincipale(false);
 	}
 	
-	public void handleAzione(Partita partita, AzioneVeloce azione) {
+	public void handleAzione(GameState gameState, AzioneVeloce azione) {
 		if(azione.eseguiAzione())
-			partita.setStato(new Stato10());
+			gameState.setStato(new Stato10());
 	}
+
 }

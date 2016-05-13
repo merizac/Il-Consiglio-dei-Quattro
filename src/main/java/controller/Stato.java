@@ -6,7 +6,7 @@ import game.azioni.Azione;
 public interface Stato {
 
 	public default void handleAzione(Partita partita, Azione azione){
-		System.out.println("metodo di default Stato");
+		throw new IllegalArgumentException("Il tipo di azione non è accettato!");
 	}
 
 	

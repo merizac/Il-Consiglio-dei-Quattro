@@ -18,32 +18,20 @@ import view.View;
 public class Partita implements Observer<Azione> {
 
 	private GameState gameState;
-	private Stato stato;
-	private Azione azioneCorrente;
-	private boolean isActionSelected;
+
 	
 	
 	public Partita(GameState gameState, View view)
 	{
 		this.gameState=gameState;
 		view.registerObserver(this);
-		this.play();
-		this.isActionSelected=false;
-		this.stato = new StatoStartEnd();
+
 	}
 	
-	private void play() {
-		while (!this.isActionSelected);
-		this.stato.handleAzione(this, this.azioneCorrente);
-		this.isActionSelected=false;
-		
-	}
-
 
 	@Override
 	public void update(Azione azione) {
-		this.azioneCorrente=azione;
-		this.isActionSelected=true;
+		this.gameState.getStato().handleAzione(this, azione);
 		
 	}
 	
@@ -58,9 +46,7 @@ public class Partita implements Observer<Azione> {
 	/**
 	 * @param stato the stato to set
 	 */
-	public void setStato(Stato stato) {
-		this.stato = stato;
-	}
+
 
 /*public void gestisciPartita() {
 		
