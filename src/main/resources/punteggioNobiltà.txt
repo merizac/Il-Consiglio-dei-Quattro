@@ -3,7 +3,7 @@ no
 no
 BonusPuntiVittoria 2 BonusMoneta 2
 no
-BonusGettoneRicompensa
+BonusGettoneRicompensa 1
 no
 BonusAzionePrincipale
 no

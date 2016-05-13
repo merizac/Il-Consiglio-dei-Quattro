@@ -7,7 +7,7 @@ BonusMoneta 3 BonusPuntiVittoria 4
 Esti
 BonusAzionePrincipale BonusMoneta 2
 Castrum
-BonusAiutanti 2 BonusMonete 3
+BonusAiutanti 2 BonusMoneta 3
 Dorful
 BonusPuntiVittoria 7
 Burgen

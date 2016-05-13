@@ -14,6 +14,8 @@ import bonus.BonusAiutanti;
 import bonus.BonusAzionePrincipale;
 import bonus.BonusCartePolitica;
 import bonus.BonusGettoneRicompensa;
+import bonus.BonusMoneta;
+import bonus.BonusPuntiNobiltà;
 import bonus.BonusPuntiVittoria;
 import bonus.BonusTesseraPermesso;
 import bonus.BonusTesseraPermessoUsata;
@@ -51,13 +53,8 @@ public class Reader {
 		//CREAZIONE CITTA e tutto ciò che comportano
 		ArrayList<Città> cities=letturaCittà(regioni);
 		letturaBonusTondiCittà(cities); 
-		//deve leggere da file la pripria città
-		Re re=new Re(findCittà("Re", cities)); //NON FUNZIONNAAAAAAAAAAAAAAA DEVO CECARE CON IL COLORE
-	
 		
-		
-		
-		
+		Re re=new Re(findCittàRe(cities));
 		ArrayList<Bonus> bonusRe = letturaBonusRe();
 		Balcone balconeRe=new Balcone(4, consiglieri);
 		PlanciaRe planciaRe = new PlanciaRe(balconeRe, bonusRe, punteggioNobiltà); 
@@ -89,26 +86,32 @@ public class Reader {
 							int quantità=Integer.parseInt(str.nextToken());
 							bonus.add(new BonusAiutanti(quantità));
 						}
-						else if(tmp.equals("BonusGettoneRicompensa")){
-							int quantità=Integer.parseInt(str.nextToken());
-							bonus.add(new BonusGettoneRicompensa(quantità));
-						}
-						else if(tmp.equals("BonusTesseraPermesso")){
-							bonus.add(new BonusTesseraPermesso());
-						}
-						else if(tmp.equals("BonusTesseraPermessoUsata")){
-							bonus.add(new BonusTesseraPermessoUsata());
-						}
 						else if(tmp.equals("BonusAzionePrincipale")){
 							bonus.add(new BonusAzionePrincipale());
 						}
+						else if(tmp.equals("BonusMoneta")){
+							if(st.hasMoreTokens()){
+								int quantità=Integer.parseInt(st.nextToken());
+								bonus.add(new BonusMoneta(quantità));
+							}
+						}
 						else if (tmp.equals("BonusPuntiVittoria")){
-							int quantità=Integer.parseInt(st.nextToken());
-							bonus.add(new BonusPuntiVittoria(quantità));
+							if(st.hasMoreTokens()){
+								int quantità=Integer.parseInt(st.nextToken());
+								bonus.add(new BonusPuntiVittoria(quantità));
+							}
 						}
 						else if (tmp.equals("BonusCartePolitica")){
-							int quantità=Integer.parseInt(str.nextToken());
-							bonus.add(new BonusCartePolitica(quantità));
+							if(st.hasMoreTokens()){
+								int quantità=Integer.parseInt(str.nextToken());
+								bonus.add(new BonusCartePolitica(quantità));
+							}
+						}
+						else if (tmp.equals("BonusPuntiNobiltà")){
+							if(st.hasMoreTokens()){
+								int quantità=Integer.parseInt(str.nextToken());
+								bonus.add(new BonusPuntiNobiltà(quantità));
+							}
 						}
 					}
 			     	new TesseraPermesso(cit, bonus, r);	
@@ -119,16 +122,14 @@ public class Reader {
 			}
 		b.close();
 		
+
+		
 		Mappa mappa=new Mappa(new HashSet<Città>(cities));
 		
-		GameState tabellone=new GameState(mappa, regioni, planciaRe, re, consiglieri, cartePolitica);
+		new GameState(mappa, regioni, planciaRe, re, consiglieri, cartePolitica);
 		}
 		
-		
 	
-		
-	
-
 	public Mazzo<CartaPolitica> letturaCartePolitica() throws IOException{
 		
 		ArrayList<CartaPolitica> cartaPoliticaList=new ArrayList<CartaPolitica>();
@@ -187,6 +188,10 @@ public class Reader {
 					bonus.add(new BonusPuntiVittoria(quantità));
 				}
 				else if (tmp.equals("BonusCartePolitica")){
+					int quantità=Integer.parseInt(st.nextToken());
+					bonus.add(new BonusCartePolitica(quantità));
+				}
+				else if (tmp.equals("BonusMoneta")){
 					int quantità=Integer.parseInt(st.nextToken());
 					bonus.add(new BonusCartePolitica(quantità));
 				}
@@ -374,13 +379,22 @@ public class Reader {
 	     			int quantità=Integer.parseInt(st.nextToken());
 	     			bonus.add(new BonusCartePolitica(quantità));
 	     		}
-	     		
-	     		
-	     		
-	     		
-	     		
-	     		
-	
+	     		else if (nomeBonus.equals("BonusMoneta")){
+					int quantità=Integer.parseInt(st.nextToken());
+					bonus.add(new BonusMoneta(quantità));
+				}
+	     		else if (nomeBonus.equals("BonusPuntiNobiltà")){
+					int quantità=Integer.parseInt(st.nextToken());
+					bonus.add(new BonusPuntiNobiltà(quantità));
+				}
+	     		else if (nomeBonus.equals("BonusAiutanti")){
+					int quantità=Integer.parseInt(st.nextToken());
+					bonus.add(new BonusAiutanti(quantità));
+				}
+	     		else if (nomeBonus.equals("BonusPuntiVittoria")){
+					int quantità=Integer.parseInt(st.nextToken());
+					bonus.add(new BonusPuntiVittoria(quantità));
+				} 		
 	     	}
 	     	listaBonusTondi.add(bonus);
 	     	
@@ -419,5 +433,13 @@ public class Reader {
 		return null;
 	}
 
-
+	public Città findCittàRe(ArrayList<Città> elenco){
+		for(Città c:elenco){
+			if(c.getColoreCittà().getColore().equals("Re")){
+				return c;
+			}
+		}
+		return null;
+	}
+	
 }
