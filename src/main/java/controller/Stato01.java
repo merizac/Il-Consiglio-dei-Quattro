@@ -49,6 +49,7 @@ public class Stato01 implements Stato {
 			gameState.setStato(new Stato11());
 		//cambia giocatore
 		//pesca carta
+		gameState.getGiocatoreCorrente().getCartePolitica().add(gameState.getMazzoCartePolitica().pescaCarte());
 	}
 	
 
@@ -57,6 +58,7 @@ public class Stato01 implements Stato {
 			gameState.setStato(new Stato11());
 		//cambia giocatore
 		//pesca carta
+		gameState.getGiocatoreCorrente().getCartePolitica().add(gameState.getMazzoCartePolitica().pescaCarte());
 	}
 	
 	
