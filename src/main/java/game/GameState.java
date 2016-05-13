@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import controller.Stato;
+import controller.Stato11;
 import utility.Observable;
 
-public class GameState extends Observable<Object> implements Model{
+public class GameState extends Observable<Notify> implements Model{
 	private final Mappa mappa;
 	private final ArrayList<Regione> regioni;
 	private final PlanciaRe planciaRe;
@@ -15,6 +17,8 @@ public class GameState extends Observable<Object> implements Model{
 	private final Mazzo<CartaPolitica> mazzoCartePolitica;
 	private ArrayList<Giocatore> giocatori;
 	private Giocatore giocatoreCorrente;
+	private Stato stato;
+	private boolean BonusAzionePrincipale;
 	/**
 	 * @param mappa
 	 * @param regioni
@@ -32,6 +36,7 @@ public class GameState extends Observable<Object> implements Model{
 		this.consiglieri = consiglieri;
 		this.mazzoCartePolitica = mazzoCartePolitica;
 		this.giocatori = new ArrayList<Giocatore>();
+		this.stato= new Stato11();
 	}
 	/**
 	 * 
@@ -118,6 +123,30 @@ public class GameState extends Observable<Object> implements Model{
 	 */
 	public ArrayList<Giocatore> getGiocatori() {
 		return giocatori;
+	}
+	/**
+	 * @return the stato
+	 */
+	public Stato getStato() {
+		return stato;
+	}
+	/**
+	 * @param stato the stato to set
+	 */
+	public void setStato(Stato stato) {
+		this.stato = stato;
+	}
+	/**
+	 * @return the bonusAzionePrincipale
+	 */
+	public boolean isBonusAzionePrincipale() {
+		return BonusAzionePrincipale;
+	}
+	/**
+	 * @param bonusAzionePrincipale the bonusAzionePrincipale to set
+	 */
+	public void setBonusAzionePrincipale(boolean bonusAzionePrincipale) {
+		BonusAzionePrincipale = bonusAzionePrincipale;
 	}
 	
 

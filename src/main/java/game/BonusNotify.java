@@ -1,8 +1,9 @@
 package game;
 
+
 import view.View;
 
-public class ErrorNotify implements Notify {
+public class BonusNotify implements Notify {
 
 	@Override
 	public void stamp(View view) {
@@ -10,4 +11,5 @@ public class ErrorNotify implements Notify {
 		
 	}
 
+	
 }

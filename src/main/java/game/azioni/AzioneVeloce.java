@@ -1,5 +1,6 @@
 package game.azioni;
 
+import game.ErrorNotify;
 import game.GameState;
 
 public abstract class AzioneVeloce implements Azione {
@@ -14,5 +15,8 @@ public abstract class AzioneVeloce implements Azione {
 		this.gameState = gameState;
 	}
 	
+	public void sendErrorNotify(){
+		this.gameState.notifyObserver(new ErrorNotify());
+	}
 	
 }

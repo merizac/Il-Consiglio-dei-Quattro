@@ -1,8 +1,10 @@
 package game.azioni;
 
+import game.ErrorNotify;
 import game.GameState;
 
 public abstract class AzionePrincipale implements Azione {
+	
 	protected final GameState gameState;
 
 	/**
@@ -13,5 +15,8 @@ public abstract class AzionePrincipale implements Azione {
 		this.gameState = gameState;
 	}
 	
+	public void sendErrorNotify(){
+		this.gameState.notifyObserver(new ErrorNotify());
+	}
 	
 }

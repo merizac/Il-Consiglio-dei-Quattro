@@ -12,6 +12,6 @@ public class BonusAzionePrincipale extends Bonus {
 
 	@Override
 	public void usaBonus(GameState gameState) {
-		
+		gameState.setBonusAzionePrincipale(true);
 	}
 }

@@ -1,5 +1,9 @@
 package game;
 
-public interface Notify<C> {
+import view.View;
+
+public interface Notify{
+	
+	public void stamp(View view);
 	
 }

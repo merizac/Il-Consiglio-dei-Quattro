@@ -64,7 +64,7 @@ public class CostruzioneAiutoRe extends AzionePrincipale {
 	    for ( CittàBonus c: cittàCollegate){
 	        for(Bonus b: c.getBonus()){
 	          b.usaBonus(gameState);
-	    }
+	        }
 	    }
 	  }
 	    

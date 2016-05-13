@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 import game.Città;
 import game.Consigliere;
 import game.GameState;
+import game.Notify;
 import game.ParserAzione;
 import game.Regione;
 import game.azioni.Azione;
@@ -70,8 +71,8 @@ public class ViewCLI extends View{
 	}
 	
 	@Override
-	public void update(Object c) {
-		
+	public void update(Notify notify) {
+		notify.stamp(this);
 	}
 	
 

@@ -14,6 +14,7 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale {
 
 	private final TesseraPermesso tesseraPermessoScoperta;
 	private final Città cittàCostruzione;
+	
 
 	/**
 	 * @param gameState

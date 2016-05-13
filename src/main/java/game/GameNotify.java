@@ -1,5 +1,13 @@
 package game;
 
-public class GameNotify implements Notify<Object> {
+import view.View;
 
+public class GameNotify implements Notify {
+
+	@Override
+	public void stamp(View view){
+		
+	}
+
+		
 }

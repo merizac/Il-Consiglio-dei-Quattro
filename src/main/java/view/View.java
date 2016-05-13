@@ -3,11 +3,12 @@ package view;
 import game.azioni.Azione;
 import game.GameState;
 import game.Model;
+import game.Notify;
 import game.ParserAzione;
 import utility.Observable;
 import utility.Observer;
 
-public abstract class View extends Observable <Azione> implements Observer <Object>{
+public abstract class View extends Observable <Azione> implements Observer <Notify>{
 	
 	protected ParserAzione parser;
 	protected Model model;
@@ -21,7 +22,8 @@ public abstract class View extends Observable <Azione> implements Observer <Obje
 	public abstract void input(String input);
 
 	@Override
-	public void update(Object c) {
+	public void update(Notify notify) {
 		
 	}
+	
 }
