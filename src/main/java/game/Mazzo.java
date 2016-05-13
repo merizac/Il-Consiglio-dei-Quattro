@@ -8,17 +8,16 @@ public class Mazzo<T> {
 
 	private ArrayList<T> carte;
 	
-	
-
 	/**
 	 * @param carte
 	 */
 	public Mazzo(ArrayList<T> carte) {
+		super();
 		this.carte = carte;
 	}
 
 	public Mazzo() {
-		super();
+		carte=new ArrayList<>();
 	}
 
 	/**

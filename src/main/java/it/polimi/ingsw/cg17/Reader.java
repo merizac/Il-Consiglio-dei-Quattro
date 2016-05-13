@@ -68,7 +68,6 @@ public class Reader {
 		b=new BufferedReader(t);
 		String stringaLetta;
 		
-		
 		while(true) {	
 			stringaLetta=b.readLine();
 	     	if(stringaLetta==null)
@@ -80,38 +79,46 @@ public class Reader {
 			     	while(st.hasMoreTokens()){
 			     		cit.add(findCittà(st.nextToken(), cities));		     	
 			     	}
-			     	System.out.println("città"+cit.toString()); 
 			     	//aggiunge i bonus
 			     	stringaLetta=b.readLine();
-			     	StringTokenizer str=new StringTokenizer(stringaLetta);
 			     	ArrayList<Bonus> bonus = new ArrayList<Bonus>();
-			     	while(str.hasMoreTokens()){    	
+			     	StringTokenizer str=new StringTokenizer(stringaLetta);
+					while(str.hasMoreTokens()){
 						String tmp=str.nextToken();
-						int quantità=Integer.parseInt(str.nextToken());
 						if(tmp.equals("BonusAiutanti")){
-							if(st.hasMoreTokens()){
-								quantità=Integer.parseInt(st.nextToken());
-							}
+							int quantità=Integer.parseInt(str.nextToken());
 							bonus.add(new BonusAiutanti(quantità));
 						}
-						else if(tmp.equals("BonusCartePolitica"))
-							if(st.hasMoreTokens()){
-								System.out.println("bonus");
-								quantità=Integer.parseInt(st.nextToken());
-							}
+						else if(tmp.equals("BonusGettoneRicompensa")){
+							int quantità=Integer.parseInt(str.nextToken());
+							bonus.add(new BonusGettoneRicompensa(quantità));
+						}
+						else if(tmp.equals("BonusTesseraPermesso")){
+							bonus.add(new BonusTesseraPermesso());
+						}
+						else if(tmp.equals("BonusTesseraPermessoUsata")){
+							bonus.add(new BonusTesseraPermessoUsata());
+						}
+						else if(tmp.equals("BonusAzionePrincipale")){
+							bonus.add(new BonusAzionePrincipale());
+						}
+						else if (tmp.equals("BonusPuntiVittoria")){
+							int quantità=Integer.parseInt(st.nextToken());
+							bonus.add(new BonusPuntiVittoria(quantità));
+						}
+						else if (tmp.equals("BonusCartePolitica")){
+							int quantità=Integer.parseInt(str.nextToken());
 							bonus.add(new BonusCartePolitica(quantità));
 						}
-			    	System.out.println(bonus.toString()+"dim: "+bonus.size());
-			     	TesseraPermesso tesseraPermesso=new TesseraPermesso(cit, bonus, r);	
-			     	//System.out.println(tesseraPermesso.toString());
+					}
+			     	new TesseraPermesso(cit, bonus, r);	
 			    	stringaLetta=b.readLine();
 					}
-			   
-		     	
-		     	
+		     	stringaLetta=b.readLine();
 		     	}
 			}
 		b.close();
+		
 		Mappa mappa=new Mappa(new HashSet<Città>(cities));
 		
 		GameState tabellone=new GameState(mappa, regioni, planciaRe, re, consiglieri, cartePolitica);
@@ -309,8 +316,8 @@ public class Reader {
 				if(nome.equals(c.getNome())){
 					while(st.hasMoreTokens()){
 						String cittàCollegata=st.nextToken();
-						Città città2=findCittà(cittàCollegata, cities);
-						c.getCittàCollegate().add(città2);
+						Città cittàToFind=findCittà(cittàCollegata, cities);
+						c.getCittàCollegate().add(cittàToFind);
 					}
 				}
 				else
