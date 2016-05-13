@@ -1,5 +1,22 @@
-4
+20
 no
-BonusAiutanti 2 BonusCartePolitica 1
 no
+BonusPuntiVittoria 2 BonusMoneta 2
+no
+BonusGettoneRicompensa
+no
+BonusAzionePrincipale
+no
+BonusPuntiVittoria 3 BonusCartePolitica 1
+no
+BonusTesseraPermesso
+no
+BonusPuntiVittoria 5 BonusAiutanti 1
+no
+BonusTesseraPermessoUsata
+no
+BonusGettoneRicompensa 2
+no
+BonusPuntiVittoria 8
+BonusPuntiVittoria 2
 BonusPuntiVittoria 3

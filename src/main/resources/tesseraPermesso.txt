@@ -1,9 +1,91 @@
-Arkon Burgen Castrum 
-BonusCartePolitica 2 BonusCartePolitica 2
+Arkon Burgen Esti
+BonusMoneta 2
+Arkon Burgen Castrum
+BonusAiutanti 2
+Arkon
+BonusMoneta 3 BonusPuntiVittoria 4
+Esti
+BonusAzionePrincipale BonusMoneta 2
+Castrum
+BonusAiutanti 2 BonusMonete 3
+Dorful
+BonusPuntiVittoria 7
+Burgen
+BonusCartePolitica 3 BonusAiutanti 1
+Arkon Esti
+BonusPuntiNobiltà 2 
+Dorful Esti
+BonusPuntiVittoria BonusAiutanti 1
+Arkon Burgen
+BonusMoneta 3 BonusCartePolitica 1
+Arkon Dorful Esti
+BonusMoneta 1 BonusPuntiVittoria 2
+Castrum Dorful
+BonusPuntiVittoria 3 BonusAiutanti 1
+Burgen Castrum Dorful
+BonusAiutanti 1 BonusPuntiVittoria 1
+Castrum Dorful Esti
+BonusCartePolitica 1 BonusPuntiNobiltà 1
 FINEREGIONE
-Framek Graden Hellar 
-BonusAiutanti 2 BonusCartePolitica 2
+Hellar
+BonusAiutanti 4
+Framek Juvelar
+BonusAiutanti 2 BonusMoneta 1
+Indur
+BonusCartePolitica 2 BonusAiutanti 2
+Juvelar
+BonusAzionePrincipale BonusPuntiVittoria 2
+Framek Graden
+BonusMoneta 5
+Hellar Graden
+BonusAiutanti 3
+Indur Juvelar
+BonusCartePolitica 2 BonusPuntiNobiltà 1
+Framek
+BonusCartePolitica 2 BonusMoneta 4
+Graden Hellar Indur
+BonusCartePolitica 1 BonusAiutanti 1
+Graden
+BonusAiutanti 2 BonusPuntiVittoria 2 BonusPuntiNobiltà 1
+Hellar Indur
+BonusPuntiVittoria 5
+Framek Indur Juvelar
+BonusAiutanti 1 BonusPuntiNobiltà 1
+Framek Graden Hellar
+BonusPuntiNobiltà 1 BonusMoneta 1
+Framek Graden Juvelar
+BonusMoneta 2 BonusPuntiVittoria 1
+Indur Juvelar Hellar
+BonusCartePolitica 1
 FINEREGIONE
-Kultos Lyran Naris
-BonusAiutanti 2 BonusCartePolitica 2
+Naris
+BonusMoneta 7
+Merkatim Naris
+BonusAzionePrincipale
+Kultos
+BonusCartePolitica 4
+Merkatim Lyram
+BonusCartePolitica 3
+Merkatim
+BonusPuntiVittoria 5 BonusPuntiNobiltà 1
+Osium Kultos
+BonusCartePolitica 2 BonusPuntiNobiltà 1
+Kultos Lyram
+BonusCartePolitica 1 BonusAiutanti 2
+Lyram
+BonusMoneta 1 BonusAiutanti 3
+Osium
+BonusCartePolitica 3 BonusPuntiNobiltà 1
+Kultos Naris Osium
+BonusCartePolitica 1 BonusPuntiVittoria 1
+Naris Osium
+BonusPuntiVittoria 2 BonusCartePolitica 2
+Kultos Lyram Merkatim
+BonusAiutanti 1 BonusMoneta 1
+Kultos Lyram Osium
+BonusCartePolitica 1 BonusMoneta 1
+Merkatim Naris Osium
+BonusPuntiNobiltà 1 BonusPuntiVittoria 1
+Merkatim Lyram Naris
+BonusPuntiVittoria 3
 FINEREGIONE

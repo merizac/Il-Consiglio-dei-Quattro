@@ -1,14 +1,14 @@
-BonusCartaPolitica 2
-BonusCartaPolitica 3
-BonusCartaPolitica 2
-BonusCartaPolitica 3
-BonusCartaPolitica 2
-BonusCartaPolitica 3
-BonusCartaPolitica 2
-BonusCartaPolitica 3
-BonusCartaPolitica 2
-BonusCartaPolitica 3
-BonusCartaPolitica 2
-BonusCartaPolitica 3
-BonusCartaPolitica 2
-BonusCartaPolitica 3
+BonusPuntiNobiltà 1
+BonusPuntiNobiltà 1
+BonusCartePolitica 1
+BonusPuntiVittoria 1
+BonusPuntiVittoria 2
+BonusPuntiVittoria 3
+BonusMoneta 3
+BonusMoneta 2
+BonusMoneta 1
+BonusMoneta 1 BonusAiutanti 1
+BonusAiutanti 2
+BonusAiutanti 1
+BonusAiutanti 1 BonusCartePolitica 1
+BonusCartePolitica 1

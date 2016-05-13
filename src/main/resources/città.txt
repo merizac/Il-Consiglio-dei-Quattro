@@ -1,7 +1,7 @@
-Giallo 10
+Giallo 20
 Grigio 12
-Blu 19
-Bronzo 3
+Bronzo 8
+Blu 5
 Re 
 CITTA
 5
