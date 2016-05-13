@@ -7,7 +7,7 @@ public class Stato10 implements Stato {
 	@Override
 	public void transizionePrincipale(GameState gameState) {
 		if(!gameState.isBonusAzionePrincipale()){
-			gameState.setStato(new Stato11());
+			gameState.setStato(new StartEnd());
 		}
 		else
 			gameState.setBonusAzionePrincipale(false); 
@@ -21,6 +21,12 @@ public class Stato10 implements Stato {
 
 	@Override
 	public void transizioneSecondaPrincipale(GameState gameState) {
+		throw new IllegalArgumentException("Il tipo di azione non può essere eseguita!"); 
+		
+	}
+
+	@Override
+	public void transizionePescaCarta(GameState gameState) {
 		throw new IllegalArgumentException("Il tipo di azione non può essere eseguita!"); 
 		
 	}

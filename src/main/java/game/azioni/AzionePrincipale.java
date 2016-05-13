@@ -3,16 +3,13 @@ package game.azioni;
 import game.ErrorNotify;
 import game.GameState;
 
-public abstract class AzionePrincipale implements Azione {
+public abstract class AzionePrincipale extends Azione {
 	
-	protected final GameState gameState;
-
 	/**
 	 * @param partita
 	 */
 	public AzionePrincipale(GameState gameState) {
-		super();
-		this.gameState = gameState;
+		super(gameState);
 	}
 	
 	

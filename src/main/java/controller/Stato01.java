@@ -35,12 +35,18 @@ public class Stato01 implements Stato {
 
 	@Override
 	public void transizioneVeloce(GameState gameState) {
-		gameState.setStato(new Stato11());
+		gameState.setStato(new StartEnd());
 	}
 
 	@Override
 	public void transizioneSecondaPrincipale(GameState gameState) {
 		gameState.setStato(new Stato10());
+		
+	}
+
+	@Override
+	public void transizionePescaCarta(GameState gameState) {
+		throw new IllegalArgumentException("Il tipo di azione non può essere eseguita!"); 
 		
 	}
 

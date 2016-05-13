@@ -36,5 +36,9 @@ public class Stato11 implements Stato {
 		throw new IllegalArgumentException("Il tipo di azione non può essere eseguita!"); 
 		
 	}
+	@Override
+	public void transizionePescaCarta(GameState gameState) {
+		throw new IllegalArgumentException("Il tipo di azione non può essere eseguita!"); 
+	}
 
 }

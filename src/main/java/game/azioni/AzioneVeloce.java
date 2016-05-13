@@ -3,16 +3,13 @@ package game.azioni;
 import game.ErrorNotify;
 import game.GameState;
 
-public abstract class AzioneVeloce implements Azione {
-
-	protected final GameState gameState;
+public abstract class AzioneVeloce extends Azione {
 
 	/**
 	 * @param gameState
 	 */
 	public AzioneVeloce(GameState gameState) {
-		super();
-		this.gameState = gameState;
+		super(gameState);
 	}
 	
 	public void setStatoTransizioneVeloce(){

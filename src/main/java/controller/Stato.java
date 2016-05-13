@@ -16,7 +16,6 @@ public interface Stato {
 
 	public abstract void transizioneSecondaPrincipale(GameState gameState);
 	
-	
-
+	public abstract void transizionePescaCarta(GameState gameState);
 	
 }
