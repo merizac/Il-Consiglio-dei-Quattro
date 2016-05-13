@@ -1,6 +1,7 @@
 package game.azioni;
 
 import game.Regione;
+import game.notify.ErrorParameterNotify;
 import game.Consigliere;
 import game.GameState;
 
@@ -25,18 +26,19 @@ public class ElezioneConsigliereVeloce extends AzioneVeloce {
 	 * check the number of aiutanti and if giocatoreCorrente has 1 aiutante elect a counselor 
 	 */
 	@Override
-	public boolean eseguiAzione() {
+	public void eseguiAzione() {
 		/*PassaggioParametri passaggioParametri = new PassaggioParametri(gameState);
 		consigliere = passaggioParametri.selezionaConsiglieri();
 		regione = passaggioParametri.selezionaRegione();*/
 		
-		if(gameState.getGiocatoreCorrente().getAiutanti().togliAiutanti(1)){
+		if(!gameState.getGiocatoreCorrente().getAiutanti().togliAiutanti(1))
+			gameState.notifyObserver(new ErrorParameterNotify("Errore: gli aiutanti non sono sufficienti"));
+		
+		else {
 			Consigliere consigliereTolto = this.regione.getBalcone().aggiungiConsigliere(consigliere);
 			this.gameState.getConsiglieri().add(consigliereTolto);
 			setStatoTransizioneVeloce(); 
-			return true;
-		}
+			}
 		
-		else return false;
+		}
 	}
-}

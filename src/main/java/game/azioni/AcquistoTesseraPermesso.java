@@ -6,6 +6,7 @@ import game.CartaPolitica;
 import game.Consigliere;
 import game.GameState;
 import game.TesseraPermesso;
+import game.notify.ErrorParameterNotify;
 
 public class AcquistoTesseraPermesso extends AzionePrincipale {
 
@@ -32,21 +33,24 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 	 * money to do the action, then subtract the money due from the player
 	 */
 	@Override
-	public boolean eseguiAzione() {
+	public void eseguiAzione() {
 		/*PassaggioParametri passaggioParametri=new PassaggioParametri(partita);
 		carteGiocatore=passaggioParametri.selezionaCarteGiocatore();
 		regione=passaggioParametri.selezionaRegione();		
 		indiceTesseraScoperta=passaggioParametri.selezionaTesseraScoperta(regione);*/
 		
 		if(carteGiocatore.isEmpty())
-			return false;
+			gameState.notifyObserver(new ErrorParameterNotify("Errore: non sono presenti carte"));
+			
 		if(!controllaColori())
-			return false;
+			gameState.notifyObserver(new ErrorParameterNotify("Errore: i colori delle carte scelte non corrispondono con quelle del balcone!"));
+			
 		if(!paga(calcolaMonete()))
-			return false;
-		    for(CartaPolitica c: carteGiocatore){
+			gameState.notifyObserver(new ErrorParameterNotify("Errore: i soldi non sono sufficienti!"));
+			
+		   
+		for(CartaPolitica c: carteGiocatore){
 		    
-		    	
 		      this.gameState.getGiocatoreCorrente().getCartePolitica().remove(c);
 		      this.gameState.getMazzoCartePolitica().aggiungiCarte(carteGiocatore);
 		    }
@@ -54,40 +58,8 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 		    gameState.getGiocatoreCorrente().getTesserePermesso().add(tesseraScelta);
 		 
 		 setStatoTransizionePrincipale(); 
-		return true;
+		
 	}
-	
-	/*private int selezionaTesseraScoperta() {
-		int indice=partita.getView().scegliTesseraScoperta(regione);
-		
-		return indice;
-	}
-	private Regione selezionaRegione() {
-		String regione=partita.getView().scegliRegione();
-		if(regione.equals("mare"))
-			return partita.getTabellone().getRegioni().get(0);
-		else if(regione.equals("montagna"))
-			return partita.getTabellone().getRegioni().get(1);
-		else
-			return partita.getTabellone().getRegioni().get(2);
-		
-		}
-	
-	private ArrayList<CartaPolitica> selezionaCarteGiocatore () {
-
-		ArrayList<String> carteView =partita.getView().scegliCarte();
-		ArrayList<CartaPolitica> cartePolitica = new ArrayList<CartaPolitica>();
-		for(String carta: carteView){
-			int indice = Integer.parseInt(carta);
-			while(indice<1 || indice>partita.getGiocatoreCorrente().getCartePolitica().size())
-			{
-				indice=partita.getView().erroreArrayList(carta);
-			}
-			cartePolitica.add(partita.getGiocatoreCorrente().getCartePolitica().get(indice-1));
-		}
-		
-		return cartePolitica;
-	}*/
 	
 	/**
 	 * 
@@ -131,8 +103,7 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 		break;
 		}
 		return monete;
-		
-		
+			
 	}
 
 	/**

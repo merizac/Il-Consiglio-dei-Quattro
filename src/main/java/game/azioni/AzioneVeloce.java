@@ -1,7 +1,7 @@
 package game.azioni;
 
-import game.ErrorNotify;
 import game.GameState;
+import game.notify.ErrorNotify;
 
 public abstract class AzioneVeloce implements Azione {
 

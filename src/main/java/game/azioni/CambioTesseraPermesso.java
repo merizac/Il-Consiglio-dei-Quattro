@@ -25,13 +25,11 @@ public class CambioTesseraPermesso extends AzioneVeloce {
 
 
 	@Override
-	public boolean eseguiAzione() {
-		/*PassaggioParametri passaggioParametri=new PassaggioParametri(partita);
-		regione=passaggioParametri.selezionaRegione();*/
+	public void eseguiAzione() {
 		RimozioneCarte();
 		SostituzioneCarte();
 		setStatoTransizioneVeloce(); 
-		return true;
+		
 	}
 	
 	/**

@@ -9,6 +9,7 @@ import game.Colore;
 import game.Emporio;
 import game.GameState;
 import game.TesseraPermesso;
+import game.notify.ErrorParameterNotify;
 
 public class CostruzioneTesseraPermesso extends AzionePrincipale {
 
@@ -32,19 +33,19 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale {
 	 * execute the action
 	 */
 	@Override
-	public boolean eseguiAzione() {
+	public void eseguiAzione() {
 		/*PassaggioParametri passaggioParametri= new PassaggioParametri(gameState);
 		cittàCostruzione=passaggioParametri.selezionaCittà();
 		tesseraPermessoScoperta=passaggioParametri.selezionaTesseraPermesso();*/
 		
-		if(!pagoAiutanti()){
-			return false;
-		}
+			if(!pagoAiutanti())
+				gameState.notifyObserver(new ErrorParameterNotify("Errore: i soldi non sono sufficienti"));
+			
 		costruisci();
 		prendiBonus();
 		copriTessera();
 		setStatoTransizionePrincipale(); 
-		return true;
+		
 	}
 	/**
 	 * move the permit tile used from tesserePermesso to tesserePermessoUsate

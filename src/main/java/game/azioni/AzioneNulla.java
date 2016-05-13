@@ -3,9 +3,8 @@ package game.azioni;
 public class AzioneNulla implements Azione {
 
 	@Override
-	public boolean eseguiAzione() {
+	public void eseguiAzione() {
 	
-		return true;
 	}
 
 }
