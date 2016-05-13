@@ -9,9 +9,9 @@ public class AzioneNulla extends Azione {
 	}
 	
 	@Override
-	public boolean eseguiAzione() {
+	public void eseguiAzione() {
 		gameState.getStato().transizioneVeloce(gameState);
-		return true;
+
 	}
 
 }

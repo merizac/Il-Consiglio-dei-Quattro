@@ -14,5 +14,5 @@ public abstract class Azione {
 		this.gameState = gameState;
 	}
 
-	public abstract boolean eseguiAzione();
+	public abstract void eseguiAzione();
 }

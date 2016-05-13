@@ -1,12 +1,15 @@
-package game;
+package game.notify;
 
+import game.Notify;
 import view.View;
 
 public class ErrorNotify implements Notify {
 
+	private String error;
+	
 	@Override
 	public void stamp(View view) {
-		// TODO Auto-generated method stub
+		System.out.println(error);
 		
 	}
 

@@ -25,7 +25,7 @@ public class ElezioneConsigliere extends AzionePrincipale {
  * player win 4 coins
  */
 	@Override
-	public boolean eseguiAzione() {
+	public void eseguiAzione() {
 		/*PassaggioParametri passaggioParametri = new PassaggioParametri(gameState);
 		consigliere = passaggioParametri.selezionaConsiglieri();
 		regione = passaggioParametri.selezionaRegione();*/
@@ -34,7 +34,7 @@ public class ElezioneConsigliere extends AzionePrincipale {
 		this.gameState.getConsiglieri().add(consigliereTolto);
 		this.gameState.getGiocatoreCorrente().aumentaRicchezza(4);
 		setStatoTransizionePrincipale(); 
-		return true;
+		
 	}
 
 }

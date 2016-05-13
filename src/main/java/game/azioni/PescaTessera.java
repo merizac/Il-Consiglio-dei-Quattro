@@ -9,9 +9,8 @@ public class PescaTessera extends Azione {
 	}
 
 	@Override
-	public boolean eseguiAzione() {
+	public void eseguiAzione() {
 		gameState.getStato().transizionePescaCarta(gameState);
-		return true;
 	}
 
 }

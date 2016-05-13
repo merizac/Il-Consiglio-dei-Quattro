@@ -18,22 +18,8 @@ public class SecondaAzionePrincipale extends AzioneVeloce {
 	 * @return false if it is not possible do the action for some reason
 	 */
 	@Override
-	public boolean eseguiAzione() {
-		ArrayList<AzionePrincipale> azionePrincipale = this.gameState.getGiocatoreCorrente().getAzioniPrincipali();
-		/*this.gameState.svuotaAzioniVeloci();
-		if (azionePrincipale.isEmpty()){
-		    this.gameState.riempiAzioniPrincipali();
-			}
+	public void eseguiAzione() {
 		
-		//this.gameState.getView().scegliAzionePrincipale();
-		//AZIONE PRINCIPALE: deve eseguire l'azione principale , controllare il ritorno e se andato 
-		// a buon fine svuotare azione principale
-			
-		if (!azionePrincipale.isEmpty()){
-			this.gameState.riempiAzioniPrincipali();
-			}*/
-		
-		setStatoTransizioneSecondaPrincipale(); 
-		return true;
+		setStatoTransizioneSecondaPrincipale(); 	
 	}
 }

@@ -12,6 +12,7 @@ import game.Consigliere;
 import game.Emporio;
 import game.GameState;
 import game.Mappa;
+import game.notify.ErrorParameterNotify;
 
 public class CostruzioneAiutoRe extends AzionePrincipale {
 
@@ -29,24 +30,31 @@ public class CostruzioneAiutoRe extends AzionePrincipale {
 	 * execute the action
 	 */
 	@Override
-	public boolean eseguiAzione() {
+	public void eseguiAzione() {
 		Mappa mappa= gameState.getMappa();
 		/*PassaggioParametri passaggioParametri= new PassaggioParametri(gameState);
 		carteGiocatore= new HashSet<CartaPolitica>(passaggioParametri.selezionaCarteGiocatore());
 		cittàCostruzione=passaggioParametri.selezionaCittà();*/
 		if(!controllaColori())
-			return false;
+			gameState.notifyObserver(new ErrorParameterNotify("Errore: i colori delle carte scelte non corrispondon con quelli del balcone!"));
+			
+		
 		int moneteDovute= calcolaMonete() + 
 				mappa.minimaDistanza(gameState.getPedinaRe().getCittà(), cittàCostruzione);
-		if(!paga(moneteDovute) && pagoAiutanti())
-			return false;
+		
+		if(!paga(moneteDovute))
+			gameState.notifyObserver(new ErrorParameterNotify("Errore: i soldi non sono sufficienti!"));
+			
+		if(!pagoAiutanti())
+			gameState.notifyObserver(new ErrorParameterNotify("Errore: gli aiutanti non sono sufficienti!"));
+			
 		else{
 			gameState.getPedinaRe().setCittà(cittàCostruzione);
 			costruisci();
 			prendiBonus();
 		}
 		setStatoTransizionePrincipale(); 
-		return true;
+		
 	}
 	/**
 	 * add an emporium to the city where the player wants to build
