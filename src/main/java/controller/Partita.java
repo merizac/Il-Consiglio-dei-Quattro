@@ -31,7 +31,7 @@ public class Partita implements Observer<Azione> {
 
 	@Override
 	public void update(Azione azione) {
-		this.gameState.getStato().handleAzione(this, azione);
+		azione.eseguiAzione();
 		
 	}
 	

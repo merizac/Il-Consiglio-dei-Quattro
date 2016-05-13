@@ -28,5 +28,14 @@ public class Re {
 		this.città = città;
 	}
 
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Re [città=" + città + "]";
+	}
+
 	
 }

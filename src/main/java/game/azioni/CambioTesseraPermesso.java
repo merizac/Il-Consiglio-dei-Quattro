@@ -30,6 +30,7 @@ public class CambioTesseraPermesso extends AzioneVeloce {
 		regione=passaggioParametri.selezionaRegione();*/
 		RimozioneCarte();
 		SostituzioneCarte();
+		setStatoTransizioneVeloce(); 
 		return true;
 	}
 	

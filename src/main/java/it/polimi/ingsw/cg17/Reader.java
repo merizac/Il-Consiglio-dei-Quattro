@@ -122,10 +122,7 @@ public class Reader {
 			}
 		b.close();
 		
-
-		
 		Mappa mappa=new Mappa(new HashSet<Città>(cities));
-		
 		new GameState(mappa, regioni, planciaRe, re, consiglieri, cartePolitica);
 		}
 		

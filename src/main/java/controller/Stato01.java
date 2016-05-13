@@ -1,13 +1,6 @@
 package controller;
 
-import java.util.List;
-
-import game.ErrorNotify;
 import game.GameState;
-import game.azioni.AzioneNulla;
-import game.azioni.AzionePrincipale;
-import game.azioni.AzioneVeloce;
-import game.azioni.SecondaAzionePrincipale;
 
 public class Stato01 implements Stato {
 	
@@ -17,14 +10,15 @@ public class Stato01 implements Stato {
 	//cambio giocatore
 	//pesca carta
 	
-	public void handleAzione(GameState gameState, AzionePrincipale azione) {
+	/*public void handleAzione(GameState gameState, AzionePrincipale azione) {
 		gameState.notifyObserver(new ErrorNotify());
 		//this.azioniVeloci=riempiAzioniVeloci();
 		//this.azioniPrincipali=riempiAzioniPrincipali();
 		
-	}
+	}*/
 	
-	private Object riempiAzioniPrincipali() {
+	
+	/*private Object riempiAzioniPrincipali() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -32,9 +26,25 @@ public class Stato01 implements Stato {
 	private List<String> riempiAzioniVeloci() {
 		// TODO Auto-generated method stub
 		return null;
+	}*/
+
+	@Override
+	public void transizionePrincipale(GameState gameState) {
+		throw new IllegalArgumentException("Il tipo di azione non può essere eseguita!"); 
 	}
 
-	public void handleAzione(GameState gameState, AzioneVeloce azione) {
+	@Override
+	public void transizioneVeloce(GameState gameState) {
+		gameState.setStato(new Stato11());
+	}
+
+	@Override
+	public void transizioneSecondaPrincipale(GameState gameState) {
+		gameState.setStato(new Stato10());
+		
+	}
+
+	/*public void handleAzione(GameState gameState, AzioneVeloce azione) {
 		if(azione.eseguiAzione())
 			gameState.setStato(new Stato11());
 		//cambia giocatore
@@ -53,6 +63,6 @@ public class Stato01 implements Stato {
 	public void handleAzione(GameState gameState, SecondaAzionePrincipale azione) {
 		if(azione.eseguiAzione())
 			gameState.setStato(new Stato10());
-	}
+	}*/
 	
 }

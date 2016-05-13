@@ -37,12 +37,13 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale {
 		cittàCostruzione=passaggioParametri.selezionaCittà();
 		tesseraPermessoScoperta=passaggioParametri.selezionaTesseraPermesso();*/
 		
-		if(!pagoAiutanti())
+		if(!pagoAiutanti()){
 			return false;
+		}
 		costruisci();
 		prendiBonus();
 		copriTessera();
-		
+		setStatoTransizionePrincipale(); 
 		return true;
 	}
 	/**

@@ -1,14 +1,31 @@
 package controller;
 
-
-import game.ErrorNotify;
 import game.GameState;
-import game.azioni.AzionePrincipale;
-import game.azioni.AzioneVeloce;
 
 public class Stato10 implements Stato {
 
-	public void handleAzione(GameState gameState, AzionePrincipale azione) {
+	@Override
+	public void transizionePrincipale(GameState gameState) {
+		if(!gameState.isBonusAzionePrincipale()){
+			gameState.setStato(new Stato11());
+		}
+		else
+			gameState.setBonusAzionePrincipale(false); 
+	}
+
+	@Override
+	public void transizioneVeloce(GameState gameState) {
+		throw new IllegalArgumentException("Il tipo di azione non può essere eseguita!"); 
+		
+	}
+
+	@Override
+	public void transizioneSecondaPrincipale(GameState gameState) {
+		throw new IllegalArgumentException("Il tipo di azione non può essere eseguita!"); 
+		
+	}
+
+	/*public void handleAzione(GameState gameState, AzionePrincipale azione) {
 		if(azione.eseguiAzione())
 			if(!gameState.isBonusAzionePrincipale()){
 				gameState.setStato(new Stato11());
@@ -23,7 +40,9 @@ public class Stato10 implements Stato {
 	public void handleAzione(GameState gameState, AzioneVeloce azione) {
 		gameState.notifyObserver(new ErrorNotify());
 	
-	}
+	}*/
+	
+	
 	
 	
 

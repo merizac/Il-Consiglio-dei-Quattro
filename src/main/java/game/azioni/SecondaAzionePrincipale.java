@@ -33,7 +33,7 @@ public class SecondaAzionePrincipale extends AzioneVeloce {
 			this.gameState.riempiAzioniPrincipali();
 			}*/
 		
-		
-		return false;
+		setStatoTransizioneSecondaPrincipale(); 
+		return true;
 	}
 }

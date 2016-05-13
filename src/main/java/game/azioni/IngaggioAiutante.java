@@ -16,6 +16,7 @@ public class IngaggioAiutante extends AzioneVeloce {
 		if(gameState.getGiocatoreCorrente().diminuisciRicchezza(3))
 		{
 			gameState.getGiocatoreCorrente().getAiutanti().aggiungiAiutanti(1);
+			setStatoTransizioneVeloce(); 
 			return true;
 		}
 		return false;

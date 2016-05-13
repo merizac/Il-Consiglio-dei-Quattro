@@ -33,6 +33,7 @@ public class ElezioneConsigliereVeloce extends AzioneVeloce {
 		if(gameState.getGiocatoreCorrente().getAiutanti().togliAiutanti(1)){
 			Consigliere consigliereTolto = this.regione.getBalcone().aggiungiConsigliere(consigliere);
 			this.gameState.getConsiglieri().add(consigliereTolto);
+			setStatoTransizioneVeloce(); 
 			return true;
 		}
 		

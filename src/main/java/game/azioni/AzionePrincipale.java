@@ -15,6 +15,11 @@ public abstract class AzionePrincipale implements Azione {
 		this.gameState = gameState;
 	}
 	
+	
+	public void setStatoTransizionePrincipale(){
+		gameState.getStato().transizionePrincipale(gameState);
+	}
+	
 	public void sendErrorNotify(){
 		this.gameState.notifyObserver(new ErrorNotify());
 	}

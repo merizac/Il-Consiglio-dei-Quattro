@@ -45,7 +45,8 @@ public class CostruzioneAiutoRe extends AzionePrincipale {
 			costruisci();
 			prendiBonus();
 		}
-		return false;
+		setStatoTransizionePrincipale(); 
+		return true;
 	}
 	/**
 	 * add an emporium to the city where the player wants to build

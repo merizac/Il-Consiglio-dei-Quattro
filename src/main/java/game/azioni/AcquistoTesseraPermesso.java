@@ -52,6 +52,8 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 		    }
 		    TesseraPermesso tesseraScelta = regione.getTesserePermessoScoperte().get(indiceTesseraScoperta);
 		    gameState.getGiocatoreCorrente().getTesserePermesso().add(tesseraScelta);
+		 
+		 setStatoTransizionePrincipale(); 
 		return true;
 	}
 	

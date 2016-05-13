@@ -15,6 +15,14 @@ public abstract class AzioneVeloce implements Azione {
 		this.gameState = gameState;
 	}
 	
+	public void setStatoTransizioneVeloce(){
+		gameState.getStato().transizioneVeloce(gameState);
+	}
+	
+	public void setStatoTransizioneSecondaPrincipale(){
+		gameState.getStato().transizioneSecondaPrincipale(gameState);
+	}
+	
 	public void sendErrorNotify(){
 		this.gameState.notifyObserver(new ErrorNotify());
 	}
