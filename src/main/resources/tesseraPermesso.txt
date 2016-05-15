@@ -15,7 +15,7 @@ BonusCartePolitica 3 BonusAiutanti 1
 Arkon Esti
 BonusPuntiNobiltà 2 
 Dorful Esti
-BonusPuntiVittoria BonusAiutanti 1
+BonusPuntiVittoria 2 BonusAiutanti 1
 Arkon Burgen
 BonusMoneta 3 BonusCartePolitica 1
 Arkon Dorful Esti

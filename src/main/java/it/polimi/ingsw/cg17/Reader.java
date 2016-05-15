@@ -1,8 +1,10 @@
 package it.polimi.ingsw.cg17;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -59,6 +61,9 @@ public class Reader {
 		Balcone balconeRe=new Balcone(4, consiglieri);
 		PlanciaRe planciaRe = new PlanciaRe(balconeRe, bonusRe, punteggioNobiltà); 
 		
+		letturaTesserePermesso(cities, regioni);
+		
+		/*
 		//TesserePermesso
 		FileReader t=new FileReader("src/main/resources/tesseraPermesso.txt");
 		BufferedReader b;
@@ -120,7 +125,7 @@ public class Reader {
 		     	stringaLetta=b.readLine();
 		     	}
 			}
-		b.close();
+		b.close();*/
 		
 		Mappa mappa=new Mappa(new HashSet<Città>(cities));
 		return new GameState(mappa, regioni, planciaRe, re, consiglieri, cartePolitica);
@@ -408,6 +413,71 @@ public class Reader {
 		}
 	}
 
+	public void letturaTesserePermesso(ArrayList<Città> cities, ArrayList<Regione> regioni) throws IOException{
+		
+		FileReader t=new FileReader("src/main/resources/tesseraPermesso.txt");
+		BufferedReader b;
+		b=new BufferedReader(t);
+		String stringaLetta;
+		stringaLetta=b.readLine();
+		
+		while(true) {	
+	     	if(stringaLetta==null)
+	     		break;
+			for (Regione r: regioni){
+		     	while(!stringaLetta.equals("FINEREGIONE")){
+			     	StringTokenizer st=new StringTokenizer(stringaLetta);
+			     	ArrayList<Città> cit=new ArrayList<>();
+			     	//aggiunge le citta all'arraylist
+			     	while(st.hasMoreTokens()){
+			     		cit.add(findCittà(st.nextToken(), cities));		     	
+			     	}
+			     	
+			     	//aggiunge i bonus all'arraylist
+			     	stringaLetta=b.readLine();
+			     	ArrayList<Bonus> bonus = new ArrayList<Bonus>();
+			     	StringTokenizer str=new StringTokenizer(stringaLetta);
+					
+			     	String tmp=str.nextToken();
+					while(true){
+						if(tmp.equals("BonusAiutanti")){
+							int quantità=Integer.parseInt(str.nextToken());
+							bonus.add(new BonusAiutanti(quantità));
+						}
+						else if(tmp.equals("BonusAzionePrincipale")){
+							bonus.add(new BonusAzionePrincipale());
+						}
+						else if(tmp.equals("BonusMoneta")){
+								int quantità=Integer.parseInt(str.nextToken());
+								bonus.add(new BonusMoneta(quantità));
+						}
+						else if (tmp.equals("BonusPuntiVittoria")){
+								int quantità=Integer.parseInt(str.nextToken());
+								bonus.add(new BonusPuntiVittoria(quantità));
+						}
+						else if (tmp.equals("BonusCartePolitica")){
+								int quantità=Integer.parseInt(str.nextToken());
+								bonus.add(new BonusCartePolitica(quantità));
+						}
+						else if (tmp.equals("BonusPuntiNobiltà")){
+								int quantità=Integer.parseInt(str.nextToken());
+								bonus.add(new BonusPuntiNobiltà(quantità));
+						}
+						if(str.hasMoreTokens())
+							tmp=str.nextToken();
+						else 
+							break;
+					}
+			     	
+					new TesseraPermesso(cit, bonus, r);	
+			    	stringaLetta=b.readLine();
+					}
+		     	stringaLetta=b.readLine();
+		     	}
+			}
+		b.close();
+	}
+	
 	public Città findCittà(String c, ArrayList<Città> elenco){
 		for (Città i: elenco){
 			if(i.getNome().equals(c)){
