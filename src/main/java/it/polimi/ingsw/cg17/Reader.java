@@ -38,7 +38,7 @@ import game.CittàBonus;
 
 public class Reader {
 
-	public void inizializzatore() throws IOException{
+	public GameState inizializzatore() throws IOException{
 
 		//MazzoCartePolitica
 		Mazzo<CartaPolitica> cartePolitica=letturaCartePolitica();
@@ -123,7 +123,7 @@ public class Reader {
 		b.close();
 		
 		Mappa mappa=new Mappa(new HashSet<Città>(cities));
-		new GameState(mappa, regioni, planciaRe, re, consiglieri, cartePolitica);
+		return new GameState(mappa, regioni, planciaRe, re, consiglieri, cartePolitica);
 		}
 		
 	
