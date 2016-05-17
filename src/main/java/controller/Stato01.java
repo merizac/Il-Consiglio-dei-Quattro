@@ -1,15 +1,24 @@
 package controller;
 
+import java.util.List;
+
 import game.GameState;
 
-public class Stato01 implements Stato {
+public class Stato01 extends Stato {
 	
-	//private final List<String> azioniVeloci;
-	//private final List<String> azioniPrincipale;
+	private final List<String> azioniVeloci;
 
-	//cambio giocatore
-	//pesca carta
 	
+	
+	/**
+	 * @param azioniVeloci
+	 * @param azioniPrincipale
+	 */
+	public Stato01() {
+		this.azioniVeloci = riempiAzioniVeloci();
+		
+	}
+
 	/*public void handleAzione(GameState gameState, AzionePrincipale azione) {
 		gameState.notifyObserver(new ErrorNotify());
 		//this.azioniVeloci=riempiAzioniVeloci();
@@ -35,7 +44,7 @@ public class Stato01 implements Stato {
 
 	@Override
 	public void transizioneVeloce(GameState gameState) {
-		gameState.setStato(new StartEnd());
+		gameState.setStato(new StartEnd(gameState));
 	}
 
 	@Override

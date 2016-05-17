@@ -2,7 +2,16 @@ package controller;
 
 import game.GameState;
 
-public class StartEnd implements Stato {
+public class StartEnd extends Stato {
+
+	
+	
+	/**
+	 * 
+	 */
+	public StartEnd(GameState gameState) {
+		gameState.nextPlayer();
+	}
 
 	@Override
 	public void transizionePrincipale(GameState gameState) {
