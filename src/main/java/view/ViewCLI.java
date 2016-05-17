@@ -1,6 +1,7 @@
 package view;
 
 import java.util.HashSet;
+import java.util.Scanner;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -54,22 +55,28 @@ public class ViewCLI extends View{
 		
 	}
 	
-	@Override
-	public void input(String input) {
+	@Override	
+	public void input(Scanner scanner) {
+		System.out.println("Inserisci numero giocatori");
+		String input=scanner.nextLine();
+		while(!isNumeric(input))
+			System.out.println("valore non valido: inserisci numero giocatori");
+		parser.instanziaGiocatori(input);
 		
-		Matcher matcher=pattern.matcher(input);
-		if(matcher.matches()){
-			try{
-			Azione azione=parser.parser(input);
-			this.notifyObserver(azione);
-			}
-			catch(Exception e){
-				System.out.println(e.getMessage());
-			}
-			
-		}
+		
 	}
 	
+
+	private boolean isNumeric(String input) {
+		try{
+			Integer.parseInt(input);
+			return true;
+		}
+		catch(NumberFormatException e){
+			return false;
+		}
+	}
+
 	@Override
 	public void update(Notify notify) {
 		notify.stamp(this);

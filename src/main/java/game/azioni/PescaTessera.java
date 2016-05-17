@@ -10,6 +10,7 @@ public class PescaTessera extends Azione {
 
 	@Override
 	public void eseguiAzione() {
+		gameState.getGiocatoreCorrente().getCartePolitica().add(gameState.getMazzoCartePolitica().pescaCarte());
 		gameState.getStato().transizionePescaCarta(gameState);
 	}
 

@@ -1,6 +1,9 @@
 package view;
 
 import game.azioni.Azione;
+
+import java.util.Scanner;
+
 import game.GameState;
 import game.Model;
 import game.Notify;
@@ -19,7 +22,7 @@ public abstract class View extends Observable <Azione> implements Observer <Noti
 		this.model=gameState;
 	}
 	
-	public abstract void input(String input);
+	public abstract void input(Scanner input);
 
 	@Override
 	public void update(Notify notify) {

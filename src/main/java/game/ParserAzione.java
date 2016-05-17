@@ -23,6 +23,10 @@ public class ParserAzione {
 		this.gameState = gameState;
 	}
 	
+	public void instanziaGiocatori(String numero){
+		gameState.creaGiocatori(Integer.parseInt(numero));
+	}
+	
 	public Azione parser (String input) throws Exception{
 		StringTokenizer azione= new StringTokenizer(input);
 		Regione regioneSelezionata=null;

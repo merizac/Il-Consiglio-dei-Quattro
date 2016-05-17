@@ -25,6 +25,9 @@ public class CittàCollegate {
 	 * @return HashSet of cities connected to the city where the player has built
 	 */
 	public HashSet<CittàBonus> cittàBonusEmporio(SimpleGraph<Città, DefaultEdge> grafo, Colore coloreEmporio, Città città){
+		cittàVisitate.add(città);
+		if(città instanceof CittàBonus)
+			cittàCollegate.add((CittàBonus)città);
 		aggiungiCittà(grafo, coloreEmporio, città);
 		return cittàCollegate;
 	}
@@ -35,19 +38,17 @@ public class CittàCollegate {
 	 * @param città
 	 */
 	private void aggiungiCittà(SimpleGraph<Città, DefaultEdge> grafo, Colore coloreEmporio, Città città) {
-		ConnectivityInspector<Città, DefaultEdge> inspector= new ConnectivityInspector<>(grafo);
-		for(Città c: inspector.connectedSetOf(città)){
-			if(!c.emporioColore(coloreEmporio) || cittàVisitate.contains(c))
-				return;
-			else {
+		for(Città c: città.getCittàCollegate()){
+			if (!cittàVisitate.contains(c) && c.emporioColore(coloreEmporio)){
 					cittàVisitate.add(c);
 					if( c instanceof CittàBonus){
 						cittàCollegate.add((CittàBonus)c);
 					}
 					aggiungiCittà(grafo, coloreEmporio, c);
 			}
+			
+		}
 					
 		}
 	}
 
-}

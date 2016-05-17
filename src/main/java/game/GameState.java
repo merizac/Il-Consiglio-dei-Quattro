@@ -1,11 +1,12 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import controller.StartEnd;
 import controller.Stato;
-import controller.Stato11;
 import utility.Observable;
 
 public class GameState extends Observable<Notify> implements Model{
@@ -36,7 +37,7 @@ public class GameState extends Observable<Notify> implements Model{
 		this.consiglieri = consiglieri;
 		this.mazzoCartePolitica = mazzoCartePolitica;
 		this.giocatori = new ArrayList<Giocatore>();
-		this.stato= new Stato11();
+		this.stato= new StartEnd();
 	}
 	/**
 	 * 
@@ -149,6 +150,42 @@ public class GameState extends Observable<Notify> implements Model{
 		BonusAzionePrincipale = bonusAzionePrincipale;
 	}
 	
+	public void creaGiocatori(int numeroGiocatori){
+		int monete=10;
+		Set<Colore> coloreGiocatori=creaColori(numeroGiocatori);
+		for(int i=0; i<numeroGiocatori; i++){
+			Colore coloreGiocatore=coloreGiocatori.iterator().next();
+			Giocatore giocatore=new Giocatore(coloreGiocatore, assegnaCartePolitica(6), new Aiutante(3), 0, monete+i,
+					planciaRe.getPercorsoNobiltà().get(0) , creaEmpori(10, coloreGiocatore));
+			giocatori.add(giocatore); 
+		}
+		giocatoreCorrente=giocatori.get(0);
+	}
+	private ArrayList<Emporio> creaEmpori(int numeroEmpori, Colore coloreGiocatore) {
+		ArrayList<Emporio> empori=new ArrayList<>();
+		for(int i=0; i<numeroEmpori; i++){
+			empori.add(new Emporio(coloreGiocatore));
+		}
+		return empori;
+	}
+	private ArrayList<CartaPolitica> assegnaCartePolitica(int numeroCarte) {
+		ArrayList<CartaPolitica> carte=new ArrayList<>(); 
+		for(int i=0; i<numeroCarte; i++){
+			carte.add(mazzoCartePolitica.pescaCarte());
+		}
+		
+		return carte;
+	}
+	private HashSet<Colore> creaColori(int numeroGiocatori) {
+		HashSet<Colore> colori=new HashSet<>();
+		/*for(int i=0; i<numeroGiocatori; i++ ){
+			colori.add(new Colore("Giallo"));
+		}*/
+		colori.add(new Colore("Giallo"));
+		colori.add(new Colore("Verde"));
+		colori.add(new Colore("Blu"));
+		return colori;
+	}
 
 
 }

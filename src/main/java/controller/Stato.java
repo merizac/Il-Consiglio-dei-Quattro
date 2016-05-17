@@ -6,9 +6,9 @@ import game.azioni.Azione;
 
 public interface Stato {
 
-	public default void handleAzione(Partita partita, Azione azione){
+	/*public default void handleAzione(Partita partita, Azione azione){
 		throw new IllegalArgumentException("Il tipo di azione non è accettato!");
-	}
+	}*/
 	
 	public abstract void transizionePrincipale(GameState gameState);
 	
