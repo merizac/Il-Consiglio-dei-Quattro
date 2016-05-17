@@ -1,13 +1,24 @@
 package controller;
 
+import java.util.List;
+
 import game.GameState;
 
-public class Stato10 implements Stato {
+public class Stato10 extends Stato {
+
+	private List<String> azionePrincipale;
+	
+	/**
+	 * @param azionePrincipale
+	 */
+	public Stato10() {
+		this.azionePrincipale = riempiAzioniPrincipali();
+	}
 
 	@Override
 	public void transizionePrincipale(GameState gameState) {
 		if(!gameState.isBonusAzionePrincipale()){
-			gameState.setStato(new StartEnd());
+			gameState.setStato(new StartEnd(gameState));
 		}
 		else
 			gameState.setBonusAzionePrincipale(false); 

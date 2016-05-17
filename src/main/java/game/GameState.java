@@ -37,7 +37,7 @@ public class GameState extends Observable<Notify> implements Model{
 		this.consiglieri = consiglieri;
 		this.mazzoCartePolitica = mazzoCartePolitica;
 		this.giocatori = new ArrayList<Giocatore>();
-		this.stato= new StartEnd();
+		this.stato= new StartEnd(this);
 	}
 	/**
 	 * 
@@ -187,5 +187,16 @@ public class GameState extends Observable<Notify> implements Model{
 		return colori;
 	}
 
-
+	public void nextPlayer(){
+		Giocatore fineTurno = giocatori.remove(0);
+		giocatori.add(fineTurno);
+		
+	}
+	
+	public void cambiaGiocatore(){
+		int indice = giocatori.indexOf(giocatoreCorrente);
+		if (indice != giocatori.size()-1)
+			giocatoreCorrente = giocatori.get(indice+1);
+		else giocatoreCorrente =giocatori.get(0);
+	}
 }
