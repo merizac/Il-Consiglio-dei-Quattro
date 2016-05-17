@@ -8,10 +8,10 @@ import java.util.regex.Pattern;
 import game.Città;
 import game.Consigliere;
 import game.GameState;
-import game.Notify;
 import game.ParserAzione;
 import game.Regione;
 import game.azioni.Azione;
+import game.notify.Notify;
 
 public class ViewCLI extends View{
 	

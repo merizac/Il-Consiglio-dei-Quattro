@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import controller.StartEnd;
 import controller.Stato;
+import game.market.Offerta;
+import game.notify.Notify;
 import utility.Observable;
 
 public class GameState extends Observable<Notify> implements Model{
@@ -20,6 +21,9 @@ public class GameState extends Observable<Notify> implements Model{
 	private Giocatore giocatoreCorrente;
 	private Stato stato;
 	private boolean BonusAzionePrincipale;
+	private int numeroTurni=-1;
+	private final List<Offerta> offerteMarket;
+
 	/**
 	 * @param mappa
 	 * @param regioni
@@ -38,6 +42,23 @@ public class GameState extends Observable<Notify> implements Model{
 		this.mazzoCartePolitica = mazzoCartePolitica;
 		this.giocatori = new ArrayList<Giocatore>();
 		this.stato= new StartEnd(this);
+		this.offerteMarket=new ArrayList<>();
+	}
+	/**
+	 * @return the numeroTurni
+	 */
+	public int getNumeroTurni() {
+		return numeroTurni;
+	}
+
+	public void setNumeroTurni(int numeroTurni) {
+		this.numeroTurni=numeroTurni;
+	}
+	/**
+	 * @param numeroTurni the numeroTurni to set
+	 */
+	public void prossimoTurno() {
+		this.numeroTurni = this.numeroTurni++;
 	}
 	/**
 	 * 
@@ -67,6 +88,20 @@ public class GameState extends Observable<Notify> implements Model{
 	public void setGiocatoreCorrente(Giocatore giocatoreCorrente) {
 		this.giocatoreCorrente = giocatoreCorrente;
 	}
+	
+	/**
+	 * @return the offerteMarket
+	 */
+	public List<Offerta> getOfferteMarket() {
+		return offerteMarket;
+	}
+	/**
+	 * @param giocatori the giocatori to set
+	 */
+	public void setGiocatori(ArrayList<Giocatore> giocatori) {
+		this.giocatori = giocatori;
+	}
+	
 	/**
 	 * @return the mappa
 	 */
@@ -159,7 +194,7 @@ public class GameState extends Observable<Notify> implements Model{
 					planciaRe.getPercorsoNobiltà().get(0) , creaEmpori(10, coloreGiocatore));
 			giocatori.add(giocatore); 
 		}
-		giocatoreCorrente=giocatori.get(0);
+		giocatoreCorrente=giocatori.get(numeroGiocatori-1);
 	}
 	private ArrayList<Emporio> creaEmpori(int numeroEmpori, Colore coloreGiocatore) {
 		ArrayList<Emporio> empori=new ArrayList<>();
@@ -198,5 +233,9 @@ public class GameState extends Observable<Notify> implements Model{
 		if (indice != giocatori.size()-1)
 			giocatoreCorrente = giocatori.get(indice+1);
 		else giocatoreCorrente =giocatori.get(0);
+	}
+	public void decrementaTurno() {
+		this.numeroTurni=this.numeroTurni--;
+		
 	}
 }

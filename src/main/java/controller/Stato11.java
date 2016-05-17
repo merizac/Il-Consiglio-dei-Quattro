@@ -5,17 +5,14 @@ import java.util.List;
 import game.GameState;
 import game.azioni.Azione;
 
-public class Stato11 extends Stato {
+public class Stato11 implements Stato {
 
 	private List<String> azionePrincipale;
 	private List<String> azioneVeloce;
-	/**
-	 * @param azionePrincipale
-	 * @param azioneVeloce
-	 */
+
 	public Stato11() {
-		this.azionePrincipale = riempiAzioniPrincipali();
-		this.azioneVeloce = riempiAzioniVeloci();
+		//this.azionePrincipale = riempiAzioniPrincipali();
+		//this.azioneVeloce = riempiAzioniVeloci();
 	}
 	
 	@Override
@@ -32,14 +29,4 @@ public class Stato11 extends Stato {
 		gameState.setStato(new Stato10());
 	}
 	
-	@Override
-	public void transizioneSecondaPrincipale(GameState gameState) {
-		gameState.setStato(new Stato10());
-	}
-	
-	@Override
-	public void transizionePescaCarta(GameState gameState) {
-		throw new IllegalArgumentException("Il tipo di azione non può essere eseguita!"); 
-	}
-
 }

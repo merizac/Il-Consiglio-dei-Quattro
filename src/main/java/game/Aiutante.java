@@ -1,6 +1,9 @@
 package game;
 
-public class Aiutante {
+import game.market.Marketable;
+import game.market.Offerta;
+
+public class Aiutante implements Marketable{
 
 	private int numeroAiutanti;
 	/**
@@ -38,4 +41,25 @@ public class Aiutante {
 		}
 
 	}
+	@Override
+	public boolean acquista(Giocatore acquirente, Offerta offerta) {
+		if(!acquirente.diminuisciRicchezza(offerta.getPrezzo()))
+			return false;
+		else
+		{
+			offerta.getVenditore().getAiutanti().togliAiutanti(1);
+			acquirente.getAiutanti().aggiungiAiutanti(1);
+			offerta.getVenditore().aumentaRicchezza(offerta.getPrezzo());
+			return true;
+		}
+	}
+	@Override
+	public boolean possiede(Giocatore venditore) {
+		if(venditore.getAiutanti().getAiutante()==0)
+			return false;
+		else 
+			return true;
+	}
+	
+	
 }

@@ -2,33 +2,16 @@ package controller;
 
 import game.GameState;
 
-public class StartEnd extends Stato {
+public class StartEnd implements Stato {
 
-	
-	
-	/**
-	 * 
-	 */
+
 	public StartEnd(GameState gameState) {
 		gameState.nextPlayer();
-	}
-
-	@Override
-	public void transizionePrincipale(GameState gameState) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void transizioneVeloce(GameState gameState) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void transizioneSecondaPrincipale(GameState gameState) {
-		// TODO Auto-generated method stub
-
+		if(gameState.getNumeroTurni()!=gameState.getGiocatori().size()){
+			gameState.prossimoTurno();
+		}
+		else
+			gameState.setStato(new StatoOffertaMarket());
 	}
 
 	@Override

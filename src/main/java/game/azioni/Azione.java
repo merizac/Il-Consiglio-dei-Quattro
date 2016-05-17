@@ -1,6 +1,7 @@
 package game.azioni;
 
 import game.GameState;
+import utility.exception.AzioneNonEseguibile;
 
 public abstract class Azione {
 	
@@ -14,5 +15,5 @@ public abstract class Azione {
 		this.gameState = gameState;
 	}
 
-	public abstract void eseguiAzione();
+	public abstract void eseguiAzione() throws AzioneNonEseguibile;
 }

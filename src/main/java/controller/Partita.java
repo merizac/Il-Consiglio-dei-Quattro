@@ -11,6 +11,7 @@ import game.azioni.ElezioneConsigliereVeloce;
 import game.azioni.IngaggioAiutante;
 import game.azioni.SecondaAzionePrincipale;*/
 import utility.Observer;
+import utility.exception.AzioneNonEseguibile;
 import game.GameState;
 import game.azioni.Azione;
 import view.View;
@@ -31,7 +32,12 @@ public class Partita implements Observer<Azione> {
 
 	@Override
 	public void update(Azione azione) {
-		azione.eseguiAzione();
+		try {
+			azione.eseguiAzione();
+		} catch (AzioneNonEseguibile e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	

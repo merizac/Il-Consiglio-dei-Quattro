@@ -1,6 +1,5 @@
 package game.notify;
 
-import game.Notify;
 import view.View;
 
 public class GameNotify implements Notify {

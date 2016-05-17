@@ -3,10 +3,11 @@ package controller;
 import java.util.ArrayList;
 import java.util.List;
 import game.GameState;
+import utility.exception.AzioneNonEseguibile;
 
-public abstract class Stato {
+public interface Stato {
 
-	public List<String> riempiAzioniVeloci(){
+	/*public List<String> riempiAzioniVeloci(){
 		List<String> azioniVeloci = new ArrayList<>();
 		azioniVeloci.add("Ingaggiare un aiutante");
 		azioniVeloci.add("Cambiare le tessere permesso di costruzione");
@@ -22,14 +23,31 @@ public abstract class Stato {
 		azioniPrincipali.add("Costruire un emporio usando una tessera permesso");
 		azioniPrincipali.add("costruire un emporio con l'aiuto del re");
 		return azioniPrincipali;
+	}*/
+
+	public default void transizionePrincipale(GameState gameState) throws AzioneNonEseguibile{
+		throw new AzioneNonEseguibile("Il tipo di azione non può essere eseguita!"); 
+	}
+	
+	public default void transizioneVeloce(GameState gameState) throws AzioneNonEseguibile{
+		throw new AzioneNonEseguibile("Il tipo di azione non può essere eseguita!"); 
+	};
+
+	public default void transizioneSecondaPrincipale(GameState gameState) throws AzioneNonEseguibile{
+		throw new AzioneNonEseguibile("Il tipo di azione non può essere eseguita!");
+		};
+	
+	public default void transizionePescaCarta(GameState gameState) throws AzioneNonEseguibile{
+		throw new AzioneNonEseguibile("Il tipo di azione non può essere eseguita!"); 
+	};
+	
+	public default void transizioneOfferta(GameState gameState) throws AzioneNonEseguibile{
+		throw new AzioneNonEseguibile("Il tipo di azione non può essere eseguita!"); 
 	}
 
-	public abstract void transizionePrincipale(GameState gameState);
-	
-	public abstract void transizioneVeloce(GameState gameState);
 
-	public abstract void transizioneSecondaPrincipale(GameState gameState);
-	
-	public abstract void transizionePescaCarta(GameState gameState);
+	public default void transizionePassa(GameState gameState) throws AzioneNonEseguibile{
+		throw new AzioneNonEseguibile("Il tipo di azione non può essere eseguita!"); 
+	};
 	
 }

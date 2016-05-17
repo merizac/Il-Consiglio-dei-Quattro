@@ -3,8 +3,10 @@ package game;
 import java.util.ArrayList;
 
 import bonus.*;
+import game.market.Marketable;
+import game.market.Offerta;
 
-public final class TesseraPermesso {
+public final class TesseraPermesso implements Marketable {
 
 	private final ArrayList<Città> città;
 	private final ArrayList<Bonus> bonus;
@@ -45,6 +47,28 @@ public final class TesseraPermesso {
 	@Override
 	public String toString() {
 		return "TesseraPermesso [città=" + città + ", bonus=" + bonus + ", regione=" + regione + "]";
+	}
+
+
+	@Override
+	public boolean acquista(Giocatore acquirente, Offerta offerta) {
+		if(!acquirente.diminuisciRicchezza(offerta.getPrezzo()))
+			return false;
+		else{
+			acquirente.aggiungiTesseraPermesso(this);
+			offerta.getVenditore().rimuoviTesseraPermesso(this);
+			offerta.getVenditore().aumentaRicchezza(offerta.getPrezzo());
+			return true;
+		}
+	}
+
+
+	@Override
+	public boolean possiede(Giocatore venditore) {
+		if(!venditore.getTesserePermesso().contains(this))
+			return false;
+		else
+			return true;
 	}
 
 

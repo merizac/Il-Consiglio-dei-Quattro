@@ -1,12 +1,12 @@
 package view;
 
 import game.azioni.Azione;
+import game.notify.Notify;
 
 import java.util.Scanner;
 
 import game.GameState;
 import game.Model;
-import game.Notify;
 import game.ParserAzione;
 import utility.Observable;
 import utility.Observer;

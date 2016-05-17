@@ -169,6 +169,20 @@ public class Giocatore {
 	public void aggiungiCartaPolitica(CartaPolitica cartaDaAggiungere){
 			this.cartePolitica.add(cartaDaAggiungere);
 	}
+
+
+	public void rimuoviCartaPolitica(CartaPolitica cartaPolitica) {
+		this.cartePolitica.remove(cartaPolitica);
+	}
+	
+	public void aggiungiTesseraPermesso(TesseraPermesso tesseraPermesso){
+		this.tesserePermesso.add(tesseraPermesso);
+}
+
+
+public void rimuoviTesseraPermesso(TesseraPermesso tesseraPermesso) {
+	this.tesserePermesso.remove(tesseraPermesso);
+}
 	
 	
 
