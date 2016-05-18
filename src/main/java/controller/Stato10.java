@@ -18,6 +18,7 @@ public class Stato10 implements Stato {
 	@Override
 	public void transizionePrincipale(GameState gameState) {
 		if(!gameState.isBonusAzionePrincipale()){
+			gameState.nextPlayer();
 			gameState.setStato(new StartEnd(gameState));
 		}
 		else

@@ -194,7 +194,7 @@ public class GameState extends Observable<Notify> implements Model{
 					planciaRe.getPercorsoNobiltà().get(0) , creaEmpori(10, coloreGiocatore));
 			giocatori.add(giocatore); 
 		}
-		giocatoreCorrente=giocatori.get(numeroGiocatori-1);
+		giocatoreCorrente=giocatori.get(0);
 	}
 	private ArrayList<Emporio> creaEmpori(int numeroEmpori, Colore coloreGiocatore) {
 		ArrayList<Emporio> empori=new ArrayList<>();

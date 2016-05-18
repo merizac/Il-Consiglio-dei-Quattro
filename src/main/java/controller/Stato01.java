@@ -15,6 +15,7 @@ public class Stato01 implements Stato {
 
 	@Override
 	public void transizioneVeloce(GameState gameState) {
+		gameState.nextPlayer();
 		gameState.setStato(new StartEnd(gameState));
 	}
 

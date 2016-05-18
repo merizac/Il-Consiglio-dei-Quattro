@@ -32,9 +32,6 @@ public class CostruzioneAiutoRe extends AzionePrincipale {
 	@Override
 	public void eseguiAzione() {
 		Mappa mappa= gameState.getMappa();
-		/*PassaggioParametri passaggioParametri= new PassaggioParametri(gameState);
-		carteGiocatore= new HashSet<CartaPolitica>(passaggioParametri.selezionaCarteGiocatore());
-		cittàCostruzione=passaggioParametri.selezionaCittà();*/
 		if(!controllaColori())
 			gameState.notifyObserver(new ErrorParameterNotify("Errore: i colori delle carte scelte non corrispondon con quelli del balcone!"));
 			
@@ -112,7 +109,7 @@ public class CostruzioneAiutoRe extends AzionePrincipale {
 		int monete=0;
 		int carte=carteGiocatore.size();
 		for (CartaPolitica carta: carteGiocatore ){
-			if (carta.getColore().getColore()=="multicolor"){
+			if (carta.getColore().equals(new CartaPolitica(new Colore("Multicolore")))){
 				monete++;
 			}
 		}
@@ -144,12 +141,12 @@ public class CostruzioneAiutoRe extends AzionePrincipale {
 	 */
 	private boolean controllaColori() {
 		for (CartaPolitica carta: carteGiocatore ){
-			if (carta.getColore().getColore()=="multicolor"){
+			if (carta.getColore().equals(new CartaPolitica(new Colore("Multicolore")))){
 				continue;
 			}
 				
 			for (Consigliere consigliere: balcone.getConsigliere()){
-					if (consigliere.getColore().getColore()==carta.getColore().getColore()){
+					if (consigliere.getColore().equals(carta.getColore())){
 						balcone.getConsigliere().remove(consigliere);
 					}
 					

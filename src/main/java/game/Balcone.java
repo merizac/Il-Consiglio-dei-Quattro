@@ -1,8 +1,8 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Queue;
-import java.util.Random;
 import java.util.concurrent.ArrayBlockingQueue;
 
 public class Balcone {
@@ -22,13 +22,13 @@ public class Balcone {
 	private ArrayList<Consigliere> pescaConsiglieri(ArrayList<Consigliere> consiglieri, int numConsiglieri) {
 		
 		ArrayList<Consigliere> consiglieriNuovi=new ArrayList<>(); 
-		Random random=new Random();
+		Collections.shuffle(consiglieri);
 		for(int i=0; i<numConsiglieri; i++){
-			int indice=random.nextInt(consiglieri.size());
-			consiglieriNuovi.add(consiglieri.get(indice));
+			consiglieriNuovi.add(consiglieri.iterator().next());
 		}
 		
 		return consiglieriNuovi;
+		
 		
 	}
 

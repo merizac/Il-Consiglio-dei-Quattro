@@ -3,6 +3,7 @@ package game.azioni;
 import java.util.ArrayList;
 import game.Regione;
 import game.CartaPolitica;
+import game.Colore;
 import game.Consigliere;
 import game.GameState;
 import game.TesseraPermesso;
@@ -81,7 +82,7 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 		int monete=0;
 		int carte=carteGiocatore.size();
 		for (CartaPolitica carta: carteGiocatore ){
-			if (carta.getColore().getColore()=="multicolor"){
+			if (carta.getColore().getColore()=="Multicolore"){
 				monete++;
 			}
 		}
@@ -113,13 +114,14 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 	private boolean controllaColori() {
 		ArrayList<Consigliere> copiaConsiglieri = new ArrayList<Consigliere>(regione.getBalcone().getConsigliere());
 		for (CartaPolitica carta: carteGiocatore ){
-			if (carta.getColore().getColore()=="multicolor"){
+			if (carta.equals(new CartaPolitica(new Colore("Multicolor")))){
 				continue;
 			}
 				
 			for (Consigliere consigliere: copiaConsiglieri){
-					if (consigliere.getColore().getColore()==carta.getColore().getColore()){
+					if (consigliere.getColore().equals(carta.getColore())){
 						regione.getBalcone().getConsigliere().remove(consigliere);
+						
 					}
 					
 					else
