@@ -3,9 +3,9 @@ package game.azioni;
 import game.GameState;
 import utility.exception.AzioneNonEseguibile;
 
-public class PescaTessera extends Azione {
+public class PescaCarta extends Azione {
 
-	public PescaTessera(GameState gameState) {
+	public PescaCarta(GameState gameState) {
 		super(gameState);
 	}
 

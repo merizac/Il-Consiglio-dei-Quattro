@@ -31,6 +31,7 @@ public class ElezioneConsigliere extends AzionePrincipale {
 		regione = passaggioParametri.selezionaRegione();*/
 
 		Consigliere consigliereTolto = this.regione.getBalcone().aggiungiConsigliere(consigliere);
+		System.out.println(consigliereTolto);
 		this.gameState.getConsiglieri().add(consigliereTolto);
 		this.gameState.getGiocatoreCorrente().aumentaRicchezza(4);
 		setStatoTransizionePrincipale(); 

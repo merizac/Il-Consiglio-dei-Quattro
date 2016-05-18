@@ -41,7 +41,7 @@ public class Giocatore {
 		this.tesserePermesso = new ArrayList<TesseraPermesso>();
 		this.tesserePermessoUsate = new ArrayList<TesseraPermesso>();
 		this.tessereBonus = new ArrayList<Bonus>();
-		this.empori = new ArrayList<Emporio>();
+		this.empori = empori;
 		this.azioniPrincipali= new ArrayList<AzionePrincipale>();
 		this.azioneVeloce = new ArrayList <AzioneVeloce>();
 		this.aiutanti = aiutanti;
@@ -65,6 +65,24 @@ public class Giocatore {
 	public ArrayList<AzioneVeloce> getAzioneVeloce() {
 		return azioneVeloce;
 	}
+
+
+	/**
+	 * @return the punteggioVittoria
+	 */
+	public int getPunteggioVittoria() {
+		return punteggioVittoria;
+	}
+
+
+
+	/**
+	 * @return the punteggioRicchezza
+	 */
+	public int getPunteggioRicchezza() {
+		return punteggioRicchezza;
+	}
+
 
 
 	/**
@@ -180,9 +198,23 @@ public class Giocatore {
 }
 
 
-public void rimuoviTesseraPermesso(TesseraPermesso tesseraPermesso) {
-	this.tesserePermesso.remove(tesseraPermesso);
-}
+	public void rimuoviTesseraPermesso(TesseraPermesso tesseraPermesso) {
+		this.tesserePermesso.remove(tesseraPermesso);
+	}
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Giocatore [coloreGiocatore=" + coloreGiocatore + ",\ncartePolitica=" + cartePolitica
+				+ ", \ntesserePermesso=" + tesserePermesso + ", \ntesserePermessoUsate=" + tesserePermessoUsate
+				+ ", \ntessereBonus=" + tessereBonus + ", \nempori=" + empori + ", \naiutanti=" + aiutanti
+				+ ", \npunteggioVittoria=" + punteggioVittoria + ", \npunteggioRicchezza=" + punteggioRicchezza
+				+ ", \npunteggioNobiltà=" + punteggioNobiltà + "]";
+	}
+	
 	
 	
 

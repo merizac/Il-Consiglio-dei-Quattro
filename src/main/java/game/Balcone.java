@@ -14,19 +14,17 @@ public class Balcone {
 	 * @param consiglieri consiglieri to add at Balcone
 	 */
 	public Balcone(int numConsiglieri, ArrayList<Consigliere> consiglieri){
-		
 		ArrayList<Consigliere> consiglieriDaAggiungere=pescaConsiglieri(consiglieri, numConsiglieri);
 		this.consiglieri=new ArrayBlockingQueue<Consigliere>(numConsiglieri, true, consiglieriDaAggiungere);	
 	}
 	
 	private ArrayList<Consigliere> pescaConsiglieri(ArrayList<Consigliere> consiglieri, int numConsiglieri) {
 		
-		ArrayList<Consigliere> consiglieriNuovi=new ArrayList<>(); 
+		ArrayList<Consigliere> consiglieriNuovi=new ArrayList<>();
 		Collections.shuffle(consiglieri);
 		for(int i=0; i<numConsiglieri; i++){
-			consiglieriNuovi.add(consiglieri.iterator().next());
+			consiglieriNuovi.add(consiglieri.remove(0));
 		}
-		
 		return consiglieriNuovi;
 		
 		

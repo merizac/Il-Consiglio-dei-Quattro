@@ -188,18 +188,26 @@ public class GameState extends Observable<Notify> implements Model{
 	public void creaGiocatori(int numeroGiocatori){
 		int monete=10;
 		Set<Colore> coloreGiocatori=creaColori(numeroGiocatori);
-		for(int i=0; i<numeroGiocatori; i++){
+		/*for(int i=0; i<numeroGiocatori; i++){
 			Colore coloreGiocatore=coloreGiocatori.iterator().next();
 			Giocatore giocatore=new Giocatore(coloreGiocatore, assegnaCartePolitica(6), new Aiutante(3), 0, monete+i,
 					planciaRe.getPercorsoNobiltà().get(0) , creaEmpori(10, coloreGiocatore));
 			giocatori.add(giocatore); 
-		}
+		}*/
+		
+		this.giocatori.add(new Giocatore(new Colore("Giallo"), assegnaCartePolitica(6), new Aiutante(3), 0, monete,
+					planciaRe.getPercorsoNobiltà().get(0) , creaEmpori(10, new Colore("Giallo"))));
+		this.giocatori.add(new Giocatore(new Colore("Verde"), assegnaCartePolitica(6), new Aiutante(3), 0, monete+1,
+				planciaRe.getPercorsoNobiltà().get(0) , creaEmpori(10, new Colore("Verde"))));
+		this.giocatori.add(new Giocatore(new Colore("Blu"), assegnaCartePolitica(6), new Aiutante(3), 0, monete+2,
+				planciaRe.getPercorsoNobiltà().get(0) , creaEmpori(10, new Colore("Blu"))));
 		giocatoreCorrente=giocatori.get(0);
 	}
 	private ArrayList<Emporio> creaEmpori(int numeroEmpori, Colore coloreGiocatore) {
 		ArrayList<Emporio> empori=new ArrayList<>();
 		for(int i=0; i<numeroEmpori; i++){
-			empori.add(new Emporio(coloreGiocatore));
+			Emporio emporio=new Emporio(coloreGiocatore);
+			empori.add(emporio);
 		}
 		return empori;
 	}

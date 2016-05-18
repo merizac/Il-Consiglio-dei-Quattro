@@ -21,6 +21,7 @@ public class StatoAcquistoMarket implements Stato {
 			gameState.setStato(this);
 		}
 		else{
+			gameState.getOfferteMarket().clear();
 			gameState.setStato(new StartEnd(gameState));
 		}
 	}

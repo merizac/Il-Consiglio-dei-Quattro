@@ -148,6 +148,7 @@ public class Reader {
 	     	cartaPoliticaList.add(carta);
 		}
 		b.close();
+		Collections.shuffle(cartaPoliticaList);
 		return new Mazzo<CartaPolitica>(cartaPoliticaList);
 	}
 	
@@ -221,7 +222,7 @@ public class Reader {
 	     	consiglieri.add(consigliere);
 		}
 		b.close();
-	
+		Collections.shuffle(consiglieri);
 		return consiglieri;
 	}
 	
@@ -473,6 +474,8 @@ public class Reader {
 			    	stringaLetta=b.readLine();
 					}
 		     	stringaLetta=b.readLine();
+		     	r.getTesserePermessoScoperte().add(r.getMazzoTesserePermesso().pescaCarte());
+		     	r.getTesserePermessoScoperte().add(r.getMazzoTesserePermesso().pescaCarte());
 		     	}
 			}
 		b.close();
