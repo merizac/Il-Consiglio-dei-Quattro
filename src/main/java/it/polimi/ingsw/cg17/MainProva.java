@@ -29,7 +29,7 @@ public class MainProva {
 		GameState gameState=null;
 		Reader reader=new Reader();
 		try{
-		gameState=reader.inizializzatore();
+		gameState=new GameState();
 		}
 		catch(Exception e){
 			e.printStackTrace();

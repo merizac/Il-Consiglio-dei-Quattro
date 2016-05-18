@@ -1,5 +1,6 @@
 package game;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -8,6 +9,7 @@ import controller.StartEnd;
 import controller.Stato;
 import game.market.Offerta;
 import game.notify.Notify;
+import it.polimi.ingsw.cg17.Reader_new;
 import utility.Observable;
 
 public class GameState extends Observable<Notify> implements Model{
@@ -31,15 +33,15 @@ public class GameState extends Observable<Notify> implements Model{
 	 * @param pedinaRe
 	 * @param consiglieri
 	 * @param mazzoCartePolitica
+	 * @throws IOException 
 	 */
-	public GameState(Mappa mappa, ArrayList<Regione> regioni, PlanciaRe planciaRe, Re pedinaRe,
-			ArrayList<Consigliere> consiglieri, Mazzo<CartaPolitica> mazzoCartePolitica) {
-		this.mappa = mappa;
-		this.regioni = regioni;
-		this.planciaRe = planciaRe;
-		this.pedinaRe = pedinaRe;
-		this.consiglieri = consiglieri;
-		this.mazzoCartePolitica = mazzoCartePolitica;
+	public GameState() throws IOException {
+		this.consiglieri = Reader_new.letturaConsigliere();
+		this.regioni = Reader_new.letturaRegioni();
+		this.planciaRe = Reader_new.creazionePlanciaRe();
+		this.mazzoCartePolitica = Reader_new.letturaCartePolitica();
+		this.mappa = Reader_new.creazioneMappa();
+		this.pedinaRe = Reader_new.creazioneRe();
 		this.giocatori = new ArrayList<Giocatore>();
 		this.stato= new StartEnd(this);
 		this.offerteMarket=new ArrayList<>();
