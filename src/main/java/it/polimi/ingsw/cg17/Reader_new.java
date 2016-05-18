@@ -90,6 +90,7 @@ public class Reader_new {
 	     	cartaPoliticaList.add(carta);
 		}
 		b.close();
+		Collections.shuffle(cartaPoliticaList);
 		return new Mazzo<CartaPolitica>(cartaPoliticaList);
 	}
 	
@@ -416,6 +417,8 @@ public class Reader_new {
 			    	stringaLetta=b.readLine();
 					}
 		     	stringaLetta=b.readLine();
+		     	r.getTesserePermessoScoperte().add(r.getMazzoTesserePermesso().pescaCarte());
+		     	r.getTesserePermessoScoperte().add(r.getMazzoTesserePermesso().pescaCarte());
 		     	}
 			}
 		b.close();
