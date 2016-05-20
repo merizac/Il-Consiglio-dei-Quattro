@@ -1,6 +1,10 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import game.GameState;
+import game.azioni.Azione;
 
 public class StatoOffertaMarket implements Stato {
 	
@@ -18,6 +22,12 @@ public class StatoOffertaMarket implements Stato {
 	@Override
 	public void transizioneOfferta(GameState gameState){
 		gameState.setStato(this);
+	}
+	
+	@Override
+	public List<Azione> getAzioni() {
+		List<Azione> azioniDisponibili=new ArrayList<>();
+		return azioniDisponibili;
 	}
 
 }

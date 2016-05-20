@@ -14,27 +14,14 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 	private ArrayList<CartaPolitica> carteGiocatore;
 	private Regione regione;
 	private int indiceTesseraScoperta;
-	/**
-	 * constructor
-	 * @param partita
-	 * @param carteGiocatore 
-	 * @param carteGiocatore
-	 * @param regione 
-	 * @param regione
-	 * @param indiceTesseraPermesso 
-	 */
-	public AcquistoTesseraPermesso(GameState gameState, ArrayList<CartaPolitica> carteGiocatore, Regione regione, int indiceTesseraPermesso) {
-		super(gameState);
-		this.carteGiocatore=carteGiocatore;
-		this.regione=regione;
-		this.indiceTesseraScoperta=indiceTesseraPermesso;
-		}
+
+	
 	/**
 	 * check if the color of cards passed are the same of balcone, and check if the player has enough
 	 * money to do the action, then subtract the money due from the player
 	 */
 	@Override
-	public void eseguiAzione() {
+	public void eseguiAzione(GameState gameState) {
 		/*PassaggioParametri passaggioParametri=new PassaggioParametri(partita);
 		carteGiocatore=passaggioParametri.selezionaCarteGiocatore();
 		regione=passaggioParametri.selezionaRegione();		
@@ -46,19 +33,19 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 		if(!controllaColori())
 			gameState.notifyObserver(new ErrorParameterNotify("Errore: i colori delle carte scelte non corrispondono con quelle del balcone!"));
 			
-		if(!paga(calcolaMonete()))
+		if(!paga(calcolaMonete(), gameState))
 			gameState.notifyObserver(new ErrorParameterNotify("Errore: i soldi non sono sufficienti!"));
 			
 		   
 		for(CartaPolitica c: carteGiocatore){
 		    
-		      this.gameState.getGiocatoreCorrente().getCartePolitica().remove(c);
-		      this.gameState.getMazzoCartePolitica().aggiungiCarte(carteGiocatore);
+		      gameState.getGiocatoreCorrente().getCartePolitica().remove(c);
+		      gameState.getMazzoCartePolitica().aggiungiCarte(carteGiocatore);
 		    }
 		    TesseraPermesso tesseraScelta = regione.getTesserePermessoScoperte().get(indiceTesseraScoperta);
 		    gameState.getGiocatoreCorrente().getTesserePermesso().add(tesseraScelta);
 		 
-		 setStatoTransizionePrincipale(); 
+		 setStatoTransizionePrincipale(gameState); 
 		
 	}
 	
@@ -67,8 +54,8 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 	 * @param moneteDovute
 	 * @return true if the player can pay the money, false otherwise
 	 */
-	private boolean paga(int moneteDovute) {
-		if(!this.gameState.getGiocatoreCorrente().diminuisciRicchezza(moneteDovute))
+	private boolean paga(int moneteDovute, GameState gameState) {
+		if(!gameState.getGiocatoreCorrente().diminuisciRicchezza(moneteDovute))
 			return false;
 		return true;
 	}
@@ -130,6 +117,48 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 			}
 		return true;
 		
+	}
+
+	/**
+	 * @return the carteGiocatore
+	 */
+	public ArrayList<CartaPolitica> getCarteGiocatore() {
+		return carteGiocatore;
+	}
+
+	/**
+	 * @param carteGiocatore the carteGiocatore to set
+	 */
+	public void setCarteGiocatore(ArrayList<CartaPolitica> carteGiocatore) {
+		this.carteGiocatore = carteGiocatore;
+	}
+
+	/**
+	 * @return the regione
+	 */
+	public Regione getRegione() {
+		return regione;
+	}
+
+	/**
+	 * @param regione the regione to set
+	 */
+	public void setRegione(Regione regione) {
+		this.regione = regione;
+	}
+
+	/**
+	 * @return the indiceTesseraScoperta
+	 */
+	public int getIndiceTesseraScoperta() {
+		return indiceTesseraScoperta;
+	}
+
+	/**
+	 * @param indiceTesseraScoperta the indiceTesseraScoperta to set
+	 */
+	public void setIndiceTesseraScoperta(int indiceTesseraScoperta) {
+		this.indiceTesseraScoperta = indiceTesseraScoperta;
 	}
 
 }

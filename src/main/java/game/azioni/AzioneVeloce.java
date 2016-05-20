@@ -6,14 +6,8 @@ import utility.exception.AzioneNonEseguibile;
 
 public abstract class AzioneVeloce extends Azione {
 
-	/**
-	 * @param gameState
-	 */
-	public AzioneVeloce(GameState gameState) {
-		super(gameState);
-	}
-	
-	public void setStatoTransizioneVeloce(){
+
+	public void setStatoTransizioneVeloce(GameState gameState){
 		try {
 			gameState.getStato().transizioneVeloce(gameState);
 		} catch (AzioneNonEseguibile e) {
@@ -22,7 +16,7 @@ public abstract class AzioneVeloce extends Azione {
 		}
 	}
 	
-	public void setStatoTransizioneSecondaPrincipale(){
+	public void setStatoTransizioneSecondaPrincipale(GameState gameState){
 		try {
 			gameState.getStato().transizioneSecondaPrincipale(gameState);
 		} catch (AzioneNonEseguibile e) {
@@ -31,8 +25,8 @@ public abstract class AzioneVeloce extends Azione {
 		}
 	}
 	
-	public void sendErrorNotify(){
-		this.gameState.notifyObserver(new ErrorNotify());
+	public void sendErrorNotify(GameState gameState){
+		gameState.notifyObserver(new ErrorNotify());
 	}
 	
 }

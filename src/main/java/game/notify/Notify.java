@@ -1,9 +1,14 @@
 package game.notify;
 
-import view.View;
+import java.io.Serializable;
 
-public interface Notify{
+public abstract class Notify implements Serializable{
 	
-	public void stamp(View view);
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2188277782095467667L;
+
+	public abstract void stamp();
 	
 }

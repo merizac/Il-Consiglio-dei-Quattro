@@ -1,5 +1,5 @@
 package bonus;
-import controller.Partita;
+import controller.Controller;
 
 public abstract class BonusNobiltà extends Bonus {
 
@@ -7,6 +7,6 @@ public abstract class BonusNobiltà extends Bonus {
 		super();
 	}
 	
-	public abstract void usaBonus(Partita partita);
+	public abstract void usaBonus(Controller partita);
 
 }

@@ -6,15 +6,8 @@ import utility.exception.AzioneNonEseguibile;
 
 public abstract class AzionePrincipale extends Azione {
 	
-	/**
-	 * @param partita
-	 */
-	public AzionePrincipale(GameState gameState) {
-		super(gameState);
-	}
 	
-	
-	public void setStatoTransizionePrincipale(){
+	public void setStatoTransizionePrincipale(GameState gameState){
 		try {
 			gameState.getStato().transizionePrincipale(gameState);
 		} catch (AzioneNonEseguibile e) {
@@ -23,8 +16,8 @@ public abstract class AzionePrincipale extends Azione {
 		}
 	}
 	
-	public void sendErrorNotify(){
-		this.gameState.notifyObserver(new ErrorNotify());
+	public void sendErrorNotify(GameState gameState){
+		gameState.notifyObserver(new ErrorNotify());
 	}
 	
 }
