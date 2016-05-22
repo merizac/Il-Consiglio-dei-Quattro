@@ -18,12 +18,12 @@ public class ViewCLI extends View{
 	private Pattern pattern;
 
 	public ViewCLI(GameState gameState, ParserAzione parser) {
-		super(gameState, parser);
+		//super(gameState, parser);
 		createPattern();
 	}
 
 	private void createPattern() {
-		String colori= "(";
+		/*String colori= "(";
 		Set<Consigliere> consiglieri= new HashSet<>(model.getConsiglieri());
 		for(Consigliere c: consiglieri){
 			colori=colori+c.getColore().toString()+"|";
@@ -52,7 +52,7 @@ public class ViewCLI extends View{
 		String ia="(3v)";
 		String sap="(4v)";
 		pattern= Pattern.compile("("+atp+"|"+cr+"|"+ctp+"|"+ec+"|"+ct+"|"+ecv+"|"+ia+"|"+sap+")");
-		
+		*/
 	}
 	
 	@Override	
@@ -61,7 +61,7 @@ public class ViewCLI extends View{
 		String input=scanner.nextLine();
 		while(!isNumeric(input))
 			System.out.println("valore non valido: inserisci numero giocatori");
-		parser.instanziaGiocatori(input);
+		//parser.instanziaGiocatori(input);
 		
 		
 	}
@@ -79,7 +79,7 @@ public class ViewCLI extends View{
 
 	@Override
 	public void update(Notify notify) {
-		notify.stamp(this);
+		//notify.stamp(this);
 	}
 	
 

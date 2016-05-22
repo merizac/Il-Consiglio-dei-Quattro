@@ -19,7 +19,7 @@ public class ParserAzione {
 	/**
 	 * @param gameState
 	 */
-	public ParserAzione(GameState gameState) {
+	/*public ParserAzione(GameState gameState) {
 		this.gameState = gameState;
 	}
 	
@@ -174,7 +174,7 @@ public class ParserAzione {
 		else
 			return new SecondaAzionePrincipale(gameState); 
 			
-	}
+	}*/
 	
 	
 }

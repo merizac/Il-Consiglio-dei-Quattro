@@ -1,39 +1,26 @@
 package controller;
 
-
-/*import game.Giocatore;
-import game.azioni.AcquistoTesseraPermesso;
-import game.azioni.CambioTesseraPermesso;
-import game.azioni.CostruzioneAiutoRe;
-import game.azioni.CostruzioneTesseraPermesso;
-import game.azioni.ElezioneConsigliere;
-import game.azioni.ElezioneConsigliereVeloce;
-import game.azioni.IngaggioAiutante;
-import game.azioni.SecondaAzionePrincipale;*/
 import utility.Observer;
 import utility.exception.AzioneNonEseguibile;
 import game.GameState;
 import game.azioni.Azione;
-import view.View;
 
-public class Partita implements Observer<Azione> {
+public class Controller implements Observer<Azione> {
 
 	private GameState gameState;
 
 	
 	
-	public Partita(GameState gameState, View view)
+	public Controller(GameState gameState)
 	{
 		this.gameState=gameState;
-		view.registerObserver(this);
-
 	}
 	
 
 	@Override
 	public void update(Azione azione) {
 		try {
-			azione.eseguiAzione();
+			azione.eseguiAzione(gameState);
 		} catch (AzioneNonEseguibile e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -43,7 +30,7 @@ public class Partita implements Observer<Azione> {
 	
 	
 	/**
-	 * @return the tabellone
+	 * @return the gameState
 	 */
 	public GameState getGameState() {
 		return gameState;

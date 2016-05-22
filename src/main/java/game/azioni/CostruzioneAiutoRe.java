@@ -16,25 +16,16 @@ import game.notify.ErrorParameterNotify;
 
 public class CostruzioneAiutoRe extends AzionePrincipale {
 
-	private final Città cittàCostruzione;
-	private final Balcone balcone;
-	private final ArrayList<CartaPolitica> carteGiocatore;
+	private Città cittàCostruzione;
+	private Balcone balcone;
+	private ArrayList<CartaPolitica> carteGiocatore;
 	
-	public CostruzioneAiutoRe(GameState gameState, Città cittàCostruzione, ArrayList<CartaPolitica> carteGiocatore) {
-		super(gameState);
-		this.cittàCostruzione=cittàCostruzione;
-		this.carteGiocatore=carteGiocatore;
-		this.balcone=gameState.getPlanciaRe().getBalconeRe();
-	}
 	/**
 	 * execute the action
 	 */
 	@Override
-	public void eseguiAzione() {
+	public void eseguiAzione(GameState gameState) {
 		Mappa mappa= gameState.getMappa();
-		/*PassaggioParametri passaggioParametri= new PassaggioParametri(gameState);
-		carteGiocatore= new HashSet<CartaPolitica>(passaggioParametri.selezionaCarteGiocatore());
-		cittàCostruzione=passaggioParametri.selezionaCittà();*/
 		if(!controllaColori())
 			gameState.notifyObserver(new ErrorParameterNotify("Errore: i colori delle carte scelte non corrispondon con quelli del balcone!"));
 			
@@ -42,34 +33,34 @@ public class CostruzioneAiutoRe extends AzionePrincipale {
 		int moneteDovute= calcolaMonete() + 
 				mappa.minimaDistanza(gameState.getPedinaRe().getCittà(), cittàCostruzione);
 		
-		if(!paga(moneteDovute))
+		if(!paga(moneteDovute, gameState))
 			gameState.notifyObserver(new ErrorParameterNotify("Errore: i soldi non sono sufficienti!"));
 			
-		if(!pagoAiutanti())
+		if(!pagoAiutanti(gameState))
 			gameState.notifyObserver(new ErrorParameterNotify("Errore: gli aiutanti non sono sufficienti!"));
 			
 		else{
 			gameState.getPedinaRe().setCittà(cittàCostruzione);
-			costruisci();
-			prendiBonus();
+			costruisci(gameState);
+			prendiBonus(gameState);
 		}
-		setStatoTransizionePrincipale(); 
+		setStatoTransizionePrincipale(gameState); 
 		
 	}
 	/**
 	 * add an emporium to the city where the player wants to build
 	 */
-	private void costruisci(){
-	    Emporio emporio = this.gameState.getGiocatoreCorrente().getEmpori().remove(0);
+	private void costruisci(GameState gameState){
+	    Emporio emporio = gameState.getGiocatoreCorrente().getEmpori().remove(0);
 	    this.cittàCostruzione.aggiungiEmporio(emporio);
 	  }
 	  /**
 	   * give to the player the bonus of the city connected to the city where he has built an
 	   * emporium.
 	   */
-	  private void prendiBonus(){
-	    Colore coloreEmporio = this.gameState.getGiocatoreCorrente().getColoreGiocatore();
-	    HashSet<CittàBonus> cittàCollegate = this.gameState.getMappa().trovaCittà(cittàCostruzione, coloreEmporio);
+	  private void prendiBonus(GameState gameState){
+	    Colore coloreEmporio = gameState.getGiocatoreCorrente().getColoreGiocatore();
+	    HashSet<CittàBonus> cittàCollegate = gameState.getMappa().trovaCittà(cittàCostruzione, coloreEmporio);
 	    for ( CittàBonus c: cittàCollegate){
 	        for(Bonus b: c.getBonus()){
 	          b.usaBonus(gameState);
@@ -83,8 +74,8 @@ public class CostruzioneAiutoRe extends AzionePrincipale {
 	   * @param moneteDovute
 	   * @return true if the player has enough money, false in the other case
 	   */
-	private boolean paga(int moneteDovute) {
-		if(!this.gameState.getGiocatoreCorrente().diminuisciRicchezza(moneteDovute))
+	private boolean paga(int moneteDovute, GameState gameState) {
+		if(!gameState.getGiocatoreCorrente().diminuisciRicchezza(moneteDovute))
 			return false;
 		return true;
 	}
@@ -93,11 +84,11 @@ public class CostruzioneAiutoRe extends AzionePrincipale {
 	 * from the player
 	 * @return true if the player has enough aiutanti, false in the other case
 	 */
-	private boolean pagoAiutanti(){
+	private boolean pagoAiutanti(GameState gameState){
 	    int numeroEmpori = cittàCostruzione.getEmpori().size(); 
 	  
 	    if(!cittàCostruzione.getEmpori().isEmpty()) { 
-	      if(this.gameState.getGiocatoreCorrente().getAiutanti().togliAiutanti(numeroEmpori)){
+	      if(gameState.getGiocatoreCorrente().getAiutanti().togliAiutanti(numeroEmpori)){
 	        return true;
 	      }
 	    }
@@ -112,7 +103,7 @@ public class CostruzioneAiutoRe extends AzionePrincipale {
 		int monete=0;
 		int carte=carteGiocatore.size();
 		for (CartaPolitica carta: carteGiocatore ){
-			if (carta.getColore().getColore()=="multicolor"){
+			if (carta.getColore().equals(new CartaPolitica(new Colore("Multicolore")))){
 				monete++;
 			}
 		}
@@ -144,12 +135,12 @@ public class CostruzioneAiutoRe extends AzionePrincipale {
 	 */
 	private boolean controllaColori() {
 		for (CartaPolitica carta: carteGiocatore ){
-			if (carta.getColore().getColore()=="multicolor"){
+			if (carta.getColore().equals(new CartaPolitica(new Colore("Multicolore")))){
 				continue;
 			}
 				
 			for (Consigliere consigliere: balcone.getConsigliere()){
-					if (consigliere.getColore().getColore()==carta.getColore().getColore()){
+					if (consigliere.getColore().equals(carta.getColore())){
 						balcone.getConsigliere().remove(consigliere);
 					}
 					

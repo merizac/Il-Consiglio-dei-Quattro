@@ -1,14 +1,9 @@
 package game.azioni;
 
-import java.util.ArrayList;
 import game.GameState;
 
 public class SecondaAzionePrincipale extends AzioneVeloce {
 
-	public SecondaAzionePrincipale(GameState gameState) {
-		super(gameState);
-		// TODO Auto-generated constructor stub
-	}
 
 	/**
 	 * if the player has already do the main action, fill the Array of Main Action 
@@ -18,8 +13,8 @@ public class SecondaAzionePrincipale extends AzioneVeloce {
 	 * @return false if it is not possible do the action for some reason
 	 */
 	@Override
-	public void eseguiAzione() {
+	public void eseguiAzione(GameState gameState) {
 		
-		setStatoTransizioneSecondaPrincipale(); 	
+		setStatoTransizioneSecondaPrincipale(gameState); 	
 	}
 }

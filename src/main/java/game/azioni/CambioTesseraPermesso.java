@@ -1,34 +1,20 @@
 package game.azioni;
 
-import java.util.ArrayList;
-
 import game.GameState;
-import game.Mazzo;
 import game.Regione;
 import game.TesseraPermesso;
 
 public class CambioTesseraPermesso extends AzioneVeloce {
 
-	private final Regione regione;
-
-	
-
-	/**
-	 * @param partita
-	 * @param regione
-	 */
-	public CambioTesseraPermesso(GameState gameState, Regione regione) {
-		super(gameState);
-		this.regione=regione;
-	}
+	private Regione regione;
 
 
 
 	@Override
-	public void eseguiAzione() {
+	public void eseguiAzione(GameState gameState) {
 		RimozioneCarte();
 		SostituzioneCarte();
-		setStatoTransizioneVeloce(); 
+		setStatoTransizioneVeloce(gameState); 
 		
 	}
 	
@@ -37,11 +23,10 @@ public class CambioTesseraPermesso extends AzioneVeloce {
 	 */
 	private void RimozioneCarte(){
 		
-		ArrayList<TesseraPermesso> tessereDaRimuovere = regione.getTesserePermessoScoperte();
-		Mazzo<TesseraPermesso> mazzoRegione = regione.getMazzoTesserePermesso();
-		
-		for (int indiceArray=0; indiceArray<tessereDaRimuovere.size(); indiceArray++){
-			mazzoRegione.aggiungiCarta(tessereDaRimuovere.remove(indiceArray));
+		int size=regione.getTesserePermessoScoperte().size();
+		for(int i=0; i<size; i++){
+			TesseraPermesso permesso=regione.getTesserePermessoScoperte().remove(0);
+			regione.getMazzoTesserePermesso().aggiungiCarta(permesso);
 		}
 	}
 	
@@ -49,17 +34,22 @@ public class CambioTesseraPermesso extends AzioneVeloce {
 	 * remove cards from MazzoTesserePermesso and add cards to TesserePermessoScoperte
 	 */
 	private void SostituzioneCarte(){
-		
-		ArrayList<TesseraPermesso> tessereRegione = regione.getTesserePermessoScoperte();
-		Mazzo<TesseraPermesso> mazzoRegione = regione.getMazzoTesserePermesso();
-		
-			for (int indiceArray=0; indiceArray<tessereRegione.size(); indiceArray++){
-				tessereRegione.add(mazzoRegione.pescaCarte());
-			}
+	
+		for(int i=0; i<2; i++){
+			TesseraPermesso tessera=regione.getMazzoTesserePermesso().pescaCarte();
+			regione.getTesserePermessoScoperte().add(tessera);
+		}
 	
 		
 
 		
+	}
+
+	/**
+	 * @param regione the regione to set
+	 */
+	public void setRegione(Regione regione) {
+		this.regione = regione;
 	}
 	
 }

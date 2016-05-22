@@ -5,15 +5,5 @@ import utility.exception.AzioneNonEseguibile;
 
 public abstract class Azione {
 	
-	protected final GameState gameState;
-	
-	/**
-	 * @param gameState
-	 */
-	public Azione(GameState gameState) {
-		super();
-		this.gameState = gameState;
-	}
-
-	public abstract void eseguiAzione() throws AzioneNonEseguibile;
+	public abstract void eseguiAzione(GameState gameState) throws AzioneNonEseguibile;
 }
