@@ -59,17 +59,16 @@ public class Reader_new {
 	}
 	
 	//costruiscre la mappa e mette le tessere permesso alle regioni
-	public static Mappa creazioneMappa() throws IOException{
-		creazioneCittà();
+	public static Mappa creazioneMappa(String fileCittà) throws IOException{
+		creazioneCittà(fileCittà);
 		Mappa mappa=new Mappa(new HashSet<Città>(cities));
 		letturaTesserePermesso(cities, regioni);
-		
 		return mappa;
 	} 
 
 	//crea città e gli mette i bonus rotondi
-	public static void creazioneCittà() throws IOException{
-		cities=letturaCittà();
+	public static void creazioneCittà(String fileCittà) throws IOException{
+		cities=letturaCittà(fileCittà);
 		letturaBonusTondiCittà();
 		
 	}
@@ -196,10 +195,10 @@ public class Reader_new {
 	}
 
 	
-	public static ArrayList<Città> letturaCittà() throws IOException{
+	public static ArrayList<Città> letturaCittà(String fileCittà) throws IOException{
 	
 		ArrayList<Colore> coloriCittà= new ArrayList<Colore>();
-		FileReader città=new FileReader("src/main/resources/città.txt");
+		FileReader città=new FileReader(fileCittà);
 		BufferedReader b;
 		b=new BufferedReader(città);
 		String stringaLetta;

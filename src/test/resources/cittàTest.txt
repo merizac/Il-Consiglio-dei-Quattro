@@ -1,0 +1,24 @@
+C1 1
+C2 2
+CITTA
+3
+A C1
+B C2
+C C1
+3
+D C1
+E C2
+F C2
+3
+G C2
+H C1
+I C1
+CITTACOLLEGATE
+A G H
+B H
+C I
+D I E
+E F I
+F G E H
+G A F
+H A B
