@@ -3,17 +3,18 @@
  */
 package game;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import bonus.BonusPuntiVittoria;
 
-public class ColoreCittà extends Colore {
+public class ColoreCittà extends Colore implements Serializable {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -4867041496487133407L;
-	private ArrayList<CittàBonus> città;
-	private final BonusPuntiVittoria bonusColore;
+	private transient ArrayList<CittàBonus> città;
+	private final transient BonusPuntiVittoria bonusColore;
 	/**
 	 * @param colore
 	 */

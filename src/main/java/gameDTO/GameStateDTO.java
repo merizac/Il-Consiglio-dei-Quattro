@@ -36,7 +36,7 @@ public class GameStateDTO implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "GameStateDTO\nconsiglieri=" + consiglieri + "\nregioni="+regioni+  "\ncittà="  ;
+		return "GameStateDTO\nconsiglieri=" + consiglieri + "\nregioni="+regioni+  "\ncittà=" +città  ;
 	}
 	
 	
