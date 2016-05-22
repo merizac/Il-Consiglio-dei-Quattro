@@ -48,7 +48,7 @@ public class Reader {
 		ArrayList<PunteggioNobiltà> punteggioNobiltà=letturaPunteggioNobiltà();
 		//ArrayListConsiglieri
 		ArrayList<Consigliere> consiglieri = letturaConsigliere();
-		Collections.shuffle(consiglieri);
+		//Collections.shuffle(consiglieri);
 		//ArrayListRegione
 		ArrayList<Regione> regioni=letturaRegioni(consiglieri);
 		
@@ -62,70 +62,6 @@ public class Reader {
 		PlanciaRe planciaRe = new PlanciaRe(balconeRe, bonusRe, punteggioNobiltà); 
 		
 		letturaTesserePermesso(cities, regioni);
-		
-		/*
-		//TesserePermesso
-		FileReader t=new FileReader("src/main/resources/tesseraPermesso.txt");
-		BufferedReader b;
-		b=new BufferedReader(t);
-		String stringaLetta;
-		
-		while(true) {	
-			stringaLetta=b.readLine();
-	     	if(stringaLetta==null)
-	     		break;
-			for (Regione r: regioni){
-		     	while(!stringaLetta.equals("FINEREGIONE")){
-			     	StringTokenizer st=new StringTokenizer(stringaLetta);
-			     	ArrayList<Città> cit=new ArrayList<>();
-			     	while(st.hasMoreTokens()){
-			     		cit.add(findCittà(st.nextToken(), cities));		     	
-			     	}
-			     	//aggiunge i bonus
-			     	stringaLetta=b.readLine();
-			     	ArrayList<Bonus> bonus = new ArrayList<Bonus>();
-			     	StringTokenizer str=new StringTokenizer(stringaLetta);
-					while(str.hasMoreTokens()){
-						String tmp=str.nextToken();
-						if(tmp.equals("BonusAiutanti")){
-							int quantità=Integer.parseInt(str.nextToken());
-							bonus.add(new BonusAiutanti(quantità));
-						}
-						else if(tmp.equals("BonusAzionePrincipale")){
-							bonus.add(new BonusAzionePrincipale());
-						}
-						else if(tmp.equals("BonusMoneta")){
-							if(st.hasMoreTokens()){
-								int quantità=Integer.parseInt(st.nextToken());
-								bonus.add(new BonusMoneta(quantità));
-							}
-						}
-						else if (tmp.equals("BonusPuntiVittoria")){
-							if(st.hasMoreTokens()){
-								int quantità=Integer.parseInt(st.nextToken());
-								bonus.add(new BonusPuntiVittoria(quantità));
-							}
-						}
-						else if (tmp.equals("BonusCartePolitica")){
-							if(st.hasMoreTokens()){
-								int quantità=Integer.parseInt(str.nextToken());
-								bonus.add(new BonusCartePolitica(quantità));
-							}
-						}
-						else if (tmp.equals("BonusPuntiNobiltà")){
-							if(st.hasMoreTokens()){
-								int quantità=Integer.parseInt(str.nextToken());
-								bonus.add(new BonusPuntiNobiltà(quantità));
-							}
-						}
-					}
-			     	new TesseraPermesso(cit, bonus, r);	
-			    	stringaLetta=b.readLine();
-					}
-		     	stringaLetta=b.readLine();
-		     	}
-			}
-		b.close();*/
 		
 		Mappa mappa=new Mappa(new HashSet<Città>(cities));
 		return new GameState();
