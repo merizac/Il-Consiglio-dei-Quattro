@@ -9,14 +9,14 @@ import org.jgrapht.graph.SimpleGraph;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import it.polimi.ingsw.cg17.Reader_new;
+import it.polimi.ingsw.cg17.Reader;
 import junit.framework.AssertionFailedError;
 
 public class CittàCollegateTest {
 
 	static Mappa mappa;
 	static Città città=null;
-	static Reader_new reader= new Reader_new();
+	static Reader reader= new Reader();
 
 	@BeforeClass
 	public static void init() throws IOException{

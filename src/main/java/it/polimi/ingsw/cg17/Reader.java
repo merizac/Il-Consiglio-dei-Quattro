@@ -39,39 +39,44 @@ import game.Città;
 import game.CittàBonus;
 
 public class Reader {
+	
+	private static ArrayList<Consigliere> consiglieri=new ArrayList<Consigliere>();
+	private static ArrayList<Regione> regioni=new ArrayList<Regione>(); 
+	private static ArrayList<Città> cities=new ArrayList<Città>();
 
-	public GameState inizializzatore() throws IOException{
-
-		//MazzoCartePolitica
-		Mazzo<CartaPolitica> cartePolitica=letturaCartePolitica();
-		//ArrayListPunteggioNobiltà
-		ArrayList<PunteggioNobiltà> punteggioNobiltà=letturaPunteggioNobiltà();
-		//ArrayListConsiglieri
-		ArrayList<Consigliere> consiglieri = letturaConsigliere();
-		//Collections.shuffle(consiglieri);
-		//ArrayListRegione
-		ArrayList<Regione> regioni=letturaRegioni(consiglieri);
-		
-		//CREAZIONE CITTA e tutto ciò che comportano
-		ArrayList<Città> cities=letturaCittà(regioni);
-		letturaBonusTondiCittà(cities); 
-		
-		Re re=new Re(findCittàRe(cities));
+	
+	public static PlanciaRe creazionePlanciaRe() throws IOException{
 		ArrayList<Bonus> bonusRe = letturaBonusRe();
 		Balcone balconeRe=new Balcone(4, consiglieri);
-		PlanciaRe planciaRe = new PlanciaRe(balconeRe, bonusRe, punteggioNobiltà); 
+		PlanciaRe planciaRe = new PlanciaRe(balconeRe, bonusRe, letturaPunteggioNobiltà());
 		
-		letturaTesserePermesso(cities, regioni);
-		
-		Mappa mappa=new Mappa(new HashSet<Città>(cities));
-		return new GameState();
-		}
-		
+		return planciaRe;
+	}
 	
-	public Mazzo<CartaPolitica> letturaCartePolitica() throws IOException{
+	public static Re creazioneRe(){
+		Re re=new Re(findCittàRe());
+		return re;
+	}
+	
+	//costruiscre la mappa e mette le tessere permesso alle regioni
+	public static Mappa creazioneMappa(String fileCittà) throws IOException{
+		creazioneCittà(fileCittà);
+		Mappa mappa=new Mappa(new HashSet<Città>(cities));
+		letturaTesserePermesso(cities, regioni);
+		return mappa;
+	} 
+
+	//crea città e gli mette i bonus rotondi
+	public static void creazioneCittà(String fileCittà) throws IOException{
+		cities=letturaCittà(fileCittà);
+		letturaBonusTondiCittà();
+		
+	}
+	
+	public static Mazzo<CartaPolitica> letturaCartePolitica(String fileCartePolitica) throws IOException{
 		
 		ArrayList<CartaPolitica> cartaPoliticaList=new ArrayList<CartaPolitica>();
-		FileReader cartaPolitica=new FileReader("src/main/resources/cartaPolitica.txt");
+		FileReader cartaPolitica=new FileReader(fileCartePolitica);
 		BufferedReader b;
 		b=new BufferedReader(cartaPolitica);
 		String stringaLetta;
@@ -88,7 +93,7 @@ public class Reader {
 		return new Mazzo<CartaPolitica>(cartaPoliticaList);
 	}
 	
-	public ArrayList<PunteggioNobiltà> letturaPunteggioNobiltà() throws NumberFormatException, IOException{
+	public static ArrayList<PunteggioNobiltà> letturaPunteggioNobiltà() throws NumberFormatException, IOException{
 		
 		FileReader punteggioNobiltà=new FileReader("src/main/resources/punteggioNobiltà.txt");
 		BufferedReader b;
@@ -142,9 +147,8 @@ public class Reader {
 		return nobiltà;
 	}
 	
-	public ArrayList<Consigliere> letturaConsigliere() throws IOException{
+	public static ArrayList<Consigliere> letturaConsigliere() throws IOException{
 		
-		ArrayList<Consigliere> consiglieri=new ArrayList<Consigliere>();
 		FileReader cons=new FileReader("src/main/resources/consiglieri.txt");
 		BufferedReader b;
 		b=new BufferedReader(cons);
@@ -162,9 +166,8 @@ public class Reader {
 		return consiglieri;
 	}
 	
-	public ArrayList<Regione> letturaRegioni(ArrayList<Consigliere> consiglieri) throws IOException{
+	public static ArrayList<Regione> letturaRegioni() throws IOException{
 		
-		ArrayList<Regione> regioni=new ArrayList<Regione>();
 		FileReader reg=new FileReader("src/main/resources/regioni.txt");
 		BufferedReader b;
 		b=new BufferedReader(reg);
@@ -191,11 +194,11 @@ public class Reader {
 		return regioni;
 	}
 
-	public ArrayList<Città> letturaCittà(ArrayList<Regione> regioni) throws IOException{
+	
+	public static ArrayList<Città> letturaCittà(String fileCittà) throws IOException{
 	
 		ArrayList<Colore> coloriCittà= new ArrayList<Colore>();
-		ArrayList<Città> cities = new ArrayList<Città>();
-		FileReader città=new FileReader("src/main/resources/città.txt");
+		FileReader città=new FileReader(fileCittà);
 		BufferedReader b;
 		b=new BufferedReader(città);
 		String stringaLetta;
@@ -260,7 +263,7 @@ public class Reader {
 				if(nome.equals(c.getNome())){
 					while(st.hasMoreTokens()){
 						String cittàCollegata=st.nextToken();
-						Città cittàToFind=findCittà(cittàCollegata, cities);
+						Città cittàToFind=findCittà(cittàCollegata);
 						c.getCittàCollegate().add(cittàToFind);
 					}
 				}
@@ -274,7 +277,8 @@ public class Reader {
 		return cities;
 	}
 	
-	public ArrayList<Bonus> letturaBonusRe() throws IOException{
+
+	public static ArrayList<Bonus> letturaBonusRe() throws IOException{
 
 		ArrayList<Bonus> bonusRe=new ArrayList<>();
 		
@@ -292,7 +296,8 @@ public class Reader {
 		return bonusRe;
 	}
 
-	public void letturaBonusTondiCittà(ArrayList<Città> cities) throws IOException{
+	
+	public static void letturaBonusTondiCittà() throws IOException{
 		
 		List<ArrayList<Bonus>> listaBonusTondi= new ArrayList<ArrayList<Bonus>>();
 		FileReader bonusDelleCittà=new FileReader("src/main/resources/bonusDelleCittà.txt");
@@ -350,7 +355,8 @@ public class Reader {
 		}
 	}
 
-	public void letturaTesserePermesso(ArrayList<Città> cities, ArrayList<Regione> regioni) throws IOException{
+	
+	public static void letturaTesserePermesso(ArrayList<Città> cities, ArrayList<Regione> regioni) throws IOException{
 		
 		FileReader t=new FileReader("src/main/resources/tesseraPermesso.txt");
 		BufferedReader b;
@@ -367,7 +373,7 @@ public class Reader {
 			     	ArrayList<Città> cit=new ArrayList<>();
 			     	//aggiunge le citta all'arraylist
 			     	while(st.hasMoreTokens()){
-			     		cit.add(findCittà(st.nextToken(), cities));		     	
+			     		cit.add(findCittà(st.nextToken()));		     	
 			     	}
 			     	
 			     	//aggiunge i bonus all'arraylist
@@ -417,8 +423,9 @@ public class Reader {
 		b.close();
 	}
 	
-	public Città findCittà(String c, ArrayList<Città> elenco){
-		for (Città i: elenco){
+	
+	public static Città findCittà(String c){
+		for (Città i: cities){
 			if(i.getNome().equals(c)){
 				
 				return i;
@@ -429,8 +436,8 @@ public class Reader {
 
 	
 	//manca eccezione
-	public Regione findRegione(String c, ArrayList<Regione> elenco){
-		for (Regione i: elenco){
+	public Regione findRegione(String c){
+		for (Regione i: regioni){
 			if(i.getNome().equals(c)){
 				
 				return i;
@@ -439,8 +446,9 @@ public class Reader {
 		return null;
 	}
 
-	public Città findCittàRe(ArrayList<Città> elenco){
-		for(Città c:elenco){
+	
+	public static Città findCittàRe(){
+		for(Città c:cities){
 			if(c.getColoreCittà().getColore().equals("Re")){
 				return c;
 			}

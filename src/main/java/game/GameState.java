@@ -9,7 +9,7 @@ import controller.StartEnd;
 import controller.Stato;
 import game.market.Offerta;
 import game.notify.Notify;
-import it.polimi.ingsw.cg17.Reader_new;
+import it.polimi.ingsw.cg17.Reader;
 import utility.Observable;
 
 public class GameState extends Observable<Notify> implements Model{
@@ -36,12 +36,12 @@ public class GameState extends Observable<Notify> implements Model{
 	 * @throws IOException 
 	 */
 	public GameState() throws IOException {
-		this.consiglieri = Reader_new.letturaConsigliere();
-		this.regioni = Reader_new.letturaRegioni();
-		this.planciaRe = Reader_new.creazionePlanciaRe();
-		this.mazzoCartePolitica = Reader_new.letturaCartePolitica("src/main/resources/cartaPolitica.txt");
-		this.mappa = Reader_new.creazioneMappa("src/main/resources/città.txt");
-		this.pedinaRe = Reader_new.creazioneRe();
+		this.consiglieri = Reader.letturaConsigliere();
+		this.regioni = Reader.letturaRegioni();
+		this.planciaRe = Reader.creazionePlanciaRe();
+		this.mazzoCartePolitica = Reader.letturaCartePolitica("src/main/resources/cartaPolitica.txt");
+		this.mappa = Reader.creazioneMappa("src/main/resources/città.txt");
+		this.pedinaRe = Reader.creazioneRe();
 		this.giocatori = new ArrayList<Giocatore>();
 		this.stato= new StartEnd(this);
 		this.offerteMarket=new ArrayList<>();

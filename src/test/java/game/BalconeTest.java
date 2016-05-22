@@ -13,7 +13,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import game.query.ConsiglieriNotify;
-import it.polimi.ingsw.cg17.Reader_new;
+import it.polimi.ingsw.cg17.Reader;
 
 public class BalconeTest {
 
