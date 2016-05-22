@@ -60,7 +60,7 @@ public class GameState extends Observable<Notify> implements Model{
 	 * @param numeroTurni the numeroTurni to set
 	 */
 	public void prossimoTurno() {
-		this.numeroTurni = this.numeroTurni++;
+		this.numeroTurni++;
 	}
 	/**
 	 * 
@@ -245,7 +245,7 @@ public class GameState extends Observable<Notify> implements Model{
 		else giocatoreCorrente =giocatori.get(0);
 	}
 	public void decrementaTurno() {
-		this.numeroTurni=this.numeroTurni--;
+		this.numeroTurni--;
 		
 	}
 }
