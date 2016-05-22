@@ -1,6 +1,12 @@
 package game;
 
-public class Colore {
+import java.io.Serializable;
+
+public class Colore implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8768107036028122791L;
 	private final String colore;
 	/**
 	 * the construct of the class Colore set the variable colore at the parameter passed

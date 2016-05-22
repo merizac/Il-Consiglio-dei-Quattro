@@ -8,6 +8,10 @@ import bonus.BonusPuntiVittoria;
 
 public class ColoreCittà extends Colore {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4867041496487133407L;
 	private ArrayList<CittàBonus> città;
 	private final BonusPuntiVittoria bonusColore;
 	/**

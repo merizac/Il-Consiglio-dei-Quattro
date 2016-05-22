@@ -1,17 +1,19 @@
 package game;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import bonus.Bonus;
 
-public class Regione {
+public class Regione implements Serializable {
 
+	private static final long serialVersionUID = 1081381400830533482L;
 	private final String nome;
-	private final Mazzo<TesseraPermesso> mazzoTesserePermesso;
-	private final ArrayList<TesseraPermesso> tesserePermessoScoperte;
-	private final Bonus bonusRegione;
-	private final Balcone balcone;
-	private ArrayList<Città> cittàRegione;
+	private final transient Mazzo<TesseraPermesso> mazzoTesserePermesso;
+	private final transient ArrayList<TesseraPermesso> tesserePermessoScoperte;
+	private final transient Bonus bonusRegione;
+	private final transient Balcone balcone;
+	private transient ArrayList<Città> cittàRegione;
 	/**
 	 * @param nome
 	 * @param mazzoTesserePermesso

@@ -12,7 +12,7 @@ import game.notify.Notify;
 import it.polimi.ingsw.cg17.Reader;
 import utility.Observable;
 
-public class GameState extends Observable<Notify> implements Model{
+public class GameState extends Observable<Notify> {
 	private final Mappa mappa;
 	private final ArrayList<Regione> regioni;
 	private final PlanciaRe planciaRe;
@@ -132,7 +132,7 @@ public class GameState extends Observable<Notify> implements Model{
 	/**
 	 * @return the consiglieri
 	 */
-	@Override
+	
 	public ArrayList<Consigliere> getConsiglieri() {
 		return consiglieri;
 	}

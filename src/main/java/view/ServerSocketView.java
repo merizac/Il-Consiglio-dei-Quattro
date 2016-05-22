@@ -5,23 +5,22 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.Scanner;
-
-import game.GameState;
 import game.azioni.Azione;
 import game.notify.Notify;
-import game.query.Query;
+import gameDTO.GameStateDTO;
 
 public class ServerSocketView extends View implements Runnable {
 
 	private Socket socket;
 	private ObjectInputStream socketIn;
 	private ObjectOutputStream socketOut;
-	private GameState gameState;
+	private GameStateDTO gameStateDTO;
 	
 	
-	public ServerSocketView(Socket socket, GameState gameState) throws IOException{
+	
+	public ServerSocketView(Socket socket, GameStateDTO gameStateDTO) throws IOException{
 		this.socket=socket;
-		this.gameState=gameState;
+		this.gameStateDTO=gameStateDTO;
 		this.socketIn=new ObjectInputStream(socket.getInputStream());
 		this.socketOut=new ObjectOutputStream(socket.getOutputStream());
 	}
@@ -42,7 +41,14 @@ public class ServerSocketView extends View implements Runnable {
 	
 	@Override
 	public void run() {
-		while(true){
+		
+		try {
+			this.socketOut.writeObject(gameStateDTO);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		/*while(true){
 			
 			try {
 				Object object=socketIn.readObject();
@@ -51,18 +57,15 @@ public class ServerSocketView extends View implements Runnable {
 					System.out.println("VIEW: received the action "+ action);
 					this.notifyObserver(action);
 				}
-				else if(object instanceof Query){
-					this.socketOut.writeObject(((Query) object).perform(gameState));
-				}
+				
 			} catch (ClassNotFoundException | IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		
 				
 				
 			
-		}
+		}*/
 	}
 
 	@Override

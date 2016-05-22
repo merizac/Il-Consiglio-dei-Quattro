@@ -8,6 +8,7 @@ import java.util.concurrent.Executors;
 
 import controller.Controller;
 import game.GameState;
+import gameDTO.GameStateDTO;
 import view.ServerSocketView;
 
 public class Server {
@@ -35,10 +36,12 @@ public class Server {
 		System.out.println("SERVER SOCKET READY ON PORT "+ PORT);
 
 		while(true){
-			
 			Socket socket=serverSocket.accept();
-			
-			ServerSocketView view=new ServerSocketView(socket, gioco);
+			GameStateDTO gameStateDTO=new GameStateDTO();
+			gameStateDTO.setCittà(gioco.getCittà());
+			gameStateDTO.setConsiglieri(gioco.getConsiglieri());
+			gameStateDTO.setRegioni(gioco.getRegioni());
+			ServerSocketView view=new ServerSocketView(socket, gameStateDTO);
 			this.gioco.registerObserver(view);
 			view.registerObserver(this.controller);
 			executor.submit(view);

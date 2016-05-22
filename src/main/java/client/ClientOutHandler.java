@@ -6,33 +6,27 @@ import java.util.Scanner;
 import game.azioni.Azione;
 import game.query.GetAzioni;
 import game.query.Query;
+import gameDTO.GameStateDTO;
 
 
 public class ClientOutHandler implements Runnable {
 
 private ObjectOutputStream socketOut;
+private GameStateDTO gameStateDTO;
 	
-	public ClientOutHandler(ObjectOutputStream socketOut) {
+	public ClientOutHandler(ObjectOutputStream socketOut, GameStateDTO gameStateDTO) {
 		this.socketOut=socketOut;
+		this.gameStateDTO=gameStateDTO;
 	}
 	
 	@Override
 	public void run() {
 
 		System.out.println("RUNNING");
+		System.out.println("OutHandler :"+gameStateDTO);
 		Scanner stdIn=new Scanner(System.in);
 		
 		while(true){
-			
-			
-			Query query=new GetAzioni();
-			System.out.println("SENDING THE QUERY");
-			try{
-				socketOut.writeObject(query);
-				socketOut.flush();
-			}catch(IOException e){
-				e.printStackTrace();
-			}
 			
 			String inputLine=stdIn.nextLine();
 			Azione action=null;
