@@ -74,10 +74,10 @@ public class Reader_new {
 		
 	}
 	
-	public static Mazzo<CartaPolitica> letturaCartePolitica() throws IOException{
+	public static Mazzo<CartaPolitica> letturaCartePolitica(String fileCartePolitica) throws IOException{
 		
 		ArrayList<CartaPolitica> cartaPoliticaList=new ArrayList<CartaPolitica>();
-		FileReader cartaPolitica=new FileReader("src/main/resources/cartaPolitica.txt");
+		FileReader cartaPolitica=new FileReader(fileCartePolitica);
 		BufferedReader b;
 		b=new BufferedReader(cartaPolitica);
 		String stringaLetta;
