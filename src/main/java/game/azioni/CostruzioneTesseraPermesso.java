@@ -89,6 +89,18 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale {
 	public void setCittàCostruzione(Città cittàCostruzione) {
 		this.cittàCostruzione = cittàCostruzione;
 	}
+	/**
+	 * @return the tesseraPermessoScoperta
+	 */
+	public TesseraPermesso getTesseraPermessoScoperta() {
+		return tesseraPermessoScoperta;
+	}
+	/**
+	 * @return the cittàCostruzione
+	 */
+	public Città getCittàCostruzione() {
+		return cittàCostruzione;
+	}
 	
 	
 }
