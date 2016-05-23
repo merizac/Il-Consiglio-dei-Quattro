@@ -1,0 +1,9 @@
+BonusPuntiNobiltà 1
+BonusPuntiNobiltà 1
+BonusCartePolitica 1
+BonusPuntiVittoria 1
+BonusPuntiVittoria 3
+BonusMoneta 3
+BonusMoneta 1
+BonusMoneta 1 BonusAiutanti 1
+BonusAiutanti 1 BonusCartePolitica 1
