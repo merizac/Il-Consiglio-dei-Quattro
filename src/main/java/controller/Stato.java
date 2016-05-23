@@ -1,8 +1,8 @@
 package controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import game.GameState;
+import game.azioni.Azione;
 import utility.exception.AzioneNonEseguibile;
 
 public interface Stato {
@@ -49,5 +49,7 @@ public interface Stato {
 	public default void transizionePassa(GameState gameState) throws AzioneNonEseguibile{
 		throw new AzioneNonEseguibile("Il tipo di azione non può essere eseguita!"); 
 	};
+	
+	public List<Azione> getAzioni();
 	
 }

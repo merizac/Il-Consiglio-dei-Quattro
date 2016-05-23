@@ -13,46 +13,34 @@ import game.notify.ErrorParameterNotify;
 
 public class CostruzioneTesseraPermesso extends AzionePrincipale {
 
-	private final TesseraPermesso tesseraPermessoScoperta;
-	private final Città cittàCostruzione;
+	private TesseraPermesso tesseraPermessoScoperta;
+	private Città cittàCostruzione;
 	
-
-	/**
-	 * @param gameState
-	 * @param tesseraPermessoScoperta
-	 * @param cittàCostruzione
-	 */
-	public CostruzioneTesseraPermesso(GameState gameState, Città cittàCostruzione, TesseraPermesso tesseraPermessoScoperta) {
-		super(gameState);
-		this.cittàCostruzione=cittàCostruzione;
-		this.tesseraPermessoScoperta= tesseraPermessoScoperta;
-	}
-
 
 	/**
 	 * execute the action
 	 */
 	@Override
-	public void eseguiAzione() {
+	public void eseguiAzione(GameState gameState) {
 		/*PassaggioParametri passaggioParametri= new PassaggioParametri(gameState);
 		cittàCostruzione=passaggioParametri.selezionaCittà();
 		tesseraPermessoScoperta=passaggioParametri.selezionaTesseraPermesso();*/
 		
-			if(!pagoAiutanti())
+			if(!pagoAiutanti(gameState))
 				gameState.notifyObserver(new ErrorParameterNotify("Errore: i soldi non sono sufficienti"));
 			
-		costruisci();
-		prendiBonus();
-		copriTessera();
-		setStatoTransizionePrincipale(); 
+		costruisci(gameState);
+		prendiBonus(gameState);
+		copriTessera(gameState);
+		setStatoTransizionePrincipale(gameState); 
 		
 	}
 	/**
 	 * move the permit tile used from tesserePermesso to tesserePermessoUsate
 	 */
-	private void copriTessera() {
-		this.gameState.getGiocatoreCorrente().getTesserePermesso().remove(tesseraPermessoScoperta);
-		this.gameState.getGiocatoreCorrente().getTesserePermessoUsate().add(tesseraPermessoScoperta);
+	private void copriTessera(GameState gameState) {
+		gameState.getGiocatoreCorrente().getTesserePermesso().remove(tesseraPermessoScoperta);
+		gameState.getGiocatoreCorrente().getTesserePermessoUsate().add(tesseraPermessoScoperta);
 	}
 
 
@@ -60,11 +48,11 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale {
 	 * check if the player has enough aiutanti and then it subtract them from the player
 	 * @return true if the player has enough aiutanti, false in the other case
 	 */
-	private boolean pagoAiutanti(){
+	private boolean pagoAiutanti(GameState gameState){
 		int numeroEmpori = cittàCostruzione.getEmpori().size(); 
 	
 		if(!cittàCostruzione.getEmpori().isEmpty()) { 
-			if(this.gameState.getGiocatoreCorrente().getAiutanti().togliAiutanti(numeroEmpori)){
+			if(gameState.getGiocatoreCorrente().getAiutanti().togliAiutanti(numeroEmpori)){
 				return true;
 			}
 		}
@@ -73,22 +61,23 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale {
 	/**
 	 * build an emporio to the city selected
 	 */
-	private void costruisci(){
-		Emporio emporio = this.gameState.getGiocatoreCorrente().getEmpori().remove(0);
+	private void costruisci(GameState gameState){
+		Emporio emporio = gameState.getGiocatoreCorrente().getEmpori().remove(0);
 		this.cittàCostruzione.aggiungiEmporio(emporio);
 	}
 	/**
 	 * give to the player the bonus of the city connected to the city where the player has built
 	 */
-	private void prendiBonus(){
-		Colore coloreEmporio = this.gameState.getGiocatoreCorrente().getColoreGiocatore();
-		HashSet<CittàBonus> cittàCollegate = this.gameState.getMappa().trovaCittà(cittàCostruzione, coloreEmporio);
+	private void prendiBonus(GameState gameState){
+		Colore coloreEmporio = gameState.getGiocatoreCorrente().getColoreGiocatore();
+		HashSet<CittàBonus> cittàCollegate = gameState.getMappa().trovaCittà(cittàCostruzione, coloreEmporio);
 		for ( CittàBonus c: cittàCollegate){
 				for(Bonus b: c.getBonus()){
 					b.usaBonus(gameState);
 		}
 		}
 	}
+
 
 
 	/* (non-Javadoc)
@@ -99,7 +88,20 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale {
 		return "Costruzione Tessera Permesso";
 	}
 	
-	
+
+	/**
+	 * @param tesseraPermessoScoperta the tesseraPermessoScoperta to set
+	 */
+	public void setTesseraPermessoScoperta(TesseraPermesso tesseraPermessoScoperta) {
+		this.tesseraPermessoScoperta = tesseraPermessoScoperta;
+	}
+	/**
+	 * @param cittàCostruzione the cittàCostruzione to set
+	 */
+	public void setCittàCostruzione(Città cittàCostruzione) {
+		this.cittàCostruzione = cittàCostruzione;
+	}
+
 	
 	
 }

@@ -11,15 +11,27 @@ import game.Città;
 import game.Consigliere;
 import game.GameState;
 import game.Regione;
+import game.notify.Notify;
 
 public class ViewCLI extends View{
 	
 	private ArrayList<String> pattern=new ArrayList<>();
 
+	@Override
+	public void update(Notify c) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 	/*public ViewCLI(GameState gameState, ParserAzione parser) {
 		super(gameState, parser);
+=======
+	public ViewCLI(GameState gameState, ParserAzione parser) {
+		//super(gameState, parser);
+>>>>>>> branch 'fixMvc' of https://nicolasosio@bitbucket.org/nicolasosio/progettoingsoftware.git
 		createPattern();
-	}*/
+	}
 	
 	public ViewCLI(GameState gameState) {
 		super(gameState);
@@ -29,7 +41,11 @@ public class ViewCLI extends View{
 	
 
 	private void createPattern() {
+
 		String colori="";
+
+		String colori= "(";
+>>>>>>> branch 'fixMvc' of https://nicolasosio@bitbucket.org/nicolasosio/progettoingsoftware.git
 		Set<Consigliere> consiglieri= new HashSet<>(model.getConsiglieri());
 		for(Consigliere c: consiglieri){
 			colori=colori+c.getColore().getColore().toString()+"|";
@@ -55,10 +71,11 @@ public class ViewCLI extends View{
 		String ecv="(2v) ("+regioni+") ("+colori+")";
 		String ia="(3v) ";
 		String sap="(4v)";
+<<<<<<< HEAD
 		/*Pattern p=Pattern.compile(atp);
 		System.out.println(p);
 		pattern.add(p);
-		System.out.println(pattern.get(0));*/
+		System.out.println(pattern.get(0));
 		
 		pattern.add(atp);
 		pattern.add(cr);
@@ -92,6 +109,10 @@ public class ViewCLI extends View{
 		}
 		return false;
 		
+
+		pattern= Pattern.compile("("+atp+"|"+cr+"|"+ctp+"|"+ec+"|"+ct+"|"+ecv+"|"+ia+"|"+sap+")");
+		
+
 	}
 	
 	@Override	
@@ -100,7 +121,11 @@ public class ViewCLI extends View{
 		String input=scanner.nextLine();
 		while(!isNumeric(input))
 			System.out.println("valore non valido: inserisci numero giocatori");
-		parser.instanziaGiocatori(input);*/
+
+		parser.instanziaGiocatori(input);
+
+		//parser.instanziaGiocatori(input);
+
 		
 		
 	}
@@ -118,8 +143,9 @@ public class ViewCLI extends View{
 
 	@Override
 	public void update(Notify notify) {
+
 		notify.stamp(this);
-	}*/
+	}
 	
 	public static void main(String[] args){
 		try {
@@ -136,7 +162,16 @@ public class ViewCLI extends View{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
+
+		//notify.stamp(this);
+
 	}
+
+	@Override
+	public void update(Notify c) {
+		// TODO Auto-generated method stub
+		
+	}*/
 	
 
 }

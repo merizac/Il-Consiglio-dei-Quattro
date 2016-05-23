@@ -30,7 +30,7 @@ public class ParserAzione {
 		gameState.creaGiocatori(Integer.parseInt(numero));
 	}
 	
-	public Azione parser (String input) throws Exception{
+	/*public Azione parser (String input) throws Exception{
 		StringTokenizer azione= new StringTokenizer(input);
 		Regione regioneSelezionata=null;
 		ArrayList<CartaPolitica> cartePolitica= new ArrayList<>();
@@ -127,7 +127,7 @@ public class ParserAzione {
 		
 	}
 		return azioneCreata;	
-}
+}*/
 	
 	public Regione cercaRegione(String regione){
 		Regione regioneSelezionata=null;
@@ -157,6 +157,7 @@ public class ParserAzione {
 				cittàCercata=c; 
 		}
 		return cittàCercata;
+
 	}
 	
 	public Consigliere cercaConsigliere(String consigliere){
@@ -179,7 +180,7 @@ public class ParserAzione {
 				System.out.println("Inserisci azione");
 				System.out.println(gameState.getConsiglieri());
 				String azione=scanner.nextLine();
-				System.out.println(parser.parser(azione.toString()));
+				//System.out.println(parser.parser(azione.toString()));
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -189,6 +190,6 @@ public class ParserAzione {
 			e.printStackTrace();
 		} 
 	}
-	
-	
-}
+
+			
+	}

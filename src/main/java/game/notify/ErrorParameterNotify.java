@@ -1,9 +1,12 @@
 package game.notify;
 
-import view.View;
 
-public class ErrorParameterNotify implements Notify {
+public class ErrorParameterNotify extends Notify {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3147356102007186569L;
 	private String error;
 	
 	/**
@@ -14,7 +17,7 @@ public class ErrorParameterNotify implements Notify {
 	}
 
 	@Override
-	public void stamp(View view) {
+	public void stamp() {
 		System.out.println(error);
 
 	}

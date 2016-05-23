@@ -1,19 +1,13 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import game.GameState;
+import game.azioni.Azione;
 
 public class Stato10 implements Stato {
 
-	private List<String> azionePrincipale;
-	
-	/**
-	 * @param azionePrincipale
-	 */
-	public Stato10() {
-		//this.azionePrincipale = riempiAzioniPrincipali();
-	}
 
 	@Override
 	public void transizionePrincipale(GameState gameState) {
@@ -23,6 +17,12 @@ public class Stato10 implements Stato {
 		}
 		else
 			gameState.setBonusAzionePrincipale(false); 
+	}
+
+	@Override
+	public List<Azione> getAzioni() {
+		List<Azione> azioniDisponibili=new ArrayList<>();
+		return azioniDisponibili;
 	}
 
 

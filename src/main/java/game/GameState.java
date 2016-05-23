@@ -39,8 +39,8 @@ public class GameState extends Observable<Notify> implements Model{
 		this.consiglieri = Reader_new.letturaConsigliere();
 		this.regioni = Reader_new.letturaRegioni();
 		this.planciaRe = Reader_new.creazionePlanciaRe();
-		this.mazzoCartePolitica = Reader_new.letturaCartePolitica();
-		this.mappa = Reader_new.creazioneMappa();
+		this.mazzoCartePolitica = Reader_new.letturaCartePolitica("src/main/resources/cartaPolitica.txt");
+		this.mappa = Reader_new.creazioneMappa("src/main/resources/città.txt");
 		this.pedinaRe = Reader_new.creazioneRe();
 		this.giocatori = new ArrayList<Giocatore>();
 		this.stato= new StartEnd(this);

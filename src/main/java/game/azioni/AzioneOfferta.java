@@ -11,14 +11,10 @@ public class AzioneOfferta extends Azione {
 	private Marketable marketable;
 	private int prezzo;
 
-	public AzioneOfferta(GameState gameState, Marketable marketable, int prezzo) {
-		super(gameState);
-		this.marketable=marketable;
-		this.prezzo=prezzo;
-	}
+
 
 	@Override
-	public void eseguiAzione() throws AzioneNonEseguibile {
+	public void eseguiAzione(GameState gameState) throws AzioneNonEseguibile {
 		if(!marketable.possiede(gameState.getGiocatoreCorrente()))
 			throw new AzioneNonEseguibile("Questa offerta non è effettuabile");
 		else{
@@ -33,6 +29,23 @@ public class AzioneOfferta extends Azione {
 	@Override
 	public String toString() {
 		return "AzioneOfferta";
+	}
+
+
+	/**
+	 * @param marketable the marketable to set
+	 */
+	public void setMarketable(Marketable marketable) {
+		this.marketable = marketable;
+	}
+
+
+
+	/**
+	 * @param prezzo the prezzo to set
+	 */
+	public void setPrezzo(int prezzo) {
+		this.prezzo = prezzo;
 	}
 
 }

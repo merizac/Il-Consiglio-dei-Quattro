@@ -6,26 +6,15 @@ import game.TesseraPermesso;
 
 public class CambioTesseraPermesso extends AzioneVeloce {
 
-	private final Regione regione;
-
-	
-
-	/**
-	 * @param partita
-	 * @param regione
-	 */
-	public CambioTesseraPermesso(GameState gameState, Regione regione) {
-		super(gameState);
-		this.regione=regione;
-	}
+	private Regione regione;
 
 
 
 	@Override
-	public void eseguiAzione() {
+	public void eseguiAzione(GameState gameState) {
 		RimozioneCarte();
 		SostituzioneCarte();
-		setStatoTransizioneVeloce(); 
+		setStatoTransizioneVeloce(gameState); 
 		
 	}
 	
@@ -54,6 +43,7 @@ public class CambioTesseraPermesso extends AzioneVeloce {
 
 
 
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -63,5 +53,13 @@ public class CambioTesseraPermesso extends AzioneVeloce {
 	}
 	
 	
+
+	/**
+	 * @param regione the regione to set
+	 */
+	public void setRegione(Regione regione) {
+		this.regione = regione;
+	}
+
 	
 }

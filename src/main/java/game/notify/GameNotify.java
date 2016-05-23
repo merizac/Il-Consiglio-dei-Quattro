@@ -1,11 +1,15 @@
 package game.notify;
 
-import view.View;
 
-public class GameNotify implements Notify {
+public class GameNotify extends Notify {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7941386236992971357L;
 
 	@Override
-	public void stamp(View view){
+	public void stamp(){
 		
 	}
 

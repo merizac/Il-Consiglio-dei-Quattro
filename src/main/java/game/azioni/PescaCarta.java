@@ -5,12 +5,8 @@ import utility.exception.AzioneNonEseguibile;
 
 public class PescaCarta extends Azione {
 
-	public PescaCarta(GameState gameState) {
-		super(gameState);
-	}
-
 	@Override
-	public void eseguiAzione() {
+	public void eseguiAzione(GameState gameState) {
 		gameState.getGiocatoreCorrente().getCartePolitica().add(gameState.getMazzoCartePolitica().pescaCarte());
 		try {
 			gameState.getStato().transizionePescaCarta(gameState);

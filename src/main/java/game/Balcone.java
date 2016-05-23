@@ -18,6 +18,10 @@ public class Balcone {
 		this.consiglieri=new ArrayBlockingQueue<Consigliere>(numConsiglieri, true, consiglieriDaAggiungere);	
 	}
 	
+	public Balcone(ArrayList<Consigliere> consiglieri){
+		this.consiglieri=new ArrayBlockingQueue<Consigliere>(4, true, consiglieri);	
+	}
+	
 	private ArrayList<Consigliere> pescaConsiglieri(ArrayList<Consigliere> consiglieri, int numConsiglieri) {
 		
 		ArrayList<Consigliere> consiglieriNuovi=new ArrayList<>();

@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import game.GameState;
@@ -29,4 +30,9 @@ public class Stato11 implements Stato {
 		gameState.setStato(new Stato10());
 	}
 	
+	@Override
+	public List<Azione> getAzioni() {
+		List<Azione> azioniDisponibili=new ArrayList<>();
+		return azioniDisponibili;
+	}
 }

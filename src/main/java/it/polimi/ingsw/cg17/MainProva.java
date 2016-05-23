@@ -3,7 +3,7 @@ package it.polimi.ingsw.cg17;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
-import controller.Partita;
+import controller.Controller;
 import game.CartaPolitica;
 import game.Città;
 import game.Consigliere;
@@ -44,11 +44,11 @@ public class MainProva {
 			 System.out.println("Inserisci azione");
 			 String command=scanner.nextLine();
 		 }*/
-		gameState.creaGiocatori(3);
+		/*gameState.creaGiocatori(3);
 		
-		Azione azione2=new PescaCarta(gameState);
+		Azione azione2=new PescaCarta();
 		try {
-			azione2.eseguiAzione();
+			azione2.eseguiAzione(gameState);
 		} catch (AzioneNonEseguibile e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -76,7 +76,7 @@ public class MainProva {
 		}
 		
 		System.out.println("dopo"+gameState.getGiocatoreCorrente());
-		System.out.println(gameState.getStato());
+		System.out.println(gameState.getStato());*/
 		
 	}
 

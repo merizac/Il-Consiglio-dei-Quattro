@@ -5,12 +5,9 @@ import utility.exception.AzioneNonEseguibile;
 
 public class Passa extends Azione {
 
-	public Passa(GameState gameState) {
-		super(gameState);
-	}
 	
 	@Override
-	public void eseguiAzione() {
+	public void eseguiAzione(GameState gameState) {
 		try {
 			gameState.getStato().transizioneVeloce(gameState);
 		} catch (AzioneNonEseguibile e) {
