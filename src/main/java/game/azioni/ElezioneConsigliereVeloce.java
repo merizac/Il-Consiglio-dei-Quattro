@@ -41,4 +41,12 @@ public class ElezioneConsigliereVeloce extends AzioneVeloce {
 			}
 		
 		}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Elezione Consigliere Veloce";
 	}
+	
+}

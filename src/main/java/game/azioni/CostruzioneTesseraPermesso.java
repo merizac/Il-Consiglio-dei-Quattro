@@ -89,6 +89,17 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale {
 		}
 		}
 	}
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Costruzione Tessera Permesso";
+	}
+	
+	
 	
 	
 }

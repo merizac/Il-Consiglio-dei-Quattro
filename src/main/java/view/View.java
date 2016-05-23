@@ -13,12 +13,12 @@ import utility.Observer;
 
 public abstract class View extends Observable <Azione> implements Observer <Notify>{
 	
-	protected ParserAzione parser;
+	//protected ParserAzione parser;
 	protected Model model;
 
-	public View(GameState gameState, ParserAzione parser){
-		gameState.registerObserver(this);
-		this.parser = parser;
+	public View(GameState gameState){
+		//gameState.registerObserver(this);
+		//this.parser = parser;
 		this.model=gameState;
 	}
 	

@@ -1,5 +1,7 @@
 package view;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
@@ -8,66 +10,103 @@ import java.util.regex.Pattern;
 import game.Città;
 import game.Consigliere;
 import game.GameState;
-import game.ParserAzione;
 import game.Regione;
-import game.azioni.Azione;
-import game.notify.Notify;
 
 public class ViewCLI extends View{
 	
-	private Pattern pattern;
+	private ArrayList<String> pattern=new ArrayList<>();
 
-	public ViewCLI(GameState gameState, ParserAzione parser) {
+	/*public ViewCLI(GameState gameState, ParserAzione parser) {
 		super(gameState, parser);
 		createPattern();
+	}*/
+	
+	public ViewCLI(GameState gameState) {
+		super(gameState);
+		// TODO Auto-generated constructor stub
 	}
+	
+	
 
 	private void createPattern() {
-		String colori= "(";
+		String colori="";
 		Set<Consigliere> consiglieri= new HashSet<>(model.getConsiglieri());
 		for(Consigliere c: consiglieri){
-			colori=colori+c.getColore().toString()+"|";
+			colori=colori+c.getColore().getColore().toString()+"|";
 		}
-		String cartePolitica=colori+"|multicolor)";
-		colori=colori+")";
+		String cartePolitica=colori+"|Multicolore";
 				
-		String regioni="(";
+		String regioni="";
 		for(Regione r: model.getRegioni()){
 			regioni=regioni+r.toString()+"|";
 		}
-		regioni=regioni+")";
 		
-		String città="(";
+		String città="";
 		for(Città c: model.getCittà()){
-			città=città+c.toString()+"|";
+			città=città+c.getNome().toString()+"|";
 		}
-		città=città+")";
-		String indiceTessera="((\\d)*)";
-		String atp="(1p) "+regioni+" "+cartePolitica+"{1,4}"+" ([1-2])";
-		String cr="(2p) "+città+" "+cartePolitica;
-		String ctp="(3p) "+indiceTessera+" "+città;
-		String ec="(4p) "+regioni+" "+colori;
-		String ct="(1v) "+regioni;
-		String ecv="(2v) "+regioni+" "+colori;
-		String ia="(3v)";
+		
+		String indiceTessera="((\\d)*( ))*";
+		String atp="(1p) ("+regioni+") (("+cartePolitica+") ){1,4}"+"([1-2])";
+		String cr="(2p) ("+città+") ("+cartePolitica+")";
+		String ctp="(3p) ("+indiceTessera+")("+città+")";
+		String ec="(4p) ("+regioni+") ("+colori+")";
+		String ct="(1v) ("+regioni+")";
+		String ecv="(2v) ("+regioni+") ("+colori+")";
+		String ia="(3v) ";
 		String sap="(4v)";
-		pattern= Pattern.compile("("+atp+"|"+cr+"|"+ctp+"|"+ec+"|"+ct+"|"+ecv+"|"+ia+"|"+sap+")");
+		/*Pattern p=Pattern.compile(atp);
+		System.out.println(p);
+		pattern.add(p);
+		System.out.println(pattern.get(0));*/
+		
+		pattern.add(atp);
+		pattern.add(cr);
+		pattern.add(ctp);
+		pattern.add(ec);
+		pattern.add(ct);
+		pattern.add(ecv);
+		pattern.add(ia);
+		pattern.add(sap);
+		System.out.println(pattern.get(0));
+		System.out.println(pattern.get(1));
+		System.out.println(pattern.get(2));
+		System.out.println(pattern.get(3));
+		System.out.println(pattern.get(4));
+		System.out.println(pattern.get(5));
+		System.out.println(pattern.get(6));
+		System.out.println(pattern.get(7));
+		
+		
+		
+		//pattern= Pattern.compile("("+atp+"|"+cr+"|"+ctp+"|"+ec+"|"+ct+"|"+ecv+"|"+ia+"|"+sap+")");
+		
+	}
+	
+	public boolean match(String input){
+		for(String regex: pattern){
+			Pattern p=Pattern.compile(regex);
+			Matcher m = p.matcher(input);
+			if(m.matches())
+				return true;
+		}
+		return false;
 		
 	}
 	
 	@Override	
 	public void input(Scanner scanner) {
-		System.out.println("Inserisci numero giocatori");
+		/*System.out.println("Inserisci numero giocatori");
 		String input=scanner.nextLine();
 		while(!isNumeric(input))
 			System.out.println("valore non valido: inserisci numero giocatori");
-		parser.instanziaGiocatori(input);
+		parser.instanziaGiocatori(input);*/
 		
 		
 	}
 	
 
-	private boolean isNumeric(String input) {
+	/*private boolean isNumeric(String input) {
 		try{
 			Integer.parseInt(input);
 			return true;
@@ -80,6 +119,23 @@ public class ViewCLI extends View{
 	@Override
 	public void update(Notify notify) {
 		notify.stamp(this);
+	}*/
+	
+	public static void main(String[] args){
+		try {
+			GameState gameState=new GameState();
+			ViewCLI viewCLI=new ViewCLI(gameState);
+			viewCLI.createPattern();
+			Scanner scanner=new Scanner(System.in);
+			while(true){
+				System.out.println("Inserisci azione");
+				String azione=scanner.nextLine();
+				System.out.println(viewCLI.match(azione));
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 	}
 	
 

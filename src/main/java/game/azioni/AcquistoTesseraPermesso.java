@@ -11,6 +11,7 @@ import game.notify.ErrorParameterNotify;
 
 public class AcquistoTesseraPermesso extends AzionePrincipale {
 
+
 	private ArrayList<CartaPolitica> carteGiocatore;
 	private Regione regione;
 	private int indiceTesseraScoperta;
@@ -130,6 +131,14 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 			}
 		return true;
 		
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Acquisto Tessera Permesso";
 	}
 
 }

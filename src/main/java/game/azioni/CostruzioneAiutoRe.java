@@ -157,6 +157,15 @@ public class CostruzioneAiutoRe extends AzionePrincipale {
 		return true;
 		
 	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Costruzione Aiuto Re";
+	}
+	
+	
 	
 	
 }

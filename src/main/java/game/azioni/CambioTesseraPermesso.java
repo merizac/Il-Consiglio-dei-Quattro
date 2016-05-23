@@ -50,10 +50,18 @@ public class CambioTesseraPermesso extends AzioneVeloce {
 			TesseraPermesso tessera=regione.getMazzoTesserePermesso().pescaCarte();
 			regione.getTesserePermessoScoperte().add(tessera);
 		}
-	
-		
-
-		
 	}
+
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Cambio Tessera Permesso";
+	}
+	
+	
 	
 }

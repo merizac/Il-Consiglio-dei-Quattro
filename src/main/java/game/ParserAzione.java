@@ -1,6 +1,8 @@
 package game;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.StringTokenizer;
 import game.azioni.AcquistoTesseraPermesso;
 import game.azioni.Azione;
@@ -11,6 +13,7 @@ import game.azioni.ElezioneConsigliere;
 import game.azioni.ElezioneConsigliereVeloce;
 import game.azioni.IngaggioAiutante;
 import game.azioni.SecondaAzionePrincipale;
+import view.ViewCLI;
 
 public class ParserAzione {
 
@@ -37,20 +40,17 @@ public class ParserAzione {
 		CartaPolitica politica=null;
 		int indiceTesseraPermesso=0;
 		int counter=0;
-		if(azione.nextToken().equals("1p")){
+		String numeroAzione=azione.nextToken();
+		Azione azioneCreata=null;
+		
+		switch(numeroAzione){
+		
+		case "1p" :{
 			counter++;
-			String regione=azione.nextToken();
-			for(Regione r: gameState.getRegioni()){
-				if(r.getNome().equals(regione))
-					regioneSelezionata=r;
-			}
+			regioneSelezionata=cercaRegione(azione.nextToken()); 
 			while(azione.hasMoreTokens() && counter!=azione.countTokens()){
 				counter++;
-				for(CartaPolitica c: gameState.getCartePoliticaGiocatore()){
-					if(c.getColore().getColore().equals(azione.nextToken())){
-						politica=c;
-					}
-				}
+				politica=cercaCartaPolitica(azione.nextToken()) ;
 				if(politica==null){
 					throw new Exception("carta politica inesistente");
 				}
@@ -59,24 +59,13 @@ public class ParserAzione {
 			}
 			String indiceTessera=azione.nextToken();
 			indiceTesseraPermesso=Integer.parseInt(indiceTessera);
-			return new AcquistoTesseraPermesso(gameState, cartePolitica, regioneSelezionata, indiceTesseraPermesso ) ;	
+			azioneCreata=new AcquistoTesseraPermesso(gameState, cartePolitica, regioneSelezionata, indiceTesseraPermesso ) ;	
 		}
 		
-		else if(azione.nextToken().equals("2p"))
-		{
-			String città=azione.nextToken();
-			for(Città c: this.gameState.getMappa().getGrafo().vertexSet()){
-				if(c.getNome().equals(città))
-					cittàSelezionata=c; 
-			}
-		
+		case "2p" :{
+			cittàSelezionata=cercaCittà(azione.nextToken()); 
 			while(azione.hasMoreTokens() ){
-				counter++;
-				for(CartaPolitica c: gameState.getCartePoliticaGiocatore()){
-					if(c.getColore().getColore().equals(azione.nextToken())){
-						politica=c;
-					}
-				}
+				politica=cercaCartaPolitica(azione.nextToken()); 
 				if(politica==null){
 					throw new Exception("carta politica inesistente");
 				}
@@ -84,10 +73,10 @@ public class ParserAzione {
 					cartePolitica.add(politica);
 			}
 			
-			return new CostruzioneAiutoRe(gameState, cittàSelezionata, cartePolitica); 
+			azioneCreata=new CostruzioneAiutoRe(gameState, cittàSelezionata, cartePolitica); 
 		}
 		
-		else if(azione.nextToken().equals("3p")){
+		case "3p":{
 			indiceTesseraPermesso=Integer.parseInt(azione.nextToken());
 			try{
 				tesseraPermessoGiocatore=this.gameState.getGiocatoreCorrente().getTesserePermesso().get(indiceTesseraPermesso); 
@@ -96,84 +85,109 @@ public class ParserAzione {
 				throw e;
 			}
 			
-			while(azione.hasMoreTokens() ){
-				counter++;
-				for(CartaPolitica c: gameState.getCartePoliticaGiocatore()){
-					if(c.getColore().getColore().equals(azione.nextToken())){
-						politica=c;
-					}
-				}
-				if(politica==null){
-					throw new Exception("carta politica inesistente");
-				}
-				else
-					cartePolitica.add(politica);
-			}
-			
-			return new CostruzioneTesseraPermesso(gameState, cittàSelezionata, tesseraPermessoGiocatore ); 
-			
+			cittàSelezionata=cercaCittà(azione.nextToken());  
+			azioneCreata=new CostruzioneTesseraPermesso(gameState, cittàSelezionata, tesseraPermessoGiocatore ); 
 		}
 		
-		else if(azione.nextToken().equals("4p")){
-			String regione=azione.nextToken();
-			for(Regione r: gameState.getRegioni()){
-				if(r.getNome().equals(regione))
-					regioneSelezionata=r;
+		case "4p":{
+			regioneSelezionata=cercaRegione(azione.nextToken()); 
+			System.out.println(regioneSelezionata);
+			consigliereScelto=cercaConsigliere(azione.nextToken()); 
+			System.out.println(consigliereScelto);
+			
+			if(consigliereScelto ==null){
+				throw new Exception("consigliere inesistente");
 			}
 			
-			while(azione.hasMoreTokens() ){
-				counter++;
-				for(Consigliere c: gameState.getConsiglieri()){
-					if(c.getColore().getColore().equals(azione.nextToken())){
-						consigliereScelto=c;
-					}
-				}
-				if(consigliereScelto ==null){
-					throw new Exception("consigliere inesistente");
-				}
-			}
-
-			return new ElezioneConsigliere(gameState, regioneSelezionata, consigliereScelto); 
+			azioneCreata=new ElezioneConsigliere(gameState, regioneSelezionata, consigliereScelto); 
 		}
 		
-		else if(azione.nextToken().equals("1v")){
-			String regione=azione.nextToken();
-			for(Regione r: gameState.getRegioni()){
-				if(r.getNome().equals(regione))
-					regioneSelezionata=r;
-			}
-			return new CambioTesseraPermesso(gameState, regioneSelezionata); 
+		case "1v":{
+			regioneSelezionata=cercaRegione(azione.nextToken());  
+			azioneCreata=new CambioTesseraPermesso(gameState, regioneSelezionata); 
 		}
 		
-		else if(azione.nextToken().equals("2v")){
-			String regione=azione.nextToken();
-			for(Regione r: gameState.getRegioni()){
-				if(r.getNome().equals(regione))
-					regioneSelezionata=r;
+		case "2v":{
+			regioneSelezionata=cercaRegione(azione.nextToken()); 
+			consigliereScelto=cercaConsigliere(azione.nextToken()); 
+	
+			if(consigliereScelto ==null){
+				throw new Exception("consigliere inesistente");
 			}
 			
-			while(azione.hasMoreTokens() ){
-				counter++;
-				for(Consigliere c: gameState.getConsiglieri()){
-					if(c.getColore().getColore().equals(azione.nextToken())){
-						consigliereScelto=c;
-					}
-				}
-				if(consigliereScelto ==null){
-					throw new Exception("consigliere inesistente");
-				}
+			azioneCreata=new ElezioneConsigliereVeloce(gameState, regioneSelezionata, consigliereScelto) ;
+		}
+		case "3v":{
+			azioneCreata=new IngaggioAiutante(gameState);
+		}
+		case "4v":{
+			azioneCreata=new SecondaAzionePrincipale(gameState); 
+		}
+		
+		
+	}
+		return azioneCreata;	
+}
+	
+	public Regione cercaRegione(String regione){
+		Regione regioneSelezionata=null;
+		for(Regione r: gameState.getRegioni()){
+			if(r.getNome().equals(regione))
+				regioneSelezionata=r;
+		}
+		return regioneSelezionata;
+		
+	}
+	
+	public CartaPolitica cercaCartaPolitica(String cartaPolitica){
+		CartaPolitica cartaPoliticaCercata=null;
+		System.out.println(gameState.getGiocatoreCorrente().getCartePolitica());
+		for(CartaPolitica c: gameState.getCartePoliticaGiocatore()){
+			if(c.getColore().getColore().equals(cartaPolitica)){
+				cartaPoliticaCercata=c;
 			}
-			
-			return new ElezioneConsigliereVeloce(gameState, regioneSelezionata, consigliereScelto) ;
 		}
-		
-		else if(azione.nextToken().equals("3v")){
-			return new IngaggioAiutante(gameState);
+		return cartaPoliticaCercata;
+	}
+	
+	public Città cercaCittà(String città){
+		Città cittàCercata=null;
+		for(Città c: this.gameState.getMappa().getGrafo().vertexSet()){
+			if(c.getNome().equals(città))
+				cittàCercata=c; 
 		}
-		
-		else
-			return new SecondaAzionePrincipale(gameState); 
-			
+		return cittàCercata;
+	}
+	
+	public Consigliere cercaConsigliere(String consigliere){
+		Consigliere consigliereCercato=null;
+		for(Consigliere c: gameState.getConsiglieri()){
+			if(c.getColore().getColore().equals(consigliere))
+				consigliereCercato=c;
+			}
+		return consigliereCercato;
+	}
+	
+	public static void main(String[] args){
+		try {
+			GameState gameState=new GameState();
+			gameState.creaGiocatori(3);
+			//System.out.println(gameState.getGiocatoreCorrente().getCartePolitica());
+			ParserAzione parser=new ParserAzione(gameState);
+			Scanner scanner=new Scanner(System.in);
+			while(true){
+				System.out.println("Inserisci azione");
+				System.out.println(gameState.getConsiglieri());
+				String azione=scanner.nextLine();
+				System.out.println(parser.parser(azione.toString()));
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 	}
 	
 	

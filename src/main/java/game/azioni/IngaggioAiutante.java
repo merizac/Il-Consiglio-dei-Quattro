@@ -21,4 +21,13 @@ public class IngaggioAiutante extends AzioneVeloce {
 			setStatoTransizioneVeloce(); 
 			}	
 		}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Ingaggio Aiutante";
+	}
+	
+	
 }

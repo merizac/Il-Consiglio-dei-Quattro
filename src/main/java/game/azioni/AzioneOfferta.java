@@ -7,6 +7,7 @@ import utility.exception.AzioneNonEseguibile;
 
 public class AzioneOfferta extends Azione {
 	
+
 	private Marketable marketable;
 	private int prezzo;
 
@@ -24,6 +25,14 @@ public class AzioneOfferta extends Azione {
 			gameState.getOfferteMarket().add(new Offerta(gameState.getGiocatoreCorrente(), marketable, prezzo));
 			gameState.getStato().transizioneOfferta(gameState);
 		}
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "AzioneOfferta";
 	}
 
 }
