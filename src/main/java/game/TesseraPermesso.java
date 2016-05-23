@@ -27,6 +27,13 @@ public final class TesseraPermesso implements Marketable {
 
 
 	/**
+	 * @return the regione
+	 */
+	public Regione getRegione() {
+		return regione;
+	}
+	
+	/**
 	 * @return the città
 	 */
 	public ArrayList<Città> getCittà() {
