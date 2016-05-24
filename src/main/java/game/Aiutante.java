@@ -11,6 +11,8 @@ public class Aiutante implements Marketable{
 	 * @param numeroAiutanti
 	 */
 	public Aiutante(int numeroAiutanti){
+		if(numeroAiutanti<0)
+			throw new IllegalArgumentException("Gli aiutanti devono essere un numero positivo o nullo");
 		this.numeroAiutanti= numeroAiutanti;
 	}
 	/**
@@ -25,6 +27,8 @@ public class Aiutante implements Marketable{
 	 * @param numeroAiutanti the number of Aiutanti to add
 	 */
 	public void aggiungiAiutanti(int numeroAiutanti) {
+		if(numeroAiutanti<=0)
+			throw new IllegalArgumentException("Gli aiutanti da aggiungere devono essere un numero positivo");
 		this.numeroAiutanti = this.numeroAiutanti + numeroAiutanti;
 	}
 	/**
@@ -33,6 +37,9 @@ public class Aiutante implements Marketable{
 	 * @return true if it possible to decrease the variable numeroAiutanti and false in the other case
 	 */
 	public boolean togliAiutanti(int numeroAiutanti) {
+		
+		if(numeroAiutanti<=0)
+			throw new IllegalArgumentException("Gli aiutanti da togliere devono essere un numero positivo");
 		
 		if(this.numeroAiutanti< numeroAiutanti)
 			return false;
