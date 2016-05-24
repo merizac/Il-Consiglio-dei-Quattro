@@ -32,7 +32,8 @@ public class CostruzioneAiutoRe extends AzionePrincipale {
 			
 		
 		int moneteDovute= calcolaMonete() + 
-				mappa.minimaDistanza(gameState.getPedinaRe().getCittà(), cittàCostruzione);
+				2*mappa.minimaDistanza(gameState.getPedinaRe().getCittà(), cittàCostruzione);
+		System.out.println(moneteDovute);
 		
 		if(!paga(moneteDovute, gameState))
 			gameState.notifyObserver(new ErrorParameterNotify("Errore: i soldi non sono sufficienti!"));
@@ -45,7 +46,7 @@ public class CostruzioneAiutoRe extends AzionePrincipale {
 			costruisci(gameState);
 			prendiBonus(gameState);
 		}
-		setStatoTransizionePrincipale(gameState); 
+		//setStatoTransizionePrincipale(gameState); 
 		
 	}
 	/**
@@ -104,7 +105,7 @@ public class CostruzioneAiutoRe extends AzionePrincipale {
 		int monete=0;
 		int carte=carteGiocatore.size();
 		for (CartaPolitica carta: carteGiocatore ){
-			if (carta.getColore().equals(new CartaPolitica(new Colore("Multicolore")))){
+			if (carta.equals(new CartaPolitica(new Colore("Multicolore")))){
 				monete++;
 			}
 		}
@@ -136,7 +137,7 @@ public class CostruzioneAiutoRe extends AzionePrincipale {
 	 */
 	private boolean controllaColori() {
 		for (CartaPolitica carta: carteGiocatore ){
-			if (carta.getColore().equals(new CartaPolitica(new Colore("Multicolore")))){
+			if (carta.equals(new CartaPolitica(new Colore("Multicolore")))){
 				continue;
 			}
 

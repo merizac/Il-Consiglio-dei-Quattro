@@ -34,7 +34,8 @@ public class Aiutante implements Marketable{
 	 */
 	public boolean togliAiutanti(int numeroAiutanti) {
 		
-		if(this.numeroAiutanti< numeroAiutanti) return false;
+		if(this.numeroAiutanti< numeroAiutanti)
+			return false;
 		else {
 			this.numeroAiutanti = this.numeroAiutanti - numeroAiutanti;
 			return true;

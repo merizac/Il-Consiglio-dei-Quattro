@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Queue;
 
 import javax.swing.text.AbstractDocument.LeafElement;
 
@@ -48,5 +49,4 @@ public class BalconeTest {
 		Consigliere consigliereRimosso=balcone.aggiungiConsigliere(consigliere);
 		assertEquals(new Consigliere(new Colore("A")), consigliereRimosso);
 	}
-
 }
