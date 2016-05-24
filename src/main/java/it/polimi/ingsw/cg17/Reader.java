@@ -125,7 +125,6 @@ public static Mazzo<CartaPolitica> letturaCartePolitica() throws IOException{
 			stringaLetta=b.readLine();
 			}
 		b.close();
-		System.out.println(cartaPoliticaList);
 		Collections.shuffle(cartaPoliticaList);
 		return new Mazzo<CartaPolitica>(cartaPoliticaList);
 	}
@@ -235,7 +234,6 @@ public static ArrayList<Consigliere> letturaConsigliere() throws IOException{
 			stringaLetta=b.readLine();
 			}
 		b.close();
-		System.out.println(consiglieri);
 		Collections.shuffle(consiglieri);
 		return consiglieri;
 	}
