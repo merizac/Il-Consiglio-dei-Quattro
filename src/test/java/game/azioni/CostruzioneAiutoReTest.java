@@ -79,7 +79,7 @@ public class CostruzioneAiutoReTest {
 
 		//gli passo 3 carte, di cui 2 multicolor: costo totale 6 
 		assertEquals(2, gameState.getGiocatoreCorrente().getPunteggioRicchezza());
-//		assertEquals(3, gameState.getGiocatoreCorrente().getAiutanti().getAiutante());
+		assertEquals(3, gameState.getGiocatoreCorrente().getAiutanti().getAiutante());
 //		assertEquals(gameState.getPedinaRe().getCittà(), costruzioneAiutoRe);
 //		assertEquals(gameState.getGiocatoreCorrente().getEmpori().get(0), empori.get(0));
 //		assertEquals(empori, null);

@@ -11,8 +11,10 @@ public class BonusAiutanti extends Bonus {
 	 * @param partita
 	 */
 	public BonusAiutanti(int aiutanti){
-		super();
-		this.aiutanti = aiutanti;
+		if(aiutanti<0) 
+				throw new IllegalArgumentException("Il numero di aiutanti deve essere positivo");
+		else	
+			this.aiutanti = aiutanti;
 	}
 	/**
 	 * add aiutanti to the variable aiutanti of Giocatore
@@ -26,6 +28,12 @@ public class BonusAiutanti extends Bonus {
 	@Override
 	public String toString() {
 		return "BonusAiutanti [aiutanti=" + aiutanti + "]";
+	}
+	/**
+	 * @return the aiutanti
+	 */
+	public int getAiutanti() {
+		return aiutanti;
 	}
 	
 	

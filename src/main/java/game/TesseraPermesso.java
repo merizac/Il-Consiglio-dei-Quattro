@@ -79,4 +79,51 @@ public final class TesseraPermesso implements Marketable {
 	}
 
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((bonus == null) ? 0 : bonus.hashCode());
+		result = prime * result + ((città == null) ? 0 : città.hashCode());
+		result = prime * result + ((regione == null) ? 0 : regione.hashCode());
+		return result;
+	}
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		TesseraPermesso other = (TesseraPermesso) obj;
+		if (bonus == null) {
+			if (other.bonus != null)
+				return false;
+		} else if (!bonus.equals(other.bonus))
+			return false;
+		if (città == null) {
+			if (other.città != null)
+				return false;
+		} else if (!città.equals(other.città))
+			return false;
+		if (regione == null) {
+			if (other.regione != null)
+				return false;
+		} else if (!regione.equals(other.regione))
+			return false;
+		return true;
+	}
+	
+	
+
+
 }

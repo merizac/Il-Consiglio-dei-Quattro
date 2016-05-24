@@ -32,15 +32,18 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale {
 		costruisci(gameState);
 		prendiBonus(gameState);
 		copriTessera(gameState);
-		setStatoTransizionePrincipale(gameState); 
+		//setStatoTransizionePrincipale(gameState); 
 		
 	}
 	/**
 	 * move the permit tile used from tesserePermesso to tesserePermessoUsate
 	 */
 	private void copriTessera(GameState gameState) {
+		System.out.println(gameState.getGiocatoreCorrente().getTesserePermesso());
 		gameState.getGiocatoreCorrente().getTesserePermesso().remove(tesseraPermessoScoperta);
+		System.out.println(gameState.getGiocatoreCorrente().getTesserePermesso());
 		gameState.getGiocatoreCorrente().getTesserePermessoUsate().add(tesseraPermessoScoperta);
+		System.out.println(gameState.getGiocatoreCorrente().getTesserePermessoUsate());
 	}
 
 
@@ -54,7 +57,7 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale {
 		if(!cittàCostruzione.getEmpori().isEmpty()) { 
 			if(gameState.getGiocatoreCorrente().getAiutanti().togliAiutanti(numeroEmpori)){
 				return true;
-			}
+			}	
 		}
 		return false;
 	}

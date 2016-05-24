@@ -10,6 +10,7 @@ public class BonusCartePolitica extends Bonus {
 	
 	public BonusCartePolitica(int cartePolitica) {
 		super();
+		if (cartePolitica<0) throw new IllegalArgumentException();
 		this.cartePolitica=cartePolitica;
 	}
 	/**
@@ -29,6 +30,12 @@ public class BonusCartePolitica extends Bonus {
 	@Override
 	public String toString() {
 		return "BonusCartePolitica [cartePolitica=" + cartePolitica + "]";
+	}
+	/**
+	 * @return the cartePolitica
+	 */
+	public int getCartePolitica() {
+		return cartePolitica;
 	}
 	
 	
