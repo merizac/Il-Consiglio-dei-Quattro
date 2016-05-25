@@ -22,7 +22,14 @@ public class GiocatoreTest {
 		}
 
 		Mazzo<CartaPolitica> mazzo = Reader.letturaCartePolitica();
-		giocatore = new Giocatore("nome",new Colore("giallo"), mazzo.getCarte(), new Aiutante(4), 3, 10, new PunteggioNobiltà(10, null), empori);
+		giocatore = new Giocatore("nome");
+		giocatore.setColoreGiocatore(new Colore("giallo"));
+		giocatore.setAiutanti(new Aiutante(4));
+		giocatore.getCartePolitica().addAll(mazzo.getCarte());
+		giocatore.setPunteggioVittoria(3);
+		giocatore.setPunteggioRicchezza(10);
+		giocatore.setPunteggioNobiltà(new PunteggioNobiltà(10, null));
+		giocatore.getEmpori().addAll(empori);
 
 	}
 

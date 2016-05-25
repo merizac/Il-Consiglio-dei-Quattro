@@ -2,10 +2,8 @@ package game;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-
 import bonus.*;
-import game.azioni.AzionePrincipale;
-import game.azioni.AzioneVeloce;
+
 
 public class Giocatore implements Serializable {
 
@@ -14,15 +12,13 @@ public class Giocatore implements Serializable {
 	 */
 	private static final long serialVersionUID = -5783348541714689560L;
 	private String nome;
-	private final Colore coloreGiocatore;
+	private Colore coloreGiocatore;
 	private final ArrayList<CartaPolitica> cartePolitica;
 	private final ArrayList<TesseraPermesso> tesserePermesso;
 	private final ArrayList<TesseraPermesso> tesserePermessoUsate;
 	private final ArrayList<Bonus> tessereBonus;
 	private final ArrayList<Emporio> empori;
-	private final ArrayList<AzionePrincipale> azioniPrincipali;
-	private final ArrayList<AzioneVeloce> azioneVeloce;
-	private final Aiutante aiutanti;
+	private Aiutante aiutanti;
 	private int punteggioVittoria;
 	private int punteggioRicchezza;
 	private PunteggioNobiltà punteggioNobiltà;
@@ -39,39 +35,67 @@ public class Giocatore implements Serializable {
 	 * @param punteggioRicchezza
 	 * @param punteggioNobiltà
 	 */
-	public Giocatore(String nome, Colore coloreGiocatore, ArrayList<CartaPolitica> cartePolitica,
-			Aiutante aiutanti, int punteggioVittoria, int punteggioRicchezza,
-			PunteggioNobiltà punteggioNobiltà, ArrayList<Emporio> empori) {
+	public Giocatore(String nome) {
 		this.nome=nome;
-		this.coloreGiocatore = coloreGiocatore;
-		this.cartePolitica = cartePolitica;
+		this.cartePolitica=new ArrayList<>();
 		this.tesserePermesso = new ArrayList<TesseraPermesso>();
 		this.tesserePermessoUsate = new ArrayList<TesseraPermesso>();
 		this.tessereBonus = new ArrayList<Bonus>();
-		this.empori = empori;
-		this.azioniPrincipali= new ArrayList<AzionePrincipale>();
-		this.azioneVeloce = new ArrayList <AzioneVeloce>();
+		this.empori=new ArrayList<>();
+	}
+
+	/**
+	 * @return the nome
+	 */
+	public String getNome() {
+		return nome;
+	}
+
+
+
+	/**
+	 * @param nome the nome to set
+	 */
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+
+
+	/**
+	 * @return the coloreGiocatore
+	 */
+	public Colore getColoreGiocatore() {
+		return coloreGiocatore;
+	}
+
+
+
+	/**
+	 * @param coloreGiocatore the coloreGiocatore to set
+	 */
+	public void setColoreGiocatore(Colore coloreGiocatore) {
+		this.coloreGiocatore = coloreGiocatore;
+	}
+
+
+
+	/**
+	 * @return the aiutanti
+	 */
+	public Aiutante getAiutanti() {
+		return aiutanti;
+	}
+
+
+
+	/**
+	 * @param aiutanti the aiutanti to set
+	 */
+	public void setAiutanti(Aiutante aiutanti) {
 		this.aiutanti = aiutanti;
-		this.punteggioVittoria = punteggioVittoria;
-		this.punteggioRicchezza = punteggioRicchezza;
-		this.punteggioNobiltà = punteggioNobiltà;
-	}
-	
-
-	/**
-	 * @return the azioniPrincipali
-	 */
-	public ArrayList<AzionePrincipale> getAzioniPrincipali() {
-		return azioniPrincipali;
 	}
 
-
-	/**
-	 * @return the azioneVeloce
-	 */
-	public ArrayList<AzioneVeloce> getAzioneVeloce() {
-		return azioneVeloce;
-	}
 
 
 	/**
@@ -79,6 +103,15 @@ public class Giocatore implements Serializable {
 	 */
 	public int getPunteggioVittoria() {
 		return punteggioVittoria;
+	}
+
+
+
+	/**
+	 * @param punteggioVittoria the punteggioVittoria to set
+	 */
+	public void setPunteggioVittoria(int punteggioVittoria) {
+		this.punteggioVittoria = punteggioVittoria;
 	}
 
 
@@ -93,12 +126,14 @@ public class Giocatore implements Serializable {
 
 
 	/**
-	 * @return the empori
+	 * @param punteggioRicchezza the punteggioRicchezza to set
 	 */
-	public ArrayList<Emporio> getEmpori() {
-		return empori;
+	public void setPunteggioRicchezza(int punteggioRicchezza) {
+		this.punteggioRicchezza = punteggioRicchezza;
 	}
-	
+
+
+
 	/**
 	 * @return the punteggioNobiltà
 	 */
@@ -107,12 +142,14 @@ public class Giocatore implements Serializable {
 	}
 
 
+
 	/**
-	 * @return the coloreGiocatore
+	 * @param punteggioNobiltà the punteggioNobiltà to set
 	 */
-	public Colore getColoreGiocatore() {
-		return coloreGiocatore;
+	public void setPunteggioNobiltà(PunteggioNobiltà punteggioNobiltà) {
+		this.punteggioNobiltà = punteggioNobiltà;
 	}
+
 
 
 	/**
@@ -123,12 +160,14 @@ public class Giocatore implements Serializable {
 	}
 
 
+
 	/**
 	 * @return the tesserePermesso
 	 */
 	public ArrayList<TesseraPermesso> getTesserePermesso() {
 		return tesserePermesso;
 	}
+
 
 
 	/**
@@ -139,6 +178,7 @@ public class Giocatore implements Serializable {
 	}
 
 
+
 	/**
 	 * @return the tessereBonus
 	 */
@@ -147,24 +187,16 @@ public class Giocatore implements Serializable {
 	}
 
 
-	/**
-	 * @return the aiutanti
-	 */
-	public Aiutante getAiutanti() {
-		return aiutanti;
-	}
-	
-	/**
-	 * @param punteggioNobiltà the punteggioNobiltà to set
-	 */
-	public void setPunteggioNobiltà(PunteggioNobiltà punteggioNobiltà) {
-		this.punteggioNobiltà = punteggioNobiltà;
-	}
 
 	/**
-	 * add monete to variable punteggioRicchezza
-	 * @param monete
+	 * @return the empori
 	 */
+	public ArrayList<Emporio> getEmpori() {
+		return empori;
+	}
+
+
+
 	public void aumentaRicchezza(int monete){
 		this.punteggioRicchezza=this.punteggioRicchezza + monete;
 	}
