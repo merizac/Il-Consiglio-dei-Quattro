@@ -8,6 +8,11 @@ import game.azioni.Azione;
 
 public class StatoOffertaMarket implements Stato {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5599670651827007425L;
+
 	@Override
 	public void transizionePassa(GameState gameState){
 		if(gameState.getNumeroTurni()!=0){

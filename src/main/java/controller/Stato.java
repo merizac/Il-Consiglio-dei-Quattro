@@ -1,11 +1,12 @@
 package controller;
 
+import java.io.Serializable;
 import java.util.List;
 import game.GameState;
 import game.azioni.Azione;
 import utility.exception.AzioneNonEseguibile;
 
-public interface Stato {
+public interface Stato extends Serializable{
 
 	/*public List<String> riempiAzioniVeloci(){
 		List<String> azioniVeloci = new ArrayList<>();

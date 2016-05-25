@@ -1,11 +1,16 @@
 package game;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
 
-public class Mazzo<T> {
+public class Mazzo<T> implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4497985605359248692L;
 	private ArrayList<T> carte;
 	
 	/**

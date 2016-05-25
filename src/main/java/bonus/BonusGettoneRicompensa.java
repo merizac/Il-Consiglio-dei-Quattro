@@ -7,6 +7,10 @@ import game.GameState;
 
 public class BonusGettoneRicompensa extends Bonus {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7078597933216059193L;
 	private final int numeroGettoni;
 	private ArrayList<CittàBonus> cittàGiocatore;
 	

@@ -7,6 +7,10 @@ import game.PunteggioNobiltà;
 
 public class BonusPuntiNobiltà extends Bonus {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4033702599498961593L;
 	private int puntiNobiltà;
 	
 	public BonusPuntiNobiltà(int puntiNobiltà) {

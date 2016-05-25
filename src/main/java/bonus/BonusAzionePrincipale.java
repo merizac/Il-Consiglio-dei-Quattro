@@ -5,6 +5,11 @@ import game.GameState;
 public class BonusAzionePrincipale extends Bonus {
 
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 107016793686196135L;
+
 	public BonusAzionePrincipale() {
 		super();
 		// TODO Auto-generated constructor stub

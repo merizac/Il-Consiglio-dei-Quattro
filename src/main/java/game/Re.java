@@ -1,7 +1,13 @@
 package game;
 
-public class Re {
+import java.io.Serializable;
 
+public class Re implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3727511371560962754L;
 	private Città città;
 
 	

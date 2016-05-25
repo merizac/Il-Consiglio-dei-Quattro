@@ -1,13 +1,19 @@
 package game;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import bonus.*;
 import game.azioni.AzionePrincipale;
 import game.azioni.AzioneVeloce;
 
-public class Giocatore {
+public class Giocatore implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5783348541714689560L;
+	private String nome;
 	private final Colore coloreGiocatore;
 	private final ArrayList<CartaPolitica> cartePolitica;
 	private final ArrayList<TesseraPermesso> tesserePermesso;
@@ -33,9 +39,10 @@ public class Giocatore {
 	 * @param punteggioRicchezza
 	 * @param punteggioNobiltà
 	 */
-	public Giocatore(Colore coloreGiocatore, ArrayList<CartaPolitica> cartePolitica,
+	public Giocatore(String nome, Colore coloreGiocatore, ArrayList<CartaPolitica> cartePolitica,
 			Aiutante aiutanti, int punteggioVittoria, int punteggioRicchezza,
 			PunteggioNobiltà punteggioNobiltà, ArrayList<Emporio> empori) {
+		this.nome=nome;
 		this.coloreGiocatore = coloreGiocatore;
 		this.cartePolitica = cartePolitica;
 		this.tesserePermesso = new ArrayList<TesseraPermesso>();

@@ -6,6 +6,10 @@ import game.Mazzo;
 
 public class BonusCartePolitica extends Bonus {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 380560969549363148L;
 	private final int cartePolitica;
 	
 	public BonusCartePolitica(int cartePolitica) {

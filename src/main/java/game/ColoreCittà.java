@@ -13,8 +13,8 @@ public class ColoreCittà extends Colore implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -4867041496487133407L;
-	private transient ArrayList<CittàBonus> città;
-	private final transient BonusPuntiVittoria bonusColore;
+	private ArrayList<CittàBonus> città;
+	private final BonusPuntiVittoria bonusColore;
 	/**
 	 * @param colore
 	 */

@@ -10,6 +10,11 @@ import game.azioni.ElezioneConsigliere;
 public class Stato01 implements Stato {
 	
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1159916777727661681L;
+
 	public Stato01() {
 
 		

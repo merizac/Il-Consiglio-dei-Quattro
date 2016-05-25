@@ -3,27 +3,27 @@ package client;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.Scanner;
+import game.GameState;
+import game.Giocatore;
 import game.azioni.Azione;
-import game.query.GetAzioni;
-import game.query.Query;
-import gameDTO.GameStateDTO;
 
 
 public class ClientOutHandler implements Runnable {
 
 private ObjectOutputStream socketOut;
-private GameStateDTO gameStateDTO;
+private GameState gameState;
+private Giocatore giocatore;
 	
-	public ClientOutHandler(ObjectOutputStream socketOut, GameStateDTO gameStateDTO) {
+	public ClientOutHandler(ObjectOutputStream socketOut, GameState gameState) {
 		this.socketOut=socketOut;
-		this.gameStateDTO=gameStateDTO;
+		this.gameState=gameState;
 	}
 	
 	@Override
 	public void run() {
 
 		System.out.println("RUNNING");
-		System.out.println("OutHandler :"+gameStateDTO);
+		System.out.println("OutHandler :"+gameState);
 		Scanner stdIn=new Scanner(System.in);
 		
 		while(true){

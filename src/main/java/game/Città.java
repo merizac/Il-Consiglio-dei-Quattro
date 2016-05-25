@@ -10,8 +10,8 @@ public class Città implements Serializable {
 	private final String nome;
 	private final Regione regione;
 	protected final Colore colore;
-	private final transient HashSet<Emporio> empori;
-	private final transient HashSet<Città> cittàCollegate;
+	private final HashSet<Emporio> empori;
+	private final HashSet<Città> cittàCollegate;
 	
 	
 

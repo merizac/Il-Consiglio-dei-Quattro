@@ -33,7 +33,7 @@ public class BonusCartePoliticaTest {
 	public void testUsaBonus() throws IOException {
 		GameState gameState = new GameState();
 		ArrayList<CartaPolitica> carte = new ArrayList<CartaPolitica>();
-		Giocatore giocatore = new Giocatore(null, carte , null, 0, 0, null, null);
+		Giocatore giocatore = new Giocatore("nome", null, carte , null, 0, 0, null, null);
 		gameState.setGiocatoreCorrente(giocatore);
 	
 		int numCarte = carte.size();

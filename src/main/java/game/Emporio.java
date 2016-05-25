@@ -1,7 +1,13 @@
 package game;
 
-public class Emporio {
+import java.io.Serializable;
 
+public class Emporio implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2344985543544988775L;
 	private final Colore colore;
 
 	

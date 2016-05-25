@@ -1,6 +1,7 @@
 package game;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -12,7 +13,11 @@ import game.notify.Notify;
 import it.polimi.ingsw.cg17.Reader;
 import utility.Observable;
 
-public class GameState extends Observable<Notify> {
+public class GameState extends Observable<Notify> implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3016544306301450081L;
 	private final Mappa mappa;
 	private final ArrayList<Regione> regioni;
 	private final PlanciaRe planciaRe;
@@ -188,14 +193,14 @@ public class GameState extends Observable<Notify> {
 	}
 	
 	public void creaGiocatori(int numeroGiocatori){
-		int monete=10;
+		/*int monete=10;
 		Set<Colore> coloreGiocatori=creaColori(numeroGiocatori);
-		/*for(int i=0; i<numeroGiocatori; i++){
+		for(int i=0; i<numeroGiocatori; i++){
 			Colore coloreGiocatore=coloreGiocatori.iterator().next();
 			Giocatore giocatore=new Giocatore(coloreGiocatore, assegnaCartePolitica(6), new Aiutante(3), 0, monete+i,
 					planciaRe.getPercorsoNobiltà().get(0) , creaEmpori(10, coloreGiocatore));
 			giocatori.add(giocatore); 
-		}*/
+		
 		
 		this.giocatori.add(new Giocatore(new Colore("Giallo"), assegnaCartePolitica(6), new Aiutante(3), 0, monete,
 					planciaRe.getPercorsoNobiltà().get(0) , creaEmpori(10, new Colore("Giallo"))));
@@ -203,7 +208,7 @@ public class GameState extends Observable<Notify> {
 				planciaRe.getPercorsoNobiltà().get(0) , creaEmpori(10, new Colore("Verde"))));
 		this.giocatori.add(new Giocatore(new Colore("Blu"), assegnaCartePolitica(6), new Aiutante(3), 0, monete+2,
 				planciaRe.getPercorsoNobiltà().get(0) , creaEmpori(10, new Colore("Blu"))));
-		giocatoreCorrente=giocatori.get(0);
+		giocatoreCorrente=giocatori.get(0);*/
 	}
 	private ArrayList<Emporio> creaEmpori(int numeroEmpori, Colore coloreGiocatore) {
 		ArrayList<Emporio> empori=new ArrayList<>();

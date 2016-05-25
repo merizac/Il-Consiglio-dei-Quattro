@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg17;
+package server;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -14,17 +14,17 @@ import view.ServerSocketView;
 public class Server {
 
 	private final static int PORT=29999;
-	private GameState gioco;
+	private GameState gameState;
 	private Controller controller;
 	
 	public Server(){
 		try {
-			this.gioco=new GameState();
+			this.gameState=new GameState();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		this.controller=new Controller(gioco);
+		this.controller=new Controller(gameState);
 	}
 	
 	private void startSocket() throws IOException{
@@ -37,12 +37,8 @@ public class Server {
 
 		while(true){
 			Socket socket=serverSocket.accept();
-			GameStateDTO gameStateDTO=new GameStateDTO();
-			gameStateDTO.setCittà(gioco.getCittà());
-			gameStateDTO.setConsiglieri(gioco.getConsiglieri());
-			gameStateDTO.setRegioni(gioco.getRegioni());
-			ServerSocketView view=new ServerSocketView(socket, gameStateDTO);
-			this.gioco.registerObserver(view);
+			ServerSocketView view=new ServerSocketView(socket, gameState);
+			this.gameState.registerObserver(view);
 			view.registerObserver(this.controller);
 			executor.submit(view);
 			

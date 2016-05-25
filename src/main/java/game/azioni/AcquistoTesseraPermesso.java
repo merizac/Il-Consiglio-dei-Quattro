@@ -28,7 +28,7 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 		indiceTesseraScoperta=passaggioParametri.selezionaTesseraScoperta(regione);*/
 		
 		if(carteGiocatore.isEmpty())
-			gameState.notifyObserver(new ErrorParameterNotify("Errore: non sono presenti carte"));
+			gameState.notifyObserver(new ErrorParameterNotify("Errore: non sono presenti carte"));//eccezione
 			
 		if(!controllaColori())
 			gameState.notifyObserver(new ErrorParameterNotify("Errore: i colori delle carte scelte non corrispondono con quelle del balcone!"));

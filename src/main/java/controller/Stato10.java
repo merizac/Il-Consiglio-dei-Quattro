@@ -9,6 +9,11 @@ import game.azioni.Azione;
 public class Stato10 implements Stato {
 
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4129691255828354834L;
+
 	@Override
 	public void transizionePrincipale(GameState gameState) {
 		if(!gameState.isBonusAzionePrincipale()){

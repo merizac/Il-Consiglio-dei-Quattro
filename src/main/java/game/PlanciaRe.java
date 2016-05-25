@@ -1,11 +1,16 @@
 package game;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import bonus.*;
 
-public class PlanciaRe {
+public class PlanciaRe implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6037414124896630885L;
 	private final Balcone balconeRe;
 	private final ArrayList<Bonus> bonusPremioRe;
 	private final ArrayList<PunteggioNobiltà> percorsoNobiltà;

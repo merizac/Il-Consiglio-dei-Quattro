@@ -8,28 +8,26 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import game.GameState;
 
-import gameDTO.GameStateDTO;
 
 public class ClientSocket {
 
 	private final static int PORT=29999;
 	private final static String IP="127.0.0.1";
-	private GameStateDTO gameStateDTO;
+	private GameState gameState;
 	private ObjectOutputStream socketOut;
 	private ObjectInputStream socketIn;
 	
 	public void startClient() throws UnknownHostException, IOException {
 		Socket socket=new Socket(IP, PORT);
-		System.out.println("1a");
 		socketOut=new ObjectOutputStream(socket.getOutputStream());
 		socketIn=new ObjectInputStream(socket.getInputStream());
 		System.out.println("Connection create");
 		
-		GameStateDTO gameStateDTO=new GameStateDTO();
 		
 		try {
-			gameStateDTO=(GameStateDTO) socketIn.readObject();
+			gameState=(GameState) socketIn.readObject();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -40,8 +38,8 @@ public class ClientSocket {
 		}
 		ExecutorService executor= Executors.newFixedThreadPool(2);
 		
-		executor.submit(new ClientOutHandler(socketOut, gameStateDTO));
-		executor.submit(new ClientInHandler(socketIn, gameStateDTO));
+		executor.submit(new ClientOutHandler(socketOut, gameState));
+		executor.submit(new ClientInHandler(socketIn, gameState));
 	}
 	public static void main(String[] args) {
 	ClientSocket clientSocket= new ClientSocket();

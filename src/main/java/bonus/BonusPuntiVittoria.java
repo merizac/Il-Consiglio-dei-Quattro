@@ -4,6 +4,10 @@ import game.GameState;
 
 public class BonusPuntiVittoria extends Bonus {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5468530680642958233L;
 	private int puntiVittoria;
 
 	/**

@@ -4,6 +4,10 @@ import game.GameState;
 
 public class BonusMoneta extends Bonus {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6145370619214632336L;
 	private int monete;
 	/**
 	 * constructor of BonusMoneta

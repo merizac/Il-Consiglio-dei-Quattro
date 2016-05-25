@@ -8,6 +8,10 @@ import game.azioni.Azione;
 
 public class Stato11 implements Stato {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2095271621049102185L;
 	private List<String> azionePrincipale;
 	private List<String> azioneVeloce;
 

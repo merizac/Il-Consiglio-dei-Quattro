@@ -2,25 +2,24 @@ package client;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
-
+import game.GameState;
 import game.notify.Notify;
-import gameDTO.GameStateDTO;
 
 public class ClientInHandler implements Runnable {
 
 private ObjectInputStream socketIn;
-private GameStateDTO gameStateDTO;
+private GameState gameState;
 	
-	public ClientInHandler(ObjectInputStream socketIn, GameStateDTO gameStateDTO){
+	public ClientInHandler(ObjectInputStream socketIn, GameState gameState){
 		this.socketIn=socketIn;
-		this.gameStateDTO=gameStateDTO;
+		this.gameState=gameState;
 		
 	}
 
 	@Override
 	public void run() {
 
-		System.out.println("InHandler "+gameStateDTO);
+		System.out.println("InHandler "+gameState);
 		while(true){
 			
 			try {

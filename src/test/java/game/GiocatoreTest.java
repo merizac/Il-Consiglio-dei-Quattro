@@ -21,7 +21,7 @@ public class GiocatoreTest {
 			empori.add(new Emporio(new Colore("giallo")));
 		}
 		Mazzo<CartaPolitica> mazzo = Reader.letturaCartePolitica("src/test/resources/cartaPoliticaTest.txt");
-		giocatore = new Giocatore(new Colore("giallo"), mazzo.getCarte(), new Aiutante(4), 3, 10, new PunteggioNobiltà(10, null), empori);
+		giocatore = new Giocatore("nome",new Colore("giallo"), mazzo.getCarte(), new Aiutante(4), 3, 10, new PunteggioNobiltà(10, null), empori);
 	}
 
 	@Test

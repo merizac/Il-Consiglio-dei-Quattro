@@ -10,6 +10,10 @@ import game.azioni.Azione;
 
 public class StatoAcquistoMarket implements Stato {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7840008978993076042L;
 	private ArrayList<Giocatore> giocatori;
 	
 	public StatoAcquistoMarket(GameState gameState){

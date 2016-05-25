@@ -8,6 +8,11 @@ import game.azioni.Azione;
 public class StartEnd implements Stato {
 
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4274723843140699323L;
+
 	public StartEnd(GameState gameState) {
 		if(gameState.getNumeroTurni()!=gameState.getGiocatori().size()){
 			gameState.prossimoTurno();
