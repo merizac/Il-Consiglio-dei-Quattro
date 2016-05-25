@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 import game.CartaPolitica;
+import game.Colore;
 import game.GameState;
 import game.Giocatore;
 
@@ -32,14 +33,14 @@ public class BonusCartePoliticaTest {
 	@Test
 	public void testUsaBonus() throws IOException {
 		GameState gameState = new GameState();
-		ArrayList<CartaPolitica> carte = new ArrayList<CartaPolitica>();
-		Giocatore giocatore = new Giocatore("nome", null, carte , null, 0, 0, null, null);
+		//ArrayList<CartaPolitica> carte = new ArrayList<CartaPolitica>();
+		Giocatore giocatore = new Giocatore("nome");
 		gameState.setGiocatoreCorrente(giocatore);
-	
-		int numCarte = carte.size();
+		giocatore.aggiungiCartaPolitica(new CartaPolitica(new Colore("1")));
+		//int numCarte = carte.size();
 		BonusCartePolitica bonus = new BonusCartePolitica(3);
 		bonus.usaBonus(gameState);
-		assertEquals(numCarte+3, giocatore.getCartePolitica().size());
+		assertEquals(1+3, giocatore.getCartePolitica().size());
 		
 	}
 
