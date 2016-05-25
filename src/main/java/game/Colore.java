@@ -6,16 +6,20 @@ public class Colore implements Serializable{
 	/**
 	 * 
 	 */
+	
 	private static final long serialVersionUID = 8768107036028122791L;
 	private final String colore;
+	
 	/**
 	 * the construct of the class Colore set the variable colore at the parameter passed
 	 * @param colore
 	 */
+	
 	public Colore(String colore){
 	
 		this.colore=colore;
 	}
+	
 	/**
 	 * return the value of the variable colore
 	 * @return colore 
@@ -23,6 +27,7 @@ public class Colore implements Serializable{
 	public String getColore() {
 		return colore;
 	}
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */

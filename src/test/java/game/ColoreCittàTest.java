@@ -2,23 +2,50 @@ package game;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
+import org.junit.BeforeClass;
 import org.junit.Test;
+
+import bonus.BonusAiutanti;
+import bonus.BonusPuntiVittoria;
 
 public class ColoreCittàTest {
 
-	@Test
-	public void testColoreCittà() {
-		fail("Not yet implemented");
+	static GameState gameState;
+	
+	@BeforeClass
+	public static void init() throws IOException{
+		gameState=new GameState();
 	}
-
+	
 	@Test
 	public void testGetCittà() {
-		fail("Not yet implemented");
+		ArrayList<Città> cittàStessoColore=new ArrayList<Città>();
+		ArrayList<Città> città=new ArrayList<Città>(gameState.getCittà());
+		ColoreCittà colore=(ColoreCittà) città.get(0).getColoreCittà();
+
+		for(Città c: gameState.getCittà()){
+			if(c.getColoreCittà().equals(colore)){
+				cittàStessoColore.add(c);
+			}
+		}
+
+		for (Città c: cittàStessoColore){
+			assertTrue(colore.getCittà().contains(c));
+		}
+
+		for (Città c: colore.getCittà()){
+			assertTrue(cittàStessoColore.contains(c));
+		}
 	}
 
 	@Test
 	public void testGetBonusColore() {
-		fail("Not yet implemented");
+		BonusPuntiVittoria bonus=new BonusPuntiVittoria(4);
+		ColoreCittà coloreCittà=new ColoreCittà("Colore", bonus);
+		assertEquals(bonus, coloreCittà.getBonusColore());
 	}
 
 }

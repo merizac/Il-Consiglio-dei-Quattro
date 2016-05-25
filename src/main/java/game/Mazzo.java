@@ -53,7 +53,7 @@ public class Mazzo<T> implements Serializable{
 	 */
 	public void aggiungiCarte(ArrayList<T> carta) {
 		for(T t: carta){	
-		carte.add(t);
+			carte.add(t);
 		}
 	}
 	/**
