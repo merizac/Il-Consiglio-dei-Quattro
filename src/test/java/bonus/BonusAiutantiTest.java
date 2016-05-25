@@ -34,7 +34,8 @@ public class BonusAiutantiTest {
 	public void testUsaBonus() throws IOException {
 		aiutanti=5;
 		Aiutante aiutantiPrima=new Aiutante(3);
-		Giocatore giocatore = new Giocatore("nome",null, null, aiutantiPrima, 0, 0, null, null);
+		Giocatore giocatore = new Giocatore("nome");
+		giocatore.setAiutanti(aiutantiPrima);
 		System.out.println(giocatore);
 		GameState gameState=new GameState();
 		gameState.setGiocatoreCorrente(giocatore);

@@ -241,6 +241,10 @@ public class Giocatore implements Serializable {
 		this.tesserePermesso.remove(tesseraPermesso);
 	}
 
+	public void aggiungiEmpori(ArrayList<Emporio> empori){
+		this.empori.addAll(empori);
+}
+
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()

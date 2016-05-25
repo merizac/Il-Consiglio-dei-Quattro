@@ -67,7 +67,13 @@ public class CostruzioneAiutoReTest {
 		//set giocatorecorrente
 		ArrayList<Emporio> empori=new ArrayList<Emporio>();
 		empori.add(new Emporio(new Colore("C_Emporio")));
-		gameState.setGiocatoreCorrente(new Giocatore("nome", new Colore("giocatore"), carteGiocatore, new Aiutante(4), 0, 10, new PunteggioNobiltà(0, null), empori));
+		Giocatore giocatore=new Giocatore("nome");
+		giocatore.setColoreGiocatore(new Colore("giocatore"));
+		giocatore.setAiutanti(new Aiutante(4));
+		giocatore.setPunteggioNobiltà(new PunteggioNobiltà(0, null));
+		giocatore.aggiungiEmpori(empori);
+
+		gameState.setGiocatoreCorrente(giocatore);
 		System.out.println("soldi :"+gameState.getGiocatoreCorrente().getPunteggioRicchezza());
 		//System.out.println("città re: "+gameState.getPedinaRe().getCittà());
 

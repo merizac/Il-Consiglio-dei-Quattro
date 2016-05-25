@@ -31,7 +31,9 @@ public class CostruzioneTesseraPermessoTest {
 		gameState = new GameState();
 		Regione regione = gameState.getRegioni().get(0);
 		ArrayList<Emporio> empori =  new ArrayList<Emporio>();
-		giocatoreCorrente = new Giocatore("nome",colore, null, null, 0, 0, null,empori);
+		giocatoreCorrente = new Giocatore("nome");
+		giocatoreCorrente.setColoreGiocatore(colore);
+		giocatoreCorrente.aggiungiEmpori(empori);
 		gameState.setGiocatoreCorrente(giocatoreCorrente);
 		empori.add(new Emporio(colore));
 		empori.add(new Emporio(colore));
