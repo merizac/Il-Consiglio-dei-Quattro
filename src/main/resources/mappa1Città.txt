@@ -1,0 +1,40 @@
+Giallo 20
+Grigio 12
+Bronzo 8
+Blu 5
+Re 
+CITTA
+5
+Arkon Blu
+Burgen Giallo
+Castrum Grigio
+Dorful Grigio
+Esti Bronzo
+5
+Framek Blu
+Graden Grigio
+Hellar Giallo
+Indur Bronzo
+Juvelar Re
+5
+Kultos Giallo
+Lyram Grigio
+Merkatim Blu
+Naris Bronzo
+Osium Giallo
+CITTACOLLEGATE
+Arkon Burgen Castrum
+Burgen Arkon Esti Dorful
+Castrum Arkon Framek 
+Dorful Burgen Graden
+Esti Burgen Hellar
+Framek Castrum Indur
+Graden Dorful Juvelar
+Hellar Esti Juvelar Merkatim
+Indur Juvelar Framek Kultos
+Juvelar Graden Hellar Lyram Indur
+Kultos Indur Naris
+Lyram Juvelar Osium
+Merkatim Hellar Osium
+Naris Kultos Osium
+Osium Lyram Merkatim Naris

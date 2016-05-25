@@ -44,8 +44,8 @@ public class GameState extends Observable<Notify> implements Serializable{
 		this.consiglieri = Reader.letturaConsigliere();
 		this.regioni = Reader.letturaRegioni();
 		this.planciaRe = Reader.creazionePlanciaRe();
-		this.mazzoCartePolitica = Reader.letturaCartePolitica("src/main/resources/cartaPolitica.txt");
-		this.mappa = Reader.creazioneMappa("src/main/resources/città.txt");
+		this.mazzoCartePolitica = Reader.letturaCartePolitica();
+		this.mappa = Reader.creazioneMappa("mappa1");
 		this.pedinaRe = Reader.creazioneRe();
 		this.giocatori = new ArrayList<Giocatore>();
 		this.stato= new StartEnd(this);

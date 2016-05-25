@@ -59,21 +59,21 @@ public class Reader {
 	}
 	
 	//costruiscre la mappa e mette le tessere permesso alle regioni
-	public static Mappa creazioneMappa(String fileCittà) throws IOException{
-		creazioneCittà(fileCittà);
+	public static Mappa creazioneMappa(String configurazione) throws IOException{
+		creazioneCittà(configurazione);
 		Mappa mappa=new Mappa(new HashSet<Città>(cities));
 		letturaTesserePermesso(cities, regioni);
 		return mappa;
 	} 
 
 	//crea città e gli mette i bonus rotondi
-	public static void creazioneCittà(String fileCittà) throws IOException{
-		cities=letturaCittà(fileCittà);
+	public static void creazioneCittà(String configurazione) throws IOException{
+		cities=letturaCittà(configurazione);
 		letturaBonusTondiCittà();
 		
 	}
 	
-	public static Mazzo<CartaPolitica> letturaCartePolitica(String fileCartePolitica) throws IOException{
+/*	public static Mazzo<CartaPolitica> letturaCartePolitica(String fileCartePolitica) throws IOException{
 		
 		ArrayList<CartaPolitica> cartaPoliticaList=new ArrayList<CartaPolitica>();
 		FileReader cartaPolitica=new FileReader(fileCartePolitica);
@@ -88,6 +88,42 @@ public class Reader {
 	     	CartaPolitica carta =new CartaPolitica(new Colore(stringaLetta));
 	     	cartaPoliticaList.add(carta);
 		}
+		b.close();
+		Collections.shuffle(cartaPoliticaList);
+		return new Mazzo<CartaPolitica>(cartaPoliticaList);
+	}
+	*/
+	
+public static Mazzo<CartaPolitica> letturaCartePolitica() throws IOException{
+		
+		ArrayList<CartaPolitica> cartaPoliticaList=new ArrayList<CartaPolitica>();
+		FileReader cartaPolitica=new FileReader("src/main/resources/mappa1ColoriConsiglieriCartePolitica.txt");
+		BufferedReader b;
+		b=new BufferedReader(cartaPolitica);
+		String stringaLetta;
+		int quantità=0;
+		Colore colore=null;
+    	stringaLetta=b.readLine();
+
+		while(true) {
+	     	if(stringaLetta==null)
+	     		break;
+	     	StringTokenizer st=new StringTokenizer(stringaLetta);
+	     	
+			String tmp=st.nextToken();
+			if(tmp.equals("Colore")){
+				colore=new Colore(st.nextToken());
+			}
+			
+			if(tmp.equals("CartePolitica")){
+				quantità=Integer.parseInt(st.nextToken());
+				for(int i=0;i<quantità;i++){
+					CartaPolitica carta =new CartaPolitica(colore);
+			     	cartaPoliticaList.add(carta);
+				}
+			}			
+			stringaLetta=b.readLine();
+			}
 		b.close();
 		Collections.shuffle(cartaPoliticaList);
 		return new Mazzo<CartaPolitica>(cartaPoliticaList);
@@ -147,7 +183,7 @@ public class Reader {
 		return nobiltà;
 	}
 	
-	public static ArrayList<Consigliere> letturaConsigliere() throws IOException{
+/*	public static ArrayList<Consigliere> letturaConsigliere() throws IOException{
 		
 		FileReader cons=new FileReader("src/main/resources/consiglieri.txt");
 		BufferedReader b;
@@ -161,6 +197,42 @@ public class Reader {
 	     	Consigliere consigliere =new Consigliere(new Colore(stringaLetta));
 	     	consiglieri.add(consigliere);
 		}
+		b.close();
+		Collections.shuffle(consiglieri);
+		return consiglieri;
+	}
+	*/
+	
+public static ArrayList<Consigliere> letturaConsigliere() throws IOException{
+		
+		FileReader cons=new FileReader("src/main/resources/mappa1ColoriConsiglieriCartePolitica.txt");
+		
+		BufferedReader b;
+		b=new BufferedReader(cons);
+		String stringaLetta;
+		int quantità=0;
+		Colore colore=null;
+    	stringaLetta=b.readLine();
+
+		while(true) {
+	     	if(stringaLetta==null)
+	     		break;
+	     	StringTokenizer st=new StringTokenizer(stringaLetta);
+	     	
+			String tmp=st.nextToken();
+			if(tmp.equals("Colore")){
+				colore=new Colore(st.nextToken());
+			}
+			
+			if(tmp.equals("Consiglieri")){
+				quantità=Integer.parseInt(st.nextToken());
+				for(int i=0;i<quantità;i++){
+					Consigliere consigliere =new Consigliere(colore);
+			     	consiglieri.add(consigliere);
+				}
+			}			
+			stringaLetta=b.readLine();
+			}
 		b.close();
 		Collections.shuffle(consiglieri);
 		return consiglieri;
@@ -195,10 +267,10 @@ public class Reader {
 	}
 
 	
-	public static ArrayList<Città> letturaCittà(String fileCittà) throws IOException{
+	public static ArrayList<Città> letturaCittà(String configurazione) throws IOException{
 	
 		ArrayList<Colore> coloriCittà= new ArrayList<Colore>();
-		FileReader città=new FileReader(fileCittà);
+		FileReader città=new FileReader("src/main/resources/"+configurazione+"Città.txt");
 		BufferedReader b;
 		b=new BufferedReader(città);
 		String stringaLetta;

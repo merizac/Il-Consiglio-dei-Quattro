@@ -22,7 +22,7 @@ public class MappaCostruttoreTest {
 	public static void init() throws IOException{
 	reader.letturaConsigliere();
 	reader.letturaRegioni();
-	città = new HashSet <Città> (reader.letturaCittà("src/main/resources/città.txt"));
+	città = new HashSet <Città> (reader.letturaCittà("mappa1"));
 	//System.out.println(città);
 	}
 			

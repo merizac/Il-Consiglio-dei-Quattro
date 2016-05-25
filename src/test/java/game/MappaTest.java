@@ -20,7 +20,7 @@ public class MappaTest {
 	public static void init() throws IOException{
 	reader.letturaConsigliere();
 	reader.letturaRegioni();
-	città = new HashSet <Città> (reader.letturaCittà("src/main/resources/città.txt"));
+	città = new HashSet <Città> (reader.letturaCittà("mappa1"));
 	mappa = new Mappa(città);
 	}
 	
