@@ -2,33 +2,33 @@ package mapping.gameToMap;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Set;
 
 import org.jgrapht.UndirectedGraph;
 import org.jgrapht.graph.DefaultEdge;
 
-import game.Colore;
 
 
 public class GameStateDTO implements Serializable  {
 
 	private static final long serialVersionUID = -8629825962043239713L;
-	private UndirectedGraph<CittàDTO, DefaultEdge> mappa;
+	private Set<CittàDTO> città;
 	private ArrayList<RegioneDTO> regioni;
 	private ReDTO pedinaRE;
 	private PlanciaReDTO planciaReDTO;
-	private ArrayList<Colore> consiglieri;
+	private ArrayList<ConsigliereDTO> consiglieri;
 	
 	/**
-	 * @return the mappa
+	 * @return the città
 	 */
-	public UndirectedGraph<CittàDTO, DefaultEdge> getMappa() {
-		return mappa;
+	public Set<CittàDTO> getCittà() {
+		return città;
 	}
 	/**
-	 * @param mappa the mappa to set
+	 * @param città the città to set
 	 */
-	public void setMappa(UndirectedGraph<CittàDTO, DefaultEdge> mappa) {
-		this.mappa = mappa;
+	public void setCittà(Set<CittàDTO> città) {
+		this.città = città;
 	}
 	/**
 	 * @return the regioni
@@ -70,13 +70,13 @@ public class GameStateDTO implements Serializable  {
 	/**
 	 * @return the consiglieri
 	 */
-	public ArrayList<Colore> getConsiglieri() {
+	public ArrayList<ConsigliereDTO> getConsiglieri() {
 		return consiglieri;
 	}
 	/**
 	 * @param consiglieri the consiglieri to set
 	 */
-	public void setConsiglieri(ArrayList<Colore> consiglieri) {
+	public void setConsiglieri(ArrayList<ConsigliereDTO> consiglieri) {
 		this.consiglieri = consiglieri;
 	}
 	
@@ -85,7 +85,7 @@ public class GameStateDTO implements Serializable  {
 	 */
 	@Override
 	public String toString() {
-		return "GameStateDTO [mappa=" + mappa + "\nregioni=" + regioni + "\npedinaRE=" + pedinaRE + "\nplanciaReDTO="
+		return "GameStateDTO [mappa=" + città + "\nregioni=" + regioni + "\npedinaRE=" + pedinaRE + "\nplanciaReDTO="
 				+ planciaReDTO + "\nconsiglieri=" + consiglieri + "]";
 	}
 	

@@ -1,13 +1,7 @@
 package game;
 
-import java.io.Serializable;
+public class Colore {
 
-public class Colore implements Serializable{
-	/**
-	 * 
-	 */
-	
-	private static final long serialVersionUID = 8768107036028122791L;
 	private final String colore;
 	
 	/**

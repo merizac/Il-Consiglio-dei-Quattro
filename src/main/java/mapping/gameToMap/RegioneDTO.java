@@ -2,7 +2,6 @@ package mapping.gameToMap;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.ArrayList;
 
 public class RegioneDTO implements Serializable {
 	
@@ -10,7 +9,7 @@ public class RegioneDTO implements Serializable {
 	private String nome;
 	private ArrayList<TesseraPermessoDTO> tesserePermessoScoperte;
 	private BonusDTO bonusRegione;
-	private ArrayList<Colore> balcone;
+	private ArrayList<ColoreDTO> balcone;
 	/**
 	 * @return the nome
 	 */
@@ -50,13 +49,13 @@ public class RegioneDTO implements Serializable {
 	/**
 	 * @return the balcone
 	 */
-	public ArrayList<Colore> getBalcone() {
+	public ArrayList<ColoreDTO> getBalcone() {
 		return balcone;
 	}
 	/**
 	 * @param balcone the balcone to set
 	 */
-	public void setBalcone(ArrayList<Colore> balcone) {
+	public void setBalcone(ArrayList<ColoreDTO> balcone) {
 		this.balcone = balcone;
 	}
 	/* (non-Javadoc)

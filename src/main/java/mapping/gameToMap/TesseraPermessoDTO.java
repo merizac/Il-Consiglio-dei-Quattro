@@ -2,25 +2,26 @@ package mapping.gameToMap;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Set;
 
 import bonus.Bonus;
 
 public class TesseraPermessoDTO implements Serializable  {
 
 	private static final long serialVersionUID = 251246647055835184L;
-	private ArrayList<CittàDTO> città;
+	private Set<CittàDTO> città;
 	private ArrayList<Bonus> bonus;
 	private RegioneDTO regione;
 	/**
 	 * @return the città
 	 */
-	public ArrayList<CittàDTO> getCittà() {
+	public Set<CittàDTO> getCittà() {
 		return città;
 	}
 	/**
 	 * @param città the città to set
 	 */
-	public void setCittà(ArrayList<CittàDTO> città) {
+	public void setCittà(Set<CittàDTO> città) {
 		this.città = città;
 	}
 	/**

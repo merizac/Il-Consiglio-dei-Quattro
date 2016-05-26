@@ -52,7 +52,7 @@ public class ClientSocket {
 		
 		ExecutorService executor= Executors.newFixedThreadPool(2);
 		
-		executor.submit(new ClientOutHandler(socketOut, gameState, giocatore));
+		//executor.submit(new ClientOutHandler(socketOut, gameState, giocatore));
 		executor.submit(new ClientInHandler(socketIn, gameState, giocatore));
 	}
 	public static void main(String[] args) {

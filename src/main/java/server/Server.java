@@ -9,9 +9,6 @@ import java.util.List;
 import java.util.Timer;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
-import org.junit.rules.Timeout;
-
 import controller.Controller;
 import game.GameState;
 import game.Giocatore;

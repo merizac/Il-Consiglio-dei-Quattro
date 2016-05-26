@@ -7,18 +7,18 @@ import java.util.Queue;
 public class PlanciaReDTO implements Serializable {
 
 	private static final long serialVersionUID = -1277703422395979043L;
-	private Queue<Colore> balconeRe;
+	private Queue<ColoreDTO> balconeRe;
 	private ArrayList<BonusDTO> bonusPremioRe;
 	/**
 	 * @return the balconeRe
 	 */
-	public Queue<Colore> getBalconeRe() {
+	public Queue<ColoreDTO> getBalconeRe() {
 		return balconeRe;
 	}
 	/**
 	 * @param balconeRe the balconeRe to set
 	 */
-	public void setBalconeRe(Queue<Colore> balconeRe) {
+	public void setBalconeRe(Queue<ColoreDTO> balconeRe) {
 		this.balconeRe = balconeRe;
 	}
 	/**

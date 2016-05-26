@@ -8,7 +8,7 @@ public class CittàDTO implements Serializable{
 	private static final long serialVersionUID = -2915919940093407446L;
 	private String nome;
 	private RegioneDTO regioneDTO;
-	private Colore coloreCittàDTO;
+	private ColoreDTO ColoreDTO;
 	private HashSet<String> empori;
 	/**
 	 * @return the nome
@@ -35,16 +35,16 @@ public class CittàDTO implements Serializable{
 		this.regioneDTO = regioneDTO;
 	}
 	/**
-	 * @return the coloreCittàDTO
+	 * @return the ColoreDTODTOCittàDTO
 	 */
-	public Colore getColoreCittàDTO() {
-		return coloreCittàDTO;
+	public ColoreDTO getColoreDTO() {
+		return ColoreDTO;
 	}
 	/**
-	 * @param coloreCittàDTO the coloreCittàDTO to set
+	 * @param ColoreDTODTOCittàDTO the ColoreDTODTOCittàDTO to set
 	 */
-	public void setColoreCittàDTO(Colore coloreCittàDTO) {
-		this.coloreCittàDTO = coloreCittàDTO;
+	public void setColoreDTO(ColoreDTO ColoreDTO) {
+		this.ColoreDTO = ColoreDTO;
 	}
 	/**
 	 * @return the empori
@@ -63,7 +63,7 @@ public class CittàDTO implements Serializable{
 	 */
 	@Override
 	public String toString() {
-		return "CittàDTO [nome=" + nome + ", regioneDTO=" + regioneDTO + ", coloreCittàDTO=" + coloreCittàDTO
+		return "CittàDTO [nome=" + nome + ", regioneDTO=" + regioneDTO + ", ColoreDTODTOCittàDTO=" + ColoreDTO
 				+ ", empori=" + empori + "]";
 	}
 	
