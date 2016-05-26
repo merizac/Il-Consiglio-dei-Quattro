@@ -15,6 +15,8 @@ public class BonusPuntiNobiltà extends Bonus {
 	
 	public BonusPuntiNobiltà(int puntiNobiltà) {
 		super();
+		if(puntiNobiltà<=0)
+			throw new IllegalArgumentException("Bonus punti nobiltà deve ricevere un valore positivo non nullo");
 		this.puntiNobiltà=puntiNobiltà;
 	}
 
@@ -26,6 +28,8 @@ public class BonusPuntiNobiltà extends Bonus {
 	public void usaBonus(GameState gameState) {
 		int puntiCorrenti = gameState.getGiocatoreCorrente().getPunteggioNobiltà().getPuntiNobiltà();
 		int puntiNuovi= puntiCorrenti+puntiNobiltà;
+		if(puntiNuovi>gameState.getPlanciaRe().getPercorsoNobiltà().size()-1)
+			puntiNuovi=gameState.getPlanciaRe().getPercorsoNobiltà().size()-1;
 		PunteggioNobiltà nuovaPosizioneNobiltà = gameState.getPlanciaRe().getPercorsoNobiltà().get(puntiNuovi);
 		
 		gameState.getGiocatoreCorrente().setPunteggioNobiltà(nuovaPosizioneNobiltà);
