@@ -34,7 +34,7 @@ public class BonusPuntiNobiltàTest {
 	public void usaBonusNonPuòRicevereNumeroNullo() {
 		BonusPuntiNobiltà bonus=new BonusPuntiNobiltà(0);
 	}
-	*/
+	
 	@Test
 	public void testUsaBonus() throws IOException{
 		GameState gameState=new GameState();
@@ -62,5 +62,47 @@ public class BonusPuntiNobiltàTest {
 		bonus1.usaBonus(gameState1);
 		
 		assertTrue(casella==gameState1.getGiocatoreCorrente().getPunteggioNobiltà());
+	}*/
+	
+	
+	static GameState gameState;
+	static Giocatore giocatore;
+	
+	@BeforeClass
+	public static void init() throws IOException{
+		gameState=new GameState();
+		giocatore=new Giocatore("giocatore");
+		giocatore.setPunteggioNobiltà(gameState.getPlanciaRe().getPercorsoNobiltà().get(0));
+		gameState.setGiocatoreCorrente(giocatore);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void usaBonusNonPuòRicevereNumeroNegativo() {
+		BonusPuntiNobiltà bonus=new BonusPuntiNobiltà(-2);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void usaBonusNonPuòRicevereNumeroNullo() {
+		BonusPuntiNobiltà bonus=new BonusPuntiNobiltà(0);
+	}
+	
+	@Test
+	public void testUsaBonus() throws IOException{
+		Bonus bonus=new BonusPuntiNobiltà(2);
+		PunteggioNobiltà casella=gameState.getPlanciaRe().getPercorsoNobiltà().get(2);
+		bonus.usaBonus(gameState);
+		
+		assertTrue(casella==gameState.getGiocatoreCorrente().getPunteggioNobiltà());
+	}
+
+	
+	@Test
+	public void testUsaBonusChePortaAfinePercorso() throws IOException{
+		Bonus bonus=new BonusPuntiNobiltà(100);
+		PunteggioNobiltà casella=gameState.getPlanciaRe().getPercorsoNobiltà().get(gameState.getPlanciaRe().getPercorsoNobiltà().size()-1);
+
+		bonus.usaBonus(gameState);
+		
+		assertTrue(casella==gameState.getGiocatoreCorrente().getPunteggioNobiltà());
 	}
 }
