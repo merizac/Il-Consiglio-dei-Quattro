@@ -1,9 +1,9 @@
 package game;
 
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import controller.StartEnd;
@@ -12,6 +12,7 @@ import game.market.Offerta;
 import game.notify.Notify;
 import it.polimi.ingsw.cg17.Reader;
 import utility.Observable;
+import utility.exception.AzioneNonEseguibile;
 
 public class GameState extends Observable<Notify> implements Serializable{
 	/**
@@ -24,7 +25,7 @@ public class GameState extends Observable<Notify> implements Serializable{
 	private final Re pedinaRe;
 	private final ArrayList<Consigliere> consiglieri;
 	private final Mazzo<CartaPolitica> mazzoCartePolitica;
-	private ArrayList<Giocatore> giocatori;
+	private List<Giocatore> giocatori;
 	private Giocatore giocatoreCorrente;
 	private Stato stato;
 	private boolean BonusAzionePrincipale;
@@ -48,8 +49,8 @@ public class GameState extends Observable<Notify> implements Serializable{
 		this.mappa = Reader.creazioneMappa("mappa1");
 		this.pedinaRe = Reader.creazioneRe();
 		this.giocatori = new ArrayList<Giocatore>();
-		this.stato= new StartEnd(this);
 		this.offerteMarket=new ArrayList<>();
+		
 	}
 	/**
 	 * @return the numeroTurni
@@ -105,7 +106,7 @@ public class GameState extends Observable<Notify> implements Serializable{
 	/**
 	 * @param giocatori the giocatori to set
 	 */
-	public void setGiocatori(ArrayList<Giocatore> giocatori) {
+	public void setGiocatori(List<Giocatore> giocatori) {
 		this.giocatori = giocatori;
 	}
 	
@@ -164,7 +165,7 @@ public class GameState extends Observable<Notify> implements Serializable{
 	/**
 	 * @return the giocatori
 	 */
-	public ArrayList<Giocatore> getGiocatori() {
+	public List<Giocatore> getGiocatori() {
 		return giocatori;
 	}
 	/**
@@ -192,32 +193,23 @@ public class GameState extends Observable<Notify> implements Serializable{
 		BonusAzionePrincipale = bonusAzionePrincipale;
 	}
 	
-	public void creaGiocatori(int numeroGiocatori){
-		/*int monete=10;
-		Set<Colore> coloreGiocatori=creaColori(numeroGiocatori);
-		for(int i=0; i<numeroGiocatori; i++){
-			Colore coloreGiocatore=coloreGiocatori.iterator().next();
-			Giocatore giocatore=new Giocatore(coloreGiocatore, assegnaCartePolitica(6), new Aiutante(3), 0, monete+i,
-					planciaRe.getPercorsoNobiltà().get(0) , creaEmpori(10, coloreGiocatore));
-			giocatori.add(giocatore); 
-		
-		
-		this.giocatori.add(new Giocatore(new Colore("Giallo"), assegnaCartePolitica(6), new Aiutante(3), 0, monete,
-					planciaRe.getPercorsoNobiltà().get(0) , creaEmpori(10, new Colore("Giallo"))));
-		this.giocatori.add(new Giocatore(new Colore("Verde"), assegnaCartePolitica(6), new Aiutante(3), 0, monete+1,
-				planciaRe.getPercorsoNobiltà().get(0) , creaEmpori(10, new Colore("Verde"))));
-		this.giocatori.add(new Giocatore(new Colore("Blu"), assegnaCartePolitica(6), new Aiutante(3), 0, monete+2,
-				planciaRe.getPercorsoNobiltà().get(0) , creaEmpori(10, new Colore("Blu"))));
-		giocatoreCorrente=giocatori.get(0);*/
-	}
-	private ArrayList<Emporio> creaEmpori(int numeroEmpori, Colore coloreGiocatore) {
-		ArrayList<Emporio> empori=new ArrayList<>();
-		for(int i=0; i<numeroEmpori; i++){
-			Emporio emporio=new Emporio(coloreGiocatore);
-			empori.add(emporio);
+	public void creaGiocatori(List<Giocatore> giocatori2){
+		int i=0;
+		System.out.println("creagiocatori");
+		for(Giocatore g: giocatori2){
+			g.setAiutanti(new Aiutante(1+i));
+			g.setPunteggioNobiltà(this.getPlanciaRe().getPercorsoNobiltà().get(0));
+			g.setPunteggioRicchezza(10+i);
+			g.setPunteggioVittoria(0);
+			g.setColoreGiocatore(new Colore(String.valueOf(i)));
+			g.creaEmpori(g.getColoreGiocatore());
+			g.getCartePolitica().addAll(assegnaCartePolitica(6));
+			i++;
 		}
-		return empori;
+		this.giocatoreCorrente=giocatori2.get(0);
+		System.out.println(this.giocatoreCorrente);
 	}
+
 	private ArrayList<CartaPolitica> assegnaCartePolitica(int numeroCarte) {
 		ArrayList<CartaPolitica> carte=new ArrayList<>(); 
 		for(int i=0; i<numeroCarte; i++){
@@ -226,17 +218,7 @@ public class GameState extends Observable<Notify> implements Serializable{
 		
 		return carte;
 	}
-	private HashSet<Colore> creaColori(int numeroGiocatori) {
-		HashSet<Colore> colori=new HashSet<>();
-		/*for(int i=0; i<numeroGiocatori; i++ ){
-			colori.add(new Colore("Giallo"));
-		}*/
-		colori.add(new Colore("Giallo"));
-		colori.add(new Colore("Verde"));
-		colori.add(new Colore("Blu"));
-		return colori;
-	}
-
+	
 	public void nextPlayer(){
 		Giocatore fineTurno = giocatori.remove(0);
 		giocatori.add(fineTurno);
@@ -253,4 +235,30 @@ public class GameState extends Observable<Notify> implements Serializable{
 		this.numeroTurni--;
 		
 	}
+	
+	
+	public void start() {
+		creaGiocatori(giocatori);
+		System.out.println("GAMESTATE giocatore corrente :" + giocatoreCorrente );
+		try {
+			this.stato= new StartEnd(this);
+		} catch (AzioneNonEseguibile e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "GameState mappa=" + mappa + "\nregioni=" + regioni + "\nplanciaRe=" + planciaRe + ", \npedinaRe="
+				+ pedinaRe + "\nconsiglieri=" + consiglieri + "\nmazzoCartePolitica=" + mazzoCartePolitica
+				+ "\ngiocatori=" + giocatori + "\ngiocatoreCorrente=" + giocatoreCorrente + "\nstato=" + stato
+				+ "\nBonusAzionePrincipale=" + BonusAzionePrincipale + "\nnumeroTurni=" + numeroTurni
+				+ "\nofferteMarket=" + offerteMarket + "]";
+	}
+	
 }

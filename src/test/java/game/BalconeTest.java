@@ -4,17 +4,10 @@ import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Queue;
-
-import javax.swing.text.AbstractDocument.LeafElement;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import game.query.ConsiglieriNotify;
-import it.polimi.ingsw.cg17.Reader;
 
 public class BalconeTest {
 

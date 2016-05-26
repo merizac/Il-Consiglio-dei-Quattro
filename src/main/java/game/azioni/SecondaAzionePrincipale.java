@@ -1,9 +1,11 @@
 package game.azioni;
 
 import game.GameState;
+import game.notify.ErrorParameterNotify;
 
 public class SecondaAzionePrincipale extends AzioneVeloce {
 
+	private static final long serialVersionUID = 8205005452846114970L;
 
 	/**
 	 * if the player has already do the main action, fill the Array of Main Action 
@@ -14,7 +16,13 @@ public class SecondaAzionePrincipale extends AzioneVeloce {
 	 */
 	@Override
 	public void eseguiAzione(GameState gameState) {
-		
-		setStatoTransizioneSecondaPrincipale(gameState); 	
+		if(gameState.getGiocatoreCorrente().getAiutanti().getAiutante()>2){
+			gameState.getGiocatoreCorrente().getAiutanti().togliAiutanti(3);	
+			setStatoTransizioneSecondaPrincipale(gameState); 
+		}
+		else{
+			gameState.notifyObserver(new ErrorParameterNotify("Errore: non hai abbastanza aiutanti"));
+			return;
+		}
 	}
 }

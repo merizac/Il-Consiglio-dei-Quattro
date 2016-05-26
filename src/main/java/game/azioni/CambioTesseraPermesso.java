@@ -3,18 +3,31 @@ package game.azioni;
 import game.GameState;
 import game.Regione;
 import game.TesseraPermesso;
+import game.notify.ErrorParameterNotify;
+import game.notify.GiocatoreNotify;
 
 public class CambioTesseraPermesso extends AzioneVeloce {
 
+
+	private static final long serialVersionUID = 1446954873428331443L;
 	private Regione regione;
 
 
 
 	@Override
 	public void eseguiAzione(GameState gameState) {
-		RimozioneCarte();
-		SostituzioneCarte();
-		setStatoTransizioneVeloce(gameState); 
+		if(gameState.getGiocatoreCorrente().getAiutanti().getAiutante()>0){
+			gameState.getGiocatoreCorrente().getAiutanti().togliAiutanti(1);
+			RimozioneCarte();
+			SostituzioneCarte();
+			setStatoTransizioneVeloce(gameState); 
+			gameState.notifyObserver(new GiocatoreNotify());
+		}
+		else{
+			gameState.notifyObserver(new ErrorParameterNotify("Errore: non hai abbastanza aiutanti"));
+			return;
+		}
+		
 		
 	}
 	

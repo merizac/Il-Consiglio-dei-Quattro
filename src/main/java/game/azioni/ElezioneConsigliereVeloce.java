@@ -2,11 +2,16 @@ package game.azioni;
 
 import game.Regione;
 import game.notify.ErrorParameterNotify;
+import game.notify.GiocatoreNotify;
 import game.Consigliere;
 import game.GameState;
 
 public class ElezioneConsigliereVeloce extends AzioneVeloce {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1882277645819280237L;
 	private Regione regione;
 	private Consigliere consigliere;
 
@@ -15,17 +20,18 @@ public class ElezioneConsigliereVeloce extends AzioneVeloce {
 	 */
 	@Override
 	public void eseguiAzione(GameState gameState) {
-		/*PassaggioParametri passaggioParametri = new PassaggioParametri(gameState);
-		consigliere = passaggioParametri.selezionaConsiglieri();
-		regione = passaggioParametri.selezionaRegione();*/
 		
-		if(!gameState.getGiocatoreCorrente().getAiutanti().togliAiutanti(1))
+		if(!gameState.getGiocatoreCorrente().getAiutanti().togliAiutanti(1)){
 			gameState.notifyObserver(new ErrorParameterNotify("Errore: gli aiutanti non sono sufficienti"));
+			return;
+		}
+			
 		
 		else {
 			Consigliere consigliereTolto = this.regione.getBalcone().aggiungiConsigliere(consigliere);
 			gameState.getConsiglieri().add(consigliereTolto);
 			setStatoTransizioneVeloce(gameState); 
+			gameState.notifyObserver(new GiocatoreNotify());
 			}
 		
 		}

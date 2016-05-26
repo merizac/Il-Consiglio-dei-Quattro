@@ -1,7 +1,8 @@
 package game.notify;
 
+import game.GameState;
 
-public class ErrorParameterNotify extends Notify {
+public class ErrorParameterNotify extends NotifyGiocatoreCorrente {
 
 	/**
 	 * 
@@ -17,7 +18,7 @@ public class ErrorParameterNotify extends Notify {
 	}
 
 	@Override
-	public void stamp() {
+	public void stamp(GameState gameState) {
 		System.out.println(error);
 
 	}

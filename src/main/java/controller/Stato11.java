@@ -1,10 +1,7 @@
 package controller;
 
-import java.util.ArrayList;
 import java.util.List;
-
 import game.GameState;
-import game.azioni.Azione;
 
 public class Stato11 implements Stato {
 
@@ -12,12 +9,10 @@ public class Stato11 implements Stato {
 	 * 
 	 */
 	private static final long serialVersionUID = -2095271621049102185L;
-	private List<String> azionePrincipale;
-	private List<String> azioneVeloce;
+	private List<String> azioni;
 
 	public Stato11() {
-		//this.azionePrincipale = riempiAzioniPrincipali();
-		//this.azioneVeloce = riempiAzioniVeloci();
+		riempiAzioni();
 	}
 	
 	@Override
@@ -35,8 +30,22 @@ public class Stato11 implements Stato {
 	}
 	
 	@Override
-	public List<Azione> getAzioni() {
-		List<Azione> azioniDisponibili=new ArrayList<>();
-		return azioniDisponibili;
+	public List<String> getAzioni() {
+		return azioni;
 	}
+
+
+	public void riempiAzioni(){
+		azioni.add("Azioni prinipali :");
+		azioni.add("Eleggere un consigliere");
+		azioni.add("Acquistare una tessera permesso di costruzione");
+		azioni.add("Costruire un emporio usando una tessera permesso");
+		azioni.add("costruire un emporio con l'aiuto del re");
+		azioni.add("Azioni veloci :");
+		azioni.add("Ingaggiare un aiutante");
+		azioni.add("Cambiare le tessere permesso di costruzione");
+		azioni.add("Mandare un aiutante ad eleggere un consigliere");
+		azioni.add("Compiere un'azione principale");
+	}
+
 }

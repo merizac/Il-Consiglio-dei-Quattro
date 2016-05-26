@@ -1,7 +1,8 @@
 package game.notify;
 
+import game.GameState;
 
-public class GameNotify extends Notify {
+public class GameNotify extends NotifyGiocatoreCorrente {
 
 	/**
 	 * 
@@ -9,7 +10,7 @@ public class GameNotify extends Notify {
 	private static final long serialVersionUID = -7941386236992971357L;
 
 	@Override
-	public void stamp(){
+	public void stamp(GameState gameState){
 		
 	}
 

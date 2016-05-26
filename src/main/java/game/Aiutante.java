@@ -79,7 +79,7 @@ public class Aiutante implements Marketable, Serializable{
 	 */
 	@Override
 	public String toString() {
-		return "Aiutante [numeroAiutanti=" + numeroAiutanti + "]";
+		return "Aiutanti:"+ numeroAiutanti;
 	}
 	
 	

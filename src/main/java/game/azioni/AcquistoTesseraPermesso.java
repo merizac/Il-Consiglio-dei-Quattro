@@ -8,9 +8,14 @@ import game.Consigliere;
 import game.GameState;
 import game.TesseraPermesso;
 import game.notify.ErrorParameterNotify;
+import game.notify.GiocatoreNotify;
 
 public class AcquistoTesseraPermesso extends AzionePrincipale {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4588947134505180391L;
 	private ArrayList<CartaPolitica> carteGiocatore;
 	private Regione regione;
 	private int indiceTesseraScoperta;
@@ -22,19 +27,21 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 	 */
 	@Override
 	public void eseguiAzione(GameState gameState) {
-		/*PassaggioParametri passaggioParametri=new PassaggioParametri(partita);
-		carteGiocatore=passaggioParametri.selezionaCarteGiocatore();
-		regione=passaggioParametri.selezionaRegione();		
-		indiceTesseraScoperta=passaggioParametri.selezionaTesseraScoperta(regione);*/
 		
-		if(carteGiocatore.isEmpty())
-			gameState.notifyObserver(new ErrorParameterNotify("Errore: non sono presenti carte"));//eccezione
+		if(carteGiocatore.isEmpty()){
+			gameState.notifyObserver(new ErrorParameterNotify("Errore: non sono presenti carte"));
+			return;
+		}
 			
-		if(!controllaColori())
+		if(!controllaColori()){
 			gameState.notifyObserver(new ErrorParameterNotify("Errore: i colori delle carte scelte non corrispondono con quelle del balcone!"));
+			return;
+		}
 			
-		if(!paga(calcolaMonete(), gameState))
+		if(!paga(calcolaMonete(), gameState)){
 			gameState.notifyObserver(new ErrorParameterNotify("Errore: i soldi non sono sufficienti!"));
+			return;
+		}
 			
 		   
 		for(CartaPolitica c: carteGiocatore){
@@ -42,10 +49,13 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 		      gameState.getGiocatoreCorrente().getCartePolitica().remove(c);
 		      gameState.getMazzoCartePolitica().aggiungiCarte(carteGiocatore);
 		    }
-		    TesseraPermesso tesseraScelta = regione.getTesserePermessoScoperte().get(indiceTesseraScoperta);
-		    gameState.getGiocatoreCorrente().getTesserePermesso().add(tesseraScelta);
+		TesseraPermesso tesseraScelta = regione.getTesserePermessoScoperte().get(indiceTesseraScoperta);
+	    gameState.getGiocatoreCorrente().getTesserePermesso().add(tesseraScelta);
 		 
 		 setStatoTransizionePrincipale(gameState); 
+		 //aggiornamento gamestate
+		 gameState.notifyObserver(new GiocatoreNotify());
+		 
 		
 	}
 	

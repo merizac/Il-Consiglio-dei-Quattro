@@ -7,9 +7,12 @@ import java.net.Socket;
 import java.util.Scanner;
 
 import game.GameState;
+import game.Giocatore;
 import game.azioni.Azione;
 import game.notify.Notify;
-import gameDTO.GameStateDTO;
+import game.notify.NotifyGiocatoreCorrente;
+import game.notify.NotifyGiocatori;
+import server.Server;
 
 public class ServerSocketView extends View implements Runnable {
 
@@ -17,22 +20,28 @@ public class ServerSocketView extends View implements Runnable {
 	private ObjectInputStream socketIn;
 	private ObjectOutputStream socketOut;
 	private GameState gameState;
+	private Giocatore giocatore;
+	private Server server;
 	
+
 	
-	
-	public ServerSocketView(Socket socket, GameState gameState) throws IOException{
+	public ServerSocketView(Socket socket, GameState gameState, Server server) throws IOException{
 		this.socket=socket;
 		this.gameState=gameState;
 		this.socketIn=new ObjectInputStream(socket.getInputStream());
 		this.socketOut=new ObjectOutputStream(socket.getOutputStream());
+		this.server=server;
 	}
-	
 	
 	@Override
 	public void update(Notify o) {
 
-		System.out.println("Sending to the client "+o);
+		
+		if((o instanceof NotifyGiocatoreCorrente) && giocatore.equals(gameState.getGiocatoreCorrente())
+				|| o instanceof NotifyGiocatori)
+			
 		try{
+			System.out.println("Sending to the client "+o);
 			this.socketOut.writeObject(o);
 			this.socketOut.flush();
 		}catch (IOException e){
@@ -47,9 +56,19 @@ public class ServerSocketView extends View implements Runnable {
 		try {
 			this.socketOut.writeObject(gameState);
 			
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		try {
+			giocatore=(Giocatore) socketIn.readObject();
+		} catch (ClassNotFoundException | IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println(giocatore);
+		
+		server.aggiungiGiocatore(giocatore);
+		
 		while(true){
 			
 			try {
@@ -68,7 +87,6 @@ public class ServerSocketView extends View implements Runnable {
 
 	@Override
 	public void input(Scanner input) {
-		// TODO Auto-generated method stub
 		
 	}
 }

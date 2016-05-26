@@ -58,7 +58,7 @@ public final class TesseraPermesso implements Marketable, Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "TesseraPermesso [città=" + città + ", bonus=" + bonus + ", regione=" + regione + "]";
+		return "TesseraPermesso: città :" + città + "\nbonus :" + bonus + "\nregione :" + regione;
 	}
 
 

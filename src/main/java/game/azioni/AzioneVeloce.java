@@ -26,7 +26,7 @@ public abstract class AzioneVeloce extends Azione {
 	}
 	
 	public void sendErrorNotify(GameState gameState){
-		gameState.notifyObserver(new ErrorNotify());
+		//gameState.notifyObserver(new ErrorNotify());
 	}
 	
 }

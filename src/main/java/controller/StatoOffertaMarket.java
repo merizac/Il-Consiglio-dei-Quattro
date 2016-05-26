@@ -1,10 +1,7 @@
 package controller;
 
-import java.util.ArrayList;
 import java.util.List;
-
 import game.GameState;
-import game.azioni.Azione;
 
 public class StatoOffertaMarket implements Stato {
 	
@@ -12,6 +9,17 @@ public class StatoOffertaMarket implements Stato {
 	 * 
 	 */
 	private static final long serialVersionUID = 5599670651827007425L;
+	private List<String> azioni;
+	
+	public StatoOffertaMarket() {
+		riempiAzioni();
+	}
+
+	private void riempiAzioni() {
+		azioni.add("Offerta");
+		azioni.add("Passa");
+		
+	}
 
 	@Override
 	public void transizionePassa(GameState gameState){
@@ -28,11 +36,11 @@ public class StatoOffertaMarket implements Stato {
 	public void transizioneOfferta(GameState gameState){
 		gameState.setStato(this);
 	}
-	
+
 	@Override
-	public List<Azione> getAzioni() {
-		List<Azione> azioniDisponibili=new ArrayList<>();
-		return azioniDisponibili;
+	public List<String> getAzioni() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
