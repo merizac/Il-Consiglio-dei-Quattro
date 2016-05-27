@@ -12,7 +12,6 @@ public abstract class View extends Observable <Azione> implements Observer <Noti
 	public View(){
 	}
 	
-	public abstract void input(Scanner input);
 
 	@Override
 	public void update(Notify notify) {

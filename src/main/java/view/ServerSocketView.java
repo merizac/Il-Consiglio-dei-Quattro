@@ -80,8 +80,4 @@ public class ServerSocketView extends View implements Runnable {
 		
 	}
 
-	@Override
-	public void input(Scanner input) {
-
-	}
 }
