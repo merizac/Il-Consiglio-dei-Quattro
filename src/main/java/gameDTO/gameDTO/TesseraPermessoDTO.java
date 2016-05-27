@@ -2,9 +2,12 @@ package gameDTO.gameDTO;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 import bonus.Bonus;
+import game.Città;
+import game.TesseraPermesso;
 
 public class TesseraPermessoDTO implements Serializable  {
 
@@ -54,6 +57,18 @@ public class TesseraPermessoDTO implements Serializable  {
 	@Override
 	public String toString() {
 		return "TesseraPermessoDTO [città=" + città + ", bonus=" + bonus + ", regione=" + regione + "]";
+	}
+	public void inizializza(TesseraPermesso t) {
+		RegioneDTO regioneDTO =new RegioneDTO();
+		regioneDTO.inizializza(t.getRegione());
+		this.setRegione(regioneDTO);
+		this.città=new HashSet<>();
+		for(Città c: t.getCittà()){
+			CittàDTO cittàDTO=new CittàDTO();
+			cittàDTO.inizializza(c);
+			città.add(cittàDTO);
+		}
+		this.setBonus(t.getBonus());
 	}
 	
 	

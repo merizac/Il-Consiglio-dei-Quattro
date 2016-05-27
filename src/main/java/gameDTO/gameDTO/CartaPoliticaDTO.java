@@ -2,6 +2,8 @@ package gameDTO.gameDTO;
 
 import java.io.Serializable;
 
+import game.CartaPolitica;
+
 public class CartaPoliticaDTO implements Serializable {
 
 	/**
@@ -22,6 +24,10 @@ public class CartaPoliticaDTO implements Serializable {
 	 */
 	public void setColore(String colore) {
 		this.colore = colore;
+	}
+	
+	public void inizializza(CartaPolitica cartaPolitica){
+		this.setColore(cartaPolitica.getColore().getColore());
 	}
 	
 	

@@ -2,6 +2,8 @@ package gameDTO.gameDTO;
 
 import java.io.Serializable;
 
+import game.Re;
+
 public class ReDTO implements Serializable{
 	
 	private static final long serialVersionUID = -151592428460349836L;
@@ -26,6 +28,10 @@ public class ReDTO implements Serializable{
 		return "ReDTO [città=" + città + "]";
 	}
 	
-	
+	public void inizializza(Re re){
+		CittàDTO cittàDTO = new CittàDTO();
+		cittàDTO.inizializza(re.getCittà());
+		this.setCittà(cittàDTO);
+	}
 
 }

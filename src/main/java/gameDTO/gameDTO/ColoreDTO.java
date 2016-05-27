@@ -2,6 +2,8 @@ package gameDTO.gameDTO;
 
 import java.io.Serializable;
 
+import game.Colore;
+
 public class ColoreDTO implements Serializable{
 
 	private static final long serialVersionUID = 97860141809311859L;
@@ -17,6 +19,10 @@ public class ColoreDTO implements Serializable{
 	 */
 	public void setColore(String colore) {
 		this.colore = colore;
+	}
+	
+	public void inizializza(Colore colore){
+		this.setColore(colore.getColore());
 	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()

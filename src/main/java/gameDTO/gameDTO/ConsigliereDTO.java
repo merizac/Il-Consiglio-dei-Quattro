@@ -2,6 +2,8 @@ package gameDTO.gameDTO;
 
 import java.io.Serializable;
 
+import game.Consigliere;
+
 public class ConsigliereDTO implements Serializable {
 
 	/**
@@ -10,11 +12,7 @@ public class ConsigliereDTO implements Serializable {
 	private static final long serialVersionUID = 7072033616848334700L;
 	private String coloreConsigliere;
 	/**
-	 * @param coloreConsigliere
 	 */
-	public ConsigliereDTO(String coloreConsigliere) {
-		this.coloreConsigliere = coloreConsigliere;
-	}
 	/**
 	 * @return the coloreConsigliere
 	 */
@@ -26,6 +24,10 @@ public class ConsigliereDTO implements Serializable {
 	 */
 	public void setColoreConsigliere(String coloreConsigliere) {
 		this.coloreConsigliere = coloreConsigliere;
+	}
+	
+	public void inizializza(Consigliere consigliere){
+		this.coloreConsigliere=consigliere.getColore().getColore();
 	}
 	
 	

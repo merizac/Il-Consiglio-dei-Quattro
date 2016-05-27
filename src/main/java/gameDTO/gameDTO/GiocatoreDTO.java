@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import bonus.Bonus;
+import game.CartaPolitica;
+import game.Giocatore;
+import game.TesseraPermesso;
 
 public class GiocatoreDTO implements Serializable {
 
@@ -16,7 +19,7 @@ public class GiocatoreDTO implements Serializable {
 	private ColoreDTO coloreGiocatore;
 	private ArrayList<CartaPoliticaDTO> cartePolitica;
 	private ArrayList<TesseraPermessoDTO> tesserePermesso;
-	private ArrayList<TesseraPermessoDTO> tesserePermessoUsate;
+	private ArrayList<TesseraPermessoDTO> tesserePermessoUsate; 
 	private ArrayList<Bonus> tessereBonus;
 	private int empori;
 	private int aiutanti;
@@ -156,6 +159,35 @@ public class GiocatoreDTO implements Serializable {
 		this.punteggioNobiltà = punteggioNobiltà;
 	}
 	
-	
+	public void inizializza(Giocatore giocatore){
+		this.setNome(giocatore.getNome());
+		this.setAiutanti(giocatore.getAiutanti().getAiutante());
+		this.cartePolitica=new ArrayList<>();
+		for(CartaPolitica c: giocatore.getCartePolitica()){
+			CartaPoliticaDTO cartaPoliticaDTO=new CartaPoliticaDTO();
+			cartaPoliticaDTO.inizializza(c);
+			this.cartePolitica.add(cartaPoliticaDTO);
+		}
+		ColoreDTO coloreDTO = new ColoreDTO();
+		coloreDTO.inizializza(giocatore.getColoreGiocatore());
+		this.setColoreGiocatore(coloreDTO);
+		this.setEmpori(giocatore.getEmpori().size());
+		this.setPunteggioNobiltà(giocatore.getPunteggioNobiltà().getPuntiNobiltà());
+		this.setPunteggioVittoria(giocatore.getPunteggioVittoria());
+		this.setPunteggioRicchezza(giocatore.getPunteggioRicchezza());
+		this.setTesserePermesso(new ArrayList<>());
+		for ( TesseraPermesso t: giocatore.getTesserePermesso()){
+			TesseraPermessoDTO tesseraPermessoDTO = new TesseraPermessoDTO();
+			tesseraPermessoDTO.inizializza(t);
+			this.tesserePermesso.add(tesseraPermessoDTO);
+		}
+		this.setTesserePermessoUsate(new ArrayList<>());
+		for ( TesseraPermesso t: giocatore.getTesserePermessoUsate()){
+			TesseraPermessoDTO tesseraPermessoUsataDTO = new TesseraPermessoDTO();
+			tesseraPermessoUsataDTO.inizializza(t);
+			this.tesserePermessoUsate.add(tesseraPermessoUsataDTO);
+		}
+		this.setTessereBonus(giocatore.getTessereBonus());	
+	}
 	
 }
