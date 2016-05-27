@@ -1,5 +1,7 @@
 package gameDTO.azioniDTO;
 
+import game.azioni.Azione;
+import gameDTO.azioniDTO.azioneVisitor.AzioneVisitor;
 import gameDTO.gameDTO.RegioneDTO;
 
 public class CambioTesserePermessoDTO implements AzioneDTO {
@@ -26,6 +28,11 @@ public class CambioTesserePermessoDTO implements AzioneDTO {
 	 */
 	public void setRegione(RegioneDTO regione) {
 		this.regione = regione;
+	}
+
+	@Override
+	public Azione accept(AzioneVisitor azioneVisitor) {
+		return azioneVisitor.visit(this);
 	}
 	
 }

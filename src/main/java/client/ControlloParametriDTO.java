@@ -10,7 +10,7 @@ import gameDTO.gameDTO.ConsigliereDTO;
 import gameDTO.gameDTO.RegioneDTO;
 import gameDTO.gameDTO.TesseraPermessoDTO;
 
-public class ControlloParametri {
+public class ControlloParametriDTO {
 
 	public static ConsigliereDTO consiglieri(String consigliere, ArrayList<ConsigliereDTO> consiglieri) {
 		for(ConsigliereDTO c: consiglieri){

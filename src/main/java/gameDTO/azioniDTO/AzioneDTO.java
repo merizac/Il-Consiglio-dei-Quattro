@@ -1,5 +1,7 @@
 package gameDTO.azioniDTO;
 
-public interface AzioneDTO {
+import gameDTO.azioniDTO.azioneVisitor.AzioneDaVisitare;
+
+public interface AzioneDTO extends AzioneDaVisitare {
 
 }

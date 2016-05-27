@@ -1,5 +1,7 @@
 package gameDTO.azioniDTO;
 
+import game.azioni.Azione;
+import gameDTO.azioniDTO.azioneVisitor.AzioneVisitor;
 import gameDTO.gameDTO.ConsigliereDTO;
 import gameDTO.gameDTO.RegioneDTO;
 
@@ -39,6 +41,10 @@ public class ElezioneConsigliereVeloceDTO implements AzioneDTO {
 	 */
 	public void setConsigliere(ConsigliereDTO consigliere) {
 		this.consigliere = consigliere;
+	}
+	@Override
+	public Azione accept(AzioneVisitor azioneVisitor) {
+		return azioneVisitor.visit(this);
 	}
 	
 }

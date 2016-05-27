@@ -25,11 +25,11 @@ public class AzioniClient {
 		System.out.println("scegli consigliere");
 		System.out.println(consiglieri);
 		comando=stdIn.nextLine();
-		ConsigliereDTO consigliereScelto=ControlloParametri.consiglieri(comando, consiglieri);
+		ConsigliereDTO consigliereScelto=ControlloParametriDTO.consiglieri(comando, consiglieri);
 		while(consigliereScelto==null){
 				System.out.println("consigliere non esistente, inserire un valore valido");
 				comando=stdIn.nextLine();
-				consigliereScelto=ControlloParametri.consiglieri(comando, consiglieri);
+				consigliereScelto=ControlloParametriDTO.consiglieri(comando, consiglieri);
 		}
 		return consigliereScelto;
 	}
@@ -43,11 +43,11 @@ public class AzioniClient {
 		System.out.println("Scegli la regione");
 		System.out.println(regioni);
 		comando = stdIn.nextLine();
-		RegioneDTO regioneScelta = ControlloParametri.regioni(comando, regioni);
+		RegioneDTO regioneScelta = ControlloParametriDTO.regioni(comando, regioni);
 		while(regioneScelta == null){
 			System.out.println("la regione selezionata non è esistente! \nInserire di nuovo:");							
 			comando=stdIn.nextLine();
-			regioneScelta= ControlloParametri.regioni(comando, regioni);
+			regioneScelta= ControlloParametriDTO.regioni(comando, regioni);
 		}
 		return regioneScelta;
 	}
@@ -59,11 +59,11 @@ public class AzioniClient {
 			System.out.println("Scegli il colore delle carte politica nella tua mano");
 			System.out.println(carteGiocatore);
 			comando = stdIn.nextLine();
-			CartaPoliticaDTO cartaScelta = ControlloParametri.carteGiocatore(comando, carteGiocatore);
+			CartaPoliticaDTO cartaScelta = ControlloParametriDTO.carteGiocatore(comando, carteGiocatore);
 			while(cartaScelta==null){
 				System.out.println("la carta selezionanata non è esistente!\n Inserire di nuovo");
 				comando = stdIn.nextLine();
-				cartaScelta = ControlloParametri.carteGiocatore(comando, carteGiocatore);
+				cartaScelta = ControlloParametriDTO.carteGiocatore(comando, carteGiocatore);
 			}
 			cartePolitica.add(cartaScelta);
 			System.out.println("Vuoi aggiungere un'altra carta [Y/Other]");
@@ -95,11 +95,11 @@ public class AzioniClient {
 		System.out.println("Seleziona l'indice di una tessera permesso non ancora usata");
 		System.out.println(tessere);
 		comando= stdIn.nextLine();
-		TesseraPermessoDTO tesseraScelta = ControlloParametri.tessereGiocatore(comando, tessere);
+		TesseraPermessoDTO tesseraScelta = ControlloParametriDTO.tessereGiocatore(comando, tessere);
 		while(tesseraScelta == null){
 			System.out.println("la tessera selezionanata non è esistente!\n Inserire di nuovo");
 			comando = stdIn.nextLine();
-			tesseraScelta = ControlloParametri.tessereGiocatore(comando, tessere);
+			tesseraScelta = ControlloParametriDTO.tessereGiocatore(comando, tessere);
 		}
 		return tesseraScelta;
 	}
@@ -108,11 +108,11 @@ public class AzioniClient {
 		System.out.println("Seleziona la città in cui costruire");
 		System.out.println(città);
 		comando= stdIn.nextLine();
-		CittàDTO cittàScelta= ControlloParametri.città(comando, città, coloreGiocatore);
+		CittàDTO cittàScelta= ControlloParametriDTO.città(comando, città, coloreGiocatore);
 		while(cittàScelta==null){
 			System.out.println("la città selezionata non è esistente o contiente già un emporio!\n Inserire di nuovo");
 			comando = stdIn.nextLine();
-			cittàScelta= ControlloParametri.città(comando, città, coloreGiocatore);
+			cittàScelta= ControlloParametriDTO.città(comando, città, coloreGiocatore);
 		}
 		return cittàScelta;
 	}

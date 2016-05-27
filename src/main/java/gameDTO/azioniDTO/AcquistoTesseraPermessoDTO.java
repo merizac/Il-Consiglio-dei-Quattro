@@ -3,6 +3,8 @@ package gameDTO.azioniDTO;
 import java.io.Serializable;
 import java.util.List;
 
+import game.azioni.Azione;
+import gameDTO.azioniDTO.azioneVisitor.AzioneVisitor;
 import gameDTO.gameDTO.CartaPoliticaDTO;
 import gameDTO.gameDTO.RegioneDTO;
 
@@ -60,6 +62,11 @@ public class AcquistoTesseraPermessoDTO implements AzioneDTO, Serializable {
 	 */
 	public void setIndiceTessera(int indiceTessera) {
 		this.indiceTessera = indiceTessera;
+	}
+	@Override
+	public Azione accept(AzioneVisitor azioneVisitor) {
+		return azioneVisitor.visit(this);
+		
 	}
 	
 	

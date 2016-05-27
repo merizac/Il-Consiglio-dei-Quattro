@@ -8,7 +8,7 @@ import java.util.Scanner;
 import gameDTO.azioniDTO.AcquistoTesseraPermessoDTO;
 import gameDTO.azioniDTO.AzioneDTO;
 import gameDTO.azioniDTO.CambioTesserePermessoDTO;
-import gameDTO.azioniDTO.CostruzioneAiutoRe;
+import gameDTO.azioniDTO.CostruzioneAiutoReDTO;
 import gameDTO.azioniDTO.CostruzioneTesseraPermessoDTO;
 import gameDTO.azioniDTO.ElezioneConsigliereDTO;
 import gameDTO.azioniDTO.ElezioneConsigliereVeloceDTO;
@@ -84,7 +84,7 @@ public class ClientOutHandler implements Runnable {
 				cittàScelta = azioniClient.scegliCittà(gameStateDTO.getCittà(), giocatoreDTO.getColoreGiocatore(),
 						stdIn);
 
-				action = new CostruzioneAiutoRe(cartePolitica, cittàScelta);
+				action = new CostruzioneAiutoReDTO(cartePolitica, cittàScelta);
 			}
 
 			if (inputLine.equals("Ingaggiare un aiutante")) {

@@ -5,13 +5,15 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.Scanner;
-
 import game.GameState;
 import game.Giocatore;
 import game.azioni.Azione;
 import game.notify.Notify;
 import game.notify.NotifyGiocatoreCorrente;
 import game.notify.NotifyGiocatori;
+import gameDTO.azioniDTO.AzioneDTO;
+import gameDTO.azioniDTO.azioneVisitor.AzioneVisitor;
+import gameDTO.azioniDTO.azioneVisitor.AzioneVisitorImpl;
 import server.Server;
 
 public class ServerSocketView extends View implements Runnable {
@@ -73,10 +75,12 @@ public class ServerSocketView extends View implements Runnable {
 			
 			try {
 				Object object=socketIn.readObject();
-				if(object instanceof Azione){
-					Azione action= (Azione) object;
-					System.out.println("VIEW: received the action "+ action);
-					this.notifyObserver(action);
+				if(object instanceof AzioneDTO){
+					AzioneVisitor azioneVisitor= new AzioneVisitorImpl();
+					AzioneDTO action= (AzioneDTO) object;
+					Azione azione=action.accept(azioneVisitor);
+					System.out.println("VIEW: received the action "+ azione);
+					this.notifyObserver(azione);
 				}
 				
 			} catch (ClassNotFoundException | IOException e1) {

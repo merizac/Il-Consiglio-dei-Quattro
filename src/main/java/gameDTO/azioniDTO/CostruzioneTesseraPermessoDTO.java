@@ -2,6 +2,8 @@ package gameDTO.azioniDTO;
 
 import java.io.Serializable;
 
+import game.azioni.Azione;
+import gameDTO.azioniDTO.azioneVisitor.AzioneVisitor;
 import gameDTO.gameDTO.CittàDTO;
 import gameDTO.gameDTO.TesseraPermessoDTO;
 
@@ -44,6 +46,10 @@ public class CostruzioneTesseraPermessoDTO implements AzioneDTO, Serializable {
 	 */
 	public void setCittà(CittàDTO città) {
 		this.città = città;
+	}
+	@Override
+	public Azione accept(AzioneVisitor azioneVisitor) {
+		return azioneVisitor.visit(this);
 	}
 	
 	

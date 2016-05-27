@@ -3,10 +3,12 @@ package gameDTO.azioniDTO;
 import java.io.Serializable;
 import java.util.List;
 
+import game.azioni.Azione;
+import gameDTO.azioniDTO.azioneVisitor.AzioneVisitor;
 import gameDTO.gameDTO.CartaPoliticaDTO;
 import gameDTO.gameDTO.CittàDTO;
 
-public class CostruzioneAiutoRe implements AzioneDTO, Serializable {
+public class CostruzioneAiutoReDTO implements AzioneDTO, Serializable {
 
 	/**
 	 * 
@@ -18,7 +20,7 @@ public class CostruzioneAiutoRe implements AzioneDTO, Serializable {
 	 * @param carteGiocatore
 	 * @param città
 	 */
-	public CostruzioneAiutoRe(List<CartaPoliticaDTO> carteGiocatore, CittàDTO città) {
+	public CostruzioneAiutoReDTO(List<CartaPoliticaDTO> carteGiocatore, CittàDTO città) {
 		this.carteGiocatore = carteGiocatore;
 		this.città = città;
 	}
@@ -45,6 +47,10 @@ public class CostruzioneAiutoRe implements AzioneDTO, Serializable {
 	 */
 	public void setCittà(CittàDTO città) {
 		this.città = città;
+	}
+	@Override
+	public Azione accept(AzioneVisitor azioneVisitor) {
+		return azioneVisitor.visit(this);
 	}
 	
 	
