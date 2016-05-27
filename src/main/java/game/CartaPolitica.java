@@ -1,16 +1,10 @@
 package game;
 
-import java.io.Serializable;
-
 import game.market.Marketable;
 import game.market.Offerta;
 
-public class CartaPolitica implements Marketable, Serializable {
+public class CartaPolitica implements Marketable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 4761726939017524717L;
 	private final Colore colore;
 	
 	/**

@@ -1,4 +1,4 @@
-package mapping.gameToMap;
+package gameDTO.gameDTO;
 
 public class BonusDTO {
 

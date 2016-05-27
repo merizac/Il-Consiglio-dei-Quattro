@@ -1,10 +1,10 @@
-package mapping.azioniDTO;
+package gameDTO.azioniDTO;
 
 import java.io.Serializable;
 import java.util.List;
 
-import mapping.gameToMap.CartaPoliticaDTO;
-import mapping.gameToMap.CittàDTO;
+import gameDTO.gameDTO.CartaPoliticaDTO;
+import gameDTO.gameDTO.CittàDTO;
 
 public class CostruzioneAiutoRe implements AzioneDTO, Serializable {
 

@@ -1,16 +1,11 @@
 package game;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import bonus.*;
 
-public final class PunteggioNobiltà implements Serializable {
+public final class PunteggioNobiltà  {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -9088890013421921656L;
 	private final int puntiNobiltà;
 	private final ArrayList<Bonus> bonus;
 	

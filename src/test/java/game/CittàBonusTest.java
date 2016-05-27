@@ -12,7 +12,7 @@ import org.junit.Test;
 import bonus.Bonus;
 import bonus.BonusAiutanti;
 import bonus.BonusAzionePrincipale;
-import mapping.gameToMap.ColoreBonusDTO;
+import gameDTO.gameDTO.ColoreBonusDTO;
 
 public class CittàBonusTest {
 

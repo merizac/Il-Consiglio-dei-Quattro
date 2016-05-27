@@ -3,12 +3,12 @@ package client;
 import java.util.ArrayList;
 import java.util.Set;
 
-import mapping.gameToMap.CartaPoliticaDTO;
-import mapping.gameToMap.CittàDTO;
-import mapping.gameToMap.ColoreDTO;
-import mapping.gameToMap.ConsigliereDTO;
-import mapping.gameToMap.RegioneDTO;
-import mapping.gameToMap.TesseraPermessoDTO;
+import gameDTO.gameDTO.CartaPoliticaDTO;
+import gameDTO.gameDTO.CittàDTO;
+import gameDTO.gameDTO.ColoreDTO;
+import gameDTO.gameDTO.ConsigliereDTO;
+import gameDTO.gameDTO.RegioneDTO;
+import gameDTO.gameDTO.TesseraPermessoDTO;
 
 public class ControlloParametri {
 

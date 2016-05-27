@@ -1,6 +1,6 @@
-package mapping.azioniDTO;
+package gameDTO.azioniDTO;
 
-import mapping.gameToMap.RegioneDTO;
+import gameDTO.gameDTO.RegioneDTO;
 
 public class CambioTesserePermessoDTO implements AzioneDTO {
 

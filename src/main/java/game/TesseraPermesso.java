@@ -1,18 +1,12 @@
 package game;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-
 import bonus.*;
 import game.market.Marketable;
 import game.market.Offerta;
 
-public final class TesseraPermesso implements Marketable, Serializable {
+public final class TesseraPermesso implements Marketable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 8419122100437151498L;
 	private final ArrayList<Città> città;
 	private final ArrayList<Bonus> bonus;
 	private final Regione regione;

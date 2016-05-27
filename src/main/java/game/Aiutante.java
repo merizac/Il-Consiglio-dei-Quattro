@@ -1,16 +1,11 @@
 package game;
 
-import java.io.Serializable;
-
 import game.market.Marketable;
 import game.market.Offerta;
 
-public class Aiutante implements Marketable, Serializable{
+public class Aiutante implements Marketable{
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 8484050924294223451L;
+
 	private int numeroAiutanti;
 	/**
 	 * 

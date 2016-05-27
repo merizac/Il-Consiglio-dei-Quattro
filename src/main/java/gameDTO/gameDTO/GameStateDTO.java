@@ -1,12 +1,8 @@
-package mapping.gameToMap;
+package gameDTO.gameDTO;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Set;
-
-import org.jgrapht.UndirectedGraph;
-import org.jgrapht.graph.DefaultEdge;
-
 
 
 public class GameStateDTO implements Serializable  {

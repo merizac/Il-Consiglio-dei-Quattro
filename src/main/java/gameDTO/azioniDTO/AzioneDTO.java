@@ -1,4 +1,4 @@
-package mapping.azioniDTO;
+package gameDTO.azioniDTO;
 
 public interface AzioneDTO {
 

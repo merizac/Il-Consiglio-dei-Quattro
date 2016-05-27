@@ -1,17 +1,12 @@
 package game;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
 
-public class Balcone implements Serializable{
+public class Balcone {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 7854476012273180816L;
 	private final Queue<Consigliere> consiglieri;
 	/**
 	 * constructor of Balcone

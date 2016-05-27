@@ -1,10 +1,10 @@
-package mapping.azioniDTO;
+package gameDTO.azioniDTO;
 
 import java.io.Serializable;
 import java.util.List;
 
-import mapping.gameToMap.CartaPoliticaDTO;
-import mapping.gameToMap.RegioneDTO;
+import gameDTO.gameDTO.CartaPoliticaDTO;
+import gameDTO.gameDTO.RegioneDTO;
 
 public class AcquistoTesseraPermessoDTO implements AzioneDTO, Serializable {
 

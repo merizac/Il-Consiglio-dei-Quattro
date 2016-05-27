@@ -3,16 +3,13 @@ package server;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import controller.Controller;
 import game.GameState;
 import game.Giocatore;
-import gameDTO.GameStateDTO;
 import view.ServerSocketView;
 
 public class Server {

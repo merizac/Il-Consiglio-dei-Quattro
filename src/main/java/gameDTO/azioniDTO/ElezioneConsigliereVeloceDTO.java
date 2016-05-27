@@ -1,7 +1,7 @@
-package mapping.azioniDTO;
+package gameDTO.azioniDTO;
 
-import mapping.gameToMap.ConsigliereDTO;
-import mapping.gameToMap.RegioneDTO;
+import gameDTO.gameDTO.ConsigliereDTO;
+import gameDTO.gameDTO.RegioneDTO;
 
 public class ElezioneConsigliereVeloceDTO implements AzioneDTO {
 

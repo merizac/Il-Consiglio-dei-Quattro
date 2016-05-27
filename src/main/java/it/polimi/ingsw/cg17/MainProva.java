@@ -9,7 +9,6 @@ import game.Città;
 import game.Consigliere;
 import game.GameState;
 import game.Giocatore;
-import game.ParserAzione;
 import game.Regione;
 import game.azioni.AcquistoTesseraPermesso;
 import game.azioni.Azione;
@@ -20,7 +19,6 @@ import game.azioni.IngaggioAiutante;
 import game.azioni.PescaCarta;
 import utility.exception.AzioneNonEseguibile;
 import view.View;
-import view.ViewCLI;
 
 public class MainProva {
 

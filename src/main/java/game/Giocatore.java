@@ -1,16 +1,11 @@
 package game;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import bonus.*;
 
 
-public class Giocatore implements Serializable {
+public class Giocatore {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -5783348541714689560L;
 	private String nome;
 	private Colore coloreGiocatore;
 	private final ArrayList<CartaPolitica> cartePolitica;

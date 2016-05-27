@@ -6,10 +6,6 @@ import bonus.*;
 
 public class CittàBonus extends Città {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 7557672057564875506L;
 	private transient ArrayList<Bonus> bonus;
 	
 

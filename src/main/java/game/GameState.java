@@ -2,7 +2,6 @@ package game;
 
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -14,11 +13,8 @@ import it.polimi.ingsw.cg17.Reader;
 import utility.Observable;
 import utility.exception.AzioneNonEseguibile;
 
-public class GameState extends Observable<Notify> implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -3016544306301450081L;
+public class GameState extends Observable<Notify> {
+	
 	private final Mappa mappa;
 	private final ArrayList<Regione> regioni;
 	private final PlanciaRe planciaRe;

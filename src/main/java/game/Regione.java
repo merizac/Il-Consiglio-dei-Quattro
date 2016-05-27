@@ -1,13 +1,10 @@
 package game;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-
 import bonus.Bonus;
 
-public class Regione implements Serializable {
+public class Regione  {
 
-	private static final long serialVersionUID = 1081381400830533482L;
 	private final String nome;
 	private final Mazzo<TesseraPermesso> mazzoTesserePermesso;
 	private final ArrayList<TesseraPermesso> tesserePermessoScoperte;

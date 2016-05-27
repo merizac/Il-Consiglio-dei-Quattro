@@ -1,12 +1,9 @@
 package game;
 
-import java.io.Serializable;
 import java.util.HashSet;
 
-public class Città implements Serializable {
+public class Città {
 
-
-	private static final long serialVersionUID = -7129037061772846218L;
 	private final String nome;
 	private final Regione regione;
 	protected final Colore colore;

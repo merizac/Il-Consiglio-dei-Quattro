@@ -1,10 +1,7 @@
 package game;
 
-import java.io.Serializable;
+public class Consigliere  {
 
-public class Consigliere implements Serializable {
-
-	private static final long serialVersionUID = -773055723500692917L;
 	private final Colore colore;
 	
 	public Consigliere(Colore colore){

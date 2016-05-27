@@ -1,19 +1,13 @@
 package game;
 
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-
-
 import org.jgrapht.alg.DijkstraShortestPath;
 import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.SimpleGraph;
 
-public class Mappa implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 8391038088781002599L;
+public class Mappa  {
+
 	private final SimpleGraph<Città, DefaultEdge> grafo;
 	/**
 	 * create the graph

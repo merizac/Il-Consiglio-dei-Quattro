@@ -1,9 +1,9 @@
-package mapping.azioniDTO;
+package gameDTO.azioniDTO;
 
 import java.io.Serializable;
 
-import mapping.gameToMap.CittàDTO;
-import mapping.gameToMap.TesseraPermessoDTO;
+import gameDTO.gameDTO.CittàDTO;
+import gameDTO.gameDTO.TesseraPermessoDTO;
 
 public class CostruzioneTesseraPermessoDTO implements AzioneDTO, Serializable {
 

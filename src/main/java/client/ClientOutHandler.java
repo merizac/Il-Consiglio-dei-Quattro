@@ -4,125 +4,123 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
-import mapping.azioniDTO.AcquistoTesseraPermessoDTO;
-import mapping.azioniDTO.AzioneDTO;
-import mapping.azioniDTO.CambioTesserePermessoDTO;
-import mapping.azioniDTO.CostruzioneAiutoRe;
-import mapping.azioniDTO.CostruzioneTesseraPermessoDTO;
-import mapping.azioniDTO.ElezioneConsigliereDTO;
-import mapping.azioniDTO.ElezioneConsigliereVeloceDTO;
-import mapping.azioniDTO.SecondaAzionePrincipaleDTO;
-import mapping.gameToMap.CartaPoliticaDTO;
-import mapping.gameToMap.CittàDTO;
-import mapping.gameToMap.ConsigliereDTO;
-import mapping.gameToMap.IngaggioAiutanteDTO;
-import mapping.gameToMap.RegioneDTO;
-import mapping.gameToMap.TesseraPermessoDTO;
 
+import gameDTO.azioniDTO.AcquistoTesseraPermessoDTO;
+import gameDTO.azioniDTO.AzioneDTO;
+import gameDTO.azioniDTO.CambioTesserePermessoDTO;
+import gameDTO.azioniDTO.CostruzioneAiutoRe;
+import gameDTO.azioniDTO.CostruzioneTesseraPermessoDTO;
+import gameDTO.azioniDTO.ElezioneConsigliereDTO;
+import gameDTO.azioniDTO.ElezioneConsigliereVeloceDTO;
+import gameDTO.azioniDTO.SecondaAzionePrincipaleDTO;
+import gameDTO.gameDTO.CartaPoliticaDTO;
+import gameDTO.gameDTO.CittàDTO;
+import gameDTO.gameDTO.ConsigliereDTO;
+import gameDTO.gameDTO.GameStateDTO;
+import gameDTO.gameDTO.GiocatoreDTO;
+import gameDTO.gameDTO.IngaggioAiutanteDTO;
+import gameDTO.gameDTO.RegioneDTO;
+import gameDTO.gameDTO.TesseraPermessoDTO;
 
 public class ClientOutHandler implements Runnable {
 
-private ObjectOutputStream socketOut;
-	
+	private ObjectOutputStream socketOut;
+	private GameStateDTO gameStateDTO;
+	private GiocatoreDTO giocatoreDTO;
+
 	public ClientOutHandler(ObjectOutputStream socketOut) {
-		this.socketOut=socketOut;
+		this.socketOut = socketOut;
 	}
-	
+
 	@Override
 	public void run() {
 
 		System.out.println("RUNNING");
-		//System.out.println("OutHandler :"+gameState);
-		Scanner stdIn=new Scanner(System.in);
-		
-		while(true){
-			AzioneDTO action=null;
+		Scanner stdIn = new Scanner(System.in);
+
+		while (true) {
+			AzioneDTO action = null;
 			int indice;
-			String inputLine=stdIn.nextLine();
+			String inputLine = stdIn.nextLine();
 			RegioneDTO regioneScelta;
 			ArrayList<CartaPoliticaDTO> cartePolitica;
 			TesseraPermessoDTO tesseraScelta;
 			CittàDTO cittàScelta;
 			ConsigliereDTO consigliereScelto;
 			AzioniClient azioniClient = new AzioniClient();
-			
-			//if(giocatore.equals(gameState.getGiocatoreCorrente())){
-				if(inputLine.equals("pesca")){
-					
-				}
-					//action=new PescaCarta();
-				if(inputLine.equals("elezione consigliere")){
-					consigliereScelto  = azioniClient.scegliConsigliere();
-					regioneScelta = azioniClient.scegliRegione();
-					
-					action = new ElezioneConsigliereDTO(consigliereScelto, regioneScelta);
-					
-				if(inputLine.equals("acquisto una tessera permesso")){
-					regioneScelta = azioniClient.scegliRegione();
-					cartePolitica = azioniClient.scegliCarte();
-					indice = azioniClient.scegliTesseraRegione();
-					
-					action=new AcquistoTesseraPermessoDTO(regioneScelta, cartePolitica, indice);
-					
-					}
-			
-				if(inputLine.equals("Costruire un emporio")){
-					tesseraScelta = azioniClient.scegliTesseraGiocatore();
-					cittàScelta = azioniClient.scegliCittà();
-					
-					action=new CostruzioneTesseraPermessoDTO(tesseraScelta, cittàScelta);
-					
-				}
-				
-				if(inputLine.equals("Aiuto del re")){
-					cartePolitica = azioniClient.scegliCarte();
-					cittàScelta = azioniClient.scegliCittà();
-					
-					action=new CostruzioneAiutoRe(cartePolitica, cittàScelta);
-				}
-				
-				if(inputLine.equals("Ingaggiare un aiutante")){
-					action = new IngaggioAiutanteDTO();
-				}
-				
-				if(inputLine.equals("cambiare le tessere permesso")){
-					regioneScelta = azioniClient.scegliRegione();
-					
-					action = new CambioTesserePermessoDTO(regioneScelta);
-				}
-				
-				if(inputLine.equals("elezione consigliere veloce")){
-					consigliereScelto = azioniClient.scegliConsigliere();
-					regioneScelta= azioniClient.scegliRegione();
-					
-					action = new ElezioneConsigliereVeloceDTO(regioneScelta, consigliereScelto);
-				}
-				if (inputLine.equals("azione principale")){
-					new SecondaAzionePrincipaleDTO();
-				}
-				
-				else 
-					System.out.println("L'azione selezionata non è fra quelle disponibili"); //while?
-				
-			
-				
-				System.out.println("SENDING THE ACTION");
-				try{
+
+			if (inputLine.equals("pesca")) {
+				// action=new PescaCarta();
+
+			}
+
+			if (inputLine.equals("elezione consigliere")) {
+				consigliereScelto = azioniClient.scegliConsigliere(gameStateDTO.getConsiglieri(), stdIn);
+				regioneScelta = azioniClient.scegliRegione(gameStateDTO.getRegioni(), stdIn);
+
+				action = new ElezioneConsigliereDTO(consigliereScelto, regioneScelta);
+			}
+
+			if (inputLine.equals("acquisto una tessera permesso")) {
+				regioneScelta = azioniClient.scegliRegione(gameStateDTO.getRegioni(), stdIn);
+				cartePolitica = azioniClient.scegliCarte(giocatoreDTO.getCartePolitica(), stdIn);
+				indice = azioniClient.scegliTesseraRegione(regioneScelta.getTesserePermessoScoperte(), stdIn);
+
+				action = new AcquistoTesseraPermessoDTO(regioneScelta, cartePolitica, indice);
+
+			}
+
+			if (inputLine.equals("Costruire un emporio")) {
+				tesseraScelta = azioniClient.scegliTesseraGiocatore(giocatoreDTO.getTesserePermesso(), stdIn);
+				cittàScelta = azioniClient.scegliCittà(tesseraScelta.getCittà(), giocatoreDTO.getColoreGiocatore(),
+						stdIn);
+
+				action = new CostruzioneTesseraPermessoDTO(tesseraScelta, cittàScelta);
+
+			}
+
+			if (inputLine.equals("Aiuto del re")) {
+				cartePolitica = azioniClient.scegliCarte(giocatoreDTO.getCartePolitica(), stdIn);
+				cittàScelta = azioniClient.scegliCittà(gameStateDTO.getCittà(), giocatoreDTO.getColoreGiocatore(),
+						stdIn);
+
+				action = new CostruzioneAiutoRe(cartePolitica, cittàScelta);
+			}
+
+			if (inputLine.equals("Ingaggiare un aiutante")) {
+				action = new IngaggioAiutanteDTO();
+			}
+
+			if (inputLine.equals("cambiare le tessere permesso")) {
+				regioneScelta = azioniClient.scegliRegione(gameStateDTO.getRegioni(), stdIn);
+
+				action = new CambioTesserePermessoDTO(regioneScelta);
+			}
+
+			if (inputLine.equals("elezione consigliere veloce")) {
+				consigliereScelto = azioniClient.scegliConsigliere(gameStateDTO.getConsiglieri(), stdIn);
+				regioneScelta = azioniClient.scegliRegione(gameStateDTO.getRegioni(), stdIn);
+
+				action = new ElezioneConsigliereVeloceDTO(regioneScelta, consigliereScelto);
+			}
+			if (inputLine.equals("azione principale")) {
+				new SecondaAzionePrincipaleDTO();
+			}
+
+			else
+				System.out.println("L'azione non esiste\n Inserire un'azione valida");
+
+			System.out.println("SENDING THE ACTION");
+
+			try {
+				if (action != null) {
 					socketOut.writeObject(action);
 					socketOut.flush();
-				}catch(IOException e){
-					e.printStackTrace();
 				}
-			
-			//}
-			
-			//else
-				//System.out.println("Non è il tuo turno");
-			
-			
-			
-				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
 		}
 	}
-
 }
