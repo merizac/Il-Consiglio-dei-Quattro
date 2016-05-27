@@ -8,14 +8,18 @@ import game.Giocatore;
 import game.azioni.PescaCarta;
 import mapping.azioniDTO.AcquistoTesseraPermessoDTO;
 import mapping.azioniDTO.AzioneDTO;
+import mapping.azioniDTO.CambioTesserePermessoDTO;
 import mapping.azioniDTO.CostruzioneAiutoRe;
 import mapping.azioniDTO.CostruzioneTesseraPermessoDTO;
 import mapping.azioniDTO.ElezioneConsigliereDTO;
+import mapping.azioniDTO.ElezioneConsigliereVeloceDTO;
+import mapping.azioniDTO.SecondaAzionePrincipaleDTO;
 import mapping.gameToMap.CartaPoliticaDTO;
 import mapping.gameToMap.CittàDTO;
 import mapping.gameToMap.ConsigliereDTO;
 import mapping.gameToMap.GameStateDTO;
 import mapping.gameToMap.GiocatoreDTO;
+import mapping.gameToMap.IngaggioAiutanteDTO;
 import mapping.gameToMap.RegioneDTO;
 import mapping.gameToMap.TesseraPermessoDTO;
 
@@ -48,6 +52,7 @@ private GiocatoreDTO giocatore;
 			CartaPoliticaDTO cartaScelta;
 			TesseraPermessoDTO tesseraScelta;
 			CittàDTO cittàScelta;
+			ConsigliereDTO consigliereScelto;
 			
 			//if(giocatore.equals(gameState.getGiocatoreCorrente())){
 				if(inputLine.equals("pesca")){
@@ -58,7 +63,7 @@ private GiocatoreDTO giocatore;
 					System.out.println("scegli consigliere");
 					System.out.println(gameState.getConsiglieri());
 					String consigliere=stdIn.nextLine();
-					ConsigliereDTO consigliereScelto=ControlloParametri.consiglieri(consigliere, gameState.getConsiglieri());
+					consigliereScelto=ControlloParametri.consiglieri(consigliere, gameState.getConsiglieri());
 					while(consigliereScelto==null){
 							System.out.println("consigliere non esistente, inserire un valore valido");
 							consigliere=stdIn.nextLine();
@@ -180,8 +185,51 @@ private GiocatoreDTO giocatore;
 					action=new CostruzioneAiutoRe(cartePolitica, cittàScelta);
 				}
 				
-					
+				if(inputLine.equals("Ingaggiare un aiutante")){
+					action = new IngaggioAiutanteDTO();
 				}
+				
+				if(inputLine.equals("cambiare le tessere permesso")){
+					System.out.println("Scegli la regione");
+					System.out.println(gameState.getRegioni());
+					comando = stdIn.nextLine();
+					regioneScelta= ControlloParametri.regioni(comando, gameState.getRegioni());
+					while(regioneScelta == null){
+						System.out.println("la regione selezionata non è esistente! \nInserire di nuovo:");							
+						comando=stdIn.nextLine();
+						regioneScelta= ControlloParametri.regioni(comando, gameState.getRegioni());
+						}
+					action = new CambioTesserePermessoDTO(regioneScelta);
+				}
+				
+				if(inputLine.equals("elezione consigliere veloce")){
+					System.out.println("scegli consigliere");
+					System.out.println(gameState.getConsiglieri());
+					comando=stdIn.nextLine();
+					consigliereScelto=ControlloParametri.consiglieri(consigliere, gameState.getConsiglieri());
+					while(consigliereScelto==null){
+							System.out.println("consigliere non esistente, inserire un valore valido");
+							consigliere=stdIn.nextLine();
+							consigliereScelto=ControlloParametri.consiglieri(consigliere, gameState.getConsiglieri());
+					}
+
+					System.out.println("Scegli la regione");
+					System.out.println(gameState.getRegioni());
+					comando = stdIn.nextLine();
+					regioneScelta = ControlloParametri.regioni(comando, gameState.getRegioni());
+					while(regioneScelta == null){
+						System.out.println("la regione selezionata non è esistente! \nInserire di nuovo:");							
+						comando=stdIn.nextLine();
+						regioneScelta= ControlloParametri.regioni(comando, gameState.getRegioni());
+					}
+					action = new ElezioneConsigliereVeloceDTO(regioneScelta, consigliereScelto);
+				}
+				if (inputLine.equals("azione principale")){
+					new SecondaAzionePrincipaleDTO();
+				}
+				
+				else 
+					System.out.println("L'azione selezionata non è fra quelle disponibili"); //while?
 				
 				System.out.println("SENDING THE ACTION");
 				try{
@@ -198,7 +246,8 @@ private GiocatoreDTO giocatore;
 			
 			
 			
-	}
+				}
+		}
 	}
 
 }
