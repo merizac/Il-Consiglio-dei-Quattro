@@ -1,4 +1,4 @@
-package controller;
+package game.macchinaStati;
 
 import java.util.ArrayList;
 import java.util.List;
