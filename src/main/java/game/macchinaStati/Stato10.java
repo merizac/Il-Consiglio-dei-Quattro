@@ -2,6 +2,7 @@ package game.macchinaStati;
 
 import java.util.List;
 import game.GameState;
+import game.notify.AzioniNotify;
 import utility.exception.AzioneNonEseguibile;
 
 public class Stato10 implements Stato {
@@ -17,8 +18,9 @@ public class Stato10 implements Stato {
 	/**
 	 * @param azioni
 	 */
-	public Stato10() {
+	public Stato10(GameState gameState) {
 		riempiAzioni();
+		gameState.notifyObserver(new AzioniNotify(getAzioni()));
 	}
 
 	private void riempiAzioni() {

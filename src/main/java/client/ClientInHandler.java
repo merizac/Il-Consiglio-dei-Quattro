@@ -2,9 +2,11 @@ package client;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import game.notify.GameNotify;
+import game.notify.GameStateStartNotify;
 import game.notify.GiocatoreDTONotify;
 import game.notify.Notify;
+import game.notify.NotifyGiocatoreCorrente;
+import game.notify.NotifyGiocatori;
 import gameDTO.gameDTO.GameStateDTO;
 import gameDTO.gameDTO.GiocatoreDTO;
 
@@ -28,16 +30,20 @@ private GiocatoreDTO giocatoreDTO;
 			
 			try {
 				Notify line=(Notify) socketIn.readObject();
-				if(line instanceof GameNotify){
-					System.out.println("gamenotify");
-					line.update(gameStateDTO);
-					line.stamp(gameStateDTO);
+				if(line instanceof GameStateStartNotify){
+					((GameStateStartNotify) line).update(giocatoreDTO);
 				}
+				
+				if(line instanceof NotifyGiocatori){
+					((NotifyGiocatori) line).update(gameStateDTO);
+					line.stamp();
+				}
+				
 				if(line instanceof GiocatoreDTONotify){
-					System.out.println("ricevuta");
 					((GiocatoreDTONotify) line).update(giocatoreDTO);
-					((GiocatoreDTONotify) line).stamp(giocatoreDTO);
 				}
+				if(line instanceof NotifyGiocatoreCorrente)
+					line.stamp();
 			} catch (ClassNotFoundException | IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

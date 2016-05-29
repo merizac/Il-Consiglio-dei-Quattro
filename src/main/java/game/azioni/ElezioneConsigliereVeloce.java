@@ -1,8 +1,8 @@
 package game.azioni;
 
 import game.Regione;
-import game.notify.ErrorParameterNotify;
-import game.notify.GiocatoreNotify;
+import game.notify.ErrorNotify;
+import game.notify.GiocatoreDTONotify;
 import game.Consigliere;
 import game.GameState;
 
@@ -64,7 +64,7 @@ public class ElezioneConsigliereVeloce extends AzioneVeloce {
 	public void eseguiAzione(GameState gameState) {
 
 		if (!gameState.getGiocatoreCorrente().getAiutanti().togliAiutanti(1)) {
-			gameState.notifyObserver(new ErrorParameterNotify("Errore: gli aiutanti non sono sufficienti"));
+			gameState.notifyObserver(new ErrorNotify("Errore: gli aiutanti non sono sufficienti"));
 			return;
 		}
 
@@ -72,7 +72,7 @@ public class ElezioneConsigliereVeloce extends AzioneVeloce {
 			Consigliere consigliereTolto = this.regione.getBalcone().aggiungiConsigliere(consigliere);
 			gameState.getConsiglieri().add(consigliereTolto);
 			setStatoTransizioneVeloce(gameState);
-			gameState.notifyObserver(new GiocatoreNotify());
+			gameState.notifyObserver(new GiocatoreDTONotify(gameState.getGiocatoreCorrente()));
 		}
 
 	}

@@ -3,6 +3,7 @@ package game.macchinaStati;
 import java.util.ArrayList;
 import java.util.List;
 import game.GameState;
+import game.notify.AzioniNotify;
 import utility.exception.AzioneNonEseguibile;
 
 public class StartEnd implements Stato {
@@ -15,16 +16,17 @@ public class StartEnd implements Stato {
 
 	public StartEnd(GameState gameState) throws AzioneNonEseguibile {
 		if(gameState.getNumeroTurni()!=gameState.getGiocatori().size()){
-			//gameState.notifyObserver(new );
+			gameState.notifyObserver(new AzioniNotify(this.getAzioni()) );
 			gameState.prossimoTurno();
 		}
 		else
-			gameState.setStato(new StatoOffertaMarket());
+			gameState.setStato(new StatoOffertaMarket(gameState));
 	}
 
 	@Override
 	public void transizionePescaCarta(GameState gameState) {
-		gameState.setStato(new Stato11());
+		System.out.println("transizione");
+		gameState.setStato(new Stato11(gameState));
 		
 	}
 

@@ -9,7 +9,8 @@ import game.GameState;
 import game.Giocatore;
 import game.azioni.Azione;
 import game.notify.ErrorNotify;
-import game.notify.GameNotify;
+import game.notify.GameStateNotify;
+import game.notify.GameStateStartNotify;
 import game.notify.GiocatoreDTONotify;
 import game.notify.Notify;
 import game.notify.NotifyGiocatoreCorrente;
@@ -40,34 +41,28 @@ public class ServerSocketView extends View implements Runnable {
 	@Override
 	public void update(Notify o) {
 		
-		if(o instanceof GameNotify){
-			
+		if(o instanceof GameStateStartNotify){
+				((GameStateStartNotify) o).setGiocatoreDTO(giocatore);
+		}
+		
+		if(o instanceof NotifyGiocatori){
 			try {
 				this.socketOut.writeObject(o);
-				this.socketOut.flush();
-				GiocatoreDTO giocatoreDTO = new GiocatoreDTO();
-				giocatoreDTO.inizializza(giocatore);
-				this.socketOut.writeObject(new GiocatoreDTONotify(giocatoreDTO));
 				this.socketOut.flush();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			
 		}
 
-		/*if ((o instanceof NotifyGiocatoreCorrente) && giocatore.equals(gameState.getGiocatoreCorrente())
-				|| o instanceof NotifyGiocatori)
-
+		if ((o instanceof NotifyGiocatoreCorrente) && giocatore.equals(gameState.getGiocatoreCorrente()))
 			try {
 				System.out.println("Sending to the client " + o);
 				this.socketOut.writeObject(o);
 				this.socketOut.flush();
 			} catch (IOException e) {
 				e.printStackTrace();
-			}*/
-
+			}
 	}
 
 	@Override
@@ -81,8 +76,6 @@ public class ServerSocketView extends View implements Runnable {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
-		//System.out.println(server);
-		//System.out.println(giocatore);
 		server.aggiungiGiocatore(giocatore);
 
 		while (true) {

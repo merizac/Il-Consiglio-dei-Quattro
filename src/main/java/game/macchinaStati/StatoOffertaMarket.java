@@ -2,6 +2,7 @@ package game.macchinaStati;
 
 import java.util.List;
 import game.GameState;
+import game.notify.AzioniNotify;
 
 public class StatoOffertaMarket implements Stato {
 	
@@ -11,8 +12,9 @@ public class StatoOffertaMarket implements Stato {
 	private static final long serialVersionUID = 5599670651827007425L;
 	private List<String> azioni;
 	
-	public StatoOffertaMarket() {
+	public StatoOffertaMarket(GameState gameState) {
 		riempiAzioni();
+		gameState.notifyObserver(new AzioniNotify(getAzioni()));
 	}
 
 	private void riempiAzioni() {

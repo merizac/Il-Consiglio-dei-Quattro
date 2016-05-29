@@ -12,14 +12,11 @@ import game.Consigliere;
 import game.Emporio;
 import game.GameState;
 import game.Mappa;
-import game.notify.ErrorParameterNotify;
-import game.notify.GiocatoreNotify;
+import game.notify.ErrorNotify;
+import game.notify.GiocatoreDTONotify;
 
 public class CostruzioneAiutoRe extends AzionePrincipale {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -3209033436891293833L;
 	private Città cittàCostruzione;
 	private Balcone balcone;
@@ -33,7 +30,7 @@ public class CostruzioneAiutoRe extends AzionePrincipale {
 		balcone=gameState.getPlanciaRe().getBalconeRe();
 		Mappa mappa= gameState.getMappa();
 		if(!controllaColori()){
-			gameState.notifyObserver(new ErrorParameterNotify("Errore: i colori delle carte scelte non corrispondon con quelli del balcone!"));
+			gameState.notifyObserver(new ErrorNotify("Errore: i colori delle carte scelte non corrispondon con quelli del balcone!"));
 			return;
 		}
 			
@@ -42,12 +39,12 @@ public class CostruzioneAiutoRe extends AzionePrincipale {
 				2*mappa.minimaDistanza(gameState.getPedinaRe().getCittà(), cittàCostruzione);
 		
 		if(!paga(moneteDovute, gameState)){
-			gameState.notifyObserver(new ErrorParameterNotify("Errore: i soldi non sono sufficienti!"));
+			gameState.notifyObserver(new ErrorNotify("Errore: i soldi non sono sufficienti!"));
 			return;
 		}
 			
 		if(!pagoAiutanti(gameState)){
-			gameState.notifyObserver(new ErrorParameterNotify("Errore: gli aiutanti non sono sufficienti!"));
+			gameState.notifyObserver(new ErrorNotify("Errore: gli aiutanti non sono sufficienti!"));
 			return;
 		}
 			
@@ -57,7 +54,7 @@ public class CostruzioneAiutoRe extends AzionePrincipale {
 			prendiBonus(gameState);
 		}
 		setStatoTransizionePrincipale(gameState); 
-		gameState.notifyObserver(new GiocatoreNotify());
+		gameState.notifyObserver(new GiocatoreDTONotify(gameState.getGiocatoreCorrente()));
 		
 	}
 	/**

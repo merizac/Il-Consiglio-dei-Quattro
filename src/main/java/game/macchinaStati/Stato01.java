@@ -2,6 +2,7 @@ package game.macchinaStati;
 
 import java.util.List;
 import game.GameState;
+import game.notify.AzioniNotify;
 import utility.exception.AzioneNonEseguibile;
 
 public class Stato01 implements Stato {
@@ -13,12 +14,14 @@ public class Stato01 implements Stato {
 	private static final long serialVersionUID = 1159916777727661681L;
 	private List<String> azioni;
 
-	public Stato01() {
+	public Stato01(GameState gameState) {
 		riempiAzioni();
+		gameState.notifyObserver(new AzioniNotify(this.getAzioni()));
+		
 	}
 
 	private void riempiAzioni() {
-		azioni.add("Azioni veloci :");
+		azioni.add("Azioni veloci");
 		azioni.add("Ingaggiare un aiutante");
 		azioni.add("Cambiare le tessere permesso di costruzione");
 		azioni.add("Mandare un aiutante ad eleggere un consigliere");
@@ -33,7 +36,7 @@ public class Stato01 implements Stato {
 
 	@Override
 	public void transizioneSecondaPrincipale(GameState gameState) {
-		gameState.setStato(new Stato10());
+		gameState.setStato(new Stato10(gameState));
 		
 	}
 	

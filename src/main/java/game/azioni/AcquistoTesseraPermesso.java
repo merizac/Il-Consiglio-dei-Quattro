@@ -7,8 +7,9 @@ import game.Colore;
 import game.Consigliere;
 import game.GameState;
 import game.TesseraPermesso;
-import game.notify.ErrorParameterNotify;
-import game.notify.GiocatoreNotify;
+import game.notify.ErrorNotify;
+import game.notify.GiocatoreDTONotify;
+import gameDTO.gameDTO.GiocatoreDTO;
 
 public class AcquistoTesseraPermesso extends AzionePrincipale {
 
@@ -29,17 +30,17 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 	public void eseguiAzione(GameState gameState) {
 		
 		if(carteGiocatore.isEmpty()){
-			gameState.notifyObserver(new ErrorParameterNotify("Errore: non sono presenti carte"));
+			gameState.notifyObserver(new ErrorNotify("Errore: non sono presenti carte"));
 			return;
 		}
 			
 		if(!controllaColori()){
-			gameState.notifyObserver(new ErrorParameterNotify("Errore: i colori delle carte scelte non corrispondono con quelle del balcone!"));
+			gameState.notifyObserver(new ErrorNotify("Errore: i colori delle carte scelte non corrispondono con quelle del balcone!"));
 			return;
 		}
 			
 		if(!paga(calcolaMonete(), gameState)){
-			gameState.notifyObserver(new ErrorParameterNotify("Errore: i soldi non sono sufficienti!"));
+			gameState.notifyObserver(new ErrorNotify("Errore: i soldi non sono sufficienti!"));
 			return;
 		}
 			
@@ -54,7 +55,8 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 		 
 		 setStatoTransizionePrincipale(gameState); 
 		 //aggiornamento gamestate
-		 gameState.notifyObserver(new GiocatoreNotify());
+		 
+		 gameState.notifyObserver(new GiocatoreDTONotify(gameState.getGiocatoreCorrente()));
 		 
 		
 	}

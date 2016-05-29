@@ -9,14 +9,11 @@ import game.Colore;
 import game.Emporio;
 import game.GameState;
 import game.TesseraPermesso;
-import game.notify.ErrorParameterNotify;
-import game.notify.GiocatoreNotify;
+import game.notify.ErrorNotify;
+import game.notify.GiocatoreDTONotify;
 
 public class CostruzioneTesseraPermesso extends AzionePrincipale {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 3120994460673560792L;
 	private TesseraPermesso tesseraPermessoScoperta;
 	private Città cittàCostruzione;
@@ -29,15 +26,15 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale {
 	public void eseguiAzione(GameState gameState) {
 
 		if(!pagoAiutanti(gameState)){
-			gameState.notifyObserver(new ErrorParameterNotify("Errore: i soldi non sono sufficienti"));
+			gameState.notifyObserver(new ErrorNotify("Errore: i soldi non sono sufficienti"));
 			return;
 		}
 			
 		costruisci(gameState);
 		prendiBonus(gameState);
 		copriTessera(gameState);
-		setStatoTransizionePrincipale(gameState); 
-		gameState.notifyObserver(new GiocatoreNotify());
+		setStatoTransizionePrincipale(gameState);
+		gameState.notifyObserver(new GiocatoreDTONotify(gameState.getGiocatoreCorrente()));
 		
 	}
 	/**

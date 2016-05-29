@@ -4,13 +4,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
 import game.macchinaStati.StartEnd;
 import game.macchinaStati.Stato;
 import game.market.Offerta;
-import game.notify.GameNotify;
+import game.notify.GameStateStartNotify;
 import game.notify.Notify;
-import gameDTO.gameDTO.GameStateDTO;
 import it.polimi.ingsw.cg17.Reader;
 import utility.Observable;
 import utility.exception.AzioneNonEseguibile;
@@ -243,16 +241,14 @@ public class GameState extends Observable<Notify> {
 		this.pedinaRe = Reader.creazioneRe();
 		this.giocatori = new ArrayList<Giocatore>();
 		this.offerteMarket = new ArrayList<>();
-		creaGiocatori(giocatori);
+		creaGiocatori(giocatori);	
+		this.notifyObserver(new GameStateStartNotify(this));
 		try {
 			this.stato = new StartEnd(this);
+			System.out.println("gamestate" + stato);
 		} catch (AzioneNonEseguibile e) {
 			e.printStackTrace();
 		}
-		GameStateDTO gameStateDTO=new GameStateDTO();
-		gameStateDTO.inizializza(this);
-		System.out.println(gameStateDTO);
-		this.notifyObserver(new GameNotify(gameStateDTO));
 	}
 
 	/*

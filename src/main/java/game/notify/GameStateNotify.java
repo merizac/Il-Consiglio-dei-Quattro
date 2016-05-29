@@ -1,22 +1,23 @@
 package game.notify;
 
+import game.GameState;
 import gameDTO.gameDTO.GameStateDTO;
 
-public class GameNotify extends NotifyGiocatori {
+public class GameStateNotify implements NotifyGiocatori {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -7941386236992971357L;
+	private static final long serialVersionUID = 4438277578283085786L;
 	private GameStateDTO gameStateDTO;
 
-	public GameNotify(GameStateDTO gameStateDTO) {
-		this.gameStateDTO=gameStateDTO;
+	/**
+	 * @param gameStateDTO
+	 */
+	public GameStateNotify(GameState gameState) {
+		this.gameStateDTO = new GameStateDTO();
+		this.gameStateDTO.inizializza(gameState);
 	}
-
 	
 	@Override
-	public void update(GameStateDTO gameStateDTO){
+	public void update(GameStateDTO gameStateDTO) {
 		gameStateDTO.setCittà(this.gameStateDTO.getCittà());
 		gameStateDTO.setConsiglieri(this.gameStateDTO.getConsiglieri());
 		gameStateDTO.setPedinaRE(this.gameStateDTO.getPedinaRE());
@@ -24,12 +25,10 @@ public class GameNotify extends NotifyGiocatori {
 		gameStateDTO.setRegioni(this.gameStateDTO.getRegioni());
 	}
 
-
 	@Override
-	public void stamp(GameStateDTO gameState) {
-		System.out.println(gameState);
-		System.out.println(this.gameStateDTO);
+	public void stamp() {
+		System.out.println(gameStateDTO);
+		
 	}
 
-		
 }

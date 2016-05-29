@@ -36,11 +36,10 @@ public class ClientSocket {
 		Scanner stdIn= new Scanner(System.in);
 		String nome=stdIn.nextLine();
 		giocatore.setNome(nome);
-		stdIn.close();
+		//stdIn.close();
 		
 		socketOut.writeObject(giocatore);
 		socketOut.flush();
-		System.out.println(giocatore);
 		
 		ExecutorService executor= Executors.newFixedThreadPool(2);
 		executor.submit(new ClientOutHandler(socketOut, gameState, giocatore));

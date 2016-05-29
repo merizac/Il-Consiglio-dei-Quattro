@@ -7,8 +7,5 @@ import gameDTO.gameDTO.GameStateDTO;
 
 public interface Notify extends Serializable{
 	
-	public void stamp(GameStateDTO gameState);
-	
-	public void update(GameStateDTO gameStateDTO);
-	
+	public void stamp();
 }
