@@ -285,11 +285,11 @@ public class Giocatore {
 	 */
 	@Override
 	public String toString() {
-		return "Giocatore [nome=" + nome + ", coloreGiocatore=" + coloreGiocatore + ", cartePolitica=" + cartePolitica
-				+ ", tesserePermesso=" + tesserePermesso + ", tesserePermessoUsate=" + tesserePermessoUsate
-				+ ", tessereBonus=" + tessereBonus + ", empori=" + empori + ", aiutanti=" + aiutanti
-				+ ", punteggioVittoria=" + punteggioVittoria + ", punteggioRicchezza=" + punteggioRicchezza
-				+ ", punteggioNobiltà=" + punteggioNobiltà + "]";
+		return "Giocatore: "+ nome + ", " + coloreGiocatore + "\ncartePolitica [" + cartePolitica +"]"
+				+ "\n tesserePermesso [" + tesserePermesso + "]\ntesserePermessoUsate [" + tesserePermessoUsate
+				+ "]\ntessereBonus [" + tessereBonus + "\nnumero empori = " + empori.size() + "\nnumero aiutanti = " + aiutanti.getAiutante()
+				+ "\nPunteggio Vittoria = " + punteggioVittoria + "\nPunteggio Ricchezza = " + punteggioRicchezza
+				+ "\nPunteggio Nobiltà = " + punteggioNobiltà.getPuntiNobiltà();
 	}
 
 

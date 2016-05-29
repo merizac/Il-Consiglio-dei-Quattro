@@ -1,6 +1,6 @@
 package game.notify;
 
-import game.GameState;
+import gameDTO.gameDTO.GameStateDTO;
 
 public class ErrorParameterNotify extends NotifyGiocatoreCorrente {
 
@@ -17,10 +17,17 @@ public class ErrorParameterNotify extends NotifyGiocatoreCorrente {
 		this.error = error;
 	}
 
-	@Override
-	public void stamp(GameState gameState) {
-		System.out.println(error);
 
+	@Override
+	public void update(GameStateDTO gameStateDTO) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void stamp(GameStateDTO gameState) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

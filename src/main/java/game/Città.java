@@ -138,7 +138,7 @@ public class Città {
 	 */
 	@Override
 	public String toString() {
-		return "Città [nome=" + nome + ", colore=" + colore + "]";
+		return nome + " [" + colore + "]";
 	}
 
 

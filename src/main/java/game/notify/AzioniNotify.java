@@ -4,6 +4,7 @@ import java.util.List;
 
 import game.GameState;
 import game.azioni.Azione;
+import gameDTO.gameDTO.GameStateDTO;
 
 public class AzioniNotify extends NotifyGiocatoreCorrente {
 
@@ -16,11 +17,17 @@ public class AzioniNotify extends NotifyGiocatoreCorrente {
 	}
 
 	@Override
-	public void stamp(GameState gameState) {
+	public void stamp(GameStateDTO gameState) {
 		for(String a: this.azioni)
 		{
 			System.out.println(a);
 		}
+	}
+
+	@Override
+	public void update(GameStateDTO gameStateDTO) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

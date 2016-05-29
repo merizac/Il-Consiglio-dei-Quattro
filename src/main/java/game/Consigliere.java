@@ -50,7 +50,7 @@ public class Consigliere  {
 	 */
 	@Override
 	public String toString() {
-		return "Consigliere [colore=" + colore + "]";
+		return colore.toString();
 	}
 	
 	

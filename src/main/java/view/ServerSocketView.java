@@ -9,12 +9,15 @@ import game.GameState;
 import game.Giocatore;
 import game.azioni.Azione;
 import game.notify.ErrorNotify;
+import game.notify.GameNotify;
+import game.notify.GiocatoreDTONotify;
 import game.notify.Notify;
 import game.notify.NotifyGiocatoreCorrente;
 import game.notify.NotifyGiocatori;
 import gameDTO.azioniDTO.AzioneDTO;
 import gameDTO.azioniDTO.azioneVisitor.AzioneVisitor;
 import gameDTO.azioniDTO.azioneVisitor.AzioneVisitorImpl;
+import gameDTO.gameDTO.GiocatoreDTO;
 import server.Server;
 
 public class ServerSocketView extends View implements Runnable {
@@ -31,13 +34,30 @@ public class ServerSocketView extends View implements Runnable {
 		this.gameState = gameState;
 		this.socketIn = new ObjectInputStream(socket.getInputStream());
 		this.socketOut = new ObjectOutputStream(socket.getOutputStream());
-		this.server = server;
+		this.server=server;
 	}
 
 	@Override
 	public void update(Notify o) {
+		
+		if(o instanceof GameNotify){
+			
+			try {
+				this.socketOut.writeObject(o);
+				this.socketOut.flush();
+				GiocatoreDTO giocatoreDTO = new GiocatoreDTO();
+				giocatoreDTO.inizializza(giocatore);
+				this.socketOut.writeObject(new GiocatoreDTONotify(giocatoreDTO));
+				this.socketOut.flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+		}
 
-		if ((o instanceof NotifyGiocatoreCorrente) && giocatore.equals(gameState.getGiocatoreCorrente())
+		/*if ((o instanceof NotifyGiocatoreCorrente) && giocatore.equals(gameState.getGiocatoreCorrente())
 				|| o instanceof NotifyGiocatori)
 
 			try {
@@ -46,14 +66,23 @@ public class ServerSocketView extends View implements Runnable {
 				this.socketOut.flush();
 			} catch (IOException e) {
 				e.printStackTrace();
-			}
+			}*/
 
 	}
 
 	@Override
 	public void run() {
 		
-
+		try {
+			GiocatoreDTO giocatoreDTO =(GiocatoreDTO) socketIn.readObject();
+			this.giocatore= new Giocatore(giocatoreDTO.getNome());
+			
+		} catch (ClassNotFoundException | IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		//System.out.println(server);
+		//System.out.println(giocatore);
 		server.aggiungiGiocatore(giocatore);
 
 		while (true) {

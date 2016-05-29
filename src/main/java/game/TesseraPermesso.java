@@ -52,7 +52,7 @@ public final class TesseraPermesso implements Marketable {
 	 */
 	@Override
 	public String toString() {
-		return "TesseraPermesso: città :" + città + "\nbonus :" + bonus + "\nregione :" + regione;
+		return "TesseraPermesso [ (" + città + "), (" + bonus + ") ]";
 	}
 
 

@@ -1,10 +1,8 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.List;
-
 import game.GameState;
-import game.azioni.Azione;
-import game.azioni.PescaCarta;
 import utility.exception.AzioneNonEseguibile;
 
 public class StartEnd implements Stato {
@@ -17,6 +15,7 @@ public class StartEnd implements Stato {
 
 	public StartEnd(GameState gameState) throws AzioneNonEseguibile {
 		if(gameState.getNumeroTurni()!=gameState.getGiocatori().size()){
+			//gameState.notifyObserver(new );
 			gameState.prossimoTurno();
 		}
 		else
@@ -31,8 +30,9 @@ public class StartEnd implements Stato {
 
 	@Override
 	public List<String> getAzioni() {
-		// TODO Auto-generated method stub
-		return null;
+		List<String> azioni=new ArrayList<>();
+		azioni.add("Pesca");
+		return azioni;
 	}
 
 	/* (non-Javadoc)

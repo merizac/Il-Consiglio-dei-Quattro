@@ -14,7 +14,6 @@ public class TesseraPermessoDTO implements Serializable  {
 	private static final long serialVersionUID = 251246647055835184L;
 	private Set<CittàDTO> città;
 	private ArrayList<Bonus> bonus;
-	private RegioneDTO regione;
 	/**
 	 * @return the città
 	 */
@@ -39,29 +38,15 @@ public class TesseraPermessoDTO implements Serializable  {
 	public void setBonus(ArrayList<Bonus> bonus) {
 		this.bonus = bonus;
 	}
-	/**
-	 * @return the regione
-	 */
-	public RegioneDTO getRegione() {
-		return regione;
-	}
-	/**
-	 * @param regione the regione to set
-	 */
-	public void setRegione(RegioneDTO regione) {
-		this.regione = regione;
-	}
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "TesseraPermessoDTO [città=" + città + ", bonus=" + bonus + ", regione=" + regione + "]";
+		return "TesseraPermessoDTO [città=" + città + ", bonus=" + bonus +"]";
 	}
 	public void inizializza(TesseraPermesso t) {
-		RegioneDTO regioneDTO =new RegioneDTO();
-		regioneDTO.inizializza(t.getRegione());
-		this.setRegione(regioneDTO);
 		this.città=new HashSet<>();
 		for(Città c: t.getCittà()){
 			CittàDTO cittàDTO=new CittàDTO();

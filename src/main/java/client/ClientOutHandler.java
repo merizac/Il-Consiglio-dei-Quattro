@@ -28,8 +28,10 @@ public class ClientOutHandler implements Runnable {
 	private GameStateDTO gameStateDTO;
 	private GiocatoreDTO giocatoreDTO;
 
-	public ClientOutHandler(ObjectOutputStream socketOut) {
+	public ClientOutHandler(ObjectOutputStream socketOut, GameStateDTO gameStateDTO, GiocatoreDTO giocatoreDTO) {
 		this.socketOut = socketOut;
+		this.giocatoreDTO = giocatoreDTO;
+		this.gameStateDTO=gameStateDTO;
 	}
 
 	@Override

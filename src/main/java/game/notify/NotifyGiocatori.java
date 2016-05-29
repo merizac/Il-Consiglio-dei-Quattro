@@ -1,6 +1,6 @@
 package game.notify;
 
-import game.GameState;
+import gameDTO.gameDTO.GameStateDTO;
 
 public abstract class NotifyGiocatori implements Notify  {
 
@@ -9,7 +9,6 @@ public abstract class NotifyGiocatori implements Notify  {
 	 */
 	private static final long serialVersionUID = 1543229339156004686L;
 
-	@Override
-	public abstract void stamp(GameState gameState);
+	public abstract void stamp(GameStateDTO gameState);
 
 }

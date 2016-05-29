@@ -56,7 +56,7 @@ public class Colore {
 	 */
 	@Override
 	public String toString() {
-		return "Colore [colore=" + colore + "]";
+		return colore;
 	}
 	
 	

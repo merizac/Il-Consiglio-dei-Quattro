@@ -26,13 +26,7 @@ public class Regione  {
 		this.balcone = balcone;
 		this.cittàRegione = new ArrayList<Città>();
 	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return nome;
-	}
+
 	/**
 	 * @return the nome
 	 */
@@ -97,6 +91,15 @@ public class Regione  {
 		} else if (!nome.equals(other.nome))
 			return false;
 		return true;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Regione " + nome + "\n Tessere Permesso [ " + tesserePermessoScoperte + " ]\nBonus Regione = "
+				+ bonusRegione + "\nBalcone = [ " + balcone + " ]";
 	}
 	
 	

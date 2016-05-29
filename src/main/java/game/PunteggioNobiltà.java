@@ -68,7 +68,7 @@ public final class PunteggioNobiltà  {
 	 */
 	@Override
 	public String toString() {
-		return "PunteggioNobiltà [puntiNobiltà=" + puntiNobiltà + ", bonus=" + bonus + "]";
+		return "puntiNobiltà = " + puntiNobiltà + ", bonus = [" + bonus + "]";
 	}
 	
 	

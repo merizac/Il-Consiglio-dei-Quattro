@@ -2,33 +2,42 @@ package client;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import game.GameState;
-import game.Giocatore;
+import game.notify.GameNotify;
+import game.notify.GiocatoreDTONotify;
 import game.notify.Notify;
+import gameDTO.gameDTO.GameStateDTO;
+import gameDTO.gameDTO.GiocatoreDTO;
 
 public class ClientInHandler implements Runnable {
 
 private ObjectInputStream socketIn;
-private GameState gameState;
-private Giocatore giocatore;
+private GameStateDTO gameStateDTO;
+private GiocatoreDTO giocatoreDTO;
 	
-	public ClientInHandler(ObjectInputStream socketIn, GameState gameState, Giocatore giocatore){
+	public ClientInHandler(ObjectInputStream socketIn,GameStateDTO gameStateDTO, GiocatoreDTO giocatoreDTO){
 		this.socketIn=socketIn;
-		this.gameState=gameState;
-		this.giocatore=giocatore;
+		this.giocatoreDTO=giocatoreDTO;
+		this.gameStateDTO=gameStateDTO;
 		
 	}
 
 	@Override
 	public void run() {
 
-		//System.out.println("InHandler "+gameState);
 		while(true){
 			
 			try {
-				Notify line;
-				line=(Notify) socketIn.readObject();
-				line.stamp(gameState);
+				Notify line=(Notify) socketIn.readObject();
+				if(line instanceof GameNotify){
+					System.out.println("gamenotify");
+					line.update(gameStateDTO);
+					line.stamp(gameStateDTO);
+				}
+				if(line instanceof GiocatoreDTONotify){
+					System.out.println("ricevuta");
+					((GiocatoreDTONotify) line).update(giocatoreDTO);
+					((GiocatoreDTONotify) line).stamp(giocatoreDTO);
+				}
 			} catch (ClassNotFoundException | IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
