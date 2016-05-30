@@ -44,7 +44,7 @@ public class TesseraPermessoDTO implements Serializable  {
 	 */
 	@Override
 	public String toString() {
-		return "TesseraPermessoDTO [città=" + città + ", bonus=" + bonus +"]";
+		return "TesseraPermesso  città:" + città + ", bonus:" + bonus;
 	}
 	public void inizializza(TesseraPermesso t) {
 		this.città=new HashSet<>();

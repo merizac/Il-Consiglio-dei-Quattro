@@ -29,7 +29,7 @@ public class ColoreDTO implements Serializable{
 	 */
 	@Override
 	public String toString() {
-		return "ColoreDTO [colore=" + colore + "]";
+		return colore ;
 	}
 
 }
