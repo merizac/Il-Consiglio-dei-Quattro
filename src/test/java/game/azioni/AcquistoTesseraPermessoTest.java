@@ -24,7 +24,8 @@ public class AcquistoTesseraPermessoTest {
 	
 	@BeforeClass
 	public static void init() throws IOException{
-		gameState.start();
+		ArrayList<Giocatore> giocatori=null;
+		gameState.start(giocatori);
 		indiceTesseraScoperta=0;
 		regione=gameState.getRegioni().get(0);
 		Giocatore giocatore=new Giocatore("Bello");	
