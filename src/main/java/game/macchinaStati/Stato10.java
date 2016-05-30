@@ -21,7 +21,7 @@ public class Stato10 implements Stato {
 	 */
 	public Stato10(GameState gameState) {
 		riempiAzioni();
-		gameState.notifyObserver(new AzioniNotify(getAzioni()));
+		//gameState.notifyObserver(new AzioniNotify(getAzioni()));
 	}
 
 	private void riempiAzioni() {
