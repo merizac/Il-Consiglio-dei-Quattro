@@ -33,7 +33,7 @@ public class StartEnd implements Stato {
 	@Override
 	public List<String> getAzioni() {
 		List<String> azioni=new ArrayList<>();
-		azioni.add("Pesca");
+		azioni.add("Pesca[pc]");
 		return azioni;
 	}
 

@@ -25,10 +25,10 @@ public class Stato01 implements Stato {
 	private void riempiAzioni() {
 		this.azioni = new ArrayList<String>();
 		azioni.add("AZIONI VELOCI");
-		azioni.add("Ingaggiare un aiutante");
-		azioni.add("Cambiare le tessere permesso di costruzione");
-		azioni.add("Mandare un aiutante ad eleggere un consigliere");
-		azioni.add("Compiere un'azione principale");
+		azioni.add("Ingaggiare un aiutante [V1]");
+		azioni.add("Cambiare le tessere permesso di costruzione [V2]");
+		azioni.add("Mandare un aiutante ad eleggere un consigliere [V3]");
+		azioni.add("Compiere un'azione principale[V4]");
 	}
 
 	@Override

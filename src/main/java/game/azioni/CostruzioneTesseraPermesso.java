@@ -10,6 +10,7 @@ import game.Emporio;
 import game.GameState;
 import game.TesseraPermesso;
 import game.notify.ErrorNotify;
+import game.notify.GameStateNotify;
 import game.notify.GiocatoreDTONotify;
 
 public class CostruzioneTesseraPermesso extends AzionePrincipale {
@@ -33,6 +34,7 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale {
 		prendiBonus(gameState);
 		copriTessera(gameState);
 		setStatoTransizionePrincipale(gameState);
+		gameState.notifyObserver(new GameStateNotify(gameState));
 		gameState.notifyObserver(new GiocatoreDTONotify(gameState.getGiocatoreCorrente()));
 		
 	}

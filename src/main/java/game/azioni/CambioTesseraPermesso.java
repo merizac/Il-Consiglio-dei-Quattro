@@ -4,6 +4,7 @@ import game.GameState;
 import game.Regione;
 import game.TesseraPermesso;
 import game.notify.ErrorNotify;
+import game.notify.GameStateNotify;
 import game.notify.GiocatoreDTONotify;
 
 public class CambioTesseraPermesso extends AzioneVeloce {
@@ -19,6 +20,7 @@ public class CambioTesseraPermesso extends AzioneVeloce {
 			RimozioneCarte();
 			SostituzioneCarte();
 			setStatoTransizioneVeloce(gameState); 
+			gameState.notifyObserver(new GameStateNotify(gameState));
 			gameState.notifyObserver(new GiocatoreDTONotify(gameState.getGiocatoreCorrente()));
 		}
 		else{

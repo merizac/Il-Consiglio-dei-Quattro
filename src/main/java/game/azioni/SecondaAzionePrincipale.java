@@ -5,7 +5,6 @@ import game.notify.ErrorNotify;
 
 public class SecondaAzionePrincipale extends AzioneVeloce {
 
-	private static final long serialVersionUID = 8205005452846114970L;
 
 	/**
 	 * if the player has already do the main action, fill the Array of Main Action 

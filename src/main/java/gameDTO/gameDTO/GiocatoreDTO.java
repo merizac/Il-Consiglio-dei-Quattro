@@ -194,11 +194,11 @@ public class GiocatoreDTO implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "GiocatoreDTO [nome=" + nome + ", coloreGiocatore=" + coloreGiocatore + ", cartePolitica="
-				+ cartePolitica + ", tesserePermesso=" + tesserePermesso + ", tesserePermessoUsate="
-				+ tesserePermessoUsate + ", tessereBonus=" + tessereBonus + ", empori=" + empori + ", aiutanti="
-				+ aiutanti + ", punteggioVittoria=" + punteggioVittoria + ", punteggioRicchezza=" + punteggioRicchezza
-				+ ", punteggioNobiltà=" + punteggioNobiltà + "]";
+		return "\n" + nome + " [ " + coloreGiocatore + " ]\ncartePolitica = "
+				+ cartePolitica + "\ntesserePermesso = " + tesserePermesso + "\ntesserePermessoUsate = "
+				+ tesserePermessoUsate + "\ntessereBonus=" + tessereBonus + "\nempori = " + empori + "\naiutanti = "
+				+ aiutanti + "\npunteggioVittoria = " + punteggioVittoria + "\npunteggioRicchezza = "  + punteggioRicchezza
+				+ "\npunteggioNobiltà = " + punteggioNobiltà;
 	}
 	
 	

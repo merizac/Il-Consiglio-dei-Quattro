@@ -3,6 +3,7 @@ package game.azioni;
 import game.Consigliere;
 import game.GameState;
 import game.Regione;
+import game.notify.GameStateNotify;
 import game.notify.GiocatoreDTONotify;
 
 public class ElezioneConsigliere extends AzionePrincipale {
@@ -39,7 +40,7 @@ public class ElezioneConsigliere extends AzionePrincipale {
 		gameState.getConsiglieri().add(consigliereTolto);
 		gameState.getGiocatoreCorrente().aumentaRicchezza(4);
 		setStatoTransizionePrincipale(gameState); 
-		System.out.println(gameState.getStato());
+		gameState.notifyObserver(new GameStateNotify(gameState));
 		gameState.notifyObserver(new GiocatoreDTONotify(gameState.getGiocatoreCorrente()));
 		
 	}

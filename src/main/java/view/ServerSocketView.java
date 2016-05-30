@@ -54,7 +54,7 @@ public class ServerSocketView extends View implements Runnable {
 				e.printStackTrace();
 			}
 		}
-
+		
 		if ((o instanceof NotifyGiocatoreCorrente) && giocatore.equals(gameState.getGiocatoreCorrente()))
 			try {
 				System.out.println("Sending to the client " + o);
@@ -83,10 +83,12 @@ public class ServerSocketView extends View implements Runnable {
 			try {
 				Object object = socketIn.readObject();
 				if (object instanceof AzioneDTO) {
-					AzioneVisitor azioneVisitor = new AzioneVisitorImpl(gameState, giocatore);
 					AzioneDTO action = (AzioneDTO) object;
+					System.out.println(action);
 					try {
+						AzioneVisitor azioneVisitor = new AzioneVisitorImpl(gameState, giocatore);
 						Azione azione = action.accept(azioneVisitor);
+						System.out.println(azione);
 						System.out.println("VIEW: received the action " + azione);
 						this.notifyObserver(azione);
 					} catch (IllegalArgumentException e) {

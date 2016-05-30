@@ -29,6 +29,14 @@ public class CartaPoliticaDTO implements Serializable {
 	public void inizializza(CartaPolitica cartaPolitica){
 		this.setColore(cartaPolitica.getColore().getColore());
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return colore;
+	}
 	
 	
 	

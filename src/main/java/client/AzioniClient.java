@@ -83,7 +83,7 @@ public class AzioniClient {
 		System.out.println("Seleziona tessera permesso[1/2]");
 		System.out.println(tessere);
 		comando=stdIn.nextLine();
-		while(!comando.equals("1") || !comando.equals("2")){
+		while(!comando.equals("1") && !comando.equals("2")){
 			System.out.println("tessera selezionata non è esistente|\n Inserire di nuovo");
 			comando=stdIn.nextLine();
 		}

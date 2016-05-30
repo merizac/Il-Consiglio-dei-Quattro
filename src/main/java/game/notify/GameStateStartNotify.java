@@ -1,9 +1,14 @@
 package game.notify;
 
+import bonus.Bonus;
 import game.GameState;
 import game.Giocatore;
+import gameDTO.gameDTO.CittàDTO;
+import gameDTO.gameDTO.ConsigliereDTO;
 import gameDTO.gameDTO.GameStateDTO;
 import gameDTO.gameDTO.GiocatoreDTO;
+import gameDTO.gameDTO.RegioneDTO;
+import gameDTO.gameDTO.TesseraPermessoDTO;
 
 public class GameStateStartNotify implements NotifyGiocatori {
 
@@ -45,9 +50,36 @@ public class GameStateStartNotify implements NotifyGiocatori {
 	}
 	@Override
 	public void stamp() {
-		System.out.println(gameStateDTO);
-		System.out.println(giocatoreDTO);
+		
+		for(CittàDTO c: gameStateDTO.getCittà()){
+		System.out.println(c);
+		}
+	
+	for(RegioneDTO r: gameStateDTO.getRegioni()){
+		System.out.println(r);
+		System.out.println("Balcone" + r);
+		for(ConsigliereDTO cons: r.getBalcone()){
+			System.out.println(cons);
+		}
+		System.out.println("Tessere Permesso Scoperte nella regione "+ r);
+		for (TesseraPermessoDTO t: r.getTesserePermessoScoperte()){
+			System.out.println(t);
+		}
+		System.out.println(r.getBonusRegione());	
 		
 	}
+	
+	System.out.println("Balcone Re:");
+	
+	for (ConsigliereDTO consRe: gameStateDTO.getPlanciaReDTO().getBalconeRe()){
+		System.out.println(consRe);
+	}
+	System.out.println(gameStateDTO.getPedinaRE());
+	
+	for(Bonus b: gameStateDTO.getPlanciaReDTO().getBonusPremioRe())
+		System.out.println(b);
 
+	System.out.println(giocatoreDTO);
+	}
+		
 }

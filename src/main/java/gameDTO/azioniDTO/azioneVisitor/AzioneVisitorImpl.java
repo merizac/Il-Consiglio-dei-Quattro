@@ -17,6 +17,7 @@ import game.azioni.CostruzioneTesseraPermesso;
 import game.azioni.ElezioneConsigliere;
 import game.azioni.ElezioneConsigliereVeloce;
 import game.azioni.IngaggioAiutante;
+import game.azioni.Passa;
 import game.azioni.PescaCarta;
 import game.azioni.SecondaAzionePrincipale;
 import gameDTO.azioniDTO.AcquistoTesseraPermessoDTO;
@@ -27,6 +28,7 @@ import gameDTO.azioniDTO.CostruzioneTesseraPermessoDTO;
 import gameDTO.azioniDTO.ElezioneConsigliereDTO;
 import gameDTO.azioniDTO.ElezioneConsigliereVeloceDTO;
 import gameDTO.azioniDTO.IngaggioAiutanteDTO;
+import gameDTO.azioniDTO.PassaDTO;
 import gameDTO.azioniDTO.PescaCartaDTO;
 import gameDTO.azioniDTO.SecondaAzionePrincipaleDTO;
 
@@ -129,6 +131,11 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 	@Override
 	public PescaCarta visit(PescaCartaDTO pescaCartaDTO) {
 		return new PescaCarta();
+	}
+
+	@Override
+	public Passa visit(PassaDTO passaDTO) {
+		return new Passa();
 	}
 
 }
