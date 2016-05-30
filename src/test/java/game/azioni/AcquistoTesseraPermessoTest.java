@@ -14,7 +14,6 @@ import game.GameState;
 import game.Giocatore;
 import game.Regione;
 import game.TesseraPermesso;
-import game.notify.ErrorParameterNotify;
 
 public class AcquistoTesseraPermessoTest {
 
