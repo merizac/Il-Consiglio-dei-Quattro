@@ -52,32 +52,40 @@ public class GameStateStartNotify implements NotifyGiocatori {
 	public void stamp() {
 		
 		for(CittàDTO c: gameStateDTO.getCittà()){
-		System.out.println(c);
+			System.out.println(c);
 		}
-	
-	for(RegioneDTO r: gameStateDTO.getRegioni()){
-		System.out.println(r);
-		System.out.println("Balcone" + r);
-		for(ConsigliereDTO cons: r.getBalcone()){
-			System.out.println(cons);
-		}
-		System.out.println("Tessere Permesso Scoperte nella regione "+ r);
-		for (TesseraPermessoDTO t: r.getTesserePermessoScoperte()){
-			System.out.println(t);
-		}
-		System.out.println(r.getBonusRegione());	
 		
-	}
-	
-	System.out.println("Balcone Re:");
-	
-	for (ConsigliereDTO consRe: gameStateDTO.getPlanciaReDTO().getBalconeRe()){
-		System.out.println(consRe);
-	}
-	System.out.println(gameStateDTO.getPedinaRE());
-	
-	for(Bonus b: gameStateDTO.getPlanciaReDTO().getBonusPremioRe())
-		System.out.println(b);
+		for(RegioneDTO r: gameStateDTO.getRegioni()){
+			System.out.println(r);
+			System.out.println("Balcone  " + r.getNome());
+			for(ConsigliereDTO cons: r.getBalcone()){
+				System.out.println(cons);
+			}
+			
+			System.out.println("Tessere Permesso Scoperte nella regione "+ r.getNome());
+			for (TesseraPermessoDTO t: r.getTesserePermessoScoperte()){
+				String cittàTessera="";
+				String bonusTessera="";
+				for(CittàDTO ci: t.getCittà()){
+					cittàTessera=cittàTessera+ci.getNome()+" ";
+				}
+				System.out.println(cittàTessera);
+				for(Bonus bonus: t.getBonus()){
+					bonusTessera = bonusTessera + bonus + " ";
+				}
+				System.out.println(bonusTessera);
+			}
+			System.out.println(r.getBonusRegione());	
+			
+		}
+		System.out.println("Balcone Re:");
+		for (ConsigliereDTO consRe: gameStateDTO.getPlanciaReDTO().getBalconeRe()){
+			System.out.println(consRe);
+		}
+		System.out.println(gameStateDTO.getPedinaRE());
+		
+		for(Bonus b: gameStateDTO.getPlanciaReDTO().getBonusPremioRe())
+			System.out.println(b);
 
 	System.out.println(giocatoreDTO);
 	}

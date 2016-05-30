@@ -61,7 +61,7 @@ public class CittàDTO implements Serializable{
 	
 	@Override
 	public String toString() {
-		return "CITTA'" + nome + " Colore:" + ColoreDTO
+		return nome + " Colore:" + ColoreDTO
 				+ " empori:" + empori ;
 	}
 	

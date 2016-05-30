@@ -40,13 +40,21 @@ public class GameStateNotify implements NotifyGiocatori {
 		
 		for(RegioneDTO r: gameStateDTO.getRegioni()){
 			System.out.println(r);
-			System.out.println("Balcone" + r);
+			System.out.println("Balcone  " + r.getNome());
 			for(ConsigliereDTO cons: r.getBalcone()){
 				System.out.println(cons);
 			}
-			System.out.println("Tessere Permesso Scoperte nella regione "+ r);
+			
+			System.out.println("Tessere Permesso Scoperte nella regione "+ r.getNome());
 			for (TesseraPermessoDTO t: r.getTesserePermessoScoperte()){
-				System.out.println(t);
+				String cittàTessera="";
+				String bonusTessera="";
+				for(CittàDTO ci: t.getCittà()){
+					cittàTessera=cittàTessera+ci.getNome()+" ";
+				}
+				for(Bonus bonus: t.getBonus()){
+					bonusTessera = bonusTessera + bonus + " ";
+				}
 			}
 			System.out.println(r.getBonusRegione());	
 			
@@ -61,9 +69,6 @@ public class GameStateNotify implements NotifyGiocatori {
 			System.out.println(b);
 		
 		}
-		
-		
-	
 	}
 
 

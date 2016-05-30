@@ -83,7 +83,7 @@ public class RegioneDTO implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "Regione"+ nome;
+		return nome;
 	}
 	
 	
