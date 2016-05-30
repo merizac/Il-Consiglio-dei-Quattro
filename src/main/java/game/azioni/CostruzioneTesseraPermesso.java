@@ -14,7 +14,6 @@ import game.notify.GiocatoreDTONotify;
 
 public class CostruzioneTesseraPermesso extends AzionePrincipale {
 
-	private static final long serialVersionUID = 3120994460673560792L;
 	private TesseraPermesso tesseraPermessoScoperta;
 	private Città cittàCostruzione;
 	

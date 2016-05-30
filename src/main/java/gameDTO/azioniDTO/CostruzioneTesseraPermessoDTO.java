@@ -1,13 +1,12 @@
 package gameDTO.azioniDTO;
 
-import java.io.Serializable;
 
 import game.azioni.Azione;
 import gameDTO.azioniDTO.azioneVisitor.AzioneVisitor;
 import gameDTO.gameDTO.CittàDTO;
 import gameDTO.gameDTO.TesseraPermessoDTO;
 
-public class CostruzioneTesseraPermessoDTO implements AzioneDTO, Serializable {
+public class CostruzioneTesseraPermessoDTO implements AzioneDTO {
 
 	/**
 	 * 

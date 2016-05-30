@@ -8,10 +8,6 @@ import game.GameState;
 
 public class ElezioneConsigliereVeloce extends AzioneVeloce {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1882277645819280237L;
 	private Regione regione;
 	private Consigliere consigliere;
 

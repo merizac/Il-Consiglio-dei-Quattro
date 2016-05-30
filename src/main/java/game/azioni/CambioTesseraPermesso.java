@@ -8,8 +8,6 @@ import game.notify.GiocatoreDTONotify;
 
 public class CambioTesseraPermesso extends AzioneVeloce {
 
-
-	private static final long serialVersionUID = 1446954873428331443L;
 	private Regione regione;
 
 

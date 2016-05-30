@@ -17,7 +17,6 @@ import game.notify.GiocatoreDTONotify;
 
 public class CostruzioneAiutoRe extends AzionePrincipale {
 
-	private static final long serialVersionUID = -3209033436891293833L;
 	private Città cittàCostruzione;
 	private Balcone balcone;
 	private ArrayList<CartaPolitica> carteGiocatore;

@@ -7,7 +7,6 @@ import game.notify.GiocatoreDTONotify;
 
 public class ElezioneConsigliere extends AzionePrincipale {
 
-	private static final long serialVersionUID = 3036409471209884102L;
 	private Regione regione;
 	private Consigliere consigliere;
 	

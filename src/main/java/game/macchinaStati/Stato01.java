@@ -16,8 +16,9 @@ public class Stato01 implements Stato {
 	private List<String> azioni;
 
 	public Stato01(GameState gameState) {
+		System.out.println(this);
 		riempiAzioni();
-		//gameState.notifyObserver(new AzioniNotify(this.getAzioni()));
+		gameState.notifyObserver(new AzioniNotify(this.getAzioni()));
 		
 	}
 

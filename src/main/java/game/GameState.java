@@ -216,6 +216,7 @@ public class GameState extends Observable<Notify> {
 	public void nextPlayer() {
 		Giocatore fineTurno = giocatori.remove(0);
 		giocatori.add(fineTurno);
+		this.giocatoreCorrente=giocatori.get(0);
 
 	}
 

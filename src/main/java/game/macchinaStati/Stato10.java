@@ -20,8 +20,9 @@ public class Stato10 implements Stato {
 	 * @param azioni
 	 */
 	public Stato10(GameState gameState) {
+		System.out.println(this);
 		riempiAzioni();
-		//gameState.notifyObserver(new AzioniNotify(getAzioni()));
+		gameState.notifyObserver(new AzioniNotify(getAzioni()));
 	}
 
 	private void riempiAzioni() {

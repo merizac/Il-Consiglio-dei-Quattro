@@ -7,11 +7,6 @@ import game.notify.GiocatoreDTONotify;
 public class IngaggioAiutante extends AzioneVeloce {
 
 	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -1641309249136321458L;
-
-	/**
 	 * @return true if the player has enough money, and add one aiutante
 	 */
 	@Override
