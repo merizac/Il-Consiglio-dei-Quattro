@@ -51,23 +51,29 @@ public class ControlloParametri {
 		}
 		throw new IllegalArgumentException("La città è inesistente!");
 	}
-	//riguarda
+
 	public static TesseraPermesso cercaTesseraPermesso(TesseraPermessoDTO tesseraPermesso,
 			ArrayList<TesseraPermesso> tesserePermesso) throws IllegalArgumentException{
 		for(TesseraPermesso t: tesserePermesso){
+			boolean find=false;
 			if(!t.getBonus().containsAll(tesseraPermesso.getBonus())
-					|| !tesseraPermesso.getBonus().containsAll(t.getBonus()))
+					|| !tesseraPermesso.getBonus().containsAll(t.getBonus())
+					|| tesseraPermesso.getCittà().size()!=t.getCittà().size())
 				continue;
 			else{
 				for(CittàDTO cDTO: tesseraPermesso.getCittà()){
 					for(Città c: t.getCittà()){
-						if(!cDTO.getNome().equals(c.getNome()))
-							continue;
-						else
+						if(cDTO.getNome().equals(c.getNome())){
+							find=true;
 							break;
-					}
+						}
+						}
+					if(!find)
+						break;
 				}
 			}
+			if(find)
+				return t;
 		}
 		
 		throw new IllegalArgumentException("La tessera permesso è inesistente!");

@@ -17,13 +17,13 @@ public class Stato01 implements Stato {
 
 	public Stato01(GameState gameState) {
 		System.out.println(this);
+		this.azioni = new ArrayList<String>();
 		riempiAzioni();
 		gameState.notifyObserver(new AzioniNotify(getAzioni()));
 		
 	}
 
 	private void riempiAzioni() {
-		this.azioni = new ArrayList<String>();
 		azioni.add("AZIONI VELOCI");
 		azioni.add("Ingaggiare un aiutante [V1]");
 		azioni.add("Cambiare le tessere permesso di costruzione [V2]");
@@ -46,8 +46,7 @@ public class Stato01 implements Stato {
 
 	@Override
 	public List<String> getAzioni() {
-		// TODO Auto-generated method stub
-		return null;
+		return azioni;
 	}
 
 	/* (non-Javadoc)

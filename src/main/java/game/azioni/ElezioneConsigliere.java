@@ -42,7 +42,6 @@ public class ElezioneConsigliere extends AzionePrincipale {
 		setStatoTransizionePrincipale(gameState); 
 		gameState.notifyObserver(new GameStateNotify(gameState));
 		gameState.notifyObserver(new GiocatoreDTONotify(gameState.getGiocatoreCorrente()));
-		
 	}
 
 }

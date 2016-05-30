@@ -11,7 +11,6 @@ import game.notify.GameStateStartNotify;
 import game.notify.Notify;
 import it.polimi.ingsw.cg17.Reader;
 import utility.Observable;
-import utility.exception.AzioneNonEseguibile;
 
 public class GameState extends Observable<Notify> {
 
@@ -216,7 +215,7 @@ public class GameState extends Observable<Notify> {
 	public void nextPlayer() {
 		Giocatore fineTurno = giocatori.remove(0);
 		giocatori.add(fineTurno);
-		this.giocatoreCorrente=giocatori.get(0);
+		this.giocatoreCorrente = giocatori.get(0);
 
 	}
 
@@ -242,14 +241,10 @@ public class GameState extends Observable<Notify> {
 		this.pedinaRe = Reader.creazioneRe();
 		this.giocatori = new ArrayList<Giocatore>();
 		this.offerteMarket = new ArrayList<>();
-		creaGiocatori(giocatori);	
+		creaGiocatori(giocatori);
 		this.notifyObserver(new GameStateStartNotify(this));
-		try {
-			this.stato = new StartEnd(this);
-			System.out.println("gamestate" + stato);
-		} catch (AzioneNonEseguibile e) {
-			e.printStackTrace();
-		}
+		this.stato = new StartEnd(this);
+
 	}
 
 	/*
@@ -259,9 +254,9 @@ public class GameState extends Observable<Notify> {
 	 */
 	@Override
 	public String toString() {
-		return  mappa + "\nRegioni = [" + regioni + "\nplanciaRe=" + planciaRe + ", \npedinaRe="
-				+ pedinaRe + "\nconsiglieri=" + consiglieri + "\nmazzoCartePolitica=" + mazzoCartePolitica
-				+ "\ngiocatori=" + giocatori + "\ngiocatoreCorrente=" + giocatoreCorrente + "\nstato=" + stato
+		return mappa + "\nRegioni = [" + regioni + "\nplanciaRe=" + planciaRe + ", \npedinaRe=" + pedinaRe
+				+ "\nconsiglieri=" + consiglieri + "\nmazzoCartePolitica=" + mazzoCartePolitica + "\ngiocatori="
+				+ giocatori + "\ngiocatoreCorrente=" + giocatoreCorrente + "\nstato=" + stato
 				+ "\nBonusAzionePrincipale=" + BonusAzionePrincipale + "\nnumeroTurni=" + numeroTurni
 				+ "\nofferteMarket=" + offerteMarket + "]";
 	}

@@ -47,6 +47,7 @@ public class ServerSocketView extends View implements Runnable {
 		
 		if(o instanceof NotifyGiocatori){
 			try {
+				System.out.println(giocatore.getNome()+ " Sending to the client " + o);
 				this.socketOut.writeObject(o);
 				this.socketOut.flush();
 			} catch (IOException e) {
@@ -57,7 +58,8 @@ public class ServerSocketView extends View implements Runnable {
 		
 		if ((o instanceof NotifyGiocatoreCorrente) && giocatore.equals(gameState.getGiocatoreCorrente()))
 			try {
-				System.out.println("Sending to the client " + o);
+				System.out.println(gameState.getGiocatoreCorrente().getNome()+" giocatore corrente");
+				System.out.println(giocatore.getNome() + " Sending to the client " + o);
 				this.socketOut.writeObject(o);
 				this.socketOut.flush();
 			} catch (IOException e) {
@@ -88,7 +90,6 @@ public class ServerSocketView extends View implements Runnable {
 					try {
 						AzioneVisitor azioneVisitor = new AzioneVisitorImpl(gameState, giocatore);
 						Azione azione = action.accept(azioneVisitor);
-						System.out.println(azione);
 						System.out.println("VIEW: received the action " + azione);
 						this.notifyObserver(azione);
 					} catch (IllegalArgumentException e) {

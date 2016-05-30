@@ -43,7 +43,6 @@ private GiocatoreDTO giocatoreDTO;
 					((GiocatoreDTONotify) line).update(giocatoreDTO);
 				}
 				if(line instanceof NotifyGiocatoreCorrente){
-					System.out.println(line);
 					((NotifyGiocatoreCorrente) line).stamp();
 				}
 			} catch (ClassNotFoundException | IOException e) {

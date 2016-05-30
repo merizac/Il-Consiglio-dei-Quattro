@@ -48,6 +48,7 @@ public class Server {
 
 	public void aggiungiGiocatore(Giocatore giocatore) {
 		giocatori.add(giocatore);
+	//	System.out.println(giocatori);
 		if (giocatori.size() == 2)
 			try {
 				gameState.start(giocatori);
