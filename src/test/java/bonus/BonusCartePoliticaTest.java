@@ -32,15 +32,14 @@ public class BonusCartePoliticaTest {
 	
 	@Test
 	public void testUsaBonus() throws IOException {
+		ArrayList<Giocatore> giocatori=new ArrayList<>();
 		GameState gameState = new GameState();
-		//ArrayList<CartaPolitica> carte = new ArrayList<CartaPolitica>();
 		Giocatore giocatore = new Giocatore("nome");
-		gameState.setGiocatoreCorrente(giocatore);
-		giocatore.aggiungiCartaPolitica(new CartaPolitica(new Colore("1")));
-		//int numCarte = carte.size();
+		giocatori.add(giocatore);
+		gameState.start(giocatori);
 		BonusCartePolitica bonus = new BonusCartePolitica(3);
 		bonus.usaBonus(gameState);
-		assertEquals(1+3, giocatore.getCartePolitica().size());
+		assertEquals(6+3, giocatore.getCartePolitica().size());
 		
 	}
 

@@ -16,10 +16,15 @@ public class ReTest {
 	static GameState gameState;
 	ArrayList<Città> città;
 	static Città nuovaCittà;
+	static ArrayList<Giocatore> giocatori;
 	
 	@BeforeClass
 	public static void init() throws IOException{
 		gameState=new GameState();
+		Giocatore giocatore=new Giocatore("Pippo");
+		giocatori=new ArrayList<Giocatore>();
+		giocatori.add(giocatore);
+		gameState.start(giocatori);
 //		ArrayList<Consigliere> consiglieri=new ArrayList<Consigliere>();
 //		città=new Città("cittàRe", new Regione("regione", new Mazzo<TesseraPermesso>(), new BonusPuntiVittoria(2), new Balcone(consiglieri)), new Colore("coloreCittàRe"));
 //		re=new Re(città);

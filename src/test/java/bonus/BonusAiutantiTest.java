@@ -3,6 +3,7 @@ package bonus;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.junit.Test;
 
@@ -26,22 +27,20 @@ public class BonusAiutantiTest {
 	public void testBonusAiutantiMinoreUgualeAZero(){
 		aiutanti=-5;
 		new BonusAiutanti(aiutanti);
-		
 	}
 	
 	
 	@Test
 	public void testUsaBonus() throws IOException {
-		aiutanti=5;
-		Aiutante aiutantiPrima=new Aiutante(3);
+		Aiutante aiutantiPrima=new Aiutante(4);
 		Giocatore giocatore = new Giocatore("nome");
-		giocatore.setAiutanti(aiutantiPrima);
-		System.out.println(giocatore);
 		GameState gameState=new GameState();
-		gameState.setGiocatoreCorrente(giocatore);
-		new BonusAiutanti(aiutanti);
-		assertEquals(aiutantiPrima, giocatore.getAiutanti());
-	
+		ArrayList<Giocatore> giocatori=new ArrayList<Giocatore>();
+		giocatori.add(giocatore);
+		gameState.start(giocatori);
+		BonusAiutanti b=new BonusAiutanti(3);
+		b.usaBonus(gameState);
+		assertEquals(aiutantiPrima.getAiutante(), giocatore.getAiutanti().getAiutante());
 		
 	}
 

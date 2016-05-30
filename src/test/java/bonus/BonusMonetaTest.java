@@ -3,6 +3,7 @@ package bonus;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -21,15 +22,16 @@ public class BonusMonetaTest {
 		gameState=new GameState();
 		bonus=new BonusMoneta(2);
 		giocatore=new Giocatore("giocatore");
-		giocatore.setPunteggioRicchezza(3);
-		gameState.setGiocatoreCorrente(giocatore);
+		ArrayList<Giocatore> giocatori=new ArrayList<>();
+		giocatori.add(giocatore);
+		gameState.start(giocatori);
 		
 	}
 	
 	@Test
 	public void testUsaBonus() {
 		bonus.usaBonus(gameState);
-		assertEquals(5, gameState.getGiocatoreCorrente().getPunteggioRicchezza());
+		assertEquals(10+2, gameState.getGiocatoreCorrente().getPunteggioRicchezza());
 	}
 
 }
