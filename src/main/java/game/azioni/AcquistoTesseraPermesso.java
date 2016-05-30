@@ -52,9 +52,9 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 		TesseraPermesso tesseraScelta = regione.getTesserePermessoScoperte().get(indiceTesseraScoperta);
 	    gameState.getGiocatoreCorrente().getTesserePermesso().add(tesseraScelta);
 		 
-		 setStatoTransizionePrincipale(gameState); 
+	//	 setStatoTransizionePrincipale(gameState); 
 		 //aggiornamento gamestate
-		 gameState.notifyObserver(new GiocatoreNotify());
+	//	 gameState.notifyObserver(new GiocatoreNotify());
 		 
 		
 	}
@@ -111,14 +111,14 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 	private boolean controllaColori() {
 		ArrayList<Consigliere> copiaConsiglieri = new ArrayList<Consigliere>(regione.getBalcone().getConsigliere());
 		for (CartaPolitica carta: carteGiocatore ){
-			if (carta.equals(new CartaPolitica(new Colore("Multicolor")))){
+			if (carta.equals(new CartaPolitica(new Colore("Multicolore")))){
 				continue;
 			}
 				
 			for (Consigliere consigliere: copiaConsiglieri){
 					if (consigliere.getColore().equals(carta.getColore())){
 						regione.getBalcone().getConsigliere().remove(consigliere);
-						
+						break;
 					}
 					
 					else
@@ -168,6 +168,11 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 	 * @param indiceTesseraScoperta the indiceTesseraScoperta to set
 	 */
 	public void setIndiceTesseraScoperta(int indiceTesseraScoperta) {
+
+		if(indiceTesseraScoperta>regione.getTesserePermessoScoperte().size())
+			throw new IllegalArgumentException("L'indice della tessere deve essere minore di "+regione.getTesserePermessoScoperte().size());
+		if(indiceTesseraScoperta<0)
+			throw new IllegalArgumentException("L'indice della tessere deve essere un numero positivo");
 		this.indiceTesseraScoperta = indiceTesseraScoperta;
 	}
 
