@@ -61,7 +61,7 @@ public class Emporio {
 	 */
 	@Override
 	public String toString() {
-		return "Emporio [colore=" + colore + "]";
+		return colore.toString();
 	}
 	
 	

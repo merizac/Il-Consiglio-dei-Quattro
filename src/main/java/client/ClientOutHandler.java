@@ -13,6 +13,7 @@ import gameDTO.azioniDTO.CostruzioneTesseraPermessoDTO;
 import gameDTO.azioniDTO.ElezioneConsigliereDTO;
 import gameDTO.azioniDTO.ElezioneConsigliereVeloceDTO;
 import gameDTO.azioniDTO.IngaggioAiutanteDTO;
+import gameDTO.azioniDTO.PescaCartaDTO;
 import gameDTO.azioniDTO.SecondaAzionePrincipaleDTO;
 import gameDTO.gameDTO.CartaPoliticaDTO;
 import gameDTO.gameDTO.CittàDTO;
@@ -28,8 +29,10 @@ public class ClientOutHandler implements Runnable {
 	private GameStateDTO gameStateDTO;
 	private GiocatoreDTO giocatoreDTO;
 
-	public ClientOutHandler(ObjectOutputStream socketOut) {
+	public ClientOutHandler(ObjectOutputStream socketOut, GameStateDTO gameStateDTO, GiocatoreDTO giocatoreDTO) {
 		this.socketOut = socketOut;
+		this.giocatoreDTO = giocatoreDTO;
+		this.gameStateDTO=gameStateDTO;
 	}
 
 	@Override
@@ -37,11 +40,11 @@ public class ClientOutHandler implements Runnable {
 
 		System.out.println("RUNNING");
 		Scanner stdIn = new Scanner(System.in);
+		System.out.println("creato scanner");
 
 		while (true) {
 			AzioneDTO action = null;
 			int indice;
-			String inputLine = stdIn.nextLine();
 			RegioneDTO regioneScelta;
 			ArrayList<CartaPoliticaDTO> cartePolitica;
 			TesseraPermessoDTO tesseraScelta;
@@ -49,19 +52,25 @@ public class ClientOutHandler implements Runnable {
 			ConsigliereDTO consigliereScelto;
 			AzioniClient azioniClient = new AzioniClient();
 
+			System.out.println("aspetta azione");
+			String inputLine = stdIn.nextLine();
+			System.out.println("azione :"+inputLine);
+			
 			if (inputLine.equals("pesca")) {
-				// action=new PescaCarta();
+				System.out.println("entrato");
+				action=(AzioneDTO) new PescaCartaDTO();
+				System.out.println("azione creata");
 
 			}
 
-			if (inputLine.equals("elezione consigliere")) {
+			else if (inputLine.equals("elezione consigliere")) {
 				consigliereScelto = azioniClient.scegliConsigliere(gameStateDTO.getConsiglieri(), stdIn);
 				regioneScelta = azioniClient.scegliRegione(gameStateDTO.getRegioni(), stdIn);
 
 				action = new ElezioneConsigliereDTO(consigliereScelto, regioneScelta);
 			}
 
-			if (inputLine.equals("acquisto una tessera permesso")) {
+			else if (inputLine.equals("acquisto una tessera permesso")) {
 				regioneScelta = azioniClient.scegliRegione(gameStateDTO.getRegioni(), stdIn);
 				cartePolitica = azioniClient.scegliCarte(giocatoreDTO.getCartePolitica(), stdIn);
 				indice = azioniClient.scegliTesseraRegione(regioneScelta.getTesserePermessoScoperte(), stdIn);
@@ -70,7 +79,7 @@ public class ClientOutHandler implements Runnable {
 
 			}
 
-			if (inputLine.equals("Costruire un emporio")) {
+			else if (inputLine.equals("Costruire un emporio")) {
 				tesseraScelta = azioniClient.scegliTesseraGiocatore(giocatoreDTO.getTesserePermesso(), stdIn);
 				cittàScelta = azioniClient.scegliCittà(tesseraScelta.getCittà(), giocatoreDTO.getColoreGiocatore(),
 						stdIn);
@@ -79,7 +88,7 @@ public class ClientOutHandler implements Runnable {
 
 			}
 
-			if (inputLine.equals("Aiuto del re")) {
+			else if (inputLine.equals("Aiuto del re")) {
 				cartePolitica = azioniClient.scegliCarte(giocatoreDTO.getCartePolitica(), stdIn);
 				cittàScelta = azioniClient.scegliCittà(gameStateDTO.getCittà(), giocatoreDTO.getColoreGiocatore(),
 						stdIn);
@@ -87,28 +96,28 @@ public class ClientOutHandler implements Runnable {
 				action = new CostruzioneAiutoReDTO(cartePolitica, cittàScelta);
 			}
 
-			if (inputLine.equals("Ingaggiare un aiutante")) {
+			else if (inputLine.equals("Ingaggiare un aiutante")) {
 				action = new IngaggioAiutanteDTO();
 			}
 
-			if (inputLine.equals("cambiare le tessere permesso")) {
+			else if (inputLine.equals("cambiare le tessere permesso")) {
 				regioneScelta = azioniClient.scegliRegione(gameStateDTO.getRegioni(), stdIn);
 
 				action = new CambioTesserePermessoDTO(regioneScelta);
 			}
 
-			if (inputLine.equals("elezione consigliere veloce")) {
+			else if (inputLine.equals("elezione consigliere veloce")) {
 				consigliereScelto = azioniClient.scegliConsigliere(gameStateDTO.getConsiglieri(), stdIn);
 				regioneScelta = azioniClient.scegliRegione(gameStateDTO.getRegioni(), stdIn);
 
 				action = new ElezioneConsigliereVeloceDTO(regioneScelta, consigliereScelto);
 			}
-			if (inputLine.equals("azione principale")) {
+			else if (inputLine.equals("azione principale")) {
 				new SecondaAzionePrincipaleDTO();
 			}
 
 			else
-				System.out.println("L'azione non esiste\n Inserire un'azione valida");
+				System.out.println("L'azione non esiste \nInserire un'azione valida");
 
 			System.out.println("SENDING THE ACTION");
 

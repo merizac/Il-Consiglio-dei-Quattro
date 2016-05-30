@@ -30,6 +30,13 @@ public class ConsigliereDTO implements Serializable {
 		this.coloreConsigliere=consigliere.getColore().getColore();
 	}
 	
-	
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return coloreConsigliere;
+	}
 
 }

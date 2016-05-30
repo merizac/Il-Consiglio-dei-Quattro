@@ -64,7 +64,7 @@ public class Balcone {
 	 */
 	@Override
 	public String toString() {
-		return "Balcone [consiglieri=" + consiglieri + "]";
+		return consiglieri.toString();
 	}
 	
 	

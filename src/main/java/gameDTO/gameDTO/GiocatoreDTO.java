@@ -189,5 +189,18 @@ public class GiocatoreDTO implements Serializable {
 		}
 		this.setTessereBonus(giocatore.getTessereBonus());	
 	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "GiocatoreDTO [nome=" + nome + ", coloreGiocatore=" + coloreGiocatore + ", cartePolitica="
+				+ cartePolitica + ", tesserePermesso=" + tesserePermesso + ", tesserePermessoUsate="
+				+ tesserePermessoUsate + ", tessereBonus=" + tessereBonus + ", empori=" + empori + ", aiutanti="
+				+ aiutanti + ", punteggioVittoria=" + punteggioVittoria + ", punteggioRicchezza=" + punteggioRicchezza
+				+ ", punteggioNobiltà=" + punteggioNobiltà + "]";
+	}
+	
+	
 	
 }

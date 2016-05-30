@@ -76,7 +76,6 @@ public class RegioneDTO implements Serializable {
 			tp.inizializza(t);
 			this.tesserePermessoScoperte.add(tp);
 		}
-		
 	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()

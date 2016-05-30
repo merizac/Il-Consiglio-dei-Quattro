@@ -1,7 +1,7 @@
 package game.azioni;
 
 import game.GameState;
-import game.notify.ErrorParameterNotify;
+import game.notify.ErrorNotify;
 
 public class SecondaAzionePrincipale extends AzioneVeloce {
 
@@ -21,7 +21,7 @@ public class SecondaAzionePrincipale extends AzioneVeloce {
 			setStatoTransizioneSecondaPrincipale(gameState); 
 		}
 		else{
-			gameState.notifyObserver(new ErrorParameterNotify("Errore: non hai abbastanza aiutanti"));
+			gameState.notifyObserver(new ErrorNotify("Errore: non hai abbastanza aiutanti"));
 			return;
 		}
 	}

@@ -58,4 +58,14 @@ public class Mazzo<T> {
 	public void aggiungiCarta(T carta) {
 		carte.add(carta);
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Mazzo [ "+ carte + " ]";
+	}
+	
+	
 }

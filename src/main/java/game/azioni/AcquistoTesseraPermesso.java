@@ -7,8 +7,9 @@ import game.Colore;
 import game.Consigliere;
 import game.GameState;
 import game.TesseraPermesso;
-import game.notify.ErrorParameterNotify;
-import game.notify.GiocatoreNotify;
+import game.notify.ErrorNotify;
+import game.notify.GiocatoreDTONotify;
+import gameDTO.gameDTO.GiocatoreDTO;
 
 public class AcquistoTesseraPermesso extends AzionePrincipale {
 
@@ -29,17 +30,17 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 	public void eseguiAzione(GameState gameState) {
 		
 		if(carteGiocatore.isEmpty()){
-			gameState.notifyObserver(new ErrorParameterNotify("Errore: non sono presenti carte"));
+			gameState.notifyObserver(new ErrorNotify("Errore: non sono presenti carte"));
 			return;
 		}
 			
 		if(!controllaColori()){
-			gameState.notifyObserver(new ErrorParameterNotify("Errore: i colori delle carte scelte non corrispondono con quelle del balcone!"));
+			gameState.notifyObserver(new ErrorNotify("Errore: i colori delle carte scelte non corrispondono con quelle del balcone!"));
 			return;
 		}
 			
 		if(!paga(calcolaMonete(), gameState)){
-			gameState.notifyObserver(new ErrorParameterNotify("Errore: i soldi non sono sufficienti!"));
+			gameState.notifyObserver(new ErrorNotify("Errore: i soldi non sono sufficienti!"));
 			return;
 		}
 			
@@ -52,9 +53,10 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 		TesseraPermesso tesseraScelta = regione.getTesserePermessoScoperte().get(indiceTesseraScoperta);
 	    gameState.getGiocatoreCorrente().getTesserePermesso().add(tesseraScelta);
 		 
-	//	 setStatoTransizionePrincipale(gameState); 
+		 setStatoTransizionePrincipale(gameState); 
 		 //aggiornamento gamestate
-	//	 gameState.notifyObserver(new GiocatoreNotify());
+		 
+		 gameState.notifyObserver(new GiocatoreDTONotify(gameState.getGiocatoreCorrente()));
 		 
 		
 	}
@@ -111,14 +113,14 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 	private boolean controllaColori() {
 		ArrayList<Consigliere> copiaConsiglieri = new ArrayList<Consigliere>(regione.getBalcone().getConsigliere());
 		for (CartaPolitica carta: carteGiocatore ){
-			if (carta.equals(new CartaPolitica(new Colore("Multicolore")))){
+			if (carta.equals(new CartaPolitica(new Colore("Multicolor")))){
 				continue;
 			}
 				
 			for (Consigliere consigliere: copiaConsiglieri){
 					if (consigliere.getColore().equals(carta.getColore())){
 						regione.getBalcone().getConsigliere().remove(consigliere);
-						break;
+						
 					}
 					
 					else
@@ -168,11 +170,6 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 	 * @param indiceTesseraScoperta the indiceTesseraScoperta to set
 	 */
 	public void setIndiceTesseraScoperta(int indiceTesseraScoperta) {
-
-		if(indiceTesseraScoperta>regione.getTesserePermessoScoperte().size())
-			throw new IllegalArgumentException("L'indice della tessere deve essere minore di "+regione.getTesserePermessoScoperte().size());
-		if(indiceTesseraScoperta<0)
-			throw new IllegalArgumentException("L'indice della tessere deve essere un numero positivo");
 		this.indiceTesseraScoperta = indiceTesseraScoperta;
 	}
 

@@ -40,5 +40,12 @@ public class PlanciaRe  {
 		return percorsoNobiltà;
 	}
 	
-	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "balcone Re = [" + balconeRe + "]\nbonus PremioRe = [" + bonusPremioRe + "]\npercorsoNobiltà = ["
+				+ percorsoNobiltà + "]";
+	}
 }

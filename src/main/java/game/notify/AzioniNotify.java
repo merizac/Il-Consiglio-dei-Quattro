@@ -2,10 +2,7 @@ package game.notify;
 
 import java.util.List;
 
-import game.GameState;
-import game.azioni.Azione;
-
-public class AzioniNotify extends NotifyGiocatoreCorrente {
+public class AzioniNotify implements NotifyGiocatoreCorrente {
 
 
 	private static final long serialVersionUID = -7471237200273859021L;
@@ -16,11 +13,12 @@ public class AzioniNotify extends NotifyGiocatoreCorrente {
 	}
 
 	@Override
-	public void stamp(GameState gameState) {
-		for(String a: this.azioni)
-		{
-			System.out.println(a);
+	public void stamp() {
+		for(String azione:azioni){
+			System.out.println(azione);
 		}
 	}
+
+
 
 }

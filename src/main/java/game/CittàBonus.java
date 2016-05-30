@@ -34,9 +34,12 @@ public class CittàBonus extends Città {
 		this.bonus = bonus;
 	}
 	
-	
-
-	
-
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "CittàBonus [bonus=" + bonus + "]";
+	}
 	
 }

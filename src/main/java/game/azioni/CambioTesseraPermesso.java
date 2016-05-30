@@ -3,8 +3,8 @@ package game.azioni;
 import game.GameState;
 import game.Regione;
 import game.TesseraPermesso;
-import game.notify.ErrorParameterNotify;
-import game.notify.GiocatoreNotify;
+import game.notify.ErrorNotify;
+import game.notify.GiocatoreDTONotify;
 
 public class CambioTesseraPermesso extends AzioneVeloce {
 
@@ -21,10 +21,10 @@ public class CambioTesseraPermesso extends AzioneVeloce {
 			RimozioneCarte();
 			SostituzioneCarte();
 			setStatoTransizioneVeloce(gameState); 
-			gameState.notifyObserver(new GiocatoreNotify());
+			gameState.notifyObserver(new GiocatoreDTONotify(gameState.getGiocatoreCorrente()));
 		}
 		else{
-			gameState.notifyObserver(new ErrorParameterNotify("Errore: non hai abbastanza aiutanti"));
+			gameState.notifyObserver(new ErrorNotify("Errore: non hai abbastanza aiutanti"));
 			return;
 		}
 		

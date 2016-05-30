@@ -9,6 +9,7 @@ import game.Città;
 import game.CittàBonus;
 import game.Consigliere;
 import game.GameState;
+import game.Giocatore;
 import game.Regione;
 
 public class GameStateDTO implements Serializable {
@@ -117,18 +118,15 @@ public class GameStateDTO implements Serializable {
 		ReDTO pedinaRe = new ReDTO();
 		pedinaRe.inizializza(gameState.getPedinaRe());
 		this.setPedinaRE(pedinaRe);
-
 		PlanciaReDTO planciaReDTO = new PlanciaReDTO();
 		planciaReDTO.inizializza(gameState.getPlanciaRe());
 		this.setPlanciaReDTO(planciaReDTO);
-
 		this.consiglieri = new ArrayList<>();
 		for (Consigliere c : gameState.getConsiglieri()) {
 			ConsigliereDTO consigliereDTO = new ConsigliereDTO();
 			consigliereDTO.inizializza(c);
 			consiglieri.add(consigliereDTO);
 		}
-
 	}
 
 	/*
@@ -141,5 +139,6 @@ public class GameStateDTO implements Serializable {
 		return "GameStateDTO [mappa=" + città + "\nregioni=" + regioni + "\npedinaRE=" + pedinaRE + "\nplanciaReDTO="
 				+ planciaReDTO + "\nconsiglieri=" + consiglieri + "]";
 	}
+	
 
 }

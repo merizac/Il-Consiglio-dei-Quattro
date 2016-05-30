@@ -61,7 +61,7 @@ public class CartaPolitica implements Marketable {
 	 */
 	@Override
 	public String toString() {
-		return "CartaPolitica [colore=" + colore + "]";
+		return colore.toString();
 	}
 
 
