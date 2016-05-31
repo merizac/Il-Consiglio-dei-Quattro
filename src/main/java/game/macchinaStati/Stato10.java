@@ -20,6 +20,7 @@ public class Stato10 implements Stato {
 	 * @param azioni
 	 */
 	public Stato10(GameState gameState) {
+		System.out.println(this);
 		riempiAzioni();
 		gameState.notifyObserver(new AzioniNotify(getAzioni()));
 	}
@@ -27,10 +28,10 @@ public class Stato10 implements Stato {
 	private void riempiAzioni() {
 		this.azioni = new ArrayList<String>();
 		azioni.add("AZIONI PRINCIPALI:");
-		azioni.add("Eleggere un consigliere");
-		azioni.add("Acquistare una tessera permesso di costruzione");
-		azioni.add("Costruire un emporio usando una tessera permesso");
-		azioni.add("costruire un emporio con l'aiuto del re");
+		azioni.add("Eleggere un consigliere [P1]");
+		azioni.add("Acquistare una tessera permesso di costruzione [P2]");
+		azioni.add("Costruire un emporio usando una tessera permesso [P3]");
+		azioni.add("costruire un emporio con l'aiuto del re [P4]");
 	}
 
 	@Override

@@ -1,13 +1,11 @@
 package gameDTO.azioniDTO;
 
-import java.io.Serializable;
-
 import game.azioni.Azione;
 import gameDTO.azioniDTO.azioneVisitor.AzioneVisitor;
 import gameDTO.gameDTO.ConsigliereDTO;
 import gameDTO.gameDTO.RegioneDTO;
 
-public class ElezioneConsigliereDTO implements Serializable, AzioneDTO {
+public class ElezioneConsigliereDTO implements AzioneDTO {
 
 	/**
 	 * 

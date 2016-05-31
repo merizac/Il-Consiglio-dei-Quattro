@@ -3,6 +3,7 @@ package gameDTO.gameDTO;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import bonus.Bonus;
 import game.Consigliere;
 import game.Regione;
 import game.TesseraPermesso;
@@ -12,7 +13,7 @@ public class RegioneDTO implements Serializable {
 	private static final long serialVersionUID = 8912658420067177656L;
 	private String nome;
 	private ArrayList<TesseraPermessoDTO> tesserePermessoScoperte;
-	private BonusDTO bonusRegione;
+	private Bonus bonusRegione;
 	private ArrayList<ConsigliereDTO> balcone;
 	/**
 	 * @return the nome
@@ -41,13 +42,13 @@ public class RegioneDTO implements Serializable {
 	/**
 	 * @return the bonusRegione
 	 */
-	public BonusDTO getBonusRegione() {
+	public Bonus getBonusRegione() {
 		return bonusRegione;
 	}
 	/**
 	 * @param bonusRegione the bonusRegione to set
 	 */
-	public void setBonusRegione(BonusDTO bonusRegione) {
+	public void setBonusRegione(Bonus bonusRegione) {
 		this.bonusRegione = bonusRegione;
 	}
 	/**
@@ -82,8 +83,7 @@ public class RegioneDTO implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "RegioneDTO [nome=" + nome + ", tesserePermessoScoperte=" + tesserePermessoScoperte + ", bonusRegione="
-				+ bonusRegione + ", balcone=" + balcone + "]";
+		return nome;
 	}
 	
 	

@@ -2,16 +2,13 @@ package game.azioni;
 
 import game.Regione;
 import game.notify.ErrorNotify;
+import game.notify.GameStateNotify;
 import game.notify.GiocatoreDTONotify;
 import game.Consigliere;
 import game.GameState;
 
 public class ElezioneConsigliereVeloce extends AzioneVeloce {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1882277645819280237L;
 	private Regione regione;
 	private Consigliere consigliere;
 
@@ -72,6 +69,7 @@ public class ElezioneConsigliereVeloce extends AzioneVeloce {
 			Consigliere consigliereTolto = this.regione.getBalcone().aggiungiConsigliere(consigliere);
 			gameState.getConsiglieri().add(consigliereTolto);
 			setStatoTransizioneVeloce(gameState);
+			gameState.notifyObserver(new GameStateNotify(gameState));
 			gameState.notifyObserver(new GiocatoreDTONotify(gameState.getGiocatoreCorrente()));
 		}
 

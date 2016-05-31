@@ -6,6 +6,10 @@ import gameDTO.gameDTO.RegioneDTO;
 
 public class CambioTesserePermessoDTO implements AzioneDTO {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2237104774390257699L;
 	private RegioneDTO regione;
 
 	/**

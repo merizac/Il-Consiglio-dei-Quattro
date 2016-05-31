@@ -8,6 +8,7 @@ import game.Consigliere;
 import game.GameState;
 import game.TesseraPermesso;
 import game.notify.ErrorNotify;
+import game.notify.GameStateNotify;
 import game.notify.GiocatoreDTONotify;
 import gameDTO.gameDTO.GiocatoreDTO;
 
@@ -55,7 +56,7 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 		 
 		 setStatoTransizionePrincipale(gameState); 
 		 //aggiornamento gamestate
-		 
+		 gameState.notifyObserver(new GameStateNotify(gameState));
 		 gameState.notifyObserver(new GiocatoreDTONotify(gameState.getGiocatoreCorrente()));
 		 
 		

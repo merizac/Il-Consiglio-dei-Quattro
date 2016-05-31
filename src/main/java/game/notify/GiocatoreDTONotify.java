@@ -4,7 +4,7 @@ import java.io.Serializable;
 import game.Giocatore;
 import gameDTO.gameDTO.GiocatoreDTO;
 
-public class GiocatoreDTONotify implements Serializable, Notify{
+public class GiocatoreDTONotify implements Serializable, NotifyGiocatoreCorrente{
 
 	private static final long serialVersionUID = 4372428925907670712L;
 	private GiocatoreDTO giocatoreDTO;

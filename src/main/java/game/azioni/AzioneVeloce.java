@@ -1,7 +1,6 @@
 package game.azioni;
 
 import game.GameState;
-import game.notify.ErrorNotify;
 import utility.exception.AzioneNonEseguibile;
 
 public abstract class AzioneVeloce extends Azione {

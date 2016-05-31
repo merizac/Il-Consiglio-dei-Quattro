@@ -7,6 +7,10 @@ import gameDTO.gameDTO.RegioneDTO;
 
 public class ElezioneConsigliereVeloceDTO implements AzioneDTO {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4829189371404681263L;
 	private RegioneDTO regione;
 	private ConsigliereDTO consigliere;
 	/**

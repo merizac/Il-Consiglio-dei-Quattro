@@ -4,17 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import game.GameState;
 import game.notify.AzioniNotify;
-import utility.exception.AzioneNonEseguibile;
 
 public class StartEnd implements Stato {
 
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -4274723843140699323L;
 
-	public StartEnd(GameState gameState) throws AzioneNonEseguibile {
+	public StartEnd(GameState gameState) {
 		if(gameState.getNumeroTurni()!=gameState.getGiocatori().size()){
 			gameState.notifyObserver(new AzioniNotify(this.getAzioni()) );
 			gameState.prossimoTurno();
@@ -33,7 +28,7 @@ public class StartEnd implements Stato {
 	@Override
 	public List<String> getAzioni() {
 		List<String> azioni=new ArrayList<>();
-		azioni.add("Pesca");
+		azioni.add("Pesca[Pesca]");
 		return azioni;
 	}
 

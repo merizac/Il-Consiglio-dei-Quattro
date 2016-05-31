@@ -13,6 +13,7 @@ import gameDTO.azioniDTO.CostruzioneTesseraPermessoDTO;
 import gameDTO.azioniDTO.ElezioneConsigliereDTO;
 import gameDTO.azioniDTO.ElezioneConsigliereVeloceDTO;
 import gameDTO.azioniDTO.IngaggioAiutanteDTO;
+import gameDTO.azioniDTO.PassaDTO;
 import gameDTO.azioniDTO.PescaCartaDTO;
 import gameDTO.azioniDTO.SecondaAzionePrincipaleDTO;
 import gameDTO.gameDTO.CartaPoliticaDTO;
@@ -40,7 +41,6 @@ public class ClientOutHandler implements Runnable {
 
 		System.out.println("RUNNING");
 		Scanner stdIn = new Scanner(System.in);
-		System.out.println("creato scanner");
 
 		while (true) {
 			AzioneDTO action = null;
@@ -52,25 +52,27 @@ public class ClientOutHandler implements Runnable {
 			ConsigliereDTO consigliereScelto;
 			AzioniClient azioniClient = new AzioniClient();
 
-			System.out.println("aspetta azione");
 			String inputLine = stdIn.nextLine();
-			System.out.println("azione :"+inputLine);
 			
-			if (inputLine.equals("pesca")) {
-				System.out.println("entrato");
-				action=(AzioneDTO) new PescaCartaDTO();
-				System.out.println("azione creata");
+			if (inputLine.equals("Pesca")) {
+				action = new PescaCartaDTO();
 
 			}
+			
+			else if(inputLine.equals("Passa")){
+				action =new PassaDTO();
+			}
+			
 
-			else if (inputLine.equals("elezione consigliere")) {
+			else if (inputLine.equals("P1")) {
 				consigliereScelto = azioniClient.scegliConsigliere(gameStateDTO.getConsiglieri(), stdIn);
+				System.out.println(consigliereScelto);
 				regioneScelta = azioniClient.scegliRegione(gameStateDTO.getRegioni(), stdIn);
-
+				System.out.println(regioneScelta);
 				action = new ElezioneConsigliereDTO(consigliereScelto, regioneScelta);
 			}
 
-			else if (inputLine.equals("acquisto una tessera permesso")) {
+			else if (inputLine.equals("P2")) {
 				regioneScelta = azioniClient.scegliRegione(gameStateDTO.getRegioni(), stdIn);
 				cartePolitica = azioniClient.scegliCarte(giocatoreDTO.getCartePolitica(), stdIn);
 				indice = azioniClient.scegliTesseraRegione(regioneScelta.getTesserePermessoScoperte(), stdIn);
@@ -79,7 +81,7 @@ public class ClientOutHandler implements Runnable {
 
 			}
 
-			else if (inputLine.equals("Costruire un emporio")) {
+			else if (inputLine.equals("P3")) {
 				tesseraScelta = azioniClient.scegliTesseraGiocatore(giocatoreDTO.getTesserePermesso(), stdIn);
 				cittàScelta = azioniClient.scegliCittà(tesseraScelta.getCittà(), giocatoreDTO.getColoreGiocatore(),
 						stdIn);
@@ -88,7 +90,7 @@ public class ClientOutHandler implements Runnable {
 
 			}
 
-			else if (inputLine.equals("Aiuto del re")) {
+			else if (inputLine.equals("P$")) {
 				cartePolitica = azioniClient.scegliCarte(giocatoreDTO.getCartePolitica(), stdIn);
 				cittàScelta = azioniClient.scegliCittà(gameStateDTO.getCittà(), giocatoreDTO.getColoreGiocatore(),
 						stdIn);
@@ -96,33 +98,32 @@ public class ClientOutHandler implements Runnable {
 				action = new CostruzioneAiutoReDTO(cartePolitica, cittàScelta);
 			}
 
-			else if (inputLine.equals("Ingaggiare un aiutante")) {
+			else if (inputLine.equals("V1")) {
 				action = new IngaggioAiutanteDTO();
 			}
 
-			else if (inputLine.equals("cambiare le tessere permesso")) {
+			else if (inputLine.equals("V2")) {
 				regioneScelta = azioniClient.scegliRegione(gameStateDTO.getRegioni(), stdIn);
 
 				action = new CambioTesserePermessoDTO(regioneScelta);
 			}
 
-			else if (inputLine.equals("elezione consigliere veloce")) {
+			else if (inputLine.equals("V3")) {
 				consigliereScelto = azioniClient.scegliConsigliere(gameStateDTO.getConsiglieri(), stdIn);
 				regioneScelta = azioniClient.scegliRegione(gameStateDTO.getRegioni(), stdIn);
 
 				action = new ElezioneConsigliereVeloceDTO(regioneScelta, consigliereScelto);
 			}
-			else if (inputLine.equals("azione principale")) {
+			else if (inputLine.equals("V4")) {
 				new SecondaAzionePrincipaleDTO();
 			}
 
 			else
 				System.out.println("L'azione non esiste \nInserire un'azione valida");
 
-			System.out.println("SENDING THE ACTION");
-
 			try {
 				if (action != null) {
+					System.out.println("invio :"+action);
 					socketOut.writeObject(action);
 					socketOut.flush();
 				}

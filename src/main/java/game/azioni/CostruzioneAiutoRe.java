@@ -13,11 +13,11 @@ import game.Emporio;
 import game.GameState;
 import game.Mappa;
 import game.notify.ErrorNotify;
+import game.notify.GameStateNotify;
 import game.notify.GiocatoreDTONotify;
 
 public class CostruzioneAiutoRe extends AzionePrincipale {
 
-	private static final long serialVersionUID = -3209033436891293833L;
 	private Città cittàCostruzione;
 	private Balcone balcone;
 	private ArrayList<CartaPolitica> carteGiocatore;
@@ -55,6 +55,7 @@ public class CostruzioneAiutoRe extends AzionePrincipale {
 			prendiBonus(gameState);
 		}
 		setStatoTransizionePrincipale(gameState); 
+		gameState.notifyObserver(new GameStateNotify(gameState));
 		gameState.notifyObserver(new GiocatoreDTONotify(gameState.getGiocatoreCorrente()));
 		
 	}

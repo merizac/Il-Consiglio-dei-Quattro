@@ -2,14 +2,10 @@ package game.azioni;
 
 import game.GameState;
 import game.notify.ErrorNotify;
+import game.notify.GameStateNotify;
 import game.notify.GiocatoreDTONotify;
 
 public class IngaggioAiutante extends AzioneVeloce {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -1641309249136321458L;
 
 	/**
 	 * @return true if the player has enough money, and add one aiutante
@@ -24,6 +20,7 @@ public class IngaggioAiutante extends AzioneVeloce {
 		else {
 			gameState.getGiocatoreCorrente().getAiutanti().aggiungiAiutanti(1);
 			setStatoTransizioneVeloce(gameState); 
+			gameState.notifyObserver(new GameStateNotify(gameState));
 			gameState.notifyObserver(new GiocatoreDTONotify(gameState.getGiocatoreCorrente()));
 			}	
 		}

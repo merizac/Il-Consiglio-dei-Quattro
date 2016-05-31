@@ -32,7 +32,7 @@ public class ColoreBonusDTO extends ColoreDTO implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "ColoreBonusDTO [bonusDTO=" + bonus + "]";
+		return "ColoreBonus [bonusDTO=" + bonus + "]";
 	}
 	
 	

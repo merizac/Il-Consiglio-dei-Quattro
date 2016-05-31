@@ -25,7 +25,7 @@ public class ReDTO implements Serializable{
 	 */
 	@Override
 	public String toString() {
-		return "ReDTO [città=" + città + "]";
+		return "il Re si trova nella città di " + città.getNome();
 	}
 	
 	public void inizializza(Re re){

@@ -10,11 +10,11 @@ import game.Emporio;
 import game.GameState;
 import game.TesseraPermesso;
 import game.notify.ErrorNotify;
+import game.notify.GameStateNotify;
 import game.notify.GiocatoreDTONotify;
 
 public class CostruzioneTesseraPermesso extends AzionePrincipale {
 
-	private static final long serialVersionUID = 3120994460673560792L;
 	private TesseraPermesso tesseraPermessoScoperta;
 	private Città cittàCostruzione;
 	
@@ -34,6 +34,7 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale {
 		prendiBonus(gameState);
 		copriTessera(gameState);
 		setStatoTransizionePrincipale(gameState);
+		gameState.notifyObserver(new GameStateNotify(gameState));
 		gameState.notifyObserver(new GiocatoreDTONotify(gameState.getGiocatoreCorrente()));
 		
 	}
