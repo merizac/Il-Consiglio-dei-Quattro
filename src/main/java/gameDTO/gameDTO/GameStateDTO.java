@@ -20,6 +20,7 @@ public class GameStateDTO implements Serializable {
 	private ReDTO pedinaRE;
 	private PlanciaReDTO planciaReDTO;
 	private ArrayList<ConsigliereDTO> consiglieri;
+	
 
 	/**
 	 * @return the città

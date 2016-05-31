@@ -43,7 +43,7 @@ public class ServerSocketView extends View implements Runnable {
 		
 		if(o instanceof GameStateStartNotify){
 				((GameStateStartNotify) o).setGiocatoreDTO(giocatore);
-		}
+		}	
 		
 		if(o instanceof NotifyGiocatori){
 			try {
