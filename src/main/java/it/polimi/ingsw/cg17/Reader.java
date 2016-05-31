@@ -278,7 +278,6 @@ public class Reader {
 		// Ciclo le regioni poi i colori e setto la città
 		for (Regione regione : regioni) {
 				int numerocittà = Integer.parseInt(b.readLine());
-				System.out.println(numerocittà);
 				for (int i = 0; i < numerocittà; i++) {
 					String tmp = b.readLine();
 					StringTokenizer st = new StringTokenizer(tmp);

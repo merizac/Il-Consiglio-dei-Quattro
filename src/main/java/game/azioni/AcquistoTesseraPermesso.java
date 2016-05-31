@@ -1,6 +1,8 @@
 package game.azioni;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+
 import game.Regione;
 import game.CartaPolitica;
 import game.Colore;
@@ -9,7 +11,7 @@ import game.GameState;
 import game.TesseraPermesso;
 import game.notify.ErrorNotify;
 import game.notify.GameStateNotify;
-import game.notify.GiocatoreDTONotify;
+import game.notify.GiocatoreNotify;
 import gameDTO.gameDTO.GiocatoreDTO;
 
 public class AcquistoTesseraPermesso extends AzionePrincipale {
@@ -31,17 +33,17 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 	public void eseguiAzione(GameState gameState) {
 		
 		if(carteGiocatore.isEmpty()){
-			gameState.notifyObserver(new ErrorNotify("Errore: non sono presenti carte"));
+			gameState.notifyObserver(new ErrorNotify("Errore: non sono presenti carte", Arrays.asList(gameState.getGiocatoreCorrente())));
 			return;
 		}
 			
 		if(!controllaColori()){
-			gameState.notifyObserver(new ErrorNotify("Errore: i colori delle carte scelte non corrispondono con quelle del balcone!"));
+			gameState.notifyObserver(new ErrorNotify("Errore: i colori delle carte scelte non corrispondono con quelle del balcone!", Arrays.asList(gameState.getGiocatoreCorrente())));
 			return;
 		}
 			
 		if(!paga(calcolaMonete(), gameState)){
-			gameState.notifyObserver(new ErrorNotify("Errore: i soldi non sono sufficienti!"));
+			gameState.notifyObserver(new ErrorNotify("Errore: i soldi non sono sufficienti!", Arrays.asList(gameState.getGiocatoreCorrente())));
 			return;
 		}
 			
@@ -54,11 +56,9 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 		TesseraPermesso tesseraScelta = regione.getTesserePermessoScoperte().get(indiceTesseraScoperta);
 	    gameState.getGiocatoreCorrente().getTesserePermesso().add(tesseraScelta);
 		 
+		 gameState.notifyObserver(new GameStateNotify(gameState, gameState.getGiocatori()));
+		 gameState.notifyObserver(new GiocatoreNotify(gameState.getGiocatoreCorrente(), Arrays.asList(gameState.getGiocatoreCorrente())));
 		 setStatoTransizionePrincipale(gameState); 
-		 //aggiornamento gamestate
-		 gameState.notifyObserver(new GameStateNotify(gameState));
-		 gameState.notifyObserver(new GiocatoreDTONotify(gameState.getGiocatoreCorrente()));
-		 
 		
 	}
 	

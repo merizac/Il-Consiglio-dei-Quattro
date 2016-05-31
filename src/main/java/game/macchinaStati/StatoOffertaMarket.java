@@ -14,7 +14,7 @@ public class StatoOffertaMarket implements Stato {
 	
 	public StatoOffertaMarket(GameState gameState) {
 		riempiAzioni();
-		gameState.notifyObserver(new AzioniNotify(getAzioni()));
+		//gameState.notifyObserver(new AzioniNotify(getAzioni()));
 	}
 
 	private void riempiAzioni() {

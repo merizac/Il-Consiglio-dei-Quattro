@@ -2,12 +2,14 @@ package game;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import game.macchinaStati.StartEnd;
 import game.macchinaStati.Stato;
 import game.market.Offerta;
-import game.notify.GameStateStartNotify;
+import game.notify.GameStateNotify;
+import game.notify.GiocatoreNotify;
 import game.notify.Notify;
 import it.polimi.ingsw.cg17.Reader;
 import utility.Observable;
@@ -242,7 +244,11 @@ public class GameState extends Observable<Notify> {
 		this.giocatori = new ArrayList<Giocatore>();
 		this.offerteMarket = new ArrayList<>();
 		creaGiocatori(giocatori);
-		this.notifyObserver(new GameStateStartNotify(this));
+		this.notifyObserver(new GameStateNotify(this, giocatori));
+		
+		for(Giocatore g: giocatori){
+			this.notifyObserver(new GiocatoreNotify(g, Arrays.asList(g)));
+		}
 		this.stato = new StartEnd(this);
 
 	}

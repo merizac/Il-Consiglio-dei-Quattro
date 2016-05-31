@@ -2,23 +2,40 @@ package game.notify;
 
 import java.util.List;
 
-public class AzioniNotify implements NotifyGiocatoreCorrente {
+import game.Giocatore;
+import view.clientNotify.AzioniClientNotify;
+import view.clientNotify.ClientNotify;
 
+public class AzioniNotify implements Notify{
 
-	private static final long serialVersionUID = -7471237200273859021L;
 	private List<String> azioni;
+	private List<Giocatore> giocatori;
 
-	public AzioniNotify(List<String> azioni) {
-		this.azioni=azioni;
+	/**
+	 * @param azioni
+	 * @param giocatori
+	 */
+	public AzioniNotify(List<String> azioni, List<Giocatore> giocatori) {
+		if (azioni == null)
+			throw new NullPointerException("La lista di azioni non può essere null");
+		if (giocatori == null)
+			throw new NullPointerException("La lista di giocatori non può essere null");
+
+		this.azioni = azioni;
+		this.giocatori = giocatori;
 	}
 
 	@Override
-	public void stamp() {
-		for(String azione:azioni){
-			System.out.println(azione);
-		}
+	public boolean daInviare(Giocatore giocatore) {
+		if (giocatore == null)
+			throw new NullPointerException("Il giocatore non può essere null");
+		else
+			return giocatori.contains(giocatore);
 	}
+	@Override
+	public ClientNotify notifyToClientNotify() {
+		return new AzioniClientNotify(azioni);
 
-
+	}
 
 }

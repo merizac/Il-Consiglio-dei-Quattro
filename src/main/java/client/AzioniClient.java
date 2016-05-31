@@ -81,7 +81,8 @@ public class AzioniClient {
 	public int scegliTesseraRegione(ArrayList<TesseraPermessoDTO> tessere,Scanner stdIn){
 
 		System.out.println("Seleziona tessera permesso[1/2]");
-		System.out.println(tessere);
+		for(TesseraPermessoDTO t: tessere)
+			System.out.println(t);
 		comando=stdIn.nextLine();
 		while(!comando.equals("1") && !comando.equals("2")){
 			System.out.println("tessera selezionata non è esistente|\n Inserire di nuovo");

@@ -1,11 +1,11 @@
 package game.notify;
 
-import java.io.Serializable;
+import game.Giocatore;
+import view.clientNotify.ClientNotify;
 
-import game.GameState;
-import gameDTO.gameDTO.GameStateDTO;
-
-public interface Notify extends Serializable{
+public interface Notify {
 	
-	public void stamp();
+	public boolean daInviare(Giocatore giocatore);
+	public ClientNotify notifyToClientNotify();
+	
 }

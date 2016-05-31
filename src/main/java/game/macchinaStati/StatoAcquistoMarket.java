@@ -20,7 +20,7 @@ public class StatoAcquistoMarket implements Stato {
 	public StatoAcquistoMarket(GameState gameState){
 		this.giocatori=new ArrayList<Giocatore>(gameState.getGiocatori());
 		riempiAzioni();
-		gameState.notifyObserver(new AzioniNotify(this.getAzioni()));
+		//gameState.notifyObserver(new AzioniNotify(this.getAzioni()));
 	}
 	private void riempiAzioni() {
 		azioni.add("Acquista");
