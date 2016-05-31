@@ -3,6 +3,7 @@ package bonus;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -70,10 +71,12 @@ public class BonusPuntiNobiltàTest {
 	
 	@BeforeClass
 	public static void init() throws IOException{
+		ArrayList<Giocatore> giocatori=new ArrayList<>();
+		Giocatore giocatore=new Giocatore("Giocatore");
+		giocatori.add(giocatore);
 		gameState=new GameState();
-		giocatore=new Giocatore("giocatore");
-		giocatore.setPunteggioNobiltà(gameState.getPlanciaRe().getPercorsoNobiltà().get(0));
-		gameState.setGiocatoreCorrente(giocatore);
+		gameState.start(giocatori);
+		giocatore=gameState.getGiocatoreCorrente();
 	}
 	
 	@Test(expected=IllegalArgumentException.class)

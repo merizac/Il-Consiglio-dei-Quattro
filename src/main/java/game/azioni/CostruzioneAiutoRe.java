@@ -50,6 +50,7 @@ public class CostruzioneAiutoRe extends AzionePrincipale {
 			
 		else{
 			gameState.getPedinaRe().setCittà(cittàCostruzione);
+			pagaAiutanti(gameState);
 			costruisci(gameState);
 			prendiBonus(gameState);
 		}
@@ -57,6 +58,15 @@ public class CostruzioneAiutoRe extends AzionePrincipale {
 		gameState.notifyObserver(new GiocatoreDTONotify(gameState.getGiocatoreCorrente()));
 		
 	}
+	/**
+	 * pay the Aiutanti in case there is/are Emporium in the city where the player wants to build
+	 */
+	private void pagaAiutanti(GameState gameState){
+	    int aiutantiDaPagare = cittàCostruzione.getEmpori().size();
+	    gameState.getGiocatoreCorrente().getAiutanti().togliAiutanti(aiutantiDaPagare);
+	    
+	}
+	
 	/**
 	 * add an emporium to the city where the player wants to build
 	 */
@@ -152,6 +162,7 @@ public class CostruzioneAiutoRe extends AzionePrincipale {
 			for (Consigliere consigliere: balcone.getConsigliere()){
 					if (consigliere.getColore().equals(carta.getColore())){
 						balcone.getConsigliere().remove(consigliere);
+						break;
 					}
 					
 					else

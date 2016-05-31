@@ -3,12 +3,14 @@ package game.azioni;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
 import game.GameState;
+import game.Giocatore;
 import game.Regione;
 import game.TesseraPermesso;
 
@@ -21,6 +23,10 @@ public class CambioTesseraPermessoTest {
 	@Before
 	public void init() throws IOException{
 		gameState=new GameState();
+		ArrayList<Giocatore> giocatori=new ArrayList<>();
+		Giocatore giocatore=new Giocatore("Giocatore");
+		giocatori.add(giocatore);
+		gameState.start(giocatori);
 	}
 		
 	@Test

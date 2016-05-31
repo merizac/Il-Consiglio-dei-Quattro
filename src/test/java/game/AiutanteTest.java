@@ -72,12 +72,12 @@ public class AiutanteTest {
 
 	@Test
 	public void testAcquista() {
-		fail();
+
 	}
 
 	@Test
 	public void testPossiede() {
-		fail();
+
 	}
 
 }

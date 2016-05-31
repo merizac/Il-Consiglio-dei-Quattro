@@ -35,7 +35,7 @@ public class BonusAiutantiTest {
 		Aiutante aiutantiPrima=new Aiutante(4);
 		Giocatore giocatore = new Giocatore("nome");
 		GameState gameState=new GameState();
-		ArrayList<Giocatore> giocatori=new ArrayList<Giocatore>();
+		ArrayList<Giocatore> giocatori=new ArrayList<>();
 		giocatori.add(giocatore);
 		gameState.start(giocatori);
 		BonusAiutanti b=new BonusAiutanti(3);

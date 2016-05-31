@@ -20,7 +20,11 @@ public class CittàBonusTest {
 	
 	@BeforeClass
 	public static void init() throws IOException{
+		ArrayList<Giocatore> giocatori=new ArrayList<>();
+		Giocatore giocatore=new Giocatore("Giocatore");
+		giocatori.add(giocatore);
 		gameState=new GameState();
+		gameState.start(giocatori);
 	}
 	
 	@Test

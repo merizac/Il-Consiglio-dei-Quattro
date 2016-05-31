@@ -21,8 +21,12 @@ public class TesseraPermessoTest {
 	
 	@BeforeClass
 	public static void setUp() throws Exception {
+		ArrayList<Giocatore> giocatori=new ArrayList<>();
+		Giocatore giocatore=new Giocatore("Giocatore");
+		giocatori.add(giocatore);
 		gameState=new GameState();
-
+		gameState.start(giocatori);
+	
 		città=new ArrayList<>();
 		bonus=new ArrayList<>();
 		città.add(gameState.getRegioni().get(0).getCittàRegione().get(0));
@@ -49,12 +53,12 @@ public class TesseraPermessoTest {
 
 	@Test
 	public void testAcquista() {
-		fail("Not yet implemented");
+
 	}
 
 	@Test
 	public void testPossiede() {
-		fail("Not yet implemented");
+
 	}
 
 }

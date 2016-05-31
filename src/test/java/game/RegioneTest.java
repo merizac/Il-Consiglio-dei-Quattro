@@ -20,6 +20,10 @@ public class RegioneTest {
 	@BeforeClass
 	public static void setUp() throws IOException{
 		gameState=new GameState();
+		ArrayList<Giocatore> giocatori=new ArrayList<>();
+		Giocatore giocatore=new Giocatore("Giocatore");
+		giocatori.add(giocatore);
+		gameState.start(giocatori);
 	}
 
 	@Test

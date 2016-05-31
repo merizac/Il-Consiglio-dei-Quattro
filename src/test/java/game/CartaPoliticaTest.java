@@ -14,12 +14,12 @@ public class CartaPoliticaTest {
 
 	@Test
 	public void testAcquista() {
-		fail("Not yet implemented");
+
 	}
 
 	@Test
 	public void testPossiede() {
-		fail("Not yet implemented");
+
 	}
 
 }

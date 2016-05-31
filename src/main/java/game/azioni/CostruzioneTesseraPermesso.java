@@ -56,6 +56,10 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale {
 	private boolean pagoAiutanti(GameState gameState){
 		int numeroEmpori = cittàCostruzione.getEmpori().size(); 
 	
+		if(cittàCostruzione.getEmpori().isEmpty()) {
+			return true;
+		}
+		
 		if(!cittàCostruzione.getEmpori().isEmpty()) { 
 			if(gameState.getGiocatoreCorrente().getAiutanti().togliAiutanti(numeroEmpori)){
 				return true;
@@ -79,7 +83,7 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale {
 		for ( CittàBonus c: cittàCollegate){
 				for(Bonus b: c.getBonus()){
 					b.usaBonus(gameState);
-		}
+				}
 		}
 	}
 	/**

@@ -31,6 +31,12 @@ public class BonusMoneta extends Bonus {
 	public String toString() {
 		return "BonusMoneta [monete=" + monete + "]";
 	}
+	/**
+	 * @return the monete
+	 */
+	public int getMonete() {
+		return monete;
+	}
 	
 	
 }

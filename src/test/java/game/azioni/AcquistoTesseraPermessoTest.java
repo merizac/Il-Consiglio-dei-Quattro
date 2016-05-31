@@ -14,6 +14,7 @@ import game.GameState;
 import game.Giocatore;
 import game.Regione;
 import game.TesseraPermesso;
+import gameDTO.gameDTO.GameStateDTO;
 
 public class AcquistoTesseraPermessoTest {
 
@@ -24,12 +25,14 @@ public class AcquistoTesseraPermessoTest {
 	
 	@BeforeClass
 	public static void init() throws IOException{
-		ArrayList<Giocatore> giocatori=null;
+		ArrayList<Giocatore> giocatori=new ArrayList<>();
+		Giocatore giocatore=new Giocatore("Giocatore");
+		giocatori.add(giocatore);
+		gameState=new GameState();
 		gameState.start(giocatori);
+		
 		indiceTesseraScoperta=0;
 		regione=gameState.getRegioni().get(0);
-		Giocatore giocatore=new Giocatore("Bello");	
-		gameState.setGiocatoreCorrente(giocatore);
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
@@ -51,7 +54,6 @@ public class AcquistoTesseraPermessoTest {
 	public void testEseguiAzione() {
 		AcquistoTesseraPermesso azione=new AcquistoTesseraPermesso();
 		azione.setRegione(regione);
-		gameState.getGiocatoreCorrente().setPunteggioRicchezza(10);
 		ArrayList<CartaPolitica> carte=new ArrayList<>();
 		carte.add(new CartaPolitica(new Colore("Multicolore")));
 		carte.add(new CartaPolitica(new Colore("Multicolore")));
