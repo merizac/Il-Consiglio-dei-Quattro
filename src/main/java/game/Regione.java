@@ -9,6 +9,7 @@ public class Regione  {
 	private final Mazzo<TesseraPermesso> mazzoTesserePermesso;
 	private final ArrayList<TesseraPermesso> tesserePermessoScoperte;
 	private final Bonus bonusRegione;
+	private boolean bonusAssegnato=false;
 	private final Balcone balcone;
 	private ArrayList<Città> cittàRegione;
 	/**
@@ -66,6 +67,21 @@ public class Regione  {
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
+	
+	/**
+	 * @return the bonusAssegnato
+	 */
+	public boolean isBonusAssegnato() {
+		return bonusAssegnato;
+	}
+
+	/**
+	 * @param bonusAssegnato the bonusAssegnato to set
+	 */
+	public void setBonusAssegnato(boolean bonusAssegnato) {
+		this.bonusAssegnato = bonusAssegnato;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

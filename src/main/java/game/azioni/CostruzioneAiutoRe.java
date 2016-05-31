@@ -1,6 +1,7 @@
 package game.azioni;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import bonus.Bonus;
 import game.Balcone;
@@ -8,13 +9,16 @@ import game.CartaPolitica;
 import game.Città;
 import game.CittàBonus;
 import game.Colore;
+import game.ColoreCittà;
 import game.Consigliere;
 import game.Emporio;
 import game.GameState;
+import game.Giocatore;
 import game.Mappa;
+import game.Regione;
 import game.notify.ErrorNotify;
 import game.notify.GameStateNotify;
-import game.notify.GiocatoreDTONotify;
+import game.notify.GiocatoreNotify;
 
 public class CostruzioneAiutoRe extends AzionePrincipale {
 
@@ -30,7 +34,8 @@ public class CostruzioneAiutoRe extends AzionePrincipale {
 		balcone=gameState.getPlanciaRe().getBalconeRe();
 		Mappa mappa= gameState.getMappa();
 		if(!controllaColori()){
-			gameState.notifyObserver(new ErrorNotify("Errore: i colori delle carte scelte non corrispondon con quelli del balcone!"));
+			gameState.notifyObserver(new ErrorNotify("Errore: i colori delle carte scelte non corrispondon con quelli del balcone!", 
+					Arrays.asList(gameState.getGiocatoreCorrente())));
 			return;
 		}
 			
@@ -39,12 +44,14 @@ public class CostruzioneAiutoRe extends AzionePrincipale {
 				2*mappa.minimaDistanza(gameState.getPedinaRe().getCittà(), cittàCostruzione);
 		
 		if(!paga(moneteDovute, gameState)){
-			gameState.notifyObserver(new ErrorNotify("Errore: i soldi non sono sufficienti!"));
+			gameState.notifyObserver(new ErrorNotify("Errore: i soldi non sono sufficienti!",
+					Arrays.asList(gameState.getGiocatoreCorrente())));
 			return;
 		}
 			
 		if(!pagoAiutanti(gameState)){
-			gameState.notifyObserver(new ErrorNotify("Errore: gli aiutanti non sono sufficienti!"));
+			gameState.notifyObserver(new ErrorNotify("Errore: gli aiutanti non sono sufficienti!",
+					Arrays.asList(gameState.getGiocatoreCorrente())));
 			return;
 		}
 			
@@ -53,11 +60,36 @@ public class CostruzioneAiutoRe extends AzionePrincipale {
 			pagaAiutanti(gameState);
 			costruisci(gameState);
 			prendiBonus(gameState);
+			if (cittàCostruzione instanceof CittàBonus)
+				controllaCittàColore(((ColoreCittà) cittàCostruzione.getColoreCittà()),
+						gameState.getGiocatoreCorrente());
+			controllaCittàRegione(cittàCostruzione.getRegione(), gameState.getGiocatoreCorrente());
 		}
-		setStatoTransizionePrincipale(gameState); 
-		gameState.notifyObserver(new GameStateNotify(gameState));
-		gameState.notifyObserver(new GiocatoreDTONotify(gameState.getGiocatoreCorrente()));
 		
+		gameState.notifyObserver(new GameStateNotify(gameState, Arrays.asList(gameState.getGiocatoreCorrente())));
+		gameState.notifyObserver(new GiocatoreNotify(gameState.getGiocatoreCorrente(), 
+				Arrays.asList(gameState.getGiocatoreCorrente())));
+		setStatoTransizionePrincipale(gameState); 
+	}
+	
+	private void controllaCittàRegione(Regione regione, Giocatore giocatore) {
+		for(Città c: regione.getCittàRegione()){
+			if(!c.emporioColore(giocatore.getColoreGiocatore()))
+				return;
+		}
+		giocatore.getTessereBonus().add(regione.getBonusRegione());
+		regione.setBonusAssegnato(true);
+		
+	}
+	private void controllaCittàColore(ColoreCittà coloreCittà, Giocatore giocatore) {
+		if(coloreCittà.isAssegnatoBonus())
+			return;
+		for(Città c: coloreCittà.getCittà()){
+			if(!c.emporioColore(giocatore.getColoreGiocatore()))
+				return;
+		}
+		giocatore.getTessereBonus().add(coloreCittà.getBonusColore());
+		coloreCittà.setAssegnatoBonus(true);
 	}
 	/**
 	 * pay the Aiutanti in case there is/are Emporium in the city where the player wants to build
