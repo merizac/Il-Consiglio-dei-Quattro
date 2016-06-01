@@ -429,7 +429,7 @@ public class Reader {
 							int quantità = Integer.parseInt(str.nextToken());
 							bonus.add(new BonusAiutanti(quantità));
 						} else if (tmp.equals("BonusAzionePrincipale")) {
-							int quantità = Integer.parseInt(st.nextToken());
+							int quantità = Integer.parseInt(str.nextToken());
 							bonus.add(new BonusAzionePrincipale(quantità));
 						} else if (tmp.equals("BonusMoneta")) {
 							int quantità = Integer.parseInt(str.nextToken());
