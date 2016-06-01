@@ -1,6 +1,7 @@
 package game.macchinaStati;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import game.GameState;
 import game.notify.AzioniNotify;
@@ -22,7 +23,7 @@ public class Stato10 implements Stato {
 	public Stato10(GameState gameState) {
 		System.out.println(this);
 		riempiAzioni();
-		gameState.notifyObserver(new AzioniNotify(getAzioni()));
+		gameState.notifyObserver(new AzioniNotify(getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
 	}
 
 	private void riempiAzioni() {

@@ -1,6 +1,7 @@
 package game.macchinaStati;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import game.GameState;
 import game.notify.AzioniNotify;
@@ -11,7 +12,7 @@ public class StartEnd implements Stato {
 
 	public StartEnd(GameState gameState) {
 		if(gameState.getNumeroTurni()!=gameState.getGiocatori().size()){
-			gameState.notifyObserver(new AzioniNotify(this.getAzioni()) );
+			gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())) );
 			gameState.prossimoTurno();
 		}
 		else

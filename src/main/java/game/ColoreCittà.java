@@ -10,6 +10,7 @@ public class ColoreCittà extends Colore  {
 
 	private ArrayList<CittàBonus> città;
 	private final BonusPuntiVittoria bonusColore;
+	private boolean assegnatoBonus=false;
 	/**
 	 * @param colore
 	 */
@@ -30,6 +31,20 @@ public class ColoreCittà extends Colore  {
 	public BonusPuntiVittoria getBonusColore() {
 		return bonusColore;
 	}
+	/**
+	 * @return the assegnatoBonus
+	 */
+	public boolean isAssegnatoBonus() {
+		return assegnatoBonus;
+	}
+	/**
+	 * @param assegnatoBonus the assegnatoBonus to set
+	 */
+	public void setAssegnatoBonus(boolean assegnatoBonus) {
+		this.assegnatoBonus = assegnatoBonus;
+	}
+	
+	
 	
 	
 

@@ -19,11 +19,11 @@ public class ClientSocket {
 	private GameStateDTO gameState;
 	private ObjectOutputStream socketOut;
 	private ObjectInputStream socketIn;
-	private GiocatoreDTO giocatore;
+	//private GiocatoreDTO giocatore;
 	
 	public ClientSocket(){
 		this.gameState=new GameStateDTO();
-		this.giocatore=new GiocatoreDTO();
+		//this.giocatore=new GiocatoreDTO();
 	}
 	
 	public void startClient() throws UnknownHostException, IOException {
@@ -35,15 +35,17 @@ public class ClientSocket {
 		System.out.println("Inserisci il nome");
 		Scanner stdIn= new Scanner(System.in);
 		String nome=stdIn.nextLine();
+		GiocatoreDTO giocatore=new GiocatoreDTO();
 		giocatore.setNome(nome);
+		gameState.setGiocatoreDTO(giocatore);
 		//stdIn.close();
 		
 		socketOut.writeObject(giocatore);
 		socketOut.flush();
 		
 		ExecutorService executor= Executors.newFixedThreadPool(2);
-		executor.submit(new ClientOutHandler(socketOut, gameState, giocatore));
-		executor.submit(new ClientInHandler(socketIn, gameState, giocatore));
+		executor.submit(new ClientOutHandler(socketOut, gameState));
+		executor.submit(new ClientInHandler(socketIn, gameState));
 	}
 	public static void main(String[] args) {
 	ClientSocket clientSocket= new ClientSocket();

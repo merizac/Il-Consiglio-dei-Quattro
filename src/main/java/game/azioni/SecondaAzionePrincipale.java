@@ -1,6 +1,9 @@
 package game.azioni;
 
+import java.util.Arrays;
+
 import game.GameState;
+import game.notify.AzioniNotify;
 import game.notify.ErrorNotify;
 
 public class SecondaAzionePrincipale extends AzioneVeloce {
@@ -17,10 +20,12 @@ public class SecondaAzionePrincipale extends AzioneVeloce {
 	public void eseguiAzione(GameState gameState) {
 		if(gameState.getGiocatoreCorrente().getAiutanti().getAiutante()>2){
 			gameState.getGiocatoreCorrente().getAiutanti().togliAiutanti(3);	
-			setStatoTransizioneSecondaPrincipale(gameState); 
+			setStatoTransizioneSecondaPrincipale(gameState);
+			gameState.notifyObserver(new AzioniNotify(gameState.getStato().getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
 		}
 		else{
-			gameState.notifyObserver(new ErrorNotify("Errore: non hai abbastanza aiutanti"));
+			gameState.notifyObserver(new ErrorNotify("Errore: non hai abbastanza aiutanti",
+					Arrays.asList(gameState.getGiocatoreCorrente())));
 			return;
 		}
 	}

@@ -3,6 +3,7 @@ package gameDTO.gameDTO;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import game.Città;
@@ -20,6 +21,8 @@ public class GameStateDTO implements Serializable {
 	private ReDTO pedinaRE;
 	private PlanciaReDTO planciaReDTO;
 	private ArrayList<ConsigliereDTO> consiglieri;
+	private List<String> azioniDisponibili;
+	private GiocatoreDTO giocatoreDTO;
 	
 
 	/**
@@ -139,6 +142,28 @@ public class GameStateDTO implements Serializable {
 	public String toString() {
 		return "GameStateDTO [mappa=" + città + "\nregioni=" + regioni + "\npedinaRE=" + pedinaRE + "\nplanciaReDTO="
 				+ planciaReDTO + "\nconsiglieri=" + consiglieri + "]";
+	}
+
+	public void setAzioni(List<String> azioni) {
+		this.azioniDisponibili=azioni;
+	}
+
+	/**
+	 * @return the azioniDisponibili
+	 */
+	public List<String> getAzioniDisponibili() {
+		return azioniDisponibili;
+	}
+
+	public GiocatoreDTO getGiocatoreDTO() {
+		return giocatoreDTO;
+	}
+
+	/**
+	 * @param giocatoreDTO the giocatoreDTO to set
+	 */
+	public void setGiocatoreDTO(GiocatoreDTO giocatoreDTO) {
+		this.giocatoreDTO = giocatoreDTO;
 	}
 	
 

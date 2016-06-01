@@ -1,21 +1,38 @@
 package game.notify;
 
-public class ErrorNotify implements NotifyGiocatoreCorrente {
+import java.util.List;
 
-	private static final long serialVersionUID = 4112723540694819709L;
+import game.Giocatore;
+import view.clientNotify.ClientNotify;
+import view.clientNotify.ErrorClientNotify;
+
+public class ErrorNotify implements Notify{
+
 	private String error;
-	
+	private List<Giocatore> giocatori;
 	/**
 	 * @param error
+	 * @param giocatori
 	 */
-	public ErrorNotify(String error) {
+	public ErrorNotify(String error, List<Giocatore> giocatori) {
 		this.error = error;
+		this.giocatori = giocatori;
 	}
-
 	@Override
-	public void stamp() {
-		System.out.println(error);
+	public boolean daInviare(Giocatore giocatore) {
+		if (giocatore == null)
+			throw new NullPointerException("Il giocatore non può essere null");
+		else
+			return giocatori.contains(giocatore);
 	}
+	
+	@Override
+	public ClientNotify notifyToClientNotify() {
+		return new ErrorClientNotify(error);
+	}
+	
+
+
 
 
 }

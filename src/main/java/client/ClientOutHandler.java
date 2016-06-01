@@ -28,11 +28,9 @@ public class ClientOutHandler implements Runnable {
 
 	private ObjectOutputStream socketOut;
 	private GameStateDTO gameStateDTO;
-	private GiocatoreDTO giocatoreDTO;
 
-	public ClientOutHandler(ObjectOutputStream socketOut, GameStateDTO gameStateDTO, GiocatoreDTO giocatoreDTO) {
+	public ClientOutHandler(ObjectOutputStream socketOut, GameStateDTO gameStateDTO) {
 		this.socketOut = socketOut;
-		this.giocatoreDTO = giocatoreDTO;
 		this.gameStateDTO=gameStateDTO;
 	}
 
@@ -74,7 +72,7 @@ public class ClientOutHandler implements Runnable {
 
 			else if (inputLine.equals("P2")) {
 				regioneScelta = azioniClient.scegliRegione(gameStateDTO.getRegioni(), stdIn);
-				cartePolitica = azioniClient.scegliCarte(giocatoreDTO.getCartePolitica(), stdIn);
+				cartePolitica = azioniClient.scegliCarte(gameStateDTO.getGiocatoreDTO().getCartePolitica(), stdIn);
 				indice = azioniClient.scegliTesseraRegione(regioneScelta.getTesserePermessoScoperte(), stdIn);
 
 				action = new AcquistoTesseraPermessoDTO(regioneScelta, cartePolitica, indice);
@@ -82,17 +80,18 @@ public class ClientOutHandler implements Runnable {
 			}
 
 			else if (inputLine.equals("P3")) {
-				tesseraScelta = azioniClient.scegliTesseraGiocatore(giocatoreDTO.getTesserePermesso(), stdIn);
-				cittàScelta = azioniClient.scegliCittà(tesseraScelta.getCittà(), giocatoreDTO.getColoreGiocatore(),
+				tesseraScelta = azioniClient.scegliTesseraGiocatore(gameStateDTO.getGiocatoreDTO().getTesserePermesso(), stdIn);
+				cittàScelta = azioniClient.scegliCittà(tesseraScelta.getCittà(), gameStateDTO.getGiocatoreDTO().getColoreGiocatore(),
 						stdIn);
 
 				action = new CostruzioneTesseraPermessoDTO(tesseraScelta, cittàScelta);
 
 			}
 
+			
 			else if (inputLine.equals("P4")) {
-				cartePolitica = azioniClient.scegliCarte(giocatoreDTO.getCartePolitica(), stdIn);
-				cittàScelta = azioniClient.scegliCittà(gameStateDTO.getCittà(), giocatoreDTO.getColoreGiocatore(),
+				cartePolitica = azioniClient.scegliCarte(gameStateDTO.getGiocatoreDTO().getCartePolitica(), stdIn);
+				cittàScelta = azioniClient.scegliCittà(gameStateDTO.getCittà(), gameStateDTO.getGiocatoreDTO().getColoreGiocatore(),
 						stdIn);
 
 				action = new CostruzioneAiutoReDTO(cartePolitica, cittàScelta);

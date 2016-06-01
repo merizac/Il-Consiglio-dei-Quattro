@@ -1,11 +1,13 @@
 package game.azioni;
 
+import java.util.Arrays;
+
 import game.GameState;
 import game.Regione;
 import game.TesseraPermesso;
 import game.notify.ErrorNotify;
 import game.notify.GameStateNotify;
-import game.notify.GiocatoreDTONotify;
+import game.notify.GiocatoreNotify;
 
 public class CambioTesseraPermesso extends AzioneVeloce {
 
@@ -19,12 +21,12 @@ public class CambioTesseraPermesso extends AzioneVeloce {
 			gameState.getGiocatoreCorrente().getAiutanti().togliAiutanti(1);
 			RimozioneCarte();
 			SostituzioneCarte();
+			gameState.notifyObserver(new GameStateNotify(gameState, gameState.getGiocatori()));
+			gameState.notifyObserver(new GiocatoreNotify(gameState.getGiocatoreCorrente(), Arrays.asList(gameState.getGiocatoreCorrente())));
 			setStatoTransizioneVeloce(gameState); 
-			gameState.notifyObserver(new GameStateNotify(gameState));
-			gameState.notifyObserver(new GiocatoreDTONotify(gameState.getGiocatoreCorrente()));
 		}
 		else{
-			gameState.notifyObserver(new ErrorNotify("Errore: non hai abbastanza aiutanti"));
+			gameState.notifyObserver(new ErrorNotify("Errore: non hai abbastanza aiutanti", Arrays.asList(gameState.getGiocatoreCorrente())));
 			return;
 		}
 		

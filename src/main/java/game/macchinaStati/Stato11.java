@@ -1,6 +1,7 @@
 package game.macchinaStati;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import game.GameState;
 import game.notify.AzioniNotify;
@@ -16,7 +17,7 @@ public class Stato11 implements Stato {
 	public Stato11(GameState gameState) {
 		System.out.println("stato11");
 		riempiAzioni();
-		gameState.notifyObserver(new AzioniNotify(this.getAzioni()));
+		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
 	}
 	
 	@Override

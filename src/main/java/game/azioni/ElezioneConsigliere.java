@@ -1,10 +1,12 @@
 package game.azioni;
 
+import java.util.Arrays;
+
 import game.Consigliere;
 import game.GameState;
 import game.Regione;
 import game.notify.GameStateNotify;
-import game.notify.GiocatoreDTONotify;
+import game.notify.GiocatoreNotify;
 
 public class ElezioneConsigliere extends AzionePrincipale {
 
@@ -38,14 +40,16 @@ public class ElezioneConsigliere extends AzionePrincipale {
  */
 	@Override
 	public void eseguiAzione(GameState gameState) {
-
-
+		
 		Consigliere consigliereTolto = this.regione.getBalcone().aggiungiConsigliere(consigliere);
 		gameState.getConsiglieri().add(consigliereTolto);
 		gameState.getGiocatoreCorrente().aumentaRicchezza(4);
+		
+		gameState.notifyObserver(new GameStateNotify(gameState, Arrays.asList(gameState.getGiocatoreCorrente())));
+		gameState.notifyObserver(new GiocatoreNotify(gameState.getGiocatoreCorrente(),
+				Arrays.asList(gameState.getGiocatoreCorrente())));
+		
 		setStatoTransizionePrincipale(gameState); 
-		gameState.notifyObserver(new GameStateNotify(gameState));
-		gameState.notifyObserver(new GiocatoreDTONotify(gameState.getGiocatoreCorrente()));
 	}
 
 }
