@@ -37,7 +37,7 @@ public class ServerSocketView extends View implements Runnable {
 		if (o.daInviare(giocatore)) {
 			try {
 				System.out.println(o);
-				System.out.println(giocatore.getNome() + ": " + o.daInviare(giocatore));
+				System.out.println(giocatore.getNome()+" :"+ o.daInviare(giocatore));
 				this.socketOut.writeObject(o.notifyToClientNotify());
 				this.socketOut.flush();
 			} catch (IOException e) {

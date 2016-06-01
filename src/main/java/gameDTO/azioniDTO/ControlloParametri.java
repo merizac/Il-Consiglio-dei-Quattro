@@ -7,11 +7,14 @@ import java.util.Set;
 import game.CartaPolitica;
 import game.Città;
 import game.Consigliere;
+import game.Giocatore;
 import game.Regione;
 import game.TesseraPermesso;
+import game.market.Offerta;
 import gameDTO.gameDTO.CartaPoliticaDTO;
 import gameDTO.gameDTO.CittàDTO;
 import gameDTO.gameDTO.ConsigliereDTO;
+import gameDTO.gameDTO.GiocatoreDTO;
 import gameDTO.gameDTO.RegioneDTO;
 import gameDTO.gameDTO.TesseraPermessoDTO;
 
@@ -85,6 +88,21 @@ public class ControlloParametri {
 					return c;
 		}
 		throw new IllegalArgumentException("Il consigliere è inesistente!");
+	}
+
+	public static Offerta cercaOfferta(List<Offerta> offerteMarket, int offerta) throws IllegalArgumentException{
+		if(offerta>0 && offerta<=offerteMarket.size())
+			return offerteMarket.get(offerta-1);
+		throw new IllegalArgumentException("L'offerta selezionata è inesistente");
+	}
+
+	public static Giocatore carcaGiocatore(List<Giocatore> giocatori, GiocatoreDTO giocatoreDTO) throws IllegalArgumentException {
+		for(Giocatore g:giocatori){
+			if(g.getNome().equals(giocatoreDTO.getNome()))
+				return g;
+		}
+		
+		throw new IllegalArgumentException("Il giocatore selezionato è inesistente");
 	}
 
 }

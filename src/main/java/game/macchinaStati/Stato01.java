@@ -35,13 +35,22 @@ public class Stato01 implements Stato {
 	@Override
 	public void transizioneVeloce(GameState gameState) throws AzioneNonEseguibile {
 		gameState.nextPlayer();
-		gameState.setStato(new StartEnd(gameState));
+		gameState.prossimoTurno();
+		if (gameState.getNumeroTurni() != gameState.getGiocatori().size())
+			gameState.setStato(new StartEnd(gameState));
+		else
+			gameState.setStato(new StatoOffertaMarket(gameState));
 	}
 
 	@Override
 	public void transizioneSecondaPrincipale(GameState gameState) {
 		gameState.setStato(new Stato10(gameState));
 		
+	}
+	
+	@Override
+	public void transizionePassa(GameState gameState) throws AzioneNonEseguibile{
+		this.transizioneVeloce(gameState);
 	}
 	
 

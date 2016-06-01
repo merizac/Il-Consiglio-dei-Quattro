@@ -3,14 +3,18 @@ package gameDTO.azioniDTO.azioneVisitor;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import game.Aiutante;
 import game.CartaPolitica;
 import game.Città;
+import game.Colore;
 import game.Consigliere;
 import game.GameState;
 import game.Giocatore;
 import game.Regione;
 import game.TesseraPermesso;
 import game.azioni.AcquistoTesseraPermesso;
+import game.azioni.AzioneAcquisto;
+import game.azioni.AzioneOfferta;
 import game.azioni.CambioTesseraPermesso;
 import game.azioni.CostruzioneAiutoRe;
 import game.azioni.CostruzioneTesseraPermesso;
@@ -20,7 +24,11 @@ import game.azioni.IngaggioAiutante;
 import game.azioni.Passa;
 import game.azioni.PescaCarta;
 import game.azioni.SecondaAzionePrincipale;
+import game.market.Marketable;
+import game.market.Offerta;
 import gameDTO.azioniDTO.AcquistoTesseraPermessoDTO;
+import gameDTO.azioniDTO.AzioneAcquistoDTO;
+import gameDTO.azioniDTO.AzioneOffertaDTO;
 import gameDTO.azioniDTO.CambioTesserePermessoDTO;
 import gameDTO.azioniDTO.ControlloParametri;
 import gameDTO.azioniDTO.CostruzioneAiutoReDTO;
@@ -31,6 +39,8 @@ import gameDTO.azioniDTO.IngaggioAiutanteDTO;
 import gameDTO.azioniDTO.PassaDTO;
 import gameDTO.azioniDTO.PescaCartaDTO;
 import gameDTO.azioniDTO.SecondaAzionePrincipaleDTO;
+import gameDTO.gameDTO.AiutanteDTO;
+import gameDTO.gameDTO.CartaPoliticaDTO;
 
 public class AzioneVisitorImpl implements AzioneVisitor {
 	
@@ -136,6 +146,25 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 	@Override
 	public Passa visit(PassaDTO passaDTO) {
 		return new Passa();
+	}
+
+	@Override
+	public AzioneOfferta visit(AzioneOffertaDTO azioneOffertaDTO) {
+		AzioneOfferta azioneOfferta = new AzioneOfferta();
+		Marketable marketable = azioneOffertaDTO.getMarketableDTO().creaMarketable(giocatore);
+		azioneOfferta.setMarketable(marketable);
+		azioneOfferta.setPrezzo(azioneOffertaDTO.getPrezzo());
+		return azioneOfferta;
+	}
+
+	@Override
+	public AzioneAcquisto visit(AzioneAcquistoDTO azioneAcquistoDTO) {
+		AzioneAcquisto azioneAcquisto= new AzioneAcquisto();
+		Offerta offerta=ControlloParametri.cercaOfferta(gameState.getOfferteMarket(), azioneAcquistoDTO.getOfferta());
+		Giocatore giocatore=ControlloParametri.carcaGiocatore(gameState.getGiocatori(), azioneAcquistoDTO.getGiocatoreDTO());
+		azioneAcquisto.setOfferta(offerta);
+		azioneAcquisto.setAcquirente(giocatore);
+		return azioneAcquisto;
 	}
 
 }

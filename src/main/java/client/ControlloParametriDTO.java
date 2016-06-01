@@ -9,6 +9,7 @@ import gameDTO.gameDTO.ColoreDTO;
 import gameDTO.gameDTO.ConsigliereDTO;
 import gameDTO.gameDTO.RegioneDTO;
 import gameDTO.gameDTO.TesseraPermessoDTO;
+import utility.Utils;
 
 public class ControlloParametriDTO {
 
@@ -39,22 +40,13 @@ public class ControlloParametriDTO {
 		}
 
 	public static TesseraPermessoDTO tessereGiocatore(String tessera, ArrayList<TesseraPermessoDTO> tesserePermesso) {
-		if(isNumeric(tessera)){
+		if(Utils.isNumeric(tessera)){
 			if(Integer.parseInt(tessera)>0 && Integer.parseInt(tessera)<=tesserePermesso.size())
 				return tesserePermesso.get(Integer.parseInt(tessera)-1);
 		}
 		return null;
 	}
 
-	private static boolean isNumeric(String tessera) {
-		try{
-			Integer.parseInt(tessera);
-			return true;
-		}
-		catch(NumberFormatException e){
-			return false;
-		}
-	}
 
 	public static CittàDTO città(String cittàScelta, Set<CittàDTO> città, ColoreDTO colore) {
 		for(CittàDTO c: città){

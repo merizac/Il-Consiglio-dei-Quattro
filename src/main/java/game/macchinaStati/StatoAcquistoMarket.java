@@ -1,6 +1,7 @@
 package game.macchinaStati;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import game.GameState;
@@ -18,12 +19,23 @@ public class StatoAcquistoMarket implements Stato {
 	private List<String> azioni;
 	
 	public StatoAcquistoMarket(GameState gameState){
+		this.azioni=new ArrayList<>();
 		this.giocatori=new ArrayList<Giocatore>(gameState.getGiocatori());
-		riempiAzioni();
-		//gameState.notifyObserver(new AzioniNotify(this.getAzioni()));
+		inizializzaStato(gameState);
 	}
+	
+	private void inizializzaStato(GameState gameState){
+		riempiAzioni();
+		Collections.shuffle(giocatori);
+		System.out.println(giocatori.get(0));
+		gameState.setGiocatoreCorrente(giocatori.remove(0));
+		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), 
+				Arrays.asList(gameState.getGiocatoreCorrente())));
+		
+	}
+	
 	private void riempiAzioni() {
-		azioni.add("Acquista");
+		azioni.add("\nAcquista");
 		azioni.add("Passa");
 		
 	}
@@ -34,6 +46,7 @@ public class StatoAcquistoMarket implements Stato {
 			Collections.shuffle(giocatori);
 			gameState.setGiocatoreCorrente(giocatori.remove(0));
 			gameState.setStato(this);
+			gameState.notifyObserver(new AzioniNotify(azioni, Arrays.asList(gameState.getGiocatoreCorrente())));
 		}
 		else{
 			gameState.getOfferteMarket().clear();
@@ -43,12 +56,12 @@ public class StatoAcquistoMarket implements Stato {
 	
 	public void transizioneOfferta(GameState gameState){
 		gameState.setStato(this);
+		gameState.notifyObserver(new AzioniNotify(azioni, Arrays.asList(gameState.getGiocatoreCorrente())));
 	}
 	
 	@Override
 	public List<String> getAzioni() {
-		// TODO Auto-generated method stub
-		return null;
+		return azioni;
 	}
 	
 

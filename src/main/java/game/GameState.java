@@ -26,7 +26,7 @@ public class GameState extends Observable<Notify> {
 	private Giocatore giocatoreCorrente;
 	private Stato stato;
 	private boolean BonusAzionePrincipale;
-	private int numeroTurni = -1;
+	private int numeroTurni = 0;
 	private List<Offerta> offerteMarket;
 
 	/**

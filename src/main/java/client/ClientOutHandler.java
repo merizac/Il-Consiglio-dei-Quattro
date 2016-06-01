@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import gameDTO.azioniDTO.AcquistoTesseraPermessoDTO;
+import gameDTO.azioniDTO.AzioneAcquistoDTO;
 import gameDTO.azioniDTO.AzioneDTO;
+import gameDTO.azioniDTO.AzioneOffertaDTO;
 import gameDTO.azioniDTO.CambioTesserePermessoDTO;
 import gameDTO.azioniDTO.CostruzioneAiutoReDTO;
 import gameDTO.azioniDTO.CostruzioneTesseraPermessoDTO;
@@ -16,6 +18,7 @@ import gameDTO.azioniDTO.IngaggioAiutanteDTO;
 import gameDTO.azioniDTO.PassaDTO;
 import gameDTO.azioniDTO.PescaCartaDTO;
 import gameDTO.azioniDTO.SecondaAzionePrincipaleDTO;
+import gameDTO.gameDTO.AiutanteDTO;
 import gameDTO.gameDTO.CartaPoliticaDTO;
 import gameDTO.gameDTO.CittàDTO;
 import gameDTO.gameDTO.ConsigliereDTO;
@@ -23,6 +26,7 @@ import gameDTO.gameDTO.GameStateDTO;
 import gameDTO.gameDTO.GiocatoreDTO;
 import gameDTO.gameDTO.RegioneDTO;
 import gameDTO.gameDTO.TesseraPermessoDTO;
+import utility.Utils;
 
 public class ClientOutHandler implements Runnable {
 
@@ -31,7 +35,7 @@ public class ClientOutHandler implements Runnable {
 
 	public ClientOutHandler(ObjectOutputStream socketOut, GameStateDTO gameStateDTO) {
 		this.socketOut = socketOut;
-		this.gameStateDTO=gameStateDTO;
+		this.gameStateDTO = gameStateDTO;
 	}
 
 	@Override
@@ -45,22 +49,23 @@ public class ClientOutHandler implements Runnable {
 			int indice;
 			RegioneDTO regioneScelta;
 			ArrayList<CartaPoliticaDTO> cartePolitica;
+			CartaPoliticaDTO cartaPolitica;
 			TesseraPermessoDTO tesseraScelta;
 			CittàDTO cittàScelta;
 			ConsigliereDTO consigliereScelto;
+			int prezzo;
 			AzioniClient azioniClient = new AzioniClient();
 
 			String inputLine = stdIn.nextLine();
-			
+
 			if (inputLine.equals("Pesca")) {
 				action = new PescaCartaDTO();
 
 			}
-			
-			else if("Passa".equals(inputLine)){
-				action =new PassaDTO();
+
+			else if ("Passa".equals(inputLine)) {
+				action = new PassaDTO();
 			}
-			
 
 			else if ("P1".equals(inputLine)) {
 				consigliereScelto = azioniClient.scegliConsigliere(gameStateDTO.getConsiglieri(), stdIn);
@@ -80,9 +85,10 @@ public class ClientOutHandler implements Runnable {
 			}
 
 			else if ("P3".equals(inputLine)) {
-				tesseraScelta = azioniClient.scegliTesseraGiocatore(gameStateDTO.getGiocatoreDTO().getTesserePermesso(), stdIn);
-				cittàScelta = azioniClient.scegliCittà(tesseraScelta.getCittà(), gameStateDTO.getGiocatoreDTO().getColoreGiocatore(),
+				tesseraScelta = azioniClient.scegliTesseraGiocatore(gameStateDTO.getGiocatoreDTO().getTesserePermesso(),
 						stdIn);
+				cittàScelta = azioniClient.scegliCittà(tesseraScelta.getCittà(),
+						gameStateDTO.getGiocatoreDTO().getColoreGiocatore(), stdIn);
 
 				action = new CostruzioneTesseraPermessoDTO(tesseraScelta, cittàScelta);
 
@@ -91,8 +97,8 @@ public class ClientOutHandler implements Runnable {
 			else if ("P4".equals(inputLine)) {
 
 				cartePolitica = azioniClient.scegliCarte(gameStateDTO.getGiocatoreDTO().getCartePolitica(), stdIn);
-				cittàScelta = azioniClient.scegliCittà(gameStateDTO.getCittà(), gameStateDTO.getGiocatoreDTO().getColoreGiocatore(),
-						stdIn);
+				cittàScelta = azioniClient.scegliCittà(gameStateDTO.getCittà(),
+						gameStateDTO.getGiocatoreDTO().getColoreGiocatore(), stdIn);
 
 				action = new CostruzioneAiutoReDTO(cartePolitica, cittàScelta);
 			}
@@ -112,9 +118,50 @@ public class ClientOutHandler implements Runnable {
 				regioneScelta = azioniClient.scegliRegione(gameStateDTO.getRegioni(), stdIn);
 
 				action = new ElezioneConsigliereVeloceDTO(regioneScelta, consigliereScelto);
-			}
-			else if ("V4".equals(inputLine)) {
+			} else if ("V4".equals(inputLine)) {
 				new SecondaAzionePrincipaleDTO();
+			} else if ("Offerta".equals(inputLine)) {
+				System.out.println("Cosa vuoi vendere\n?");
+				System.out.println("Aiutante [1]\nCarta Politica[2]\nTesseraPermesso[3]");
+				String comando = stdIn.nextLine();
+				boolean ok = false;
+				while (!ok) {
+
+					while (!Utils.isNumeric(comando)) {
+						System.out.println("valore non valido");
+						comando = stdIn.nextLine();
+					}
+
+					if (Integer.parseInt(comando) == 1 || Integer.parseInt(comando) == 2
+							|| Integer.parseInt(comando) == 3)
+						ok = true;
+				}
+
+				if ("1".equals(comando)) {
+					prezzo = azioniClient.scegliPrezzo(stdIn);
+					action = new AzioneOffertaDTO(new AiutanteDTO(1), prezzo);
+
+				} else if ("2".equals(comando)) {
+					cartaPolitica = azioniClient.scegliCarta(gameStateDTO.getGiocatoreDTO().getCartePolitica(), stdIn);
+					prezzo = azioniClient.scegliPrezzo(stdIn);
+					action = new AzioneOffertaDTO(cartaPolitica, prezzo);
+				} else if ("3".equals(comando)) {
+					tesseraScelta = azioniClient
+							.scegliTesseraGiocatore(gameStateDTO.getGiocatoreDTO().getTesserePermesso(), stdIn);
+					prezzo = azioniClient.scegliPrezzo(stdIn);
+					action = new AzioneOffertaDTO(tesseraScelta, prezzo);
+				}
+			}
+			
+			else if("Acquista".equals(inputLine)){
+				System.out.println("Che cosa vuoi acquistare?");
+				String comando=stdIn.nextLine();
+				while(!Utils.isNumeric(comando)){
+					System.out.println("Inserire numero offerta valido");
+					comando=stdIn.nextLine();
+				}
+				action = new AzioneAcquistoDTO(Integer.parseInt(comando), gameStateDTO.getGiocatoreDTO());
+				
 			}
 
 			else
@@ -122,7 +169,7 @@ public class ClientOutHandler implements Runnable {
 
 			try {
 				if (action != null) {
-					System.out.println("invio :"+action);
+					System.out.println("invio :" + action);
 					socketOut.writeObject(action);
 					socketOut.flush();
 				}

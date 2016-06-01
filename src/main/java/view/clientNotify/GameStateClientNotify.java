@@ -85,6 +85,12 @@ public class GameStateClientNotify implements ClientNotify {
 			bonusRe=bonusRe+b+"\n";
 		}
 		System.out.println(bonusRe);
+		String riserva="Consiglieri [ ";
+		for(ConsigliereDTO c: gameStateDTO.getConsiglieri()){
+			riserva=riserva+c.getColoreConsigliere()+" ";
+		}
+		riserva=riserva+"]";
+		System.out.println(riserva);
 
 	}
 }

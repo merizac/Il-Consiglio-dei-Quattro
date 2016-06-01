@@ -42,7 +42,7 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale {
 			controllaCittàColore(((ColoreCittà) cittàCostruzione.getColoreCittà()), gameState.getGiocatoreCorrente());
 		controllaCittàRegione(cittàCostruzione.getRegione(), gameState.getGiocatoreCorrente());
 
-		gameState.notifyObserver(new GameStateNotify(gameState, Arrays.asList(gameState.getGiocatoreCorrente())));
+		gameState.notifyObserver(new GameStateNotify(gameState, gameState.getGiocatori()));
 		gameState.notifyObserver(
 				new GiocatoreNotify(gameState.getGiocatoreCorrente(), Arrays.asList(gameState.getGiocatoreCorrente())));
 		setStatoTransizionePrincipale(gameState);
