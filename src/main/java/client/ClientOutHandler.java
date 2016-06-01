@@ -90,7 +90,7 @@ public class ClientOutHandler implements Runnable {
 
 			}
 
-			else if (inputLine.equals("P$")) {
+			else if (inputLine.equals("P4")) {
 				cartePolitica = azioniClient.scegliCarte(giocatoreDTO.getCartePolitica(), stdIn);
 				cittàScelta = azioniClient.scegliCittà(gameStateDTO.getCittà(), giocatoreDTO.getColoreGiocatore(),
 						stdIn);
