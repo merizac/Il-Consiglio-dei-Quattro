@@ -114,19 +114,24 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 	private boolean controllaColori() {
 		ArrayList<Consigliere> copiaConsiglieri = new ArrayList<Consigliere>(regione.getBalcone().getConsigliere());
 		for (CartaPolitica carta: carteGiocatore ){
+			boolean ok=false;
 			if (carta.equals(new CartaPolitica(new Colore("Multicolore")))){
 				continue;
 			}
 				
 			for (Consigliere consigliere: copiaConsiglieri){
-					if (consigliere.getColore().equals(carta.getColore())){
-						regione.getBalcone().getConsigliere().remove(consigliere);
-						break;
+					if (!consigliere.getColore().equals(carta.getColore())){
+						ok=false;
+						continue;
 					}
 					
-					else
-						return false; //se la carta non matcha
+					else{
+						ok=true;
+						regione.getBalcone().getConsigliere().remove(consigliere);
+						break;}
 				}
+			if(!ok) 
+				return false; //se la carta non matcha
 			}
 		return true;
 		

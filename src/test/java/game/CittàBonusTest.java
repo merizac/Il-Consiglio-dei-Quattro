@@ -56,7 +56,7 @@ public class CittàBonusTest {
 		ArrayList<Bonus> bonus=new ArrayList<Bonus>();
 		CittàBonus città=new CittàBonus("NomeCittà", gameState.getRegioni().get(0), new ColoreCittà("ColoreCittà", null), null);
 		bonus.add(new BonusAiutanti(2));
-		bonus.add(new BonusAzionePrincipale());
+		bonus.add(new BonusAzionePrincipale(1));
 		città.setBonus(bonus);
 		assertEquals(bonus, città.getBonus());
 	}

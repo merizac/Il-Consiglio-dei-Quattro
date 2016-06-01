@@ -5,7 +5,7 @@ BonusAiutanti 2
 Arkon
 BonusMoneta 3 BonusPuntiVittoria 4
 Esti
-BonusAzionePrincipale BonusMoneta 2
+BonusAzionePrincipale 1 BonusMoneta 2
 Castrum
 BonusAiutanti 2 BonusMoneta 3
 Dorful
@@ -34,7 +34,7 @@ BonusAiutanti 2 BonusMoneta 1
 Indur
 BonusCartePolitica 2 BonusAiutanti 2
 Juvelar
-BonusAzionePrincipale BonusPuntiVittoria 2
+BonusAzionePrincipale 1 BonusPuntiVittoria 2
 Framek Graden
 BonusMoneta 5
 Hellar Graden
@@ -61,7 +61,7 @@ FINEREGIONE
 Naris
 BonusMoneta 7
 Merkatim Naris
-BonusAzionePrincipale
+BonusAzionePrincipale 1
 Kultos
 BonusCartePolitica 4
 Merkatim Lyram

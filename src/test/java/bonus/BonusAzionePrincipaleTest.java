@@ -15,7 +15,7 @@ public class BonusAzionePrincipaleTest {
 	public void testUsaBonus() throws IOException {
 		GameState gameState = new GameState();
 		boolean azionePrincipale = gameState.isBonusAzionePrincipale();
-		BonusAzionePrincipale bonus= new BonusAzionePrincipale();
+		BonusAzionePrincipale bonus= new BonusAzionePrincipale(1);
 		bonus.usaBonus(gameState);
 		assertFalse(azionePrincipale);
 		assertTrue(gameState.isBonusAzionePrincipale());

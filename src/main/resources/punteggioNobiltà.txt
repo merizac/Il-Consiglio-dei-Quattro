@@ -5,7 +5,7 @@ BonusPuntiVittoria 2 BonusMoneta 2
 no
 BonusGettoneRicompensa 1
 no
-BonusAzionePrincipale
+BonusAzionePrincipale 1
 no
 BonusPuntiVittoria 3 BonusCartePolitica 1
 no

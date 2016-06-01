@@ -26,6 +26,14 @@ public class GiocatoreDTO implements Serializable {
 	private int punteggioVittoria;
 	private int punteggioRicchezza;
 	private int punteggioNobiltà;
+	
+	
+	public GiocatoreDTO(){
+		this.cartePolitica=new ArrayList<>();
+		this.tesserePermesso= new ArrayList<>();
+		this.tesserePermessoUsate =new ArrayList<>();
+		this.tessereBonus =new ArrayList<>();
+	}
 	/**
 	 * @return the nome
 	 */

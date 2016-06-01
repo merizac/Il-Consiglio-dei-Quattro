@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import bonus.Bonus;
 import game.CartaPolitica;
 import game.Città;
+import game.Colore;
 import game.Consigliere;
 import game.Regione;
 import game.TesseraPermesso;
@@ -27,11 +29,14 @@ public class ControlloParametri {
 
 	public static ArrayList<CartaPolitica> cercaCartePolitica(List<CartaPoliticaDTO> carte,
 			ArrayList<CartaPolitica> cartePolitica) throws IllegalArgumentException{
+		System.out.println("metodo");
 		ArrayList<CartaPolitica> carteGiocatore=new ArrayList<>();
 		for(CartaPoliticaDTO c: carte){
-			if(cartePolitica.contains(c)){
+			if(cartePolitica.contains(new CartaPolitica(new Colore(c.getColore())))){
+				System.out.println("entrato");
 				for(CartaPolitica cp: cartePolitica){
 					if(cp.getColore().getColore().equals(c.getColore())){
+						System.out.println("carta :"+cp);
 						cartePolitica.remove(cp);
 						carteGiocatore.add(cp);
 						break;
@@ -41,7 +46,7 @@ public class ControlloParametri {
 			else
 				throw new IllegalArgumentException("Una delle carte passate è inesistente!");
 		}
-		
+		System.out.println(carteGiocatore);
 		return carteGiocatore;
 	}
 	public static Città cercaCittà(CittàDTO città, Set<Città> cittàGameState) throws IllegalArgumentException{
@@ -52,32 +57,66 @@ public class ControlloParametri {
 		throw new IllegalArgumentException("La città è inesistente!");
 	}
 
+
+	
 	public static TesseraPermesso cercaTesseraPermesso(TesseraPermessoDTO tesseraPermesso,
 			ArrayList<TesseraPermesso> tesserePermesso) throws IllegalArgumentException{
+		ArrayList<CittàDTO> cittàTesseraDTO = new ArrayList<>(tesseraPermesso.getCittà());
+		
 		for(TesseraPermesso t: tesserePermesso){
-			boolean find=false;
-			if(!t.getBonus().containsAll(tesseraPermesso.getBonus())
-					|| !tesseraPermesso.getBonus().containsAll(t.getBonus())
-					|| tesseraPermesso.getCittà().size()!=t.getCittà().size())
-				continue;
-			else{
-				for(CittàDTO cDTO: tesseraPermesso.getCittà()){
-					for(Città c: t.getCittà()){
-						if(cDTO.getNome().equals(c.getNome())){
-							find=true;
-							break;
-						}
-						}
-					if(!find)
-						break;
-				}
-			}
-			if(find)
+			if(tesseraPermesso.getBonus().size() == t.getBonus().size() && tesseraPermesso.getCittà().size()==t.getCittà().size() &&
+				stessiBonus( tesseraPermesso.getBonus(), t.getBonus())  && stesseCittà(cittàTesseraDTO, t.getCittà()))
 				return t;
 		}
 		
-		throw new IllegalArgumentException("La tessera permesso è inesistente!");
+	throw new IllegalArgumentException("la tessera permesso è inesistente!");
+	
 	}
+/**
+ * This method check if bonus on tesseraPermesso DTO are the same of bonus on tesseraPermesso no DTO.
+ * IT's suppose that the size of two arrays is the same, because it's already check on 'cercaTesserePermesso'
+ * @param bonusTesseraDTO
+ * @param bonus
+ * @return true if bonus check, false if are not the same
+ */
+	private static boolean stessiBonus(ArrayList<Bonus> bonusTesseraDTO, ArrayList<Bonus> bonus) {
+		int i;
+		for( i=0; i<=bonusTesseraDTO.size()-1; i++){
+			System.out.println("indice :"+i);
+			if(!bonusTesseraDTO.get(i).getClass().getName().equals(bonus.get(i).getClass().getName()))
+				break;
+			else {
+				if(i==bonusTesseraDTO.size()-1){
+				return true;
+				}
+				else continue;
+			}	
+		}
+		return false;
+	}
+	/**
+	 * This method check if cities on tesseraPermesso DTO are the same of cities on tesseraPermesso no DTO.
+	 * IT's suppose that the size of two arrays is the same, because it's already check on 'cercaTesserePermesso'
+	 * @param cittàTesseraDTO
+	 * @param città
+	 * @return
+	 */
+	private static boolean stesseCittà(ArrayList<CittàDTO> cittàTesseraDTO, ArrayList<Città> città) {
+		int i;
+		for( i=0; i<=cittàTesseraDTO.size()-1; i++){
+			System.out.println("indice :"+i);
+			if(!cittàTesseraDTO.get(i).getNome().equals(città.get(i).getNome()))
+				break;
+			else {
+				if(i==cittàTesseraDTO.size()-1){
+					return true;
+				}
+				else continue;
+			}	
+		}
+		return false;
+	}
+	
 
 	public static Consigliere cercaConsigliere(ConsigliereDTO consigliereDTO, ArrayList<Consigliere> consiglieri) throws IllegalArgumentException {
 		for(Consigliere c: consiglieri){

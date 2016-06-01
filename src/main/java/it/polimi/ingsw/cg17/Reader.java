@@ -151,7 +151,8 @@ public class Reader {
 					} else if (tmp.equals("BonusTesseraPermessoUsata")) {
 						bonus.add(new BonusTesseraPermessoUsata());
 					} else if (tmp.equals("BonusAzionePrincipale")) {
-						bonus.add(new BonusAzionePrincipale());
+						int quantità = Integer.parseInt(st.nextToken());
+						bonus.add(new BonusAzionePrincipale(quantità));
 					} else if (tmp.equals("BonusPuntiVittoria")) {
 						int quantità = Integer.parseInt(st.nextToken());
 						bonus.add(new BonusPuntiVittoria(quantità));
@@ -428,7 +429,8 @@ public class Reader {
 							int quantità = Integer.parseInt(str.nextToken());
 							bonus.add(new BonusAiutanti(quantità));
 						} else if (tmp.equals("BonusAzionePrincipale")) {
-							bonus.add(new BonusAzionePrincipale());
+							int quantità = Integer.parseInt(st.nextToken());
+							bonus.add(new BonusAzionePrincipale(quantità));
 						} else if (tmp.equals("BonusMoneta")) {
 							int quantità = Integer.parseInt(str.nextToken());
 							bonus.add(new BonusMoneta(quantità));

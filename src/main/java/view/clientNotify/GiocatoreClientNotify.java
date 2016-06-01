@@ -20,6 +20,8 @@ public class GiocatoreClientNotify implements ClientNotify {
 	@Override
 	public void update(GameStateDTO gameStateDTO) {
 		GiocatoreDTO giocatore=gameStateDTO.getGiocatoreDTO();
+		giocatore.setTesserePermesso(this.giocatoreDTO.getTesserePermesso());
+		giocatore.setTesserePermessoUsate(this.giocatoreDTO.getTesserePermessoUsate());
 		giocatore.setAiutanti(this.giocatoreDTO.getAiutanti());
 		giocatore.setCartePolitica(this.giocatoreDTO.getCartePolitica());
 		giocatore.setColoreGiocatore(this.giocatoreDTO.getColoreGiocatore());

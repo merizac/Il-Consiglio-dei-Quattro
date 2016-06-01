@@ -66,8 +66,4 @@ public class AcquistoTesseraPermessoDTO implements AzioneDTO {
 		return azioneVisitor.visit(this);
 		
 	}
-	
-	
-	
-
 }
