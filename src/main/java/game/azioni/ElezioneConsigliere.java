@@ -17,6 +17,8 @@ public class ElezioneConsigliere extends AzionePrincipale {
 	 * @param regione the regione to set
 	 */
 	public void setRegione(Regione regione) {
+		if(regione==null)
+			throw new NullPointerException("La regione deve essere definita");
 		this.regione = regione;
 	}
 
@@ -24,6 +26,8 @@ public class ElezioneConsigliere extends AzionePrincipale {
 	 * @param consigliere the consigliere to set
 	 */
 	public void setConsigliere(Consigliere consigliere) {
+		if(consigliere==null)
+			throw new NullPointerException("La regione deve essere definita");
 		this.consigliere = consigliere;
 	}
 
