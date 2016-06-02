@@ -66,6 +66,11 @@ public class CostruzioneAiutoRe extends AzionePrincipale {
 			controllaCittàRegione(cittàCostruzione.getRegione(), gameState.getGiocatoreCorrente());
 		}
 		
+		if(gameState.getGiocatoreCorrente().getEmpori().isEmpty()){
+			gameState.setUltimoGiro(true);
+			gameState.getGiocatoreCorrente().aumentaPuntiVittoria(3);
+		}
+		
 		gameState.notifyObserver(new GameStateNotify(gameState, Arrays.asList(gameState.getGiocatoreCorrente())));
 		gameState.notifyObserver(new GiocatoreNotify(gameState.getGiocatoreCorrente(), 
 				Arrays.asList(gameState.getGiocatoreCorrente())));

@@ -28,25 +28,9 @@ public class GameState extends Observable<Notify> {
 	private boolean BonusAzionePrincipale;
 	private int numeroTurni = -1;
 	private List<Offerta> offerteMarket;
+	private boolean ultimoGiro= false;
+	private List<Giocatore> giocatoriFinePartita;
 
-	/**
-	 * @return the numeroTurni
-	 */
-	public int getNumeroTurni() {
-		return numeroTurni;
-	}
-
-	public void setNumeroTurni(int numeroTurni) {
-		this.numeroTurni = numeroTurni;
-	}
-
-	/**
-	 * @param numeroTurni
-	 *            the numeroTurni to set
-	 */
-	public void prossimoTurno() {
-		this.numeroTurni++;
-	}
 
 	/**
 	 * 
@@ -188,6 +172,25 @@ public class GameState extends Observable<Notify> {
 	public void setBonusAzionePrincipale(boolean bonusAzionePrincipale) {
 		BonusAzionePrincipale = bonusAzionePrincipale;
 	}
+	
+	/**
+	 * @return the numeroTurni
+	 */
+	public int getNumeroTurni() {
+		return numeroTurni;
+	}
+
+	public void setNumeroTurni(int numeroTurni) {
+		this.numeroTurni = numeroTurni;
+	}
+
+	/**
+	 * @param numeroTurni
+	 *            the numeroTurni to set
+	 */
+	public void prossimoTurno() {
+		this.numeroTurni++;
+	}
 
 	public void creaGiocatori(List<Giocatore> giocatori) {
 		int i = 0;
@@ -221,12 +224,24 @@ public class GameState extends Observable<Notify> {
 
 	}
 
-	public void cambiaGiocatore() {
+	/*public void cambiaGiocatore() {
 		int indice = giocatori.indexOf(giocatoreCorrente);
 		if (indice != giocatori.size() - 1)
 			giocatoreCorrente = giocatori.get(indice + 1);
 		else
 			giocatoreCorrente = giocatori.get(0);
+	}*/
+	
+	public boolean lastNextPlayer(){
+		Giocatore ultimoGiro = giocatori.remove(0);
+		giocatoriFinePartita.add(ultimoGiro);
+		if(giocatori.isEmpty()){
+			return true;
+		}
+		else{
+		this.giocatoreCorrente = giocatori.get(0);
+		return false;
+		}
 	}
 
 	public void decrementaTurno() {
@@ -265,6 +280,34 @@ public class GameState extends Observable<Notify> {
 				+ giocatori + "\ngiocatoreCorrente=" + giocatoreCorrente + "\nstato=" + stato
 				+ "\nBonusAzionePrincipale=" + BonusAzionePrincipale + "\nnumeroTurni=" + numeroTurni
 				+ "\nofferteMarket=" + offerteMarket + "]";
+	}
+
+	/**
+	 * @return the ultimoGiro
+	 */
+	public boolean isUltimoGiro() {
+		return ultimoGiro;
+	}
+
+	/**
+	 * @param ultimoGiro the ultimoGiro to set
+	 */
+	public void setUltimoGiro(boolean ultimoGiro) {
+		this.ultimoGiro = ultimoGiro;
+	}
+
+	/**
+	 * @return the giocatoriFinePartita
+	 */
+	public List<Giocatore> getGiocatoriFinePartita() {
+		return giocatoriFinePartita;
+	}
+
+	/**
+	 * @param giocatoriFinePartita the giocatoriFinePartita to set
+	 */
+	public void setGiocatoriFinePartita(List<Giocatore> giocatoriFinePartita) {
+		this.giocatoriFinePartita = giocatoriFinePartita;
 	}
 
 }

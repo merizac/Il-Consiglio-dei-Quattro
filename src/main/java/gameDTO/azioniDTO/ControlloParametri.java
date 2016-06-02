@@ -58,7 +58,13 @@ public class ControlloParametri {
 	}
 
 
-	
+	/**
+	 * 
+	 * @param tesseraPermesso
+	 * @param tesserePermesso
+	 * @return tessera permesso non DTO
+	 * @throws IllegalArgumentException
+	 */
 	public static TesseraPermesso cercaTesseraPermesso(TesseraPermessoDTO tesseraPermesso,
 			ArrayList<TesseraPermesso> tesserePermesso) throws IllegalArgumentException{
 		ArrayList<CittàDTO> cittàTesseraDTO = new ArrayList<>(tesseraPermesso.getCittà());
@@ -94,6 +100,7 @@ public class ControlloParametri {
 		}
 		return false;
 	}
+	
 	/**
 	 * This method check if cities on tesseraPermesso DTO are the same of cities on tesseraPermesso no DTO.
 	 * IT's suppose that the size of two arrays is the same, because it's already check on 'cercaTesserePermesso'
@@ -116,6 +123,35 @@ public class ControlloParametri {
 		}
 		return false;
 	}
+	
+	/*public static TesseraPermesso cercaTesseraPermesso(TesseraPermessoDTO tesseraPermesso,
+		      ArrayList<TesseraPermesso> tesserePermesso) throws IllegalArgumentException{
+		ArrayList<CittàDTO> cittàTesseraDTO = new ArrayList<>(tesseraPermesso.getCittà());
+
+		    for(TesseraPermesso t: tesserePermesso){
+	
+		      if(!t.getBonus().containsAll(tesseraPermesso.getBonus())
+		          || !tesseraPermesso.getBonus().containsAll(t.getBonus())
+		          || tesseraPermesso.getCittà().size()!=t.getCittà().size())
+		        continue;
+		      else{
+		    	int i;
+		  		for( i=0; i<=cittàTesseraDTO.size()-1; i++){
+		  			System.out.println("indice :"+i);
+		  			if(!cittàTesseraDTO.get(i).getNome().equals(t.getCittà().get(i).getNome()))
+		  				break;
+		  			else {
+		  				if(i==cittàTesseraDTO.size()-1){
+		  					return t;
+		  				}
+		  				else continue;
+		  			}	
+		  		}
+		      }
+		    }
+		    throw new IllegalArgumentException("La tessera permesso è inesistente!");
+		     
+		  }*/
 	
 
 	public static Consigliere cercaConsigliere(ConsigliereDTO consigliereDTO, ArrayList<Consigliere> consiglieri) throws IllegalArgumentException {

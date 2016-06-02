@@ -30,12 +30,18 @@ public class Stato01 implements Stato {
 		azioni.add("Cambiare le tessere permesso di costruzione [V2]");
 		azioni.add("Mandare un aiutante ad eleggere un consigliere [V3]");
 		azioni.add("Compiere un'azione principale[V4]");
+		azioni.add("Oppure Passa il turno! [Passa]");
 	}
 
 	@Override
 	public void transizioneVeloce(GameState gameState) throws AzioneNonEseguibile {
+		if(!gameState.isUltimoGiro()){
 		gameState.nextPlayer();
-		gameState.setStato(new StartEnd(gameState));
+		gameState.setStato(new StartEnd(gameState));}
+		else {
+			if(gameState.lastNextPlayer());
+			gameState.setStato(new StatoFinePartita());
+		}
 	}
 
 	@Override
