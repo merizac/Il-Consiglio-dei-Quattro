@@ -9,13 +9,11 @@ import utility.exception.AzioneNonEseguibile;
 
 public class Stato10 implements Stato {
 
-
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 4129691255828354834L;
 	private List<String> azioni;
-	
 
 	/**
 	 * @param azioni
@@ -37,12 +35,17 @@ public class Stato10 implements Stato {
 
 	@Override
 	public void transizionePrincipale(GameState gameState) throws AzioneNonEseguibile {
-		if(!gameState.isBonusAzionePrincipale()){
+
+		if (!gameState.isBonusAzionePrincipale()) {
 			gameState.nextPlayer();
-			gameState.setStato(new StartEnd(gameState));
-		}
-		else
-			gameState.setBonusAzionePrincipale(false); 
+			gameState.prossimoTurno();
+
+			if (gameState.getNumeroTurni() != gameState.getGiocatori().size())
+				gameState.setStato(new StartEnd(gameState));
+			else
+				gameState.setStato(new StatoOffertaMarket(gameState));
+		} else
+			gameState.setBonusAzionePrincipale(false);
 	}
 
 	@Override
@@ -50,14 +53,14 @@ public class Stato10 implements Stato {
 		return azioni;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
 		return "Stato10";
 	}
-
-	
 
 }

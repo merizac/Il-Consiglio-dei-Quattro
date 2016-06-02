@@ -7,9 +7,12 @@ import java.util.Set;
 
 import bonus.Bonus;
 import game.Città;
+import game.Giocatore;
 import game.TesseraPermesso;
+import game.market.Marketable;
+import gameDTO.azioniDTO.ControlloParametri;
 
-public class TesseraPermessoDTO implements Serializable  {
+public class TesseraPermessoDTO implements Serializable, MarketableDTO  {
 
 	private static final long serialVersionUID = 251246647055835184L;
 	private Set<CittàDTO> città;
@@ -54,6 +57,10 @@ public class TesseraPermessoDTO implements Serializable  {
 			città.add(cittàDTO);
 		}
 		this.setBonus(t.getBonus());
+	}
+	@Override
+	public Marketable creaMarketable(Giocatore giocatore) {
+		return ControlloParametri.cercaTesseraPermesso(this, giocatore.getTesserePermesso());
 	}
 	
 	

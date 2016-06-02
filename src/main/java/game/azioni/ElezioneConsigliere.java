@@ -40,12 +40,12 @@ public class ElezioneConsigliere extends AzionePrincipale {
  */
 	@Override
 	public void eseguiAzione(GameState gameState) {
-		
 		Consigliere consigliereTolto = this.regione.getBalcone().aggiungiConsigliere(consigliere);
+		gameState.getConsiglieri().remove(consigliere);
 		gameState.getConsiglieri().add(consigliereTolto);
 		gameState.getGiocatoreCorrente().aumentaRicchezza(4);
 		
-		gameState.notifyObserver(new GameStateNotify(gameState, Arrays.asList(gameState.getGiocatoreCorrente())));
+		gameState.notifyObserver(new GameStateNotify(gameState, gameState.getGiocatori()));
 		gameState.notifyObserver(new GiocatoreNotify(gameState.getGiocatoreCorrente(),
 				Arrays.asList(gameState.getGiocatoreCorrente())));
 		

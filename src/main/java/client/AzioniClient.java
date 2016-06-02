@@ -10,6 +10,7 @@ import gameDTO.gameDTO.ColoreDTO;
 import gameDTO.gameDTO.ConsigliereDTO;
 import gameDTO.gameDTO.RegioneDTO;
 import gameDTO.gameDTO.TesseraPermessoDTO;
+import utility.Utils;
 
 public class AzioniClient {
 	
@@ -116,6 +117,27 @@ public class AzioniClient {
 			cittàScelta= ControlloParametriDTO.città(comando, città, coloreGiocatore);
 		}
 		return cittàScelta;
+	}
+	public CartaPoliticaDTO scegliCarta(ArrayList<CartaPoliticaDTO> cartePolitica, Scanner stdIn) {
+		System.out.println("Seleziona la carta politica");
+		System.out.println(cartePolitica);
+		comando=stdIn.nextLine();
+		CartaPoliticaDTO cartaScelta=ControlloParametriDTO.carteGiocatore(comando, cartePolitica);
+		while(cartaScelta==null){
+			System.out.println("la carta selezionanata non è esistente!\n Inserire di nuovo");
+			comando = stdIn.nextLine();
+			cartaScelta = ControlloParametriDTO.carteGiocatore(comando, cartePolitica);
+		}
+		return cartaScelta;
+	}
+	public int scegliPrezzo(Scanner stdIn) {
+		System.out.println("A quale prezzo?");
+		comando=stdIn.nextLine();
+		while(!Utils.isNumeric(comando)){
+			System.out.println("inserire un numero");
+			comando=stdIn.nextLine();
+		}
+		return Integer.parseInt(comando);
 	}
 	
 }

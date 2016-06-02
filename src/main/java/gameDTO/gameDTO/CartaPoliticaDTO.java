@@ -3,8 +3,11 @@ package gameDTO.gameDTO;
 import java.io.Serializable;
 
 import game.CartaPolitica;
+import game.Colore;
+import game.Giocatore;
+import game.market.Marketable;
 
-public class CartaPoliticaDTO implements Serializable {
+public class CartaPoliticaDTO implements Serializable, MarketableDTO {
 
 	/**
 	 * 
@@ -36,6 +39,11 @@ public class CartaPoliticaDTO implements Serializable {
 	@Override
 	public String toString() {
 		return colore;
+	}
+
+	@Override
+	public Marketable creaMarketable(Giocatore giocatore) {
+		return new CartaPolitica(new Colore(this.colore));
 	}
 	
 	
