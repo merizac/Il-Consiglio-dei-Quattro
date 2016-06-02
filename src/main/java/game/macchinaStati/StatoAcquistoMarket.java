@@ -21,16 +21,15 @@ public class StatoAcquistoMarket implements Stato {
 	public StatoAcquistoMarket(GameState gameState){
 		this.azioni=new ArrayList<>();
 		this.giocatori=new ArrayList<Giocatore>(gameState.getGiocatori());
+		System.out.println("acquisto giocatorecorrente: "+ gameState.getGiocatoreCorrente().getNome());
 		inizializzaStato(gameState);
 	}
 	
 	private void inizializzaStato(GameState gameState){
 		riempiAzioni();
 		Collections.shuffle(giocatori);
-		System.out.println(giocatori.get(0));
-		gameState.setGiocatoreCorrente(giocatori.remove(0));
 		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), 
-				Arrays.asList(gameState.getGiocatoreCorrente())));
+				Arrays.asList(giocatori.get(0))));
 		
 	}
 	
@@ -41,12 +40,12 @@ public class StatoAcquistoMarket implements Stato {
 	}
 	@Override
 	public void transizionePassa(GameState gameState) throws AzioneNonEseguibile{
-		
+		System.out.println("acquisto giocatorecorrente: "+ gameState.getGiocatoreCorrente().getNome());
+		this.giocatori.remove(0);
 		if(!giocatori.isEmpty()){
 			Collections.shuffle(giocatori);
-			gameState.setGiocatoreCorrente(giocatori.remove(0));
 			gameState.setStato(this);
-			gameState.notifyObserver(new AzioniNotify(azioni, Arrays.asList(gameState.getGiocatoreCorrente())));
+			gameState.notifyObserver(new AzioniNotify(azioni, Arrays.asList(giocatori.remove(0))));
 		}
 		else{
 			gameState.getOfferteMarket().clear();
@@ -55,14 +54,24 @@ public class StatoAcquistoMarket implements Stato {
 	}
 	
 	public void transizioneOfferta(GameState gameState){
+		System.out.println("market giocatorecorrente: "+ gameState.getGiocatoreCorrente().getNome());
 		gameState.setStato(this);
-		gameState.notifyObserver(new AzioniNotify(azioni, Arrays.asList(gameState.getGiocatoreCorrente())));
+		gameState.notifyObserver(new AzioniNotify(azioni, Arrays.asList(giocatori.get(0))));
 	}
 	
 	@Override
 	public List<String> getAzioni() {
 		return azioni;
 	}
+
+	/**
+	 * @return the giocatori
+	 */
+	public ArrayList<Giocatore> getGiocatori() {
+		return giocatori;
+	}
+	
+	
 	
 
 }

@@ -35,6 +35,7 @@ public class Stato01 implements Stato {
 	@Override
 	public void transizioneVeloce(GameState gameState) throws AzioneNonEseguibile {
 		gameState.nextPlayer();
+		System.out.println("nome giocatore :" +gameState.getGiocatoreCorrente().getNome());
 		gameState.prossimoTurno();
 		if (gameState.getNumeroTurni() != gameState.getGiocatori().size())
 			gameState.setStato(new StartEnd(gameState));

@@ -16,7 +16,6 @@ public class StatoOffertaMarket implements Stato {
 	
 	public StatoOffertaMarket(GameState gameState) {
 		azioni= new ArrayList<>();
-		System.out.println("market");
 		riempiAzioni();
 		gameState.notifyObserver(new AzioniNotify(getAzioni(), 
 					Arrays.asList(gameState.getGiocatoreCorrente())));
@@ -31,8 +30,9 @@ public class StatoOffertaMarket implements Stato {
 	@Override
 	public void transizionePassa(GameState gameState){
 		gameState.decrementaTurno();
+		gameState.nextPlayer();
 		if(gameState.getNumeroTurni()!=0){
-			gameState.nextPlayer();
+			System.out.println("market giocatorecorrente: "+ gameState.getGiocatoreCorrente().getNome());
 			gameState.setStato(new StatoOffertaMarket(gameState));
 
 		}
