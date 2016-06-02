@@ -25,12 +25,7 @@ public class AiutanteDTO implements MarketableDTO {
 	public int getAiutanti() {
 		return aiutanti;
 	}
-	/**
-	 * @param aiutanti the aiutanti to set
-	 */
-	public void setAiutanti(int aiutanti) {
-		this.aiutanti = aiutanti;
-	}
+
 	@Override
 	public Marketable creaMarketable(Giocatore giocatore) {
 		return new Aiutante(this.aiutanti);
