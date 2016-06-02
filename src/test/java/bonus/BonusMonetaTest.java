@@ -20,7 +20,7 @@ public class BonusMonetaTest {
 	@BeforeClass
 	public static void init() throws IOException{
 		gameState=new GameState();
-		bonus=new BonusMoneta(2);
+		bonus=new BonusMoneta(100);
 		giocatore=new Giocatore("giocatore");
 		ArrayList<Giocatore> giocatori=new ArrayList<>();
 		giocatori.add(giocatore);
@@ -31,7 +31,7 @@ public class BonusMonetaTest {
 	@Test
 	public void testUsaBonus() {
 		bonus.usaBonus(gameState);
-		assertEquals(10+2, gameState.getGiocatoreCorrente().getPunteggioRicchezza());
+		assertEquals(10+100, gameState.getGiocatoreCorrente().getPunteggioRicchezza());
 	}
 
 }

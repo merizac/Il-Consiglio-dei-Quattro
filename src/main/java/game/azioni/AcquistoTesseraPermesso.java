@@ -3,6 +3,7 @@ package game.azioni;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import bonus.Bonus;
 import game.Regione;
 import game.CartaPolitica;
 import game.Colore;
@@ -53,12 +54,20 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 		      gameState.getGiocatoreCorrente().getCartePolitica().remove(c);
 		      gameState.getMazzoCartePolitica().aggiungiCarte(carteGiocatore);
 		    }
+		
 		TesseraPermesso tesseraScelta = regione.getTesserePermessoScoperte().get(indiceTesseraScoperta);
+		regione.getTesserePermessoScoperte().remove(indiceTesseraScoperta);
 	    gameState.getGiocatoreCorrente().getTesserePermesso().add(tesseraScelta);
-		 
-		 gameState.notifyObserver(new GameStateNotify(gameState, gameState.getGiocatori()));
-		 gameState.notifyObserver(new GiocatoreNotify(gameState.getGiocatoreCorrente(), Arrays.asList(gameState.getGiocatoreCorrente())));
-		 setStatoTransizionePrincipale(gameState); 
+	    
+		regione.getTesserePermessoScoperte().add(regione.getMazzoTesserePermesso().pescaCarte());
+		
+		for (Bonus b:tesseraScelta.getBonus()){
+			b.usaBonus(gameState);
+		}
+		
+		gameState.notifyObserver(new GameStateNotify(gameState, gameState.getGiocatori()));
+		gameState.notifyObserver(new GiocatoreNotify(gameState.getGiocatoreCorrente(), Arrays.asList(gameState.getGiocatoreCorrente())));
+		setStatoTransizionePrincipale(gameState); 
 		
 	}
 	

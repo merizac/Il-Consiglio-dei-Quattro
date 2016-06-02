@@ -454,6 +454,7 @@ public class Reader {
 					stringaLetta = b.readLine();
 				}
 				stringaLetta = b.readLine();
+				r.getMazzoTesserePermesso().mescolaCarte();
 				r.getTesserePermessoScoperte().add(r.getMazzoTesserePermesso().pescaCarte());
 				r.getTesserePermessoScoperte().add(r.getMazzoTesserePermesso().pescaCarte());
 			}

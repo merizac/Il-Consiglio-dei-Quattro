@@ -8,6 +8,13 @@ import java.util.ArrayList;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import bonus.Bonus;
+import bonus.BonusAiutanti;
+import bonus.BonusAzionePrincipale;
+import bonus.BonusCartePolitica;
+import bonus.BonusMoneta;
+import bonus.BonusPuntiNobiltà;
+import bonus.BonusPuntiVittoria;
 import game.CartaPolitica;
 import game.Colore;
 import game.GameState;
@@ -62,11 +69,40 @@ public class AcquistoTesseraPermessoTest {
 		azione.setCarteGiocatore(carte);
 		azione.setIndiceTesseraScoperta(indiceTesseraScoperta);
 		TesseraPermesso tesseraPermesso=regione.getTesserePermessoScoperte().get(indiceTesseraScoperta);
-		azione.eseguiAzione(gameState);
 		
-		assertEquals(4, gameState.getGiocatoreCorrente().getPunteggioRicchezza());
+		int aiutanti_prima=gameState.getGiocatoreCorrente().getAiutanti().getAiutante();
+		int cartePolitica_prima=gameState.getGiocatoreCorrente().getCartePolitica().size();
+		
+		azione.eseguiAzione(gameState);
+				
+		//controllo utilizzo bonus
+		int monete=0;
+		int aiutanti=0;
+		int vittoria=0;
+		int nobiltà=0;
+		int cartePolitica=0;
+		for(Bonus b: tesseraPermesso.getBonus()){
+			if (b instanceof BonusMoneta)
+				monete=((BonusMoneta) b).getMonete();
+			if(b instanceof BonusAiutanti)
+				aiutanti= ((BonusAiutanti) b).getAiutanti();
+			if(b instanceof BonusAzionePrincipale)										//concludere!!!!!
+
+			if(b instanceof BonusPuntiVittoria)
+				vittoria=((BonusMoneta) b).getMonete();
+			if(b instanceof BonusCartePolitica)
+				cartePolitica=((BonusCartePolitica) b).getCartePolitica();
+			if(b instanceof BonusPuntiNobiltà)
+				nobiltà=((BonusPuntiNobiltà) b).getPuntiNobiltà();
+		}
+		//controllo che la tessera permesso venga data al giocatore
 		assertTrue(tesseraPermesso==gameState.getGiocatoreCorrente().getTesserePermesso().get(gameState.getGiocatoreCorrente().getTesserePermesso().size()-1));
-//		assertTrue(gameState.getMazzoCartePolitica().getCarte().contains(carte));
+		//controllo che sia cambiata la carta pescata
+		assertNotEquals(tesseraPermesso, gameState.getRegioni().get(0).getTesserePermessoScoperte().get(indiceTesseraScoperta));
+		//controllo che vengano scalati e dati puntiricchezza dei bonus
+		assertEquals(4+monete, gameState.getGiocatoreCorrente().getPunteggioRicchezza());
+		assertEquals(aiutanti_prima+aiutanti, gameState.getGiocatoreCorrente().getAiutanti().getAiutante());
+//		assertEquals(cartePolitica_prima+cartePolitica, gameState.getGiocatoreCorrente().getCartePolitica().size());
 	}	
 	
 

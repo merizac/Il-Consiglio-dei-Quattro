@@ -78,6 +78,14 @@ public class BonusPuntiNobiltà extends Bonus {
 			return false;
 		return true;
 	}
+
+	/**
+	 * @return the puntiNobiltà
+	 */
+	public int getPuntiNobiltà() {
+		return puntiNobiltà;
+	}
+	
 	
 	
 }
