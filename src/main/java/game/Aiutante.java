@@ -39,7 +39,7 @@ public class Aiutante implements Marketable{
 	 */
 	public boolean togliAiutanti(int numeroAiutanti) {
 		
-		if(numeroAiutanti<=0)
+		if(numeroAiutanti<0)
 			throw new IllegalArgumentException("Gli aiutanti da togliere devono essere un numero positivo");
 		
 		if(this.numeroAiutanti< numeroAiutanti)

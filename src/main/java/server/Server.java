@@ -18,13 +18,12 @@ public class Server {
 	private GameState gameState;
 	private Controller controller;
 	private List<Giocatore> giocatori;
-	// private Timer timer;
-	// private final static Time TIMEOUT=new Time(10000);
+	private boolean end=false;
 
 	public Server() {
 		this.gameState = new GameState();
-		this.controller = new Controller(gameState);
-		this.giocatori=new ArrayList<>();
+		this.giocatori = new ArrayList<>();
+		this.controller = new Controller(this.gameState);
 	}
 
 	private void startSocket() throws IOException {
@@ -35,29 +34,41 @@ public class Server {
 
 		System.out.println("SERVER SOCKET READY ON PORT " + PORT);
 
-		while (true) {
+		while (!end) {
 			Socket socket = serverSocket.accept();
-			ServerSocketView view = new ServerSocketView(socket, gameState, this );
+			ServerSocketView view = new ServerSocketView(socket, gameState, this);
 
 			this.gameState.registerObserver(view);
 			view.registerObserver(this.controller);
 
 			executor.submit(view);
 		}
+		
+		serverSocket.close();
 	}
 
 	public void aggiungiGiocatore(Giocatore giocatore) {
 		giocatori.add(giocatore);
-	//	System.out.println(giocatori);
-		if (giocatori.size() == 2)
-			try {
-				gameState.start(giocatori);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+
+		if (giocatori.size() == 2) {
+			creaGioco();
+		}
+
 	}
 
+	private void creaGioco() {
+		try {
+			gameState.start(this.giocatori);
+			giocatori.clear();
+			gameState=new GameState();
+			controller=new Controller(gameState);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+
+	}
 
 	public static void main(String[] args) throws IOException {
 		Server server = new Server();

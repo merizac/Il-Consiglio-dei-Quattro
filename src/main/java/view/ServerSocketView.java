@@ -37,7 +37,7 @@ public class ServerSocketView extends View implements Runnable {
 		if (o.daInviare(giocatore)) {
 			try {
 				System.out.println(o);
-				System.out.println(giocatore.getNome()+" :"+ o.daInviare(giocatore));
+				System.out.println(giocatore.getNome() + " :" + o.daInviare(giocatore));
 				this.socketOut.writeObject(o.notifyToClientNotify());
 				this.socketOut.flush();
 			} catch (IOException e) {
@@ -66,23 +66,22 @@ public class ServerSocketView extends View implements Runnable {
 			try {
 				Object object = socketIn.readObject();
 				if (object instanceof AzioneDTO) {
-					if (giocatore.equals(gameState.getGiocatoreCorrente())) {
-						AzioneDTO action = (AzioneDTO) object;
-						System.out.println(action);
-						try {
-							Azione azione = action.accept(azioneVisitor);
-							System.out.println("VIEW: received the action " + azione);
-							this.notifyObserver(azione);
-						} catch (IllegalArgumentException e) {
-							this.socketOut.writeObject(new ErrorClientNotify(e.getMessage()));
-						}
+
+					AzioneDTO action = (AzioneDTO) object;
+					System.out.println(action);
+
+					Azione azione = action.accept(azioneVisitor);
+					System.out.println("VIEW: received the action " + azione);
+					if (azione.isTurno(giocatore, gameState)){
+						System.out.println("azione da eseguire: "+azione.isTurno(giocatore, gameState));
+						this.notifyObserver(azione);
 					}
-					else{
+					else {
 						this.socketOut.writeObject(new ErrorClientNotify("Non è il tuo turno"));
 						this.socketOut.flush();
 					}
-				}
 
+				}
 			} catch (ClassNotFoundException | IOException e1) {
 				e1.printStackTrace();
 			}

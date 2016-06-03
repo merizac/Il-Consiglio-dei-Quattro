@@ -34,14 +34,21 @@ public class CostruzioneAiutoRe extends AzionePrincipale {
 		balcone=gameState.getPlanciaRe().getBalconeRe();
 		Mappa mappa= gameState.getMappa();
 		if(!controllaColori()){
-			gameState.notifyObserver(new ErrorNotify("Errore: i colori delle carte scelte non corrispondon con quelli del balcone!", 
+			gameState.notifyObserver(new ErrorNotify("Errore: i colori delle carte scelte non corrispondono con quelli del balcone!", 
 					Arrays.asList(gameState.getGiocatoreCorrente())));
 			return;
 		}
+		
 			
+		if(!pagoAiutanti(gameState)){
+			gameState.notifyObserver(new ErrorNotify("Errore: gli aiutanti non sono sufficienti!",
+					Arrays.asList(gameState.getGiocatoreCorrente())));
+			return;
+		}
 		
 		int moneteDovute= calcolaMonete() + 
 				2*mappa.minimaDistanza(gameState.getPedinaRe().getCittà(), cittàCostruzione);
+		
 		
 		if(!paga(moneteDovute, gameState)){
 			gameState.notifyObserver(new ErrorNotify("Errore: i soldi non sono sufficienti!",
@@ -49,15 +56,14 @@ public class CostruzioneAiutoRe extends AzionePrincipale {
 			return;
 		}
 			
-		if(!pagoAiutanti(gameState)){
-			gameState.notifyObserver(new ErrorNotify("Errore: gli aiutanti non sono sufficienti!",
-					Arrays.asList(gameState.getGiocatoreCorrente())));
-			return;
-		}
-			
 		else{
 			gameState.getPedinaRe().setCittà(cittàCostruzione);
 			pagaAiutanti(gameState);
+			
+			System.out.println("Carte prima :"+gameState.getGiocatoreCorrente().getCartePolitica());
+			System.out.println("Carte giocatore: "+carteGiocatore);
+			gameState.getGiocatoreCorrente().getCartePolitica().removeAll(carteGiocatore);
+			System.out.println("Carte dopo :"+gameState.getGiocatoreCorrente().getCartePolitica());
 			costruisci(gameState);
 			prendiBonus(gameState);
 			if (cittàCostruzione instanceof CittàBonus)
@@ -145,13 +151,11 @@ public class CostruzioneAiutoRe extends AzionePrincipale {
 	 */
 	private boolean pagoAiutanti(GameState gameState){
 	    int numeroEmpori = cittàCostruzione.getEmpori().size(); 
-	  
 	    if(!cittàCostruzione.getEmpori().isEmpty()) { 
-	      if(gameState.getGiocatoreCorrente().getAiutanti().togliAiutanti(numeroEmpori)){
-	        return true;
-	      }
+	      return gameState.getGiocatoreCorrente().getAiutanti().togliAiutanti(numeroEmpori);
 	    }
-	    return false;
+	    else
+	    	return true;
 	  }
 	/**
 	 * calculate the amount of money due by the player
@@ -193,20 +197,26 @@ public class CostruzioneAiutoRe extends AzionePrincipale {
 	 * @return true if the cards match, false in the other case
 	 */
 	private boolean controllaColori() {
+		ArrayList<Consigliere> copiaConsiglieri = new ArrayList<Consigliere>(balcone.getConsigliere());
 		for (CartaPolitica carta: carteGiocatore ){
+			boolean ok=false;
 			if (carta.equals(new CartaPolitica(new Colore("Multicolore")))){
 				continue;
 			}
-
-			for (Consigliere consigliere: balcone.getConsigliere()){
-					if (consigliere.getColore().equals(carta.getColore())){
-						balcone.getConsigliere().remove(consigliere);
-						break;
+				
+			for (Consigliere consigliere: copiaConsiglieri){
+					if (!consigliere.getColore().equals(carta.getColore())){
+						ok=false;
+						continue;
 					}
 					
-					else
-						return false; //se la carta non matcha
+					else{
+						ok=true;
+						copiaConsiglieri.remove(consigliere);
+						break;}
 				}
+			if(!ok) 
+				return false; //se la carta non matcha
 			}
 		return true;
 		

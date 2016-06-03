@@ -2,11 +2,8 @@ package gameDTO.azioniDTO.azioneVisitor;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-
-import game.Aiutante;
 import game.CartaPolitica;
 import game.Città;
-import game.Colore;
 import game.Consigliere;
 import game.GameState;
 import game.Giocatore;
@@ -39,8 +36,6 @@ import gameDTO.azioniDTO.IngaggioAiutanteDTO;
 import gameDTO.azioniDTO.PassaDTO;
 import gameDTO.azioniDTO.PescaCartaDTO;
 import gameDTO.azioniDTO.SecondaAzionePrincipaleDTO;
-import gameDTO.gameDTO.AiutanteDTO;
-import gameDTO.gameDTO.CartaPoliticaDTO;
 
 public class AzioneVisitorImpl implements AzioneVisitor {
 	
@@ -58,16 +53,13 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 	@Override
 	public AcquistoTesseraPermesso visit(AcquistoTesseraPermessoDTO acquistoTesseraPermessoDTO) {
 		AcquistoTesseraPermesso acquistoTesseraPermesso=new AcquistoTesseraPermesso();
-		System.out.println("prima");
 		Regione regione=ControlloParametri.cercaRegione(acquistoTesseraPermessoDTO.getRegione(), gameState.getRegioni());
 		acquistoTesseraPermesso.setRegione(regione);
-		System.out.println("regione "+regione);
-		System.out.println(giocatore);
 		ArrayList<CartaPolitica> carte=
 				ControlloParametri.cercaCartePolitica(acquistoTesseraPermessoDTO.getCarte(), new ArrayList<>(giocatore.getCartePolitica()));
 		acquistoTesseraPermesso.setCarteGiocatore(carte);
 		
-		acquistoTesseraPermesso.setIndiceTesseraScoperta(acquistoTesseraPermesso.getIndiceTesseraScoperta());
+		acquistoTesseraPermesso.setIndiceTesseraScoperta(acquistoTesseraPermessoDTO.getIndiceTessera());
 		
 		return acquistoTesseraPermesso;
 	}

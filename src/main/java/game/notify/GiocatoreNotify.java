@@ -35,7 +35,6 @@ public class GiocatoreNotify implements Notify{
 	public ClientNotify notifyToClientNotify() {
 		GiocatoreDTO giocatoreDTO = new GiocatoreDTO();
 		giocatoreDTO.inizializza(giocatore);
-		
 		return new GiocatoreClientNotify(giocatoreDTO);
 	}
 	

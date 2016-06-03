@@ -2,6 +2,7 @@ package game.azioni;
 
 import game.GameState;
 import game.Giocatore;
+import game.macchinaStati.StatoAcquistoMarket;
 import game.market.Offerta;
 import utility.exception.AzioneNonEseguibile;
 
@@ -50,6 +51,11 @@ public class AzioneAcquisto extends Azione {
 	 */
 	public void setAcquirente(Giocatore acquirente) {
 		this.acquirente = acquirente;
+	}
+	
+	@Override
+	public boolean isTurno(Giocatore giocatore, GameState gameState){
+		return(giocatore.equals(((StatoAcquistoMarket)gameState.getStato()).getGiocatori().get(0)));
 	}
 
 }

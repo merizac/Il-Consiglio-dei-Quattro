@@ -3,6 +3,7 @@ package gameDTO.gameDTO;
 import java.io.Serializable;
 import java.util.HashSet;
 import game.Città;
+import game.Emporio;
 
 
 public class CittàDTO implements Serializable{
@@ -58,12 +59,16 @@ public class CittàDTO implements Serializable{
 		coloreDTO.inizializza(città.getColoreCittà());
 		this.setColoreDTO(coloreDTO);
 		this.setEmpori(new HashSet<>());
+		for(Emporio e: città.getEmpori()){
+			this.getEmpori().add(e.getColore().getColore());
+		}
 	}
 	
 	@Override
 	public String toString() {
+		System.out.println("chiamato cittàdto");
 		return nome + " Colore:" + ColoreDTO
-				+ " empori:" + empori ;
+				+ " Empori:" + empori ;
 	}
 	
 	

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import bonus.Bonus;
+import gameDTO.gameDTO.CittàBonusDTO;
 import gameDTO.gameDTO.CittàDTO;
 import gameDTO.gameDTO.ConsigliereDTO;
 import gameDTO.gameDTO.GameStateDTO;
@@ -27,7 +28,7 @@ public class GameStateClientNotify implements ClientNotify {
 
 	@Override
 	public void update(GameStateDTO gameStateDTO) {
-		
+
 		gameStateDTO.setAzioni(new ArrayList<>());
 		gameStateDTO.setCittà(this.gameStateDTO.getCittà());
 		gameStateDTO.setConsiglieri(this.gameStateDTO.getConsiglieri());
@@ -40,18 +41,16 @@ public class GameStateClientNotify implements ClientNotify {
 	public void stamp() {
 		System.out.println("\nCittà\n");
 		for (CittàDTO c : gameStateDTO.getCittà()) {
-			String città="";
-			città=città+c.getNome()+" ["+c.getColoreDTO()+" Empori "+c.getEmpori()+" ]";
-			System.out.println(città);
+				System.out.println(c);
 		}
 		System.out.println("\nRegioni\n");
 		for (RegioneDTO r : gameStateDTO.getRegioni()) {
 			System.out.println(r);
-			String balcone="Balcone [ ";
+			String balcone = "Balcone [ ";
 			for (ConsigliereDTO cons : r.getBalcone()) {
-				balcone=balcone+cons+" ";
+				balcone = balcone + cons + " ";
 			}
-			balcone=balcone+"]";
+			balcone = balcone + "]";
 			System.out.println(balcone);
 			System.out.println("Tessere Permesso Scoperte nella regione " + r.getNome());
 			for (TesseraPermessoDTO t : r.getTesserePermessoScoperte()) {
@@ -60,36 +59,36 @@ public class GameStateClientNotify implements ClientNotify {
 				for (CittàDTO ci : t.getCittà()) {
 					cittàTessera = cittàTessera + ci.getNome() + " ";
 				}
-				cittàTessera=cittàTessera+"] ";
+				cittàTessera = cittàTessera + "] ";
 				for (Bonus bonus : t.getBonus()) {
 					bonusTessera = bonusTessera + bonus + " ";
 				}
-				bonusTessera=bonusTessera+"]";
-				System.out.println("Tessera ["+cittàTessera+bonusTessera+" ]");
-				
+				bonusTessera = bonusTessera + "]";
+				System.out.println("Tessera [" + cittàTessera + bonusTessera + " ]");
+
 			}
-			System.out.println("BonusRegione ["+r.getBonusRegione()+" ]\n");
+			System.out.println("BonusRegione [" + r.getBonusRegione() + " ]\n");
 
 		}
-		String balconeRe="Balcone Re [ ";
+		String balconeRe = "Balcone Re [ ";
 		for (ConsigliereDTO consRe : gameStateDTO.getPlanciaReDTO().getBalconeRe()) {
-			balconeRe=balconeRe+consRe+" ";
+			balconeRe = balconeRe + consRe + " ";
 		}
-		balconeRe=balconeRe+"]";
-		System.out.println(balconeRe+"\n");
-		System.out.println(gameStateDTO.getPedinaRE()+"\n");
-		
-		String bonusRe="BonusRe\n";
+		balconeRe = balconeRe + "]";
+		System.out.println(balconeRe + "\n");
+		System.out.println(gameStateDTO.getPedinaRE() + "\n");
 
-		for (Bonus b : gameStateDTO.getPlanciaReDTO().getBonusPremioRe()){
-			bonusRe=bonusRe+b+"\n";
+		String bonusRe = "BonusRe\n";
+
+		for (Bonus b : gameStateDTO.getPlanciaReDTO().getBonusPremioRe()) {
+			bonusRe = bonusRe + b + "\n";
 		}
 		System.out.println(bonusRe);
-		String riserva="Consiglieri [ ";
-		for(ConsigliereDTO c: gameStateDTO.getConsiglieri()){
-			riserva=riserva+c.getColoreConsigliere()+" ";
+		String riserva = "Consiglieri [ ";
+		for (ConsigliereDTO c : gameStateDTO.getConsiglieri()) {
+			riserva = riserva + c.getColoreConsigliere() + " ";
 		}
-		riserva=riserva+"]";
+		riserva = riserva + "]";
 		System.out.println(riserva);
 
 	}

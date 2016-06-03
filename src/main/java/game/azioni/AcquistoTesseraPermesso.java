@@ -54,7 +54,7 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 		      gameState.getGiocatoreCorrente().getCartePolitica().remove(c);
 		      gameState.getMazzoCartePolitica().aggiungiCarte(carteGiocatore);
 		    }
-		
+		System.out.println("Tessera :"+indiceTesseraScoperta);
 		TesseraPermesso tesseraScelta = regione.getTesserePermessoScoperte().get(indiceTesseraScoperta);
 		regione.getTesserePermessoScoperte().remove(indiceTesseraScoperta);
 	    gameState.getGiocatoreCorrente().getTesserePermesso().add(tesseraScelta);
@@ -136,7 +136,7 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 					
 					else{
 						ok=true;
-						regione.getBalcone().getConsigliere().remove(consigliere);
+						copiaConsiglieri.remove(consigliere);
 						break;}
 				}
 			if(!ok) 

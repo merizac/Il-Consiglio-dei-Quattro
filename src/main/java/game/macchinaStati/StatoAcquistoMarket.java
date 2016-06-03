@@ -45,9 +45,10 @@ public class StatoAcquistoMarket implements Stato {
 		if(!giocatori.isEmpty()){
 			Collections.shuffle(giocatori);
 			gameState.setStato(this);
-			gameState.notifyObserver(new AzioniNotify(azioni, Arrays.asList(giocatori.remove(0))));
+			gameState.notifyObserver(new AzioniNotify(azioni, Arrays.asList(giocatori.get(0))));
 		}
 		else{
+			System.out.println("Giocatore corrente fine market :"+gameState.getGiocatoreCorrente().getNome());
 			gameState.getOfferteMarket().clear();
 			gameState.setStato(new StartEnd(gameState));
 		}

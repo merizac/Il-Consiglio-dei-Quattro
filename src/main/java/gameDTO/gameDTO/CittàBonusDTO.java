@@ -38,7 +38,9 @@ public class CittàBonusDTO extends CittàDTO implements Serializable{
 	 */
 	@Override
 	public String toString() {
-		return "CittàBonusDTO [bonus=" + bonus + "]";
+		System.out.println("chiamato cittàbonusdto");
+		return this.getNome()+" Colore: "+this.getColoreDTO().getColore()
+				+" Empori: "+this.getEmpori()+" Bonus : "+bonus;
 	}
 
 }

@@ -77,7 +77,7 @@ public class ClientOutHandler implements Runnable {
 
 			else if ("P2".equals(inputLine)) {
 				regioneScelta = azioniClient.scegliRegione(gameStateDTO.getRegioni(), stdIn);
-				cartePolitica = azioniClient.scegliCarte(gameStateDTO.getGiocatoreDTO().getCartePolitica(), stdIn);
+				cartePolitica = azioniClient.scegliCarte(new ArrayList<>(gameStateDTO.getGiocatoreDTO().getCartePolitica()), stdIn);
 				indice = azioniClient.scegliTesseraRegione(regioneScelta.getTesserePermessoScoperte(), stdIn);
 
 				action = new AcquistoTesseraPermessoDTO(regioneScelta, cartePolitica, indice);
@@ -85,7 +85,7 @@ public class ClientOutHandler implements Runnable {
 			}
 
 			else if ("P3".equals(inputLine)) {
-				tesseraScelta = azioniClient.scegliTesseraGiocatore(gameStateDTO.getGiocatoreDTO().getTesserePermesso(),
+				tesseraScelta = azioniClient.scegliTesseraGiocatore( gameStateDTO.getGiocatoreDTO().getTesserePermesso(),
 						stdIn);
 				cittàScelta = azioniClient.scegliCittà(tesseraScelta.getCittà(),
 						gameStateDTO.getGiocatoreDTO().getColoreGiocatore(), stdIn);
@@ -96,7 +96,7 @@ public class ClientOutHandler implements Runnable {
 
 			else if ("P4".equals(inputLine)) {
 
-				cartePolitica = azioniClient.scegliCarte(gameStateDTO.getGiocatoreDTO().getCartePolitica(), stdIn);
+				cartePolitica = azioniClient.scegliCarte(new ArrayList<>(gameStateDTO.getGiocatoreDTO().getCartePolitica()), stdIn);
 				cittàScelta = azioniClient.scegliCittà(gameStateDTO.getCittà(),
 						gameStateDTO.getGiocatoreDTO().getColoreGiocatore(), stdIn);
 
@@ -119,7 +119,7 @@ public class ClientOutHandler implements Runnable {
 
 				action = new ElezioneConsigliereVeloceDTO(regioneScelta, consigliereScelto);
 			} else if ("V4".equals(inputLine)) {
-				new SecondaAzionePrincipaleDTO();
+				action = new SecondaAzionePrincipaleDTO();
 			} else if ("Offerta".equals(inputLine)) {
 				System.out.println("Cosa vuoi vendere\n?");
 				System.out.println("Aiutante [1]\nCarta Politica[2]\nTesseraPermesso[3]");
@@ -142,7 +142,7 @@ public class ClientOutHandler implements Runnable {
 					action = new AzioneOffertaDTO(new AiutanteDTO(1), prezzo);
 
 				} else if ("2".equals(comando)) {
-					cartaPolitica = azioniClient.scegliCarta(gameStateDTO.getGiocatoreDTO().getCartePolitica(), stdIn);
+					cartaPolitica = azioniClient.scegliCarta(new ArrayList<>(gameStateDTO.getGiocatoreDTO().getCartePolitica()), stdIn);
 					prezzo = azioniClient.scegliPrezzo(stdIn);
 					action = new AzioneOffertaDTO(cartaPolitica, prezzo);
 				} else if ("3".equals(comando)) {

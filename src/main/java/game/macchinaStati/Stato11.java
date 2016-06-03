@@ -51,7 +51,6 @@ public class Stato11 implements Stato {
 		azioni.add("Ingaggiare un aiutante [V1]");
 		azioni.add("Cambiare le tessere permesso di costruzione [V2]");
 		azioni.add("Mandare un aiutante ad eleggere un consigliere [V3]");
-		azioni.add("Compiere un'azione principale [V4]");
 	}
 
 }
