@@ -62,6 +62,7 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 		regione.getTesserePermessoScoperte().add(regione.getMazzoTesserePermesso().pescaCarte());
 		
 		for (Bonus b:tesseraScelta.getBonus()){
+			System.out.println(b);
 			b.usaBonus(gameState);
 		}
 		

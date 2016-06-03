@@ -21,6 +21,8 @@ public class StatoFinePartita implements Stato {
 	private static final long serialVersionUID = -972179062051125451L;
 
 	public StatoFinePartita(GameState gameState) {
+		System.out.println("stato fine partita");
+		
 		calcolaVincitore(gameState);
 
 	}
@@ -69,10 +71,10 @@ public class StatoFinePartita implements Stato {
 		public int compare(Giocatore g1, Giocatore g2) {
 			int puntiVittoria1 = g1.getPunteggioVittoria();
 			int puntiVittoria2 = g2.getPunteggioVittoria();
-			int numeroAiutanti1 =g1.getAiutanti().getAiutante();
-			int numeroAiutanti2 =g2.getAiutanti().getAiutante();
-			int cartePolitica1 =g1.getCartePolitica().size();
-			int cartePolitica2 =g2.getCartePolitica().size();
+			int numeroAiutanti1 = g1.getAiutanti().getAiutante();
+			int numeroAiutanti2 = g2.getAiutanti().getAiutante();
+			int cartePolitica1 = g1.getCartePolitica().size();
+			int cartePolitica2 = g2.getCartePolitica().size();
 
 			if (puntiVittoria2 < puntiVittoria1)
 				return -1;
@@ -159,7 +161,6 @@ ArrayList<Giocatore> giocatori = new ArrayList<>(gameState.getGiocatoriFineParti
 			public int compare(Giocatore g1, Giocatore g2) {
 				int punti1 = g1.getPunteggioNobiltà().getPuntiNobiltà();
 				int punti2 = g2.getPunteggioNobiltà().getPuntiNobiltà();
-
 				if (punti2 < punti1)
 					return -1;
 				else if (punti1 == punti2)
@@ -169,9 +170,9 @@ ArrayList<Giocatore> giocatori = new ArrayList<>(gameState.getGiocatoriFineParti
 			}
 
 		});
-		
 		ArrayList<Giocatore> primo = new ArrayList<>();
 		primo.add(giocatori.get(0));
+		giocatori.remove(primo.get(0));
 		ArrayList<Giocatore> secondo = new ArrayList<>();
 		
 		for(Giocatore g: giocatori){

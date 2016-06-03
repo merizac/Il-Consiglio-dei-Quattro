@@ -235,18 +235,20 @@ public class GameState extends Observable<Notify> {
 	public boolean lastNextPlayer(){
 		Giocatore ultimoGiro = giocatori.remove(0);
 		giocatoriFinePartita.add(ultimoGiro);
+		System.out.println("last next player giocatori:" +giocatori);
+		System.out.println("lastnextplayer giocatoriFinePartita: "+ giocatoriFinePartita);
 		if(giocatori.isEmpty()){
 			return true;
 		}
 		else{
 		this.giocatoreCorrente = giocatori.get(0);
+		System.out.println("giocatore corrente lastnextplayer: "+ giocatoreCorrente);
 		return false;
 		}
 	}
 
 	public void decrementaTurno() {
 		this.numeroTurni--;
-
 	}
 
 	public void start(List<Giocatore> giocatori) throws IOException {

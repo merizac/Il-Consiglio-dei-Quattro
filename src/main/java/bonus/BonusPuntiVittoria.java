@@ -66,6 +66,14 @@ public class BonusPuntiVittoria extends Bonus {
 			return false;
 		return true;
 	}
+
+	/**
+	 * @return the puntiVittoria
+	 */
+	public int getPuntiVittoria() {
+		return puntiVittoria;
+	}
+	
 	
 	
 }

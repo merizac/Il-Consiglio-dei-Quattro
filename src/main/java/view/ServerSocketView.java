@@ -36,8 +36,6 @@ public class ServerSocketView extends View implements Runnable {
 	public void update(Notify o) {
 		if (o.daInviare(giocatore)) {
 			try {
-				System.out.println(o);
-				System.out.println(giocatore.getNome() + " :" + o.daInviare(giocatore));
 				this.socketOut.writeObject(o.notifyToClientNotify());
 				this.socketOut.flush();
 			} catch (IOException e) {
@@ -68,7 +66,6 @@ public class ServerSocketView extends View implements Runnable {
 				if (object instanceof AzioneDTO) {
 
 					AzioneDTO action = (AzioneDTO) object;
-					System.out.println(action);
 
 					Azione azione = action.accept(azioneVisitor);
 					System.out.println("VIEW: received the action " + azione);

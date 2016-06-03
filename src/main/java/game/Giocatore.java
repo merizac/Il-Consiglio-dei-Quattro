@@ -173,8 +173,7 @@ public class Giocatore {
 	}
 
 public int getNumeroTesserePermesso(){
-	int numeroTessere = this.getTesserePermesso().size()+this.getTesserePermessoUsate().size();
-	return numeroTessere;
+	return (this.getTesserePermesso().size()+this.getTesserePermessoUsate().size());
 }
 
 	/**
@@ -242,6 +241,14 @@ public int getNumeroTesserePermesso(){
 	public void aggiungiEmpori(ArrayList<Emporio> empori){
 		this.empori.addAll(empori);
 	}
+	
+	/*//Prova per testare fine partita
+	public void creaEmpori(Colore colore){
+		for(int i=0; i<1; i++){
+			Emporio emporio=new Emporio(colore);
+			empori.add(emporio);
+		}
+	}*/
 	
 	public void creaEmpori(Colore colore){
 		for(int i=0; i<10; i++){

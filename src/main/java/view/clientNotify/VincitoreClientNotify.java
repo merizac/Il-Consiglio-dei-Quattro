@@ -31,8 +31,8 @@ public class VincitoreClientNotify implements ClientNotify {
 	@Override
 	public void stamp() {
 		System.out.println("Complimenti "+giocatoreDTO.getNome().toUpperCase()
-				+ " hai vinto!!");
-		System.out.println("Hai totalizzato "+ giocatoreDTO.getPunteggioVittoria() + "punti!");
+				+ ", hai vinto!!");
+		System.out.println("Hai totalizzato "+ giocatoreDTO.getPunteggioVittoria() + " punti!");
 		
 	}
 

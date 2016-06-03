@@ -35,12 +35,17 @@ public class Stato01 implements Stato {
 
 	@Override
 	public void transizioneVeloce(GameState gameState) throws AzioneNonEseguibile {
-		
+		System.out.println("ultimogiro"+gameState.isUltimoGiro());
 		if(gameState.isUltimoGiro()){
-			if(gameState.lastNextPlayer())
-			   gameState.setStato(new StatoFinePartita(gameState));
-			else
-				gameState.setStato(new StartEnd(gameState));
+			if(!gameState.lastNextPlayer()){
+
+				System.out.println("last next player è false --> Start End");
+				gameState.setStato(new StartEnd(gameState));}
+			else{
+
+				System.out.println("last next player è true --> Stato fine partita");
+				gameState.setStato(new StatoFinePartita(gameState));}
+			
 		}
 		else{
 		gameState.nextPlayer();

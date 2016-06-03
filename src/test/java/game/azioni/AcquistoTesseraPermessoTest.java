@@ -13,8 +13,10 @@ import bonus.BonusAiutanti;
 import bonus.BonusAzionePrincipale;
 import bonus.BonusCartePolitica;
 import bonus.BonusMoneta;
+import bonus.BonusNobiltà;
 import bonus.BonusPuntiNobiltà;
 import bonus.BonusPuntiVittoria;
+import controller.Controller;
 import game.CartaPolitica;
 import game.Colore;
 import game.GameState;
@@ -65,14 +67,23 @@ public class AcquistoTesseraPermessoTest {
 		carte.add(new CartaPolitica(new Colore("Multicolore")));
 		carte.add(new CartaPolitica(new Colore("Multicolore")));
 		carte.add(new CartaPolitica(regione.getBalcone().getConsigliere().element().getColore()));
+		gameState.getGiocatoreCorrente().aggiungiCartaPolitica(new CartaPolitica(new Colore("Multicolore")));
+		gameState.getGiocatoreCorrente().aggiungiCartaPolitica(new CartaPolitica(new Colore("Multicolore")));
+		gameState.getGiocatoreCorrente().aggiungiCartaPolitica(new CartaPolitica(regione.getBalcone().getConsigliere().element().getColore()));
 
 		azione.setCarteGiocatore(carte);
 		azione.setIndiceTesseraScoperta(indiceTesseraScoperta);
+		
 		TesseraPermesso tesseraPermesso=regione.getTesserePermessoScoperte().get(indiceTesseraScoperta);
+//		tesseraPermesso.getBonus().add(new BonusPuntiNobiltà(2));
 		
 		int aiutanti_prima=gameState.getGiocatoreCorrente().getAiutanti().getAiutante();
 		int cartePolitica_prima=gameState.getGiocatoreCorrente().getCartePolitica().size();
+		int nobiltà_prima=gameState.getGiocatoreCorrente().getPunteggioNobiltà().getPuntiNobiltà();
+		int vittoria_prima=gameState.getGiocatoreCorrente().getPunteggioVittoria();
 		
+		System.out.println(gameState.getGiocatoreCorrente().getCartePolitica());
+	
 		azione.eseguiAzione(gameState);
 				
 		//controllo utilizzo bonus
@@ -83,18 +94,26 @@ public class AcquistoTesseraPermessoTest {
 		int cartePolitica=0;
 		for(Bonus b: tesseraPermesso.getBonus()){
 			if (b instanceof BonusMoneta)
-				monete=((BonusMoneta) b).getMonete();
+				monete+=((BonusMoneta) b).getMonete();
 			if(b instanceof BonusAiutanti)
 				aiutanti= ((BonusAiutanti) b).getAiutanti();
-			if(b instanceof BonusAzionePrincipale)										//concludere!!!!!
-
 			if(b instanceof BonusPuntiVittoria)
-				vittoria=((BonusMoneta) b).getMonete();
+				vittoria+=((BonusPuntiVittoria) b).getPuntiVittoria();
 			if(b instanceof BonusCartePolitica)
 				cartePolitica=((BonusCartePolitica) b).getCartePolitica();
-			if(b instanceof BonusPuntiNobiltà)
-				nobiltà=((BonusPuntiNobiltà) b).getPuntiNobiltà();
+			if(b instanceof BonusPuntiNobiltà){
+				nobiltà+=((BonusPuntiNobiltà) b).getPuntiNobiltà();
+				for(Bonus s:gameState.getGiocatoreCorrente().getPunteggioNobiltà().getBonus()){
+					if(s instanceof BonusPuntiVittoria)
+						vittoria+=((BonusPuntiVittoria) s).getPuntiVittoria();
+					if (s instanceof BonusMoneta)
+						monete+=((BonusMoneta) s).getMonete();
+				}
+			}
 		}
+		
+		System.out.println(gameState.getGiocatoreCorrente().getCartePolitica());
+		
 		//controllo che la tessera permesso venga data al giocatore
 		assertTrue(tesseraPermesso==gameState.getGiocatoreCorrente().getTesserePermesso().get(gameState.getGiocatoreCorrente().getTesserePermesso().size()-1));
 		//controllo che sia cambiata la carta pescata
@@ -102,7 +121,9 @@ public class AcquistoTesseraPermessoTest {
 		//controllo che vengano scalati e dati puntiricchezza dei bonus
 		assertEquals(4+monete, gameState.getGiocatoreCorrente().getPunteggioRicchezza());
 		assertEquals(aiutanti_prima+aiutanti, gameState.getGiocatoreCorrente().getAiutanti().getAiutante());
-//		assertEquals(cartePolitica_prima+cartePolitica, gameState.getGiocatoreCorrente().getCartePolitica().size());
+		assertEquals(nobiltà_prima+nobiltà, gameState.getGiocatoreCorrente().getPunteggioNobiltà().getPuntiNobiltà());
+		assertEquals(cartePolitica_prima+cartePolitica-3, gameState.getGiocatoreCorrente().getCartePolitica().size());
+		assertEquals(vittoria_prima+vittoria, gameState.getGiocatoreCorrente().getPunteggioVittoria());
 	}	
 	
 

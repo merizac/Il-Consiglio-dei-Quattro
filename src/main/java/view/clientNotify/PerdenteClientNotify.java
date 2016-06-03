@@ -33,7 +33,7 @@ public class PerdenteClientNotify implements ClientNotify {
 	@Override
 	public void stamp() {
 		System.out.println(giocatoreDTO.getNome().toUpperCase()+", hai perso!!");
-		System.out.println("Hai totalizzato "+ giocatoreDTO.getPunteggioVittoria() + "punti!");
+		System.out.println("Hai totalizzato "+ giocatoreDTO.getPunteggioVittoria() + " punti!");
 		
 	}
 
