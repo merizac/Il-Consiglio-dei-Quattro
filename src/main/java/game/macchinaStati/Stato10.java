@@ -35,17 +35,28 @@ public class Stato10 implements Stato {
 
 	@Override
 	public void transizionePrincipale(GameState gameState) throws AzioneNonEseguibile {
-
-		if (!gameState.isBonusAzionePrincipale()) {
-			gameState.nextPlayer();
-			gameState.prossimoTurno();
-
-			if (gameState.getNumeroTurni() != gameState.getGiocatori().size())
-				gameState.setStato(new StartEnd(gameState));
-			else
-				gameState.setStato(new StatoOffertaMarket(gameState));
-		} else
-			gameState.setBonusAzionePrincipale(false);
+		if(!gameState.isBonusAzionePrincipale()){
+			if(gameState.isUltimoGiro()){
+				if(gameState.lastNextPlayer())
+					gameState.setStato(new StatoFinePartita(gameState));
+				else{
+					gameState.nextPlayer();
+					gameState.setStato(new StartEnd(gameState));
+					}
+			}
+			else {
+				gameState.nextPlayer();
+				gameState.prossimoTurno();
+		
+				if (gameState.getNumeroTurni() != gameState.getGiocatori().size())
+					gameState.setStato(new StartEnd(gameState));
+				else
+					gameState.setStato(new StatoOffertaMarket(gameState));
+				}
+			}	
+		else
+			gameState.setBonusAzionePrincipale(false);	
+	
 	}
 
 	@Override

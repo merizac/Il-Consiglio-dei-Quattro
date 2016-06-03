@@ -31,7 +31,7 @@ public class GameState extends Observable<Notify> {
 	private boolean ultimoGiro= false;
 	private List<Giocatore> giocatoriFinePartita;
 
-
+	
 	/**
 	 * 
 	 * @param coloreConsigliere
@@ -258,6 +258,7 @@ public class GameState extends Observable<Notify> {
 		this.pedinaRe = Reader.creazioneRe();
 		this.giocatori = new ArrayList<Giocatore>();
 		this.offerteMarket = new ArrayList<>();
+		this.giocatoriFinePartita= new ArrayList<>();
 		creaGiocatori(giocatori);
 		this.notifyObserver(new GameStateNotify(this, giocatori));
 		

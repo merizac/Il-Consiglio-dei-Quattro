@@ -172,7 +172,10 @@ public class Giocatore {
 		return tesserePermessoUsate;
 	}
 
-
+public int getNumeroTesserePermesso(){
+	int numeroTessere = this.getTesserePermesso().size()+this.getTesserePermessoUsate().size();
+	return numeroTessere;
+}
 
 	/**
 	 * @return the tessereBonus
