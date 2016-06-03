@@ -40,6 +40,8 @@ public class CambioTesseraPermessoTest {
 		assertNotNull(regione.getTesserePermessoScoperte().get(1));
 		assertNotEquals(t1,regione.getTesserePermessoScoperte().get(0));
 		assertNotEquals(t2,regione.getTesserePermessoScoperte().get(1));
+		assertTrue(regione.getMazzoTesserePermesso().getCarte().contains(t1));
+		assertTrue(regione.getMazzoTesserePermesso().getCarte().contains(t2));
 		
 	}
 
