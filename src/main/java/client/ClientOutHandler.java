@@ -69,9 +69,7 @@ public class ClientOutHandler implements Runnable {
 
 			else if ("P1".equals(inputLine)) {
 				consigliereScelto = azioniClient.scegliConsigliere(gameStateDTO.getConsiglieri(), stdIn);
-				System.out.println(consigliereScelto);
 				regioneScelta = azioniClient.scegliRegione(gameStateDTO.getRegioni(), stdIn);
-				System.out.println(regioneScelta);
 				action = new ElezioneConsigliereDTO(consigliereScelto, regioneScelta);
 			}
 
