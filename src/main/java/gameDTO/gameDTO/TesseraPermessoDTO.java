@@ -12,10 +12,10 @@ import game.TesseraPermesso;
 import game.market.Marketable;
 import gameDTO.azioniDTO.ControlloParametri;
 
-public class TesseraPermessoDTO implements Serializable, MarketableDTO  {
+public class TesseraPermessoDTO implements Serializable, MarketableDTO {
 
 	private static final long serialVersionUID = 251246647055835184L;
-	private Set<CittàDTO> città;
+	private Set<CittàDTO> città=new HashSet<>();
 	private ArrayList<Bonus> bonus;
 	/**
 	 * @return the città
@@ -54,8 +54,10 @@ public class TesseraPermessoDTO implements Serializable, MarketableDTO  {
 		città=città+"]";
 		return "TesseraPermesso  città:" + città + ", bonus:" + bonus;
 	}
+	
+	
 	public void inizializza(TesseraPermesso t) {
-		this.città=new HashSet<>();
+		
 		for(Città c: t.getCittà()){
 			CittàDTO cittàDTO=new CittàDTO();
 			cittàDTO.inizializza(c);
@@ -63,11 +65,20 @@ public class TesseraPermessoDTO implements Serializable, MarketableDTO  {
 		}
 		this.setBonus(t.getBonus());
 	}
+	
 	@Override
-	public Marketable creaMarketable(Giocatore giocatore) {
+	public TesseraPermesso creaMarketable(Giocatore giocatore) {
 		return ControlloParametri.cercaTesseraPermesso(this, giocatore.getTesserePermesso());
 	}
 	
+	@Override
+	public void creaMarketableDTO(Marketable marketable) {
+		TesseraPermesso t=(TesseraPermesso)marketable;
+		this.inizializza(t);
+		
+	}
+
+
 	
 
 }

@@ -18,7 +18,7 @@ public class Server {
 	private GameState gameState;
 	private Controller controller;
 	private List<Giocatore> giocatori;
-	private boolean end=false;
+	private boolean end = false;
 
 	public Server() {
 		this.gameState = new GameState();
@@ -43,7 +43,7 @@ public class Server {
 
 			executor.submit(view);
 		}
-		
+
 		serverSocket.close();
 	}
 
@@ -60,13 +60,12 @@ public class Server {
 		try {
 			gameState.start(this.giocatori);
 			giocatori.clear();
-			gameState=new GameState();
-			controller=new Controller(gameState);
+			gameState = new GameState();
+			controller = new Controller(gameState);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 
 	}
 

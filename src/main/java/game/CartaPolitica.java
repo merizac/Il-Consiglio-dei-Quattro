@@ -2,6 +2,8 @@ package game;
 
 import game.market.Marketable;
 import game.market.Offerta;
+import gameDTO.gameDTO.CartaPoliticaDTO;
+import gameDTO.gameDTO.MarketableDTO;
 
 public class CartaPolitica implements Marketable {
 
@@ -84,6 +86,12 @@ public class CartaPolitica implements Marketable {
 			return false;
 		else
 			return true;
+	}
+
+
+	@Override
+	public MarketableDTO instance() {
+		return new CartaPoliticaDTO();
 	}
 	
 	

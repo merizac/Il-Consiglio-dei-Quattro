@@ -7,6 +7,7 @@ import java.util.List;
 import game.GameState;
 import game.Giocatore;
 import game.notify.AzioniNotify;
+import game.notify.OffertaNotify;
 import utility.exception.AzioneNonEseguibile;
 
 public class StatoAcquistoMarket implements Stato {
@@ -21,15 +22,14 @@ public class StatoAcquistoMarket implements Stato {
 	public StatoAcquistoMarket(GameState gameState){
 		this.azioni=new ArrayList<>();
 		this.giocatori=new ArrayList<Giocatore>(gameState.getGiocatori());
-		System.out.println("acquisto giocatorecorrente: "+ gameState.getGiocatoreCorrente().getNome());
 		inizializzaStato(gameState);
 	}
 	
 	private void inizializzaStato(GameState gameState){
 		riempiAzioni();
 		Collections.shuffle(giocatori);
-		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), 
-				Arrays.asList(giocatori.get(0))));
+		gameState.notifyObserver(new AzioniNotify(azioni, Arrays.asList(giocatori.get(0))));
+		gameState.notifyObserver(new OffertaNotify(gameState.getOfferteMarket(), Arrays.asList(giocatori.get(0))));
 		
 	}
 	
@@ -46,6 +46,7 @@ public class StatoAcquistoMarket implements Stato {
 			Collections.shuffle(giocatori);
 			gameState.setStato(this);
 			gameState.notifyObserver(new AzioniNotify(azioni, Arrays.asList(giocatori.get(0))));
+			gameState.notifyObserver(new OffertaNotify(gameState.getOfferteMarket(), Arrays.asList(giocatori.get(0))));
 		}
 		else{
 			System.out.println("Giocatore corrente fine market :"+gameState.getGiocatoreCorrente().getNome());
@@ -58,6 +59,7 @@ public class StatoAcquistoMarket implements Stato {
 		System.out.println("market giocatorecorrente: "+ gameState.getGiocatoreCorrente().getNome());
 		gameState.setStato(this);
 		gameState.notifyObserver(new AzioniNotify(azioni, Arrays.asList(giocatori.get(0))));
+		gameState.notifyObserver(new OffertaNotify(gameState.getOfferteMarket(), Arrays.asList(giocatori.get(0))));
 	}
 	
 	@Override

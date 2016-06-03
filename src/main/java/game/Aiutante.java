@@ -2,6 +2,8 @@ package game;
 
 import game.market.Marketable;
 import game.market.Offerta;
+import gameDTO.gameDTO.AiutanteDTO;
+import gameDTO.gameDTO.MarketableDTO;
 
 public class Aiutante implements Marketable{
 
@@ -75,6 +77,10 @@ public class Aiutante implements Marketable{
 	@Override
 	public String toString() {
 		return "Aiutanti:"+ numeroAiutanti;
+	}
+	@Override
+	public MarketableDTO instance() {
+		return new AiutanteDTO();
 	}
 	
 	

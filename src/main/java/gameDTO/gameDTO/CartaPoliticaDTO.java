@@ -29,9 +29,6 @@ public class CartaPoliticaDTO implements Serializable, MarketableDTO {
 		this.colore = colore;
 	}
 	
-	public void inizializza(CartaPolitica cartaPolitica){
-		this.setColore(cartaPolitica.getColore().getColore());
-	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
@@ -42,9 +39,24 @@ public class CartaPoliticaDTO implements Serializable, MarketableDTO {
 	}
 
 	@Override
-	public Marketable creaMarketable(Giocatore giocatore) {
+	public CartaPolitica creaMarketable(Giocatore giocatore) {
 		return new CartaPolitica(new Colore(this.colore));
 	}
+
+	@Override
+	public void creaMarketableDTO(Marketable marketable) {
+		CartaPolitica cartaPolitica=(CartaPolitica)marketable;
+		this.inizializza(cartaPolitica);
+		
+	}
+	
+	public void inizializza(CartaPolitica c){
+		this.setColore(c.getColore().getColore());
+	}
+
+
+
+
 	
 	
 	

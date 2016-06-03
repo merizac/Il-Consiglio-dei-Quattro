@@ -1,7 +1,9 @@
 package gameDTO.azioniDTO;
 
 import game.azioni.Azione;
+import game.market.Marketable;
 import gameDTO.azioniDTO.azioneVisitor.AzioneVisitor;
+import gameDTO.gameDTO.AiutanteDTO;
 import gameDTO.gameDTO.MarketableDTO;
 
 public class AzioneOffertaDTO implements AzioneDTO {
@@ -25,6 +27,7 @@ public class AzioneOffertaDTO implements AzioneDTO {
 		this.prezzo = prezzo;
 		this.marketableDTO = marketableDTO;
 	}
+
 
 	/**
 	 * @return the prezzo
