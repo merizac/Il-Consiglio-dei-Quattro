@@ -31,6 +31,7 @@ import game.GameState;
 import game.Mappa;
 import game.Regione;
 import game.TesseraPermesso;
+import utility.Utils;
 import game.Mazzo;
 import game.PlanciaRe;
 import game.PunteggioNobiltà;
@@ -119,6 +120,7 @@ public class Reader {
 			stringaLetta = b.readLine();
 		}
 		b.close();
+		cartaPolitica.close();
 		Collections.shuffle(cartaPoliticaList);
 		return new Mazzo<CartaPolitica>(cartaPoliticaList);
 	}
@@ -168,6 +170,7 @@ public class Reader {
 			nobiltà.add(new PunteggioNobiltà(i, bonus));
 		}
 		b.close();
+		punteggioNobiltà.close();
 		return nobiltà;
 	}
 
@@ -215,6 +218,7 @@ public class Reader {
 			stringaLetta = b.readLine();
 		}
 		b.close();
+		cons.close();
 		Collections.shuffle(consiglieri);
 		return consiglieri;
 	}
@@ -244,6 +248,7 @@ public class Reader {
 			}
 		}
 		b.close();
+		reg.close();
 		return regioni;
 	}
 
@@ -278,7 +283,9 @@ public class Reader {
 
 		// Ciclo le regioni poi i colori e setto la città
 		for (Regione regione : regioni) {
-				int numerocittà = Integer.parseInt(b.readLine());
+			String numero = b.readLine();
+			if (Utils.isNumeric(numero)) {
+				int numerocittà = Integer.parseInt(numero);
 				for (int i = 0; i < numerocittà; i++) {
 					String tmp = b.readLine();
 					StringTokenizer st = new StringTokenizer(tmp);
@@ -302,29 +309,32 @@ public class Reader {
 						}
 					}
 				}
+			}
 		}
-		// città collegate
-		if (b.readLine().equals("CITTACOLLEGATE")) {
-			for (Città c : cities) {
-				StringTokenizer st = new StringTokenizer(b.readLine());
-				if (st.hasMoreTokens()) {
-					String nome = st.nextToken();
-					if (nome.equals(c.getNome())) {
-						while (st.hasMoreTokens()) {
-							String cittàCollegata = st.nextToken();
-							Città cittàToFind = findCittà(cittàCollegata);
-							c.getCittàCollegate().add(cittàToFind);
-						}
-					} else
-						continue;
+		String stringa = b.readLine();
+		if (stringa != null) {
+			if (stringa.equals("CITTACOLLEGATE")) {
+				for (Città c : cities) {
+					StringTokenizer st = new StringTokenizer(b.readLine());
+					if (st.hasMoreTokens()) {
+						String nome = st.nextToken();
+						if (nome.equals(c.getNome())) {
+							while (st.hasMoreTokens()) {
+								String cittàCollegata = st.nextToken();
+								Città cittàToFind = findCittà(cittàCollegata);
+								c.getCittàCollegate().add(cittàToFind);
+							}
+						} else
+							continue;
+					}
 				}
 			}
 		}
 
 		b.close();
+		città.close();
 		return cities;
 	}
-
 
 	public static ArrayList<Bonus> letturaBonusRe() throws IOException {
 
@@ -341,6 +351,7 @@ public class Reader {
 			bonusRe.add(new BonusPuntiVittoria(Integer.parseInt(letta)));
 		}
 		b.close();
+		bonus.close();
 		return bonusRe;
 	}
 
@@ -388,10 +399,10 @@ public class Reader {
 
 		}
 		b.close();
+		bonusDelleCittà.close();
 		Collections.shuffle(listaBonusTondi);
-
 		for (Città c : cities) {
-			if (c instanceof CittàBonus) {
+			if (c instanceof CittàBonus && !listaBonusTondi.isEmpty()) {
 				((CittàBonus) c).setBonus(listaBonusTondi.remove(0));
 			}
 
@@ -406,10 +417,11 @@ public class Reader {
 		String stringaLetta;
 		stringaLetta = b.readLine();
 
-		while (true) {
-			if (stringaLetta == null)
-				break;
+		while (stringaLetta != null) {
+
 			for (Regione r : regioni) {
+				if (stringaLetta == null)
+					break;
 				while (!stringaLetta.equals("FINEREGIONE")) {
 					StringTokenizer st = new StringTokenizer(stringaLetta);
 					ArrayList<Città> cit = new ArrayList<>();
@@ -460,6 +472,7 @@ public class Reader {
 			}
 		}
 		b.close();
+		t.close();
 	}
 
 	public static Città findCittà(String c) {
