@@ -16,8 +16,4 @@ public abstract class AzionePrincipale extends Azione {
 		}
 	}
 	
-	public void sendErrorNotify(GameState gameState){
-		//gameState.notifyObserver(new ErrorNotify());
-	}
-	
 }

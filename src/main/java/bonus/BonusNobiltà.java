@@ -1,19 +1,17 @@
 package bonus;
-import controller.Controller;
+
+import game.GameState;
 
 public abstract class BonusNobiltà extends Bonus {
-	
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 4543850194700774391L;
-
-	public BonusNobiltà() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	private static final long serialVersionUID = 953130507727170967L;	
 	
-	public abstract void usaBonus(Controller partita);
-
+	@Override
+	public void usaBonus(GameState gameState){
+		gameState.getGiocatoreCorrente().getBonusNobiltà().add(this);
+	}
 
 }

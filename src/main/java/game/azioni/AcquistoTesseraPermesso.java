@@ -15,7 +15,7 @@ import game.notify.GameStateNotify;
 import game.notify.GiocatoreNotify;
 import gameDTO.gameDTO.GiocatoreDTO;
 
-public class AcquistoTesseraPermesso extends AzionePrincipale {
+public class AcquistoTesseraPermesso extends AzionePrincipale implements Bonusable {
 
 	/**
 	 * 
@@ -65,6 +65,8 @@ public class AcquistoTesseraPermesso extends AzionePrincipale {
 			System.out.println(b);
 			b.usaBonus(gameState);
 		}
+		
+		
 		
 		gameState.notifyObserver(new GameStateNotify(gameState, gameState.getGiocatori()));
 		gameState.notifyObserver(new GiocatoreNotify(gameState.getGiocatoreCorrente(), Arrays.asList(gameState.getGiocatoreCorrente())));
