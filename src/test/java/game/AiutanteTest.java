@@ -38,11 +38,6 @@ public class AiutanteTest {
 		aiutante.aggiungiAiutanti(-3);
 	}
 	
-	@Test(expected=IllegalArgumentException.class)
-	public void testAggiungiAiutantiNumeroNullo() {
-		Aiutante aiutante= new Aiutante(3);
-		aiutante.aggiungiAiutanti(0);
-	}
 	
 	@Test
 	public void testTogliAiutantiNumeriPositivi() {
@@ -62,13 +57,6 @@ public class AiutanteTest {
 		Aiutante aiutante= new Aiutante(3);
 		aiutante.togliAiutanti(-3);
 	}
-	
-	@Test(expected=IllegalArgumentException.class)
-	public void testTogliAiutantiNumeroNullo() {
-		Aiutante aiutante= new Aiutante(3);
-		aiutante.togliAiutanti(0);
-	}
-
 
 	@Test
 	public void testAcquista() {
