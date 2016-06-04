@@ -8,12 +8,7 @@ import game.notify.AzioniNotify;
 import utility.exception.AzioneNonEseguibile;
 
 public class Stato01 implements Stato {
-	
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1159916777727661681L;
 	private List<String> azioni;
 
 	public Stato01(GameState gameState) {
@@ -35,15 +30,11 @@ public class Stato01 implements Stato {
 
 	@Override
 	public void transizioneVeloce(GameState gameState) throws AzioneNonEseguibile {
-		System.out.println("ultimogiro"+gameState.isUltimoGiro());
 		if(gameState.isUltimoGiro()){
 			if(!gameState.lastNextPlayer()){
 
-				System.out.println("last next player è false --> Start End");
 				gameState.setStato(new StartEnd(gameState));}
 			else{
-
-				System.out.println("last next player è true --> Stato fine partita");
 				gameState.setStato(new StatoFinePartita(gameState));}
 			
 		}

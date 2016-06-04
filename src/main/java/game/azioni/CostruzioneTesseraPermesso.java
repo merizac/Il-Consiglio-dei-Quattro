@@ -17,7 +17,7 @@ import game.notify.ErrorNotify;
 import game.notify.GameStateNotify;
 import game.notify.GiocatoreNotify;
 
-public class CostruzioneTesseraPermesso extends AzionePrincipale {
+public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonusable {
 
 	private TesseraPermesso tesseraPermessoScoperta;
 	private Città cittàCostruzione;

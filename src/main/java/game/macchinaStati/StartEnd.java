@@ -8,7 +8,6 @@ import game.notify.AzioniNotify;
 
 public class StartEnd implements Stato {
 
-	private static final long serialVersionUID = -4274723843140699323L;
 
 	public StartEnd(GameState gameState) {
 			gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));

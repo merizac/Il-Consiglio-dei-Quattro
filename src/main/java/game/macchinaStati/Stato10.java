@@ -9,10 +9,6 @@ import utility.exception.AzioneNonEseguibile;
 
 public class Stato10 implements Stato {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 4129691255828354834L;
 	private List<String> azioni;
 
 	/**

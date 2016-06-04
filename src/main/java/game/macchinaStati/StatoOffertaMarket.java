@@ -8,10 +8,6 @@ import game.notify.AzioniNotify;
 
 public class StatoOffertaMarket implements Stato {
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 5599670651827007425L;
 	private List<String> azioni;
 	
 	public StatoOffertaMarket(GameState gameState) {

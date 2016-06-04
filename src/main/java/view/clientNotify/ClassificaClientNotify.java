@@ -1,5 +1,6 @@
 package view.clientNotify;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import game.Giocatore;
@@ -16,16 +17,19 @@ public class ClassificaClientNotify implements ClientNotify {
 	 * @param perdenti
 	 * @param vincenti
 	 */
-	public ClassificaClientNotify(List<Giocatore> perdenti, List<Giocatore> vincenti) {
-		for(Giocatore g:perdenti){
-			GiocatoreDTO gDTO=new GiocatoreDTO();
-			gDTO.inizializza(g);
-			this.perdenti.add(gDTO);
-		}
+	public ClassificaClientNotify(List<Giocatore> vincenti, List<Giocatore> perdenti) {
+		System.out.println("classifica Client Notify");
+		this.vincenti=new ArrayList<>();
+		this.perdenti=new ArrayList<>();
 		for(Giocatore g:vincenti){
 			GiocatoreDTO gDTO=new GiocatoreDTO();
 			gDTO.inizializza(g);
 			this.vincenti.add(gDTO);
+		}
+		for(Giocatore g:perdenti){
+			GiocatoreDTO gDTO=new GiocatoreDTO();
+			gDTO.inizializza(g);
+			this.perdenti.add(gDTO);
 		}
 	}
 

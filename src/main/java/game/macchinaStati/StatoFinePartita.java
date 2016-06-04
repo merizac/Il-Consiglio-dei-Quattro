@@ -15,11 +15,6 @@ import game.notify.VincitoreNotify;
 
 public class StatoFinePartita implements Stato {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -972179062051125451L;
-
 	public StatoFinePartita(GameState gameState) {
 		System.out.println("stato fine partita");
 		
@@ -31,8 +26,7 @@ public class StatoFinePartita implements Stato {
 		calcolaPunteggioNobiltà(gameState);
 		calcolaTesserePermesso(gameState);
 		assegnaTessereBonus(gameState);
-		vincitore(gameState);
-		
+		vincitore(gameState);	
 	}
 	
 	private void vincitore(GameState gameState) {
@@ -45,7 +39,7 @@ public class StatoFinePartita implements Stato {
 		
 		for(Giocatore g: giocatori){
 			if(comparator.compare(g, vincitori.get(0))!=0)
-				continue;
+				break;
 			else{
 				vincitori.add(g);
 				giocatori.remove(g);
@@ -181,14 +175,14 @@ ArrayList<Giocatore> giocatori = new ArrayList<>(gameState.getGiocatoriFineParti
 		 if( punti==primo.get(0).getPunteggioNobiltà().getPuntiNobiltà()){
 			 primo.add(g);
 		 }
-		 if((punti!= primo.get(0).getPunteggioNobiltà().getPuntiNobiltà() && secondo.isEmpty())
+		 else if((punti!= primo.get(0).getPunteggioNobiltà().getPuntiNobiltà() && secondo.isEmpty())
 				 || punti == secondo.get(0).getPunteggioNobiltà().getPuntiNobiltà()){
 			 secondo.add(g);
-		break;
+			 //break;
 		 }
-		 assegnaPunti(primo, secondo);
+
 		}
-	
+		 assegnaPunti(primo, secondo);
 	}
 /**
  * This method add at players points extra for the best points
@@ -200,6 +194,7 @@ ArrayList<Giocatore> giocatori = new ArrayList<>(gameState.getGiocatoriFineParti
  * @param secondo
  */
 private void assegnaPunti(ArrayList<Giocatore> primo, ArrayList<Giocatore> secondo) {
+	System.out.println("assegna punti");
 	for (Giocatore g: primo){
 		g.aumentaPuntiVittoria(5);
 		if(primo.size()==1){

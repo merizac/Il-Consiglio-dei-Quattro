@@ -1,6 +1,8 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import bonus.*;
 
 
@@ -17,6 +19,7 @@ public class Giocatore {
 	private int punteggioVittoria;
 	private int punteggioRicchezza;
 	private PunteggioNobiltà punteggioNobiltà;
+	private List<BonusNobiltà> bonusNobiltà;
 
 
 	/**
@@ -37,6 +40,7 @@ public class Giocatore {
 		this.tesserePermessoUsate = new ArrayList<TesseraPermesso>();
 		this.tessereBonus = new ArrayList<Bonus>();
 		this.empori=new ArrayList<>();
+		this.bonusNobiltà= new ArrayList<>();
 	}
 
 	/**
@@ -192,6 +196,10 @@ public int getNumeroTesserePermesso(){
 		return empori;
 	}
 
+	public List<BonusNobiltà> getBonusNobiltà() {
+		return bonusNobiltà;
+	}
+
 
 
 	public void aumentaRicchezza(int monete){
@@ -242,20 +250,20 @@ public int getNumeroTesserePermesso(){
 		this.empori.addAll(empori);
 	}
 	
-	/*//Prova per testare fine partita
+	//Prova per testare fine partita
 	public void creaEmpori(Colore colore){
 		for(int i=0; i<1; i++){
 			Emporio emporio=new Emporio(colore);
 			empori.add(emporio);
 		}
-	}*/
+	}
 	
-	public void creaEmpori(Colore colore){
+	/*public void creaEmpori(Colore colore){
 		for(int i=0; i<10; i++){
 			Emporio emporio=new Emporio(colore);
 			empori.add(emporio);
 		}
-	}
+	}*/
 
 	
 	

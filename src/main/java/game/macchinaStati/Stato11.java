@@ -8,10 +8,6 @@ import game.notify.AzioniNotify;
 
 public class Stato11 implements Stato {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -2095271621049102185L;
 	private List<String> azioni;
 
 	public Stato11(GameState gameState) {

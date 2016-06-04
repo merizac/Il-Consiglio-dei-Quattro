@@ -20,7 +20,7 @@ import game.notify.ErrorNotify;
 import game.notify.GameStateNotify;
 import game.notify.GiocatoreNotify;
 
-public class CostruzioneAiutoRe extends AzionePrincipale {
+public class CostruzioneAiutoRe extends AzionePrincipale implements Bonusable{
 
 	private Città cittàCostruzione;
 	private Balcone balcone;

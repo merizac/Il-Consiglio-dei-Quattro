@@ -41,7 +41,7 @@ public class ClientOutHandler implements Runnable {
 	@Override
 	public void run() {
 
-		System.out.println("RUNNING");
+		System.out.println("CIAO "+ gameStateDTO.getGiocatoreDTO().getNome()+", BENVENUTO IN UNA NUOVA PARTITA DEL *Consiglio dei Quattro* !");
 		Scanner stdIn = new Scanner(System.in);
 
 		while (true) {
