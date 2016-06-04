@@ -80,11 +80,11 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale {
 	 * move the permit tile used from tesserePermesso to tesserePermessoUsate
 	 */
 	private void copriTessera(GameState gameState) {
-		System.out.println(gameState.getGiocatoreCorrente().getTesserePermesso());
+//		System.out.println(gameState.getGiocatoreCorrente().getTesserePermesso());
 		gameState.getGiocatoreCorrente().getTesserePermesso().remove(tesseraPermessoScoperta);
-		System.out.println(gameState.getGiocatoreCorrente().getTesserePermesso());
+//		System.out.println(gameState.getGiocatoreCorrente().getTesserePermesso());
 		gameState.getGiocatoreCorrente().getTesserePermessoUsate().add(tesseraPermessoScoperta);
-		System.out.println(gameState.getGiocatoreCorrente().getTesserePermessoUsate());
+//		System.out.println(gameState.getGiocatoreCorrente().getTesserePermessoUsate());
 	}
 
 	/**
