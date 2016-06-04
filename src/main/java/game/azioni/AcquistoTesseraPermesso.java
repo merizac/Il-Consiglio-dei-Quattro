@@ -17,10 +17,6 @@ import gameDTO.gameDTO.GiocatoreDTO;
 
 public class AcquistoTesseraPermesso extends AzionePrincipale implements Bonusable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 4588947134505180391L;
 	private ArrayList<CartaPolitica> carteGiocatore;
 	private Regione regione;
 	private int indiceTesseraScoperta;
@@ -94,7 +90,7 @@ public class AcquistoTesseraPermesso extends AzionePrincipale implements Bonusab
 		int monete=0;
 		int carte=carteGiocatore.size();
 		for (CartaPolitica carta: carteGiocatore ){
-			if (carta.getColore().getColore()=="Multicolore"){
+			if (carta.equals(new CartaPolitica(new Colore("Multicolore")))){
 				monete++;
 			}
 		}

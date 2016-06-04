@@ -12,6 +12,7 @@ import game.Consigliere;
 import game.GameState;
 import game.Giocatore;
 import game.Regione;
+import game.market.Offerta;
 
 public class GameStateDTO implements Serializable {
 
@@ -23,7 +24,7 @@ public class GameStateDTO implements Serializable {
 	private ArrayList<ConsigliereDTO> consiglieri;
 	private List<String> azioniDisponibili;
 	private GiocatoreDTO giocatoreDTO;
-	
+	private List<OffertaDTO> offerte;
 
 	/**
 	 * @return the città
@@ -131,6 +132,7 @@ public class GameStateDTO implements Serializable {
 			consigliereDTO.inizializza(c);
 			consiglieri.add(consigliereDTO);
 		}
+		this.offerte = new ArrayList<>();
 	}
 
 	/*
@@ -145,7 +147,7 @@ public class GameStateDTO implements Serializable {
 	}
 
 	public void setAzioni(List<String> azioni) {
-		this.azioniDisponibili=azioni;
+		this.azioniDisponibili = azioni;
 	}
 
 	/**
@@ -160,11 +162,18 @@ public class GameStateDTO implements Serializable {
 	}
 
 	/**
-	 * @param giocatoreDTO the giocatoreDTO to set
+	 * @param giocatoreDTO
+	 *            the giocatoreDTO to set
 	 */
 	public void setGiocatoreDTO(GiocatoreDTO giocatoreDTO) {
 		this.giocatoreDTO = giocatoreDTO;
 	}
-	
+
+	/**
+	 * @return the offerte
+	 */
+	public void setOfferte(List<OffertaDTO> offerte) {
+		this.offerte = offerte;
+	}
 
 }

@@ -19,6 +19,9 @@ public class AiutanteDTO implements MarketableDTO {
 			throw new IllegalArgumentException("Il numero di aiutanti deve essere positivo");
 		this.aiutanti = aiutanti;
 	}
+	public AiutanteDTO(){
+		super();
+	}
 	/**
 	 * @return the aiutanti
 	 */
@@ -26,9 +29,33 @@ public class AiutanteDTO implements MarketableDTO {
 		return aiutanti;
 	}
 
+	/**
+	 * @param aiutanti the aiutanti to set
+	 */
+	public void setAiutanti(int aiutanti) {
+		this.aiutanti = aiutanti;
+	}
 	@Override
-	public Marketable creaMarketable(Giocatore giocatore) {
+	public Aiutante creaMarketable(Giocatore giocatore) {
 		return new Aiutante(this.aiutanti);
+	}
+	
+	@Override
+	public void creaMarketableDTO(Marketable marketable) {
+		Aiutante aiutante=(Aiutante)marketable;
+		this.inizializza(aiutante);
+		
+	}
+	
+	public void inizializza(Aiutante a){
+		this.setAiutanti(a.getAiutante());
+	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Aiutante [" + aiutanti + "]";
 	}
 
 

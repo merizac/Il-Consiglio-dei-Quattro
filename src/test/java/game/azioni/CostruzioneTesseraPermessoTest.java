@@ -11,16 +11,21 @@ import org.junit.Test;
 import bonus.Bonus;
 import bonus.BonusAiutanti;
 import bonus.BonusMoneta;
+import bonus.BonusPuntiVittoria;
 import game.Città;
 import game.CittàBonus;
+import game.Colore;
+import game.Emporio;
 import game.GameState;
 import game.Giocatore;
+import game.Regione;
 import game.TesseraPermesso;
 
 
 public class CostruzioneTesseraPermessoTest {
 	
 	static GameState gameState;
+	static Regione regione;
 	
 	@BeforeClass
 	public static void init() throws IOException{
@@ -29,39 +34,86 @@ public class CostruzioneTesseraPermessoTest {
 		Giocatore giocatore=new Giocatore("Giocatore");
 		giocatori.add(giocatore);
 		gameState.start(giocatori);
+		
+		regione=gameState.getRegioni().get(0);
 	}
 	
 	@Test
 	public void testEseguiAzione(){
-		ArrayList<Bonus> bonus=new ArrayList<>();
-		bonus.add(new BonusAiutanti(2));
-		ArrayList<Città> città=new ArrayList<>();
-		città.add((CittàBonus) gameState.getRegioni().get(0).getCittàRegione().get(0));
-		TesseraPermesso tesseraPermesso=new TesseraPermesso(città, bonus, gameState.getRegioni().get(0));
-		CostruzioneTesseraPermesso costruzioneTesseraPermesso=new CostruzioneTesseraPermesso();
-		Città cittàCostruzione=tesseraPermesso.getCittà().get(0);
-		costruzioneTesseraPermesso.setCittàCostruzione(cittàCostruzione);
-		costruzioneTesseraPermesso.setTesseraPermessoScoperta(tesseraPermesso);
-		
-		costruzioneTesseraPermesso.eseguiAzione(gameState);
-
-		//PUO PRENDERE ANCHE I BONUS DELLE CITTA VICINE
-		int monete=0;
-		int aiutanti=0;
-		CittàBonus c=(CittàBonus) gameState.getRegioni().get(0).getCittàRegione().get(0);
-		for(Bonus b: c.getBonus()){
-			if (b instanceof BonusMoneta)
-				monete=((BonusMoneta) b).getMonete();
-			if(b instanceof BonusAiutanti)
-				aiutanti= ((BonusAiutanti) b).getAiutanti();
+		//perndo le città per il test
+		CittàBonus cittàCostruzione=null;
+		CittàBonus cittàVicina=null;
+		for (Città c: regione.getCittàRegione()){
+			if(c.getNome().equals("Arkon")){
+				cittàCostruzione=(CittàBonus) c;
+				continue;
+			}
+			else if(c.getNome().equals("Burgen")){
+				cittàVicina=(CittàBonus) c;
+				continue;
+			}			
 		}
 		
-		//controllo che abbia costruito l'emporio
-		assertTrue(gameState.getRegioni().get(0).getCittàRegione().get(0).getEmpori().contains(gameState.getGiocatoreCorrente().getEmpori().get(0)));
-		//controllo che gli aiutanti siano corretti
-		assertEquals(1+aiutanti, gameState.getGiocatoreCorrente().getAiutanti().getAiutante());
-		//controllo che la tessera sia stata coperta
-		assertTrue(gameState.getGiocatoreCorrente().getTesserePermessoUsate().contains(tesseraPermesso));	
+		cittàVicina.aggiungiEmporio(gameState.getGiocatoreCorrente().getEmpori().get(0));
+		
+		//metto l'emporio sulla città su cui costruisco
+		cittàCostruzione.aggiungiEmporio(new Emporio(new Colore("Presente")));
+		
+		//creo la tessera permesso
+		ArrayList<Città> città=new ArrayList<>();
+		città.add(cittàCostruzione);
+		TesseraPermesso tesseraPermesso=new TesseraPermesso(città, null, regione);
+		
+		//creo e setto i parametri per l'azione e la eseguo
+		CostruzioneTesseraPermesso azione=new CostruzioneTesseraPermesso();
+		azione.setCittàCostruzione(cittàCostruzione);
+		azione.setTesseraPermessoScoperta(tesseraPermesso);
+		
+		int monete=0;
+		int aiutanti=0;
+		int vittoria=0;
+		//tengo conto dei bonus della città su cui costruisco
+		for(Bonus b: cittàCostruzione.getBonus()){
+			System.out.println("Costruzione: "+b);
+			if(b instanceof BonusAiutanti){
+				aiutanti+=((BonusAiutanti) b).getAiutanti();
+				continue;
+			}
+			if(b instanceof BonusMoneta){
+				monete+=((BonusMoneta) b).getMonete();
+				continue;
+			}	
+			if(b instanceof BonusPuntiVittoria){
+				vittoria+=((BonusPuntiVittoria) b).getPuntiVittoria();
+				continue;
+			}	
+		}
+		
+		//tengo conto dei bonus della città vicina
+		for(Bonus b: cittàVicina.getBonus()){
+			System.out.println("Vicina: "+b);
+			if(b instanceof BonusAiutanti){
+				aiutanti+=((BonusAiutanti) b).getAiutanti();
+				continue;
+			}
+			if(b instanceof BonusMoneta){
+				monete+=((BonusMoneta) b).getMonete();
+				continue;
+			}	
+			if(b instanceof BonusPuntiVittoria){
+				vittoria+=((BonusPuntiVittoria) b).getPuntiVittoria();
+				continue;
+			}	
+		}
+					
+		azione.eseguiAzione(gameState);
+
+		assertTrue(cittàCostruzione.getEmpori().size()==2);
+		assertEquals(aiutanti, gameState.getGiocatoreCorrente().getAiutanti().getAiutante());
+		assertEquals(10+monete, gameState.getGiocatoreCorrente().getPunteggioRicchezza());
+		assertEquals(vittoria, gameState.getGiocatoreCorrente().getPunteggioVittoria());
+		assertTrue(gameState.getGiocatoreCorrente().getTesserePermessoUsate().contains(tesseraPermesso));
+		assertTrue(gameState.getGiocatoreCorrente().getTesserePermesso().size()==0);
 	}
 	
 	@Test

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import bonus.*;
 import game.market.Marketable;
 import game.market.Offerta;
+import gameDTO.gameDTO.MarketableDTO;
+import gameDTO.gameDTO.TesseraPermessoDTO;
 
 public final class TesseraPermesso implements Marketable {
 
@@ -120,6 +122,12 @@ public final class TesseraPermesso implements Marketable {
 		} else if (!regione.equals(other.regione))
 			return false;
 		return true;
+	}
+
+
+	@Override
+	public MarketableDTO instance() {
+		return new TesseraPermessoDTO();
 	}
 	
 	

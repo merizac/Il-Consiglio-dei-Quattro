@@ -18,6 +18,11 @@ public class CittàBonusTest {
 
 	static GameState gameState;
 	
+	@Test(expected=NullPointerException.class)
+	public void controlloCreazioneCittàConBonus(){
+		CittàBonus città=new CittàBonus("Nome", gameState.getRegioni().get(0), new ColoreCittà("c", null), null);
+	}
+	
 	@BeforeClass
 	public static void init() throws IOException{
 		ArrayList<Giocatore> giocatori=new ArrayList<>();
@@ -33,7 +38,9 @@ public class CittàBonusTest {
 		Regione regione=gameState.getRegioni().get(0);
 		ArrayList<Città> città=new ArrayList<Città>(gameState.getCittà());
 		ColoreCittà colore=(ColoreCittà) città.get(0).getColoreCittà();
-		CittàBonus nuovaCittàBonus=new CittàBonus("NOME", regione, colore, null);
+		ArrayList<Bonus> bonus=new ArrayList<>();
+		bonus.add(new BonusAiutanti(3));
+		CittàBonus nuovaCittàBonus=new CittàBonus("NOME", regione, colore, bonus);
 		assertTrue(colore.getCittà().contains(nuovaCittàBonus));
 	}	
 		
@@ -54,7 +61,7 @@ public class CittàBonusTest {
 	@Test
 	public void testSetBonus() {
 		ArrayList<Bonus> bonus=new ArrayList<Bonus>();
-		CittàBonus città=new CittàBonus("NomeCittà", gameState.getRegioni().get(0), new ColoreCittà("ColoreCittà", null), null);
+		CittàBonus città=new CittàBonus("NomeCittà", gameState.getRegioni().get(0), new ColoreCittà("ColoreCittà", null), bonus);
 		bonus.add(new BonusAiutanti(2));
 		bonus.add(new BonusAzionePrincipale(1));
 		città.setBonus(bonus);

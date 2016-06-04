@@ -18,6 +18,8 @@ public class CittàBonus extends Città {
 	 */
 	public CittàBonus(String nome, Regione regione, ColoreCittà colore, ArrayList<Bonus> bonus) {
 		super(nome, regione, colore);
+		if(bonus==null)
+			throw new NullPointerException("La città bonus deve avere dei bonus");
 		this.bonus = bonus;
 		colore.getCittà().add(this);
 	}
