@@ -1,5 +1,6 @@
 package view;
 
+import game.GameState;
 import game.azioni.Azione;
 import game.notify.Notify;
 import java.util.Scanner;
@@ -17,5 +18,5 @@ public abstract class View extends Observable <Azione> implements Observer <Noti
 	public void update(Notify notify) {
 		
 	}
-	
+	public abstract void setGameState(GameState gameState);
 }

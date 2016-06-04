@@ -24,9 +24,8 @@ public class ServerSocketView extends View implements Runnable {
 	private Giocatore giocatore;
 	private Server server;
 
-	public ServerSocketView(Socket socket, GameState gameState, Server server) throws IOException {
+	public ServerSocketView(Socket socket, Server server) throws IOException {
 		this.socket = socket;
-		this.gameState = gameState;
 		this.socketIn = new ObjectInputStream(socket.getInputStream());
 		this.socketOut = new ObjectOutputStream(socket.getOutputStream());
 		this.server = server;
@@ -56,8 +55,12 @@ public class ServerSocketView extends View implements Runnable {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
-		server.aggiungiGiocatore(giocatore);
-		AzioneVisitor azioneVisitor = new AzioneVisitorImpl(gameState, giocatore);
+		try{
+		server.aggiungiGiocatore(giocatore, this);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 
 		while (true) {
 
@@ -66,7 +69,7 @@ public class ServerSocketView extends View implements Runnable {
 				if (object instanceof AzioneDTO) {
 
 					AzioneDTO action = (AzioneDTO) object;
-
+					AzioneVisitor azioneVisitor = new AzioneVisitorImpl(gameState, giocatore);
 					Azione azione = action.accept(azioneVisitor);
 					System.out.println("VIEW: received the action " + azione);
 					if (azione.isTurno(giocatore, gameState)){
@@ -84,6 +87,14 @@ public class ServerSocketView extends View implements Runnable {
 			}
 		}
 
+	}
+
+	/**
+	 * @param gameState the gameState to set
+	 */
+	@Override
+	public void setGameState(GameState gameState) {
+		this.gameState = gameState;
 	}
 
 }
