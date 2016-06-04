@@ -50,6 +50,13 @@ public class AiutanteDTO implements MarketableDTO {
 	public void inizializza(Aiutante a){
 		this.setAiutanti(a.getAiutante());
 	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Aiutante [" + aiutanti + "]";
+	}
 
 
 }

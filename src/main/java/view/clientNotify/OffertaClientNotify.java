@@ -29,7 +29,7 @@ public class OffertaClientNotify implements ClientNotify {
 	@Override
 	public void stamp() {
 		for(OffertaDTO o: this.offerte){
-			System.out.println(o.getMarketableDTO()+" prezzo: "+ o.getPrezzo());
+			System.out.println("\n"+o.getMarketableDTO()+" prezzo: "+ o.getPrezzo());
 		}
 	}
 
