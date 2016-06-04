@@ -6,6 +6,7 @@ import java.util.HashSet;
 
 import bonus.Bonus;
 import game.CittàBonus;
+import game.Emporio;
 
 public class CittàBonusDTO extends CittàDTO implements Serializable{
 
@@ -30,6 +31,10 @@ public class CittàBonusDTO extends CittàDTO implements Serializable{
 		coloreDTO.inizializza(cittàBonus.getColoreCittà());
 		this.setColoreDTO(coloreDTO);
 		this.setEmpori(new HashSet<>());
+		for(Emporio e: cittàBonus.getEmpori()){
+			this.getEmpori().add(e.getColore().getColore());
+		}
+
 		this.setBonus(cittàBonus.getBonus());
 	}
 	
