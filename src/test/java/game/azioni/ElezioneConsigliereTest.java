@@ -32,8 +32,12 @@ public class ElezioneConsigliereTest {
 		Consigliere consigliereTolto=gameState.getRegioni().get(0).getBalcone().getConsigliere().element();
 		
 		elezioneConsigliere.setRegione(gameState.getRegioni().get(0));
-		elezioneConsigliere.setConsigliere(new Consigliere(new Colore("Prova")));
+		elezioneConsigliere.setConsigliere(consigliere);
 		elezioneConsigliere.eseguiAzione(gameState);
+		
+		System.out.println(gameState.getRegioni().get(0).getBalcone().getConsigliere());
+		System.out.println(consigliere);
+		System.out.println(consigliereTolto);
 		
 		assertEquals(14, gameState.getGiocatoreCorrente().getPunteggioRicchezza());
 		assertTrue(gameState.getRegioni().get(0).getBalcone().getConsigliere().contains(consigliere));
