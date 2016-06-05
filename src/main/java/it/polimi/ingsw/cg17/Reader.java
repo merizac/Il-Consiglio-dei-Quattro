@@ -79,22 +79,6 @@ public class Reader {
 
 	}
 
-	/*
-	 * public static Mazzo<CartaPolitica> letturaCartePolitica(String
-	 * fileCartePolitica) throws IOException{
-	 * 
-	 * ArrayList<CartaPolitica> cartaPoliticaList=new
-	 * ArrayList<CartaPolitica>(); FileReader cartaPolitica=new
-	 * FileReader(fileCartePolitica); BufferedReader b; b=new
-	 * BufferedReader(cartaPolitica); String stringaLetta;
-	 * 
-	 * while(true) { stringaLetta=b.readLine(); if(stringaLetta==null) break;
-	 * CartaPolitica carta =new CartaPolitica(new Colore(stringaLetta));
-	 * cartaPoliticaList.add(carta); } b.close();
-	 * Collections.shuffle(cartaPoliticaList); return new
-	 * Mazzo<CartaPolitica>(cartaPoliticaList); }
-	 */
-
 	public Mazzo<CartaPolitica> letturaCartePolitica() throws IOException {
 
 		ArrayList<CartaPolitica> cartaPoliticaList = new ArrayList<CartaPolitica>();
@@ -179,19 +163,6 @@ public class Reader {
 		punteggioNobiltà.close();
 		return nobiltà;
 	}
-
-	/*
-	 * public static ArrayList<Consigliere> letturaConsigliere() throws
-	 * IOException{
-	 * 
-	 * FileReader cons=new FileReader("src/main/resources/consiglieri.txt");
-	 * BufferedReader b; b=new BufferedReader(cons); String stringaLetta;
-	 * 
-	 * while(true) { stringaLetta=b.readLine(); if(stringaLetta==null) break;
-	 * Consigliere consigliere =new Consigliere(new Colore(stringaLetta));
-	 * consiglieri.add(consigliere); } b.close();
-	 * Collections.shuffle(consiglieri); return consiglieri; }
-	 */
 
 	public ArrayList<Consigliere> letturaConsigliere() throws IOException {
 
