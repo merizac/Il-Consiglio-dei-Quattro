@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import game.CartaPolitica;
 import game.Città;
+import game.CittàBonus;
 import game.Consigliere;
 import game.GameState;
 import game.Giocatore;
@@ -12,6 +13,9 @@ import game.TesseraPermesso;
 import game.azioni.AcquistoTesseraPermesso;
 import game.azioni.AzioneAcquisto;
 import game.azioni.AzioneOfferta;
+import game.azioni.BonusGettoneN;
+import game.azioni.BonusTesseraAcquistataN;
+import game.azioni.BonusTesseraPermessoN;
 import game.azioni.CambioTesseraPermesso;
 import game.azioni.CostruzioneAiutoRe;
 import game.azioni.CostruzioneTesseraPermesso;
@@ -26,6 +30,9 @@ import game.market.Offerta;
 import gameDTO.azioniDTO.AcquistoTesseraPermessoDTO;
 import gameDTO.azioniDTO.AzioneAcquistoDTO;
 import gameDTO.azioniDTO.AzioneOffertaDTO;
+import gameDTO.azioniDTO.BonusGettoneNDTO;
+import gameDTO.azioniDTO.BonusTesseraAcquistataNDTO;
+import gameDTO.azioniDTO.BonusTesseraPermessoNDTO;
 import gameDTO.azioniDTO.CambioTesserePermessoDTO;
 import gameDTO.azioniDTO.ControlloParametri;
 import gameDTO.azioniDTO.CostruzioneAiutoReDTO;
@@ -159,6 +166,31 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 		azioneAcquisto.setOfferta(offerta);
 		azioneAcquisto.setAcquirente(giocatore);
 		return azioneAcquisto;
+	}
+
+	@Override
+	public BonusGettoneN visit(BonusGettoneNDTO bonusGettoneDTO) {
+		BonusGettoneN bonusGettone = new BonusGettoneN();
+		CittàBonus città = (CittàBonus) ControlloParametri.cercaCittàBonus(bonusGettoneDTO.getCittà(), gameState.getCittà());
+		bonusGettone.setCittà(città);
+		return bonusGettone;
+	}
+
+	@Override
+	public BonusTesseraAcquistataN visit(BonusTesseraAcquistataNDTO bonusTesseraAcquistataDTO) {
+		BonusTesseraAcquistataN bonusTesseraAcquistata = new BonusTesseraAcquistataN();
+		bonusTesseraAcquistata.setIndiceTesseraPermesso(bonusTesseraAcquistataDTO.getIndiceTesseraPermesso());
+		bonusTesseraAcquistata.setUsata(bonusTesseraAcquistataDTO.isUsata());
+		return bonusTesseraAcquistata;
+	}
+
+	@Override
+	public BonusTesseraPermessoN visit(BonusTesseraPermessoNDTO bonusTesseraPermessoDTO) {
+		BonusTesseraPermessoN bonusTesseraPermesso = new BonusTesseraPermessoN();
+		Regione regione=ControlloParametri.cercaRegione(bonusTesseraPermessoDTO.getRegione(), gameState.getRegioni());
+		bonusTesseraPermesso.setIndiceTesseraScoperta(bonusTesseraPermessoDTO.getIndiceTesseraScoperta());
+		bonusTesseraPermesso.setRegione(regione);
+		return bonusTesseraPermesso;
 	}
 
 }

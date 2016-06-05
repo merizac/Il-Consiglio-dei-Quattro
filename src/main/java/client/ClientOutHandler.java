@@ -42,7 +42,7 @@ public class ClientOutHandler implements Runnable {
 	@Override
 	public void run() {
 
-		System.out.println("CIAO "+ gameStateDTO.getGiocatoreDTO().getNome()+", BENVENUTO IN UNA NUOVA PARTITA DEL *Consiglio dei Quattro* !");
+		System.out.println("CIAO "+ gameStateDTO.getGiocatoreDTO().getNome().toUpperCase()+", BENVENUTO IN UNA NUOVA PARTITA DEL *Consiglio dei Quattro* !");
 		Scanner stdIn = new Scanner(System.in);
 
 		while (true) {
@@ -119,7 +119,13 @@ public class ClientOutHandler implements Runnable {
 				action = new ElezioneConsigliereVeloceDTO(regioneScelta, consigliereScelto);
 			} else if ("V4".equals(inputLine)) {
 				action = new SecondaAzionePrincipaleDTO();
-			} else if ("Offerta".equals(inputLine)) {
+			} 
+			/*else if("B".equals(inputLine)) {
+				
+			}*/
+			
+			
+			else if ("Offerta".equals(inputLine)) {
 				System.out.println("Cosa vuoi vendere\n?");
 				System.out.println("Aiutante [1]\nCarta Politica[2]\nTesseraPermesso[3]");
 				String comando = stdIn.nextLine();

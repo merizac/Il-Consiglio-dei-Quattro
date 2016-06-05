@@ -3,6 +3,9 @@ package gameDTO.azioniDTO.azioneVisitor;
 import game.azioni.AcquistoTesseraPermesso;
 import game.azioni.AzioneAcquisto;
 import game.azioni.AzioneOfferta;
+import game.azioni.BonusGettoneN;
+import game.azioni.BonusTesseraAcquistataN;
+import game.azioni.BonusTesseraPermessoN;
 import game.azioni.CambioTesseraPermesso;
 import game.azioni.CostruzioneAiutoRe;
 import game.azioni.CostruzioneTesseraPermesso;
@@ -15,6 +18,9 @@ import game.azioni.SecondaAzionePrincipale;
 import gameDTO.azioniDTO.AcquistoTesseraPermessoDTO;
 import gameDTO.azioniDTO.AzioneAcquistoDTO;
 import gameDTO.azioniDTO.AzioneOffertaDTO;
+import gameDTO.azioniDTO.BonusGettoneNDTO;
+import gameDTO.azioniDTO.BonusTesseraAcquistataNDTO;
+import gameDTO.azioniDTO.BonusTesseraPermessoNDTO;
 import gameDTO.azioniDTO.CambioTesserePermessoDTO;
 import gameDTO.azioniDTO.CostruzioneAiutoReDTO;
 import gameDTO.azioniDTO.CostruzioneTesseraPermessoDTO;
@@ -39,5 +45,8 @@ public interface AzioneVisitor {
 	public Passa visit(PassaDTO passaDTO);
 	public AzioneOfferta visit(AzioneOffertaDTO azioneOffertaDTO);
 	public AzioneAcquisto visit(AzioneAcquistoDTO azioneAcquistoDTO);
-
+	public BonusGettoneN visit(BonusGettoneNDTO bonusGettoneDTO);
+	public BonusTesseraAcquistataN visit(BonusTesseraAcquistataNDTO bonusTesseraAcquistataDTO);
+	public BonusTesseraPermessoN visit(BonusTesseraPermessoNDTO bonusTesseraPermessoDTO);
+	
 }
