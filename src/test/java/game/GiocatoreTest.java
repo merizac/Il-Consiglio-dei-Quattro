@@ -20,8 +20,8 @@ public class GiocatoreTest {
 		for(int i=0; i< 7; i++){
 			empori.add(new Emporio(new Colore("giallo")));
 		}
-
-		Mazzo<CartaPolitica> mazzo = Reader.letturaCartePolitica();
+		Reader reader= new Reader();
+		Mazzo<CartaPolitica> mazzo = reader.letturaCartePolitica();
 		giocatore = new Giocatore("nome");
 		giocatore.setColoreGiocatore(new Colore("giallo"));
 		giocatore.setAiutanti(new Aiutante(4));

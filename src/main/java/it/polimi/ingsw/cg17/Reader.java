@@ -41,11 +41,17 @@ import game.CittàBonus;
 
 public class Reader {
 
-	private static ArrayList<Consigliere> consiglieri = new ArrayList<Consigliere>();
-	private static ArrayList<Regione> regioni = new ArrayList<Regione>();
-	private static ArrayList<Città> cities = new ArrayList<Città>();
+	private ArrayList<Consigliere> consiglieri; 
+	private ArrayList<Regione> regioni ;
+	private ArrayList<Città> cities ;
+	
+	public Reader(){
+		this.consiglieri= new ArrayList<Consigliere>();
+		this.regioni = new ArrayList<Regione>();
+		this.cities = new ArrayList<Città>();
+	}
 
-	public static PlanciaRe creazionePlanciaRe() throws IOException {
+	public PlanciaRe creazionePlanciaRe() throws IOException {
 		ArrayList<Bonus> bonusRe = letturaBonusRe();
 		Balcone balconeRe = new Balcone(4, consiglieri);
 		PlanciaRe planciaRe = new PlanciaRe(balconeRe, bonusRe, letturaPunteggioNobiltà());
@@ -53,13 +59,13 @@ public class Reader {
 		return planciaRe;
 	}
 
-	public static Re creazioneRe() {
+	public Re creazioneRe() {
 		Re re = new Re(findCittàRe());
 		return re;
 	}
-
+	
 	// costruiscre la mappa e mette le tessere permesso alle regioni
-	public static Mappa creazioneMappa(String configurazione) throws IOException {
+	public Mappa creazioneMappa(String configurazione) throws IOException {
 		creazioneCittà(configurazione);
 		Mappa mappa = new Mappa(new HashSet<Città>(cities));
 		letturaTesserePermesso(cities, regioni);
@@ -67,7 +73,7 @@ public class Reader {
 	}
 
 	// crea città e gli mette i bonus rotondi
-	public static void creazioneCittà(String configurazione) throws IOException {
+	public void creazioneCittà(String configurazione) throws IOException {
 		cities = letturaCittà(configurazione);
 		letturaBonusTondiCittà();
 
@@ -89,7 +95,7 @@ public class Reader {
 	 * Mazzo<CartaPolitica>(cartaPoliticaList); }
 	 */
 
-	public static Mazzo<CartaPolitica> letturaCartePolitica() throws IOException {
+	public Mazzo<CartaPolitica> letturaCartePolitica() throws IOException {
 
 		ArrayList<CartaPolitica> cartaPoliticaList = new ArrayList<CartaPolitica>();
 		FileReader cartaPolitica = new FileReader("src/main/resources/mappa1ColoriConsiglieriCartePolitica.txt");
@@ -125,7 +131,7 @@ public class Reader {
 		return new Mazzo<CartaPolitica>(cartaPoliticaList);
 	}
 
-	public static ArrayList<PunteggioNobiltà> letturaPunteggioNobiltà() throws NumberFormatException, IOException {
+	public ArrayList<PunteggioNobiltà> letturaPunteggioNobiltà() throws NumberFormatException, IOException {
 
 		FileReader punteggioNobiltà = new FileReader("src/main/resources/punteggioNobiltà.txt");
 		BufferedReader b;
@@ -187,7 +193,7 @@ public class Reader {
 	 * Collections.shuffle(consiglieri); return consiglieri; }
 	 */
 
-	public static ArrayList<Consigliere> letturaConsigliere() throws IOException {
+	public ArrayList<Consigliere> letturaConsigliere() throws IOException {
 
 		FileReader cons = new FileReader("src/main/resources/mappa1ColoriConsiglieriCartePolitica.txt");
 
@@ -220,10 +226,11 @@ public class Reader {
 		b.close();
 		cons.close();
 		Collections.shuffle(consiglieri);
+		System.out.println("consiglieri :"+consiglieri.size());
 		return consiglieri;
 	}
 
-	public static ArrayList<Regione> letturaRegioni() throws IOException {
+	public ArrayList<Regione> letturaRegioni() throws IOException {
 
 		FileReader reg = new FileReader("src/main/resources/regioni.txt");
 		BufferedReader b;
@@ -252,7 +259,7 @@ public class Reader {
 		return regioni;
 	}
 
-	public static ArrayList<Città> letturaCittà(String configurazione) throws IOException {
+	public ArrayList<Città> letturaCittà(String configurazione) throws IOException {
 
 		ArrayList<Colore> coloriCittà = new ArrayList<Colore>();
 		FileReader città = new FileReader("src/main/resources/" + configurazione + "Città.txt");
@@ -336,7 +343,7 @@ public class Reader {
 		return cities;
 	}
 
-	public static ArrayList<Bonus> letturaBonusRe() throws IOException {
+	public ArrayList<Bonus> letturaBonusRe() throws IOException {
 
 		ArrayList<Bonus> bonusRe = new ArrayList<>();
 
@@ -355,7 +362,7 @@ public class Reader {
 		return bonusRe;
 	}
 
-	public static void letturaBonusTondiCittà() throws IOException {
+	public void letturaBonusTondiCittà() throws IOException {
 
 		List<ArrayList<Bonus>> listaBonusTondi = new ArrayList<ArrayList<Bonus>>();
 		FileReader bonusDelleCittà = new FileReader("src/main/resources/bonusDelleCittà.txt");
@@ -409,7 +416,7 @@ public class Reader {
 		}
 	}
 
-	public static void letturaTesserePermesso(ArrayList<Città> cities, ArrayList<Regione> regioni) throws IOException {
+	public void letturaTesserePermesso(ArrayList<Città> cities, ArrayList<Regione> regioni) throws IOException {
 
 		FileReader t = new FileReader("src/main/resources/tesseraPermesso.txt");
 		BufferedReader b;
@@ -475,7 +482,7 @@ public class Reader {
 		t.close();
 	}
 
-	public static Città findCittà(String c) {
+	public Città findCittà(String c) {
 		for (Città i : cities) {
 			if (i.getNome().equals(c)) {
 
@@ -496,7 +503,7 @@ public class Reader {
 		return null;
 	}
 
-	public static Città findCittàRe() {
+	public Città findCittàRe() {
 		for (Città c : cities) {
 			if (c.getColoreCittà().getColore().equals("Re")) {
 				return c;

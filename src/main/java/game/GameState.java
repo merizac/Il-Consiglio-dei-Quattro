@@ -252,12 +252,14 @@ public class GameState extends Observable<Notify> {
 	}
 
 	public void start(List<Giocatore> giocatori) throws IOException {
-		this.consiglieri = Reader.letturaConsigliere();
-		this.regioni = Reader.letturaRegioni();
-		this.planciaRe = Reader.creazionePlanciaRe();
-		this.mazzoCartePolitica = Reader.letturaCartePolitica();
-		this.mappa = Reader.creazioneMappa("mappa1");
-		this.pedinaRe = Reader.creazioneRe();
+		Reader reader= new Reader();
+		this.consiglieri = reader.letturaConsigliere();
+		this.regioni = reader.letturaRegioni();
+		this.planciaRe = reader.creazionePlanciaRe();
+		this.mazzoCartePolitica = reader.letturaCartePolitica();
+		this.mappa = reader.creazioneMappa("mappa1");
+		this.pedinaRe = reader.creazioneRe();
+		//Reader.clear();
 		this.giocatori = new ArrayList<Giocatore>();
 		this.offerteMarket = new ArrayList<>();
 		this.giocatoriFinePartita= new ArrayList<>();
