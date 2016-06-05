@@ -4,14 +4,13 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import controller.Controller;
@@ -28,7 +27,8 @@ public class Server {
 	private Map<GameState, Set<View>> partite;
 	private List<Giocatore> giocatori;
 	private boolean end = false;
-	private Object lock=new Object();
+	private final int TIMEOUT=5000;
+	private Timer timer;
 
 	public Server() {
 		this.partite = new HashMap<>();
@@ -55,14 +55,20 @@ public class Server {
 		serverSocket.close();
 	}
 
-	public void aggiungiGiocatore(Giocatore giocatore, ServerSocketView view) {
-		synchronized(lock) {
+	public synchronized void aggiungiGiocatore(Giocatore giocatore, ServerSocketView view) {
 			this.giocatori.add(giocatore);
 			this.partite.get(gameState).add(view);
-			if (giocatori.size() == 2)
-				creaGioco();
-		}
-
+			if (giocatori.size() == 2){
+				timer=new Timer();
+				timer.schedule(new TimerTask() {
+					
+					@Override
+					public void run() {
+						creaGioco();
+						
+					}
+				}, TIMEOUT);
+			}
 	}
 
 	private void creaGioco() {
