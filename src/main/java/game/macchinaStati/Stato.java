@@ -27,14 +27,21 @@ public interface Stato{
 	
 	public default void transizioneOfferta(GameState gameState) throws AzioneNonEseguibile{
 		gameState.notifyObserver(new ErrorNotify("azione non eseguibile", Arrays.asList(gameState.getGiocatoreCorrente())));
-	}
+	};
 
 
 	public default void transizionePassa(GameState gameState) throws AzioneNonEseguibile{
 		gameState.notifyObserver(new ErrorNotify("azione non eseguibile", Arrays.asList(gameState.getGiocatoreCorrente())));
 	};
 	
+	public default void transizioneBonus(GameState gameState) throws AzioneNonEseguibile{
+		gameState.notifyObserver(new ErrorNotify("azione non eseguibile", Arrays.asList(gameState.getGiocatoreCorrente())));
+	};
+	
 	public List<String> getAzioni();
+
+
+
 	
 	
 }
