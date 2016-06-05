@@ -34,7 +34,6 @@ public class CostruzioneTesseraPermessoTest {
 		Giocatore giocatore=new Giocatore("Giocatore");
 		giocatori.add(giocatore);
 		gameState.start(giocatori);
-		
 		regione=gameState.getRegioni().get(0);
 	}
 	
@@ -74,7 +73,6 @@ public class CostruzioneTesseraPermessoTest {
 		int vittoria=0;
 		//tengo conto dei bonus della città su cui costruisco
 		for(Bonus b: cittàCostruzione.getBonus()){
-			System.out.println("Costruzione: "+b);
 			if(b instanceof BonusAiutanti){
 				aiutanti+=((BonusAiutanti) b).getAiutanti();
 				continue;
@@ -91,7 +89,6 @@ public class CostruzioneTesseraPermessoTest {
 		
 		//tengo conto dei bonus della città vicina
 		for(Bonus b: cittàVicina.getBonus()){
-			System.out.println("Vicina: "+b);
 			if(b instanceof BonusAiutanti){
 				aiutanti+=((BonusAiutanti) b).getAiutanti();
 				continue;
@@ -105,8 +102,11 @@ public class CostruzioneTesseraPermessoTest {
 				continue;
 			}	
 		}
-					
+			
 		azione.eseguiAzione(gameState);
+		
+		if(gameState.getGiocatoreCorrente().getEmpori().isEmpty())
+			vittoria+=3;
 
 		assertTrue(cittàCostruzione.getEmpori().size()==2);
 		assertEquals(aiutanti, gameState.getGiocatoreCorrente().getAiutanti().getAiutante());
@@ -133,79 +133,4 @@ public class CostruzioneTesseraPermessoTest {
 		assertTrue(cittàCostruzione==costruzioneTesseraPermesso.getCittàCostruzione());
 		assertTrue(costruzioneTesseraPermesso.getCittàCostruzione() instanceof Città);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-/*	TesseraPermesso tesseraPermesso;
-	static GameState gameState;
-	static Giocatore giocatoreCorrente;
-	CostruzioneTesseraPermesso costruzioneTesseraPermesso = new CostruzioneTesseraPermesso();
-	
-	static ArrayList<Città> città = new ArrayList<>();
-	static Colore colore = new Colore("C1");
-	
-	@BeforeClass
-	public static void init() throws IOException{
-		gameState=new GameState();
-		ArrayList<Giocatore> giocatori=new ArrayList<>();
-		Giocatore giocatore=new Giocatore("Giocatore");
-		giocatori.add(giocatore);
-		gameState.start(giocatori);
-
-		Regione regione = gameState.getRegioni().get(0);
-		ArrayList<Emporio> empori =  new ArrayList<Emporio>();
-		giocatoreCorrente = new Giocatore("nome");
-		giocatoreCorrente.setColoreGiocatore(colore);
-		giocatoreCorrente.aggiungiEmpori(empori);
-		gameState.setGiocatoreCorrente(giocatoreCorrente);
-		empori.add(new Emporio(colore));
-		empori.add(new Emporio(colore));
-		empori.add(new Emporio(colore));
-		empori.add(new Emporio(colore));
-
-		città.add(new Città("Juvelar", regione, null));
-		gameState.getGiocatoreCorrente().aggiungiTesseraPermesso(new TesseraPermesso(città, null, regione));
-		
-	}
-	
-	@Test
-	public void testEseguiAzione() {
-		Regione regione = gameState.getRegioni().get(0);
-		tesseraPermesso = regione.getTesserePermessoScoperte().get(0);
-		
-		int numEmpori = gameState.getGiocatoreCorrente().getEmpori().size();
-		int numTessere = gameState.getGiocatoreCorrente().getTesserePermesso().size();
-		TesseraPermesso tessera=gameState.getGiocatoreCorrente().getTesserePermesso().get(0);
-		int numTessereUsate =gameState.getGiocatoreCorrente().getTesserePermessoUsate().size();
-		
-		costruzioneTesseraPermesso.setCittàCostruzione(città.get(0));
-		costruzioneTesseraPermesso.setTesseraPermessoScoperta(new TesseraPermesso(città, null, regione));
-		costruzioneTesseraPermesso.eseguiAzione(gameState);
-		
-		assertEquals(numEmpori-1, gameState.getGiocatoreCorrente().getEmpori().size());
-		assertTrue(costruzioneTesseraPermesso.getCittàCostruzione().getEmpori().contains(new Emporio(colore)));
-		System.out.println(giocatoreCorrente.getTesserePermesso().size());
-		assertEquals(numTessere-1, giocatoreCorrente.getTesserePermesso().size());
-		assertEquals(numTessereUsate+1, gameState.getGiocatoreCorrente().getTesserePermessoUsate().size());
-		
-	}*/
-
 }
