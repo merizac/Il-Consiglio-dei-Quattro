@@ -7,8 +7,10 @@ import java.util.List;
 import java.util.Set;
 
 import bonus.Bonus;
+import bonus.BonusPuntiNobiltà;
 import game.CartaPolitica;
 import game.Città;
+import game.CittàBonus;
 import game.Colore;
 import game.Consigliere;
 import game.Giocatore;
@@ -16,6 +18,7 @@ import game.Regione;
 import game.TesseraPermesso;
 import game.market.Offerta;
 import gameDTO.gameDTO.CartaPoliticaDTO;
+import gameDTO.gameDTO.CittàBonusDTO;
 import gameDTO.gameDTO.CittàDTO;
 import gameDTO.gameDTO.ConsigliereDTO;
 import gameDTO.gameDTO.GiocatoreDTO;
@@ -58,6 +61,19 @@ public class ControlloParametri {
 		for (Città c : cittàGameState) {
 			if (c.getNome().equals(città.getNome()))
 				return c;
+		}
+		throw new IllegalArgumentException("La città è inesistente!");
+	}
+	
+	public static Città cercaCittàBonus(CittàDTO città, Set<Città> cittàGameState) throws IllegalArgumentException {
+		for (Città c : cittàGameState) {
+			if (c.getNome().equals(città.getNome()) && (c instanceof CittàBonus)){
+				for(Bonus b: ((CittàBonus) c).getBonus())
+					if(!(b instanceof BonusPuntiNobiltà))
+						return c;
+					else throw new IllegalArgumentException("Il gettone ricompensa della città non può contenere un bonus avanzamento nel Percorso Nobiltà!");
+				}
+			else throw new IllegalArgumentException("La città scelta non ha gettone ricompensa!");
 		}
 		throw new IllegalArgumentException("La città è inesistente!");
 	}

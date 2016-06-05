@@ -52,9 +52,14 @@ public class Stato10 implements Stato {
 			}	
 		else
 			gameState.setBonusAzionePrincipale(false);	
-	
+			gameState.setStato(new Stato10(gameState));
 	}
 
+	@Override
+	public void transizioneBonus(GameState gameState){
+		gameState.setStato(new StatoBonus(gameState,this));
+	}
+	
 	@Override
 	public List<String> getAzioni() {
 		return azioni;

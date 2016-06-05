@@ -11,9 +11,6 @@ import game.Consigliere;
 import game.GameState;
 import game.TesseraPermesso;
 import game.notify.ErrorNotify;
-import game.notify.GameStateNotify;
-import game.notify.GiocatoreNotify;
-import gameDTO.gameDTO.GiocatoreDTO;
 
 public class AcquistoTesseraPermesso extends AzionePrincipale implements Bonusable {
 
@@ -61,13 +58,14 @@ public class AcquistoTesseraPermesso extends AzionePrincipale implements Bonusab
 			System.out.println(b);
 			b.usaBonus(gameState);
 		}
+		/*ArrayList<Bonus> bonusCasella = gameState.getGiocatoreCorrente().getPunteggioNobiltà().getBonus();
 		
-		
-		
-		gameState.notifyObserver(new GameStateNotify(gameState, gameState.getGiocatori()));
-		gameState.notifyObserver(new GiocatoreNotify(gameState.getGiocatoreCorrente(), Arrays.asList(gameState.getGiocatoreCorrente())));
-		setStatoTransizionePrincipale(gameState); 
-		
+		if(!bonusCasella.isEmpty()){	
+				if(controlloBonus(gameState))	
+					setStatoTransizionePrincipale(gameState); 
+				else 
+					//transizione stato bonus
+		}*/
 	}
 	
 	/**

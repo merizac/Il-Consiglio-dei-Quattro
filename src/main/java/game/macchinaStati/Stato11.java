@@ -26,6 +26,11 @@ public class Stato11 implements Stato {
 	}
 	
 	@Override
+	public void transizioneBonus(GameState gameState){
+		gameState.setStato(new StatoBonus(gameState,this));
+	}
+	
+	@Override
 	public void transizioneVeloce(GameState gameState){
 		gameState.setStato(new Stato10(gameState));
 	}
