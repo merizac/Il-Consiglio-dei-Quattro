@@ -1,11 +1,13 @@
 package client;
 
+import java.rmi.RemoteException;
+
 import gameDTO.azioniDTO.AzioneDTO;
 
 public interface Connessione {
 	
-	public void start();
+	public void start() throws RemoteException;
 
-	public void inviaAzione(AzioneDTO action);
+	public void inviaAzione(AzioneDTO action) throws RemoteException;
 
 }

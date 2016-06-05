@@ -1,8 +1,8 @@
 package client;
 
+import java.io.Serializable;
 import java.rmi.AccessException;
 import java.rmi.NotBoundException;
-import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -14,7 +14,7 @@ import view.ServerRMIRegistrationViewRemote;
 import view.ServerRMIViewRemote;
 import view.clientNotify.ClientNotify;
 
-public class ConnessioneRMI extends UnicastRemoteObject implements Connessione, Remote {
+public class ConnessioneRMI extends UnicastRemoteObject implements Serializable,ClientRMI {
 
 	private static final long serialVersionUID = 5904563829768967721L;
 	private GameStateDTO gameStateDTO;
@@ -68,7 +68,7 @@ public class ConnessioneRMI extends UnicastRemoteObject implements Connessione, 
 	}
 
 	@Override
-	public void inviaAzione(AzioneDTO azioneDTO) {
+	public void inviaAzione(AzioneDTO azioneDTO) throws RemoteException {
 		try {
 			this.view.eseguiAzione(azioneDTO);
 		} catch (RemoteException e) {
@@ -77,11 +77,11 @@ public class ConnessioneRMI extends UnicastRemoteObject implements Connessione, 
 		}
 	}
 
-	public GiocatoreDTO getGiocatoreDTO() {
+	public GiocatoreDTO getGiocatoreDTO() throws RemoteException{
 		return this.gameStateDTO.getGiocatoreDTO();
 	}
 
-	public void aggiorna(ClientNotify notify) {
+	public void aggiorna(ClientNotify notify) throws RemoteException {
 		notify.update(gameStateDTO);
 		notify.stamp();
 	}

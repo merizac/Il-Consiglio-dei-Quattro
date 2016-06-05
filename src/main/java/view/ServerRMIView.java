@@ -15,9 +15,9 @@ import server.Server;
 
 public class ServerRMIView extends View implements ServerRMIViewRemote, Runnable {
 
-	private transient GameState gameState;
-	private transient Giocatore giocatore;
-	private transient Server server;
+	private  GameState gameState;
+	private Giocatore giocatore;
+	private Server server;
 	private ConnessioneRMI connessione;
 
 	/**
@@ -32,7 +32,12 @@ public class ServerRMIView extends View implements ServerRMIViewRemote, Runnable
 	@Override
 	public void update(Notify o) {
 		if (o.daInviare(giocatore)) {
-			this.connessione.aggiorna(o.notifyToClientNotify());
+			try {
+				this.connessione.aggiorna(o.notifyToClientNotify());
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -59,13 +64,6 @@ public class ServerRMIView extends View implements ServerRMIViewRemote, Runnable
 	@Override
 	public void run() {
 
-		giocatore = new Giocatore(this.connessione.getGiocatoreDTO().getNome());
-		try {
-			this.server.aggiungiGiocatoreRMI(giocatore, this);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 }

@@ -25,7 +25,12 @@ public class Client {
 	private void startClient() {
 		giocatore = scegliNome();
 		connessione = scegliConnessione();
-		connessione.start();
+		try {
+			connessione.start();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
