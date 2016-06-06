@@ -9,5 +9,7 @@ import view.clientNotify.ClientNotify;
 public interface ConnessioneRMIRemota extends Remote, Connessione {
 	
 	public void aggiorna(ClientNotify notify) throws RemoteException;
+	
+	public void start() throws RemoteException;
 
 }

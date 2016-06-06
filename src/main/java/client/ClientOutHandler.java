@@ -1,5 +1,6 @@
 package client;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import gameDTO.azioniDTO.AcquistoTesseraPermessoDTO;
@@ -162,7 +163,12 @@ public class ClientOutHandler implements Runnable {
 				System.out.println("L'azione non esiste \nInserire un'azione valida");
 
 			if(action!=null)
+				try {
 					connessione.inviaAzione(action);
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 		}
 	}
 }

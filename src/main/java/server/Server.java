@@ -21,8 +21,8 @@ import java.util.concurrent.Executors;
 import controller.Controller;
 import game.GameState;
 import game.Giocatore;
-import view.ServerRMIRegistrationView;
-import view.ServerRMIRegistrationViewRemote;
+import view.ServerRMIView;
+import view.ServerRMIViewRemote;
 import view.ServerSocketView;
 import view.View;
 
@@ -68,9 +68,8 @@ public class Server {
 		
 		this.registry = LocateRegistry.createRegistry(CONNESSIONERMI);
 		
-		ServerRMIRegistrationViewRemote game = new ServerRMIRegistrationView(this);
-		ServerRMIRegistrationViewRemote gameRemote = (ServerRMIRegistrationViewRemote) UnicastRemoteObject
-				.exportObject(game, 0);
+		ServerRMIViewRemote game = new ServerRMIView(this);
+		ServerRMIViewRemote gameRemote = (ServerRMIViewRemote) UnicastRemoteObject.exportObject(game, 0);
 		
 		String name = "GIOCO";
 		registry.bind(name, gameRemote);
@@ -92,20 +91,20 @@ public class Server {
 		}
 	}
 
-	public void aggiungiGiocatoreRMI(Giocatore giocatore, View view) throws RemoteException {
+	public void aggiungiGiocatoreRMI(Giocatore giocatore, ServerRMIView view) throws RemoteException {
 		this.aggiungiGiocatore(giocatore, view);
-		ServerRMIRegistrationViewRemote game = new ServerRMIRegistrationView(this);
-		ServerRMIRegistrationViewRemote gameRemote = (ServerRMIRegistrationViewRemote) UnicastRemoteObject
-				.exportObject(game, 0);
+		
+		//ServerRMIViewRemote gameRemote = (ServerRMIViewRemote) UnicastRemoteObject.exportObject(view, 0);
+		
 		String name = "GIOCO";
-		registry.rebind(name, gameRemote);
+		registry.rebind(name, view);
 
 	}
 
 	private void creaGioco() {
 		try {
 			for (View v : this.partite.get(gameState)) {
-				v.setGameState(this.gameState);
+				v.setGameState(gameState);
 				this.gameState.registerObserver(v);
 				v.registerObserver(this.controller);
 			}

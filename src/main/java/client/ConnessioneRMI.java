@@ -1,16 +1,16 @@
 package client;
 
 import java.io.Serializable;
-import java.rmi.AccessException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import gameDTO.azioniDTO.AzioneDTO;
 import gameDTO.gameDTO.GameStateDTO;
 import gameDTO.gameDTO.GiocatoreDTO;
-import view.ServerRMIRegistrationViewRemote;
 import view.ServerRMIViewRemote;
 import view.clientNotify.ClientNotify;
 
@@ -22,7 +22,7 @@ public class ConnessioneRMI extends UnicastRemoteObject implements Serializable,
 	private final static int PORT = 1099;
 	private final static String IP = "127.0.0.1";
 
-	public ConnessioneRMI(String giocatore) throws RemoteException{
+	public ConnessioneRMI(String giocatore) throws RemoteException {
 		this.gameStateDTO = new GameStateDTO();
 		GiocatoreDTO giocatoreDTO = new GiocatoreDTO();
 		giocatoreDTO.setNome(giocatore);
@@ -30,58 +30,38 @@ public class ConnessioneRMI extends UnicastRemoteObject implements Serializable,
 	}
 
 	@Override
-	public void start() {
+	public void start() throws RemoteException {
 		String name = "GIOCO";
 		Registry registry = null;
-		while (registry == null) {
-			try {
-				registry = LocateRegistry.getRegistry(IP, PORT);
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		try {
+			registry = LocateRegistry.getRegistry(IP, PORT);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		ServerRMIRegistrationViewRemote game = null;
-		while (game == null) {
-			try {
-				game = (ServerRMIRegistrationViewRemote) registry.lookup(name);
-			} catch (AccessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (NotBoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			if (registry != null) {
-				try {
-					view = game.register(this);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
+		try {
+			view = (ServerRMIViewRemote) registry.lookup(name);
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		view.register(this, gameStateDTO.getGiocatoreDTO());
+		ExecutorService executor = Executors.newFixedThreadPool(1);
+		executor.submit(new ClientOutHandler(this, gameStateDTO));
 
-		}
 	}
 
 	@Override
-	public void inviaAzione(AzioneDTO azioneDTO) {
+	public void inviaAzione(AzioneDTO azioneDTO) throws RemoteException {
 		try {
-			this.view.eseguiAzione(azioneDTO);
+			this.view.eseguiAzione(azioneDTO, this);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	public GiocatoreDTO getGiocatoreDTO() {
-		return this.gameStateDTO.getGiocatoreDTO();
-	}
-
-	public void aggiorna(ClientNotify notify) {
+	public void aggiorna(ClientNotify notify) throws RemoteException {
 		notify.update(gameStateDTO);
 		notify.stamp();
 	}
