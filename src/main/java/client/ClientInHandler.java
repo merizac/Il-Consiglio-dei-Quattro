@@ -8,11 +8,11 @@ import view.clientNotify.ClientNotify;
 
 public class ClientInHandler implements Runnable {
 
-private ObjectInputStream socketIn;
+private Connessione connessione;
 private GameStateDTO gameStateDTO;
 	
-	public ClientInHandler(ObjectInputStream socketIn,GameStateDTO gameStateDTO){
-		this.socketIn=socketIn;
+	public ClientInHandler(Connessione connessione,GameStateDTO gameStateDTO){
+		this.connessione=connessione;
 		this.gameStateDTO=gameStateDTO;
 		
 	}
@@ -20,15 +20,19 @@ private GameStateDTO gameStateDTO;
 	@Override
 	public void run() {
 
-		while(true){
-			try {
-				ClientNotify notify=(ClientNotify) socketIn.readObject();
-				notify.update(gameStateDTO);
-				notify.stamp();
-			} catch (ClassNotFoundException | IOException e) {
+		//while(true){
+			//try {
+				//ClientNotify notify=(ClientNotify) socketIn.readObject();
+				//notify.update(gameStateDTO);
+				//notify.stamp();
+			//} catch (ClassNotFoundException | IOException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+			//	e.printStackTrace();
+			//}
+		//}
+	}
+	
+	public void aggiorna(){
+		
 	}
 }
