@@ -33,6 +33,7 @@ public class ServerRMIView extends View implements ServerRMIViewRemote, Runnable
 	public void update(Notify o) {
 		for(ConnessioneRMIRemota c: giocatori.keySet()){
 			if(o.daInviare(this.giocatori.get(c))){
+				System.out.println("[SERVER] Inviata notifica "+o+" al giocatore "+this.giocatori.get(c).getNome());
 				try {
 					c.aggiorna(o.notifyToClientNotify());
 				} catch (RemoteException e) {
@@ -47,8 +48,11 @@ public class ServerRMIView extends View implements ServerRMIViewRemote, Runnable
 	public void eseguiAzione(AzioneDTO azioneDTO, ConnessioneRMIRemota connessioneRMIRemota) throws RemoteException {
 		AzioneVisitor azioneVisitor = new AzioneVisitorImpl(gameState, this.giocatori.get(connessioneRMIRemota));
 		Azione azione = azioneDTO.accept(azioneVisitor);
+		System.out.println("[SERVER] Ricevuta l'azione " + azione+
+				" dal giocatore "+this.giocatori.get(connessioneRMIRemota).getNome());
 		try{
 		if (azione.isTurno(this.giocatori.get(connessioneRMIRemota), gameState)) {
+			System.out.println("[SERVER] Inviata l'azione "+azione);
 			this.notifyObserver(azione);
 		}
 		}

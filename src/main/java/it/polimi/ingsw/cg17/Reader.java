@@ -197,7 +197,6 @@ public class Reader {
 		b.close();
 		cons.close();
 		Collections.shuffle(consiglieri);
-		System.out.println("consiglieri :"+consiglieri.size());
 		return consiglieri;
 	}
 

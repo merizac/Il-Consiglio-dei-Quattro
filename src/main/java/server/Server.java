@@ -53,7 +53,7 @@ public class Server {
 
 		ServerSocket serverSocket = new ServerSocket(CONNESSIONESOCKET);
 
-		System.out.println("SERVER SOCKET READY ON PORT " + CONNESSIONESOCKET);
+		System.out.println("[SERVER] Server pronto sulla porta : " + CONNESSIONESOCKET);
 
 		while (!end) {
 			Socket socket = serverSocket.accept();
@@ -67,6 +67,7 @@ public class Server {
 	private void startRMI() throws RemoteException, AlreadyBoundException {
 		
 		this.registry = LocateRegistry.createRegistry(CONNESSIONERMI);
+		System.out.println("[SERVER] Server pronto sulla porta : " + CONNESSIONERMI);
 		
 		ServerRMIViewRemote game = new ServerRMIView(this);
 		ServerRMIViewRemote gameRemote = (ServerRMIViewRemote) UnicastRemoteObject.exportObject(game, 0);
@@ -77,6 +78,7 @@ public class Server {
 
 	public synchronized void aggiungiGiocatore(Giocatore giocatore, View view) {
 		this.giocatori.add(giocatore);
+		System.out.println("[SERVER] Si è connesso il giocatore : "+ giocatore.getNome());
 		this.partite.get(gameState).add(view);
 		if (giocatori.size() == 2) {
 			timer = new Timer();
@@ -109,6 +111,7 @@ public class Server {
 				v.registerObserver(this.controller);
 			}
 			this.gameState.start(giocatori);
+			System.out.println("[SERVER] Iniziata una nuova partita");
 			this.giocatori.clear();
 			this.gameState = new GameState();
 			this.controller = new Controller(gameState);
