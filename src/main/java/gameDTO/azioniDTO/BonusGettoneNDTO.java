@@ -6,14 +6,12 @@ import gameDTO.gameDTO.CittàBonusDTO;
 
 public class BonusGettoneNDTO implements AzioneDTO{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5454333598048906851L;
 	private CittàBonusDTO città;
 
-	/**
-	 * @param città
-	 */
-	public BonusGettoneNDTO(CittàBonusDTO città) {
-		this.città = città;
-	}
 
 	/**
 	 * @return the città

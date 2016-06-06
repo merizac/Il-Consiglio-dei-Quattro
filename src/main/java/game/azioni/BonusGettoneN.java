@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import bonus.Bonus;
 import game.CittàBonus;
 import game.GameState;
+import gameDTO.azioniDTO.AzioneDTO;
+import gameDTO.azioniDTO.BonusGettoneNDTO;
 
 public class BonusGettoneN extends Azione {
 
@@ -40,6 +42,11 @@ public class BonusGettoneN extends Azione {
 	 */
 	public void setCittà(CittàBonus città) {
 		this.città = città;
+	}
+
+	@Override
+	public AzioneDTO getAzioneDTO() {
+	return new BonusGettoneNDTO();
 	}
 	
 }

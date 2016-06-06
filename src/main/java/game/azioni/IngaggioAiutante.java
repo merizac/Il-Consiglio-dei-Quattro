@@ -6,6 +6,8 @@ import game.GameState;
 import game.notify.ErrorNotify;
 import game.notify.GameStateNotify;
 import game.notify.GiocatoreNotify;
+import gameDTO.azioniDTO.AzioneDTO;
+import gameDTO.azioniDTO.IngaggioAiutanteDTO;
 
 public class IngaggioAiutante extends AzioneVeloce {
 
@@ -29,4 +31,9 @@ public class IngaggioAiutante extends AzioneVeloce {
 			setStatoTransizioneVeloce(gameState); 
 			}	
 		}
+
+	@Override
+	public AzioneDTO getAzioneDTO() {
+		return new IngaggioAiutanteDTO();
+	}
 }

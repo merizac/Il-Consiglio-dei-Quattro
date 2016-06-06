@@ -11,6 +11,8 @@ import game.Consigliere;
 import game.GameState;
 import game.TesseraPermesso;
 import game.notify.ErrorNotify;
+import gameDTO.azioniDTO.AcquistoTesseraPermessoDTO;
+import gameDTO.azioniDTO.AzioneDTO;
 
 public class AcquistoTesseraPermesso extends AzionePrincipale implements Bonusable {
 
@@ -188,6 +190,11 @@ public class AcquistoTesseraPermesso extends AzionePrincipale implements Bonusab
 			throw new IllegalArgumentException("L'indice della tessera permesso deve essere maggiore di 0");
 		
 		this.indiceTesseraScoperta = indiceTesseraScoperta;
+	}
+
+	@Override
+	public AzioneDTO getAzioneDTO() {
+		return new AcquistoTesseraPermessoDTO();
 	}
 
 }

@@ -19,6 +19,8 @@ import game.Regione;
 import game.notify.ErrorNotify;
 import game.notify.GameStateNotify;
 import game.notify.GiocatoreNotify;
+import gameDTO.azioniDTO.AzioneDTO;
+import gameDTO.azioniDTO.CostruzioneAiutoReDTO;
 
 public class CostruzioneAiutoRe extends AzionePrincipale implements Bonusable{
 
@@ -232,6 +234,11 @@ public class CostruzioneAiutoRe extends AzionePrincipale implements Bonusable{
 	 */
 	public void setCarteGiocatore(ArrayList<CartaPolitica> carteGiocatore) {
 		this.carteGiocatore = carteGiocatore;
+	}
+
+	@Override
+	public AzioneDTO getAzioneDTO() {
+		return new CostruzioneAiutoReDTO();
 	}
 	
 	

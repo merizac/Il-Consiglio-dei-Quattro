@@ -16,6 +16,8 @@ import game.TesseraPermesso;
 import game.notify.ErrorNotify;
 import game.notify.GameStateNotify;
 import game.notify.GiocatoreNotify;
+import gameDTO.azioniDTO.AzioneDTO;
+import gameDTO.azioniDTO.CostruzioneTesseraPermessoDTO;
 
 public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonusable {
 
@@ -158,6 +160,11 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonu
 	 */
 	public Città getCittàCostruzione() {
 		return cittàCostruzione;
+	}
+
+	@Override
+	public AzioneDTO getAzioneDTO() {
+		return new CostruzioneTesseraPermessoDTO();
 	}
 
 }

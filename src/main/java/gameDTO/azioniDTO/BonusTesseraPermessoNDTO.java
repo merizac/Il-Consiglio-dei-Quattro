@@ -6,20 +6,14 @@ import gameDTO.gameDTO.RegioneDTO;
 
 public class BonusTesseraPermessoNDTO implements AzioneDTO {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5768338832160630143L;
 	private RegioneDTO regione;
 	private int indiceTesseraScoperta;
-	
-	
-	
-	/**
-	 * @param regione
-	 * @param indiceTesseraScoperta
-	 */
-	public BonusTesseraPermessoNDTO(RegioneDTO regione, int indiceTesseraScoperta) {
-		this.regione = regione;
-		this.indiceTesseraScoperta = indiceTesseraScoperta;
-	}
 
+	
 	/**
 	 * @return the regione
 	 */

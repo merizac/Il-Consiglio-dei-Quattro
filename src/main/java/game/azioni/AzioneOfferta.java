@@ -3,6 +3,7 @@ package game.azioni;
 import game.GameState;
 import game.market.Marketable;
 import game.market.Offerta;
+import gameDTO.azioniDTO.AzioneDTO;
 import utility.exception.AzioneNonEseguibile;
 
 public class AzioneOfferta extends Azione {
@@ -40,6 +41,12 @@ public class AzioneOfferta extends Azione {
 	 */
 	public void setPrezzo(int prezzo) {
 		this.prezzo = prezzo;
+	}
+
+
+	@Override
+	public AzioneDTO getAzioneDTO() {
+		return null;
 	}
 
 }

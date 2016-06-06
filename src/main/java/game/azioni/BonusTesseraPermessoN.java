@@ -3,6 +3,8 @@ package game.azioni;
 import game.GameState;
 import game.Regione;
 import game.TesseraPermesso;
+import gameDTO.azioniDTO.AzioneDTO;
+import gameDTO.azioniDTO.BonusTesseraPermessoNDTO;
 
 public class BonusTesseraPermessoN extends Azione {
 
@@ -48,5 +50,10 @@ public class BonusTesseraPermessoN extends Azione {
 	 */
 	public void setIndiceTesseraScoperta(int indiceTesseraScoperta) {
 		this.indiceTesseraScoperta = indiceTesseraScoperta;
+	}
+
+	@Override
+	public AzioneDTO getAzioneDTO() {
+		return new BonusTesseraPermessoNDTO();
 	}
 }

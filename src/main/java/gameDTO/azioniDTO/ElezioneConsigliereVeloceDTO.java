@@ -13,15 +13,7 @@ public class ElezioneConsigliereVeloceDTO implements AzioneDTO {
 	private static final long serialVersionUID = -4829189371404681263L;
 	private RegioneDTO regione;
 	private ConsigliereDTO consigliere;
-	/**
-	 * @param regione
-	 * @param consigliere
-	 */
-	public ElezioneConsigliereVeloceDTO(RegioneDTO regione, ConsigliereDTO consigliere) {
-		super();
-		this.regione = regione;
-		this.consigliere = consigliere;
-	}
+	
 	/**
 	 * @return the regione
 	 */

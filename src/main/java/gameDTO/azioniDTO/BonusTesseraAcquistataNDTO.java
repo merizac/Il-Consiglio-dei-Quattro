@@ -5,16 +5,14 @@ import gameDTO.azioniDTO.azioneVisitor.AzioneVisitor;
 
 public class BonusTesseraAcquistataNDTO implements AzioneDTO{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1866697657818100542L;
 	private int indiceTesseraPermesso;
 	private boolean usata;
-	/**
-	 * @param indiceTesseraPermesso
-	 * @param usata
-	 */
-	public BonusTesseraAcquistataNDTO(int indiceTesseraPermesso, boolean usata) {
-		this.indiceTesseraPermesso = indiceTesseraPermesso;
-		this.usata = usata;
-	}
+	
+	
 	/**
 	 * @return the indiceTesseraPermesso
 	 */

@@ -3,6 +3,8 @@ package game.azioni;
 import game.GameState;
 import game.Giocatore;
 import game.macchinaStati.StatoAcquistoMarket;
+import gameDTO.azioniDTO.AzioneDTO;
+import gameDTO.azioniDTO.PassaDTO;
 import utility.exception.AzioneNonEseguibile;
 
 public class Passa extends Azione {
@@ -26,6 +28,11 @@ public class Passa extends Azione {
 				return giocatore.equals(((StatoAcquistoMarket) gameState.getStato()).getGiocatori().get(0));
 		else
 			return giocatore.equals(gameState.getGiocatoreCorrente());
+	}
+
+	@Override
+	public AzioneDTO getAzioneDTO() {
+		return new PassaDTO();
 	}
 
 }

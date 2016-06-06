@@ -5,6 +5,8 @@ import java.util.Arrays;
 import game.GameState;
 import game.notify.AzioniNotify;
 import game.notify.ErrorNotify;
+import gameDTO.azioniDTO.AzioneDTO;
+import gameDTO.azioniDTO.SecondaAzionePrincipaleDTO;
 
 public class SecondaAzionePrincipale extends AzioneVeloce {
 
@@ -28,5 +30,10 @@ public class SecondaAzionePrincipale extends AzioneVeloce {
 					Arrays.asList(gameState.getGiocatoreCorrente())));
 			return;
 		}
+	}
+
+	@Override
+	public AzioneDTO getAzioneDTO() {
+		return new SecondaAzionePrincipaleDTO();
 	}
 }

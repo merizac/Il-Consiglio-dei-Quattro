@@ -3,19 +3,20 @@ package game.notify;
 import java.util.List;
 
 import game.Giocatore;
+import game.azioni.Azione;
 import view.clientNotify.AzioniClientNotify;
 import view.clientNotify.ClientNotify;
 
 public class AzioniNotify implements Notify{
 
-	private List<String> azioni;
+	private List<Azione> azioni;
 	private List<Giocatore> giocatori;
 
 	/**
 	 * @param azioni
 	 * @param giocatori
 	 */
-	public AzioniNotify(List<String> azioni, List<Giocatore> giocatori) {
+	public AzioniNotify(List<Azione> azioni, List<Giocatore> giocatori) {
 		if (azioni == null)
 			throw new NullPointerException("La lista di azioni non può essere null");
 		if (giocatori == null)

@@ -14,14 +14,8 @@ public class CostruzioneAiutoReDTO implements AzioneDTO {
 	private static final long serialVersionUID = -6608314626155739931L;
 	private List<CartaPoliticaDTO> carteGiocatore;
 	private CittàDTO città;
-	/**
-	 * @param carteGiocatore
-	 * @param città
-	 */
-	public CostruzioneAiutoReDTO(List<CartaPoliticaDTO> carteGiocatore, CittàDTO città) {
-		this.carteGiocatore = carteGiocatore;
-		this.città = città;
-	}
+	
+	
 	/**
 	 * @return the carteGiocatore
 	 */

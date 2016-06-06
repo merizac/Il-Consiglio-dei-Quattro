@@ -15,16 +15,8 @@ public class AcquistoTesseraPermessoDTO implements AzioneDTO {
 	private RegioneDTO regione;
 	private List<CartaPoliticaDTO> carte;
 	private int indiceTessera;
-	/**
-	 * @param regione
-	 * @param carte
-	 * @param indiceTessera
-	 */
-	public AcquistoTesseraPermessoDTO(RegioneDTO regione, List<CartaPoliticaDTO> carte, int indiceTessera) {
-		this.regione = regione;
-		this.carte = carte;
-		this.indiceTessera = indiceTessera;
-	}
+	
+	
 	/**
 	 * @return the regione
 	 */

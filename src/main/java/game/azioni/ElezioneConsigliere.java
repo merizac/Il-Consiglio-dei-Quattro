@@ -7,6 +7,8 @@ import game.GameState;
 import game.Regione;
 import game.notify.GameStateNotify;
 import game.notify.GiocatoreNotify;
+import gameDTO.azioniDTO.AzioneDTO;
+import gameDTO.azioniDTO.ElezioneConsigliereDTO;
 
 public class ElezioneConsigliere extends AzionePrincipale {
 
@@ -51,5 +53,10 @@ public class ElezioneConsigliere extends AzionePrincipale {
 		
 		setStatoTransizionePrincipale(gameState); 
 	}
+
+@Override
+public AzioneDTO getAzioneDTO() {
+	return new ElezioneConsigliereDTO();
+}
 
 }

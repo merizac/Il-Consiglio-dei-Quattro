@@ -8,6 +8,8 @@ import game.TesseraPermesso;
 import game.notify.ErrorNotify;
 import game.notify.GameStateNotify;
 import game.notify.GiocatoreNotify;
+import gameDTO.azioniDTO.AzioneDTO;
+import gameDTO.azioniDTO.CambioTesserePermessoDTO;
 
 public class CambioTesseraPermesso extends AzioneVeloce {
 
@@ -65,6 +67,11 @@ public class CambioTesseraPermesso extends AzioneVeloce {
 	 */
 	public void setRegione(Regione regione) {
 		this.regione = regione;
+	}
+
+	@Override
+	public AzioneDTO getAzioneDTO() {
+		return new CambioTesserePermessoDTO();
 	}
 	
 }
