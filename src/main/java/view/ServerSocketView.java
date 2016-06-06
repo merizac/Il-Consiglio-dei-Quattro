@@ -86,7 +86,6 @@ public class ServerSocketView extends View implements Runnable {
 				e1.printStackTrace();
 			}
 		}
-
 	}
 
 	/**

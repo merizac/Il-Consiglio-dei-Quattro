@@ -14,7 +14,7 @@ import view.ServerRMIRegistrationViewRemote;
 import view.ServerRMIViewRemote;
 import view.clientNotify.ClientNotify;
 
-public class ConnessioneRMI extends UnicastRemoteObject implements Serializable,ClientRMI {
+public class ConnessioneRMI extends UnicastRemoteObject implements Serializable, ConnessioneRMIRemota {
 
 	private static final long serialVersionUID = 5904563829768967721L;
 	private GameStateDTO gameStateDTO;
@@ -22,7 +22,7 @@ public class ConnessioneRMI extends UnicastRemoteObject implements Serializable,
 	private final static int PORT = 1099;
 	private final static String IP = "127.0.0.1";
 
-	public ConnessioneRMI(String giocatore) throws RemoteException {
+	public ConnessioneRMI(String giocatore) throws RemoteException{
 		this.gameStateDTO = new GameStateDTO();
 		GiocatoreDTO giocatoreDTO = new GiocatoreDTO();
 		giocatoreDTO.setNome(giocatore);
@@ -68,7 +68,7 @@ public class ConnessioneRMI extends UnicastRemoteObject implements Serializable,
 	}
 
 	@Override
-	public void inviaAzione(AzioneDTO azioneDTO) throws RemoteException {
+	public void inviaAzione(AzioneDTO azioneDTO) {
 		try {
 			this.view.eseguiAzione(azioneDTO);
 		} catch (RemoteException e) {
@@ -77,11 +77,11 @@ public class ConnessioneRMI extends UnicastRemoteObject implements Serializable,
 		}
 	}
 
-	public GiocatoreDTO getGiocatoreDTO() throws RemoteException{
+	public GiocatoreDTO getGiocatoreDTO() {
 		return this.gameStateDTO.getGiocatoreDTO();
 	}
 
-	public void aggiorna(ClientNotify notify) throws RemoteException {
+	public void aggiorna(ClientNotify notify) {
 		notify.update(gameStateDTO);
 		notify.stamp();
 	}

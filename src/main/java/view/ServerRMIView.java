@@ -31,14 +31,8 @@ public class ServerRMIView extends View implements ServerRMIViewRemote, Runnable
 
 	@Override
 	public void update(Notify o) {
-		if (o.daInviare(giocatore)) {
-			try {
+		if (o.daInviare(giocatore))
 				this.connessione.aggiorna(o.notifyToClientNotify());
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
 	}
 
 	@Override

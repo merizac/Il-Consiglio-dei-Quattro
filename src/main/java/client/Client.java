@@ -25,12 +25,7 @@ public class Client {
 	private void startClient() {
 		giocatore = scegliNome();
 		connessione = scegliConnessione();
-		try {
-			connessione.start();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		connessione.start();
 
 	}
 
@@ -49,7 +44,7 @@ public class Client {
 		String connessione = null;
 		while (true) {
 			{
-				connessione=stdIn.nextLine();
+				connessione = stdIn.nextLine();
 				if (SOCKET.equals(connessione))
 					return new ConnessioneSocket(this.giocatore);
 				else if (RMI.equals(connessione))
