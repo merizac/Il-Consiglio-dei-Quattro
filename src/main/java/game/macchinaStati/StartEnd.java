@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import game.GameState;
+import game.azioni.Azione;
+import game.azioni.PescaCarta;
 import game.notify.AzioniNotify;
 
 public class StartEnd implements Stato {
@@ -20,9 +22,9 @@ public class StartEnd implements Stato {
 	}
 
 	@Override
-	public List<String> getAzioni() {
-		List<String> azioni = new ArrayList<>();
-		azioni.add("Pesca[Pesca]");
+	public List<Azione> getAzioni() {
+		List<Azione> azioni = new ArrayList<>();
+		azioni.add(new PescaCarta());
 		return azioni;
 	}
 

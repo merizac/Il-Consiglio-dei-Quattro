@@ -1,19 +1,22 @@
 package view.clientNotify;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import bonus.BonusNobiltà;
+import game.azioni.Azione;
+import gameDTO.azioniDTO.AzioneDTO;
 import gameDTO.gameDTO.GameStateDTO;
 
 public class BonusClientNotify implements ClientNotify {
 
 	private static final long serialVersionUID = -4132525333640241505L;
-	private List<BonusNobiltà> bonus;
+	private List<AzioneDTO> bonus;
 
-	public BonusClientNotify(List<BonusNobiltà> bonus) {
-		if(bonus==null)
+	public BonusClientNotify(ArrayList<AzioneDTO> bonusDTO) {
+		if(bonusDTO==null)
 			throw new NullPointerException("I bonus non possono essere null");
-		this.bonus=bonus;
+		this.bonus=bonusDTO;
 	}
 
 	@Override
@@ -24,7 +27,7 @@ public class BonusClientNotify implements ClientNotify {
 	@Override
 	public void stamp() {
 		System.out.println("Hai vinto un Bonus nel Percorso Nobiltà!\n");
-		for(BonusNobiltà b: bonus){
+		for(AzioneDTO b: bonus){
 			System.out.println(b);
 		}
 	}

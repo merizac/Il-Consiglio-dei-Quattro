@@ -1,32 +1,26 @@
 package game.macchinaStati;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import game.GameState;
+import game.azioni.AcquistoTesseraPermesso;
+import game.azioni.Azione;
+import game.azioni.CostruzioneAiutoRe;
+import game.azioni.CostruzioneTesseraPermesso;
+import game.azioni.ElezioneConsigliere;
 import game.notify.AzioniNotify;
+import game.notify.ErrorNotify;
 import utility.exception.AzioneNonEseguibile;
 
 public class Stato10 implements Stato {
-
-	private List<String> azioni;
 
 	/**
 	 * @param azioni
 	 */
 	public Stato10(GameState gameState) {
 		System.out.println(this);
-		riempiAzioni();
-		gameState.notifyObserver(new AzioniNotify(getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
-	}
-
-	private void riempiAzioni() {
-		this.azioni = new ArrayList<String>();
-		azioni.add("AZIONI PRINCIPALI:");
-		azioni.add("Eleggere un consigliere [P1]");
-		azioni.add("Acquistare una tessera permesso di costruzione [P2]");
-		azioni.add("Costruire un emporio usando una tessera permesso [P3]");
-		azioni.add("costruire un emporio con l'aiuto del re [P4]");
+		gameState.notifyObserver(new ErrorNotify("AZIONI PRINCIPALI", Arrays.asList(gameState.getGiocatoreCorrente())));
+		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
 	}
 
 	@Override
@@ -50,9 +44,10 @@ public class Stato10 implements Stato {
 					gameState.setStato(new StatoOffertaMarket(gameState));
 				}
 			}	
-		else
+		else {
 			gameState.setBonusAzionePrincipale(false);	
 			gameState.setStato(new Stato10(gameState));
+		}
 	}
 
 	@Override
@@ -61,8 +56,9 @@ public class Stato10 implements Stato {
 	}
 	
 	@Override
-	public List<String> getAzioni() {
-		return azioni;
+	public List<Azione> getAzioni() {
+		return Arrays.asList(new ElezioneConsigliere(), new AcquistoTesseraPermesso(),
+				new CostruzioneTesseraPermesso(), new CostruzioneAiutoRe());
 	}
 
 	/*

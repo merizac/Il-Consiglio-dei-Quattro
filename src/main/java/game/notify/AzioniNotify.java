@@ -1,9 +1,11 @@
 package game.notify;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import game.Giocatore;
 import game.azioni.Azione;
+import gameDTO.azioniDTO.AzioneDTO;
 import view.clientNotify.AzioniClientNotify;
 import view.clientNotify.ClientNotify;
 
@@ -35,7 +37,11 @@ public class AzioniNotify implements Notify{
 	}
 	@Override
 	public ClientNotify notifyToClientNotify() {
-		return new AzioniClientNotify(azioni);
+		List<AzioneDTO> azioniDTO=new ArrayList<>();
+		for(Azione a: azioni){
+			azioniDTO.add(a.getAzioneDTO());
+		}
+		return new AzioniClientNotify(azioniDTO);
 
 	}
 

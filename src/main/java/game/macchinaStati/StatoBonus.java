@@ -4,27 +4,30 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import bonus.BonusNobiltà;
 import game.GameState;
+import game.azioni.Azione;
 import game.notify.AzioniNotify;
+import game.notify.BonusNotify;
 import utility.exception.AzioneNonEseguibile;
 
 public class StatoBonus implements Stato {
 	private Stato stato;
-	private List<String> azioni;
+	private List<Azione> bonus;
 	
 	/**
 	 * @param stato
 	 */
 	public StatoBonus(GameState gameState, Stato stato) {
 		this.stato = stato;
-		riempiAzioni();
-		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
+		riempiAzioni(gameState);
+		gameState.notifyObserver(new BonusNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
 	
 	}
 
-	public void riempiAzioni(){
-		this.azioni = new ArrayList<String>();
-		azioni.add("Hai vinto un Bonus nel Percorso Nobiltà! \nDigita [B] per usare il Bonus:");
+	public void riempiAzioni(GameState gameState){
+		this.bonus = new ArrayList<Azione>();
+		gameState.getGiocatoreCorrente().getBonusNobiltà();
 		
 	}
 	
@@ -38,8 +41,8 @@ public class StatoBonus implements Stato {
 
 
 	@Override
-	public List<String> getAzioni() {
-				return azioni;
+	public List<Azione> getAzioni() {
+				return bonus;
 	}
 
 }
