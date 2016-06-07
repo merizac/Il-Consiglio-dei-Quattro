@@ -22,13 +22,12 @@ public class ServerSocketView extends View implements Runnable {
 	private ObjectOutputStream socketOut;
 	private GameState gameState;
 	private Giocatore giocatore;
-	private Server server;
+	private boolean fine=false;
 
-	public ServerSocketView(Socket socket, Server server) throws IOException {
+	public ServerSocketView(Socket socket) throws IOException {
 		this.socket = socket;
 		this.socketIn = new ObjectInputStream(socket.getInputStream());
 		this.socketOut = new ObjectOutputStream(socket.getOutputStream());
-		this.server = server;
 	}
 
 	@Override
@@ -57,13 +56,13 @@ public class ServerSocketView extends View implements Runnable {
 			e2.printStackTrace();
 		}
 		try{
-		server.aggiungiGiocatore(giocatore, this);
+		Server.getInstance().aggiungiGiocatore(giocatore, this);
 		}
 		catch(Exception e){
 			e.printStackTrace();
 		}
 
-		while (true) {
+		while (!fine) {
 
 			try {
 				Object object = socketIn.readObject();
@@ -96,6 +95,20 @@ public class ServerSocketView extends View implements Runnable {
 	@Override
 	public void setGameState(GameState gameState) {
 		this.gameState = gameState;
+	}
+
+	@Override
+	public void disconnetti() {
+		try {
+			this.socket.close();
+			this.socketIn.close();
+			this.socketOut.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.fine=true;
+		
 	}
 
 }

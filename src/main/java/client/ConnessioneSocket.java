@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.rmi.RemoteException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -19,6 +20,7 @@ public class ConnessioneSocket implements Connessione {
 	private final static String IP = "127.0.0.1";
 	private ObjectOutputStream socketOut;
 	private ObjectInputStream socketIn;
+	private boolean fine=false;
 
 	public ConnessioneSocket(String giocatore) {
 		this.gameStateDTO = new GameStateDTO();
@@ -61,20 +63,20 @@ public class ConnessioneSocket implements Connessione {
 
 		ExecutorService executor = Executors.newFixedThreadPool(1);
 		executor.submit(new ClientOutHandler(this, gameStateDTO));
-		//executor.submit(new ClientInHandler(this, gameStateDTO));
 		listen();
 	}
 
 	private void listen() {
-		while(true){
+		while (!fine) {
 			try {
-				ClientNotify notify=(ClientNotify) socketIn.readObject();
+				ClientNotify notify = (ClientNotify) socketIn.readObject();
 				notify.update(gameStateDTO);
 				notify.stamp();
 			} catch (ClassNotFoundException | IOException e) {
 				e.printStackTrace();
+				disconnetti();
 			}
-		}		
+		}
 	}
 
 	@Override
@@ -86,7 +88,18 @@ public class ConnessioneSocket implements Connessione {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
+	}
+
+	@Override
+	public void disconnetti() {
+		try {
+			this.socketIn.close();
+			this.socketOut.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -29,6 +29,7 @@ public class ClientOutHandler implements Runnable {
 
 	private Connessione connessione;
 	private GameStateDTO gameStateDTO;
+	private boolean fine=false;
 
 	public ClientOutHandler(Connessione connessione, GameStateDTO gameStateDTO) {
 		this.connessione = connessione;
@@ -42,7 +43,7 @@ public class ClientOutHandler implements Runnable {
 				+ ", BENVENUTO IN UNA NUOVA PARTITA DEL *Consiglio dei Quattro* !");
 		Scanner stdIn = new Scanner(System.in);
 
-		while (true) {
+		while (!fine) {
 			AzioneDTO action = null;
 			int indice;
 			RegioneDTO regioneScelta;
@@ -202,5 +203,9 @@ public class ClientOutHandler implements Runnable {
 					e.printStackTrace();
 				}
 		}
+	}
+
+	public void stop() {
+		this.fine=true;
 	}
 }

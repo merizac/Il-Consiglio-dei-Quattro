@@ -17,15 +17,13 @@ import server.Server;
 public class ServerRMIView extends View implements ServerRMIViewRemote, Runnable{
 
 	private GameState gameState;
-	private Server server;
 	private Map<ConnessioneRMIRemota, Giocatore> giocatori;
 
 	/**
 	 * @param giocatore
 	 * @param server
 	 */
-	public ServerRMIView(Server server) {
-		this.server = server;
+	public ServerRMIView() {
 		this.giocatori=new HashMap<>();
 	}
 
@@ -75,13 +73,25 @@ public class ServerRMIView extends View implements ServerRMIViewRemote, Runnable
 			throws RemoteException {
 		Giocatore giocatore = new Giocatore(giocatoreDTO.getNome());
 		this.giocatori.put(connessioneRMIRemota, giocatore);
-		server.aggiungiGiocatoreRMI(giocatore, this);
+		Server.getInstance().aggiungiGiocatoreRMI(giocatore, this);
 		return this;
 	}
 
 	@Override
 	public void setGameState(GameState gameState) {
 		this.gameState=gameState;
+	}
+
+	@Override
+	public void disconnetti() {
+		for(ConnessioneRMIRemota c: this.giocatori.keySet()){
+			try {
+				c.disconnetti();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 }

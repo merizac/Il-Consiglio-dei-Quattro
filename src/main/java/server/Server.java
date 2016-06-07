@@ -38,6 +38,7 @@ public class Server {
 	private final int TIMEOUT = 5000;
 	private Timer timer;
 	private Registry registry;
+	private static Server instance=new Server();
 
 	public Server() {
 		this.partite = new HashMap<>();
@@ -45,6 +46,10 @@ public class Server {
 		this.controller = new Controller(gameState);
 		this.partite.put(gameState, new HashSet<>());
 		this.giocatori = new ArrayList<>();
+	}
+	
+	public static Server getInstance(){
+		return instance;
 	}
 
 	private void startSocket() throws IOException {
@@ -57,7 +62,7 @@ public class Server {
 
 		while (!end) {
 			Socket socket = serverSocket.accept();
-			ServerSocketView view = new ServerSocketView(socket, this);
+			ServerSocketView view = new ServerSocketView(socket);
 			executor.submit(view);
 		}
 
@@ -69,7 +74,7 @@ public class Server {
 		this.registry = LocateRegistry.createRegistry(CONNESSIONERMI);
 		System.out.println("[SERVER] Server pronto sulla porta : " + CONNESSIONERMI);
 		
-		ServerRMIViewRemote game = new ServerRMIView(this);
+		ServerRMIViewRemote game = new ServerRMIView();
 		ServerRMIViewRemote gameRemote = (ServerRMIViewRemote) UnicastRemoteObject.exportObject(game, 0);
 		
 		String name = "GIOCO";
@@ -123,16 +128,29 @@ public class Server {
 		}
 
 	}
+	
+	public void disconnettiClient(GameState gameState){
+		for(View v: this.partite.get(gameState)){
+			v.disconnetti();
+		}
+	}
 
 	public static void main(String[] args) throws IOException {
-		Server server = new Server();
+		try {
+			Server.getInstance().startRMI();
+		} catch (AlreadyBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Server.getInstance().startSocket();
+		/*Server server = new Server();
 		try {
 			server.startRMI();
 		} catch (AlreadyBoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		server.startSocket();
+		server.startSocket();*/
 	}
 
 }

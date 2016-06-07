@@ -18,4 +18,7 @@ public abstract class View extends Observable <Azione> implements Observer <Noti
 		
 	}
 	public abstract void setGameState(GameState gameState);
+
+
+	public abstract void disconnetti();
 }
