@@ -41,6 +41,13 @@ public class ElezioneConsigliereDTO implements AzioneDTO {
 	public void setRegioneDTO(RegioneDTO regioneDTO) {
 		this.regioneDTO = regioneDTO;
 	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Eleggere un consigliere  [P1]";
+	}
 	
 	
 

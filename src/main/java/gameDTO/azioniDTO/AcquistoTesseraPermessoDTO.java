@@ -58,4 +58,11 @@ public class AcquistoTesseraPermessoDTO implements AzioneDTO {
 		return azioneVisitor.visit(this);
 		
 	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Acquistare una tessera permesso [P2]";
+	}
 }
