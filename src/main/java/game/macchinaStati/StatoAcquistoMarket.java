@@ -6,6 +6,9 @@ import java.util.Collections;
 import java.util.List;
 import game.GameState;
 import game.Giocatore;
+import game.azioni.Azione;
+import game.azioni.AzioneAcquisto;
+import game.azioni.Passa;
 import game.notify.AzioniNotify;
 import game.notify.OffertaNotify;
 import utility.exception.AzioneNonEseguibile;
@@ -13,27 +16,19 @@ import utility.exception.AzioneNonEseguibile;
 public class StatoAcquistoMarket implements Stato {
 
 	private ArrayList<Giocatore> giocatori;
-	private List<String> azioni;
 	
 	public StatoAcquistoMarket(GameState gameState){
-		this.azioni=new ArrayList<>();
 		this.giocatori=new ArrayList<Giocatore>(gameState.getGiocatori());
 		inizializzaStato(gameState);
 	}
 	
 	private void inizializzaStato(GameState gameState){
-		riempiAzioni();
 		Collections.shuffle(giocatori);
 		gameState.notifyObserver(new OffertaNotify(gameState.getOfferteMarket(), Arrays.asList(giocatori.get(0))));
-		gameState.notifyObserver(new AzioniNotify(azioni, Arrays.asList(giocatori.get(0))));
+		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(giocatori.get(0))));
 		
 	}
-	
-	private void riempiAzioni() {
-		azioni.add("\nAcquista");
-		azioni.add("Passa");
-		
-	}
+
 	@Override
 	public void transizionePassa(GameState gameState) throws AzioneNonEseguibile{
 		this.giocatori.remove(0);
@@ -41,7 +36,7 @@ public class StatoAcquistoMarket implements Stato {
 			Collections.shuffle(giocatori);
 			gameState.setStato(this);
 			gameState.notifyObserver(new OffertaNotify(gameState.getOfferteMarket(), Arrays.asList(giocatori.get(0))));
-			gameState.notifyObserver(new AzioniNotify(azioni, Arrays.asList(giocatori.get(0))));
+			gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(giocatori.get(0))));
 		}
 		else{
 			gameState.getOfferteMarket().clear();
@@ -52,12 +47,12 @@ public class StatoAcquistoMarket implements Stato {
 	public void transizioneOfferta(GameState gameState){
 		gameState.setStato(this);
 		gameState.notifyObserver(new OffertaNotify(gameState.getOfferteMarket(), Arrays.asList(giocatori.get(0))));
-		gameState.notifyObserver(new AzioniNotify(azioni, Arrays.asList(giocatori.get(0))));
+		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(giocatori.get(0))));
 	}
 	
 	@Override
-	public List<String> getAzioni() {
-		return azioni;
+	public List<Azione> getAzioni() {
+		return Arrays.asList(new AzioneAcquisto(), new Passa());
 	}
 
 	/**

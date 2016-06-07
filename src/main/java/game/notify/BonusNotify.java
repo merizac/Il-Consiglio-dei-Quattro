@@ -6,25 +6,26 @@ import java.util.List;
 import game.Giocatore;
 import game.azioni.Azione;
 import gameDTO.azioniDTO.AzioneDTO;
-import view.clientNotify.AzioniClientNotify;
+import view.clientNotify.BonusClientNotify;
 import view.clientNotify.ClientNotify;
 
-public class AzioniNotify implements Notify{
+public class BonusNotify implements Notify {
 
-	private List<Azione> azioni;
+
+	private List<Azione> bonus;
 	private List<Giocatore> giocatori;
 
 	/**
 	 * @param azioni
 	 * @param giocatori
 	 */
-	public AzioniNotify(List<Azione> azioni, List<Giocatore> giocatori) {
-		if (azioni == null)
-			throw new NullPointerException("La lista di azioni non può essere null");
+	public BonusNotify(List<Azione> list, List<Giocatore> giocatori) {
+		if (list == null)
+			throw new NullPointerException("La lista di bonus non può essere null");
 		if (giocatori == null)
 			throw new NullPointerException("La lista di giocatori non può essere null");
 
-		this.azioni = azioni;
+		this.bonus = list;
 		this.giocatori = giocatori;
 	}
 
@@ -35,13 +36,15 @@ public class AzioniNotify implements Notify{
 		else
 			return giocatori.contains(giocatore);
 	}
+	
 	@Override
 	public ClientNotify notifyToClientNotify() {
-		List<AzioneDTO> azioniDTO=new ArrayList<>();
-		for(Azione a: azioni){
-			azioniDTO.add(a.getAzioneDTO());
+		ArrayList<AzioneDTO> bonusDTO = new ArrayList<>();
+		for (Azione a: bonus){
+			bonusDTO.add(a.getAzioneDTO());
 		}
-		return new AzioniClientNotify(azioniDTO);
+		
+		return new BonusClientNotify(bonusDTO);
 
 	}
 

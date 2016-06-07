@@ -3,6 +3,8 @@ package game.azioni;
 import bonus.Bonus;
 import game.GameState;
 import game.TesseraPermesso;
+import gameDTO.azioniDTO.AzioneDTO;
+import gameDTO.azioniDTO.BonusTesseraAcquistataNDTO;
 import utility.exception.AzioneNonEseguibile;
 
 public class BonusTesseraAcquistataN extends Azione{
@@ -55,6 +57,11 @@ public class BonusTesseraAcquistataN extends Azione{
 	 */
 	public void setUsata(boolean usata) {
 		this.usata = usata;
+	}
+
+	@Override
+	public AzioneDTO getAzioneDTO() {
+		return new BonusTesseraAcquistataNDTO();
 	}
 
 }

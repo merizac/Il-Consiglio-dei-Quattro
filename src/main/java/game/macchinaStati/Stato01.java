@@ -1,32 +1,28 @@
 package game.macchinaStati;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import game.GameState;
+import game.azioni.Azione;
+import game.azioni.CambioTesseraPermesso;
+import game.azioni.ElezioneConsigliereVeloce;
+import game.azioni.IngaggioAiutante;
+import game.azioni.Passa;
+import game.azioni.SecondaAzionePrincipale;
 import game.notify.AzioniNotify;
+import game.notify.ErrorNotify;
 import utility.exception.AzioneNonEseguibile;
 
 public class Stato01 implements Stato {
 
-	private List<String> azioni;
 
 	public Stato01(GameState gameState) {
 		System.out.println(this);
-		this.azioni = new ArrayList<String>();
-		riempiAzioni();
+		gameState.notifyObserver(new ErrorNotify("AZIONI VELOCI", Arrays.asList(gameState.getGiocatoreCorrente())));
 		gameState.notifyObserver(new AzioniNotify(getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
 		
 	}
 
-	private void riempiAzioni() {
-		azioni.add("AZIONI VELOCI");
-		azioni.add("Ingaggiare un aiutante [V1]");
-		azioni.add("Cambiare le tessere permesso di costruzione [V2]");
-		azioni.add("Mandare un aiutante ad eleggere un consigliere [V3]");
-		azioni.add("Compiere un'azione principale[V4]");
-		azioni.add("Oppure Passa il turno! [Passa]");
-	}
 
 	@Override
 	public void transizioneVeloce(GameState gameState) throws AzioneNonEseguibile {
@@ -61,8 +57,9 @@ public class Stato01 implements Stato {
 	
 
 	@Override
-	public List<String> getAzioni() {
-		return azioni;
+	public List<Azione> getAzioni() {
+		return Arrays.asList(new IngaggioAiutante(), new CambioTesseraPermesso(), 
+				new ElezioneConsigliereVeloce(), new SecondaAzionePrincipale(), new Passa());
 	}
 
 	/* (non-Javadoc)

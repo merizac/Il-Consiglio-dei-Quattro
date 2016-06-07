@@ -4,6 +4,11 @@ package bonus;
 import java.util.ArrayList;
 import game.CittàBonus;
 import game.GameState;
+import game.azioni.Azione;
+import game.azioni.BonusGettoneN;
+import gameDTO.azioniDTO.AzioneDTO;
+import gameDTO.azioniDTO.BonusGettoneNDTO;
+import gameDTO.gameDTO.CittàBonusDTO;
 
 public class BonusGettoneRicompensa extends Bonus {
 
@@ -13,19 +18,19 @@ public class BonusGettoneRicompensa extends Bonus {
 	private static final long serialVersionUID = -7078597933216059193L;
 	private final int numeroGettoni;
 	private ArrayList<CittàBonus> cittàGiocatore;
+	private CittàBonusDTO cittàDTO;
 	
 	public BonusGettoneRicompensa(int numeroGettoni) {
-		super();
 		this.numeroGettoni=numeroGettoni;
 	}
 
+	public Azione getAzioneBonus(){
+		return new BonusGettoneN();
+	}
+	
 	@Override
 	public void usaBonus(GameState gameState) {		
-		/*PassaggioParametri passaggioParametri = new PassaggioParametri(gameState);
-		if(numeroGettoni==1)
-			cittàGiocatore.add((CittàBonus)passaggioParametri.scegliCittàEmporio());
-		else
-			return;*/
+		
 	}
 
 	/* (non-Javadoc)
@@ -35,6 +40,7 @@ public class BonusGettoneRicompensa extends Bonus {
 	public String toString() {
 		return "BonusGettoneRicompensa [numeroGettoni=" + numeroGettoni + "]";
 	}
+	
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()

@@ -12,13 +12,6 @@ public class CambioTesserePermessoDTO implements AzioneDTO {
 	private static final long serialVersionUID = 2237104774390257699L;
 	private RegioneDTO regione;
 
-	/**
-	 * @param regione
-	 */
-	public CambioTesserePermessoDTO(RegioneDTO regione) {
-		super();
-		this.regione = regione;
-	}
 
 	/**
 	 * @return the regione

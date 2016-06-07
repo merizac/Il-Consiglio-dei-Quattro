@@ -4,6 +4,8 @@ import java.util.Arrays;
 
 import game.GameState;
 import game.notify.GiocatoreNotify;
+import gameDTO.azioniDTO.AzioneDTO;
+import gameDTO.azioniDTO.PescaCartaDTO;
 import utility.exception.AzioneNonEseguibile;
 
 public class PescaCarta extends Azione {
@@ -16,6 +18,11 @@ public class PescaCarta extends Azione {
 		gameState.notifyObserver(new GiocatoreNotify(gameState.getGiocatoreCorrente(), 
 				Arrays.asList(gameState.getGiocatoreCorrente())));
 		gameState.getStato().transizionePescaCarta(gameState);
+	}
+
+	@Override
+	public AzioneDTO getAzioneDTO() {
+		return new PescaCartaDTO();
 	}
 
 }

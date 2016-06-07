@@ -9,6 +9,7 @@ import java.util.List;
 import bonus.Bonus;
 import game.GameState;
 import game.Giocatore;
+import game.azioni.Azione;
 import game.notify.ClassificaNotify;
 import game.notify.PerdenteNotify;
 import game.notify.VincitoreNotify;
@@ -206,7 +207,7 @@ private void assegnaPunti(ArrayList<Giocatore> primo, ArrayList<Giocatore> secon
 	}
 
 	@Override
-	public List<String> getAzioni() {
+	public List<Azione> getAzioni() {
 		return null;
 	}
 

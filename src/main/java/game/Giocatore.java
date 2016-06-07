@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bonus.*;
+import game.azioni.Azione;
 
 
 public class Giocatore {
@@ -19,7 +20,7 @@ public class Giocatore {
 	private int punteggioVittoria;
 	private int punteggioRicchezza;
 	private PunteggioNobiltà punteggioNobiltà;
-	private List<BonusNobiltà> bonusNobiltà;
+	private List<Azione> bonusNobiltà;
 
 
 	/**
@@ -196,7 +197,7 @@ public int getNumeroTesserePermesso(){
 		return empori;
 	}
 
-	public List<BonusNobiltà> getBonusNobiltà() {
+	public List<Azione> getBonusNobiltà() {
 		return bonusNobiltà;
 	}
 

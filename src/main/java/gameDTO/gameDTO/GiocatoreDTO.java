@@ -2,17 +2,18 @@ package gameDTO.gameDTO;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import bonus.Bonus;
+import bonus.BonusNobiltà;
 import game.CartaPolitica;
 import game.Giocatore;
 import game.TesseraPermesso;
+import game.azioni.Azione;
+import gameDTO.azioniDTO.AzioneDTO;
 
 public class GiocatoreDTO implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -2107420956593617286L;
 
 	private String nome; 
@@ -26,6 +27,7 @@ public class GiocatoreDTO implements Serializable {
 	private int punteggioVittoria;
 	private int punteggioRicchezza;
 	private int punteggioNobiltà;
+	private List<AzioneDTO> bonusNobiltà;
 	
 	
 	public GiocatoreDTO(){
@@ -207,6 +209,18 @@ public class GiocatoreDTO implements Serializable {
 				+ tesserePermessoUsate + "\ntessereBonus=" + tessereBonus + "\nempori = " + empori + "\naiutanti = "
 				+ aiutanti + "\npunteggioVittoria = " + punteggioVittoria + "\npunteggioRicchezza = "  + punteggioRicchezza
 				+ "\npunteggioNobiltà = " + punteggioNobiltà;
+	}
+	/**
+	 * @return the bonusNobiltà
+	 */
+	public List<AzioneDTO> getBonusNobiltà() {
+		return bonusNobiltà;
+	}
+	/**
+	 * @param bonus the bonusNobiltà to set
+	 */
+	public void setBonusNobiltà(List<AzioneDTO> bonus) {
+		this.bonusNobiltà = bonus;
 	}
 	
 	

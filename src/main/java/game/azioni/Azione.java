@@ -2,6 +2,7 @@ package game.azioni;
 
 import game.GameState;
 import game.Giocatore;
+import gameDTO.azioniDTO.AzioneDTO;
 import utility.exception.AzioneNonEseguibile;
 
 public abstract class Azione {
@@ -15,4 +16,6 @@ public abstract class Azione {
 			throw new NullPointerException("Il gameState non può essere null");
 		return(giocatore.equals(gameState.getGiocatoreCorrente()));
 	}
+	
+	public abstract AzioneDTO getAzioneDTO();
 }

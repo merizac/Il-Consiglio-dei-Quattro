@@ -19,8 +19,8 @@ import bonus.BonusGettoneRicompensa;
 import bonus.BonusMoneta;
 import bonus.BonusPuntiNobiltà;
 import bonus.BonusPuntiVittoria;
+import bonus.BonusTesseraAcquistata;
 import bonus.BonusTesseraPermesso;
-import bonus.BonusTesseraPermessoUsata;
 import game.Balcone;
 import game.CartaPolitica;
 import game.Colore;
@@ -141,7 +141,7 @@ public class Reader {
 					} else if (tmp.equals("BonusTesseraPermesso")) {
 						bonus.add(new BonusTesseraPermesso());
 					} else if (tmp.equals("BonusTesseraPermessoUsata")) {
-						bonus.add(new BonusTesseraPermessoUsata());
+						bonus.add(new BonusTesseraAcquistata());
 					} else if (tmp.equals("BonusAzionePrincipale")) {
 						int quantità = Integer.parseInt(st.nextToken());
 						bonus.add(new BonusAzionePrincipale(quantità));

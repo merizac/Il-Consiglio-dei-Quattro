@@ -5,6 +5,8 @@ import game.Giocatore;
 import game.macchinaStati.StartEnd;
 import game.macchinaStati.StatoAcquistoMarket;
 import game.market.Offerta;
+import gameDTO.azioniDTO.AzioneAcquistoDTO;
+import gameDTO.azioniDTO.AzioneDTO;
 import utility.exception.AzioneNonEseguibile;
 
 public class AzioneAcquisto extends Azione {
@@ -59,6 +61,11 @@ public class AzioneAcquisto extends Azione {
 	@Override
 	public boolean isTurno(Giocatore giocatore, GameState gameState) {
 		return (giocatore.equals(((StatoAcquistoMarket) gameState.getStato()).getGiocatori().get(0)));
+	}
+
+	@Override
+	public AzioneDTO getAzioneDTO() {
+	return null;
 	}
 
 }

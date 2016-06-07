@@ -10,9 +10,8 @@ import game.Città;
 import game.CittàBonus;
 import game.Consigliere;
 import game.GameState;
-import game.Giocatore;
 import game.Regione;
-import game.market.Offerta;
+import gameDTO.azioniDTO.AzioneDTO;
 
 public class GameStateDTO implements Serializable {
 
@@ -22,7 +21,7 @@ public class GameStateDTO implements Serializable {
 	private ReDTO pedinaRE;
 	private PlanciaReDTO planciaReDTO;
 	private ArrayList<ConsigliereDTO> consiglieri;
-	private List<String> azioniDisponibili;
+	private List<AzioneDTO> azioniDisponibili;
 	private GiocatoreDTO giocatoreDTO;
 	private List<OffertaDTO> offerte;
 
@@ -146,14 +145,14 @@ public class GameStateDTO implements Serializable {
 				+ planciaReDTO + "\nconsiglieri=" + consiglieri + "]";
 	}
 
-	public void setAzioni(List<String> azioni) {
+	public void setAzioni(List<AzioneDTO> azioni) {
 		this.azioniDisponibili = azioni;
 	}
 
 	/**
 	 * @return the azioniDisponibili
 	 */
-	public List<String> getAzioniDisponibili() {
+	public List<AzioneDTO> getAzioniDisponibili() {
 		return azioniDisponibili;
 	}
 

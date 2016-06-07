@@ -7,20 +7,10 @@ import gameDTO.gameDTO.RegioneDTO;
 
 public class ElezioneConsigliereDTO implements AzioneDTO {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 4208578701329743704L;
 	private ConsigliereDTO consigliereDTO;
 	private RegioneDTO regioneDTO;
-	/**
-	 * @param consigliereDTO
-	 * @param regioneDTO
-	 */
-	public ElezioneConsigliereDTO(ConsigliereDTO consigliereDTO, RegioneDTO regioneDTO) {
-		this.consigliereDTO = consigliereDTO;
-		this.regioneDTO = regioneDTO;
-	}
+	
 	/**
 	 * @return the consigliereDTO
 	 */
@@ -33,9 +23,23 @@ public class ElezioneConsigliereDTO implements AzioneDTO {
 	public RegioneDTO getRegioneDTO() {
 		return regioneDTO;
 	}
+	
+	
 	@Override
 	public Azione accept(AzioneVisitor azioneVisitor) {
 		return azioneVisitor.visit(this);
+	}
+	/**
+	 * @param consigliereDTO the consigliereDTO to set
+	 */
+	public void setConsigliereDTO(ConsigliereDTO consigliereDTO) {
+		this.consigliereDTO = consigliereDTO;
+	}
+	/**
+	 * @param regioneDTO the regioneDTO to set
+	 */
+	public void setRegioneDTO(RegioneDTO regioneDTO) {
+		this.regioneDTO = regioneDTO;
 	}
 	
 	

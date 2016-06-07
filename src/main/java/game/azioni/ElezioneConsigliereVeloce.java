@@ -4,6 +4,8 @@ import game.Regione;
 import game.notify.ErrorNotify;
 import game.notify.GameStateNotify;
 import game.notify.GiocatoreNotify;
+import gameDTO.azioniDTO.AzioneDTO;
+import gameDTO.azioniDTO.ElezioneConsigliereDTO;
 
 import java.util.Arrays;
 
@@ -84,5 +86,13 @@ public class ElezioneConsigliereVeloce extends AzioneVeloce {
 			setStatoTransizioneVeloce(gameState);
 		}
 
+	}
+
+
+
+
+	@Override
+	public AzioneDTO getAzioneDTO() {
+		return new ElezioneConsigliereDTO();
 	}
 }

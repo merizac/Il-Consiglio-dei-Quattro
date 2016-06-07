@@ -3,6 +3,7 @@ package game.macchinaStati;
 import java.util.Arrays;
 import java.util.List;
 import game.GameState;
+import game.azioni.Azione;
 import game.notify.ErrorNotify;
 import utility.exception.AzioneNonEseguibile;
 
@@ -38,7 +39,7 @@ public interface Stato{
 		gameState.notifyObserver(new ErrorNotify("azione non eseguibile", Arrays.asList(gameState.getGiocatoreCorrente())));
 	};
 	
-	public List<String> getAzioni();
+	public List<Azione> getAzioni();
 
 
 

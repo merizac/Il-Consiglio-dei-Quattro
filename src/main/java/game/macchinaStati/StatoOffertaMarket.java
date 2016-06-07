@@ -1,27 +1,20 @@
 package game.macchinaStati;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import game.GameState;
+import game.azioni.Azione;
+import game.azioni.AzioneAcquisto;
+import game.azioni.Passa;
 import game.notify.AzioniNotify;
 
 public class StatoOffertaMarket implements Stato {
-	
-	private List<String> azioni;
-	
+
 	public StatoOffertaMarket(GameState gameState) {
-		azioni= new ArrayList<>();
-		riempiAzioni();
-		gameState.notifyObserver(new AzioniNotify(getAzioni(), 
+		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), 
 					Arrays.asList(gameState.getGiocatoreCorrente())));
 	}
 
-	private void riempiAzioni() {
-		azioni.add("\nOfferta");
-		azioni.add("Passa");
-		
-	}
 
 	@Override
 	public void transizionePassa(GameState gameState){
@@ -32,8 +25,11 @@ public class StatoOffertaMarket implements Stato {
 			gameState.setStato(new StatoOffertaMarket(gameState));
 
 		}
-		else
-			gameState.setStato(new StatoAcquistoMarket(gameState));
+		else{
+			if(gameState.getOfferteMarket().isEmpty())
+				gameState.setStato(new StartEnd(gameState));
+			else
+				gameState.setStato(new StatoAcquistoMarket(gameState));}
 	}
 	
 	@Override
@@ -42,8 +38,8 @@ public class StatoOffertaMarket implements Stato {
 	}
 
 	@Override
-	public List<String> getAzioni() {
-		return azioni;
+	public List<Azione> getAzioni() {
+		return Arrays.asList(new AzioneAcquisto(),new Passa());
 	}
 
 }
