@@ -13,12 +13,13 @@ import game.notify.ErrorNotify;
 import utility.exception.AzioneNonEseguibile;
 
 public class Stato10 implements Stato {
+	
+	private List<Azione> azioni;
 
-	/**
-	 * @param azioni
-	 */
 	public Stato10(GameState gameState) {
-		System.out.println(this);
+		System.out.println("[SERVER] "+this);
+		azioni=Arrays.asList(new ElezioneConsigliere(), new AcquistoTesseraPermesso(),
+				new CostruzioneTesseraPermesso(), new CostruzioneAiutoRe());
 		gameState.notifyObserver(new ErrorNotify("AZIONI PRINCIPALI", Arrays.asList(gameState.getGiocatoreCorrente())));
 		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
 	}
@@ -57,8 +58,7 @@ public class Stato10 implements Stato {
 	
 	@Override
 	public List<Azione> getAzioni() {
-		return Arrays.asList(new ElezioneConsigliere(), new AcquistoTesseraPermesso(),
-				new CostruzioneTesseraPermesso(), new CostruzioneAiutoRe());
+		return this.azioni;
 	}
 
 	/*

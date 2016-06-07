@@ -1,6 +1,5 @@
 package game.macchinaStati;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import game.GameState;
@@ -10,8 +9,11 @@ import game.notify.AzioniNotify;
 
 public class StartEnd implements Stato {
 
+	private List<Azione> azioni;
 
 	public StartEnd(GameState gameState) {
+		System.out.println("[SERVER] "+this);
+			azioni=Arrays.asList(new PescaCarta());
 			gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
 	}
 
@@ -21,11 +23,10 @@ public class StartEnd implements Stato {
 
 	}
 
+	
 	@Override
 	public List<Azione> getAzioni() {
-		List<Azione> azioni = new ArrayList<>();
-		azioni.add(new PescaCarta());
-		return azioni;
+		return this.azioni;
 	}
 
 	/*

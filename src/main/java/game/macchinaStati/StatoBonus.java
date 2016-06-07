@@ -1,13 +1,9 @@
 package game.macchinaStati;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import bonus.BonusNobiltà;
 import game.GameState;
 import game.azioni.Azione;
-import game.notify.AzioniNotify;
 import game.notify.BonusNotify;
 import utility.exception.AzioneNonEseguibile;
 
@@ -19,16 +15,11 @@ public class StatoBonus implements Stato {
 	 * @param stato
 	 */
 	public StatoBonus(GameState gameState, Stato stato) {
+		System.out.println("[SERVER] "+this);
 		this.stato = stato;
-		riempiAzioni(gameState);
+		this.bonus=gameState.getGiocatoreCorrente().getBonusNobiltà();
 		gameState.notifyObserver(new BonusNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
 	
-	}
-
-	public void riempiAzioni(GameState gameState){
-		this.bonus = new ArrayList<Azione>();
-		gameState.getGiocatoreCorrente().getBonusNobiltà();
-		
 	}
 	
 	@Override
@@ -43,6 +34,14 @@ public class StatoBonus implements Stato {
 	@Override
 	public List<Azione> getAzioni() {
 				return bonus;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "StatoBonus";
 	}
 
 }

@@ -14,10 +14,13 @@ import game.notify.ErrorNotify;
 import utility.exception.AzioneNonEseguibile;
 
 public class Stato01 implements Stato {
-
+	
+	private List<Azione> azioni;
 
 	public Stato01(GameState gameState) {
-		System.out.println(this);
+		System.out.println("[SERVER] "+ this);
+		azioni= Arrays.asList(new IngaggioAiutante(), new CambioTesseraPermesso(), 
+				new ElezioneConsigliereVeloce(), new SecondaAzionePrincipale(), new Passa());
 		gameState.notifyObserver(new ErrorNotify("AZIONI VELOCI", Arrays.asList(gameState.getGiocatoreCorrente())));
 		gameState.notifyObserver(new AzioniNotify(getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
 		
@@ -58,8 +61,7 @@ public class Stato01 implements Stato {
 
 	@Override
 	public List<Azione> getAzioni() {
-		return Arrays.asList(new IngaggioAiutante(), new CambioTesseraPermesso(), 
-				new ElezioneConsigliereVeloce(), new SecondaAzionePrincipale(), new Passa());
+		return this.azioni;
 	}
 
 	/* (non-Javadoc)
