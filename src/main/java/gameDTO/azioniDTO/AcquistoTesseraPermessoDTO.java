@@ -5,6 +5,7 @@ import game.azioni.Azione;
 import gameDTO.azioniDTO.azioneVisitor.AzioneVisitor;
 import gameDTO.gameDTO.CartaPoliticaDTO;
 import gameDTO.gameDTO.RegioneDTO;
+import gameDTO.gameDTO.TesseraPermessoDTO;
 
 public class AcquistoTesseraPermessoDTO implements AzioneDTO {
 
@@ -14,7 +15,7 @@ public class AcquistoTesseraPermessoDTO implements AzioneDTO {
 	private static final long serialVersionUID = 2837487620338099231L;
 	private RegioneDTO regione;
 	private List<CartaPoliticaDTO> carte;
-	private int indiceTessera;
+	private TesseraPermessoDTO tesseraPermesso;
 	
 	
 	/**
@@ -41,18 +42,8 @@ public class AcquistoTesseraPermessoDTO implements AzioneDTO {
 	public void setCarte(List<CartaPoliticaDTO> carte) {
 		this.carte = carte;
 	}
-	/**
-	 * @return the indiceTessera
-	 */
-	public int getIndiceTessera() {
-		return indiceTessera;
-	}
-	/**
-	 * @param indiceTessera the indiceTessera to set
-	 */
-	public void setIndiceTessera(int indiceTessera) {
-		this.indiceTessera = indiceTessera;
-	}
+
+	
 	@Override
 	public Azione accept(AzioneVisitor azioneVisitor) {
 		return azioneVisitor.visit(this);
@@ -64,5 +55,17 @@ public class AcquistoTesseraPermessoDTO implements AzioneDTO {
 	@Override
 	public String toString() {
 		return "Acquistare una tessera permesso [P2]";
+	}
+	/**
+	 * @return the tesseraPermesso
+	 */
+	public TesseraPermessoDTO getTesseraPermesso() {
+		return tesseraPermesso;
+	}
+	/**
+	 * @param tesseraPermesso the tesseraPermesso to set
+	 */
+	public void setTesseraPermesso(TesseraPermessoDTO tesseraPermesso) {
+		this.tesseraPermesso = tesseraPermesso;
 	}
 }

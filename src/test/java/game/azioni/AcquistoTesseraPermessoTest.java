@@ -30,7 +30,7 @@ public class AcquistoTesseraPermessoTest {
 	static GameState gameState;
 	static Regione regione;
 	static ArrayList<CartaPolitica> carteGiocatore;
-	static int indiceTesseraScoperta;
+	static TesseraPermesso tesseraScoperta;
 	
 	@BeforeClass
 	public static void init() throws IOException{
@@ -40,24 +40,16 @@ public class AcquistoTesseraPermessoTest {
 		gameState=new GameState();
 		gameState.start(giocatori);
 		
-		indiceTesseraScoperta=0;
+		tesseraScoperta=null;
 		regione=gameState.getRegioni().get(0);
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void indiceTesseraScopertaMaggioreNumeroTessere(){		
+	public void indiceTesseraScopertaNull(){		
 		AcquistoTesseraPermesso acquisto= new AcquistoTesseraPermesso();
 		acquisto.setRegione(regione);
-		acquisto.setIndiceTesseraScoperta(100);
-	}
-	
-	@Test(expected=IllegalArgumentException.class)
-	public void indiceTesseraScopertaNegativo(){
-		AcquistoTesseraPermesso acquisto= new AcquistoTesseraPermesso();
-		acquisto.setRegione(regione);
-		acquisto.setIndiceTesseraScoperta(-2);
-	}
-	
+		acquisto.setTesseraScoperta(null);
+	}	
 
 	@Test
 	public void testEseguiAzione() {
@@ -72,9 +64,9 @@ public class AcquistoTesseraPermessoTest {
 		gameState.getGiocatoreCorrente().aggiungiCartaPolitica(new CartaPolitica(regione.getBalcone().getConsigliere().element().getColore()));
 
 		azione.setCarteGiocatore(carte);
-		azione.setIndiceTesseraScoperta(indiceTesseraScoperta);
+		azione.setTesseraScoperta(tesseraScoperta);
 		
-		TesseraPermesso tesseraPermesso=regione.getTesserePermessoScoperte().get(indiceTesseraScoperta);
+		TesseraPermesso tesseraPermesso=regione.getTesserePermessoScoperte().get(0);
 //		tesseraPermesso.getBonus().add(new BonusPuntiNobiltà(2));
 		
 		int aiutanti_prima=gameState.getGiocatoreCorrente().getAiutanti().getAiutante();
@@ -117,7 +109,7 @@ public class AcquistoTesseraPermessoTest {
 		//controllo che la tessera permesso venga data al giocatore
 		assertTrue(tesseraPermesso==gameState.getGiocatoreCorrente().getTesserePermesso().get(gameState.getGiocatoreCorrente().getTesserePermesso().size()-1));
 		//controllo che sia cambiata la carta pescata
-		assertNotEquals(tesseraPermesso, gameState.getRegioni().get(0).getTesserePermessoScoperte().get(indiceTesseraScoperta));
+		assertNotEquals(tesseraPermesso, gameState.getRegioni().get(0).getTesserePermessoScoperte().get(0));
 		//controllo che vengano scalati e dati puntiricchezza dei bonus
 		assertEquals(4+monete, gameState.getGiocatoreCorrente().getPunteggioRicchezza());
 		assertEquals(aiutanti_prima+aiutanti, gameState.getGiocatoreCorrente().getAiutanti().getAiutante());
@@ -169,17 +161,15 @@ public class AcquistoTesseraPermessoTest {
 	public void testGetIndiceTesseraScoperta() {
 		AcquistoTesseraPermesso mossa=new AcquistoTesseraPermesso();
 		mossa.setRegione(regione);
-		int indice=2;
-		mossa.setIndiceTesseraScoperta(indice);
-		assertTrue(indice==mossa.getIndiceTesseraScoperta());
+		mossa.setTesseraScoperta(tesseraScoperta);
+		assertTrue(tesseraScoperta==mossa.getTesseraScoperta());
 	}
 
 	@Test
 	public void testSetIndiceTesseraScoperta() {
 		AcquistoTesseraPermesso mossa=new AcquistoTesseraPermesso();
 		mossa.setRegione(regione);
-		int indice=1;
-		mossa.setIndiceTesseraScoperta(indice);
-		assertTrue(indice==mossa.getIndiceTesseraScoperta());
+		mossa.setTesseraScoperta(tesseraScoperta);
+		assertTrue(tesseraScoperta==mossa.getTesseraScoperta());
 	}
 }

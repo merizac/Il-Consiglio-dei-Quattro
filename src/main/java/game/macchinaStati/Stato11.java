@@ -1,6 +1,5 @@
 package game.macchinaStati;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import game.GameState;
@@ -12,7 +11,6 @@ import game.azioni.CostruzioneTesseraPermesso;
 import game.azioni.ElezioneConsigliere;
 import game.azioni.ElezioneConsigliereVeloce;
 import game.azioni.IngaggioAiutante;
-import game.azioni.Passa;
 import game.azioni.SecondaAzionePrincipale;
 import game.notify.AzioniNotify;
 import game.notify.ErrorNotify;

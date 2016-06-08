@@ -19,7 +19,7 @@ public class Stato01 implements Stato {
 	public Stato01(GameState gameState) {
 		System.out.println(this);
 		gameState.notifyObserver(new ErrorNotify("AZIONI VELOCI", Arrays.asList(gameState.getGiocatoreCorrente())));
-		gameState.notifyObserver(new AzioniNotify(getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
+		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
 		
 	}
 

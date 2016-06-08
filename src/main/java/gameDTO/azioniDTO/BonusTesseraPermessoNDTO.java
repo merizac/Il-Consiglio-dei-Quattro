@@ -3,6 +3,7 @@ package gameDTO.azioniDTO;
 import game.azioni.Azione;
 import gameDTO.azioniDTO.azioneVisitor.AzioneVisitor;
 import gameDTO.gameDTO.RegioneDTO;
+import gameDTO.gameDTO.TesseraPermessoDTO;
 
 public class BonusTesseraPermessoNDTO implements AzioneDTO {
 
@@ -11,7 +12,7 @@ public class BonusTesseraPermessoNDTO implements AzioneDTO {
 	 */
 	private static final long serialVersionUID = 5768338832160630143L;
 	private RegioneDTO regione;
-	private int indiceTesseraScoperta;
+	private TesseraPermessoDTO tesseraScoperta;
 
 	
 	/**
@@ -35,8 +36,8 @@ public class BonusTesseraPermessoNDTO implements AzioneDTO {
 	/**
 	 * @return the indiceTesseraScoperta
 	 */
-	public int getIndiceTesseraScoperta() {
-		return indiceTesseraScoperta;
+	public TesseraPermessoDTO getTesseraScoperta() {
+		return tesseraScoperta;
 	}
 
 
@@ -44,8 +45,8 @@ public class BonusTesseraPermessoNDTO implements AzioneDTO {
 	/**
 	 * @param indiceTesseraScoperta the indiceTesseraScoperta to set
 	 */
-	public void setIndiceTesseraScoperta(int indiceTesseraScoperta) {
-		this.indiceTesseraScoperta = indiceTesseraScoperta;
+	public void setTesseraScoperta(TesseraPermessoDTO tesseraScoperta) {
+		this.tesseraScoperta = tesseraScoperta;
 	}
 	
 

@@ -61,12 +61,12 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 	public AcquistoTesseraPermesso visit(AcquistoTesseraPermessoDTO acquistoTesseraPermessoDTO) {
 		AcquistoTesseraPermesso acquistoTesseraPermesso=new AcquistoTesseraPermesso();
 		Regione regione=ControlloParametri.cercaRegione(acquistoTesseraPermessoDTO.getRegione(), gameState.getRegioni());
-		acquistoTesseraPermesso.setRegione(regione);
+		TesseraPermesso tessera = ControlloParametri.cercaTesseraPermesso(acquistoTesseraPermessoDTO.getTesseraPermesso(), regione.getTesserePermessoScoperte());
 		ArrayList<CartaPolitica> carte=
 				ControlloParametri.cercaCartePolitica(acquistoTesseraPermessoDTO.getCarte(), new ArrayList<>(giocatore.getCartePolitica()));
+		acquistoTesseraPermesso.setRegione(regione);
 		acquistoTesseraPermesso.setCarteGiocatore(carte);
-		
-		acquistoTesseraPermesso.setIndiceTesseraScoperta(acquistoTesseraPermessoDTO.getIndiceTessera());
+		acquistoTesseraPermesso.setTesseraScoperta(tessera);
 		
 		return acquistoTesseraPermesso;
 	}
@@ -170,19 +170,25 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 
 	@Override
 	public BonusGettoneN visit(BonusGettoneNDTO bonusGettoneDTO) {
-		BonusGettoneN bonusGettone = new BonusGettoneN();
+		/*BonusGettoneN bonusGettone = new BonusGettoneN();
 		bonusGettone.setCittà(new ArrayList<>());
 		for(int i=0; i<bonusGettone.getNumeroGettoni(); i++){
 		CittàBonus città = (CittàBonus) ControlloParametri.cercaCittàBonus(bonusGettoneDTO.getCittà(), gameState.getCittà());
 		bonusGettone.getCittà().add(città);}
-		return bonusGettone;
+		return bonusGettone;*/
+		return null;
 	}
 
 	@Override
 	public BonusTesseraAcquistataN visit(BonusTesseraAcquistataNDTO bonusTesseraAcquistataDTO) {
 		BonusTesseraAcquistataN bonusTesseraAcquistata = new BonusTesseraAcquistataN();
-		bonusTesseraAcquistata.setIndiceTesseraPermesso(bonusTesseraAcquistataDTO.getIndiceTesseraPermesso());
-		bonusTesseraAcquistata.setUsata(bonusTesseraAcquistataDTO.isUsata());
+		TesseraPermesso tesseraPermesso;
+		//METTERE BOOLEANO
+		if(giocatore.getTesserePermesso().contains(bonusTesseraAcquistataDTO.getTesseraPermesso())){
+			tesseraPermesso = ControlloParametri.cercaTesseraPermesso(bonusTesseraAcquistataDTO.getTesseraPermesso(), giocatore.getTesserePermesso());}
+		else tesseraPermesso = ControlloParametri.cercaTesseraPermesso(bonusTesseraAcquistataDTO.getTesseraPermesso(), giocatore.getTesserePermessoUsate());
+		
+		bonusTesseraAcquistata.setTesseraPermesso(tesseraPermesso);
 		return bonusTesseraAcquistata;
 	}
 
@@ -190,8 +196,9 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 	public BonusTesseraPermessoN visit(BonusTesseraPermessoNDTO bonusTesseraPermessoDTO) {
 		BonusTesseraPermessoN bonusTesseraPermesso = new BonusTesseraPermessoN();
 		Regione regione=ControlloParametri.cercaRegione(bonusTesseraPermessoDTO.getRegione(), gameState.getRegioni());
-		bonusTesseraPermesso.setIndiceTesseraScoperta(bonusTesseraPermessoDTO.getIndiceTesseraScoperta());
+		TesseraPermesso tesseraPermesso = ControlloParametri.cercaTesseraPermesso(bonusTesseraPermessoDTO.getTesseraScoperta(), regione.getTesserePermessoScoperte());
 		bonusTesseraPermesso.setRegione(regione);
+		bonusTesseraPermesso.setTesseraScoperta(tesseraPermesso);
 		return bonusTesseraPermesso;
 	}
 

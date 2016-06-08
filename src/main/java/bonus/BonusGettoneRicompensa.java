@@ -6,8 +6,6 @@ import game.CittàBonus;
 import game.GameState;
 import game.azioni.Azione;
 import game.azioni.BonusGettoneN;
-import gameDTO.azioniDTO.AzioneDTO;
-import gameDTO.azioniDTO.BonusGettoneNDTO;
 import gameDTO.gameDTO.CittàBonusDTO;
 
 public class BonusGettoneRicompensa extends Bonus {
@@ -16,31 +14,21 @@ public class BonusGettoneRicompensa extends Bonus {
 	 * 
 	 */
 	private static final long serialVersionUID = -7078597933216059193L;
-	private final int numeroGettoni;
+	private int numeroGettoni;
 	private ArrayList<CittàBonus> cittàGiocatore;
 	private CittàBonusDTO cittàDTO;
 	
-	public BonusGettoneRicompensa(int numeroGettoni) {
-		this.numeroGettoni=numeroGettoni;
-	}
 
 	public Azione getAzioneBonus(){
-		return new BonusGettoneN();
+		BonusGettoneN bonusGettone = new BonusGettoneN();
+		bonusGettone.setNumeroGettoni(numeroGettoni);
+		return bonusGettone;
 	}
 	
 	@Override
 	public void usaBonus(GameState gameState) {		
 		
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "BonusGettoneRicompensa [numeroGettoni=" + numeroGettoni + "]";
-	}
-	
+	}	
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
@@ -74,6 +62,48 @@ public class BonusGettoneRicompensa extends Bonus {
 		if (numeroGettoni != other.numeroGettoni)
 			return false;
 		return true;
+	}
+
+	/**
+	 * @return the numeroGettoni
+	 */
+	public int getNumeroGettoni() {
+		return numeroGettoni;
+	}
+
+	/**
+	 * @return the cittàGiocatore
+	 */
+	public ArrayList<CittàBonus> getCittàGiocatore() {
+		return cittàGiocatore;
+	}
+
+	/**
+	 * @param cittàGiocatore the cittàGiocatore to set
+	 */
+	public void setCittàGiocatore(ArrayList<CittàBonus> cittàGiocatore) {
+		this.cittàGiocatore = cittàGiocatore;
+	}
+
+	/**
+	 * @return the cittàDTO
+	 */
+	public CittàBonusDTO getCittàDTO() {
+		return cittàDTO;
+	}
+
+	/**
+	 * @param cittàDTO the cittàDTO to set
+	 */
+	public void setCittàDTO(CittàBonusDTO cittàDTO) {
+		this.cittàDTO = cittàDTO;
+	}
+
+	/**
+	 * @param numeroGettoni the numeroGettoni to set
+	 */
+	public void setNumeroGettoni(int numeroGettoni) {
+		this.numeroGettoni = numeroGettoni;
 	}
 	
 	

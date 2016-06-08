@@ -37,6 +37,9 @@ public class BonusGettoneN extends Azione {
 				return;
 				}
 		}
+		if(numeroGettoni>1){
+			
+		}
 		ArrayList<Bonus> bonus= new ArrayList<>();
 		
 		for(CittàBonus city:città){

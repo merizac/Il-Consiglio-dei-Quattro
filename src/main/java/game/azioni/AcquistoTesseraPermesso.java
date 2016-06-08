@@ -18,7 +18,7 @@ public class AcquistoTesseraPermesso extends AzionePrincipale implements Bonusab
 
 	private ArrayList<CartaPolitica> carteGiocatore;
 	private Regione regione;
-	private int indiceTesseraScoperta;
+	private TesseraPermesso tesseraScoperta;
 
 	
 	/**
@@ -49,14 +49,13 @@ public class AcquistoTesseraPermesso extends AzionePrincipale implements Bonusab
 		      gameState.getGiocatoreCorrente().getCartePolitica().remove(c);
 		      gameState.getMazzoCartePolitica().aggiungiCarte(carteGiocatore);
 		    }
-		System.out.println("Tessera :"+indiceTesseraScoperta);
-		TesseraPermesso tesseraScelta = regione.getTesserePermessoScoperte().get(indiceTesseraScoperta);
-		regione.getTesserePermessoScoperte().remove(indiceTesseraScoperta);
-	    gameState.getGiocatoreCorrente().getTesserePermesso().add(tesseraScelta);
+		
+		regione.getTesserePermessoScoperte().remove(tesseraScoperta);
+	    gameState.getGiocatoreCorrente().getTesserePermesso().add(tesseraScoperta);
 	    
 		regione.getTesserePermessoScoperte().add(regione.getMazzoTesserePermesso().pescaCarte());
 		
-		for (Bonus b:tesseraScelta.getBonus()){
+		for (Bonus b:tesseraScoperta.getBonus()){
 			System.out.println(b);
 			b.usaBonus(gameState);
 		}
@@ -176,25 +175,34 @@ public class AcquistoTesseraPermesso extends AzionePrincipale implements Bonusab
 	/**
 	 * @return the indiceTesseraScoperta
 	 */
-	public int getIndiceTesseraScoperta() {
-		return indiceTesseraScoperta;
+	public TesseraPermesso getTesseraScoperta() {
+		return tesseraScoperta;
 	}
 
 	/**
 	 * @param indiceTesseraScoperta the indiceTesseraScoperta to set
 	 */
-	public void setIndiceTesseraScoperta(int indiceTesseraScoperta) {
+	/*public void setIndiceTesseraScoperta(int indiceTesseraScoperta) {
 		if(indiceTesseraScoperta>regione.getTesserePermessoScoperte().size())
 			throw new IllegalArgumentException("L'indice della tessera permesso deve essere minore di "+regione.getTesserePermessoScoperte().size());
 		if(indiceTesseraScoperta<0)
 			throw new IllegalArgumentException("L'indice della tessera permesso deve essere maggiore di 0");
 		
 		this.indiceTesseraScoperta = indiceTesseraScoperta;
-	}
+	}*/
 
 	@Override
 	public AzioneDTO getAzioneDTO() {
 		return new AcquistoTesseraPermessoDTO();
+	}
+
+	/**
+	 * @param tesseraScoperta the tesseraScoperta to set
+	 */
+	public void setTesseraScoperta(TesseraPermesso tesseraScoperta) {
+		if(tesseraScoperta==null)
+			throw new IllegalArgumentException("La tessera permesso non può esserre null");
+		this.tesseraScoperta = tesseraScoperta;
 	}
 
 }

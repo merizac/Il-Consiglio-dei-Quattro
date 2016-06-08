@@ -6,6 +6,7 @@ import game.azioni.BonusTesseraAcquistataN;
 
 public class BonusTesseraAcquistata extends Bonus {
 
+	private boolean usata;
 	/**
 	 * 
 	 */
@@ -24,6 +25,20 @@ public class BonusTesseraAcquistata extends Bonus {
 	public void usaBonus(GameState gameState) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	/**
+	 * @return the usata
+	 */
+	public boolean isUsata() {
+		return usata;
+	}
+
+	/**
+	 * @param usata the usata to set
+	 */
+	public void setUsata(boolean usata) {
+		this.usata = usata;
 	}
 
 	

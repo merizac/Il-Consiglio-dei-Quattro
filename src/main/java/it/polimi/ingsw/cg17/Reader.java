@@ -137,7 +137,7 @@ public class Reader {
 						bonus.add(new BonusAiutanti(quantità));
 					} else if (tmp.equals("BonusGettoneRicompensa")) {
 						int quantità = Integer.parseInt(st.nextToken());
-						bonus.add(new BonusGettoneRicompensa(quantità));
+						bonus.add(new BonusGettoneRicompensa());
 					} else if (tmp.equals("BonusTesseraPermesso")) {
 						bonus.add(new BonusTesseraPermesso());
 					} else if (tmp.equals("BonusTesseraPermessoUsata")) {
