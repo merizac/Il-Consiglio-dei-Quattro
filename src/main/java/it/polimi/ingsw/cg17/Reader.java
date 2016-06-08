@@ -355,7 +355,7 @@ public class Reader {
 
 				String nomeBonus = st.nextToken();
 
-				if (nomeBonus.equals("BonusCartaPolitica")) {
+				if (nomeBonus.equals("BonusCartePolitica")) {
 					int quantità = Integer.parseInt(st.nextToken());
 					bonus.add(new BonusCartePolitica(quantità));
 				} else if (nomeBonus.equals("BonusMoneta")) {
