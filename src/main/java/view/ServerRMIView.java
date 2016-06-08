@@ -14,7 +14,7 @@ import gameDTO.azioniDTO.azioneVisitor.AzioneVisitorImpl;
 import gameDTO.gameDTO.GiocatoreDTO;
 import server.Server;
 
-public class ServerRMIView extends View implements ServerRMIViewRemote, Runnable{
+public class ServerRMIView extends View implements ServerRMIViewRemote{
 
 	private GameState gameState;
 	private Map<ConnessioneRMIRemota, Giocatore> giocatori;
@@ -61,13 +61,6 @@ public class ServerRMIView extends View implements ServerRMIViewRemote, Runnable
 
 	}
 
-
-	@Override
-	public void run() {
-		
-
-	}
-
 	@Override
 	public ServerRMIViewRemote register(ConnessioneRMIRemota connessioneRMIRemota, GiocatoreDTO giocatoreDTO)
 			throws RemoteException {
@@ -75,6 +68,10 @@ public class ServerRMIView extends View implements ServerRMIViewRemote, Runnable
 		this.giocatori.put(connessioneRMIRemota, giocatore);
 		Server.getInstance().aggiungiGiocatoreRMI(giocatore, this);
 		return this;
+	}
+	@Override
+	public void unregister(ConnessioneRMIRemota connessioneRMIRemota) throws RemoteException{
+		this.giocatori.remove(connessioneRMIRemota);
 	}
 
 	@Override
@@ -91,6 +88,7 @@ public class ServerRMIView extends View implements ServerRMIViewRemote, Runnable
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			this.giocatori.remove(c);
 		}
 	}
 

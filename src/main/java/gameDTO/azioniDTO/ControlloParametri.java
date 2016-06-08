@@ -18,7 +18,6 @@ import game.Regione;
 import game.TesseraPermesso;
 import game.market.Offerta;
 import gameDTO.gameDTO.CartaPoliticaDTO;
-import gameDTO.gameDTO.CittàBonusDTO;
 import gameDTO.gameDTO.CittàDTO;
 import gameDTO.gameDTO.ConsigliereDTO;
 import gameDTO.gameDTO.GiocatoreDTO;
@@ -223,6 +222,14 @@ public class ControlloParametri {
 		}
 
 		throw new IllegalArgumentException("Il giocatore selezionato è inesistente");
+	}
+
+	public static Giocatore cercaGiocatore(GiocatoreDTO giocatoreDTO, List<Giocatore> giocatori) {
+		for(Giocatore g: giocatori){
+			if(g.getNome().equals(giocatoreDTO.getNome()))
+					return g;
+		}
+		return null;
 	}
 
 }

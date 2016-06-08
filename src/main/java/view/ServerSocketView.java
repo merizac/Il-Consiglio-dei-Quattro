@@ -9,6 +9,7 @@ import game.Giocatore;
 import game.azioni.Azione;
 import game.notify.Notify;
 import gameDTO.azioniDTO.AzioneDTO;
+import gameDTO.azioniDTO.ExitDTO;
 import gameDTO.azioniDTO.azioneVisitor.AzioneVisitor;
 import gameDTO.azioniDTO.azioneVisitor.AzioneVisitorImpl;
 import gameDTO.gameDTO.GiocatoreDTO;
@@ -22,7 +23,6 @@ public class ServerSocketView extends View implements Runnable {
 	private ObjectOutputStream socketOut;
 	private GameState gameState;
 	private Giocatore giocatore;
-	private boolean fine=false;
 
 	public ServerSocketView(Socket socket) throws IOException {
 		this.socket = socket;
@@ -62,13 +62,17 @@ public class ServerSocketView extends View implements Runnable {
 			e.printStackTrace();
 		}
 
-		while (!fine) {
+		while (true) {
 
 			try {
 				Object object = socketIn.readObject();
 				if (object instanceof AzioneDTO) {
 
 					AzioneDTO action = (AzioneDTO) object;
+					if(action instanceof ExitDTO){
+						disconnetti();
+						break;
+					}
 					AzioneVisitor azioneVisitor = new AzioneVisitorImpl(gameState, giocatore);
 					Azione azione = action.accept(azioneVisitor);
 					System.out.println("[SERVER] Ricevuta l'azione " + azione+ " dal giocatore "+giocatore.getNome());
@@ -107,8 +111,6 @@ public class ServerSocketView extends View implements Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		this.fine=true;
-		
 	}
 
 }

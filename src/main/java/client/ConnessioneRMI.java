@@ -9,6 +9,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import gameDTO.azioniDTO.AzioneDTO;
+import gameDTO.azioniDTO.ExitDTO;
 import gameDTO.gameDTO.GameStateDTO;
 import gameDTO.gameDTO.GiocatoreDTO;
 import view.ServerRMIViewRemote;
@@ -48,7 +49,7 @@ public class ConnessioneRMI extends UnicastRemoteObject implements Serializable,
 		}
 		view.register(this, gameStateDTO.getGiocatoreDTO());
 		ExecutorService executor = Executors.newFixedThreadPool(1);
-		this.clientOutHandler=new ClientOutHandler(this, gameStateDTO);
+		this.clientOutHandler = new ClientOutHandler(this, gameStateDTO);
 		executor.submit(this.clientOutHandler);
 
 	}
@@ -56,7 +57,10 @@ public class ConnessioneRMI extends UnicastRemoteObject implements Serializable,
 	@Override
 	public void inviaAzione(AzioneDTO azioneDTO) throws RemoteException {
 		try {
-			this.view.eseguiAzione(azioneDTO, this);
+			if (azioneDTO instanceof ExitDTO) {
+				this.view.unregister(this);
+			} else
+				this.view.eseguiAzione(azioneDTO, this);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

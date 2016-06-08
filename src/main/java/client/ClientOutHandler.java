@@ -12,6 +12,7 @@ import gameDTO.azioniDTO.CostruzioneAiutoReDTO;
 import gameDTO.azioniDTO.CostruzioneTesseraPermessoDTO;
 import gameDTO.azioniDTO.ElezioneConsigliereDTO;
 import gameDTO.azioniDTO.ElezioneConsigliereVeloceDTO;
+import gameDTO.azioniDTO.ExitDTO;
 import gameDTO.azioniDTO.IngaggioAiutanteDTO;
 import gameDTO.azioniDTO.PassaDTO;
 import gameDTO.azioniDTO.PescaCartaDTO;
@@ -190,6 +191,10 @@ public class ClientOutHandler implements Runnable {
 				}
 				action = new AzioneAcquistoDTO(Integer.parseInt(comando), gameStateDTO.getGiocatoreDTO());
 
+			}
+			
+			else if("Exit".equals(inputLine)){
+				action = new ExitDTO(gameStateDTO.getGiocatoreDTO());
 			}
 
 			else
