@@ -103,6 +103,7 @@ public class BonusGettoneRicompensa extends Bonus {
 	 * @param numeroGettoni the numeroGettoni to set
 	 */
 	public void setNumeroGettoni(int numeroGettoni) {
+		if(numeroGettoni>2) throw new IllegalArgumentException("il bonus può avere al massimo due gettoni");
 		this.numeroGettoni = numeroGettoni;
 	}
 	

@@ -6,6 +6,7 @@ import gameDTO.gameDTO.TesseraPermessoDTO;
 
 public class BonusTesseraAcquistataNDTO implements AzioneDTO{
 
+	private boolean usata;
 	/**
 	 * 
 	 */
@@ -36,6 +37,18 @@ public class BonusTesseraAcquistataNDTO implements AzioneDTO{
 	@Override
 	public String toString() {
 		return "BonusTesseraAcquistata [B2]";
+	}
+	/**
+	 * @return the usata
+	 */
+	public boolean isUsata() {
+		return usata;
+	}
+	/**
+	 * @param usata the usata to set
+	 */
+	public void setUsata(boolean usata) {
+		this.usata = usata;
 	}
 	
 	

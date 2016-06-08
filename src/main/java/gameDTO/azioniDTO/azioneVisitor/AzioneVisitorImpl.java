@@ -45,7 +45,7 @@ import gameDTO.azioniDTO.PescaCartaDTO;
 import gameDTO.azioniDTO.SecondaAzionePrincipaleDTO;
 
 public class AzioneVisitorImpl implements AzioneVisitor {
-	
+
 	private GameState gameState;
 	private Giocatore giocatore;
 
@@ -59,25 +59,28 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 
 	@Override
 	public AcquistoTesseraPermesso visit(AcquistoTesseraPermessoDTO acquistoTesseraPermessoDTO) {
-		AcquistoTesseraPermesso acquistoTesseraPermesso=new AcquistoTesseraPermesso();
-		Regione regione=ControlloParametri.cercaRegione(acquistoTesseraPermessoDTO.getRegione(), gameState.getRegioni());
-		TesseraPermesso tessera = ControlloParametri.cercaTesseraPermesso(acquistoTesseraPermessoDTO.getTesseraPermesso(), regione.getTesserePermessoScoperte());
-		ArrayList<CartaPolitica> carte=
-				ControlloParametri.cercaCartePolitica(acquistoTesseraPermessoDTO.getCarte(), new ArrayList<>(giocatore.getCartePolitica()));
+		AcquistoTesseraPermesso acquistoTesseraPermesso = new AcquistoTesseraPermesso();
+		Regione regione = ControlloParametri.cercaRegione(acquistoTesseraPermessoDTO.getRegione(),
+				gameState.getRegioni());
+		TesseraPermesso tessera = ControlloParametri.cercaTesseraPermesso(
+				acquistoTesseraPermessoDTO.getTesseraPermesso(), regione.getTesserePermessoScoperte());
+		ArrayList<CartaPolitica> carte = ControlloParametri.cercaCartePolitica(acquistoTesseraPermessoDTO.getCarte(),
+				new ArrayList<>(giocatore.getCartePolitica()));
 		acquistoTesseraPermesso.setRegione(regione);
 		acquistoTesseraPermesso.setCarteGiocatore(carte);
 		acquistoTesseraPermesso.setTesseraScoperta(tessera);
-		
+
 		return acquistoTesseraPermesso;
 	}
 
 	@Override
 	public CambioTesseraPermesso visit(CambioTesserePermessoDTO cambioTesserePermessoDTO) {
-		CambioTesseraPermesso cambioTesseraPermesso=new CambioTesseraPermesso();
-		
-		Regione regione=ControlloParametri.cercaRegione(cambioTesserePermessoDTO.getRegione(), gameState.getRegioni());
+		CambioTesseraPermesso cambioTesseraPermesso = new CambioTesseraPermesso();
+
+		Regione regione = ControlloParametri.cercaRegione(cambioTesserePermessoDTO.getRegione(),
+				gameState.getRegioni());
 		cambioTesseraPermesso.setRegione(regione);
-		
+
 		return cambioTesseraPermesso;
 	}
 
@@ -86,33 +89,37 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 		CostruzioneAiutoRe costruzioneAiutoRe = new CostruzioneAiutoRe();
 		Città città = ControlloParametri.cercaCittà(costruzioneAiutoReDTO.getCittà(), gameState.getCittà());
 		costruzioneAiutoRe.setCittàCostruzione(città);
-		
-		ArrayList<CartaPolitica> carte=
-				ControlloParametri.cercaCartePolitica(costruzioneAiutoReDTO.getCarteGiocatore(), new ArrayList<>(giocatore.getCartePolitica()));
+
+		ArrayList<CartaPolitica> carte = ControlloParametri.cercaCartePolitica(
+				costruzioneAiutoReDTO.getCarteGiocatore(), new ArrayList<>(giocatore.getCartePolitica()));
 		costruzioneAiutoRe.setCarteGiocatore(carte);
-		
+
 		return costruzioneAiutoRe;
 	}
 
 	@Override
 	public CostruzioneTesseraPermesso visit(CostruzioneTesseraPermessoDTO costruzioneTesseraPermessoDTO) {
 		CostruzioneTesseraPermesso costruzioneTesseraPermesso = new CostruzioneTesseraPermesso();
-		TesseraPermesso tesseraPermesso = ControlloParametri.cercaTesseraPermesso(costruzioneTesseraPermessoDTO.getTesseraPermesso(), giocatore.getTesserePermesso());
+		TesseraPermesso tesseraPermesso = ControlloParametri.cercaTesseraPermesso(
+				costruzioneTesseraPermessoDTO.getTesseraPermesso(), giocatore.getTesserePermesso());
 		costruzioneTesseraPermesso.setTesseraPermessoScoperta(tesseraPermesso);
-		
-		Città città= ControlloParametri.cercaCittà(costruzioneTesseraPermessoDTO.getCittà(), new HashSet<>(tesseraPermesso.getCittà()));
+
+		Città città = ControlloParametri.cercaCittà(costruzioneTesseraPermessoDTO.getCittà(),
+				new HashSet<>(tesseraPermesso.getCittà()));
 		costruzioneTesseraPermesso.setCittàCostruzione(città);
-		
+
 		return costruzioneTesseraPermesso;
 	}
 
 	@Override
 	public ElezioneConsigliere visit(ElezioneConsigliereDTO elezioneConsigliereDTO) {
-		ElezioneConsigliere elezioneConsigliere =new ElezioneConsigliere();
-		Regione regione=ControlloParametri.cercaRegione(elezioneConsigliereDTO.getRegioneDTO(), gameState.getRegioni());
+		ElezioneConsigliere elezioneConsigliere = new ElezioneConsigliere();
+		Regione regione = ControlloParametri.cercaRegione(elezioneConsigliereDTO.getRegioneDTO(),
+				gameState.getRegioni());
 		elezioneConsigliere.setRegione(regione);
-		
-		Consigliere consigliere=ControlloParametri.cercaConsigliere(elezioneConsigliereDTO.getConsigliereDTO(), gameState.getConsiglieri());
+
+		Consigliere consigliere = ControlloParametri.cercaConsigliere(elezioneConsigliereDTO.getConsigliereDTO(),
+				gameState.getConsiglieri());
 		elezioneConsigliere.setConsigliere(consigliere);
 		return elezioneConsigliere;
 	}
@@ -120,12 +127,14 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 	@Override
 	public ElezioneConsigliereVeloce visit(ElezioneConsigliereVeloceDTO elezioneConsigliereVeloceDTO) {
 		ElezioneConsigliereVeloce elezioneConsigliereVeloce = new ElezioneConsigliereVeloce();
-		Regione regione=ControlloParametri.cercaRegione(elezioneConsigliereVeloceDTO.getRegione(), gameState.getRegioni());
+		Regione regione = ControlloParametri.cercaRegione(elezioneConsigliereVeloceDTO.getRegione(),
+				gameState.getRegioni());
 		elezioneConsigliereVeloce.setRegione(regione);
-		
-		Consigliere consigliere=ControlloParametri.cercaConsigliere(elezioneConsigliereVeloceDTO.getConsigliere(), gameState.getConsiglieri());
+
+		Consigliere consigliere = ControlloParametri.cercaConsigliere(elezioneConsigliereVeloceDTO.getConsigliere(),
+				gameState.getConsiglieri());
 		elezioneConsigliereVeloce.setConsigliere(consigliere);
-		
+
 		return elezioneConsigliereVeloce;
 	}
 
@@ -160,9 +169,10 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 
 	@Override
 	public AzioneAcquisto visit(AzioneAcquistoDTO azioneAcquistoDTO) {
-		AzioneAcquisto azioneAcquisto= new AzioneAcquisto();
-		Offerta offerta=ControlloParametri.cercaOfferta(gameState.getOfferteMarket(), azioneAcquistoDTO.getOfferta());
-		Giocatore giocatore=ControlloParametri.carcaGiocatore(gameState.getGiocatori(), azioneAcquistoDTO.getGiocatoreDTO());
+		AzioneAcquisto azioneAcquisto = new AzioneAcquisto();
+		Offerta offerta = ControlloParametri.cercaOfferta(gameState.getOfferteMarket(), azioneAcquistoDTO.getOfferta());
+		Giocatore giocatore = ControlloParametri.carcaGiocatore(gameState.getGiocatori(),
+				azioneAcquistoDTO.getGiocatoreDTO());
 		azioneAcquisto.setOfferta(offerta);
 		azioneAcquisto.setAcquirente(giocatore);
 		return azioneAcquisto;
@@ -170,24 +180,28 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 
 	@Override
 	public BonusGettoneN visit(BonusGettoneNDTO bonusGettoneDTO) {
-		/*BonusGettoneN bonusGettone = new BonusGettoneN();
+		BonusGettoneN bonusGettone = new BonusGettoneN();
 		bonusGettone.setCittà(new ArrayList<>());
-		for(int i=0; i<bonusGettone.getNumeroGettoni(); i++){
-		CittàBonus città = (CittàBonus) ControlloParametri.cercaCittàBonus(bonusGettoneDTO.getCittà(), gameState.getCittà());
-		bonusGettone.getCittà().add(città);}
-		return bonusGettone;*/
-		return null;
+		for (int i = 0; i < bonusGettone.getNumeroGettoni(); i++) {
+			CittàBonus città = (CittàBonus) ControlloParametri.cercaCittàBonus(bonusGettoneDTO.getCittà().get(i),
+					gameState.getCittà());
+			bonusGettone.getCittà().add(città);
+		}
+		return bonusGettone;
+
 	}
 
 	@Override
 	public BonusTesseraAcquistataN visit(BonusTesseraAcquistataNDTO bonusTesseraAcquistataDTO) {
 		BonusTesseraAcquistataN bonusTesseraAcquistata = new BonusTesseraAcquistataN();
 		TesseraPermesso tesseraPermesso;
-		//METTERE BOOLEANO
-		if(giocatore.getTesserePermesso().contains(bonusTesseraAcquistataDTO.getTesseraPermesso())){
-			tesseraPermesso = ControlloParametri.cercaTesseraPermesso(bonusTesseraAcquistataDTO.getTesseraPermesso(), giocatore.getTesserePermesso());}
-		else tesseraPermesso = ControlloParametri.cercaTesseraPermesso(bonusTesseraAcquistataDTO.getTesseraPermesso(), giocatore.getTesserePermessoUsate());
-		
+		if (bonusTesseraAcquistataDTO.isUsata()) {
+			tesseraPermesso = ControlloParametri.cercaTesseraPermesso(bonusTesseraAcquistataDTO.getTesseraPermesso(),
+					giocatore.getTesserePermessoUsate());
+		} else
+			tesseraPermesso = ControlloParametri.cercaTesseraPermesso(bonusTesseraAcquistataDTO.getTesseraPermesso(),
+					giocatore.getTesserePermesso());
+
 		bonusTesseraAcquistata.setTesseraPermesso(tesseraPermesso);
 		return bonusTesseraAcquistata;
 	}
@@ -195,8 +209,9 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 	@Override
 	public BonusTesseraPermessoN visit(BonusTesseraPermessoNDTO bonusTesseraPermessoDTO) {
 		BonusTesseraPermessoN bonusTesseraPermesso = new BonusTesseraPermessoN();
-		Regione regione=ControlloParametri.cercaRegione(bonusTesseraPermessoDTO.getRegione(), gameState.getRegioni());
-		TesseraPermesso tesseraPermesso = ControlloParametri.cercaTesseraPermesso(bonusTesseraPermessoDTO.getTesseraScoperta(), regione.getTesserePermessoScoperte());
+		Regione regione = ControlloParametri.cercaRegione(bonusTesseraPermessoDTO.getRegione(), gameState.getRegioni());
+		TesseraPermesso tesseraPermesso = ControlloParametri.cercaTesseraPermesso(
+				bonusTesseraPermessoDTO.getTesseraScoperta(), regione.getTesserePermessoScoperte());
 		bonusTesseraPermesso.setRegione(regione);
 		bonusTesseraPermesso.setTesseraScoperta(tesseraPermesso);
 		return bonusTesseraPermesso;

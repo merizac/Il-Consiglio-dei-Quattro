@@ -147,6 +147,8 @@ public class ClientOutHandler implements Runnable {
 				
 			
 			} else if ("B2".equals(inputLine)){
+				
+				BonusTesseraAcquistataNDTO bonus = new BonusTesseraAcquistataNDTO();
 				tesseraScelta = null;
 				System.out.println("Vuoi prendere i bonus di una tessera già usata [1] o di una scoperta [2] ?");
 				String input = stdIn.nextLine();
@@ -159,19 +161,21 @@ public class ClientOutHandler implements Runnable {
 						b = true;}
 
 				if ("1".equals(input)) {
+					bonus.setUsata(true);
 					System.out.println(gameStateDTO.getGiocatoreDTO().getTesserePermessoUsate());
 					System.out.println("Scegli l'indice della tessera");
 					input = stdIn.nextLine();
 					tesseraScelta = azioniClient.scegliTesseraGiocatore(gameStateDTO.getGiocatoreDTO().getTesserePermessoUsate(), stdIn);
 				} 
 				else if ("2".equals(input)) {
+					bonus.setUsata(false);
 					System.out.println(gameStateDTO.getGiocatoreDTO().getTesserePermesso());
 					System.out.println("Scegli l'indice della tessera");
 					input = stdIn.nextLine();
 					tesseraScelta = azioniClient.scegliTesseraGiocatore(gameStateDTO.getGiocatoreDTO().getTesserePermesso(), stdIn);
 				}	
 					
-					BonusTesseraAcquistataNDTO bonus = new BonusTesseraAcquistataNDTO();
+			
 					bonus.setTesseraPermesso(tesseraScelta);
 				}
 			
