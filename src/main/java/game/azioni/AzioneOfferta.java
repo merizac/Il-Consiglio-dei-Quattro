@@ -49,4 +49,13 @@ public class AzioneOfferta extends Azione {
 		return null;
 	}
 
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Fai un'offerta  [Offerta]";
+	}
+
 }

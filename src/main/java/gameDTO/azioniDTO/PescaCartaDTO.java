@@ -12,4 +12,13 @@ public class PescaCartaDTO implements AzioneDTO {
 		return azioneVisitor.visit(this);
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "E' il tuo turno!\n"
+				+ "Pesca una carta politica per iniziare il turno!  [Pesca]";
+	}
+
 }

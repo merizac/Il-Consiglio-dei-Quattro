@@ -44,6 +44,13 @@ public class CostruzioneTesseraPermessoDTO implements AzioneDTO {
 	public Azione accept(AzioneVisitor azioneVisitor) {
 		return azioneVisitor.visit(this);
 	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Costruire con una tessera permesso  [P3]";
+	}
 	
 	
 }

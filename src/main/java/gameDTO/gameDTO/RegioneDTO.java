@@ -63,6 +63,9 @@ public class RegioneDTO implements Serializable {
 	public void setBalcone(ArrayList<ConsigliereDTO> balcone) {
 		this.balcone = balcone;
 	}
+	/**
+	 * @param regone the regione to inizialize in DTO mode
+	 */
 	public void inizializza(Regione regione) {
 		this.nome=regione.getNome();
 		this.balcone=new ArrayList<>();

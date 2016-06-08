@@ -25,6 +25,5 @@ public class BonusTesseraAcquistata extends Bonus {
 		// TODO Auto-generated method stub
 		
 	}
-
 	
 }

@@ -22,7 +22,7 @@ public class Stato01 implements Stato {
 		azioni= Arrays.asList(new IngaggioAiutante(), new CambioTesseraPermesso(), 
 				new ElezioneConsigliereVeloce(), new SecondaAzionePrincipale(), new Passa());
 		gameState.notifyObserver(new ErrorNotify("AZIONI VELOCI", Arrays.asList(gameState.getGiocatoreCorrente())));
-		gameState.notifyObserver(new AzioniNotify(getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
+		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
 		
 	}
 

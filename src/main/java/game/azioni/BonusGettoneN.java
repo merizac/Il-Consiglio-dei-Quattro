@@ -37,6 +37,13 @@ public class BonusGettoneN extends Azione {
 				return;
 				}
 		}
+		if(numeroGettoni>1){
+			if(!città.get(0).getBonus().equals(città.get(1).getBonus())){
+				gameState.notifyObserver(new ErrorNotify("Errore:" + gameState.getGiocatoreCorrente().getNome() 
+						+ "devi scegliere due gettoni ricompensa diversi tra loro" , Arrays.asList(gameState.getGiocatoreCorrente())));
+				return;
+			}
+		}
 		ArrayList<Bonus> bonus= new ArrayList<>();
 		
 		for(CittàBonus city:città){

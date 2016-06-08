@@ -13,13 +13,13 @@ public class BonusTesseraPermessoN extends Azione {
 	 */
 	
 	private Regione regione;
-	private int indiceTesseraScoperta;
+	private TesseraPermesso tesseraScoperta;
 	
 	@Override
 	public void eseguiAzione(GameState gameState){
 		
-		TesseraPermesso tesseraScelta = regione.getTesserePermessoScoperte().remove(indiceTesseraScoperta);
-		gameState.getGiocatoreCorrente().getTesserePermesso().add(tesseraScelta);
+		regione.getTesserePermessoScoperte().remove(tesseraScoperta);
+		gameState.getGiocatoreCorrente().getTesserePermesso().add(tesseraScoperta);
 		
 		regione.getTesserePermessoScoperte().add(regione.getMazzoTesserePermesso().pescaCarte());
 	}
@@ -41,15 +41,15 @@ public class BonusTesseraPermessoN extends Azione {
 	/**
 	 * @return the indiceTesseraScoperta
 	 */
-	public int getIndiceTesseraScoperta() {
-		return indiceTesseraScoperta;
+	public TesseraPermesso getTesseraScoperta() {
+		return tesseraScoperta;
 	}
 
 	/**
 	 * @param indiceTesseraScoperta the indiceTesseraScoperta to set
 	 */
-	public void setIndiceTesseraScoperta(int indiceTesseraScoperta) {
-		this.indiceTesseraScoperta = indiceTesseraScoperta;
+	public void setTesseraScoperta(TesseraPermesso tesseraScoperta) {
+		this.tesseraScoperta = tesseraScoperta;
 	}
 
 	@Override
