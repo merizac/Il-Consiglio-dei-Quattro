@@ -10,7 +10,10 @@ import game.notify.AzioniNotify;
 
 public class StatoOffertaMarket implements Stato {
 
+	private List<Azione> azioni;
+
 	public StatoOffertaMarket(GameState gameState) {
+		this.azioni=Arrays.asList(new AzioneAcquisto(),new Passa());
 		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), 
 					Arrays.asList(gameState.getGiocatoreCorrente())));
 	}
@@ -39,7 +42,7 @@ public class StatoOffertaMarket implements Stato {
 
 	@Override
 	public List<Azione> getAzioni() {
-		return Arrays.asList(new AzioneAcquisto(),new Passa());
+		return this.azioni; 
 	}
 
 }

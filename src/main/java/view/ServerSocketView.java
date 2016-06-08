@@ -34,6 +34,7 @@ public class ServerSocketView extends View implements Runnable {
 	@Override
 	public void update(Notify o) {
 		if (o.daInviare(giocatore)) {
+			System.out.println("[SERVER] Inviata notifica "+o+" al giocatore "+giocatore.getNome());
 			try {
 				this.socketOut.writeObject(o.notifyToClientNotify());
 				this.socketOut.flush();
@@ -71,9 +72,10 @@ public class ServerSocketView extends View implements Runnable {
 					AzioneDTO action = (AzioneDTO) object;
 					AzioneVisitor azioneVisitor = new AzioneVisitorImpl(gameState, giocatore);
 					Azione azione = action.accept(azioneVisitor);
-					System.out.println("VIEW: received the action " + azione);
-					if (azione.isTurno(giocatore, gameState)){
-						System.out.println("azione da eseguire: "+azione.isTurno(giocatore, gameState));
+					System.out.println("[SERVER] Ricevuta l'azione " + azione+ " dal giocatore "+giocatore.getNome());
+					if (azione.isTurno(giocatore, gameState) 
+							&& gameState.getStato().getAzioni().contains(azione)){
+						System.out.println("[SERVER] Inviata l'azione "+azione);
 						this.notifyObserver(azione);
 					}
 					else {
@@ -86,7 +88,6 @@ public class ServerSocketView extends View implements Runnable {
 				e1.printStackTrace();
 			}
 		}
-
 	}
 
 	/**

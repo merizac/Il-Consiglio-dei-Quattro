@@ -35,9 +35,7 @@ public class PlanciaReDTO implements Serializable {
 	public void setBonusPremioRe(ArrayList<Bonus> bonusPremioRe) {
 		this.bonusPremioRe = bonusPremioRe;
 	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
+
 	
 	public void inizializza(PlanciaRe planciaRe){
 		this.balconeRe = new ArrayList<>();

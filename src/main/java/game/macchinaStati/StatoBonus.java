@@ -14,9 +14,12 @@ public class StatoBonus implements Stato {
 	 * @param stato
 	 */
 	public StatoBonus(GameState gameState, Stato stato) {
+		System.out.println("[SERVER] "+this);
 		this.stato = stato;
 		gameState.notifyObserver(new BonusNotify(gameState.getGiocatoreCorrente().getBonusNobiltà(), Arrays.asList(gameState.getGiocatoreCorrente())));
-	
+
+		/*this.bonus=gameState.getGiocatoreCorrente().getBonusNobiltà();
+		gameState.notifyObserver(new BonusNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));*/	
 	}
 	
 	@Override
@@ -31,6 +34,14 @@ public class StatoBonus implements Stato {
 	@Override
 	public List<Azione> getAzioni() {
 				return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "StatoBonus";
 	}
 
 }

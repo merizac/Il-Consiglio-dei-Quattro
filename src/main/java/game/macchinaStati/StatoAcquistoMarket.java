@@ -16,8 +16,11 @@ import utility.exception.AzioneNonEseguibile;
 public class StatoAcquistoMarket implements Stato {
 
 	private ArrayList<Giocatore> giocatori;
+	private List<Azione> azioni;
 	
 	public StatoAcquistoMarket(GameState gameState){
+		System.out.println("[SERVER] "+this);
+		this.azioni=Arrays.asList(new AzioneAcquisto(), new Passa());
 		this.giocatori=new ArrayList<Giocatore>(gameState.getGiocatori());
 		inizializzaStato(gameState);
 	}
@@ -52,7 +55,7 @@ public class StatoAcquistoMarket implements Stato {
 	
 	@Override
 	public List<Azione> getAzioni() {
-		return Arrays.asList(new AzioneAcquisto(), new Passa());
+		return this.azioni;
 	}
 
 	/**
@@ -60,6 +63,14 @@ public class StatoAcquistoMarket implements Stato {
 	 */
 	public ArrayList<Giocatore> getGiocatori() {
 		return giocatori;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "StatoAcquistoMarket";
 	}
 	
 	

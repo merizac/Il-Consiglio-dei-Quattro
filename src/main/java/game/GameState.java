@@ -3,7 +3,9 @@ package game;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 import game.macchinaStati.StartEnd;
 import game.macchinaStati.Stato;
@@ -204,6 +206,21 @@ public class GameState extends Observable<Notify> {
 			g.getCartePolitica().addAll(assegnaCartePolitica(6));
 			this.giocatori.add(g);
 			i++;
+		}
+		if(giocatori.size()==2){
+			for(Regione r: getRegioni()){
+				Random random=new Random();
+				int numeroEmpori=random.nextInt(3)+1;
+				
+				for (int s=0; s<numeroEmpori;s++){
+					int rnd=random.nextInt(r.getCittàRegione().size());
+					if(r.getCittàRegione().get(rnd).getEmpori().isEmpty())
+						r.getCittàRegione().get(rnd).aggiungiEmporio(new Emporio(new Colore("A")));
+					else
+						s--;
+				}
+				
+			}
 		}
 		this.giocatoreCorrente = this.giocatori.get(0);
 	}

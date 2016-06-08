@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import bonus.Bonus;
 import bonus.BonusAiutanti;
+import gameDTO.gameDTO.TesseraPermessoDTO;
 
 public class TesseraPermessoTest {
 
@@ -34,6 +35,7 @@ public class TesseraPermessoTest {
 		bonus.add(new BonusAiutanti(2));
 		
 		tessera=new TesseraPermesso(città, bonus, regione);
+		gameState.getGiocatoreCorrente().aggiungiTesseraPermesso(tessera);
 	}
 
 	@Test
@@ -53,12 +55,24 @@ public class TesseraPermessoTest {
 
 	@Test
 	public void testAcquista() {
-
+		
 	}
 
 	@Test
-	public void testPossiede() {
-
+	public void ilGiocatoreNONPossiedeLaTessera() {
+		assertTrue(!gameState.getRegioni().get(1).getTesserePermessoScoperte().get(0).possiede(gameState.getGiocatoreCorrente()));
 	}
+	
+	@Test
+	public void ilGiocatorePossiedeLaTessera() {
+		assertTrue(tessera.possiede(gameState.getGiocatoreCorrente()));
+	}
+	
+	@Test
+	public void testInstance() {
+		assertTrue(tessera.instance() instanceof TesseraPermessoDTO);
+	}
+	
+	
 
 }

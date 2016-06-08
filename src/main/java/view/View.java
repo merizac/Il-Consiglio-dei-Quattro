@@ -3,7 +3,6 @@ package view;
 import game.GameState;
 import game.azioni.Azione;
 import game.notify.Notify;
-import java.util.Scanner;
 import utility.Observable;
 import utility.Observer;
 

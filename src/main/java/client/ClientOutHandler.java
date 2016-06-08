@@ -1,11 +1,8 @@
 package client;
 
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import game.market.Marketable;
 import gameDTO.azioniDTO.AcquistoTesseraPermessoDTO;
 import gameDTO.azioniDTO.AzioneAcquistoDTO;
 import gameDTO.azioniDTO.AzioneDTO;
@@ -26,18 +23,17 @@ import gameDTO.gameDTO.CartaPoliticaDTO;
 import gameDTO.gameDTO.CittàDTO;
 import gameDTO.gameDTO.ConsigliereDTO;
 import gameDTO.gameDTO.GameStateDTO;
-import gameDTO.gameDTO.GiocatoreDTO;
 import gameDTO.gameDTO.RegioneDTO;
 import gameDTO.gameDTO.TesseraPermessoDTO;
 import utility.Utils;
 
 public class ClientOutHandler implements Runnable {
 
-	private ObjectOutputStream socketOut;
+	private Connessione connessione;
 	private GameStateDTO gameStateDTO;
 
-	public ClientOutHandler(ObjectOutputStream socketOut, GameStateDTO gameStateDTO) {
-		this.socketOut = socketOut;
+	public ClientOutHandler(Connessione connessione, GameStateDTO gameStateDTO) {
+		this.connessione = connessione;
 		this.gameStateDTO = gameStateDTO;
 	}
 
@@ -231,16 +227,13 @@ public class ClientOutHandler implements Runnable {
 			else
 				System.out.println("L'azione non esiste \nInserire un'azione valida");
 
-			try {
-				if (action != null) {
-					System.out.println("invio :" + action);
-					socketOut.writeObject(action);
-					socketOut.flush();
+			if(action!=null)
+				try {
+					connessione.inviaAzione(action);
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-
 		}
 	}
 	}
