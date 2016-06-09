@@ -1,10 +1,9 @@
 package gameDTO.gameDTO;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
-
 import bonus.Bonus;
 import game.Città;
 import game.Giocatore;
@@ -16,7 +15,7 @@ public class TesseraPermessoDTO implements Serializable, MarketableDTO {
 
 	private static final long serialVersionUID = 251246647055835184L;
 	private Set<CittàDTO> città=new HashSet<>();
-	private ArrayList<Bonus> bonus;
+	private List<Bonus> bonus;
 	/**
 	 * @return the città
 	 */
@@ -32,13 +31,13 @@ public class TesseraPermessoDTO implements Serializable, MarketableDTO {
 	/**
 	 * @return the bonus
 	 */
-	public ArrayList<Bonus> getBonus() {
+	public List<Bonus> getBonus() {
 		return bonus;
 	}
 	/**
 	 * @param bonus the bonus to set
 	 */
-	public void setBonus(ArrayList<Bonus> bonus) {
+	public void setBonus(List<Bonus> bonus) {
 		this.bonus = bonus;
 	}
 	

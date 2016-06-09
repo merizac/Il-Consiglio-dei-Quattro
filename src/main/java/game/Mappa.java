@@ -1,6 +1,5 @@
 package game;
 
-import java.util.HashSet;
 import java.util.Set;
 import org.jgrapht.alg.DijkstraShortestPath;
 import org.jgrapht.graph.DefaultEdge;
@@ -13,18 +12,18 @@ public class Mappa  {
 	 * create the graph
 	 * @param città
 	 */
-	public Mappa(HashSet<Città> città){
+	public Mappa(Set<Città> città){
 		
-		grafo= new SimpleGraph<Città, DefaultEdge>(DefaultEdge.class);
+		grafo= new SimpleGraph<>(DefaultEdge.class);
 		this.aggiungiVertici(città);
-		this.collegaVertici((grafo.vertexSet()));
+		this.collegaVertici(grafo.vertexSet());
 	}
 	
 	/**
 	 * add cities at the graph
 	 * @param città
 	 */
-	private void aggiungiVertici(HashSet<Città> città) {
+	private void aggiungiVertici(Set<Città> città) {
 		
 		for(Città indiceCittà: città){
 			grafo.addVertex(indiceCittà);
@@ -54,7 +53,7 @@ public class Mappa  {
 	 * @param emporio
 	 * @return a set of city connected to cittàEmporio with the same color of Emporio 
 	 */
-	public HashSet<CittàBonus> trovaCittà(Città cittàEmporio, Colore coloreEmporio){
+	public Set<CittàBonus> trovaCittà(Città cittàEmporio, Colore coloreEmporio){
 		
 		CittàCollegate cittàCollegate = new CittàCollegate();
 		
@@ -71,7 +70,7 @@ public class Mappa  {
 	 */
 	public int minimaDistanza(Città cittàPartenza, Città cittàDestinazione){
 		DijkstraShortestPath<Città, DefaultEdge> distanza 
-			= new DijkstraShortestPath<Città, DefaultEdge>(grafo, cittàPartenza, cittàDestinazione);
+			= new DijkstraShortestPath<>(grafo, cittàPartenza, cittàDestinazione);
 		return (int)distanza.getPathLength();
 	}
 	

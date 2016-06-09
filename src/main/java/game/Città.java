@@ -1,16 +1,15 @@
 package game;
 
 import java.util.HashSet;
+import java.util.Set;
 
 public class Città {
 
 	private final String nome;
 	private final Regione regione;
 	protected final Colore colore;
-	private final HashSet<Emporio> empori;
-	private final HashSet<Città> cittàCollegate;
-	
-	
+	private final Set<Emporio> empori;
+	private final Set<Città> cittàCollegate;
 
 	/**
 	 * @param nome
@@ -24,11 +23,10 @@ public class Città {
 		this.nome = nome;
 		this.regione = regione;
 		this.colore = colore;
-		this.empori = new HashSet<Emporio>();
-		this.cittàCollegate = new HashSet<Città>();
+		this.empori = new HashSet<>();
+		this.cittàCollegate = new HashSet<>();
 		this.regione.getCittàRegione().add(this);
 	}
-	
 
 	/**
 	 * @return the nome
@@ -37,14 +35,12 @@ public class Città {
 		return nome;
 	}
 
-
 	/**
 	 * @return the regione
 	 */
 	public Regione getRegione() {
 		return regione;
 	}
-
 
 	/**
 	 * @return the colore
@@ -53,48 +49,53 @@ public class Città {
 		return colore;
 	}
 
-
 	/**
 	 * @return the empori
 	 */
-	public HashSet<Emporio> getEmpori() {
+	public Set<Emporio> getEmpori() {
 		return empori;
 	}
-
 
 	/**
 	 * @return the cittàCollegate
 	 */
-	public HashSet<Città> getCittàCollegate() {
+	public Set<Città> getCittàCollegate() {
 		return cittàCollegate;
 	}
-	
+
 	/**
-	 * check if it is possible to add the emporium , and if it is possible add the emporium
+	 * check if it is possible to add the emporium , and if it is possible add
+	 * the emporium
+	 * 
 	 * @param emporio
 	 * @return true if it is possible, false in the other case
 	 */
-	public boolean aggiungiEmporio(Emporio emporio){
-		if(empori.add(emporio))
+	public boolean aggiungiEmporio(Emporio emporio) {
+		if (empori.add(emporio)) {
 			return true;
-		else 
+		} else {
 			return false;
+		}
 	}
+
 	/**
 	 * check if there is a emporio of the same color of parameter colore
+	 * 
 	 * @param colore
-	 * @return true if empori contains a emporio of the same colore, false in the other case
+	 * @return true if empori contains a emporio of the same colore, false in
+	 *         the other case
 	 */
-	public boolean emporioColore(Colore colore){
-		if(empori.contains(new Emporio(colore)))
+	public boolean emporioColore(Colore colore) {
+		if (empori.contains(new Emporio(colore))) {
 			return true;
-		else 
+		} else {
 			return false;
-			
+		}
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -106,8 +107,9 @@ public class Città {
 		return result;
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -132,8 +134,9 @@ public class Città {
 		return true;
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -141,10 +144,4 @@ public class Città {
 		return nome + " [" + colore + "]";
 	}
 
-
-	
-	
-	
-	
-	
 }

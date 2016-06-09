@@ -27,7 +27,7 @@ import gameDTO.gameDTO.GameStateDTO;
 
 public class AcquistoTesseraPermessoTest {
 
-	static GameState gameState;
+	/*static GameState gameState;
 	static Regione regione;
 	static ArrayList<CartaPolitica> carteGiocatore;
 	static TesseraPermesso tesseraScoperta;
@@ -66,20 +66,20 @@ public class AcquistoTesseraPermessoTest {
 		azione.setCarteGiocatore(carte);
 		azione.setTesseraScoperta(tesseraScoperta);
 		
-		TesseraPermesso tesseraPermesso=regione.getTesserePermessoScoperte().get(0);
+		TesseraPermesso tesseraPermesso=regione.getTesserePermessoScoperte().get(0);*/
 //		tesseraPermesso.getBonus().add(new BonusPuntiNobiltà(2));
 		
-		int aiutanti_prima=gameState.getGiocatoreCorrente().getAiutanti().getAiutante();
+		/*int aiutanti_prima=gameState.getGiocatoreCorrente().getAiutanti().getAiutante();
 		int cartePolitica_prima=gameState.getGiocatoreCorrente().getCartePolitica().size();
 		int nobiltà_prima=gameState.getGiocatoreCorrente().getPunteggioNobiltà().getPuntiNobiltà();
 		int vittoria_prima=gameState.getGiocatoreCorrente().getPunteggioVittoria();
 		
 		System.out.println(gameState.getGiocatoreCorrente().getCartePolitica());
 	
-		azione.eseguiAzione(gameState);
+		azione.eseguiAzione(gameState);*/
 				
 		//controllo utilizzo bonus
-		int monete=0;
+		/*int monete=0;
 		int aiutanti=0;
 		int vittoria=0;
 		int nobiltà=0;
@@ -104,22 +104,22 @@ public class AcquistoTesseraPermessoTest {
 			}
 		}
 		
-		System.out.println(gameState.getGiocatoreCorrente().getCartePolitica());
+		System.out.println(gameState.getGiocatoreCorrente().getCartePolitica());*/
 		
 		//controllo che la tessera permesso venga data al giocatore
-		assertTrue(tesseraPermesso==gameState.getGiocatoreCorrente().getTesserePermesso().get(gameState.getGiocatoreCorrente().getTesserePermesso().size()-1));
+		//assertTrue(tesseraPermesso==gameState.getGiocatoreCorrente().getTesserePermesso().get(gameState.getGiocatoreCorrente().getTesserePermesso().size()-1));
 		//controllo che sia cambiata la carta pescata
-		assertNotEquals(tesseraPermesso, gameState.getRegioni().get(0).getTesserePermessoScoperte().get(0));
+		//assertNotEquals(tesseraPermesso, gameState.getRegioni().get(0).getTesserePermessoScoperte().get(0));
 		//controllo che vengano scalati e dati puntiricchezza dei bonus
-		assertEquals(4+monete, gameState.getGiocatoreCorrente().getPunteggioRicchezza());
-		assertEquals(aiutanti_prima+aiutanti, gameState.getGiocatoreCorrente().getAiutanti().getAiutante());
-		assertEquals(nobiltà_prima+nobiltà, gameState.getGiocatoreCorrente().getPunteggioNobiltà().getPuntiNobiltà());
-		assertEquals(cartePolitica_prima+cartePolitica-3, gameState.getGiocatoreCorrente().getCartePolitica().size());
-		assertEquals(vittoria_prima+vittoria, gameState.getGiocatoreCorrente().getPunteggioVittoria());
-	}	
+		//assertEquals(4+monete, gameState.getGiocatoreCorrente().getPunteggioRicchezza());
+		//assertEquals(aiutanti_prima+aiutanti, gameState.getGiocatoreCorrente().getAiutanti().getAiutante());
+		//assertEquals(nobiltà_prima+nobiltà, gameState.getGiocatoreCorrente().getPunteggioNobiltà().getPuntiNobiltà());
+		//assertEquals(cartePolitica_prima+cartePolitica-3, gameState.getGiocatoreCorrente().getCartePolitica().size());
+		//assertEquals(vittoria_prima+vittoria, gameState.getGiocatoreCorrente().getPunteggioVittoria());
+	//}	
 	
 
-	@Test
+/*	@Test
 	public void testGetCarteGiocatore() {
 		AcquistoTesseraPermesso mossa=new AcquistoTesseraPermesso();
 		mossa.setRegione(regione);
@@ -171,5 +171,5 @@ public class AcquistoTesseraPermessoTest {
 		mossa.setRegione(regione);
 		mossa.setTesseraScoperta(tesseraScoperta);
 		assertTrue(tesseraScoperta==mossa.getTesseraScoperta());
-	}
+	}*/
 }

@@ -8,7 +8,7 @@ import gameDTO.gameDTO.MarketableDTO;
 public class CartaPolitica implements Marketable {
 
 	private final Colore colore;
-	
+
 	/**
 	 * @param colore
 	 */
@@ -16,16 +16,16 @@ public class CartaPolitica implements Marketable {
 		this.colore = colore;
 	}
 
-
 	/**
 	 * @return the colore
 	 */
 	public Colore getColore() {
 		return colore;
 	}
-	
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -36,8 +36,9 @@ public class CartaPolitica implements Marketable {
 		return result;
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -57,8 +58,9 @@ public class CartaPolitica implements Marketable {
 		return true;
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -66,12 +68,11 @@ public class CartaPolitica implements Marketable {
 		return colore.toString();
 	}
 
-
 	@Override
 	public boolean acquista(Giocatore acquirente, Offerta offerta) {
-		if(!acquirente.diminuisciRicchezza(offerta.getPrezzo()))
+		if (!acquirente.diminuisciRicchezza(offerta.getPrezzo()))
 			return false;
-		else{
+		else {
 			acquirente.aggiungiCartaPolitica(this);
 			offerta.getVenditore().rimuoviCartaPolitica(this);
 			offerta.getVenditore().aumentaRicchezza(offerta.getPrezzo());
@@ -79,22 +80,18 @@ public class CartaPolitica implements Marketable {
 		}
 	}
 
-
 	@Override
 	public boolean possiede(Giocatore venditore) {
-		if(!venditore.getCartePolitica().contains(this))
+		if (!venditore.getCartePolitica().contains(this)) {
 			return false;
-		else
+		} else {
 			return true;
+		}
 	}
-
 
 	@Override
 	public MarketableDTO instance() {
 		return new CartaPoliticaDTO();
 	}
-	
-	
-
 
 }

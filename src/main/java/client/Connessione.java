@@ -3,7 +3,6 @@ package client;
 import java.rmi.RemoteException;
 
 import gameDTO.azioniDTO.AzioneDTO;
-import gameDTO.gameDTO.GameStateDTO;
 
 public interface Connessione {
 

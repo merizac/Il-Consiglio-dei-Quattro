@@ -71,7 +71,10 @@ public class ServerRMIView extends View implements ServerRMIViewRemote{
 	}
 	@Override
 	public void unregister(ConnessioneRMIRemota connessioneRMIRemota) throws RemoteException{
+		Giocatore giocatore=this.giocatori.get(connessioneRMIRemota);
 		this.giocatori.remove(connessioneRMIRemota);
+		//this.notifyObserver(new Exit(giocatore));
+		System.out.println("[SERVER] Il giocatore "+giocatore.getNome().toUpperCase()+ " è stato rimosso");
 	}
 
 	@Override

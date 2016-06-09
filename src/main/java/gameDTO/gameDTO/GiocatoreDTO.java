@@ -3,13 +3,10 @@ package gameDTO.gameDTO;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import bonus.Bonus;
-import bonus.BonusNobiltà;
 import game.CartaPolitica;
 import game.Giocatore;
 import game.TesseraPermesso;
-import game.azioni.Azione;
 import gameDTO.azioniDTO.AzioneDTO;
 
 public class GiocatoreDTO implements Serializable {
@@ -18,10 +15,10 @@ public class GiocatoreDTO implements Serializable {
 
 	private String nome; 
 	private ColoreDTO coloreGiocatore;
-	private ArrayList<CartaPoliticaDTO> cartePolitica;
-	private ArrayList<TesseraPermessoDTO> tesserePermesso;
-	private ArrayList<TesseraPermessoDTO> tesserePermessoUsate; 
-	private ArrayList<Bonus> tessereBonus;
+	private List<CartaPoliticaDTO> cartePolitica;
+	private List<TesseraPermessoDTO> tesserePermesso;
+	private List<TesseraPermessoDTO> tesserePermessoUsate; 
+	private List<Bonus> tessereBonus;
 	private int empori;
 	private int aiutanti;
 	private int punteggioVittoria;
@@ -63,49 +60,49 @@ public class GiocatoreDTO implements Serializable {
 	/**
 	 * @return the cartePolitica
 	 */
-	public ArrayList<CartaPoliticaDTO> getCartePolitica() {
+	public List<CartaPoliticaDTO> getCartePolitica() {
 		return cartePolitica;
 	}
 	/**
 	 * @param cartePolitica the cartePolitica to set
 	 */
-	public void setCartePolitica(ArrayList<CartaPoliticaDTO> cartePolitica) {
+	public void setCartePolitica(List<CartaPoliticaDTO> cartePolitica) {
 		this.cartePolitica = cartePolitica;
 	}
 	/**
 	 * @return the tesserePermesso
 	 */
-	public ArrayList<TesseraPermessoDTO> getTesserePermesso() {
+	public List<TesseraPermessoDTO> getTesserePermesso() {
 		return tesserePermesso;
 	}
 	/**
 	 * @param tesserePermesso the tesserePermesso to set
 	 */
-	public void setTesserePermesso(ArrayList<TesseraPermessoDTO> tesserePermesso) {
+	public void setTesserePermesso(List<TesseraPermessoDTO> tesserePermesso) {
 		this.tesserePermesso = tesserePermesso;
 	}
 	/**
 	 * @return the tesserePermessoUsate
 	 */
-	public ArrayList<TesseraPermessoDTO> getTesserePermessoUsate() {
+	public List<TesseraPermessoDTO> getTesserePermessoUsate() {
 		return tesserePermessoUsate;
 	}
 	/**
 	 * @param tesserePermessoUsate the tesserePermessoUsate to set
 	 */
-	public void setTesserePermessoUsate(ArrayList<TesseraPermessoDTO> tesserePermessoUsate) {
+	public void setTesserePermessoUsate(List<TesseraPermessoDTO> tesserePermessoUsate) {
 		this.tesserePermessoUsate = tesserePermessoUsate;
 	}
 	/**
 	 * @return the tessereBonus
 	 */
-	public ArrayList<Bonus> getTessereBonus() {
+	public List<Bonus> getTessereBonus() {
 		return tessereBonus;
 	}
 	/**
 	 * @param tessereBonus the tessereBonus to set
 	 */
-	public void setTessereBonus(ArrayList<Bonus> tessereBonus) {
+	public void setTessereBonus(List<Bonus> tessereBonus) {
 		this.tessereBonus = tessereBonus;
 	}
 	/**

@@ -2,6 +2,8 @@ package gameDTO.azioniDTO.azioneVisitor;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
+
 import game.CartaPolitica;
 import game.Città;
 import game.CittàBonus;
@@ -64,7 +66,7 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 				gameState.getRegioni());
 		TesseraPermesso tessera = ControlloParametri.cercaTesseraPermesso(
 				acquistoTesseraPermessoDTO.getTesseraPermesso(), regione.getTesserePermessoScoperte());
-		ArrayList<CartaPolitica> carte = ControlloParametri.cercaCartePolitica(acquistoTesseraPermessoDTO.getCarte(),
+		List<CartaPolitica> carte = ControlloParametri.cercaCartePolitica(acquistoTesseraPermessoDTO.getCarte(),
 				new ArrayList<>(giocatore.getCartePolitica()));
 		acquistoTesseraPermesso.setRegione(regione);
 		acquistoTesseraPermesso.setCarteGiocatore(carte);
@@ -90,7 +92,7 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 		Città città = ControlloParametri.cercaCittà(costruzioneAiutoReDTO.getCittà(), gameState.getCittà());
 		costruzioneAiutoRe.setCittàCostruzione(città);
 
-		ArrayList<CartaPolitica> carte = ControlloParametri.cercaCartePolitica(
+		List<CartaPolitica> carte = ControlloParametri.cercaCartePolitica(
 				costruzioneAiutoReDTO.getCarteGiocatore(), new ArrayList<>(giocatore.getCartePolitica()));
 		costruzioneAiutoRe.setCarteGiocatore(carte);
 

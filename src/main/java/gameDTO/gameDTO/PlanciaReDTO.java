@@ -2,6 +2,8 @@ package gameDTO.gameDTO;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
+
 import bonus.Bonus;
 import game.Consigliere;
 import game.PlanciaRe;
@@ -9,30 +11,30 @@ import game.PlanciaRe;
 public class PlanciaReDTO implements Serializable {
 
 	private static final long serialVersionUID = -1277703422395979043L;
-	private ArrayList<ConsigliereDTO> balconeRe;
-	private ArrayList<Bonus> bonusPremioRe;
+	private List<ConsigliereDTO> balconeRe;
+	private List<Bonus> bonusPremioRe;
 	/**
 	 * @return the balconeRe
 	 */
-	public ArrayList<ConsigliereDTO> getBalconeRe() {
+	public List<ConsigliereDTO> getBalconeRe() {
 		return balconeRe;
 	}
 	/**
 	 * @param balconeRe the balconeRe to set
 	 */
-	public void setBalconeRe(ArrayList<ConsigliereDTO> balconeRe) {
+	public void setBalconeRe(List<ConsigliereDTO> balconeRe) {
 		this.balconeRe = balconeRe;
 	}
 	/**
 	 * @return the bonusPremioRe
 	 */
-	public ArrayList<Bonus> getBonusPremioRe() {
+	public List<Bonus> getBonusPremioRe() {
 		return bonusPremioRe;
 	}
 	/**
 	 * @param bonusPremioRe the bonusPremioRe to set
 	 */
-	public void setBonusPremioRe(ArrayList<Bonus> bonusPremioRe) {
+	public void setBonusPremioRe(List<Bonus> bonusPremioRe) {
 		this.bonusPremioRe = bonusPremioRe;
 	}
 

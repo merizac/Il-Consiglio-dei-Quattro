@@ -27,18 +27,18 @@ import gameDTO.gameDTO.TesseraPermessoDTO;
 
 public class ControlloParametri {
 
-	public static Regione cercaRegione(RegioneDTO regione, ArrayList<Regione> regioni) throws IllegalArgumentException {
-		for (Regione r : regioni) {
+	public static Regione cercaRegione(RegioneDTO regione, List<Regione> list) throws IllegalArgumentException {
+		for (Regione r : list) {
 			if (r.getNome().equals(regione.getNome()))
 				return r;
 		}
 		throw new IllegalArgumentException("La regione è inesistente!");
 	}
 
-	public static ArrayList<CartaPolitica> cercaCartePolitica(List<CartaPoliticaDTO> carte,
+	public static List<CartaPolitica> cercaCartePolitica(List<CartaPoliticaDTO> carte,
 			ArrayList<CartaPolitica> cartePolitica) throws IllegalArgumentException {
 		System.out.println("metodo");
-		ArrayList<CartaPolitica> carteGiocatore = new ArrayList<>();
+		List<CartaPolitica> carteGiocatore = new ArrayList<>();
 		for (CartaPoliticaDTO c : carte) {
 			if (cartePolitica.contains(new CartaPolitica(new Colore(c.getColore())))) {
 				System.out.println("entrato");
@@ -95,12 +95,12 @@ public class ControlloParametri {
 	 * @throws IllegalArgumentException
 	 */
 	public static TesseraPermesso cercaTesseraPermesso(TesseraPermessoDTO tesseraPermesso,
-			ArrayList<TesseraPermesso> tesserePermesso) throws IllegalArgumentException {
-		ArrayList<CittàDTO> cittàTesseraDTO = new ArrayList<CittàDTO>(tesseraPermesso.getCittà());
+			List<TesseraPermesso> tesserePermesso) throws IllegalArgumentException {
+		List<CittàDTO> cittàTesseraDTO = new ArrayList<>(tesseraPermesso.getCittà());
 		ordinaCittàDTO(cittàTesseraDTO);
 
 		for (TesseraPermesso t : tesserePermesso) {
-			ArrayList<Città> cittàTessera = new ArrayList<>(t.getCittà());
+			List<Città> cittàTessera = new ArrayList<>(t.getCittà());
 			ordinaCittà(cittàTessera);
 			if (tesseraPermesso.getBonus().size() == t.getBonus().size()
 					&& tesseraPermesso.getCittà().size() == cittàTessera.size()
@@ -113,7 +113,7 @@ public class ControlloParametri {
 
 	}
 
-	private static void ordinaCittà(ArrayList<Città> cittàTessera) {
+	private static void ordinaCittà(List<Città> cittàTessera) {
 		Collections.sort(cittàTessera, new Comparator<Città>() {
 
 			@Override
@@ -146,7 +146,7 @@ public class ControlloParametri {
 	 * @param bonus
 	 * @return true if bonus check, false if are not the same
 	 */
-	private static boolean stessiBonus(ArrayList<Bonus> bonusTesseraDTO, ArrayList<Bonus> bonus) {
+	private static boolean stessiBonus(List<Bonus> bonusTesseraDTO, List<Bonus> bonus) {
 		int i;
 		for (i = 0; i <= bonusTesseraDTO.size() - 1; i++) {
 			System.out.println("indice :" + i);
@@ -171,7 +171,7 @@ public class ControlloParametri {
 	 * @param città
 	 * @return
 	 */
-	private static boolean stesseCittà(ArrayList<CittàDTO> cittàTesseraDTO, ArrayList<Città> città) {
+	private static boolean stesseCittà(List<CittàDTO> cittàTesseraDTO, List<Città> città) {
 		int i;
 		for (i = 0; i <= cittàTesseraDTO.size() - 1; i++) {
 			System.out.println("Città tesseraDTO: " + cittàTesseraDTO.get(i).getNome());
@@ -209,7 +209,7 @@ public class ControlloParametri {
 	 * }
 	 */
 
-	public static Consigliere cercaConsigliere(ConsigliereDTO consigliereDTO, ArrayList<Consigliere> consiglieri)
+	public static Consigliere cercaConsigliere(ConsigliereDTO consigliereDTO, List<Consigliere> consiglieri)
 			throws IllegalArgumentException {
 		for (Consigliere c : consiglieri) {
 			if (c.getColore().getColore().equals(consigliereDTO.getColoreConsigliere()))

@@ -2,16 +2,17 @@ package game;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 
 public class Mazzo<T> {
 
-	private ArrayList<T> carte;
+	private List<T> carte;
 	
 	/**
 	 * @param carte
 	 */
-	public Mazzo(ArrayList<T> carte) {
+	public Mazzo(List<T> carte) {
 		super();
 		this.carte = carte;
 	}
@@ -23,7 +24,7 @@ public class Mazzo<T> {
 	/**
 	 * @return the carte
 	 */
-	public ArrayList<T> getCarte() {
+	public List<T> getCarte() {
 		return carte;
 	}
 
@@ -44,10 +45,10 @@ public class Mazzo<T> {
 
 	/**
 	 * Add the list of cards at the end of the deck
-	 * @param carta
+	 * @param carteGiocatore
 	 */
-	public void aggiungiCarte(ArrayList<T> carta) {
-		for(T t: carta){	
+	public void aggiungiCarte(List<T> carteGiocatore) {
+		for(T t: carteGiocatore){	
 			carte.add(t);
 		}
 	}
