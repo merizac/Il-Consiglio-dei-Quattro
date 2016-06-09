@@ -46,6 +46,8 @@ public class BonusGettoneNDTO implements AzioneDTO{
 	 * @param numeroGettoni the numeroGettoni to set
 	 */
 	public void setNumeroGettoni(int numeroGettoni) {
+		if(numeroGettoni<=0)
+			throw new IllegalArgumentException("Il numero dei gettoni deve essere un numero positivo non nullo");
 		this.numeroGettoni = numeroGettoni;
 	}
 	

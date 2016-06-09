@@ -40,7 +40,7 @@ public class AcquistoTesseraPermessoTest {
 		gameState=new GameState();
 		gameState.start(giocatori);
 		
-		tesseraScoperta=null;
+		tesseraScoperta=gameState.getRegioni().get(0).getTesserePermessoScoperte().get(0);
 		regione=gameState.getRegioni().get(0);
 	}
 	
@@ -158,11 +158,18 @@ public class AcquistoTesseraPermessoTest {
 	}
 
 	@Test
-	public void testGetIndiceTesseraScoperta() {
+	public void testGetTesseraScoperta() {
 		AcquistoTesseraPermesso mossa=new AcquistoTesseraPermesso();
 		mossa.setRegione(regione);
 		mossa.setTesseraScoperta(tesseraScoperta);
 		assertTrue(tesseraScoperta==mossa.getTesseraScoperta());
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testSetTesseraScopertaNull() {
+		AcquistoTesseraPermesso mossa=new AcquistoTesseraPermesso();
+		mossa.setRegione(regione);
+		mossa.setTesseraScoperta(null);
 	}
 
 	@Test

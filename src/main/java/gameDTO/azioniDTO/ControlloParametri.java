@@ -20,6 +20,7 @@ import game.TesseraPermesso;
 import game.market.Offerta;
 import gameDTO.BalconeDTO;
 import gameDTO.gameDTO.CartaPoliticaDTO;
+import gameDTO.gameDTO.CittàBonusDTO;
 import gameDTO.gameDTO.CittàDTO;
 import gameDTO.gameDTO.ConsigliereDTO;
 import gameDTO.gameDTO.GiocatoreDTO;
@@ -72,16 +73,25 @@ public class ControlloParametri {
 		}
 		throw new IllegalArgumentException("La città è inesistente!");
 	}
-	
+
 	public static Città cercaCittàBonus(CittàDTO città, Set<Città> cittàGameState) throws IllegalArgumentException {
+		if (città instanceof CittàBonusDTO){
+			System.out.println("test bonus :" + (((CittàBonusDTO) città).getBonus()));
+		System.out.println("test bonus :" + (((CittàBonusDTO) città).getBonus()));}
 		for (Città c : cittàGameState) {
-			if (c.getNome().equals(città.getNome()) && (c instanceof CittàBonus)){
-				for(Bonus b: ((CittàBonus) c).getBonus())
-					if(!(b instanceof BonusPuntiNobiltà))
-						return c;
-					else throw new IllegalArgumentException("Il gettone ricompensa della città non può contenere un bonus avanzamento nel Percorso Nobiltà!");
+			if (c.getNome().equals(città.getNome()) && (c instanceof CittàBonus)) {
+				for (Bonus b : ((CittàBonus) c).getBonus()) {
+					if (!(b instanceof BonusPuntiNobiltà))
+						continue;
 				}
-			else throw new IllegalArgumentException("La città scelta non ha gettone ricompensa!");
+				// else throw new IllegalArgumentException("Il gettone
+				// ricompensa della città non può contenere un bonus avanzamento
+				// nel Percorso Nobiltà!");
+				return c;
+			}
+			
+			// else throw new IllegalArgumentException("La città scelta non ha
+			// gettone ricompensa!");
 		}
 		throw new IllegalArgumentException("La città è inesistente!");
 	}
@@ -95,7 +105,7 @@ public class ControlloParametri {
 	 */
 	public static TesseraPermesso cercaTesseraPermesso(TesseraPermessoDTO tesseraPermesso,
 			ArrayList<TesseraPermesso> tesserePermesso) throws IllegalArgumentException {
-		ArrayList<CittàDTO> cittàTesseraDTO= new ArrayList<CittàDTO>(tesseraPermesso.getCittà());
+		ArrayList<CittàDTO> cittàTesseraDTO = new ArrayList<CittàDTO>(tesseraPermesso.getCittà());
 		ordinaCittàDTO(cittàTesseraDTO);
 
 		for (TesseraPermesso t : tesserePermesso) {
@@ -113,15 +123,15 @@ public class ControlloParametri {
 	}
 
 	private static void ordinaCittà(ArrayList<Città> cittàTessera) {
-		Collections.sort(cittàTessera, new Comparator<Città>(){
+		Collections.sort(cittàTessera, new Comparator<Città>() {
 
 			@Override
 			public int compare(Città o1, Città o2) {
 				return o1.getNome().compareToIgnoreCase(o2.getNome());
 			}
-			
+
 		});
-		
+
 	}
 
 	private static void ordinaCittàDTO(List<CittàDTO> città) {
@@ -234,9 +244,9 @@ public class ControlloParametri {
 	}
 
 	public static Giocatore cercaGiocatore(GiocatoreDTO giocatoreDTO, List<Giocatore> giocatori) {
-		for(Giocatore g: giocatori){
-			if(g.getNome().equals(giocatoreDTO.getNome()))
-					return g;
+		for (Giocatore g : giocatori) {
+			if (g.getNome().equals(giocatoreDTO.getNome()))
+				return g;
 		}
 		return null;
 	}

@@ -103,15 +103,16 @@ public class GameStateDTO implements Serializable {
 	public void inizializza(GameState gameState) {
 		this.città = new HashSet<>();
 		for (Città c : gameState.getCittà()) {
-			if (c instanceof Città) {
+			if (c instanceof CittàBonus) {
+				CittàBonusDTO cittàBonusDTO = new CittàBonusDTO();
+				cittàBonusDTO.inizializza((CittàBonus)c);
+				città.add(cittàBonusDTO);
+			} else if (c instanceof Città) {
 				CittàDTO cittàDTO = new CittàDTO();
 				cittàDTO.inizializza(c);
 				città.add(cittàDTO);
-			} else if (c instanceof CittàBonus) {
-				CittàBonusDTO cittàBonusDTO = new CittàBonusDTO();
-				cittàBonusDTO.inizializza(c);
-				città.add(cittàBonusDTO);
 			}
+
 		}
 		this.regioni = new ArrayList<>();
 		for (Regione r : gameState.getRegioni()) {

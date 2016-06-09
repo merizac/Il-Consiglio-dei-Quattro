@@ -183,11 +183,12 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 	public BonusGettoneN visit(BonusGettoneNDTO bonusGettoneDTO) {
 		BonusGettoneN bonusGettone = new BonusGettoneN();
 		bonusGettone.setCittà(new ArrayList<>());
-		for (int i = 0; i < bonusGettone.getNumeroGettoni(); i++) {
+		for (int i = 0; i < bonusGettoneDTO.getNumeroGettoni(); i++) {
 			CittàBonus città = (CittàBonus) ControlloParametri.cercaCittàBonus(bonusGettoneDTO.getCittà().get(i),
 					gameState.getCittà());
 			bonusGettone.getCittà().add(città);
 		}
+		bonusGettone.setNumeroGettoni(bonusGettoneDTO.getNumeroGettoni());
 		return bonusGettone;
 
 	}
