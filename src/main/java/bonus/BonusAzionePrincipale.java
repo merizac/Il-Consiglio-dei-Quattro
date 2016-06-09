@@ -3,7 +3,10 @@ package bonus;
 import game.GameState;
 
 public class BonusAzionePrincipale extends Bonus {
-
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 107016793686196135L;
 	int numBonus;
 	
 
@@ -14,11 +17,6 @@ public class BonusAzionePrincipale extends Bonus {
 		super();
 		this.numBonus = numBonus;
 	}
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 107016793686196135L;
 
 	@Override
 	public void usaBonus(GameState gameState) {

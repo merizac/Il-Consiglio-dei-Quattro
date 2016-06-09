@@ -2,7 +2,8 @@ package game.azioni;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import bonus.Bonus;
 import game.Balcone;
 import game.CartaPolitica;
@@ -16,7 +17,7 @@ import game.GameState;
 import game.Giocatore;
 import game.Mappa;
 import game.Regione;
-import game.notify.ErrorNotify;
+import game.notify.MessageNotify;
 import game.notify.GameStateNotify;
 import game.notify.GiocatoreNotify;
 import gameDTO.azioniDTO.AzioneDTO;
@@ -24,9 +25,10 @@ import gameDTO.azioniDTO.CostruzioneAiutoReDTO;
 
 public class CostruzioneAiutoRe extends AzionePrincipale implements Bonusable{
 
+	private final int ID=4;
 	private Città cittàCostruzione;
 	private Balcone balcone;
-	private ArrayList<CartaPolitica> carteGiocatore;
+	private List<CartaPolitica> carteGiocatore;
 	
 	/**
 	 * execute the action
@@ -36,14 +38,14 @@ public class CostruzioneAiutoRe extends AzionePrincipale implements Bonusable{
 		balcone=gameState.getPlanciaRe().getBalconeRe();
 		Mappa mappa= gameState.getMappa();
 		if(!controllaColori()){
-			gameState.notifyObserver(new ErrorNotify("Errore: i colori delle carte scelte non corrispondono con quelli del balcone!", 
+			gameState.notifyObserver(new MessageNotify("Errore: i colori delle carte scelte non corrispondono con quelli del balcone!", 
 					Arrays.asList(gameState.getGiocatoreCorrente())));
 			return;
 		}
 		
 			
 		if(!pagoAiutanti(gameState)){
-			gameState.notifyObserver(new ErrorNotify("Errore: gli aiutanti non sono sufficienti!",
+			gameState.notifyObserver(new MessageNotify("Errore: gli aiutanti non sono sufficienti!",
 					Arrays.asList(gameState.getGiocatoreCorrente())));
 			return;
 		}
@@ -53,7 +55,7 @@ public class CostruzioneAiutoRe extends AzionePrincipale implements Bonusable{
 		
 		
 		if(!paga(moneteDovute, gameState)){
-			gameState.notifyObserver(new ErrorNotify("Errore: i soldi non sono sufficienti!",
+			gameState.notifyObserver(new MessageNotify("Errore: i soldi non sono sufficienti!",
 					Arrays.asList(gameState.getGiocatoreCorrente())));
 			return;
 		}
@@ -127,7 +129,7 @@ public class CostruzioneAiutoRe extends AzionePrincipale implements Bonusable{
 	   */
 	  private void prendiBonus(GameState gameState){
 	    Colore coloreEmporio = gameState.getGiocatoreCorrente().getColoreGiocatore();
-	    HashSet<CittàBonus> cittàCollegate = gameState.getMappa().trovaCittà(cittàCostruzione, coloreEmporio);
+	    Set<CittàBonus> cittàCollegate = gameState.getMappa().trovaCittà(cittàCostruzione, coloreEmporio);
 	    for ( CittàBonus c: cittàCollegate){
 	        for(Bonus b: c.getBonus()){
 	          b.usaBonus(gameState);
@@ -199,7 +201,7 @@ public class CostruzioneAiutoRe extends AzionePrincipale implements Bonusable{
 	 * @return true if the cards match, false in the other case
 	 */
 	private boolean controllaColori() {
-		ArrayList<Consigliere> copiaConsiglieri = new ArrayList<Consigliere>(balcone.getConsigliere());
+		List<Consigliere> copiaConsiglieri = new ArrayList<>(balcone.getConsigliere());
 		for (CartaPolitica carta: carteGiocatore ){
 			boolean ok=false;
 			if (carta.equals(new CartaPolitica(new Colore("Multicolore")))){
@@ -232,13 +234,41 @@ public class CostruzioneAiutoRe extends AzionePrincipale implements Bonusable{
 	/**
 	 * @param carteGiocatore the carteGiocatore to set
 	 */
-	public void setCarteGiocatore(ArrayList<CartaPolitica> carteGiocatore) {
+	public void setCarteGiocatore(List<CartaPolitica> carteGiocatore) {
 		this.carteGiocatore = carteGiocatore;
 	}
 
 	@Override
 	public AzioneDTO getAzioneDTO() {
 		return new CostruzioneAiutoReDTO();
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ID;
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CostruzioneAiutoRe other = (CostruzioneAiutoRe) obj;
+		if (ID != other.ID)
+			return false;
+		return true;
 	}
 	
 	

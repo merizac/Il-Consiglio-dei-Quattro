@@ -1,8 +1,8 @@
 package gameDTO.gameDTO;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 import bonus.Bonus;
 import game.CittàBonus;
@@ -11,17 +11,17 @@ import game.Emporio;
 public class CittàBonusDTO extends CittàDTO implements Serializable{
 
 	private static final long serialVersionUID = 6054052021956866160L;
-	private ArrayList<Bonus> bonus;
+	private List<Bonus> bonus;
 	/**
 	 * @return the bonus
 	 */
-	public ArrayList<Bonus> getBonus() {
+	public List<Bonus> getBonus() {
 		return bonus;
 	}
 	/**
 	 * @param bonus the bonus to set
 	 */
-	public void setBonus(ArrayList<Bonus> bonus) {
+	public void setBonus(List<Bonus> bonus) {
 		this.bonus = bonus;
 	}
 	

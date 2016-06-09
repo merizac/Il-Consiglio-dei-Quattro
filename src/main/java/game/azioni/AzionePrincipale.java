@@ -1,7 +1,7 @@
 package game.azioni;
 
 import game.GameState;
-import game.notify.ErrorNotify;
+import game.notify.MessageNotify;
 import utility.exception.AzioneNonEseguibile;
 
 public abstract class AzionePrincipale extends Azione {

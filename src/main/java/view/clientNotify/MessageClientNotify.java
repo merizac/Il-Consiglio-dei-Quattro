@@ -2,7 +2,7 @@ package view.clientNotify;
 
 import gameDTO.gameDTO.GameStateDTO;
 
-public class ErrorClientNotify implements ClientNotify {
+public class MessageClientNotify implements ClientNotify {
 
 	/**
 	 * 
@@ -12,7 +12,7 @@ public class ErrorClientNotify implements ClientNotify {
 	/**
 	 * @param error
 	 */
-	public ErrorClientNotify(String error) {
+	public MessageClientNotify(String error) {
 		if(error==null)
 			throw new NullPointerException("L'errore non può essere null");
 		this.error = error;

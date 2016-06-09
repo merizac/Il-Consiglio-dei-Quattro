@@ -3,14 +3,12 @@ package game;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
-import java.util.HashSet;
+import java.util.Set;
 import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.SimpleGraph;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
 import it.polimi.ingsw.cg17.Reader;
-import junit.framework.AssertionFailedError;
 
 public class CittàCollegateTest {
 
@@ -48,7 +46,7 @@ public class CittàCollegateTest {
 	@Test
 	public void testCittàBonusEmporio() {
 		CittàCollegate cittàCollegate=new CittàCollegate();
-		HashSet<CittàBonus> cittàC=cittàCollegate.cittàBonusEmporio(mappa.getGrafo(), new Colore("C_E"),città);
+		Set<CittàBonus> cittàC=cittàCollegate.cittàBonusEmporio(mappa.getGrafo(), new Colore("C_E"),città);
 		for(Città c:cittàC){
 			if(c.getNome().equals("Arkon"))
 			assertEquals(c.getNome(), "Arkon");

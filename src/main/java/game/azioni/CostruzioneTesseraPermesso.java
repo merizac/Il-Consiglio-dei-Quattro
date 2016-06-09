@@ -1,8 +1,7 @@
 package game.azioni;
 
 import java.util.Arrays;
-import java.util.HashSet;
-
+import java.util.Set;
 import bonus.Bonus;
 import game.Città;
 import game.CittàBonus;
@@ -13,7 +12,7 @@ import game.GameState;
 import game.Giocatore;
 import game.Regione;
 import game.TesseraPermesso;
-import game.notify.ErrorNotify;
+import game.notify.MessageNotify;
 import game.notify.GameStateNotify;
 import game.notify.GiocatoreNotify;
 import gameDTO.azioniDTO.AzioneDTO;
@@ -21,6 +20,7 @@ import gameDTO.azioniDTO.CostruzioneTesseraPermessoDTO;
 
 public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonusable {
 
+	private final int ID=3;
 	private TesseraPermesso tesseraPermessoScoperta;
 	private Città cittàCostruzione;
 
@@ -31,7 +31,7 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonu
 	public void eseguiAzione(GameState gameState) {
 
 		if (!pagoAiutanti(gameState)) {
-			gameState.notifyObserver(new ErrorNotify("Errore: i soldi non sono sufficienti",
+			gameState.notifyObserver(new MessageNotify("Errore: i soldi non sono sufficienti",
 					Arrays.asList(gameState.getGiocatoreCorrente())));
 			return;
 		}
@@ -124,7 +124,7 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonu
 	 */
 	private void prendiBonus(GameState gameState) {
 		Colore coloreEmporio = gameState.getGiocatoreCorrente().getColoreGiocatore();
-		HashSet<CittàBonus> cittàCollegate = gameState.getMappa().trovaCittà(cittàCostruzione, coloreEmporio);
+		Set<CittàBonus> cittàCollegate = gameState.getMappa().trovaCittà(cittàCostruzione, coloreEmporio);
 		for (CittàBonus c : cittàCollegate) {
 			for (Bonus b : c.getBonus()) {
 				b.usaBonus(gameState);
@@ -165,6 +165,34 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonu
 	@Override
 	public AzioneDTO getAzioneDTO() {
 		return new CostruzioneTesseraPermessoDTO();
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ID;
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CostruzioneTesseraPermesso other = (CostruzioneTesseraPermesso) obj;
+		if (ID != other.ID)
+			return false;
+		return true;
 	}
 
 }

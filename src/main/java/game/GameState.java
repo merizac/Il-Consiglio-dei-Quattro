@@ -18,10 +18,10 @@ import utility.Observable;
 public class GameState extends Observable<Notify> {
 
 	private Mappa mappa;
-	private ArrayList<Regione> regioni;
+	private List<Regione> regioni;
 	private PlanciaRe planciaRe;
 	private Re pedinaRe;
-	private ArrayList<Consigliere> consiglieri;
+	private List<Consigliere> consiglieri;
 	private Mazzo<CartaPolitica> mazzoCartePolitica;
 	private List<Giocatore> giocatori;
 	private Giocatore giocatoreCorrente;
@@ -29,10 +29,9 @@ public class GameState extends Observable<Notify> {
 	private boolean BonusAzionePrincipale;
 	private int numeroTurni = 0;
 	private List<Offerta> offerteMarket;
-	private boolean ultimoGiro= false;
+	private boolean ultimoGiro = false;
 	private List<Giocatore> giocatoriFinePartita;
 
-	
 	/**
 	 * 
 	 * @param coloreConsigliere
@@ -90,7 +89,7 @@ public class GameState extends Observable<Notify> {
 	 * @return the regioni
 	 */
 
-	public ArrayList<Regione> getRegioni() {
+	public List<Regione> getRegioni() {
 		return regioni;
 	}
 
@@ -112,7 +111,7 @@ public class GameState extends Observable<Notify> {
 	 * @return the consiglieri
 	 */
 
-	public ArrayList<Consigliere> getConsiglieri() {
+	public List<Consigliere> getConsiglieri() {
 		return consiglieri;
 	}
 
@@ -121,16 +120,6 @@ public class GameState extends Observable<Notify> {
 	 */
 	public Mazzo<CartaPolitica> getMazzoCartePolitica() {
 		return mazzoCartePolitica;
-	}
-
-	public List<CartaPolitica> getCartePoliticaGiocatore() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public List<TesseraPermesso> getTesserePermessoGiocatore() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	public Set<Città> getCittà() {
@@ -173,7 +162,7 @@ public class GameState extends Observable<Notify> {
 	public void setBonusAzionePrincipale(boolean bonusAzionePrincipale) {
 		BonusAzionePrincipale = bonusAzionePrincipale;
 	}
-	
+
 	/**
 	 * @return the numeroTurni
 	 */
@@ -186,6 +175,40 @@ public class GameState extends Observable<Notify> {
 	}
 
 	/**
+	 * @return the ultimoGiro
+	 */
+	public boolean isUltimoGiro() {
+		return ultimoGiro;
+	}
+
+	/**
+	 * @param ultimoGiro
+	 *            the ultimoGiro to set
+	 */
+	public void setUltimoGiro(boolean ultimoGiro) {
+		this.ultimoGiro = ultimoGiro;
+	}
+
+	/**
+	 * @return the giocatoriFinePartita
+	 */
+	public List<Giocatore> getGiocatoriFinePartita() {
+		return giocatoriFinePartita;
+	}
+
+	/**
+	 * @param giocatoriFinePartita
+	 *            the giocatoriFinePartita to set
+	 */
+	public void setGiocatoriFinePartita(List<Giocatore> giocatoriFinePartita) {
+		this.giocatoriFinePartita = giocatoriFinePartita;
+	}
+
+	/**
+	 * @return the giocatoriDisconnessi
+	 */
+
+	/**
 	 * @param numeroTurni
 	 *            the numeroTurni to set
 	 */
@@ -193,7 +216,28 @@ public class GameState extends Observable<Notify> {
 		this.numeroTurni++;
 	}
 
-	/*public void creaGiocatori(List<Giocatore> giocatori) {
+	/*
+	 * public void creaGiocatori(List<Giocatore> giocatori) { int i = 0; for
+	 * (Giocatore g : giocatori) { g.setAiutanti(new Aiutante(1 + i));
+	 * g.setPunteggioNobiltà(this.getPlanciaRe().getPercorsoNobiltà().get(0));
+	 * g.setPunteggioRicchezza(10 + i); g.setPunteggioVittoria(0);
+	 * g.setColoreGiocatore(new Colore(String.valueOf(i)));
+	 * g.creaEmpori(g.getColoreGiocatore());
+	 * g.getCartePolitica().addAll(assegnaCartePolitica(6));
+	 * this.giocatori.add(g); i++; } if (giocatori.size() == 2) { for (Regione r
+	 * : getRegioni()) { Random random = new Random(); int numeroEmpori =
+	 * random.nextInt(3) + 1;
+	 * 
+	 * for (int s = 0; s < numeroEmpori; s++) { int rnd =
+	 * random.nextInt(r.getCittàRegione().size()); if
+	 * (r.getCittàRegione().get(rnd).getEmpori().isEmpty())
+	 * r.getCittàRegione().get(rnd).aggiungiEmporio(new Emporio(new
+	 * Colore("A"))); else s--; }
+	 * 
+	 * } } this.giocatoreCorrente = this.giocatori.get(0); }
+	 */
+
+	public void creaGiocatori(List<Giocatore> giocatori) {
 		int i = 0;
 		for (Giocatore g : giocatori) {
 			g.setAiutanti(new Aiutante(1 + i));
@@ -206,58 +250,26 @@ public class GameState extends Observable<Notify> {
 			this.giocatori.add(g);
 			i++;
 		}
-		if(giocatori.size()==2){
-			for(Regione r: getRegioni()){
-				Random random=new Random();
-				int numeroEmpori=random.nextInt(3)+1;
-				
-				for (int s=0; s<numeroEmpori;s++){
-					int rnd=random.nextInt(r.getCittàRegione().size());
-					if(r.getCittàRegione().get(rnd).getEmpori().isEmpty())
+
+		if (giocatori.size() == 2) {
+			for (Regione r : getRegioni()) {
+				Random random = new Random();
+				int numeroEmpori = random.nextInt(3) + 1;
+
+				for (int s = 0; s < numeroEmpori; s++) {
+					int rnd = random.nextInt(r.getCittàRegione().size());
+					if (r.getCittàRegione().get(rnd).getEmpori().isEmpty())
 						r.getCittàRegione().get(rnd).aggiungiEmporio(new Emporio(new Colore("A")));
 					else
 						s--;
 				}
-				
-			}
-		}
-		this.giocatoreCorrente = this.giocatori.get(0);
-	}*/
-	
-	public void creaGiocatori(List<Giocatore> giocatori) {
-		int i = 0;
-		for (Giocatore g : giocatori) {
-			g.setAiutanti(new Aiutante(1 + i));
-			g.setPunteggioNobiltà(this.getPlanciaRe().getPercorsoNobiltà().get(4));
-			g.setPunteggioRicchezza(10 + i);
-			g.setPunteggioVittoria(0);
-			g.setColoreGiocatore(new Colore(String.valueOf(i)));
-			g.creaEmpori(g.getColoreGiocatore());
-			g.getCartePolitica().addAll(assegnaCartePolitica(6));
-			this.giocatori.add(g);
-			i++;
-		}
-		
-		if(giocatori.size()==2){
-			for(Regione r: getRegioni()){
-				Random random=new Random();
-				int numeroEmpori=random.nextInt(3)+1;
-				
-				for (int s=0; s<numeroEmpori;s++){
-					int rnd=random.nextInt(r.getCittàRegione().size());
-					if(r.getCittàRegione().get(rnd).getEmpori().isEmpty())
-						r.getCittàRegione().get(rnd).aggiungiEmporio(new Emporio(new Colore("A")));
-					else
-						s--;
-				}
-				
+
 			}
 		}
 		this.giocatoreCorrente = this.giocatori.get(0);
 	}
-	
 
-	private ArrayList<CartaPolitica> assegnaCartePolitica(int numeroCarte) {
+	private List<CartaPolitica> assegnaCartePolitica(int numeroCarte) {
 		ArrayList<CartaPolitica> carte = new ArrayList<>();
 		for (int i = 0; i < numeroCarte; i++) {
 			carte.add(mazzoCartePolitica.pescaCarte());
@@ -273,23 +285,14 @@ public class GameState extends Observable<Notify> {
 
 	}
 
-	/*public void cambiaGiocatore() {
-		int indice = giocatori.indexOf(giocatoreCorrente);
-		if (indice != giocatori.size() - 1)
-			giocatoreCorrente = giocatori.get(indice + 1);
-		else
-			giocatoreCorrente = giocatori.get(0);
-	}*/
-	
-	public boolean lastNextPlayer(){
+	public boolean lastNextPlayer() {
 		Giocatore ultimoGiro = giocatori.remove(0);
 		giocatoriFinePartita.add(ultimoGiro);
-		if(giocatori.isEmpty()){
+		if (giocatori.isEmpty()) {
 			return true;
-		}
-		else{
-		this.giocatoreCorrente = giocatori.get(0);
-		return false;
+		} else {
+			this.giocatoreCorrente = giocatori.get(0);
+			return false;
 		}
 	}
 
@@ -298,21 +301,20 @@ public class GameState extends Observable<Notify> {
 	}
 
 	public void start(List<Giocatore> giocatori) throws IOException {
-		Reader reader= new Reader();
+		Reader reader = new Reader();
 		this.consiglieri = reader.letturaConsigliere();
 		this.regioni = reader.letturaRegioni();
 		this.planciaRe = reader.creazionePlanciaRe();
 		this.mazzoCartePolitica = reader.letturaCartePolitica();
 		this.mappa = reader.creazioneMappa("mappa1");
 		this.pedinaRe = reader.creazioneRe();
-		//Reader.clear();
-		this.giocatori = new ArrayList<Giocatore>();
+		this.giocatori = new ArrayList<>();
 		this.offerteMarket = new ArrayList<>();
-		this.giocatoriFinePartita= new ArrayList<>();
+		this.giocatoriFinePartita = new ArrayList<>();
 		creaGiocatori(giocatori);
 		this.notifyObserver(new GameStateNotify(this, giocatori));
-		
-		for(Giocatore g: giocatori){
+
+		for (Giocatore g : giocatori) {
 			this.notifyObserver(new GiocatoreNotify(g, Arrays.asList(g)));
 		}
 		this.stato = new StartEnd(this);
@@ -331,34 +333,6 @@ public class GameState extends Observable<Notify> {
 				+ giocatori + "\ngiocatoreCorrente=" + giocatoreCorrente + "\nstato=" + stato
 				+ "\nBonusAzionePrincipale=" + BonusAzionePrincipale + "\nnumeroTurni=" + numeroTurni
 				+ "\nofferteMarket=" + offerteMarket + "]";
-	}
-
-	/**
-	 * @return the ultimoGiro
-	 */
-	public boolean isUltimoGiro() {
-		return ultimoGiro;
-	}
-
-	/**
-	 * @param ultimoGiro the ultimoGiro to set
-	 */
-	public void setUltimoGiro(boolean ultimoGiro) {
-		this.ultimoGiro = ultimoGiro;
-	}
-
-	/**
-	 * @return the giocatoriFinePartita
-	 */
-	public List<Giocatore> getGiocatoriFinePartita() {
-		return giocatoriFinePartita;
-	}
-
-	/**
-	 * @param giocatoriFinePartita the giocatoriFinePartita to set
-	 */
-	public void setGiocatoriFinePartita(List<Giocatore> giocatoriFinePartita) {
-		this.giocatoriFinePartita = giocatoriFinePartita;
 	}
 
 }

@@ -2,6 +2,7 @@ package game;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
 
@@ -13,18 +14,18 @@ public class Balcone {
 	 * @param numConsiglieri the size of Balcone
 	 * @param consiglieri consiglieri to add at Balcone
 	 */
-	public Balcone(int numConsiglieri, ArrayList<Consigliere> consiglieri){
-		ArrayList<Consigliere> consiglieriDaAggiungere=pescaConsiglieri(consiglieri, numConsiglieri);
-		this.consiglieri=new ArrayBlockingQueue<Consigliere>(numConsiglieri, true, consiglieriDaAggiungere);	
+	public Balcone(int numConsiglieri, List<Consigliere> consiglieri){
+		List<Consigliere> consiglieriDaAggiungere=pescaConsiglieri(consiglieri, numConsiglieri);
+		this.consiglieri=new ArrayBlockingQueue<>(numConsiglieri, true, consiglieriDaAggiungere);	
 	}
 	
-	public Balcone(ArrayList<Consigliere> consiglieri){
-		this.consiglieri=new ArrayBlockingQueue<Consigliere>(4, true, consiglieri);	
+	public Balcone(List<Consigliere> consiglieri){
+		this.consiglieri=new ArrayBlockingQueue<>(4, true, consiglieri);	
 	}
 	
-	private ArrayList<Consigliere> pescaConsiglieri(ArrayList<Consigliere> consiglieri, int numConsiglieri) {
+	private List<Consigliere> pescaConsiglieri(List<Consigliere> consiglieri, int numConsiglieri) {
 		
-		ArrayList<Consigliere> consiglieriNuovi=new ArrayList<>();
+		List<Consigliere> consiglieriNuovi=new ArrayList<>();
 		Collections.shuffle(consiglieri);
 		for(int i=0; i<numConsiglieri; i++){
 			consiglieriNuovi.add(consiglieri.remove(0));

@@ -5,7 +5,7 @@ import java.util.Arrays;
 import game.GameState;
 import game.Regione;
 import game.TesseraPermesso;
-import game.notify.ErrorNotify;
+import game.notify.MessageNotify;
 import game.notify.GameStateNotify;
 import game.notify.GiocatoreNotify;
 import gameDTO.azioniDTO.AzioneDTO;
@@ -13,6 +13,7 @@ import gameDTO.azioniDTO.CambioTesserePermessoDTO;
 
 public class CambioTesseraPermesso extends AzioneVeloce {
 
+	private final int ID=6;
 	private Regione regione;
 
 
@@ -28,7 +29,7 @@ public class CambioTesseraPermesso extends AzioneVeloce {
 			setStatoTransizioneVeloce(gameState); 
 		}
 		else{
-			gameState.notifyObserver(new ErrorNotify("Errore: non hai abbastanza aiutanti", Arrays.asList(gameState.getGiocatoreCorrente())));
+			gameState.notifyObserver(new MessageNotify("Errore: non hai abbastanza aiutanti", Arrays.asList(gameState.getGiocatoreCorrente())));
 			return;
 		}
 		
@@ -69,9 +70,44 @@ public class CambioTesseraPermesso extends AzioneVeloce {
 		this.regione = regione;
 	}
 
+	/**
+	 * @return the regione
+	 */
+	public Regione getRegione() {
+		return regione;
+	}
+
 	@Override
 	public AzioneDTO getAzioneDTO() {
 		return new CambioTesserePermessoDTO();
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ID;
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CambioTesseraPermesso other = (CambioTesseraPermesso) obj;
+		if (ID != other.ID)
+			return false;
+		return true;
 	}
 	
 }

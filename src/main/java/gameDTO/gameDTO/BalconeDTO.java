@@ -1,33 +1,47 @@
 package gameDTO.gameDTO;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-
+import java.util.List;
 import game.Balcone;
 import game.Consigliere;
 
-public class BalconeDTO {
+public class BalconeDTO implements Serializable{
 
-	private ArrayList<ConsigliereDTO> consiglieri;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6523476700234911129L;
+	private List<ConsigliereDTO> consiglieri;
 
 	/**
 	 * @return the consiglieri
 	 */
-	public ArrayList<ConsigliereDTO> getConsiglieri() {
+	public List<ConsigliereDTO> getConsiglieri() {
 		return consiglieri;
 	}
 
 	/**
 	 * @param consiglieri the consiglieri to set
 	 */
-	public void setConsiglieri(ArrayList<ConsigliereDTO> consiglieri) {
+	public void setConsiglieri(List<ConsigliereDTO> consiglieri) {
 		this.consiglieri = consiglieri;
 	}
 	
 	public void inizializza(Balcone balcone){
+		this.consiglieri=new ArrayList<>();
 		for(Consigliere c: balcone.getConsigliere()){
 			ConsigliereDTO consigliereDTO = new ConsigliereDTO();
 			consigliereDTO.inizializza(c);
 			this.getConsiglieri().add(consigliereDTO);
 		}
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "BalconeDTO [consiglieri=" + consiglieri + "]";
 	}
 }

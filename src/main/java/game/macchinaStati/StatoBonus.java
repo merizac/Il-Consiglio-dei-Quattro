@@ -9,6 +9,7 @@ import utility.exception.AzioneNonEseguibile;
 
 public class StatoBonus implements Stato {
 	private Stato stato;
+	private List<Azione> azioni;
 	
 	/**
 	 * @param stato
@@ -16,6 +17,7 @@ public class StatoBonus implements Stato {
 	public StatoBonus(GameState gameState, Stato stato) {
 		System.out.println("[SERVER] "+this);
 		this.stato = stato;
+		this.azioni=gameState.getGiocatoreCorrente().getBonusNobiltà();
 		gameState.notifyObserver(new BonusNotify(gameState.getGiocatoreCorrente().getBonusNobiltà(), Arrays.asList(gameState.getGiocatoreCorrente())));
 
 		/*this.bonus=gameState.getGiocatoreCorrente().getBonusNobiltà();
@@ -33,7 +35,7 @@ public class StatoBonus implements Stato {
 
 	@Override
 	public List<Azione> getAzioni() {
-				return null;
+				return azioni;
 	}
 
 	/* (non-Javadoc)

@@ -4,17 +4,19 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.net.SocketException;
+
 import game.GameState;
 import game.Giocatore;
 import game.azioni.Azione;
+import game.azioni.Exit;
 import game.notify.Notify;
 import gameDTO.azioniDTO.AzioneDTO;
-import gameDTO.azioniDTO.ExitDTO;
 import gameDTO.azioniDTO.azioneVisitor.AzioneVisitor;
 import gameDTO.azioniDTO.azioneVisitor.AzioneVisitorImpl;
 import gameDTO.gameDTO.GiocatoreDTO;
 import server.Server;
-import view.clientNotify.ErrorClientNotify;
+import view.clientNotify.MessageClientNotify;
 
 public class ServerSocketView extends View implements Runnable {
 
@@ -33,7 +35,7 @@ public class ServerSocketView extends View implements Runnable {
 	@Override
 	public void update(Notify o) {
 		if (o.daInviare(giocatore)) {
-			System.out.println("[SERVER] Inviata notifica "+o+" al giocatore "+giocatore.getNome());
+			System.out.println("[SERVER] Inviata notifica " + o + " al giocatore " + giocatore.getNome());
 			try {
 				this.socketOut.writeObject(o.notifyToClientNotify());
 				this.socketOut.flush();
@@ -55,10 +57,9 @@ public class ServerSocketView extends View implements Runnable {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
-		try{
-		Server.getInstance().aggiungiGiocatore(giocatore, this);
-		}
-		catch(Exception e){
+		try {
+			Server.getInstance().aggiungiGiocatore(giocatore, this);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
@@ -69,32 +70,35 @@ public class ServerSocketView extends View implements Runnable {
 				if (object instanceof AzioneDTO) {
 
 					AzioneDTO action = (AzioneDTO) object;
-					if(action instanceof ExitDTO){
-						disconnetti();
-						break;
-					}
 					AzioneVisitor azioneVisitor = new AzioneVisitorImpl(gameState, giocatore);
 					Azione azione = action.accept(azioneVisitor);
-					System.out.println("[SERVER] Ricevuta l'azione " + azione+ " dal giocatore "+giocatore.getNome());
-					if (azione.isTurno(giocatore, gameState) 
-							&& gameState.getStato().getAzioni().contains(azione)){
-						System.out.println("[SERVER] Inviata l'azione "+azione);
+					System.out
+							.println("[SERVER] Ricevuta l'azione " + azione + " dal giocatore " + giocatore.getNome());
+					if (azione instanceof Exit) {
+						disconnetti();
 						this.notifyObserver(azione);
-					}
-					else {
-						this.socketOut.writeObject(new ErrorClientNotify("Non è il tuo turno"));
+					} else if (azione.isTurno(giocatore, gameState)
+							&& gameState.getStato().getAzioni().contains(azione)) {
+						this.notifyObserver(azione);
+						System.out.println("[SERVER] Inviata l'azione " + azione);
+					} else {
+						this.socketOut.writeObject(new MessageClientNotify("Non è il tuo turno"));
 						this.socketOut.flush();
 					}
 
 				}
+			} catch (SocketException e) {
+				disconnetti();
 			} catch (ClassNotFoundException | IOException e1) {
 				e1.printStackTrace();
 			}
+
 		}
 	}
 
 	/**
-	 * @param gameState the gameState to set
+	 * @param gameState
+	 *            the gameState to set
 	 */
 	@Override
 	public void setGameState(GameState gameState) {

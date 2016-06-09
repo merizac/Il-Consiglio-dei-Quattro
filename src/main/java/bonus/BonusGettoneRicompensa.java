@@ -2,6 +2,7 @@ package bonus;
 
 
 import java.util.ArrayList;
+import java.util.List;
 import game.CittàBonus;
 import game.GameState;
 import game.azioni.Azione;
@@ -15,7 +16,7 @@ public class BonusGettoneRicompensa extends Bonus {
 	 */
 	private static final long serialVersionUID = -7078597933216059193L;
 	private int numeroGettoni;
-	private ArrayList<CittàBonus> cittàGiocatore;
+	private List<CittàBonus> cittàGiocatore;
 	private CittàBonusDTO cittàDTO;
 	
 
@@ -74,7 +75,7 @@ public class BonusGettoneRicompensa extends Bonus {
 	/**
 	 * @return the cittàGiocatore
 	 */
-	public ArrayList<CittàBonus> getCittàGiocatore() {
+	public List<CittàBonus> getCittàGiocatore() {
 		return cittàGiocatore;
 	}
 

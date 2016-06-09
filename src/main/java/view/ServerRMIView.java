@@ -49,8 +49,8 @@ public class ServerRMIView extends View implements ServerRMIViewRemote{
 		System.out.println("[SERVER] Ricevuta l'azione " + azione+
 				" dal giocatore "+this.giocatori.get(connessioneRMIRemota).getNome());
 		try{
-		if (azione.isTurno(this.giocatori.get(connessioneRMIRemota), gameState)
-				&& gameState.getStato().getAzioni().contains(azione)) {
+		if (azione.isTurno(this.giocatori.get(connessioneRMIRemota), gameState)){
+				//&& gameState.getStato().getAzioni().contains(azione)) {
 			System.out.println("[SERVER] Inviata l'azione "+azione);
 			this.notifyObserver(azione);
 		}
@@ -71,7 +71,10 @@ public class ServerRMIView extends View implements ServerRMIViewRemote{
 	}
 	@Override
 	public void unregister(ConnessioneRMIRemota connessioneRMIRemota) throws RemoteException{
+		Giocatore giocatore=this.giocatori.get(connessioneRMIRemota);
 		this.giocatori.remove(connessioneRMIRemota);
+		//this.notifyObserver(new Exit(giocatore));
+		System.out.println("[SERVER] Il giocatore "+giocatore.getNome().toUpperCase()+ " è stato rimosso");
 	}
 
 	@Override

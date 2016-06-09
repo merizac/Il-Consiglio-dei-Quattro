@@ -1,7 +1,5 @@
 package bonus;
 
-
-import java.util.ArrayList;
 import game.GameState;
 import game.PunteggioNobiltà;
 

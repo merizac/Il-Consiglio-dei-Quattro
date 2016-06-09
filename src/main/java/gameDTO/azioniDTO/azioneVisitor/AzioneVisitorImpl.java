@@ -2,6 +2,7 @@ package gameDTO.azioniDTO.azioneVisitor;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 import game.Balcone;
 import game.CartaPolitica;
@@ -23,6 +24,7 @@ import game.azioni.CostruzioneAiutoRe;
 import game.azioni.CostruzioneTesseraPermesso;
 import game.azioni.ElezioneConsigliere;
 import game.azioni.ElezioneConsigliereVeloce;
+import game.azioni.Exit;
 import game.azioni.IngaggioAiutante;
 import game.azioni.Passa;
 import game.azioni.PescaCarta;
@@ -41,6 +43,7 @@ import gameDTO.azioniDTO.CostruzioneAiutoReDTO;
 import gameDTO.azioniDTO.CostruzioneTesseraPermessoDTO;
 import gameDTO.azioniDTO.ElezioneConsigliereDTO;
 import gameDTO.azioniDTO.ElezioneConsigliereVeloceDTO;
+import gameDTO.azioniDTO.ExitDTO;
 import gameDTO.azioniDTO.IngaggioAiutanteDTO;
 import gameDTO.azioniDTO.PassaDTO;
 import gameDTO.azioniDTO.PescaCartaDTO;
@@ -66,7 +69,7 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 				gameState.getRegioni());
 		TesseraPermesso tessera = ControlloParametri.cercaTesseraPermesso(
 				acquistoTesseraPermessoDTO.getTesseraPermesso(), regione.getTesserePermessoScoperte());
-		ArrayList<CartaPolitica> carte = ControlloParametri.cercaCartePolitica(acquistoTesseraPermessoDTO.getCarte(),
+		List<CartaPolitica> carte = ControlloParametri.cercaCartePolitica(acquistoTesseraPermessoDTO.getCarte(),
 				new ArrayList<>(giocatore.getCartePolitica()));
 		acquistoTesseraPermesso.setRegione(regione);
 		acquistoTesseraPermesso.setCarteGiocatore(carte);
@@ -92,7 +95,7 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 		Città città = ControlloParametri.cercaCittà(costruzioneAiutoReDTO.getCittà(), gameState.getCittà());
 		costruzioneAiutoRe.setCittàCostruzione(città);
 
-		ArrayList<CartaPolitica> carte = ControlloParametri.cercaCartePolitica(
+		List<CartaPolitica> carte = ControlloParametri.cercaCartePolitica(
 				costruzioneAiutoReDTO.getCarteGiocatore(), new ArrayList<>(giocatore.getCartePolitica()));
 		costruzioneAiutoRe.setCarteGiocatore(carte);
 
@@ -172,8 +175,8 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 	public AzioneAcquisto visit(AzioneAcquistoDTO azioneAcquistoDTO) {
 		AzioneAcquisto azioneAcquisto = new AzioneAcquisto();
 		Offerta offerta = ControlloParametri.cercaOfferta(gameState.getOfferteMarket(), azioneAcquistoDTO.getOfferta());
-		Giocatore giocatore = ControlloParametri.carcaGiocatore(gameState.getGiocatori(),
-				azioneAcquistoDTO.getGiocatoreDTO());
+		Giocatore giocatore = ControlloParametri.cercaGiocatore(azioneAcquistoDTO.getGiocatoreDTO(), gameState.getGiocatori()
+				);
 		azioneAcquisto.setOfferta(offerta);
 		azioneAcquisto.setAcquirente(giocatore);
 		return azioneAcquisto;
@@ -217,6 +220,14 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 		bonusTesseraPermesso.setRegione(regione);
 		bonusTesseraPermesso.setTesseraScoperta(tesseraPermesso);
 		return bonusTesseraPermesso;
+	}
+
+	@Override
+	public Exit visit(ExitDTO exitDTO) {
+		Exit exit=new Exit();
+		Giocatore giocatore=ControlloParametri.cercaGiocatore(exitDTO.getGiocatoreDTO(), gameState.getGiocatori());
+		exit.setGiocatore(giocatore);
+		return exit;
 	}
 
 

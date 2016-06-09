@@ -6,7 +6,6 @@ import java.util.List;
 import bonus.*;
 import game.azioni.Azione;
 
-
 public class Giocatore {
 
 	private String nome;
@@ -22,7 +21,6 @@ public class Giocatore {
 	private PunteggioNobiltà punteggioNobiltà;
 	private List<Azione> bonusNobiltà;
 
-
 	/**
 	 * @param coloreGiocatore
 	 * @param cartePolitica
@@ -35,13 +33,13 @@ public class Giocatore {
 	 * @param punteggioNobiltà
 	 */
 	public Giocatore(String nome) {
-		this.nome=nome;
-		this.cartePolitica=new ArrayList<>();
-		this.tesserePermesso = new ArrayList<TesseraPermesso>();
-		this.tesserePermessoUsate = new ArrayList<TesseraPermesso>();
-		this.tessereBonus = new ArrayList<Bonus>();
-		this.empori=new ArrayList<>();
-		this.bonusNobiltà= new ArrayList<>();
+		this.nome = nome;
+		this.cartePolitica = new ArrayList<>();
+		this.tesserePermesso = new ArrayList<>();
+		this.tesserePermessoUsate = new ArrayList<>();
+		this.tessereBonus = new ArrayList<>();
+		this.empori = new ArrayList<>();
+		this.bonusNobiltà = new ArrayList<>();
 	}
 
 	/**
@@ -51,16 +49,13 @@ public class Giocatore {
 		return nome;
 	}
 
-
-
 	/**
-	 * @param nome the nome to set
+	 * @param nome
+	 *            the nome to set
 	 */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-
 
 	/**
 	 * @return the coloreGiocatore
@@ -69,16 +64,13 @@ public class Giocatore {
 		return coloreGiocatore;
 	}
 
-
-
 	/**
-	 * @param coloreGiocatore the coloreGiocatore to set
+	 * @param coloreGiocatore
+	 *            the coloreGiocatore to set
 	 */
 	public void setColoreGiocatore(Colore coloreGiocatore) {
 		this.coloreGiocatore = coloreGiocatore;
 	}
-
-
 
 	/**
 	 * @return the aiutanti
@@ -87,16 +79,13 @@ public class Giocatore {
 		return aiutanti;
 	}
 
-
-
 	/**
-	 * @param aiutanti the aiutanti to set
+	 * @param aiutanti
+	 *            the aiutanti to set
 	 */
 	public void setAiutanti(Aiutante aiutanti) {
 		this.aiutanti = aiutanti;
 	}
-
-
 
 	/**
 	 * @return the punteggioVittoria
@@ -105,16 +94,13 @@ public class Giocatore {
 		return punteggioVittoria;
 	}
 
-
-
 	/**
-	 * @param punteggioVittoria the punteggioVittoria to set
+	 * @param punteggioVittoria
+	 *            the punteggioVittoria to set
 	 */
 	public void setPunteggioVittoria(int punteggioVittoria) {
 		this.punteggioVittoria = punteggioVittoria;
 	}
-
-
 
 	/**
 	 * @return the punteggioRicchezza
@@ -123,16 +109,13 @@ public class Giocatore {
 		return punteggioRicchezza;
 	}
 
-
-
 	/**
-	 * @param punteggioRicchezza the punteggioRicchezza to set
+	 * @param punteggioRicchezza
+	 *            the punteggioRicchezza to set
 	 */
 	public void setPunteggioRicchezza(int punteggioRicchezza) {
 		this.punteggioRicchezza = punteggioRicchezza;
 	}
-
-
 
 	/**
 	 * @return the punteggioNobiltà
@@ -141,59 +124,50 @@ public class Giocatore {
 		return punteggioNobiltà;
 	}
 
-
-
 	/**
-	 * @param punteggioNobiltà the punteggioNobiltà to set
+	 * @param punteggioNobiltà
+	 *            the punteggioNobiltà to set
 	 */
 	public void setPunteggioNobiltà(PunteggioNobiltà punteggioNobiltà) {
 		this.punteggioNobiltà = punteggioNobiltà;
 	}
 
-
-
 	/**
 	 * @return the cartePolitica
 	 */
-	public ArrayList<CartaPolitica> getCartePolitica() {
+	public List<CartaPolitica> getCartePolitica() {
 		return cartePolitica;
 	}
-
-
 
 	/**
 	 * @return the tesserePermesso
 	 */
-	public ArrayList<TesseraPermesso> getTesserePermesso() {
+	public List<TesseraPermesso> getTesserePermesso() {
 		return tesserePermesso;
 	}
-
-
 
 	/**
 	 * @return the tesserePermessoUsate
 	 */
-	public ArrayList<TesseraPermesso> getTesserePermessoUsate() {
+	public List<TesseraPermesso> getTesserePermessoUsate() {
 		return tesserePermessoUsate;
 	}
 
-public int getNumeroTesserePermesso(){
-	return (this.getTesserePermesso().size()+this.getTesserePermessoUsate().size());
-}
+	public int getNumeroTesserePermesso() {
+		return (this.getTesserePermesso().size() + this.getTesserePermessoUsate().size());
+	}
 
 	/**
 	 * @return the tessereBonus
 	 */
-	public ArrayList<Bonus> getTessereBonus() {
+	public List<Bonus> getTessereBonus() {
 		return tessereBonus;
 	}
-
-
 
 	/**
 	 * @return the empori
 	 */
-	public ArrayList<Emporio> getEmpori() {
+	public List<Emporio> getEmpori() {
 		return empori;
 	}
 
@@ -201,74 +175,68 @@ public int getNumeroTesserePermesso(){
 		return bonusNobiltà;
 	}
 
-
-
-	public void aumentaRicchezza(int monete){
-		this.punteggioRicchezza=this.punteggioRicchezza + monete;
+	public void aumentaRicchezza(int monete) {
+		this.punteggioRicchezza = this.punteggioRicchezza + monete;
 	}
+
 	/**
 	 * sub monete to variable punteggioRicchezza
+	 * 
 	 * @param monete
 	 * @return true if it is possible to execute else false
 	 */
-	public boolean diminuisciRicchezza(int monete){
-		if(this.punteggioRicchezza>=monete){
-			this.punteggioRicchezza=this.punteggioRicchezza - monete;
+	public boolean diminuisciRicchezza(int monete) {
+		if (this.punteggioRicchezza >= monete) {
+			this.punteggioRicchezza = this.punteggioRicchezza - monete;
 			return true;
-		}
-		else return false;
-	}
-	/**
-	 * add puntiVittoria to variable punteggioVittoria
-	 * @param puntiVittoria
-	 */
-	public void aumentaPuntiVittoria(int puntiVittoria){
-		this.punteggioVittoria=this.punteggioVittoria + puntiVittoria;
-	}
-	/**
-	 * add politic card to the ArrayList CartePolitca of the player
-	 * @param carteDaAggiungere
-	 */
-	public void aggiungiCartaPolitica(CartaPolitica cartaDaAggiungere){
-			this.cartePolitica.add(cartaDaAggiungere);
+		} else
+			return false;
 	}
 
+	/**
+	 * add puntiVittoria to variable punteggioVittoria
+	 * 
+	 * @param puntiVittoria
+	 */
+	public void aumentaPuntiVittoria(int puntiVittoria) {
+		this.punteggioVittoria = this.punteggioVittoria + puntiVittoria;
+	}
+
+	/**
+	 * add politic card to the ArrayList CartePolitca of the player
+	 * 
+	 * @param carteDaAggiungere
+	 */
+	public void aggiungiCartaPolitica(CartaPolitica cartaDaAggiungere) {
+		this.cartePolitica.add(cartaDaAggiungere);
+	}
 
 	public void rimuoviCartaPolitica(CartaPolitica cartaPolitica) {
 		this.cartePolitica.remove(cartaPolitica);
 	}
-	
-	public void aggiungiTesseraPermesso(TesseraPermesso tesseraPermesso){
+
+	public void aggiungiTesseraPermesso(TesseraPermesso tesseraPermesso) {
 		this.tesserePermesso.add(tesseraPermesso);
 	}
-
 
 	public void rimuoviTesseraPermesso(TesseraPermesso tesseraPermesso) {
 		this.tesserePermesso.remove(tesseraPermesso);
 	}
 
-	public void aggiungiEmpori(ArrayList<Emporio> empori){
+	public void aggiungiEmpori(List<Emporio> empori) {
 		this.empori.addAll(empori);
 	}
-	
-	//Prova per testare fine partita
-	/*public void creaEmpori(Colore colore){
-		for(int i=0; i<1; i++){
-			Emporio emporio=new Emporio(colore);
-			empori.add(emporio);
-		}
-	}*/
-	
-	public void creaEmpori(Colore colore){
-		for(int i=0; i<10; i++){
-			Emporio emporio=new Emporio(colore);
+
+	public void creaEmpori(Colore colore) {
+		for (int i = 0; i < 10; i++) {
+			Emporio emporio = new Emporio(colore);
 			empori.add(emporio);
 		}
 	}
 
-	
-	
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -279,7 +247,9 @@ public int getNumeroTesserePermesso(){
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -299,22 +269,18 @@ public int getNumeroTesserePermesso(){
 		return true;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "Giocatore: "+ nome + ", " + coloreGiocatore + "\ncartePolitica [" + cartePolitica +"]"
+		return "Giocatore: " + nome + ", " + coloreGiocatore + "\ncartePolitica [" + cartePolitica + "]"
 				+ "\n tesserePermesso [" + tesserePermesso + "]\ntesserePermessoUsate [" + tesserePermessoUsate
-				+ "]\ntessereBonus [" + tessereBonus + "\nnumero empori = " + empori.size() + "\nnumero aiutanti = " + aiutanti.getAiutante()
-				+ "\nPunteggio Vittoria = " + punteggioVittoria + "\nPunteggio Ricchezza = " + punteggioRicchezza
-				+ "\nPunteggio Nobiltà = " + punteggioNobiltà.getPuntiNobiltà();
+				+ "]\ntessereBonus [" + tessereBonus + "\nnumero empori = " + empori.size() + "\nnumero aiutanti = "
+				+ aiutanti.getAiutante() + "\nPunteggio Vittoria = " + punteggioVittoria + "\nPunteggio Ricchezza = "
+				+ punteggioRicchezza + "\nPunteggio Nobiltà = " + punteggioNobiltà.getPuntiNobiltà();
 	}
-
-
-	
-	
-	
-	
 
 }

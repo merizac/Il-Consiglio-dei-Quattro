@@ -1,8 +1,7 @@
 package client;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
-
 import gameDTO.gameDTO.CartaPoliticaDTO;
 import gameDTO.gameDTO.CittàDTO;
 import gameDTO.gameDTO.ColoreDTO;
@@ -13,7 +12,7 @@ import utility.Utils;
 
 public class ControlloParametriDTO {
 
-	public static ConsigliereDTO consiglieri(String consigliere, ArrayList<ConsigliereDTO> consiglieri) {
+	public static ConsigliereDTO consiglieri(String consigliere, List<ConsigliereDTO> consiglieri) {
 		for(ConsigliereDTO c: consiglieri){
 			if(consigliere.equals(c.getColoreConsigliere()))
 				return c;
@@ -21,7 +20,7 @@ public class ControlloParametriDTO {
 		return null;
 	}
 
-	public static RegioneDTO regioni(String regione, ArrayList<RegioneDTO> regioni) {
+	public static RegioneDTO regioni(String regione, List<RegioneDTO> regioni) {
 		for(RegioneDTO r: regioni){
 			if(regione.equals(r.getNome()))
 				return r;
@@ -29,7 +28,7 @@ public class ControlloParametriDTO {
 		return null;
 	}
 	
-	public static CartaPoliticaDTO carteGiocatore(String carta, ArrayList<CartaPoliticaDTO> cartePolitica){
+	public static CartaPoliticaDTO carteGiocatore(String carta, List<CartaPoliticaDTO> cartePolitica){
 		for(CartaPoliticaDTO c: cartePolitica){
 			if(carta.equals(c.getColore())){
 				cartePolitica.remove(c);
@@ -39,7 +38,7 @@ public class ControlloParametriDTO {
 			return null;
 		}
 
-	public static TesseraPermessoDTO tessereGiocatore(String tessera, ArrayList<TesseraPermessoDTO> tesserePermesso) {
+	public static TesseraPermessoDTO tessereGiocatore(String tessera, List<TesseraPermessoDTO> tesserePermesso) {
 		if(Utils.isNumeric(tessera)){
 			if(Integer.parseInt(tessera)>0 && Integer.parseInt(tessera)<=tesserePermesso.size())
 				return tesserePermesso.get(Integer.parseInt(tessera)-1);

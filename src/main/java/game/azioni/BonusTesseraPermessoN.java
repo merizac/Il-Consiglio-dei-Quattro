@@ -11,7 +11,7 @@ public class BonusTesseraPermessoN extends Azione {
 	/**
 	 * Prendi una tesseraPermesso a faccia in su senza pagarne il costo
 	 */
-	
+	private final int ID=15;
 	private Regione regione;
 	private TesseraPermesso tesseraScoperta;
 	
@@ -55,5 +55,33 @@ public class BonusTesseraPermessoN extends Azione {
 	@Override
 	public AzioneDTO getAzioneDTO() {
 		return new BonusTesseraPermessoNDTO();
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ID;
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		BonusTesseraPermessoN other = (BonusTesseraPermessoN) obj;
+		if (ID != other.ID)
+			return false;
+		return true;
 	}
 }

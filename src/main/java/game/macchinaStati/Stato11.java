@@ -13,7 +13,7 @@ import game.azioni.ElezioneConsigliereVeloce;
 import game.azioni.IngaggioAiutante;
 import game.azioni.SecondaAzionePrincipale;
 import game.notify.AzioniNotify;
-import game.notify.ErrorNotify;
+import game.notify.MessageNotify;
 
 public class Stato11 implements Stato {
 
@@ -24,7 +24,7 @@ public class Stato11 implements Stato {
 		this.azioni=Arrays.asList(new ElezioneConsigliere(), new AcquistoTesseraPermesso(),
 				new CostruzioneTesseraPermesso(), new CostruzioneAiutoRe(), new IngaggioAiutante(), new CambioTesseraPermesso(), 
 				new ElezioneConsigliereVeloce(), new SecondaAzionePrincipale());
-		gameState.notifyObserver(new ErrorNotify("AZIONI PRINCIPALI E VELOCI", Arrays.asList(gameState.getGiocatoreCorrente())));
+		gameState.notifyObserver(new MessageNotify("AZIONI PRINCIPALI E VELOCI", Arrays.asList(gameState.getGiocatoreCorrente())));
 		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
 	}
 	

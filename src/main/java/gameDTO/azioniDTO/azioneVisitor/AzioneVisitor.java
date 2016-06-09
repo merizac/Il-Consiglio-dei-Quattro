@@ -11,6 +11,7 @@ import game.azioni.CostruzioneAiutoRe;
 import game.azioni.CostruzioneTesseraPermesso;
 import game.azioni.ElezioneConsigliere;
 import game.azioni.ElezioneConsigliereVeloce;
+import game.azioni.Exit;
 import game.azioni.IngaggioAiutante;
 import game.azioni.Passa;
 import game.azioni.PescaCarta;
@@ -26,6 +27,7 @@ import gameDTO.azioniDTO.CostruzioneAiutoReDTO;
 import gameDTO.azioniDTO.CostruzioneTesseraPermessoDTO;
 import gameDTO.azioniDTO.ElezioneConsigliereDTO;
 import gameDTO.azioniDTO.ElezioneConsigliereVeloceDTO;
+import gameDTO.azioniDTO.ExitDTO;
 import gameDTO.azioniDTO.IngaggioAiutanteDTO;
 import gameDTO.azioniDTO.PassaDTO;
 import gameDTO.azioniDTO.PescaCartaDTO;
@@ -48,5 +50,6 @@ public interface AzioneVisitor {
 	public BonusGettoneN visit(BonusGettoneNDTO bonusGettoneDTO);
 	public BonusTesseraAcquistataN visit(BonusTesseraAcquistataNDTO bonusTesseraAcquistataDTO);
 	public BonusTesseraPermessoN visit(BonusTesseraPermessoNDTO bonusTesseraPermessoDTO);
+	public Exit visit(ExitDTO exitDTO);
 	
 }

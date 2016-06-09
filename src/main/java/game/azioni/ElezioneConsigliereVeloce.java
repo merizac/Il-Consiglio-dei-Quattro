@@ -1,6 +1,6 @@
 package game.azioni;
 
-import game.notify.ErrorNotify;
+import game.notify.MessageNotify;
 import game.notify.GameStateNotify;
 import game.notify.GiocatoreNotify;
 import gameDTO.azioniDTO.AzioneDTO;
@@ -13,8 +13,9 @@ import game.Consigliere;
 import game.GameState;
 
 public class ElezioneConsigliereVeloce extends AzioneVeloce {
-
+	
 	private Balcone balcone;
+	private final int ID=7;
 	private Consigliere consigliere;
 
 	
@@ -71,7 +72,7 @@ public class ElezioneConsigliereVeloce extends AzioneVeloce {
 	public void eseguiAzione(GameState gameState) {
 
 		if (!gameState.getGiocatoreCorrente().getAiutanti().togliAiutanti(1)) {
-			gameState.notifyObserver(new ErrorNotify("Errore: gli aiutanti non sono sufficienti",
+			gameState.notifyObserver(new MessageNotify("Errore: gli aiutanti non sono sufficienti",
 					Arrays.asList(gameState.getGiocatoreCorrente())));
 			return;
 		}
@@ -95,5 +96,39 @@ public class ElezioneConsigliereVeloce extends AzioneVeloce {
 	@Override
 	public AzioneDTO getAzioneDTO() {
 		return new ElezioneConsigliereDTO();
+	}
+
+
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ID;
+		return result;
+	}
+
+
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ElezioneConsigliereVeloce other = (ElezioneConsigliereVeloce) obj;
+		if (ID != other.ID)
+			return false;
+		return true;
 	}
 }

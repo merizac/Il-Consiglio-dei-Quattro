@@ -9,7 +9,7 @@ import game.azioni.CostruzioneAiutoRe;
 import game.azioni.CostruzioneTesseraPermesso;
 import game.azioni.ElezioneConsigliere;
 import game.notify.AzioniNotify;
-import game.notify.ErrorNotify;
+import game.notify.MessageNotify;
 import utility.exception.AzioneNonEseguibile;
 
 public class Stato10 implements Stato {
@@ -20,7 +20,7 @@ public class Stato10 implements Stato {
 		System.out.println("[SERVER] "+this);
 		azioni=Arrays.asList(new ElezioneConsigliere(), new AcquistoTesseraPermesso(),
 				new CostruzioneTesseraPermesso(), new CostruzioneAiutoRe());
-		gameState.notifyObserver(new ErrorNotify("AZIONI PRINCIPALI", Arrays.asList(gameState.getGiocatoreCorrente())));
+		gameState.notifyObserver(new MessageNotify("AZIONI PRINCIPALI", Arrays.asList(gameState.getGiocatoreCorrente())));
 		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
 	}
 
