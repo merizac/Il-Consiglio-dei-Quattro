@@ -12,7 +12,7 @@ import game.GameState;
 import game.Giocatore;
 import game.Regione;
 import game.TesseraPermesso;
-import game.notify.ErrorNotify;
+import game.notify.MessageNotify;
 import game.notify.GameStateNotify;
 import game.notify.GiocatoreNotify;
 import gameDTO.azioniDTO.AzioneDTO;
@@ -31,7 +31,7 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonu
 	public void eseguiAzione(GameState gameState) {
 
 		if (!pagoAiutanti(gameState)) {
-			gameState.notifyObserver(new ErrorNotify("Errore: i soldi non sono sufficienti",
+			gameState.notifyObserver(new MessageNotify("Errore: i soldi non sono sufficienti",
 					Arrays.asList(gameState.getGiocatoreCorrente())));
 			return;
 		}

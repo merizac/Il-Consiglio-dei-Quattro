@@ -10,7 +10,7 @@ import game.azioni.IngaggioAiutante;
 import game.azioni.Passa;
 import game.azioni.SecondaAzionePrincipale;
 import game.notify.AzioniNotify;
-import game.notify.ErrorNotify;
+import game.notify.MessageNotify;
 import utility.exception.AzioneNonEseguibile;
 
 public class Stato01 implements Stato {
@@ -21,7 +21,7 @@ public class Stato01 implements Stato {
 		System.out.println("[SERVER] "+ this);
 		azioni= Arrays.asList(new IngaggioAiutante(), new CambioTesseraPermesso(), 
 				new ElezioneConsigliereVeloce(), new SecondaAzionePrincipale(), new Passa());
-		gameState.notifyObserver(new ErrorNotify("AZIONI VELOCI", Arrays.asList(gameState.getGiocatoreCorrente())));
+		gameState.notifyObserver(new MessageNotify("AZIONI VELOCI", Arrays.asList(gameState.getGiocatoreCorrente())));
 		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
 		
 	}

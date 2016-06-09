@@ -5,7 +5,7 @@ import java.util.Arrays;
 import game.GameState;
 import game.Regione;
 import game.TesseraPermesso;
-import game.notify.ErrorNotify;
+import game.notify.MessageNotify;
 import game.notify.GameStateNotify;
 import game.notify.GiocatoreNotify;
 import gameDTO.azioniDTO.AzioneDTO;
@@ -29,7 +29,7 @@ public class CambioTesseraPermesso extends AzioneVeloce {
 			setStatoTransizioneVeloce(gameState); 
 		}
 		else{
-			gameState.notifyObserver(new ErrorNotify("Errore: non hai abbastanza aiutanti", Arrays.asList(gameState.getGiocatoreCorrente())));
+			gameState.notifyObserver(new MessageNotify("Errore: non hai abbastanza aiutanti", Arrays.asList(gameState.getGiocatoreCorrente())));
 			return;
 		}
 		

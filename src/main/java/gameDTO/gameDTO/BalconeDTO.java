@@ -36,4 +36,12 @@ public class BalconeDTO implements Serializable{
 			this.getConsiglieri().add(consigliereDTO);
 		}
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "BalconeDTO [consiglieri=" + consiglieri + "]";
+	}
 }

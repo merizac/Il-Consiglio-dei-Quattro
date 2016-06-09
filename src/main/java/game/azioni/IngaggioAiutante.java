@@ -3,7 +3,7 @@ package game.azioni;
 import java.util.Arrays;
 
 import game.GameState;
-import game.notify.ErrorNotify;
+import game.notify.MessageNotify;
 import game.notify.GameStateNotify;
 import game.notify.GiocatoreNotify;
 import gameDTO.azioniDTO.AzioneDTO;
@@ -18,7 +18,7 @@ public class IngaggioAiutante extends AzioneVeloce {
 	@Override
 	public void eseguiAzione(GameState gameState) {
 		if(!gameState.getGiocatoreCorrente().diminuisciRicchezza(3)){
-			gameState.notifyObserver(new ErrorNotify("Errore: i soldi non sono sufficienti",
+			gameState.notifyObserver(new MessageNotify("Errore: i soldi non sono sufficienti",
 					Arrays.asList(gameState.getGiocatoreCorrente())));
 			return;
 		}

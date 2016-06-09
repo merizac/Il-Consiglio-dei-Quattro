@@ -74,15 +74,15 @@ public class AzioniClient {
 				ok = true;
 				balconeScelto = regioni.get(0).getBalcone();
 			}
-			if (comando.equals("Collina")) {
+			else if (comando.equals("Collina")) {
 				ok = true;
 				balconeScelto = regioni.get(1).getBalcone();
 			}
-			if (comando.equals("Montagna")) {
+			else if (comando.equals("Montagna")) {
 				ok = true;
 				balconeScelto = regioni.get(2).getBalcone();
 			}
-			if (comando.equals("Re")) {
+			else if (comando.equals("Re")) {
 				ok = true;
 				balconeScelto = balconeRe;
 			} else {

@@ -11,7 +11,7 @@ import game.Colore;
 import game.Consigliere;
 import game.GameState;
 import game.TesseraPermesso;
-import game.notify.ErrorNotify;
+import game.notify.MessageNotify;
 import gameDTO.azioniDTO.AcquistoTesseraPermessoDTO;
 import gameDTO.azioniDTO.AzioneDTO;
 
@@ -31,17 +31,17 @@ public class AcquistoTesseraPermesso extends AzionePrincipale implements Bonusab
 	public void eseguiAzione(GameState gameState) {
 		
 		if(carteGiocatore.isEmpty()){
-			gameState.notifyObserver(new ErrorNotify("Errore: non sono presenti carte", Arrays.asList(gameState.getGiocatoreCorrente())));
+			gameState.notifyObserver(new MessageNotify("Errore: non sono presenti carte", Arrays.asList(gameState.getGiocatoreCorrente())));
 			return;
 		}
 			
 		if(!controllaColori()){
-			gameState.notifyObserver(new ErrorNotify("Errore: i colori delle carte scelte non corrispondono con quelle del balcone!", Arrays.asList(gameState.getGiocatoreCorrente())));
+			gameState.notifyObserver(new MessageNotify("Errore: i colori delle carte scelte non corrispondono con quelle del balcone!", Arrays.asList(gameState.getGiocatoreCorrente())));
 			return;
 		}
 			
 		if(!paga(calcolaMonete(), gameState)){
-			gameState.notifyObserver(new ErrorNotify("Errore: i soldi non sono sufficienti!", Arrays.asList(gameState.getGiocatoreCorrente())));
+			gameState.notifyObserver(new MessageNotify("Errore: i soldi non sono sufficienti!", Arrays.asList(gameState.getGiocatoreCorrente())));
 			return;
 		}
 			

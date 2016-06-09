@@ -1,7 +1,7 @@
 package game.azioni;
 
 import game.Regione;
-import game.notify.ErrorNotify;
+import game.notify.MessageNotify;
 import game.notify.GameStateNotify;
 import game.notify.GiocatoreNotify;
 import gameDTO.azioniDTO.AzioneDTO;
@@ -71,7 +71,7 @@ public class ElezioneConsigliereVeloce extends AzioneVeloce {
 	public void eseguiAzione(GameState gameState) {
 
 		if (!gameState.getGiocatoreCorrente().getAiutanti().togliAiutanti(1)) {
-			gameState.notifyObserver(new ErrorNotify("Errore: gli aiutanti non sono sufficienti",
+			gameState.notifyObserver(new MessageNotify("Errore: gli aiutanti non sono sufficienti",
 					Arrays.asList(gameState.getGiocatoreCorrente())));
 			return;
 		}

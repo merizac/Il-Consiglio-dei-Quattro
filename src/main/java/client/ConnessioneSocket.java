@@ -1,5 +1,6 @@
 package client;
 
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -71,9 +72,12 @@ public class ConnessioneSocket implements Connessione {
 				ClientNotify notify = (ClientNotify) socketIn.readObject();
 				notify.update(gameStateDTO);
 				notify.stamp();
-			} catch (ClassNotFoundException | IOException e) {
-				e.printStackTrace();
+			}catch(EOFException e){
 				disconnetti();
+				fine=true;
+			}
+			catch (ClassNotFoundException | IOException e) {
+				e.printStackTrace();
 			}
 		}
 	}

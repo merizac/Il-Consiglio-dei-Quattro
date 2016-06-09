@@ -36,16 +36,29 @@ public class ControlloParametri {
 		}
 		throw new IllegalArgumentException("La regione è inesistente!");
 	}
-	
+
 	public static Balcone cercaBalcone(BalconeDTO balconeDTO, Balcone balconeRe, List<Regione> regioni) {
-		for(Regione r: regioni){
-			if(r.getBalcone().getConsigliere().equals(balconeDTO.getConsiglieri()) || 
-					r.getBalcone().getConsigliere().equals(balconeRe.getConsigliere()))
+		for (Regione r : regioni) {
+			if (controlloBalcone(balconeDTO, r.getBalcone())) {
 				return r.getBalcone();
+			}
 		}
-		throw new IllegalArgumentException("Il balcone è inesistente!");
+		if (controlloBalcone(balconeDTO, balconeRe)) {
+			return balconeRe;
+		} else {
+			throw new IllegalArgumentException("Il balcone è inesistente!");
+		}
 	}
 
+	private static boolean controlloBalcone(BalconeDTO balconeDTO, Balcone balcone) {
+		List<Consigliere> consiglieri = new ArrayList<>(balcone.getConsigliere());
+		for (int i = 0; i < balconeDTO.getConsiglieri().size(); i++) {
+			if (!balconeDTO.getConsiglieri().get(i).getColoreConsigliere()
+					.equals(consiglieri.get(i).getColore().getColore()))
+				return false;
+		}
+		return true;
+	}
 
 	public static List<CartaPolitica> cercaCartePolitica(List<CartaPoliticaDTO> carte,
 			List<CartaPolitica> cartePolitica) throws IllegalArgumentException {
@@ -77,9 +90,10 @@ public class ControlloParametri {
 	}
 
 	public static Città cercaCittàBonus(CittàDTO città, Set<Città> cittàGameState) throws IllegalArgumentException {
-		if (città instanceof CittàBonusDTO){
+		if (città instanceof CittàBonusDTO) {
 			System.out.println("test bonus :" + (((CittàBonusDTO) città).getBonus()));
-		System.out.println("test bonus :" + (((CittàBonusDTO) città).getBonus()));}
+			System.out.println("test bonus :" + (((CittàBonusDTO) città).getBonus()));
+		}
 		for (Città c : cittàGameState) {
 			if (c.getNome().equals(città.getNome()) && (c instanceof CittàBonus)) {
 				for (Bonus b : ((CittàBonus) c).getBonus()) {
@@ -91,7 +105,7 @@ public class ControlloParametri {
 				// nel Percorso Nobiltà!");
 				return c;
 			}
-			
+
 			// else throw new IllegalArgumentException("La città scelta non ha
 			// gettone ricompensa!");
 		}
@@ -214,22 +228,12 @@ public class ControlloParametri {
 		throw new IllegalArgumentException("L'offerta selezionata è inesistente");
 	}
 
-	public static Giocatore carcaGiocatore(List<Giocatore> giocatori, GiocatoreDTO giocatoreDTO)
-			throws IllegalArgumentException {
-		for (Giocatore g : giocatori) {
-			if (g.getNome().equals(giocatoreDTO.getNome()))
-				return g;
-		}
-
-		throw new IllegalArgumentException("Il giocatore selezionato è inesistente");
-	}
-
 	public static Giocatore cercaGiocatore(GiocatoreDTO giocatoreDTO, List<Giocatore> giocatori) {
 		for (Giocatore g : giocatori) {
 			if (g.getNome().equals(giocatoreDTO.getNome()))
 				return g;
 		}
-		return null;
+		throw new IllegalArgumentException("Il giocatore è inesistente");
 	}
 
 }

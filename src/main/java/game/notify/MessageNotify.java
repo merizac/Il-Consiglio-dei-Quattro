@@ -4,9 +4,9 @@ import java.util.List;
 
 import game.Giocatore;
 import view.clientNotify.ClientNotify;
-import view.clientNotify.ErrorClientNotify;
+import view.clientNotify.MessageClientNotify;
 
-public class ErrorNotify implements Notify{
+public class MessageNotify implements Notify{
 
 	private String error;
 	private List<Giocatore> giocatori;
@@ -14,7 +14,7 @@ public class ErrorNotify implements Notify{
 	 * @param error
 	 * @param giocatori
 	 */
-	public ErrorNotify(String error, List<Giocatore> giocatori) {
+	public MessageNotify(String error, List<Giocatore> giocatori) {
 		this.error = error;
 		this.giocatori = giocatori;
 	}
@@ -28,7 +28,7 @@ public class ErrorNotify implements Notify{
 	
 	@Override
 	public ClientNotify notifyToClientNotify() {
-		return new ErrorClientNotify(error);
+		return new MessageClientNotify(error);
 	}
 	
 

@@ -4,16 +4,19 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.net.SocketException;
+
 import game.GameState;
 import game.Giocatore;
 import game.azioni.Azione;
+import game.azioni.Exit;
 import game.notify.Notify;
 import gameDTO.azioniDTO.AzioneDTO;
 import gameDTO.azioniDTO.azioneVisitor.AzioneVisitor;
 import gameDTO.azioniDTO.azioneVisitor.AzioneVisitorImpl;
 import gameDTO.gameDTO.GiocatoreDTO;
 import server.Server;
-import view.clientNotify.ErrorClientNotify;
+import view.clientNotify.MessageClientNotify;
 
 public class ServerSocketView extends View implements Runnable {
 
@@ -67,28 +70,29 @@ public class ServerSocketView extends View implements Runnable {
 				if (object instanceof AzioneDTO) {
 
 					AzioneDTO action = (AzioneDTO) object;
-					//if (action instanceof ExitDTO) {
-						//disconnetti();
-						//break;
-					//} else {
-						AzioneVisitor azioneVisitor = new AzioneVisitorImpl(gameState, giocatore);
-						Azione azione = action.accept(azioneVisitor);
-						System.out.println(
-								"[SERVER] Ricevuta l'azione " + azione + " dal giocatore " + giocatore.getNome());
-						if (azione.isTurno(giocatore, gameState)
-								&& gameState.getStato().getAzioni().contains(azione)) {
-							System.out.println("[SERVER] Inviata l'azione " + azione);
-							this.notifyObserver(azione);
-						} else {
-							this.socketOut.writeObject(new ErrorClientNotify("Non è il tuo turno"));
-							this.socketOut.flush();
-						}
-
+					AzioneVisitor azioneVisitor = new AzioneVisitorImpl(gameState, giocatore);
+					Azione azione = action.accept(azioneVisitor);
+					System.out
+							.println("[SERVER] Ricevuta l'azione " + azione + " dal giocatore " + giocatore.getNome());
+					if (azione instanceof Exit) {
+						disconnetti();
+						this.notifyObserver(azione);
+					} else if (azione.isTurno(giocatore, gameState)
+							&& gameState.getStato().getAzioni().contains(azione)) {
+						this.notifyObserver(azione);
+						System.out.println("[SERVER] Inviata l'azione " + azione);
+					} else {
+						this.socketOut.writeObject(new MessageClientNotify("Non è il tuo turno"));
+						this.socketOut.flush();
 					}
+
 				}
-			 catch (ClassNotFoundException | IOException e1) {
+			} catch (SocketException e) {
+				disconnetti();
+			} catch (ClassNotFoundException | IOException e1) {
 				e1.printStackTrace();
 			}
+
 		}
 	}
 

@@ -153,4 +153,9 @@ public class Server {
 		server.startSocket();*/
 	}
 
+	public static void finePartita(GameState gameState2) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -8,7 +8,7 @@ import bonus.Bonus;
 import game.CittàBonus;
 import game.Emporio;
 import game.GameState;
-import game.notify.ErrorNotify;
+import game.notify.MessageNotify;
 import gameDTO.azioniDTO.AzioneDTO;
 import gameDTO.azioniDTO.BonusGettoneNDTO;
 import utility.exception.AzioneNonEseguibile;
@@ -32,14 +32,14 @@ public class BonusGettoneN extends Azione {
 	public void eseguiAzione(GameState gameState){
 		for(CittàBonus c: città){
 			if(!c.getEmpori().contains(new Emporio(gameState.getGiocatoreCorrente().getColoreGiocatore()))){
-				gameState.notifyObserver(new ErrorNotify("Errore:" + gameState.getGiocatoreCorrente().getNome() 
+				gameState.notifyObserver(new MessageNotify("Errore:" + gameState.getGiocatoreCorrente().getNome() 
 						+ "non hai un emporio in "+c.getNome(), Arrays.asList(gameState.getGiocatoreCorrente())));
 				return;
 				}
 		}
 		if(numeroGettoni>1){
 			if(!città.get(0).getBonus().equals(città.get(1).getBonus())){
-				gameState.notifyObserver(new ErrorNotify("Errore:" + gameState.getGiocatoreCorrente().getNome() 
+				gameState.notifyObserver(new MessageNotify("Errore:" + gameState.getGiocatoreCorrente().getNome() 
 						+ "devi scegliere due gettoni ricompensa diversi tra loro" , Arrays.asList(gameState.getGiocatoreCorrente())));
 				return;
 			}

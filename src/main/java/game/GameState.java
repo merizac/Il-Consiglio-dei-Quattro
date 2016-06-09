@@ -31,7 +31,6 @@ public class GameState extends Observable<Notify> {
 	private List<Offerta> offerteMarket;
 	private boolean ultimoGiro = false;
 	private List<Giocatore> giocatoriFinePartita;
-	private List<Giocatore> giocatoriDisconnessi;
 
 	/**
 	 * 
@@ -208,9 +207,6 @@ public class GameState extends Observable<Notify> {
 	/**
 	 * @return the giocatoriDisconnessi
 	 */
-	public List<Giocatore> getGiocatoriDisconnessi() {
-		return giocatoriDisconnessi;
-	}
 
 	/**
 	 * @param numeroTurni
@@ -245,7 +241,7 @@ public class GameState extends Observable<Notify> {
 		int i = 0;
 		for (Giocatore g : giocatori) {
 			g.setAiutanti(new Aiutante(1 + i));
-			g.setPunteggioNobiltà(this.getPlanciaRe().getPercorsoNobiltà().get(4));
+			g.setPunteggioNobiltà(this.getPlanciaRe().getPercorsoNobiltà().get(0));
 			g.setPunteggioRicchezza(10 + i);
 			g.setPunteggioVittoria(0);
 			g.setColoreGiocatore(new Colore(String.valueOf(i)));
@@ -315,7 +311,6 @@ public class GameState extends Observable<Notify> {
 		this.giocatori = new ArrayList<>();
 		this.offerteMarket = new ArrayList<>();
 		this.giocatoriFinePartita = new ArrayList<>();
-		this.giocatoriDisconnessi = new ArrayList<>();
 		creaGiocatori(giocatori);
 		this.notifyObserver(new GameStateNotify(this, giocatori));
 
