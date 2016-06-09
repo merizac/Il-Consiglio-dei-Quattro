@@ -11,37 +11,47 @@ public class BonusCartePolitica extends Bonus {
 	 */
 	private static final long serialVersionUID = 380560969549363148L;
 	private final int cartePolitica;
-	
+
 	public BonusCartePolitica(int cartePolitica) {
 		super();
-		if (cartePolitica<0) throw new IllegalArgumentException();
-		this.cartePolitica=cartePolitica;
+		if (cartePolitica < 0) {
+			throw new IllegalArgumentException();
+		}
+		this.cartePolitica = cartePolitica;
 	}
+
 	/**
-	 * add politic cards to the player 
+	 * add politic cards to the player
 	 */
 	@Override
 	public void usaBonus(GameState gameState) {
 		Mazzo<CartaPolitica> mazzo = gameState.getMazzoCartePolitica();
-		for(int numCarte=0; numCarte<cartePolitica; numCarte++){
+		for (int numCarte = 0; numCarte < cartePolitica; numCarte++) {
 			gameState.getGiocatoreCorrente().aggiungiCartaPolitica(mazzo.pescaCarte());
 		}
-		
+
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
 		return "BonusCartePolitica [cartePolitica=" + cartePolitica + "]";
 	}
+
 	/**
 	 * @return the cartePolitica
 	 */
 	public int getCartePolitica() {
 		return cartePolitica;
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -51,7 +61,10 @@ public class BonusCartePolitica extends Bonus {
 		result = prime * result + cartePolitica;
 		return result;
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -67,6 +80,5 @@ public class BonusCartePolitica extends Bonus {
 			return false;
 		return true;
 	}
-	
-	
+
 }

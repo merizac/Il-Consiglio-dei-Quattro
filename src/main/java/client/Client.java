@@ -3,13 +3,10 @@ package client;
 import java.rmi.RemoteException;
 import java.util.Scanner;
 
-import gameDTO.gameDTO.GameStateDTO;
-import gameDTO.gameDTO.GiocatoreDTO;
-
 public class Client {
 
-	private final static String SOCKET = "1";
-	private final static String RMI = "2";
+	private static final String SOCKET = "1";
+	private static final String RMI = "2";
 	private Scanner stdIn;
 	private Connessione connessione;
 
@@ -37,7 +34,7 @@ public class Client {
 
 	public String scegliNome() {
 		String nome = null;
-		while (nome == null | "".equals(nome)) {
+		while (nome == null || "".equals(nome)) {
 			System.out.println("Inserisci il nome");
 			nome = stdIn.nextLine();
 		}
@@ -47,14 +44,14 @@ public class Client {
 
 	public Connessione scegliConnessione(String giocatore) throws RemoteException {
 		System.out.println("Inserisci connessione\nSocket[1]\nRMI[2]");
-		String connessione = null;
+		String connessioneClient=null;
 		while (true) {
 			{
-				connessione = stdIn.nextLine();
-				if (SOCKET.equals(connessione)) {
+				connessioneClient = stdIn.nextLine();
+				if (SOCKET.equals(connessioneClient)) {
 					return new ConnessioneSocket(giocatore);
 
-				} else if (RMI.equals(connessione))
+				} else if (RMI.equals(connessioneClient))
 					try {
 						return new ConnessioneRMI(giocatore);
 					} catch (RemoteException e) {

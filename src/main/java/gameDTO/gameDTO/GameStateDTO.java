@@ -17,10 +17,10 @@ public class GameStateDTO implements Serializable {
 
 	private static final long serialVersionUID = -8629825962043239713L;
 	private Set<CittàDTO> città;
-	private ArrayList<RegioneDTO> regioni;
+	private List<RegioneDTO> regioni;
 	private ReDTO pedinaRE;
 	private PlanciaReDTO planciaReDTO;
-	private ArrayList<ConsigliereDTO> consiglieri;
+	private List<ConsigliereDTO> consiglieri;
 	private List<AzioneDTO> azioniDisponibili;
 	private GiocatoreDTO giocatoreDTO;
 	private List<OffertaDTO> offerte;
@@ -43,7 +43,7 @@ public class GameStateDTO implements Serializable {
 	/**
 	 * @return the regioni
 	 */
-	public ArrayList<RegioneDTO> getRegioni() {
+	public List<RegioneDTO> getRegioni() {
 		return regioni;
 	}
 
@@ -51,7 +51,7 @@ public class GameStateDTO implements Serializable {
 	 * @param regioni
 	 *            the regioni to set
 	 */
-	public void setRegioni(ArrayList<RegioneDTO> regioni) {
+	public void setRegioni(List<RegioneDTO> regioni) {
 		this.regioni = regioni;
 	}
 
@@ -88,7 +88,7 @@ public class GameStateDTO implements Serializable {
 	/**
 	 * @return the consiglieri
 	 */
-	public ArrayList<ConsigliereDTO> getConsiglieri() {
+	public List<ConsigliereDTO> getConsiglieri() {
 		return consiglieri;
 	}
 
@@ -96,7 +96,7 @@ public class GameStateDTO implements Serializable {
 	 * @param consiglieri
 	 *            the consiglieri to set
 	 */
-	public void setConsiglieri(ArrayList<ConsigliereDTO> consiglieri) {
+	public void setConsiglieri(List<ConsigliereDTO> consiglieri) {
 		this.consiglieri = consiglieri;
 	}
 

@@ -1,12 +1,12 @@
 package game;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import bonus.*;
 
 public class CittàBonus extends Città {
 
-	private transient ArrayList<Bonus> bonus;
+	private List<Bonus> bonus;
 	
 
 	/**
@@ -16,7 +16,7 @@ public class CittàBonus extends Città {
 	 * @param empori
 	 * @param cittàCollegate
 	 */
-	public CittàBonus(String nome, Regione regione, ColoreCittà colore, ArrayList<Bonus> bonus) {
+	public CittàBonus(String nome, Regione regione, ColoreCittà colore, List<Bonus> bonus) {
 		super(nome, regione, colore);
 		if(bonus==null)
 			throw new NullPointerException("La città bonus deve avere dei bonus");
@@ -28,11 +28,11 @@ public class CittàBonus extends Città {
 	/**
 	 * @return the bonus
 	 */
-	public ArrayList<Bonus> getBonus() {
+	public List<Bonus> getBonus() {
 		return bonus;
 	}
 	
-	public void setBonus(ArrayList<Bonus> bonus) {
+	public void setBonus(List<Bonus> bonus) {
 		this.bonus = bonus;
 	}
 	

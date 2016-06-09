@@ -19,10 +19,10 @@ public class ConnessioneRMI extends UnicastRemoteObject implements Serializable,
 
 	private static final long serialVersionUID = 5904563829768967721L;
 	private GameStateDTO gameStateDTO;
-	private ServerRMIViewRemote view;
-	private ClientOutHandler clientOutHandler;
-	private final static int PORT = 1099;
-	private final static String IP = "127.0.0.1";
+	private transient ServerRMIViewRemote view;
+	private transient ClientOutHandler clientOutHandler;
+	private static final int PORT = 1099;
+	private static final String IP = "127.0.0.1";
 
 	public ConnessioneRMI(String giocatore) throws RemoteException {
 		this.gameStateDTO = new GameStateDTO();
@@ -66,7 +66,7 @@ public class ConnessioneRMI extends UnicastRemoteObject implements Serializable,
 			e.printStackTrace();
 		}
 	}
-
+	@Override
 	public void aggiorna(ClientNotify notify) throws RemoteException {
 		notify.update(gameStateDTO);
 		notify.stamp();

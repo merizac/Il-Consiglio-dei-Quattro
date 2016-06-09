@@ -18,7 +18,7 @@ public class BonusGettoneN extends Azione {
 	/*ottieni il bonus di un gettone ricompensa in cui hai un emporio.
 	 * non puoi scegliere uno dei gettoni avanzamento ul percorso nobiltà
 	 */
-	
+	private final int ID=13;
 	private List<CittàBonus> città;
 	private int numeroGettoni;
 	
@@ -92,6 +92,34 @@ public class BonusGettoneN extends Azione {
 	 */
 	public void setNumeroGettoni(int numeroGettoni) {
 		this.numeroGettoni = numeroGettoni;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ID;
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		BonusGettoneN other = (BonusGettoneN) obj;
+		if (ID != other.ID)
+			return false;
+		return true;
 	}
 	
 }

@@ -2,6 +2,7 @@ package client;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import gameDTO.azioniDTO.AcquistoTesseraPermessoDTO;
@@ -34,7 +35,7 @@ public class ClientOutHandler implements Runnable {
 
 	private Connessione connessione;
 	private GameStateDTO gameStateDTO;
-	private boolean fine=false;
+	private boolean fine = false;
 
 	public ClientOutHandler(Connessione connessione, GameStateDTO gameStateDTO) {
 		this.connessione = connessione;
@@ -50,10 +51,10 @@ public class ClientOutHandler implements Runnable {
 
 		while (!fine) {
 			AzioneDTO action = null;
-			int indice;
 			RegioneDTO regioneScelta;
+
 			BalconeDTO balconeScelto;
-			ArrayList<CartaPoliticaDTO> cartePolitica;
+			List<CartaPoliticaDTO> cartePolitica;
 			CartaPoliticaDTO cartaPolitica;
 			TesseraPermessoDTO tesseraScelta;
 			CittàDTO cittàScelta;
@@ -63,7 +64,7 @@ public class ClientOutHandler implements Runnable {
 
 			String inputLine = stdIn.nextLine();
 
-			if (inputLine.equals("Pesca")) {
+			if ("Pesca".equals(inputLine)) {
 				action = new PescaCartaDTO();
 
 			}
@@ -74,7 +75,8 @@ public class ClientOutHandler implements Runnable {
 
 			else if ("P1".equals(inputLine)) {
 				consigliereScelto = azioniClient.scegliConsigliere(gameStateDTO.getConsiglieri(), stdIn);
-				balconeScelto = azioniClient.scegliBalcone(gameStateDTO.getRegioni(), gameStateDTO.getPlanciaReDTO().getBalconeRe(), stdIn);
+				balconeScelto = azioniClient.scegliBalcone(gameStateDTO.getRegioni(),
+						gameStateDTO.getPlanciaReDTO().getBalconeRe(), stdIn);
 				ElezioneConsigliereDTO elezione = new ElezioneConsigliereDTO();
 				elezione.setConsigliereDTO(consigliereScelto);
 				elezione.setBalconeDTO(balconeScelto);
@@ -135,24 +137,23 @@ public class ClientOutHandler implements Runnable {
 			else if ("V3".equals(inputLine)) {
 				consigliereScelto = azioniClient.scegliConsigliere(gameStateDTO.getConsiglieri(), stdIn);
 				regioneScelta = azioniClient.scegliRegione(gameStateDTO.getRegioni(), stdIn);
-				ElezioneConsigliereVeloceDTO elezione= new ElezioneConsigliereVeloceDTO();
+				ElezioneConsigliereVeloceDTO elezione = new ElezioneConsigliereVeloceDTO();
 				elezione.setConsigliere(consigliereScelto);
 				elezione.setRegione(regioneScelta);
 				action = elezione;
-				
+
 			} else if ("V4".equals(inputLine)) {
 				action = new SecondaAzionePrincipaleDTO();
-				
+
 			} else if ("B1".equals(inputLine)) {
 				regioneScelta = azioniClient.scegliRegione(gameStateDTO.getRegioni(), stdIn);
 				tesseraScelta = azioniClient.scegliTesseraRegione(regioneScelta.getTesserePermessoScoperte(), stdIn);
 				BonusTesseraPermessoNDTO bonus = new BonusTesseraPermessoNDTO();
 				bonus.setRegione(regioneScelta);
 				bonus.setTesseraScoperta(tesseraScelta);
-				
-			
-			} else if ("B2".equals(inputLine)){
-				
+
+			} else if ("B2".equals(inputLine)) {
+
 				BonusTesseraAcquistataNDTO bonus = new BonusTesseraAcquistataNDTO();
 				tesseraScelta = null;
 				System.out.println("Vuoi prendere i bonus di una tessera già usata [1] o di una scoperta [2] ?");
@@ -161,29 +162,34 @@ public class ClientOutHandler implements Runnable {
 				while (!b) {
 					while (!Utils.isNumeric(input)) {
 						System.out.println("valore non valido");
-						input = stdIn.nextLine();}
-					if (Integer.parseInt(input) == 1 || Integer.parseInt(input) == 2)
-						b = true;}
+						input = stdIn.nextLine();
+					}
+					if (Integer.parseInt(input) == 1 || Integer.parseInt(input) == 2) {
+						b = true;
+					}
+				}
 
 				if ("1".equals(input)) {
 					bonus.setUsata(true);
 					System.out.println(gameStateDTO.getGiocatoreDTO().getTesserePermessoUsate());
 					System.out.println("Scegli l'indice della tessera");
 					input = stdIn.nextLine();
-					tesseraScelta = azioniClient.scegliTesseraGiocatore(gameStateDTO.getGiocatoreDTO().getTesserePermessoUsate(), stdIn);
-				} 
-				else if ("2".equals(input)) {
+					tesseraScelta = azioniClient
+							.scegliTesseraGiocatore(gameStateDTO.getGiocatoreDTO().getTesserePermessoUsate(), stdIn);
+				} else if ("2".equals(input)) {
 					bonus.setUsata(false);
 					System.out.println(gameStateDTO.getGiocatoreDTO().getTesserePermesso());
 					System.out.println("Scegli l'indice della tessera");
 					input = stdIn.nextLine();
-					tesseraScelta = azioniClient.scegliTesseraGiocatore(gameStateDTO.getGiocatoreDTO().getTesserePermesso(), stdIn);
-				}	
-					bonus.setTesseraPermesso(tesseraScelta);
+
+					tesseraScelta = azioniClient
+							.scegliTesseraGiocatore(gameStateDTO.getGiocatoreDTO().getTesserePermesso(), stdIn);
 				}
-			
-			else if ("B3".equals(inputLine)){
-				
+
+			}
+
+			else if ("B3".equals(inputLine)) {
+
 			}
 
 			else if ("Offerta".equals(inputLine)) {
@@ -230,15 +236,15 @@ public class ClientOutHandler implements Runnable {
 				action = new AzioneAcquistoDTO(Integer.parseInt(comando), gameStateDTO.getGiocatoreDTO());
 
 			}
-			
-			else if("Exit".equals(inputLine)){
+
+			else if ("Exit".equals(inputLine)) {
 				action = new ExitDTO(gameStateDTO.getGiocatoreDTO());
 			}
 
 			else
 				System.out.println("L'azione non esiste \nInserire un'azione valida");
 
-			if(action!=null)
+			if (action != null)
 				try {
 					connessione.inviaAzione(action);
 				} catch (RemoteException e) {
@@ -246,9 +252,10 @@ public class ClientOutHandler implements Runnable {
 					e.printStackTrace();
 				}
 		}
+
 	}
+
 	public void stop() {
-		this.fine=true;
+		this.fine = true;
 	}
 }
-

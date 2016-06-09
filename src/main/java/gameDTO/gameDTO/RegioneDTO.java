@@ -2,9 +2,8 @@ package gameDTO.gameDTO;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-
+import java.util.List;
 import bonus.Bonus;
-import game.Consigliere;
 import game.Regione;
 import game.TesseraPermesso;
 
@@ -12,7 +11,7 @@ public class RegioneDTO implements Serializable {
 	
 	private static final long serialVersionUID = 8912658420067177656L;
 	private String nome;
-	private ArrayList<TesseraPermessoDTO> tesserePermessoScoperte;
+	private List<TesseraPermessoDTO> tesserePermessoScoperte;
 	private Bonus bonusRegione;
 	private BalconeDTO balcone;
 	/**
@@ -30,13 +29,13 @@ public class RegioneDTO implements Serializable {
 	/**
 	 * @return the tesserePermessoScoperte
 	 */
-	public ArrayList<TesseraPermessoDTO> getTesserePermessoScoperte() {
+	public List<TesseraPermessoDTO> getTesserePermessoScoperte() {
 		return tesserePermessoScoperte;
 	}
 	/**
 	 * @param tesserePermessoScoperte the tesserePermessoScoperte to set
 	 */
-	public void setTesserePermessoScoperte(ArrayList<TesseraPermessoDTO> tesserePermessoScoperte) {
+	public void setTesserePermessoScoperte(List<TesseraPermessoDTO> tesserePermessoScoperte) {
 		this.tesserePermessoScoperte = tesserePermessoScoperte;
 	}
 	/**
@@ -54,12 +53,14 @@ public class RegioneDTO implements Serializable {
 	/**
 	 * @return the balcone
 	 */
+
 	public BalconeDTO getBalcone() {
 		return balcone;
 	}
 	/**
 	 * @param balcone the balcone to set
 	 */
+
 	public void setBalcone(BalconeDTO balcone) {
 		this.balcone = balcone;
 	}

@@ -2,6 +2,7 @@ package game.azioni;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import bonus.Bonus;
 import game.Regione;
@@ -16,7 +17,8 @@ import gameDTO.azioniDTO.AzioneDTO;
 
 public class AcquistoTesseraPermesso extends AzionePrincipale implements Bonusable {
 
-	private ArrayList<CartaPolitica> carteGiocatore;
+	private final int ID=2;
+	private List<CartaPolitica> carteGiocatore;
 	private Regione regione;
 	private TesseraPermesso tesseraScoperta;
 
@@ -119,7 +121,7 @@ public class AcquistoTesseraPermesso extends AzionePrincipale implements Bonusab
 	 * @return false if the cards of the player didn't match
 	 */
 	private boolean controllaColori() {
-		ArrayList<Consigliere> copiaConsiglieri = new ArrayList<Consigliere>(regione.getBalcone().getConsigliere());
+		List<Consigliere> copiaConsiglieri = new ArrayList<>(regione.getBalcone().getConsigliere());
 		for (CartaPolitica carta: carteGiocatore ){
 			boolean ok=false;
 			if (carta.equals(new CartaPolitica(new Colore("Multicolore")))){
@@ -147,14 +149,14 @@ public class AcquistoTesseraPermesso extends AzionePrincipale implements Bonusab
 	/**
 	 * @return the carteGiocatore
 	 */
-	public ArrayList<CartaPolitica> getCarteGiocatore() {
+	public List<CartaPolitica> getCarteGiocatore() {
 		return carteGiocatore;
 	}
 
 	/**
 	 * @param carteGiocatore the carteGiocatore to set
 	 */
-	public void setCarteGiocatore(ArrayList<CartaPolitica> carteGiocatore) {
+	public void setCarteGiocatore(List<CartaPolitica> carteGiocatore) {
 		this.carteGiocatore = carteGiocatore;
 	}
 
@@ -179,18 +181,6 @@ public class AcquistoTesseraPermesso extends AzionePrincipale implements Bonusab
 		return tesseraScoperta;
 	}
 
-	/**
-	 * @param indiceTesseraScoperta the indiceTesseraScoperta to set
-	 */
-	/*public void setIndiceTesseraScoperta(int indiceTesseraScoperta) {
-		if(indiceTesseraScoperta>regione.getTesserePermessoScoperte().size())
-			throw new IllegalArgumentException("L'indice della tessera permesso deve essere minore di "+regione.getTesserePermessoScoperte().size());
-		if(indiceTesseraScoperta<0)
-			throw new IllegalArgumentException("L'indice della tessera permesso deve essere maggiore di 0");
-		
-		this.indiceTesseraScoperta = indiceTesseraScoperta;
-	}*/
-
 	@Override
 	public AzioneDTO getAzioneDTO() {
 		return new AcquistoTesseraPermessoDTO();
@@ -204,5 +194,35 @@ public class AcquistoTesseraPermesso extends AzionePrincipale implements Bonusab
 			throw new IllegalArgumentException("La tessera permesso non può esserre null");
 		this.tesseraScoperta = tesseraScoperta;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ID;
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AcquistoTesseraPermesso other = (AcquistoTesseraPermesso) obj;
+		if (ID != other.ID)
+			return false;
+		return true;
+	}
+	
+	
 
 }

@@ -2,6 +2,8 @@ package gameDTO.gameDTO;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Set;
+
 import game.Città;
 import game.Emporio;
 
@@ -11,7 +13,7 @@ public class CittàDTO implements Serializable{
 	private static final long serialVersionUID = -2915919940093407446L;
 	private String nome;
 	private ColoreDTO ColoreDTO;
-	private HashSet<String> empori;
+	private Set<String> empori;
 	/**
 	 * @return the nome
 	 */
@@ -41,13 +43,13 @@ public class CittàDTO implements Serializable{
 	/**
 	 * @return the empori
 	 */
-	public HashSet<String> getEmpori() {
+	public Set<String> getEmpori() {
 		return empori;
 	}
 	/**
 	 * @param empori the empori to set
 	 */
-	public void setEmpori(HashSet<String> empori) {
+	public void setEmpori(Set<String> empori) {
 		this.empori = empori;
 	}
 	/* (non-Javadoc)

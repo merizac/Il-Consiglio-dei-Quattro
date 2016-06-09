@@ -1,6 +1,7 @@
 package client;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -24,7 +25,7 @@ public class AzioniClient {
 	 * 
 	 * @return ConsigliereDTO choose from the player
 	 */
-	public ConsigliereDTO scegliConsigliere(ArrayList<ConsigliereDTO> consiglieri, Scanner stdIn) {
+	public ConsigliereDTO scegliConsigliere(List<ConsigliereDTO> consiglieri, Scanner stdIn) {
 		System.out.println("scegli consigliere");
 		System.out.println(consiglieri);
 		comando = stdIn.nextLine();
@@ -43,7 +44,7 @@ public class AzioniClient {
 	 * 
 	 * @return RegioneDTO choose from the player
 	 */
-	public RegioneDTO scegliRegione(ArrayList<RegioneDTO> regioni, Scanner stdIn) {
+	public RegioneDTO scegliRegione(List<RegioneDTO> regioni, Scanner stdIn) {
 
 		System.out.println("Scegli la regione");
 		System.out.println(regioni);
@@ -56,45 +57,43 @@ public class AzioniClient {
 		}
 		return regioneScelta;
 	}
-	
 
-	public BalconeDTO scegliBalcone(ArrayList<RegioneDTO> regioni, BalconeDTO balconeRe, Scanner stdIn) {
-		BalconeDTO balconeScelto= null;
-		boolean ok=false;
+	public BalconeDTO scegliBalcone(List<RegioneDTO> regioni, BalconeDTO balconeRe, Scanner stdIn) {
+		BalconeDTO balconeScelto = null;
+		boolean ok = false;
 		System.out.println("Scegli il balcone");
-		for(RegioneDTO regione: regioni){
-			System.out.println("Balcone "+ regione.getNome() + ": " + regione.getBalcone()
-								+ "[" + regione.getNome() + "]" );
+		for (RegioneDTO regione : regioni) {
+			System.out.println(
+					"Balcone " + regione.getNome() + ": " + regione.getBalcone() + "[" + regione.getNome() + "]");
 		}
 		System.out.println("Balcone re: " + balconeRe + "[Re]");
-		
-		while(!ok){
+
+		while (!ok) {
 			comando = stdIn.nextLine();
-			if(comando.equals("Mare")){
-				ok=true;
+			if (comando.equals("Mare")) {
+				ok = true;
 				balconeScelto = regioni.get(0).getBalcone();
 			}
-			if(comando.equals("Collina")){
-				ok=true;
+			if (comando.equals("Collina")) {
+				ok = true;
 				balconeScelto = regioni.get(1).getBalcone();
 			}
-			if(comando.equals("Montagna")){
-				ok=true;
+			if (comando.equals("Montagna")) {
+				ok = true;
 				balconeScelto = regioni.get(2).getBalcone();
 			}
-			if(comando.equals("Re")){
-				ok=true;
+			if (comando.equals("Re")) {
+				ok = true;
 				balconeScelto = balconeRe;
-			}
-			else {
+			} else {
 				System.out.println("il balcone scelto non è esistente! \nInserire di nuovo!");
 			}
 		}
 		return balconeScelto;
 	}
-	
-	public ArrayList<CartaPoliticaDTO> scegliCarte(ArrayList<CartaPoliticaDTO> carteGiocatore, Scanner stdIn) {
-		ArrayList<CartaPoliticaDTO> cartePolitica = new ArrayList<>();
+
+	public List<CartaPoliticaDTO> scegliCarte(List<CartaPoliticaDTO> carteGiocatore, Scanner stdIn) {
+		List<CartaPoliticaDTO> cartePolitica = new ArrayList<>();
 		int numeroCarte = 3;
 		while (numeroCarte != 0) {
 			System.out.println("Scegli il colore delle carte politica nella tua mano");
@@ -118,21 +117,7 @@ public class AzioniClient {
 		return cartePolitica;
 	}
 
-	/*public int scegliTesseraRegione(ArrayList<TesseraPermessoDTO> tessere, Scanner stdIn) {
-
-		System.out.println("Seleziona tessera permesso[1/2]");
-		for (TesseraPermessoDTO t : tessere)
-			System.out.println(t);
-		comando = stdIn.nextLine();
-		while (!comando.equals("1") && !comando.equals("2")) {
-			System.out.println("tessera selezionata non è esistente|\n Inserire di nuovo");
-			comando = stdIn.nextLine();
-		}
-
-		return Integer.parseInt(comando) - 1;
-	}*/
-	
-	public TesseraPermessoDTO scegliTesseraRegione(ArrayList<TesseraPermessoDTO> tessere, Scanner stdIn) {
+	public TesseraPermessoDTO scegliTesseraRegione(List<TesseraPermessoDTO> tessere, Scanner stdIn) {
 
 		System.out.println("Seleziona tessera permesso[1/2]");
 		for (TesseraPermessoDTO t : tessere)
@@ -146,15 +131,15 @@ public class AzioniClient {
 		return tessere.get((Integer.parseInt(comando) - 1));
 	}
 
-	public TesseraPermessoDTO scegliTesseraGiocatore(ArrayList<TesseraPermessoDTO> tessere, Scanner stdIn) {
+	public TesseraPermessoDTO scegliTesseraGiocatore(List<TesseraPermessoDTO> list, Scanner stdIn) {
 		System.out.println("Seleziona l'indice di una tessera permesso non ancora usata");
-		System.out.println(tessere);
+		System.out.println(list);
 		comando = stdIn.nextLine();
-		TesseraPermessoDTO tesseraScelta = ControlloParametriDTO.tessereGiocatore(comando, tessere);
+		TesseraPermessoDTO tesseraScelta = ControlloParametriDTO.tessereGiocatore(comando, list);
 		while (tesseraScelta == null) {
 			System.out.println("la tessera selezionanata non è esistente!\n Inserire di nuovo");
 			comando = stdIn.nextLine();
-			tesseraScelta = ControlloParametriDTO.tessereGiocatore(comando, tessere);
+			tesseraScelta = ControlloParametriDTO.tessereGiocatore(comando, list);
 		}
 		return tesseraScelta;
 	}
@@ -172,7 +157,7 @@ public class AzioniClient {
 		return cittàScelta;
 	}
 
-	public CartaPoliticaDTO scegliCarta(ArrayList<CartaPoliticaDTO> cartePolitica, Scanner stdIn) {
+	public CartaPoliticaDTO scegliCarta(List<CartaPoliticaDTO> cartePolitica, Scanner stdIn) {
 		System.out.println("Seleziona la carta politica");
 		System.out.println(cartePolitica);
 		comando = stdIn.nextLine();
@@ -194,6 +179,5 @@ public class AzioniClient {
 		}
 		return Integer.parseInt(comando);
 	}
-
 
 }
