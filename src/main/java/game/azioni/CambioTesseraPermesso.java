@@ -70,6 +70,13 @@ public class CambioTesseraPermesso extends AzioneVeloce {
 		this.regione = regione;
 	}
 
+	/**
+	 * @return the regione
+	 */
+	public Regione getRegione() {
+		return regione;
+	}
+
 	@Override
 	public AzioneDTO getAzioneDTO() {
 		return new CambioTesserePermessoDTO();
