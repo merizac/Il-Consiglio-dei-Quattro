@@ -24,6 +24,7 @@ public class BalconeDTO {
 	}
 	
 	public void inizializza(Balcone balcone){
+		consiglieri=new ArrayList<>();
 		for(Consigliere c: balcone.getConsigliere()){
 			ConsigliereDTO consigliereDTO = new ConsigliereDTO();
 			consigliereDTO.inizializza(c);
