@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
 import gameDTO.azioniDTO.AcquistoTesseraPermessoDTO;
 import gameDTO.azioniDTO.AzioneAcquistoDTO;
 import gameDTO.azioniDTO.AzioneDTO;
@@ -21,6 +22,7 @@ import gameDTO.azioniDTO.PassaDTO;
 import gameDTO.azioniDTO.PescaCartaDTO;
 import gameDTO.azioniDTO.SecondaAzionePrincipaleDTO;
 import gameDTO.gameDTO.AiutanteDTO;
+import gameDTO.gameDTO.BalconeDTO;
 import gameDTO.gameDTO.CartaPoliticaDTO;
 import gameDTO.gameDTO.CittàDTO;
 import gameDTO.gameDTO.ConsigliereDTO;
@@ -50,6 +52,8 @@ public class ClientOutHandler implements Runnable {
 		while (!fine) {
 			AzioneDTO action = null;
 			RegioneDTO regioneScelta;
+
+			BalconeDTO balconeScelto;
 			List<CartaPoliticaDTO> cartePolitica;
 			CartaPoliticaDTO cartaPolitica;
 			TesseraPermessoDTO tesseraScelta;
@@ -71,10 +75,11 @@ public class ClientOutHandler implements Runnable {
 
 			else if ("P1".equals(inputLine)) {
 				consigliereScelto = azioniClient.scegliConsigliere(gameStateDTO.getConsiglieri(), stdIn);
-				regioneScelta = azioniClient.scegliRegione(gameStateDTO.getRegioni(), stdIn);
+				balconeScelto = azioniClient.scegliBalcone(gameStateDTO.getRegioni(),
+						gameStateDTO.getPlanciaReDTO().getBalconeRe(), stdIn);
 				ElezioneConsigliereDTO elezione = new ElezioneConsigliereDTO();
 				elezione.setConsigliereDTO(consigliereScelto);
-				elezione.setRegioneDTO(regioneScelta);
+				elezione.setBalconeDTO(balconeScelto);
 				action = elezione;
 
 			}
@@ -176,11 +181,11 @@ public class ClientOutHandler implements Runnable {
 					System.out.println(gameStateDTO.getGiocatoreDTO().getTesserePermesso());
 					System.out.println("Scegli l'indice della tessera");
 					input = stdIn.nextLine();
+
 					tesseraScelta = azioniClient
 							.scegliTesseraGiocatore(gameStateDTO.getGiocatoreDTO().getTesserePermesso(), stdIn);
 				}
 
-				bonus.setTesseraPermesso(tesseraScelta);
 			}
 
 			else if ("B3".equals(inputLine)) {
@@ -247,6 +252,7 @@ public class ClientOutHandler implements Runnable {
 					e.printStackTrace();
 				}
 		}
+
 	}
 
 	public void stop() {

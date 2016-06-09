@@ -227,9 +227,8 @@ public class Giocatore {
 		this.empori.addAll(empori);
 	}
 
-	// Prova per testare fine partita
 	public void creaEmpori(Colore colore) {
-		for (int i = 0; i < 1; i++) {
+		for (int i = 0; i < 10; i++) {
 			Emporio emporio = new Emporio(colore);
 			empori.add(emporio);
 		}

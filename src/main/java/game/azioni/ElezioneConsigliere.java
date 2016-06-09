@@ -2,9 +2,9 @@ package game.azioni;
 
 import java.util.Arrays;
 
+import game.Balcone;
 import game.Consigliere;
 import game.GameState;
-import game.Regione;
 import game.notify.GameStateNotify;
 import game.notify.GiocatoreNotify;
 import gameDTO.azioniDTO.AzioneDTO;
@@ -13,17 +13,18 @@ import gameDTO.azioniDTO.ElezioneConsigliereDTO;
 public class ElezioneConsigliere extends AzionePrincipale {
 
 	private final int ID = 1;
-	private Regione regione;
+	private Balcone balcone;
 	private Consigliere consigliere;
 
 	/**
 	 * @param regione
 	 *            the regione to set
 	 */
-	public void setRegione(Regione regione) {
-		if (regione == null)
+
+	public void setBalcone(Balcone balcone) {
+		if (balcone == null)
 			throw new NullPointerException("La regione deve essere definita");
-		this.regione = regione;
+		this.balcone = balcone;
 	}
 
 	/**
@@ -42,7 +43,7 @@ public class ElezioneConsigliere extends AzionePrincipale {
 	 */
 	@Override
 	public void eseguiAzione(GameState gameState) {
-		Consigliere consigliereTolto = this.regione.getBalcone().aggiungiConsigliere(consigliere);
+		Consigliere consigliereTolto = this.balcone.aggiungiConsigliere(consigliere);
 		gameState.getConsiglieri().remove(consigliere);
 		gameState.getConsiglieri().add(consigliereTolto);
 		gameState.getGiocatoreCorrente().aumentaRicchezza(4);
@@ -89,6 +90,20 @@ public class ElezioneConsigliere extends AzionePrincipale {
 		if (ID != other.ID)
 			return false;
 		return true;
+	}
+
+	/**
+	 * @return the balcone
+	 */
+	public Balcone getBalcone() {
+		return balcone;
+	}
+
+	/**
+	 * @return the consigliere
+	 */
+	public Consigliere getConsigliere() {
+		return consigliere;
 	}
 
 }

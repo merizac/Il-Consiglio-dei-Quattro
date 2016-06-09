@@ -47,7 +47,7 @@ public class GameStateClientNotify implements ClientNotify {
 		for (RegioneDTO r : gameStateDTO.getRegioni()) {
 			System.out.println(r);
 			String balcone = "Balcone [ ";
-			for (ConsigliereDTO cons : r.getBalcone()) {
+			for (ConsigliereDTO cons : r.getBalcone().getConsiglieri()) {
 				balcone = balcone + cons + " ";
 			}
 			balcone = balcone + "]";
@@ -71,7 +71,7 @@ public class GameStateClientNotify implements ClientNotify {
 
 		}
 		String balconeRe = "Balcone Re [ ";
-		for (ConsigliereDTO consRe : gameStateDTO.getPlanciaReDTO().getBalconeRe()) {
+		for (ConsigliereDTO consRe : gameStateDTO.getPlanciaReDTO().getBalconeRe().getConsiglieri()) {
 			balconeRe = balconeRe + consRe + " ";
 		}
 		balconeRe = balconeRe + "]";

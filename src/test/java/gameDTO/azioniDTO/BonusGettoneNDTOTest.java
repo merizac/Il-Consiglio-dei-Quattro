@@ -68,13 +68,11 @@ public class BonusGettoneNDTOTest {
 		
 		bonusGettoneNDTO.setNumeroGettoni(1);
 		bonusGettoneNDTO.setCittà(città);
-		System.out.println(città);
 		
 		BonusGettoneN azioneParser=(BonusGettoneN) bonusGettoneNDTO.accept(visitor);
-		System.out.println();
 		
 		assertEquals(1, azioneParser.getNumeroGettoni());
-
+		assertTrue(azioneParser.getCittà().equals(c));
 	}
 
 	@Test

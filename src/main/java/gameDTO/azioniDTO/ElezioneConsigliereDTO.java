@@ -2,14 +2,14 @@ package gameDTO.azioniDTO;
 
 import game.azioni.Azione;
 import gameDTO.azioniDTO.azioneVisitor.AzioneVisitor;
+import gameDTO.gameDTO.BalconeDTO;
 import gameDTO.gameDTO.ConsigliereDTO;
-import gameDTO.gameDTO.RegioneDTO;
 
 public class ElezioneConsigliereDTO implements AzioneDTO {
 
 	private static final long serialVersionUID = 4208578701329743704L;
 	private ConsigliereDTO consigliereDTO;
-	private RegioneDTO regioneDTO;
+	private BalconeDTO balconeDTO;
 	
 	/**
 	 * @return the consigliereDTO
@@ -20,10 +20,9 @@ public class ElezioneConsigliereDTO implements AzioneDTO {
 	/**
 	 * @return the regioneDTO
 	 */
-	public RegioneDTO getRegioneDTO() {
-		return regioneDTO;
+	public BalconeDTO getBalconeDTO() {
+		return balconeDTO;
 	}
-	
 	
 	@Override
 	public Azione accept(AzioneVisitor azioneVisitor) {
@@ -38,8 +37,8 @@ public class ElezioneConsigliereDTO implements AzioneDTO {
 	/**
 	 * @param regioneDTO the regioneDTO to set
 	 */
-	public void setRegioneDTO(RegioneDTO regioneDTO) {
-		this.regioneDTO = regioneDTO;
+	public void setBalconeDTO(BalconeDTO balconeDTO) {
+		this.balconeDTO = balconeDTO;
 	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
@@ -48,7 +47,4 @@ public class ElezioneConsigliereDTO implements AzioneDTO {
 	public String toString() {
 		return "Eleggere un consigliere  [P1]";
 	}
-	
-	
-
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+import game.Balcone;
 import game.CartaPolitica;
 import game.Città;
 import game.CittàBonus;
@@ -116,10 +117,9 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 	@Override
 	public ElezioneConsigliere visit(ElezioneConsigliereDTO elezioneConsigliereDTO) {
 		ElezioneConsigliere elezioneConsigliere = new ElezioneConsigliere();
-		Regione regione = ControlloParametri.cercaRegione(elezioneConsigliereDTO.getRegioneDTO(),
-				gameState.getRegioni());
-		elezioneConsigliere.setRegione(regione);
-
+		Balcone balcone = ControlloParametri.cercaBalcone(elezioneConsigliereDTO.getBalconeDTO(), 
+				gameState.getPlanciaRe().getBalconeRe(), gameState.getRegioni());
+		elezioneConsigliere.setBalcone(balcone);
 		Consigliere consigliere = ControlloParametri.cercaConsigliere(elezioneConsigliereDTO.getConsigliereDTO(),
 				gameState.getConsiglieri());
 		elezioneConsigliere.setConsigliere(consigliere);
