@@ -6,8 +6,6 @@ import java.util.ArrayList;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import game.Colore;
 import game.Consigliere;
 import game.GameState;
 import game.Giocatore;

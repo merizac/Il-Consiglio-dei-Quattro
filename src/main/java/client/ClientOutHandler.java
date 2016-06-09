@@ -50,7 +50,6 @@ public class ClientOutHandler implements Runnable {
 
 		while (!fine) {
 			AzioneDTO action = null;
-			int indice;
 			RegioneDTO regioneScelta;
 			BalconeDTO balconeScelto;
 			ArrayList<CartaPoliticaDTO> cartePolitica;
@@ -134,10 +133,10 @@ public class ClientOutHandler implements Runnable {
 
 			else if ("V3".equals(inputLine)) {
 				consigliereScelto = azioniClient.scegliConsigliere(gameStateDTO.getConsiglieri(), stdIn);
-				regioneScelta = azioniClient.scegliRegione(gameStateDTO.getRegioni(), stdIn);
+				balconeScelto = azioniClient.scegliBalcone(gameStateDTO.getRegioni(), gameStateDTO.getPlanciaReDTO().getBalconeRe(), stdIn);
 				ElezioneConsigliereVeloceDTO elezione= new ElezioneConsigliereVeloceDTO();
 				elezione.setConsigliere(consigliereScelto);
-				elezione.setRegione(regioneScelta);
+				elezione.setBalcone(balconeScelto);
 				action = elezione;
 				
 			} else if ("V4".equals(inputLine)) {

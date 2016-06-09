@@ -2,8 +2,8 @@ package gameDTO.azioniDTO;
 
 import game.azioni.Azione;
 import gameDTO.azioniDTO.azioneVisitor.AzioneVisitor;
+import gameDTO.gameDTO.BalconeDTO;
 import gameDTO.gameDTO.ConsigliereDTO;
-import gameDTO.gameDTO.RegioneDTO;
 
 public class ElezioneConsigliereVeloceDTO implements AzioneDTO {
 
@@ -11,20 +11,20 @@ public class ElezioneConsigliereVeloceDTO implements AzioneDTO {
 	 * 
 	 */
 	private static final long serialVersionUID = -4829189371404681263L;
-	private RegioneDTO regione;
+	private BalconeDTO balcone;
 	private ConsigliereDTO consigliere;
 	
 	/**
-	 * @return the regione
+	 * @return the balcone
 	 */
-	public RegioneDTO getRegione() {
-		return regione;
+	public BalconeDTO getBalcone() {
+		return balcone;
 	}
 	/**
 	 * @param regione the regione to set
 	 */
-	public void setRegione(RegioneDTO regione) {
-		this.regione = regione;
+	public void setRegione(BalconeDTO balcone) {
+		this.balcone = balcone;
 	}
 	/**
 	 * @return the consigliere
@@ -48,6 +48,12 @@ public class ElezioneConsigliereVeloceDTO implements AzioneDTO {
 	@Override
 	public String toString() {
 		return "Eleggere un consigliere  [V3]";
+	}
+	/**
+	 * @param balcone the balcone to set
+	 */
+	public void setBalcone(BalconeDTO balcone) {
+		this.balcone = balcone;
 	}
 	
 }

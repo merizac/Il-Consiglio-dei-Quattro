@@ -44,7 +44,7 @@ public class ElezioneConsigliereVeloceTest {
 		Consigliere consigliere=regione.getBalcone().getConsigliere().element();
 		Consigliere consigliereAggiungere=new Consigliere(new Colore("A"));
 		elezione.setConsigliere(consigliereAggiungere);
-		elezione.setRegione(regione);
+		elezione.setBalcone(gameState.getRegioni().get(0).getBalcone());
 		elezione.eseguiAzione(gameState);
 		
 		assertTrue(gameState.getConsiglieri().contains(consigliere));
@@ -53,25 +53,25 @@ public class ElezioneConsigliereVeloceTest {
 	}
 
 	@Test
-	public void testGetRegione() {
+	public void testGetBalcone() {
 		ElezioneConsigliereVeloce elezione=new ElezioneConsigliereVeloce();
-		elezione.setRegione(regione);
+		elezione.setBalcone(regione.getBalcone());
 		elezione.setConsigliere(new Consigliere(new Colore("A")));
 		
-		assertTrue(regione==elezione.getRegione());
+		assertTrue(regione.getBalcone()==elezione.getRegione());
 	}
 
 	@Test(expected=NullPointerException.class)
-	public void testSetRegione() {
+	public void testSetBalcone() {
 		ElezioneConsigliereVeloce elezione=new ElezioneConsigliereVeloce();
-		elezione.setRegione(null);
+		elezione.setBalcone(null);
 		elezione.setConsigliere(new Consigliere(new Colore("A")));
 	}
 
 	@Test
 	public void testGetConsigliere() {
 		ElezioneConsigliereVeloce elezione=new ElezioneConsigliereVeloce();
-		elezione.setRegione(regione);
+		elezione.setBalcone(regione.getBalcone());
 		Consigliere consigliere=new Consigliere(new Colore("A"));
 		elezione.setConsigliere(consigliere);
 		
@@ -81,7 +81,7 @@ public class ElezioneConsigliereVeloceTest {
 	@Test(expected=NullPointerException.class)
 	public void testSetConsigliere() {
 		ElezioneConsigliereVeloce elezione=new ElezioneConsigliereVeloce();
-		elezione.setRegione(regione);
+		elezione.setBalcone(regione.getBalcone());
 		elezione.setConsigliere(null);
 	}
 

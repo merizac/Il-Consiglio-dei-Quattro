@@ -1,6 +1,5 @@
 package game.azioni;
 
-import game.Regione;
 import game.notify.ErrorNotify;
 import game.notify.GameStateNotify;
 import game.notify.GiocatoreNotify;
@@ -9,32 +8,34 @@ import gameDTO.azioniDTO.ElezioneConsigliereDTO;
 
 import java.util.Arrays;
 
+import game.Balcone;
 import game.Consigliere;
 import game.GameState;
 
 public class ElezioneConsigliereVeloce extends AzioneVeloce {
 
-	private Regione regione;
+	private Balcone balcone;
 	private Consigliere consigliere;
 
 	
 	/**
-	 * @return the regione
+	 * @return the balcone
+	 * 
 	 */
-	public Regione getRegione() {
-		return regione;
+	public Balcone getRegione() {
+		return balcone;
 	}
 
 
 
 
 	/**
-	 * @param regione the regione to set
+	 * @param balcone the balcone to set
 	 */
-	public void setRegione(Regione regione) {
-		if(regione==null)
-			throw new NullPointerException("La regione passata è null");
-		this.regione = regione;
+	public void setBalcone(Balcone balcone) {
+		if(balcone==null)
+			throw new NullPointerException("Il balcone passato è null");
+		this.balcone = balcone;
 	}
 
 
@@ -76,7 +77,7 @@ public class ElezioneConsigliereVeloce extends AzioneVeloce {
 		}
 
 		else {
-			Consigliere consigliereTolto = this.regione.getBalcone().aggiungiConsigliere(consigliere);
+			Consigliere consigliereTolto = this.balcone.aggiungiConsigliere(consigliere);
 			gameState.getConsiglieri().remove(consigliere);
 			gameState.getConsiglieri().add(consigliereTolto);
 			

@@ -128,9 +128,9 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 	@Override
 	public ElezioneConsigliereVeloce visit(ElezioneConsigliereVeloceDTO elezioneConsigliereVeloceDTO) {
 		ElezioneConsigliereVeloce elezioneConsigliereVeloce = new ElezioneConsigliereVeloce();
-		Regione regione = ControlloParametri.cercaRegione(elezioneConsigliereVeloceDTO.getRegione(),
-				gameState.getRegioni());
-		elezioneConsigliereVeloce.setRegione(regione);
+		Balcone balcone = ControlloParametri.cercaBalcone(elezioneConsigliereVeloceDTO.getBalcone(), 
+				gameState.getPlanciaRe().getBalconeRe(), gameState.getRegioni());
+		elezioneConsigliereVeloce.setBalcone(balcone);
 
 		Consigliere consigliere = ControlloParametri.cercaConsigliere(elezioneConsigliereVeloceDTO.getConsigliere(),
 				gameState.getConsiglieri());
