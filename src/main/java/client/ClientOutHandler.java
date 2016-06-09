@@ -4,7 +4,6 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import gameDTO.BalconeDTO;
 import gameDTO.azioniDTO.AcquistoTesseraPermessoDTO;
 import gameDTO.azioniDTO.AzioneAcquistoDTO;
 import gameDTO.azioniDTO.AzioneDTO;
@@ -22,6 +21,7 @@ import gameDTO.azioniDTO.PassaDTO;
 import gameDTO.azioniDTO.PescaCartaDTO;
 import gameDTO.azioniDTO.SecondaAzionePrincipaleDTO;
 import gameDTO.gameDTO.AiutanteDTO;
+import gameDTO.gameDTO.BalconeDTO;
 import gameDTO.gameDTO.CartaPoliticaDTO;
 import gameDTO.gameDTO.CittàDTO;
 import gameDTO.gameDTO.ConsigliereDTO;

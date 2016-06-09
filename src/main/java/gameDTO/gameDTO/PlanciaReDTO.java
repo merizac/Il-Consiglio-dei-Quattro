@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import bonus.Bonus;
 import game.Consigliere;
 import game.PlanciaRe;
-import gameDTO.BalconeDTO;
 
 public class PlanciaReDTO implements Serializable {
 

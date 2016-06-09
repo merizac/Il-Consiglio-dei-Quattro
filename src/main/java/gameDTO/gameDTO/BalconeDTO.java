@@ -1,10 +1,9 @@
-package gameDTO;
+package gameDTO.gameDTO;
 
 import java.util.ArrayList;
 
 import game.Balcone;
 import game.Consigliere;
-import gameDTO.gameDTO.ConsigliereDTO;
 
 public class BalconeDTO {
 

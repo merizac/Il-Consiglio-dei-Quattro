@@ -7,7 +7,6 @@ import bonus.Bonus;
 import game.Consigliere;
 import game.Regione;
 import game.TesseraPermesso;
-import gameDTO.BalconeDTO;
 
 public class RegioneDTO implements Serializable {
 	

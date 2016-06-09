@@ -13,7 +13,6 @@ import bonus.BonusPuntiVittoria;
 import game.Consigliere;
 import game.GameState;
 import game.Giocatore;
-import gameDTO.BalconeDTO;
 
 public class PlanciaReDTOTest {
 

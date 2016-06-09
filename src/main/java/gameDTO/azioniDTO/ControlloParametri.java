@@ -18,7 +18,7 @@ import game.Giocatore;
 import game.Regione;
 import game.TesseraPermesso;
 import game.market.Offerta;
-import gameDTO.BalconeDTO;
+import gameDTO.gameDTO.BalconeDTO;
 import gameDTO.gameDTO.CartaPoliticaDTO;
 import gameDTO.gameDTO.CittàBonusDTO;
 import gameDTO.gameDTO.CittàDTO;

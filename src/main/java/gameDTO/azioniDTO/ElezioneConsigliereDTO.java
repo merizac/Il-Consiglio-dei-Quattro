@@ -1,8 +1,8 @@
 package gameDTO.azioniDTO;
 
 import game.azioni.Azione;
-import gameDTO.BalconeDTO;
 import gameDTO.azioniDTO.azioneVisitor.AzioneVisitor;
+import gameDTO.gameDTO.BalconeDTO;
 import gameDTO.gameDTO.ConsigliereDTO;
 
 public class ElezioneConsigliereDTO implements AzioneDTO {

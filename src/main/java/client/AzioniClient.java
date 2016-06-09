@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Set;
 
-import gameDTO.BalconeDTO;
+import gameDTO.gameDTO.BalconeDTO;
 import gameDTO.gameDTO.CartaPoliticaDTO;
 import gameDTO.gameDTO.CittàDTO;
 import gameDTO.gameDTO.ColoreDTO;

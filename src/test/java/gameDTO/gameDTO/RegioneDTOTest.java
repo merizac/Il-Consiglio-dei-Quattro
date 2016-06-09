@@ -14,7 +14,6 @@ import game.Consigliere;
 import game.GameState;
 import game.Giocatore;
 import game.TesseraPermesso;
-import gameDTO.BalconeDTO;
 
 public class RegioneDTOTest {
 
