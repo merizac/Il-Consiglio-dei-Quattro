@@ -13,6 +13,7 @@ import bonus.BonusPuntiVittoria;
 import game.Consigliere;
 import game.GameState;
 import game.Giocatore;
+import gameDTO.BalconeDTO;
 
 public class PlanciaReDTOTest {
 
@@ -32,30 +33,25 @@ public class PlanciaReDTOTest {
 	public void testGetBalconeRe() {
 		PlanciaReDTO planciaDTO=new PlanciaReDTO();
 		ArrayList<ConsigliereDTO> balconeRe = new ArrayList<>();
-		for(Consigliere c: gameState.getPlanciaRe().getBalconeRe().getConsigliere()){
-			ConsigliereDTO consigliereDTO = new ConsigliereDTO();
-			consigliereDTO.inizializza(c);
-			balconeRe.add(consigliereDTO);
-		}
+		BalconeDTO balcone=new BalconeDTO();
+		balcone.inizializza(gameState.getPlanciaRe().getBalconeRe());
 
-		planciaDTO.setBalconeRe(balconeRe);;
+		planciaDTO.setBalconeRe(balcone);
 		
-		assertTrue(balconeRe==planciaDTO.getBalconeRe());
+		assertTrue(balcone==planciaDTO.getBalconeRe());
 	}
 
 	@Test
 	public void testSetBalconeRe() {
 		PlanciaReDTO planciaDTO=new PlanciaReDTO();
 		ArrayList<ConsigliereDTO> balconeRe = new ArrayList<>();
-		for(Consigliere c: gameState.getPlanciaRe().getBalconeRe().getConsigliere()){
-			ConsigliereDTO consigliereDTO = new ConsigliereDTO();
-			consigliereDTO.inizializza(c);
-			balconeRe.add(consigliereDTO);
-		}
+		BalconeDTO balcone=new BalconeDTO();
+		balcone.inizializza(gameState.getPlanciaRe().getBalconeRe());
 
-		planciaDTO.setBalconeRe(balconeRe);;
+		planciaDTO.setBalconeRe(balcone);
+	
 		
-		assertTrue(balconeRe==planciaDTO.getBalconeRe());
+		assertTrue(balcone==planciaDTO.getBalconeRe());
 	}
 
 	@Test
@@ -83,7 +79,7 @@ public class PlanciaReDTOTest {
 		PlanciaReDTO planciaDTO=new PlanciaReDTO();
 		planciaDTO.inizializza(gameState.getPlanciaRe());
 		
-		assertTrue(planciaDTO.getBalconeRe().get(0) instanceof ConsigliereDTO);
+		assertTrue(planciaDTO.getBalconeRe().getConsiglieri().get(0) instanceof ConsigliereDTO);
 		assertTrue(gameState.getPlanciaRe().getBonusPremioRe()==planciaDTO.getBonusPremioRe());
 	}
 

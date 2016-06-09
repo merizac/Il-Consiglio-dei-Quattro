@@ -3,6 +3,8 @@ package client;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import gameDTO.BalconeDTO;
 import gameDTO.azioniDTO.AcquistoTesseraPermessoDTO;
 import gameDTO.azioniDTO.AzioneAcquistoDTO;
 import gameDTO.azioniDTO.AzioneDTO;
@@ -50,6 +52,7 @@ public class ClientOutHandler implements Runnable {
 			AzioneDTO action = null;
 			int indice;
 			RegioneDTO regioneScelta;
+			BalconeDTO balconeScelto;
 			ArrayList<CartaPoliticaDTO> cartePolitica;
 			CartaPoliticaDTO cartaPolitica;
 			TesseraPermessoDTO tesseraScelta;
@@ -71,10 +74,10 @@ public class ClientOutHandler implements Runnable {
 
 			else if ("P1".equals(inputLine)) {
 				consigliereScelto = azioniClient.scegliConsigliere(gameStateDTO.getConsiglieri(), stdIn);
-				regioneScelta = azioniClient.scegliRegione(gameStateDTO.getRegioni(), stdIn);
+				balconeScelto = azioniClient.scegliBalcone(gameStateDTO.getRegioni(), gameStateDTO.getPlanciaReDTO().getBalconeRe(), stdIn);
 				ElezioneConsigliereDTO elezione = new ElezioneConsigliereDTO();
 				elezione.setConsigliereDTO(consigliereScelto);
-				elezione.setRegioneDTO(regioneScelta);
+				elezione.setBalconeDTO(balconeScelto);
 				action = elezione;
 
 			}
@@ -176,8 +179,6 @@ public class ClientOutHandler implements Runnable {
 					input = stdIn.nextLine();
 					tesseraScelta = azioniClient.scegliTesseraGiocatore(gameStateDTO.getGiocatoreDTO().getTesserePermesso(), stdIn);
 				}	
-					
-			
 					bonus.setTesseraPermesso(tesseraScelta);
 				}
 			

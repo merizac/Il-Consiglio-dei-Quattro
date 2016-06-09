@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Set;
 
+import gameDTO.BalconeDTO;
 import gameDTO.gameDTO.CartaPoliticaDTO;
 import gameDTO.gameDTO.CittàDTO;
 import gameDTO.gameDTO.ColoreDTO;
@@ -55,7 +56,43 @@ public class AzioniClient {
 		}
 		return regioneScelta;
 	}
+	
 
+	public BalconeDTO scegliBalcone(ArrayList<RegioneDTO> regioni, BalconeDTO balconeRe, Scanner stdIn) {
+		BalconeDTO balconeScelto= null;
+		boolean ok=false;
+		System.out.println("Scegli il balcone");
+		for(RegioneDTO regione: regioni){
+			System.out.println("Balcone "+ regione.getNome() + ": " + regione.getBalcone()
+								+ "[" + regione.getNome() + "]" );
+		}
+		System.out.println("Balcone re: " + balconeRe + "[Re]");
+		
+		while(!ok){
+			comando = stdIn.nextLine();
+			if(comando.equals("Mare")){
+				ok=true;
+				balconeScelto = regioni.get(0).getBalcone();
+			}
+			if(comando.equals("Collina")){
+				ok=true;
+				balconeScelto = regioni.get(1).getBalcone();
+			}
+			if(comando.equals("Montagna")){
+				ok=true;
+				balconeScelto = regioni.get(2).getBalcone();
+			}
+			if(comando.equals("Re")){
+				ok=true;
+				balconeScelto = balconeRe;
+			}
+			else {
+				System.out.println("il balcone scelto non è esistente! \nInserire di nuovo!");
+			}
+		}
+		return balconeScelto;
+	}
+	
 	public ArrayList<CartaPoliticaDTO> scegliCarte(ArrayList<CartaPoliticaDTO> carteGiocatore, Scanner stdIn) {
 		ArrayList<CartaPoliticaDTO> cartePolitica = new ArrayList<>();
 		int numeroCarte = 3;
@@ -157,5 +194,6 @@ public class AzioniClient {
 		}
 		return Integer.parseInt(comando);
 	}
+
 
 }

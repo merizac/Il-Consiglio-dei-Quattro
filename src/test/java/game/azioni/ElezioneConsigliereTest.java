@@ -31,7 +31,7 @@ public class ElezioneConsigliereTest {
 		Consigliere consigliere=gameState.getConsiglieri().get(0);
 		Consigliere consigliereTolto=gameState.getRegioni().get(0).getBalcone().getConsigliere().element();
 		
-		elezioneConsigliere.setRegione(gameState.getRegioni().get(0));
+		elezioneConsigliere.setBalcone(gameState.getRegioni().get(0).getBalcone());
 		elezioneConsigliere.setConsigliere(consigliere);
 		elezioneConsigliere.eseguiAzione(gameState);
 		
@@ -47,7 +47,7 @@ public class ElezioneConsigliereTest {
 	@Test(expected=NullPointerException.class)
 	public void testSetRegione() {
 		ElezioneConsigliere elezioneConsigliere=new ElezioneConsigliere();
-		elezioneConsigliere.setRegione(null);
+		elezioneConsigliere.setBalcone(null);
 	}
 
 	@Test(expected=NullPointerException.class)

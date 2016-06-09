@@ -14,6 +14,7 @@ import game.Consigliere;
 import game.GameState;
 import game.Giocatore;
 import game.TesseraPermesso;
+import gameDTO.BalconeDTO;
 
 public class RegioneDTOTest {
 
@@ -92,30 +93,20 @@ public class RegioneDTOTest {
 	@Test
 	public void testGetBalcone() {
 		RegioneDTO regioneDTO=new RegioneDTO();
-		ArrayList<ConsigliereDTO> balcone=new ArrayList<>();
-		for(Consigliere c: gameState.getRegioni().get(0).getBalcone().getConsigliere()){
-			ConsigliereDTO consigliereDTO=new ConsigliereDTO();
-			consigliereDTO.inizializza(c);
-			balcone.add(consigliereDTO);
-		}
-		regioneDTO.setBalcone(balcone);
-		
+		BalconeDTO balcone=new BalconeDTO();
+		balcone.inizializza(gameState.getRegioni().get(0).getBalcone());
+		regioneDTO.setBalcone(balcone);		
 		assertTrue(balcone==regioneDTO.getBalcone());
-	}
+		}
 
 	@Test
 	public void testSetBalcone() {
 		RegioneDTO regioneDTO=new RegioneDTO();
-		ArrayList<ConsigliereDTO> balcone=new ArrayList<>();
-		for(Consigliere c: gameState.getRegioni().get(0).getBalcone().getConsigliere()){
-			ConsigliereDTO consigliereDTO=new ConsigliereDTO();
-			consigliereDTO.inizializza(c);
-			balcone.add(consigliereDTO);
-		}
-		regioneDTO.setBalcone(balcone);
-		
+		BalconeDTO balcone=new BalconeDTO();
+		balcone.inizializza(gameState.getRegioni().get(0).getBalcone());
+		regioneDTO.setBalcone(balcone);		
 		assertTrue(balcone==regioneDTO.getBalcone());
-	}
+		}
 
 	@Test
 	public void testInizializza() {

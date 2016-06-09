@@ -240,7 +240,7 @@ public int getNumeroTesserePermesso(){
 	
 	public void aggiungiTesseraPermesso(TesseraPermesso tesseraPermesso){
 		this.tesserePermesso.add(tesseraPermesso);
-}
+	}
 
 
 	public void rimuoviTesseraPermesso(TesseraPermesso tesseraPermesso) {
@@ -252,19 +252,19 @@ public int getNumeroTesserePermesso(){
 	}
 	
 	//Prova per testare fine partita
-	public void creaEmpori(Colore colore){
+	/*public void creaEmpori(Colore colore){
 		for(int i=0; i<1; i++){
 			Emporio emporio=new Emporio(colore);
 			empori.add(emporio);
 		}
-	}
+	}*/
 	
-	/*public void creaEmpori(Colore colore){
+	public void creaEmpori(Colore colore){
 		for(int i=0; i<10; i++){
 			Emporio emporio=new Emporio(colore);
 			empori.add(emporio);
 		}
-	}*/
+	}
 
 	
 	

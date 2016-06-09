@@ -5,22 +5,23 @@ import java.util.ArrayList;
 import bonus.Bonus;
 import game.Consigliere;
 import game.PlanciaRe;
+import gameDTO.BalconeDTO;
 
 public class PlanciaReDTO implements Serializable {
 
 	private static final long serialVersionUID = -1277703422395979043L;
-	private ArrayList<ConsigliereDTO> balconeRe;
+	private BalconeDTO balconeRe;
 	private ArrayList<Bonus> bonusPremioRe;
 	/**
 	 * @return the balconeRe
 	 */
-	public ArrayList<ConsigliereDTO> getBalconeRe() {
+	public BalconeDTO getBalconeRe() {
 		return balconeRe;
 	}
 	/**
 	 * @param balconeRe the balconeRe to set
 	 */
-	public void setBalconeRe(ArrayList<ConsigliereDTO> balconeRe) {
+	public void setBalconeRe(BalconeDTO balconeRe) {
 		this.balconeRe = balconeRe;
 	}
 	/**
@@ -38,12 +39,8 @@ public class PlanciaReDTO implements Serializable {
 
 	
 	public void inizializza(PlanciaRe planciaRe){
-		this.balconeRe = new ArrayList<>();
-		for(Consigliere c: planciaRe.getBalconeRe().getConsigliere()){
-			ConsigliereDTO consigliereDTO = new ConsigliereDTO();
-			consigliereDTO.inizializza(c);
-			balconeRe.add(consigliereDTO);
-		}
+		this.balconeRe=new BalconeDTO();
+		this.balconeRe.inizializza(planciaRe.getBalconeRe());
 		this.setBonusPremioRe(planciaRe.getBonusPremioRe());
 		
 	}

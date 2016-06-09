@@ -7,6 +7,7 @@ import bonus.Bonus;
 import game.Consigliere;
 import game.Regione;
 import game.TesseraPermesso;
+import gameDTO.BalconeDTO;
 
 public class RegioneDTO implements Serializable {
 	
@@ -14,7 +15,7 @@ public class RegioneDTO implements Serializable {
 	private String nome;
 	private ArrayList<TesseraPermessoDTO> tesserePermessoScoperte;
 	private Bonus bonusRegione;
-	private ArrayList<ConsigliereDTO> balcone;
+	private BalconeDTO balcone;
 	/**
 	 * @return the nome
 	 */
@@ -54,13 +55,13 @@ public class RegioneDTO implements Serializable {
 	/**
 	 * @return the balcone
 	 */
-	public ArrayList<ConsigliereDTO> getBalcone() {
+	public BalconeDTO getBalcone() {
 		return balcone;
 	}
 	/**
 	 * @param balcone the balcone to set
 	 */
-	public void setBalcone(ArrayList<ConsigliereDTO> balcone) {
+	public void setBalcone(BalconeDTO balcone) {
 		this.balcone = balcone;
 	}
 	/**
@@ -68,12 +69,8 @@ public class RegioneDTO implements Serializable {
 	 */
 	public void inizializza(Regione regione) {
 		this.nome=regione.getNome();
-		this.balcone=new ArrayList<>();
-		for(Consigliere c: regione.getBalcone().getConsigliere()){
-			ConsigliereDTO consigliereDTO=new ConsigliereDTO();
-			consigliereDTO.inizializza(c);
-			this.balcone.add(consigliereDTO);
-		}
+		this.balcone=new BalconeDTO();
+		this.balcone.inizializza(regione.getBalcone());
 		this.tesserePermessoScoperte=new ArrayList<>();
 		for(TesseraPermesso t: regione.getTesserePermessoScoperte()){
 			TesseraPermessoDTO tp=new TesseraPermessoDTO();

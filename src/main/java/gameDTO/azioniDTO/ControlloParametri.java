@@ -8,6 +8,7 @@ import java.util.Set;
 
 import bonus.Bonus;
 import bonus.BonusPuntiNobiltà;
+import game.Balcone;
 import game.CartaPolitica;
 import game.Città;
 import game.CittàBonus;
@@ -17,6 +18,7 @@ import game.Giocatore;
 import game.Regione;
 import game.TesseraPermesso;
 import game.market.Offerta;
+import gameDTO.BalconeDTO;
 import gameDTO.gameDTO.CartaPoliticaDTO;
 import gameDTO.gameDTO.CittàDTO;
 import gameDTO.gameDTO.ConsigliereDTO;
@@ -33,17 +35,24 @@ public class ControlloParametri {
 		}
 		throw new IllegalArgumentException("La regione è inesistente!");
 	}
+	
+	public static Balcone cercaBalcone(BalconeDTO balconeDTO, Balcone balconeRe, ArrayList<Regione> regioni) {
+		for(Regione r: regioni){
+			if(r.getBalcone().getConsigliere().equals(balconeDTO.getConsiglieri()) || 
+					r.getBalcone().getConsigliere().equals(balconeRe.getConsigliere()))
+				return r.getBalcone();
+		}
+		throw new IllegalArgumentException("Il balcone è inesistente!");
+	}
+
 
 	public static ArrayList<CartaPolitica> cercaCartePolitica(List<CartaPoliticaDTO> carte,
 			ArrayList<CartaPolitica> cartePolitica) throws IllegalArgumentException {
-		System.out.println("metodo");
 		ArrayList<CartaPolitica> carteGiocatore = new ArrayList<>();
 		for (CartaPoliticaDTO c : carte) {
 			if (cartePolitica.contains(new CartaPolitica(new Colore(c.getColore())))) {
-				System.out.println("entrato");
 				for (CartaPolitica cp : cartePolitica) {
 					if (cp.getColore().getColore().equals(c.getColore())) {
-						System.out.println("carta :" + cp);
 						cartePolitica.remove(cp);
 						carteGiocatore.add(cp);
 						break;
