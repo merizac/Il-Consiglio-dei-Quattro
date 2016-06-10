@@ -20,6 +20,13 @@ public class BonusGettoneRicompensa extends Bonus {
 	private List<CittàBonus> cittàGiocatore;
 	private CittàBonusDTO cittàDTO;
 	
+	public BonusGettoneRicompensa(){
+		super();
+	}
+
+	public BonusGettoneRicompensa(int quantità) {
+		this.numeroGettoni=quantità;
+	}
 
 	public Azione getAzioneBonus(){
 		BonusGettoneN bonusGettone = new BonusGettoneN();
