@@ -48,9 +48,9 @@ public interface AzioneVisitor {
 	public Passa visit(PassaDTO passaDTO);
 	public AzioneOfferta visit(AzioneOffertaDTO azioneOffertaDTO) throws ParameterException;
 	public AzioneAcquisto visit(AzioneAcquistoDTO azioneAcquistoDTO) throws ParameterException;
-	public BonusGettoneN visit(BonusGettoneNDTO bonusGettoneDTO) throws ParameterException;
 	public BonusTesseraAcquistataN visit(BonusTesseraAcquistataNDTO bonusTesseraAcquistataDTO) throws ParameterException;
 	public BonusTesseraPermessoN visit(BonusTesseraPermessoNDTO bonusTesseraPermessoDTO) throws ParameterException;
 	public Exit visit(ExitDTO exitDTO) throws ParameterException;
+	public BonusGettoneN visit(BonusGettoneNDTO bonusGettoneNDTO) throws ParameterException;
 	
 }
