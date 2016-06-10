@@ -21,6 +21,7 @@ import server.model.game.Consigliere;
 import server.model.game.GameState;
 import server.model.game.Giocatore;
 import server.model.game.Regione;
+import utility.ParameterException;
 
 public class ElezioneConsigliereVeloceDTOTest {
 
@@ -81,7 +82,7 @@ public class ElezioneConsigliereVeloceDTOTest {
 	}
 
 	@Test
-	public void testAccept() {
+	public void testAccept() throws ParameterException {
 		ElezioneConsigliereVeloceDTO elezione=new ElezioneConsigliereVeloceDTO();
 		elezione.setConsigliere(consigliereDTO);
 		elezione.setBalcone(regioneDTO.getBalcone());

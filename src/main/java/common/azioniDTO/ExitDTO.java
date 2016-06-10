@@ -3,6 +3,7 @@ package common.azioniDTO;
 import common.azioniDTO.azioneVisitor.AzioneVisitor;
 import common.gameDTO.GiocatoreDTO;
 import server.model.azioni.Exit;
+import utility.ParameterException;
 
 public class ExitDTO implements AzioneDTO {
 
@@ -14,7 +15,7 @@ public class ExitDTO implements AzioneDTO {
 	}
 
 	@Override
-	public Exit accept(AzioneVisitor azioneVisitor) {
+	public Exit accept(AzioneVisitor azioneVisitor) throws ParameterException {
 		return azioneVisitor.visit(this);
 	}
 

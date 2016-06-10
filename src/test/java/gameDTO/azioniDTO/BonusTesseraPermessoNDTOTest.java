@@ -19,6 +19,7 @@ import server.model.game.GameState;
 import server.model.game.Giocatore;
 import server.model.game.Regione;
 import server.model.game.TesseraPermesso;
+import utility.ParameterException;
 
 public class BonusTesseraPermessoNDTOTest {
 
@@ -79,7 +80,7 @@ public class BonusTesseraPermessoNDTOTest {
 	}
 
 	@Test
-	public void testAccept() {
+	public void testAccept() throws ParameterException {
 		BonusTesseraPermessoNDTO bonusTesseraPermessoNDTO=new BonusTesseraPermessoNDTO();
 
 		bonusTesseraPermessoNDTO.setRegione(regioneDTO);

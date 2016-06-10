@@ -5,6 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.SocketException;
+import java.util.Arrays;
 
 import common.azioniDTO.AzioneDTO;
 import common.azioniDTO.azioneVisitor.AzioneVisitor;
@@ -15,8 +16,10 @@ import server.model.azioni.Azione;
 import server.model.azioni.Exit;
 import server.model.game.GameState;
 import server.model.game.Giocatore;
+import server.model.notify.MessageNotify;
 import server.model.notify.Notify;
 import server.view.clientNotify.MessageClientNotify;
+import utility.ParameterException;
 
 public class ServerSocketView extends View implements Runnable {
 
@@ -71,7 +74,15 @@ public class ServerSocketView extends View implements Runnable {
 
 					AzioneDTO action = (AzioneDTO) object;
 					AzioneVisitor azioneVisitor = new AzioneVisitorImpl(gameState, giocatore);
-					Azione azione = action.accept(azioneVisitor);
+					Azione azione=null;
+					try {
+						azione = action.accept(azioneVisitor);
+					} catch (ParameterException e) {
+						update(new MessageNotify(e.getMessage(), Arrays.asList(gameState.getGiocatoreCorrente())));
+						System.out.println("[SERVER] Ricevuta l'azione " + azione+
+								" dal giocatore "+this.giocatore.getNome()+" con errore: "+e.getMessage());
+						continue;
+					}
 					System.out
 							.println("[SERVER] Ricevuta l'azione " + azione + " dal giocatore " + giocatore.getNome());
 					if (azione instanceof Exit) {

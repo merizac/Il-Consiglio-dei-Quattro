@@ -32,24 +32,25 @@ import server.model.azioni.azioniVeloci.CambioTesseraPermesso;
 import server.model.azioni.azioniVeloci.ElezioneConsigliereVeloce;
 import server.model.azioni.azioniVeloci.IngaggioAiutante;
 import server.model.azioni.azioniVeloci.SecondaAzionePrincipale;
+import utility.ParameterException;
 
 public interface AzioneVisitor {
 	
 	public PescaCarta visit(PescaCartaDTO pescaCartaDTO);
-	public AcquistoTesseraPermesso visit(AcquistoTesseraPermessoDTO acquistoTesseraPermessoDTO);
-	public CambioTesseraPermesso visit(CambioTesserePermessoDTO cambioTesserePermessoDTO);
-	public CostruzioneAiutoRe visit(CostruzioneAiutoReDTO costruzioneAiutoReDTO);
-	public CostruzioneTesseraPermesso visit(CostruzioneTesseraPermessoDTO costruzioneTesseraPermessoDTO);
-	public ElezioneConsigliere visit(ElezioneConsigliereDTO elezioneConsigliereDTO);
-	public ElezioneConsigliereVeloce visit(ElezioneConsigliereVeloceDTO elezioneConsigliereVeloceDTO);
+	public AcquistoTesseraPermesso visit(AcquistoTesseraPermessoDTO acquistoTesseraPermessoDTO) throws ParameterException;
+	public CambioTesseraPermesso visit(CambioTesserePermessoDTO cambioTesserePermessoDTO) throws ParameterException;
+	public CostruzioneAiutoRe visit(CostruzioneAiutoReDTO costruzioneAiutoReDTO) throws ParameterException;
+	public CostruzioneTesseraPermesso visit(CostruzioneTesseraPermessoDTO costruzioneTesseraPermessoDTO) throws ParameterException;
+	public ElezioneConsigliere visit(ElezioneConsigliereDTO elezioneConsigliereDTO) throws ParameterException;
+	public ElezioneConsigliereVeloce visit(ElezioneConsigliereVeloceDTO elezioneConsigliereVeloceDTO) throws ParameterException;
 	public IngaggioAiutante visit(IngaggioAiutanteDTO ingaggioAiutanteDTO);
 	public SecondaAzionePrincipale visit(SecondaAzionePrincipaleDTO secondaAzionePrincipaleDTO);
 	public Passa visit(PassaDTO passaDTO);
-	public AzioneOfferta visit(AzioneOffertaDTO azioneOffertaDTO);
-	public AzioneAcquisto visit(AzioneAcquistoDTO azioneAcquistoDTO);
-	public BonusGettoneN visit(BonusGettoneNDTO bonusGettoneDTO);
-	public BonusTesseraAcquistataN visit(BonusTesseraAcquistataNDTO bonusTesseraAcquistataDTO);
-	public BonusTesseraPermessoN visit(BonusTesseraPermessoNDTO bonusTesseraPermessoDTO);
-	public Exit visit(ExitDTO exitDTO);
+	public AzioneOfferta visit(AzioneOffertaDTO azioneOffertaDTO) throws ParameterException;
+	public AzioneAcquisto visit(AzioneAcquistoDTO azioneAcquistoDTO) throws ParameterException;
+	public BonusGettoneN visit(BonusGettoneNDTO bonusGettoneDTO) throws ParameterException;
+	public BonusTesseraAcquistataN visit(BonusTesseraAcquistataNDTO bonusTesseraAcquistataDTO) throws ParameterException;
+	public BonusTesseraPermessoN visit(BonusTesseraPermessoNDTO bonusTesseraPermessoDTO) throws ParameterException;
+	public Exit visit(ExitDTO exitDTO) throws ParameterException;
 	
 }

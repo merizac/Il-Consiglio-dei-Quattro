@@ -11,6 +11,7 @@ import server.model.game.Città;
 import server.model.game.Giocatore;
 import server.model.game.TesseraPermesso;
 import server.model.market.Marketable;
+import utility.ParameterException;
 
 public class TesseraPermessoDTO implements Serializable, MarketableDTO {
 
@@ -67,7 +68,7 @@ public class TesseraPermessoDTO implements Serializable, MarketableDTO {
 	}
 	
 	@Override
-	public TesseraPermesso creaMarketable(Giocatore giocatore) {
+	public TesseraPermesso creaMarketable(Giocatore giocatore) throws ParameterException {
 		return ControlloParametri.cercaTesseraPermesso(this, giocatore.getTesserePermesso());
 	}
 	

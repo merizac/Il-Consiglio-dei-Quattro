@@ -7,6 +7,7 @@ import common.gameDTO.CartaPoliticaDTO;
 import common.gameDTO.RegioneDTO;
 import common.gameDTO.TesseraPermessoDTO;
 import server.model.azioni.Azione;
+import utility.ParameterException;
 
 public class AcquistoTesseraPermessoDTO implements AzioneDTO {
 
@@ -46,7 +47,7 @@ public class AcquistoTesseraPermessoDTO implements AzioneDTO {
 
 	
 	@Override
-	public Azione accept(AzioneVisitor azioneVisitor) {
+	public Azione accept(AzioneVisitor azioneVisitor) throws ParameterException {
 		return azioneVisitor.visit(this);
 		
 	}

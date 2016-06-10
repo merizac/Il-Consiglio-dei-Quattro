@@ -16,6 +16,7 @@ import server.model.azioni.azioniBonus.BonusTesseraAcquistataN;
 import server.model.game.GameState;
 import server.model.game.Giocatore;
 import server.model.game.TesseraPermesso;
+import utility.ParameterException;
 
 public class BonusTesseraAcquistataNDTOTest {
 
@@ -56,7 +57,7 @@ public class BonusTesseraAcquistataNDTOTest {
 	}
 
 	@Test
-	public void testAccept() {
+	public void testAccept() throws ParameterException {
 		BonusTesseraAcquistataNDTO azione=new BonusTesseraAcquistataNDTO();
 		
 		azione.setTesseraPermesso(tesseraPermesso);

@@ -20,6 +20,7 @@ import server.model.game.CartaPolitica;
 import server.model.game.Colore;
 import server.model.game.GameState;
 import server.model.game.Giocatore;
+import utility.ParameterException;
 
 public class AcquistoTesseraPermessoDTOTest {
 
@@ -87,7 +88,7 @@ public class AcquistoTesseraPermessoDTOTest {
 	}
 
 	@Test
-	public void testAccept() {
+	public void testAccept() throws ParameterException {
 		ArrayList<CartaPolitica> c=new ArrayList<>();
 		CartaPolitica carta=new CartaPolitica(new Colore("Multicolore"));
 		gameState.getGiocatoreCorrente().aggiungiCartaPolitica(carta);

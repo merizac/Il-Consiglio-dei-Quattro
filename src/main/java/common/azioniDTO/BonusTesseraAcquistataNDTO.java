@@ -3,6 +3,7 @@ package common.azioniDTO;
 import common.azioniDTO.azioneVisitor.AzioneVisitor;
 import common.gameDTO.TesseraPermessoDTO;
 import server.model.azioni.Azione;
+import utility.ParameterException;
 
 public class BonusTesseraAcquistataNDTO implements AzioneDTO{
 
@@ -28,7 +29,7 @@ public class BonusTesseraAcquistataNDTO implements AzioneDTO{
 	}
 	
 	@Override
-	public Azione accept(AzioneVisitor azioneVisitor) {
+	public Azione accept(AzioneVisitor azioneVisitor) throws ParameterException {
 		return azioneVisitor.visit(this);	
 	}
 	/* (non-Javadoc)

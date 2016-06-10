@@ -18,6 +18,7 @@ import server.model.game.Città;
 import server.model.game.GameState;
 import server.model.game.Giocatore;
 import server.model.game.TesseraPermesso;
+import utility.ParameterException;
 
 public class CostruzioneTesseraPermessoDTOTest {
 
@@ -80,7 +81,7 @@ public class CostruzioneTesseraPermessoDTOTest {
 	}
 
 	@Test
-	public void testAccept() {
+	public void testAccept() throws ParameterException {
 		CostruzioneTesseraPermessoDTO costruzione=new CostruzioneTesseraPermessoDTO();
 		costruzione.setCittà(cittàDTO);
 		costruzione.setTesseraPermesso(tesseraDTO);

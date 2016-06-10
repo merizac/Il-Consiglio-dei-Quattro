@@ -48,6 +48,7 @@ import server.model.game.Regione;
 import server.model.game.TesseraPermesso;
 import server.model.market.Marketable;
 import server.model.market.Offerta;
+import utility.ParameterException;
 
 public class AzioneVisitorImpl implements AzioneVisitor {
 
@@ -63,7 +64,7 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 	}
 
 	@Override
-	public AcquistoTesseraPermesso visit(AcquistoTesseraPermessoDTO acquistoTesseraPermessoDTO) {
+	public AcquistoTesseraPermesso visit(AcquistoTesseraPermessoDTO acquistoTesseraPermessoDTO) throws ParameterException {
 		AcquistoTesseraPermesso acquistoTesseraPermesso = new AcquistoTesseraPermesso();
 		Regione regione = ControlloParametri.cercaRegione(acquistoTesseraPermessoDTO.getRegione(),
 				gameState.getRegioni());
@@ -79,7 +80,7 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 	}
 
 	@Override
-	public CambioTesseraPermesso visit(CambioTesserePermessoDTO cambioTesserePermessoDTO) {
+	public CambioTesseraPermesso visit(CambioTesserePermessoDTO cambioTesserePermessoDTO) throws ParameterException {
 		CambioTesseraPermesso cambioTesseraPermesso = new CambioTesseraPermesso();
 
 		Regione regione = ControlloParametri.cercaRegione(cambioTesserePermessoDTO.getRegione(),
@@ -90,7 +91,7 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 	}
 
 	@Override
-	public CostruzioneAiutoRe visit(CostruzioneAiutoReDTO costruzioneAiutoReDTO) {
+	public CostruzioneAiutoRe visit(CostruzioneAiutoReDTO costruzioneAiutoReDTO) throws ParameterException {
 		CostruzioneAiutoRe costruzioneAiutoRe = new CostruzioneAiutoRe();
 		Città città = ControlloParametri.cercaCittà(costruzioneAiutoReDTO.getCittà(), gameState.getCittà());
 		costruzioneAiutoRe.setCittàCostruzione(città);
@@ -103,7 +104,7 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 	}
 
 	@Override
-	public CostruzioneTesseraPermesso visit(CostruzioneTesseraPermessoDTO costruzioneTesseraPermessoDTO) {
+	public CostruzioneTesseraPermesso visit(CostruzioneTesseraPermessoDTO costruzioneTesseraPermessoDTO) throws ParameterException {
 		CostruzioneTesseraPermesso costruzioneTesseraPermesso = new CostruzioneTesseraPermesso();
 		TesseraPermesso tesseraPermesso = ControlloParametri.cercaTesseraPermesso(
 				costruzioneTesseraPermessoDTO.getTesseraPermesso(), giocatore.getTesserePermesso());
@@ -117,7 +118,7 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 	}
 
 	@Override
-	public ElezioneConsigliere visit(ElezioneConsigliereDTO elezioneConsigliereDTO) {
+	public ElezioneConsigliere visit(ElezioneConsigliereDTO elezioneConsigliereDTO) throws ParameterException {
 		ElezioneConsigliere elezioneConsigliere = new ElezioneConsigliere();
 		Balcone balcone = ControlloParametri.cercaBalcone(elezioneConsigliereDTO.getBalconeDTO(), 
 				gameState.getPlanciaRe().getBalconeRe(), gameState.getRegioni());
@@ -129,7 +130,7 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 	}
 
 	@Override
-	public ElezioneConsigliereVeloce visit(ElezioneConsigliereVeloceDTO elezioneConsigliereVeloceDTO) {
+	public ElezioneConsigliereVeloce visit(ElezioneConsigliereVeloceDTO elezioneConsigliereVeloceDTO) throws ParameterException {
 		ElezioneConsigliereVeloce elezioneConsigliereVeloce = new ElezioneConsigliereVeloce();
 		Balcone balcone = ControlloParametri.cercaBalcone(elezioneConsigliereVeloceDTO.getBalcone(), 
 				gameState.getPlanciaRe().getBalconeRe(), gameState.getRegioni());
@@ -163,7 +164,7 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 	}
 
 	@Override
-	public AzioneOfferta visit(AzioneOffertaDTO azioneOffertaDTO) {
+	public AzioneOfferta visit(AzioneOffertaDTO azioneOffertaDTO) throws ParameterException {
 		AzioneOfferta azioneOfferta = new AzioneOfferta();
 		Marketable marketable = azioneOffertaDTO.getMarketableDTO().creaMarketable(giocatore);
 		azioneOfferta.setMarketable(marketable);
@@ -172,7 +173,7 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 	}
 
 	@Override
-	public AzioneAcquisto visit(AzioneAcquistoDTO azioneAcquistoDTO) {
+	public AzioneAcquisto visit(AzioneAcquistoDTO azioneAcquistoDTO) throws ParameterException {
 		AzioneAcquisto azioneAcquisto = new AzioneAcquisto();
 		Offerta offerta = ControlloParametri.cercaOfferta(gameState.getOfferteMarket(), azioneAcquistoDTO.getOfferta());
 		Giocatore giocatore = ControlloParametri.cercaGiocatore(azioneAcquistoDTO.getGiocatoreDTO(), gameState.getGiocatori()
@@ -183,7 +184,7 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 	}
 
 	@Override
-	public BonusGettoneN visit(BonusGettoneNDTO bonusGettoneDTO) {
+	public BonusGettoneN visit(BonusGettoneNDTO bonusGettoneDTO) throws ParameterException {
 		BonusGettoneN bonusGettone = new BonusGettoneN();
 		bonusGettone.setCittà(new ArrayList<>());
 		for (int i = 0; i < bonusGettoneDTO.getNumeroGettoni(); i++) {
@@ -197,7 +198,7 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 	}
 
 	@Override
-	public BonusTesseraAcquistataN visit(BonusTesseraAcquistataNDTO bonusTesseraAcquistataDTO) {
+	public BonusTesseraAcquistataN visit(BonusTesseraAcquistataNDTO bonusTesseraAcquistataDTO) throws ParameterException {
 		BonusTesseraAcquistataN bonusTesseraAcquistata = new BonusTesseraAcquistataN();
 		TesseraPermesso tesseraPermesso;
 		if (bonusTesseraAcquistataDTO.isUsata()) {
@@ -212,7 +213,7 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 	}
 
 	@Override
-	public BonusTesseraPermessoN visit(BonusTesseraPermessoNDTO bonusTesseraPermessoDTO) {
+	public BonusTesseraPermessoN visit(BonusTesseraPermessoNDTO bonusTesseraPermessoDTO) throws ParameterException {
 		BonusTesseraPermessoN bonusTesseraPermesso = new BonusTesseraPermessoN();
 		Regione regione = ControlloParametri.cercaRegione(bonusTesseraPermessoDTO.getRegione(), gameState.getRegioni());
 		TesseraPermesso tesseraPermesso = ControlloParametri.cercaTesseraPermesso(
@@ -223,7 +224,7 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 	}
 
 	@Override
-	public Exit visit(ExitDTO exitDTO) {
+	public Exit visit(ExitDTO exitDTO) throws ParameterException {
 		Exit exit=new Exit();
 		Giocatore giocatore=ControlloParametri.cercaGiocatore(exitDTO.getGiocatoreDTO(), gameState.getGiocatori());
 		exit.setGiocatore(giocatore);

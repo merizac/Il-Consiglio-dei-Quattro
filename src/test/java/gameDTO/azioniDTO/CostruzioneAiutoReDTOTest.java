@@ -23,6 +23,7 @@ import server.model.game.Città;
 import server.model.game.Colore;
 import server.model.game.GameState;
 import server.model.game.Giocatore;
+import utility.ParameterException;
 
 public class CostruzioneAiutoReDTOTest {
 
@@ -89,7 +90,7 @@ public class CostruzioneAiutoReDTOTest {
 	}
 
 	@Test
-	public void testAccept() {
+	public void testAccept() throws ParameterException {
 		CostruzioneAiutoReDTO costruzione=new CostruzioneAiutoReDTO();
 
 		costruzione.setCarteGiocatore(carteGiocatore);

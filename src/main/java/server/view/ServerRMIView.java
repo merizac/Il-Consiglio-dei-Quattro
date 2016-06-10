@@ -1,6 +1,7 @@
 package server.view;
 
 import java.rmi.RemoteException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import client.ConnessioneRMIRemota;
@@ -13,7 +14,10 @@ import server.model.azioni.Azione;
 import server.model.azioni.Exit;
 import server.model.game.GameState;
 import server.model.game.Giocatore;
+import server.model.notify.MessageNotify;
 import server.model.notify.Notify;
+import server.view.clientNotify.MessageClientNotify;
+import utility.ParameterException;
 
 public class ServerRMIView extends View implements ServerRMIViewRemote{
 
@@ -51,7 +55,15 @@ public class ServerRMIView extends View implements ServerRMIViewRemote{
 	@Override
 	public void eseguiAzione(AzioneDTO azioneDTO, ConnessioneRMIRemota connessioneRMIRemota) throws RemoteException {
 		AzioneVisitor azioneVisitor = new AzioneVisitorImpl(gameState, this.giocatori.get(connessioneRMIRemota));
-		Azione azione = azioneDTO.accept(azioneVisitor);
+		Azione azione=null;
+		try {
+			azione = azioneDTO.accept(azioneVisitor);
+		} catch (ParameterException e1) {
+			update(new MessageNotify(e1.getMessage(), Arrays.asList(gameState.getGiocatoreCorrente())));
+			System.out.println("[SERVER] Ricevuta l'azione " + azione+
+					" dal giocatore "+this.giocatori.get(connessioneRMIRemota).getNome()+" con errore: "+e1.getMessage());
+			return;
+		}
 		System.out.println("[SERVER] Ricevuta l'azione " + azione+
 				" dal giocatore "+this.giocatori.get(connessioneRMIRemota).getNome());
 		try{
@@ -94,6 +106,7 @@ public class ServerRMIView extends View implements ServerRMIViewRemote{
 	public void disconnetti() {
 		for(ConnessioneRMIRemota c: this.giocatori.keySet()){
 			try {
+				c.aggiorna(new MessageClientNotify("La partita è finita"));
 				c.disconnetti();
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block

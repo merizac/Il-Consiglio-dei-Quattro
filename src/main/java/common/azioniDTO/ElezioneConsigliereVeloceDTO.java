@@ -4,6 +4,7 @@ import common.azioniDTO.azioneVisitor.AzioneVisitor;
 import common.gameDTO.BalconeDTO;
 import common.gameDTO.ConsigliereDTO;
 import server.model.azioni.Azione;
+import utility.ParameterException;
 
 public class ElezioneConsigliereVeloceDTO implements AzioneDTO {
 
@@ -39,7 +40,7 @@ public class ElezioneConsigliereVeloceDTO implements AzioneDTO {
 		this.consigliere = consigliere;
 	}
 	@Override
-	public Azione accept(AzioneVisitor azioneVisitor) {
+	public Azione accept(AzioneVisitor azioneVisitor) throws ParameterException  {
 		return azioneVisitor.visit(this);
 	}
 	/* (non-Javadoc)

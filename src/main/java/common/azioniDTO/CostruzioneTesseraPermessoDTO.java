@@ -5,6 +5,7 @@ import common.azioniDTO.azioneVisitor.AzioneVisitor;
 import common.gameDTO.CittàDTO;
 import common.gameDTO.TesseraPermessoDTO;
 import server.model.azioni.Azione;
+import utility.ParameterException;
 
 public class CostruzioneTesseraPermessoDTO implements AzioneDTO {
 
@@ -41,7 +42,7 @@ public class CostruzioneTesseraPermessoDTO implements AzioneDTO {
 		this.città = città;
 	}
 	@Override
-	public Azione accept(AzioneVisitor azioneVisitor) {
+	public Azione accept(AzioneVisitor azioneVisitor) throws ParameterException {
 		return azioneVisitor.visit(this);
 	}
 	/* (non-Javadoc)

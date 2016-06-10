@@ -3,6 +3,7 @@ package common.azioniDTO;
 import common.azioniDTO.azioneVisitor.AzioneVisitor;
 import common.gameDTO.RegioneDTO;
 import server.model.azioni.Azione;
+import utility.ParameterException;
 
 public class CambioTesserePermessoDTO implements AzioneDTO {
 
@@ -28,7 +29,7 @@ public class CambioTesserePermessoDTO implements AzioneDTO {
 	}
 
 	@Override
-	public Azione accept(AzioneVisitor azioneVisitor) {
+	public Azione accept(AzioneVisitor azioneVisitor) throws ParameterException {
 		return azioneVisitor.visit(this);
 	}
 

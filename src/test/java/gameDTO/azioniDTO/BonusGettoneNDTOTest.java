@@ -24,6 +24,7 @@ import server.model.game.CittàBonus;
 import server.model.game.Colore;
 import server.model.game.GameState;
 import server.model.game.Giocatore;
+import utility.ParameterException;
 
 public class BonusGettoneNDTOTest {
 
@@ -63,7 +64,7 @@ public class BonusGettoneNDTOTest {
 	}
 
 	@Test
-	public void testAccept() {
+	public void testAccept() throws ParameterException {
 		ArrayList<CittàBonus> c=new ArrayList<>();
 		c.add((CittàBonus) gameState.getRegioni().get(0).getCittàRegione().get(0));
 		

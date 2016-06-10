@@ -15,6 +15,7 @@ import server.model.azioni.azioniVeloci.CambioTesseraPermesso;
 import server.model.game.GameState;
 import server.model.game.Giocatore;
 import server.model.game.Regione;
+import utility.ParameterException;
 
 public class CambioTesserePermessoDTOTest {
 
@@ -53,7 +54,7 @@ public class CambioTesserePermessoDTOTest {
 	}
 
 	@Test
-	public void testAccept() {
+	public void testAccept() throws ParameterException {
 		CambioTesserePermessoDTO cambio=new CambioTesserePermessoDTO();
 		cambio.setRegione(regioneDTO);
 		

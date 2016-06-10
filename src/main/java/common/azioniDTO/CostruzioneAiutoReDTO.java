@@ -6,6 +6,7 @@ import common.azioniDTO.azioneVisitor.AzioneVisitor;
 import common.gameDTO.CartaPoliticaDTO;
 import common.gameDTO.CittàDTO;
 import server.model.azioni.Azione;
+import utility.ParameterException;
 
 public class CostruzioneAiutoReDTO implements AzioneDTO {
 
@@ -42,7 +43,7 @@ public class CostruzioneAiutoReDTO implements AzioneDTO {
 		this.città = città;
 	}
 	@Override
-	public Azione accept(AzioneVisitor azioneVisitor) {
+	public Azione accept(AzioneVisitor azioneVisitor) throws ParameterException {
 		return azioneVisitor.visit(this);
 	}
 	/* (non-Javadoc)

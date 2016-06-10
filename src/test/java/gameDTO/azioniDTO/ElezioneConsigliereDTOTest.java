@@ -18,6 +18,7 @@ import server.model.game.Balcone;
 import server.model.game.Consigliere;
 import server.model.game.GameState;
 import server.model.game.Giocatore;
+import utility.ParameterException;
 
 public class ElezioneConsigliereDTOTest {
 
@@ -79,7 +80,7 @@ public class ElezioneConsigliereDTOTest {
 		assertTrue(balconeDTO==elezione.getBalconeDTO());	}
 	
 	@Test
-	public void testAccept() {
+	public void testAccept() throws ParameterException {
 		ElezioneConsigliereDTO elezione=new ElezioneConsigliereDTO();
 		elezione.setConsigliereDTO(consigliereDTO);
 		elezione.setBalconeDTO(balconeDTO);
