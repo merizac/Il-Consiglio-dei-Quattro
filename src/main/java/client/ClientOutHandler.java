@@ -2,13 +2,16 @@ package client;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 import gameDTO.azioniDTO.AcquistoTesseraPermessoDTO;
 import gameDTO.azioniDTO.AzioneAcquistoDTO;
 import gameDTO.azioniDTO.AzioneDTO;
 import gameDTO.azioniDTO.AzioneOffertaDTO;
+import gameDTO.azioniDTO.BonusGettoneNDTO;
 import gameDTO.azioniDTO.BonusTesseraAcquistataNDTO;
 import gameDTO.azioniDTO.BonusTesseraPermessoNDTO;
 import gameDTO.azioniDTO.CambioTesserePermessoDTO;
@@ -24,6 +27,7 @@ import gameDTO.azioniDTO.SecondaAzionePrincipaleDTO;
 import gameDTO.gameDTO.AiutanteDTO;
 import gameDTO.gameDTO.BalconeDTO;
 import gameDTO.gameDTO.CartaPoliticaDTO;
+import gameDTO.gameDTO.CittàBonusDTO;
 import gameDTO.gameDTO.CittàDTO;
 import gameDTO.gameDTO.ConsigliereDTO;
 import gameDTO.gameDTO.GameStateDTO;
@@ -136,8 +140,9 @@ public class ClientOutHandler implements Runnable {
 
 			else if ("V3".equals(inputLine)) {
 				consigliereScelto = azioniClient.scegliConsigliere(gameStateDTO.getConsiglieri(), stdIn);
-				balconeScelto = azioniClient.scegliBalcone(gameStateDTO.getRegioni(), gameStateDTO.getPlanciaReDTO().getBalconeRe(), stdIn);
-				ElezioneConsigliereVeloceDTO elezione= new ElezioneConsigliereVeloceDTO();
+				balconeScelto = azioniClient.scegliBalcone(gameStateDTO.getRegioni(),
+						gameStateDTO.getPlanciaReDTO().getBalconeRe(), stdIn);
+				ElezioneConsigliereVeloceDTO elezione = new ElezioneConsigliereVeloceDTO();
 				elezione.setConsigliere(consigliereScelto);
 				elezione.setBalcone(balconeScelto);
 				action = elezione;
@@ -189,7 +194,48 @@ public class ClientOutHandler implements Runnable {
 			}
 
 			else if ("B3".equals(inputLine)) {
+				Set<CittàBonusDTO> città = new HashSet<>();
+				for (CittàDTO c : gameStateDTO.getCittà()) {
+					if (c.getColoreDTO().getColore()
+							.equals(gameStateDTO.getGiocatoreDTO().getColoreGiocatore().getColore())
+							&& (c instanceof CittàBonusDTO)) {
+						System.out.println(c);
+						città.add((CittàBonusDTO) c);
+					}
+				}
+				System.out.println("Scegli una città");
+				String input = stdIn.nextLine();
+				input = stdIn.nextLine();
+				cittàScelta = azioniClient.scegliCittà(città, gameStateDTO.getGiocatoreDTO().getColoreGiocatore(),
+						stdIn);
+				città.add((CittàBonusDTO) cittàScelta);
+				List<CittàBonusDTO> cittàb = new ArrayList<>(città);
+				BonusGettoneNDTO bonus = new BonusGettoneNDTO();
+				bonus.setCittà(cittàb);
+			}
 
+			else if ("B4".equals(inputLine)) {
+				Set<CittàBonusDTO> città = new HashSet<>();
+				for (CittàDTO c : gameStateDTO.getCittà()) {
+					if (c.getColoreDTO().getColore()
+							.equals(gameStateDTO.getGiocatoreDTO().getColoreGiocatore().getColore())
+							&& (c instanceof CittàBonusDTO)) {
+						System.out.println(c);
+						città.add((CittàBonusDTO) c);
+					}
+				}
+				System.out.println("Scegli una città");
+				String input = stdIn.nextLine();
+				for (int i = 0; i < 2; i++) {
+					input = stdIn.nextLine();
+					cittàScelta = azioniClient.scegliCittà(città, gameStateDTO.getGiocatoreDTO().getColoreGiocatore(),
+							stdIn);
+					città.add((CittàBonusDTO) cittàScelta);
+					System.out.println("Scegli un'altra città con gettone dei bonus diverso dalla prima");
+				}
+				List<CittàBonusDTO> cittàb = new ArrayList<>(città);
+				BonusGettoneNDTO bonus = new BonusGettoneNDTO();
+				bonus.setCittà(cittàb);
 			}
 
 			else if ("Offerta".equals(inputLine)) {

@@ -1,5 +1,6 @@
 package game.azioni;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
 import bonus.Bonus;
@@ -17,6 +18,7 @@ import game.notify.GameStateNotify;
 import game.notify.GiocatoreNotify;
 import gameDTO.azioniDTO.AzioneDTO;
 import gameDTO.azioniDTO.CostruzioneTesseraPermessoDTO;
+import utility.exception.AzioneNonEseguibile;
 
 public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonusable {
 
@@ -53,7 +55,21 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonu
 		gameState.notifyObserver(new GameStateNotify(gameState, gameState.getGiocatori()));
 		gameState.notifyObserver(
 				new GiocatoreNotify(gameState.getGiocatoreCorrente(), Arrays.asList(gameState.getGiocatoreCorrente())));
-		setStatoTransizionePrincipale(gameState);
+		
+	ArrayList<Bonus> bonusCasella = gameState.getGiocatoreCorrente().getPunteggioNobiltà().getBonus();
+		
+		if(!bonusCasella.isEmpty()){	
+				if(controlloBonus(gameState))	
+					setStatoTransizionePrincipale(gameState); 
+				else {
+					try {
+						gameState.getStato().transizioneBonus(gameState);
+					} catch (AzioneNonEseguibile e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					}
+				}
 
 	}
 

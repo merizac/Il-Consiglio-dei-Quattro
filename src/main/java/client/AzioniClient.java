@@ -144,13 +144,13 @@ public class AzioniClient {
 		return tesseraScelta;
 	}
 
-	public CittàDTO scegliCittà(Set<CittàDTO> città, ColoreDTO coloreGiocatore, Scanner stdIn) {
-		System.out.println("Seleziona la città in cui costruire");
+	public CittàDTO scegliCittà(Set<? extends CittàDTO> città, ColoreDTO coloreGiocatore, Scanner stdIn) {
+		System.out.println("Seleziona la città");
 		System.out.println(città);
 		comando = stdIn.nextLine();
 		CittàDTO cittàScelta = ControlloParametriDTO.città(comando, città, coloreGiocatore);
 		while (cittàScelta == null) {
-			System.out.println("la città selezionata non è esistente o contiente già un emporio!\n Inserire di nuovo");
+			System.out.println("la città selezionata non è corretta!\n Inserire di nuovo");
 			comando = stdIn.nextLine();
 			cittàScelta = ControlloParametriDTO.città(comando, città, coloreGiocatore);
 		}

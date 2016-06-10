@@ -21,10 +21,9 @@ public class BonusTesseraPermesso extends Bonus {
 	}
 
 	@Override
-	public void usaBonus(GameState gameState) {
-		
+	public void usaBonus(GameState gameState) {		
+		gameState.getGiocatoreCorrente().getBonusNobiltà().add(this.getAzioneBonus());
 	}
-
 	
 	
 }

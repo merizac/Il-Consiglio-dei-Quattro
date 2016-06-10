@@ -22,6 +22,7 @@ import game.notify.GameStateNotify;
 import game.notify.GiocatoreNotify;
 import gameDTO.azioniDTO.AzioneDTO;
 import gameDTO.azioniDTO.CostruzioneAiutoReDTO;
+import utility.exception.AzioneNonEseguibile;
 
 public class CostruzioneAiutoRe extends AzionePrincipale implements Bonusable{
 
@@ -85,7 +86,21 @@ public class CostruzioneAiutoRe extends AzionePrincipale implements Bonusable{
 		gameState.notifyObserver(new GameStateNotify(gameState, gameState.getGiocatori()));
 		gameState.notifyObserver(new GiocatoreNotify(gameState.getGiocatoreCorrente(), 
 				Arrays.asList(gameState.getGiocatoreCorrente())));
-		setStatoTransizionePrincipale(gameState); 
+		
+	ArrayList<Bonus> bonusCasella = gameState.getGiocatoreCorrente().getPunteggioNobiltà().getBonus();
+		
+		if(!bonusCasella.isEmpty()){	
+				if(controlloBonus(gameState))	
+					setStatoTransizionePrincipale(gameState); 
+				else {
+					try {
+						gameState.getStato().transizioneBonus(gameState);
+					} catch (AzioneNonEseguibile e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					}
+				}
 	}
 	
 	private void controllaCittàRegione(Regione regione, Giocatore giocatore) {

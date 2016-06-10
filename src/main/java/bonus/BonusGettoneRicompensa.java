@@ -20,7 +20,7 @@ public class BonusGettoneRicompensa extends Bonus {
 	private CittàBonusDTO cittàDTO;
 	
 
-	public Azione getAzioneBonus(){
+	private Azione getAzioneBonus(){
 		BonusGettoneN bonusGettone = new BonusGettoneN();
 		bonusGettone.setNumeroGettoni(numeroGettoni);
 		return bonusGettone;
@@ -28,7 +28,7 @@ public class BonusGettoneRicompensa extends Bonus {
 	
 	@Override
 	public void usaBonus(GameState gameState) {		
-		
+		gameState.getGiocatoreCorrente().getBonusNobiltà().add(this.getAzioneBonus());
 	}	
 
 	/* (non-Javadoc)

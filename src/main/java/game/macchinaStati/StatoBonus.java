@@ -20,8 +20,6 @@ public class StatoBonus implements Stato {
 		this.azioni=gameState.getGiocatoreCorrente().getBonusNobiltà();
 		gameState.notifyObserver(new BonusNotify(gameState.getGiocatoreCorrente().getBonusNobiltà(), Arrays.asList(gameState.getGiocatoreCorrente())));
 
-		/*this.bonus=gameState.getGiocatoreCorrente().getBonusNobiltà();
-		gameState.notifyObserver(new BonusNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));*/	
 	}
 	
 	@Override
@@ -35,7 +33,7 @@ public class StatoBonus implements Stato {
 
 	@Override
 	public List<Azione> getAzioni() {
-				return azioni;
+			return azioni;
 	}
 
 	/* (non-Javadoc)

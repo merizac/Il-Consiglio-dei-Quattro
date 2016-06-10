@@ -5,6 +5,7 @@ import game.Regione;
 import game.TesseraPermesso;
 import gameDTO.azioniDTO.AzioneDTO;
 import gameDTO.azioniDTO.BonusTesseraPermessoNDTO;
+import utility.exception.AzioneNonEseguibile;
 
 public class BonusTesseraPermessoN extends Azione {
 
@@ -22,6 +23,14 @@ public class BonusTesseraPermessoN extends Azione {
 		gameState.getGiocatoreCorrente().getTesserePermesso().add(tesseraScoperta);
 		
 		regione.getTesserePermessoScoperte().add(regione.getMazzoTesserePermesso().pescaCarte());
+		
+		gameState.getGiocatoreCorrente().getBonusNobiltà().remove(this);
+		try {
+			gameState.getStato().transizioneBonus(gameState);
+		} catch (AzioneNonEseguibile e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**

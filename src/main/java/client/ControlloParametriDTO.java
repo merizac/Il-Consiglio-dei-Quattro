@@ -47,7 +47,7 @@ public class ControlloParametriDTO {
 	}
 
 
-	public static CittàDTO città(String cittàScelta, Set<CittàDTO> città, ColoreDTO colore) {
+	public static CittàDTO città(String cittàScelta, Set<? extends CittàDTO> città, ColoreDTO colore) {
 		for(CittàDTO c: città){
 			if(cittàScelta.equals(c.getNome()) && !(c.getEmpori().contains(colore.getColore())))
 				return c;

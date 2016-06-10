@@ -28,6 +28,13 @@ public class BonusTesseraAcquistataN extends Azione{
 		for(Bonus b: tesseraPermesso.getBonus()){
 			b.usaBonus(gameState);
 		}
+		gameState.getGiocatoreCorrente().getBonusNobiltà().remove(this);
+		try {
+			gameState.getStato().transizioneBonus(gameState);
+		} catch (AzioneNonEseguibile e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**

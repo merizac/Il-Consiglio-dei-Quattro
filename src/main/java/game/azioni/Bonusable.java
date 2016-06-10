@@ -9,14 +9,7 @@ import game.notify.GameStateNotify;
 import game.notify.GiocatoreNotify;
 
 public interface Bonusable {
-	/*ArrayList<Bonus> bonusCasella = gameState.getGiocatoreCorrente().getPunteggioNobiltà().getBonus();
-	
-	if (!bonusCasella.isEmpty()) {
-		for(Bonus bonus: bonusCasella){
-			bonus.usaBonus(gameState);
-			}
-		}*/
-	
+
 	public default boolean controlloBonus(GameState gameState){
 		ArrayList<Bonus> bonusCasella = gameState.getGiocatoreCorrente().getPunteggioNobiltà().getBonus();
 		
@@ -30,8 +23,6 @@ public interface Bonusable {
 			if (gameState.getGiocatoreCorrente().getBonusNobiltà().isEmpty()){
 				return true;
 			}
-
-			else return false;
+			else return false;	
 		}
-	
 }

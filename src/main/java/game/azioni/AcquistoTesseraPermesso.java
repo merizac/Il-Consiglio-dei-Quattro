@@ -14,6 +14,7 @@ import game.TesseraPermesso;
 import game.notify.MessageNotify;
 import gameDTO.azioniDTO.AcquistoTesseraPermessoDTO;
 import gameDTO.azioniDTO.AzioneDTO;
+import utility.exception.AzioneNonEseguibile;
 
 public class AcquistoTesseraPermesso extends AzionePrincipale implements Bonusable {
 
@@ -26,6 +27,7 @@ public class AcquistoTesseraPermesso extends AzionePrincipale implements Bonusab
 	/**
 	 * check if the color of cards passed are the same of balcone, and check if the player has enough
 	 * money to do the action, then subtract the money due from the player
+	 * @throws AzioneNonEseguibile 
 	 */
 	@Override
 	public void eseguiAzione(GameState gameState) {
@@ -61,15 +63,21 @@ public class AcquistoTesseraPermesso extends AzionePrincipale implements Bonusab
 			System.out.println(b);
 			b.usaBonus(gameState);
 		}
-		/*ArrayList<Bonus> bonusCasella = gameState.getGiocatoreCorrente().getPunteggioNobiltà().getBonus();
+		ArrayList<Bonus> bonusCasella = gameState.getGiocatoreCorrente().getPunteggioNobiltà().getBonus();
 		
 		if(!bonusCasella.isEmpty()){	
 				if(controlloBonus(gameState))	
 					setStatoTransizionePrincipale(gameState); 
-				else 
-					//transizione stato bonus
-		}*/
-	}
+				else {
+					try {
+						gameState.getStato().transizioneBonus(gameState);
+					} catch (AzioneNonEseguibile e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					}
+				}
+			}
 	
 	/**
 	 * 
