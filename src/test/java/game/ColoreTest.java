@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import server.model.game.Colore;
+
 public class ColoreTest {
 
 	static Colore colore;

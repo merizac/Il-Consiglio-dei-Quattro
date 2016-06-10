@@ -2,12 +2,13 @@ package client;
 
 import java.util.List;
 import java.util.Set;
-import gameDTO.gameDTO.CartaPoliticaDTO;
-import gameDTO.gameDTO.CittàDTO;
-import gameDTO.gameDTO.ColoreDTO;
-import gameDTO.gameDTO.ConsigliereDTO;
-import gameDTO.gameDTO.RegioneDTO;
-import gameDTO.gameDTO.TesseraPermessoDTO;
+
+import common.gameDTO.CartaPoliticaDTO;
+import common.gameDTO.CittàDTO;
+import common.gameDTO.ColoreDTO;
+import common.gameDTO.ConsigliereDTO;
+import common.gameDTO.RegioneDTO;
+import common.gameDTO.TesseraPermessoDTO;
 import utility.Utils;
 
 public class ControlloParametriDTO {

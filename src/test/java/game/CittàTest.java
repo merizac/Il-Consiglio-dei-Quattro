@@ -6,6 +6,11 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import server.model.game.Città;
+import server.model.game.Colore;
+import server.model.game.Emporio;
+import server.model.game.Regione;
+
 public class CittàTest {
 
 	static Città città;

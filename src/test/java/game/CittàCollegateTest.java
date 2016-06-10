@@ -8,7 +8,14 @@ import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.SimpleGraph;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import it.polimi.ingsw.cg17.Reader;
+
+import server.model.game.Città;
+import server.model.game.CittàBonus;
+import server.model.game.CittàCollegate;
+import server.model.game.Colore;
+import server.model.game.Emporio;
+import server.model.game.Mappa;
+import server.model.game.Reader;
 
 public class CittàCollegateTest {
 

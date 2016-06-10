@@ -2,7 +2,7 @@ package client;
 
 import java.rmi.RemoteException;
 
-import gameDTO.azioniDTO.AzioneDTO;
+import common.azioniDTO.AzioneDTO;
 
 public interface Connessione {
 

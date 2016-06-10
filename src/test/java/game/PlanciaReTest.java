@@ -7,9 +7,14 @@ import java.util.ArrayList;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import bonus.Bonus;
-import bonus.BonusAiutanti;
-import bonus.BonusCartePolitica;
+import server.model.bonus.Bonus;
+import server.model.bonus.BonusAiutanti;
+import server.model.bonus.BonusCartePolitica;
+import server.model.game.Balcone;
+import server.model.game.Colore;
+import server.model.game.Consigliere;
+import server.model.game.PlanciaRe;
+import server.model.game.PunteggioNobiltà;
 
 public class PlanciaReTest {
 

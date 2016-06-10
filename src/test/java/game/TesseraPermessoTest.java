@@ -8,9 +8,14 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import bonus.Bonus;
-import bonus.BonusAiutanti;
-import gameDTO.gameDTO.TesseraPermessoDTO;
+import common.gameDTO.TesseraPermessoDTO;
+import server.model.bonus.Bonus;
+import server.model.bonus.BonusAiutanti;
+import server.model.game.Città;
+import server.model.game.GameState;
+import server.model.game.Giocatore;
+import server.model.game.Regione;
+import server.model.game.TesseraPermesso;
 
 public class TesseraPermessoTest {
 

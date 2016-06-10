@@ -6,13 +6,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import org.junit.Assert.*;
+
+import server.model.azioni.azioniVeloci.CambioTesseraPermesso;
+import server.model.game.GameState;
+import server.model.game.Giocatore;
+import server.model.game.Regione;
+import server.model.game.TesseraPermesso;
+
 import org.junit.Before;
 import org.junit.Test;
-
-import game.GameState;
-import game.Giocatore;
-import game.Regione;
-import game.TesseraPermesso;
 
 public class CambioTesseraPermessoTest {
 

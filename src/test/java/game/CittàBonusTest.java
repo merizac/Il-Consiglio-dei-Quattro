@@ -9,10 +9,16 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import bonus.Bonus;
-import bonus.BonusAiutanti;
-import bonus.BonusAzionePrincipale;
-import gameDTO.gameDTO.ColoreBonusDTO;
+import common.gameDTO.ColoreBonusDTO;
+import server.model.bonus.Bonus;
+import server.model.bonus.BonusAiutanti;
+import server.model.bonus.BonusAzionePrincipale;
+import server.model.game.Città;
+import server.model.game.CittàBonus;
+import server.model.game.ColoreCittà;
+import server.model.game.GameState;
+import server.model.game.Giocatore;
+import server.model.game.Regione;
 
 public class CittàBonusTest {
 

@@ -11,7 +11,9 @@ import javax.swing.plaf.synth.SynthSpinnerUI;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import it.polimi.ingsw.cg17.Reader;
+import server.model.game.Città;
+import server.model.game.Mappa;
+import server.model.game.Reader;
 
 public class MappaCostruttoreTest {
 	static HashSet<Città> città;

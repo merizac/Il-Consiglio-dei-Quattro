@@ -9,8 +9,15 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import bonus.BonusPuntiVittoria;
-import it.polimi.ingsw.cg17.Reader;
+import server.model.bonus.BonusPuntiVittoria;
+import server.model.game.Balcone;
+import server.model.game.Città;
+import server.model.game.GameState;
+import server.model.game.Giocatore;
+import server.model.game.Mazzo;
+import server.model.game.Reader;
+import server.model.game.Regione;
+import server.model.game.TesseraPermesso;
 
 public class RegioneTest {
 

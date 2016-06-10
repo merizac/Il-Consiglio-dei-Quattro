@@ -8,18 +8,19 @@ import java.util.ArrayList;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import bonus.Bonus;
-import bonus.BonusAiutanti;
-import bonus.BonusMoneta;
-import bonus.BonusPuntiVittoria;
-import game.Città;
-import game.CittàBonus;
-import game.Colore;
-import game.Emporio;
-import game.GameState;
-import game.Giocatore;
-import game.Regione;
-import game.TesseraPermesso;
+import server.model.azioni.azioniPrincipali.CostruzioneTesseraPermesso;
+import server.model.bonus.Bonus;
+import server.model.bonus.BonusAiutanti;
+import server.model.bonus.BonusMoneta;
+import server.model.bonus.BonusPuntiVittoria;
+import server.model.game.Città;
+import server.model.game.CittàBonus;
+import server.model.game.Colore;
+import server.model.game.Emporio;
+import server.model.game.GameState;
+import server.model.game.Giocatore;
+import server.model.game.Regione;
+import server.model.game.TesseraPermesso;
 
 
 public class CostruzioneTesseraPermessoTest {

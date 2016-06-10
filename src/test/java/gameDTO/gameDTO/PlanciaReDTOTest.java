@@ -8,11 +8,14 @@ import java.util.ArrayList;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import bonus.Bonus;
-import bonus.BonusPuntiVittoria;
-import game.Consigliere;
-import game.GameState;
-import game.Giocatore;
+import common.gameDTO.BalconeDTO;
+import common.gameDTO.ConsigliereDTO;
+import common.gameDTO.PlanciaReDTO;
+import server.model.bonus.Bonus;
+import server.model.bonus.BonusPuntiVittoria;
+import server.model.game.Consigliere;
+import server.model.game.GameState;
+import server.model.game.Giocatore;
 
 public class PlanciaReDTOTest {
 

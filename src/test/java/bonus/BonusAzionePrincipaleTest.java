@@ -6,7 +6,8 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import game.GameState;
+import server.model.bonus.BonusAzionePrincipale;
+import server.model.game.GameState;
 
 public class BonusAzionePrincipaleTest {
 

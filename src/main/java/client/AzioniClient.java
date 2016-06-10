@@ -5,13 +5,13 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
-import gameDTO.gameDTO.BalconeDTO;
-import gameDTO.gameDTO.CartaPoliticaDTO;
-import gameDTO.gameDTO.CittàDTO;
-import gameDTO.gameDTO.ColoreDTO;
-import gameDTO.gameDTO.ConsigliereDTO;
-import gameDTO.gameDTO.RegioneDTO;
-import gameDTO.gameDTO.TesseraPermessoDTO;
+import common.gameDTO.BalconeDTO;
+import common.gameDTO.CartaPoliticaDTO;
+import common.gameDTO.CittàDTO;
+import common.gameDTO.ColoreDTO;
+import common.gameDTO.ConsigliereDTO;
+import common.gameDTO.RegioneDTO;
+import common.gameDTO.TesseraPermessoDTO;
 import utility.Utils;
 
 public class AzioniClient {
@@ -73,16 +73,13 @@ public class AzioniClient {
 			if (comando.equals("Mare")) {
 				ok = true;
 				balconeScelto = regioni.get(0).getBalcone();
-			}
-			else if (comando.equals("Collina")) {
+			} else if (comando.equals("Collina")) {
 				ok = true;
 				balconeScelto = regioni.get(1).getBalcone();
-			}
-			else if (comando.equals("Montagna")) {
+			} else if (comando.equals("Montagna")) {
 				ok = true;
 				balconeScelto = regioni.get(2).getBalcone();
-			}
-			else if (comando.equals("Re")) {
+			} else if (comando.equals("Re")) {
 				ok = true;
 				balconeScelto = balconeRe;
 			} else {
@@ -94,8 +91,9 @@ public class AzioniClient {
 
 	public List<CartaPoliticaDTO> scegliCarte(List<CartaPoliticaDTO> carteGiocatore, Scanner stdIn) {
 		List<CartaPoliticaDTO> cartePolitica = new ArrayList<>();
-		int numeroCarte = 3;
+		int numeroCarte = 4;
 		while (numeroCarte != 0) {
+			numeroCarte--;
 			System.out.println("Scegli il colore delle carte politica nella tua mano");
 			System.out.println(carteGiocatore);
 			comando = stdIn.nextLine();
@@ -106,13 +104,14 @@ public class AzioniClient {
 				cartaScelta = ControlloParametriDTO.carteGiocatore(comando, carteGiocatore);
 			}
 			cartePolitica.add(cartaScelta);
-			System.out.println("Vuoi aggiungere un'altra carta [Y/Other]");
-			comando = stdIn.nextLine();
-			if (comando.equals("Y")) {
-				numeroCarte--;
-				continue;
-			} else
-				break;
+			if (numeroCarte != 0) {
+				System.out.println("Vuoi aggiungere un'altra carta [Y/Other]");
+				comando = stdIn.nextLine();
+				if (comando.equals("Y")) {
+					continue;
+				} else
+					break;
+			}
 		}
 		return cartePolitica;
 	}

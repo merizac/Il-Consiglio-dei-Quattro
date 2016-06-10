@@ -8,8 +8,10 @@ import java.util.ArrayList;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import game.GameState;
-import game.Giocatore;
+import server.model.bonus.Bonus;
+import server.model.bonus.BonusMoneta;
+import server.model.game.GameState;
+import server.model.game.Giocatore;
 
 public class BonusMonetaTest {
 

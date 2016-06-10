@@ -8,13 +8,14 @@ import java.util.ArrayList;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import game.GameState;
-import game.Giocatore;
-import game.TesseraPermesso;
-import game.azioni.BonusTesseraAcquistataN;
-import gameDTO.azioniDTO.azioneVisitor.AzioneVisitor;
-import gameDTO.azioniDTO.azioneVisitor.AzioneVisitorImpl;
-import gameDTO.gameDTO.TesseraPermessoDTO;
+import common.azioniDTO.BonusTesseraAcquistataNDTO;
+import common.azioniDTO.azioneVisitor.AzioneVisitor;
+import common.azioniDTO.azioneVisitor.AzioneVisitorImpl;
+import common.gameDTO.TesseraPermessoDTO;
+import server.model.azioni.azioniBonus.BonusTesseraAcquistataN;
+import server.model.game.GameState;
+import server.model.game.Giocatore;
+import server.model.game.TesseraPermesso;
 
 public class BonusTesseraAcquistataNDTOTest {
 

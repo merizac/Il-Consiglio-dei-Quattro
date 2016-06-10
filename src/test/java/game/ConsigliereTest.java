@@ -5,6 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import server.model.game.Colore;
+import server.model.game.Consigliere;
+
 
 public class ConsigliereTest {
 

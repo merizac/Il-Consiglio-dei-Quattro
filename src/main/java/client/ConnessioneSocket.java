@@ -7,10 +7,11 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import gameDTO.azioniDTO.AzioneDTO;
-import gameDTO.gameDTO.GameStateDTO;
-import gameDTO.gameDTO.GiocatoreDTO;
-import view.clientNotify.ClientNotify;
+
+import common.azioniDTO.AzioneDTO;
+import common.gameDTO.GameStateDTO;
+import common.gameDTO.GiocatoreDTO;
+import server.view.clientNotify.ClientNotify;
 
 public class ConnessioneSocket implements Connessione {
 
@@ -37,33 +38,32 @@ public class ConnessioneSocket implements Connessione {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if (socket != null) {
-			try {
-				socketOut = new ObjectOutputStream(socket.getOutputStream());
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			try {
-				socketIn = new ObjectInputStream(socket.getInputStream());
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			System.out.println("Connection create");
-
-			try {
-				socketOut.writeObject(gameStateDTO.getGiocatoreDTO());
-				socketOut.flush();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			ExecutorService executor = Executors.newFixedThreadPool(1);
-			executor.submit(new ClientOutHandler(this, gameStateDTO));
-			listen();
+		try {
+			socketOut = new ObjectOutputStream(socket.getOutputStream());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		try {
+			socketIn = new ObjectInputStream(socket.getInputStream());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("Connection create");
+
+		try {
+			socketOut.writeObject(gameStateDTO.getGiocatoreDTO());
+			socketOut.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		ExecutorService executor = Executors.newFixedThreadPool(1);
+		executor.submit(new ClientOutHandler(this, gameStateDTO));
+		listen();
+
 	}
 
 	private void listen() {
@@ -72,11 +72,9 @@ public class ConnessioneSocket implements Connessione {
 				ClientNotify notify = (ClientNotify) socketIn.readObject();
 				notify.update(gameStateDTO);
 				notify.stamp();
-			}catch(EOFException e){
+			} catch (EOFException e) {
 				disconnetti();
-				fine=true;
-			}
-			catch (ClassNotFoundException | IOException e) {
+			} catch (ClassNotFoundException | IOException e) {
 				e.printStackTrace();
 			}
 		}
@@ -98,8 +96,6 @@ public class ConnessioneSocket implements Connessione {
 	public void disconnetti() {
 		try {
 			this.socket.close();
-			this.socketIn.close();
-			this.socketOut.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

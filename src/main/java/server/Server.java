@@ -18,13 +18,14 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import controller.Controller;
-import game.GameState;
-import game.Giocatore;
-import view.ServerRMIView;
-import view.ServerRMIViewRemote;
-import view.ServerSocketView;
-import view.View;
+
+import server.controller.Controller;
+import server.model.game.GameState;
+import server.model.game.Giocatore;
+import server.view.ServerRMIView;
+import server.view.ServerRMIViewRemote;
+import server.view.ServerSocketView;
+import server.view.View;
 
 public class Server {
 

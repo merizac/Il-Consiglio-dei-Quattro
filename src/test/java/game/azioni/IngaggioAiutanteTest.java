@@ -7,8 +7,9 @@ import java.util.ArrayList;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import game.GameState;
-import game.Giocatore;
+import server.model.azioni.azioniVeloci.IngaggioAiutante;
+import server.model.game.GameState;
+import server.model.game.Giocatore;
 
 public class IngaggioAiutanteTest {
 

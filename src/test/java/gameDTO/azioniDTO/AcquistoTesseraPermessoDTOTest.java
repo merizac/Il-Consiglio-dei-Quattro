@@ -9,16 +9,17 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import game.CartaPolitica;
-import game.Colore;
-import game.GameState;
-import game.Giocatore;
-import game.azioni.AcquistoTesseraPermesso;
-import gameDTO.azioniDTO.azioneVisitor.AzioneVisitor;
-import gameDTO.azioniDTO.azioneVisitor.AzioneVisitorImpl;
-import gameDTO.gameDTO.CartaPoliticaDTO;
-import gameDTO.gameDTO.RegioneDTO;
-import gameDTO.gameDTO.TesseraPermessoDTO;
+import common.azioniDTO.AcquistoTesseraPermessoDTO;
+import common.azioniDTO.azioneVisitor.AzioneVisitor;
+import common.azioniDTO.azioneVisitor.AzioneVisitorImpl;
+import common.gameDTO.CartaPoliticaDTO;
+import common.gameDTO.RegioneDTO;
+import common.gameDTO.TesseraPermessoDTO;
+import server.model.azioni.azioniPrincipali.AcquistoTesseraPermesso;
+import server.model.game.CartaPolitica;
+import server.model.game.Colore;
+import server.model.game.GameState;
+import server.model.game.Giocatore;
 
 public class AcquistoTesseraPermessoDTOTest {
 

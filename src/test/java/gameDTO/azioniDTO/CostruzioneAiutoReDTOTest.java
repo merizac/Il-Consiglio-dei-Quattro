@@ -9,19 +9,20 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import game.CartaPolitica;
-import game.Città;
-import game.Colore;
-import game.GameState;
-import game.Giocatore;
-import game.azioni.BonusTesseraPermessoN;
-import game.azioni.CostruzioneAiutoRe;
-import gameDTO.azioniDTO.azioneVisitor.AzioneVisitor;
-import gameDTO.azioniDTO.azioneVisitor.AzioneVisitorImpl;
-import gameDTO.gameDTO.CartaPoliticaDTO;
-import gameDTO.gameDTO.CittàDTO;
-import gameDTO.gameDTO.RegioneDTO;
-import gameDTO.gameDTO.TesseraPermessoDTO;
+import common.azioniDTO.CostruzioneAiutoReDTO;
+import common.azioniDTO.azioneVisitor.AzioneVisitor;
+import common.azioniDTO.azioneVisitor.AzioneVisitorImpl;
+import common.gameDTO.CartaPoliticaDTO;
+import common.gameDTO.CittàDTO;
+import common.gameDTO.RegioneDTO;
+import common.gameDTO.TesseraPermessoDTO;
+import server.model.azioni.azioniBonus.BonusTesseraPermessoN;
+import server.model.azioni.azioniPrincipali.CostruzioneAiutoRe;
+import server.model.game.CartaPolitica;
+import server.model.game.Città;
+import server.model.game.Colore;
+import server.model.game.GameState;
+import server.model.game.Giocatore;
 
 public class CostruzioneAiutoReDTOTest {
 
