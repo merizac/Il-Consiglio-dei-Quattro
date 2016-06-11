@@ -1,17 +1,14 @@
 package game.azioni;
 
 import static org.junit.Assert.*;
-
 import java.io.IOException;
 import java.util.ArrayList;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import game.CartaPolitica;
-import game.GameState;
-import game.Giocatore;
-import utility.exception.AzioneNonEseguibile;
+import server.model.azioni.PescaCarta;
+import server.model.game.CartaPolitica;
+import server.model.game.GameState;
+import server.model.game.Giocatore;
 
 public class PescaCartaTest {
 	
@@ -28,7 +25,7 @@ public class PescaCartaTest {
 	}
 
 	@Test
-	public void testEseguiAzione() throws AzioneNonEseguibile {
+	public void testEseguiAzione() {
 		PescaCarta pesca=new PescaCarta();
 		CartaPolitica carta=gameState.getMazzoCartePolitica().getCarte().get(0);
 		pesca.eseguiAzione(gameState);

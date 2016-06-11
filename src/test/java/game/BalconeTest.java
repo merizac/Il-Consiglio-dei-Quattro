@@ -9,6 +9,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import server.model.game.Balcone;
+import server.model.game.Colore;
+import server.model.game.Consigliere;
+
 public class BalconeTest {
 
 	static ArrayList<Consigliere> consiglieri=new ArrayList<Consigliere>();

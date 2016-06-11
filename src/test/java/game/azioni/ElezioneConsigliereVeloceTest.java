@@ -8,12 +8,13 @@ import java.util.ArrayList;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import game.Aiutante;
-import game.Colore;
-import game.Consigliere;
-import game.GameState;
-import game.Giocatore;
-import game.Regione;
+import server.model.azioni.azioniVeloci.ElezioneConsigliereVeloce;
+import server.model.game.Aiutante;
+import server.model.game.Colore;
+import server.model.game.Consigliere;
+import server.model.game.GameState;
+import server.model.game.Giocatore;
+import server.model.game.Regione;
 
 public class ElezioneConsigliereVeloceTest {
 

@@ -7,9 +7,10 @@ import java.util.ArrayList;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import bonus.Bonus;
-import bonus.BonusAiutanti;
-import bonus.BonusPuntiVittoria;
+import server.model.bonus.Bonus;
+import server.model.bonus.BonusAiutanti;
+import server.model.bonus.BonusPuntiVittoria;
+import server.model.game.PunteggioNobiltà;
 
 public class PunteggioNobiltàTest {
 

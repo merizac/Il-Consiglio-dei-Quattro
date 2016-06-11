@@ -8,9 +8,11 @@ import java.util.ArrayList;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import game.GameState;
-import game.Giocatore;
-import game.Re;
+import common.gameDTO.CittàDTO;
+import common.gameDTO.ReDTO;
+import server.model.game.GameState;
+import server.model.game.Giocatore;
+import server.model.game.Re;
 
 public class ReDTOTest {
 

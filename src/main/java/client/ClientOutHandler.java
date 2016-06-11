@@ -6,33 +6,33 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
+import common.azioniDTO.AcquistoTesseraPermessoDTO;
+import common.azioniDTO.AzioneAcquistoDTO;
+import common.azioniDTO.AzioneDTO;
+import common.azioniDTO.AzioneOffertaDTO;
+import common.azioniDTO.BonusGettoneNDTO;
+import common.azioniDTO.BonusTesseraAcquistataNDTO;
+import common.azioniDTO.BonusTesseraPermessoNDTO;
+import common.azioniDTO.CambioTesserePermessoDTO;
+import common.azioniDTO.CostruzioneAiutoReDTO;
+import common.azioniDTO.CostruzioneTesseraPermessoDTO;
+import common.azioniDTO.ElezioneConsigliereDTO;
+import common.azioniDTO.ElezioneConsigliereVeloceDTO;
+import common.azioniDTO.ExitDTO;
+import common.azioniDTO.IngaggioAiutanteDTO;
+import common.azioniDTO.PassaDTO;
+import common.azioniDTO.PescaCartaDTO;
+import common.azioniDTO.SecondaAzionePrincipaleDTO;
+import common.gameDTO.AiutanteDTO;
+import common.gameDTO.BalconeDTO;
+import common.gameDTO.CartaPoliticaDTO;
+import common.gameDTO.CittàBonusDTO;
+import common.gameDTO.CittàDTO;
+import common.gameDTO.ConsigliereDTO;
+import common.gameDTO.GameStateDTO;
+import common.gameDTO.RegioneDTO;
+import common.gameDTO.TesseraPermessoDTO;
 
-import gameDTO.azioniDTO.AcquistoTesseraPermessoDTO;
-import gameDTO.azioniDTO.AzioneAcquistoDTO;
-import gameDTO.azioniDTO.AzioneDTO;
-import gameDTO.azioniDTO.AzioneOffertaDTO;
-import gameDTO.azioniDTO.BonusGettoneNDTO;
-import gameDTO.azioniDTO.BonusTesseraAcquistataNDTO;
-import gameDTO.azioniDTO.BonusTesseraPermessoNDTO;
-import gameDTO.azioniDTO.CambioTesserePermessoDTO;
-import gameDTO.azioniDTO.CostruzioneAiutoReDTO;
-import gameDTO.azioniDTO.CostruzioneTesseraPermessoDTO;
-import gameDTO.azioniDTO.ElezioneConsigliereDTO;
-import gameDTO.azioniDTO.ElezioneConsigliereVeloceDTO;
-import gameDTO.azioniDTO.ExitDTO;
-import gameDTO.azioniDTO.IngaggioAiutanteDTO;
-import gameDTO.azioniDTO.PassaDTO;
-import gameDTO.azioniDTO.PescaCartaDTO;
-import gameDTO.azioniDTO.SecondaAzionePrincipaleDTO;
-import gameDTO.gameDTO.AiutanteDTO;
-import gameDTO.gameDTO.BalconeDTO;
-import gameDTO.gameDTO.CartaPoliticaDTO;
-import gameDTO.gameDTO.CittàBonusDTO;
-import gameDTO.gameDTO.CittàDTO;
-import gameDTO.gameDTO.ConsigliereDTO;
-import gameDTO.gameDTO.GameStateDTO;
-import gameDTO.gameDTO.RegioneDTO;
-import gameDTO.gameDTO.TesseraPermessoDTO;
 import utility.Utils;
 
 public class ClientOutHandler implements Runnable {
@@ -257,18 +257,27 @@ public class ClientOutHandler implements Runnable {
 
 				if ("1".equals(comando)) {
 					prezzo = azioniClient.scegliPrezzo(stdIn);
-					action = new AzioneOffertaDTO(new AiutanteDTO(1), prezzo);
+					AzioneOffertaDTO azioneOfferta = new AzioneOffertaDTO();
+					azioneOfferta.setMarketableDTO(new AiutanteDTO(1));
+					azioneOfferta.setPrezzo(prezzo);
+					action = azioneOfferta;
 
 				} else if ("2".equals(comando)) {
 					cartaPolitica = azioniClient
 							.scegliCarta(new ArrayList<>(gameStateDTO.getGiocatoreDTO().getCartePolitica()), stdIn);
 					prezzo = azioniClient.scegliPrezzo(stdIn);
-					action = new AzioneOffertaDTO(cartaPolitica, prezzo);
+					AzioneOffertaDTO azioneOffertaDTO = new AzioneOffertaDTO();
+					azioneOffertaDTO.setMarketableDTO(cartaPolitica);
+					azioneOffertaDTO.setPrezzo(prezzo);
+					action = azioneOffertaDTO;
 				} else if ("3".equals(comando)) {
 					tesseraScelta = azioniClient
 							.scegliTesseraGiocatore(gameStateDTO.getGiocatoreDTO().getTesserePermesso(), stdIn);
 					prezzo = azioniClient.scegliPrezzo(stdIn);
-					action = new AzioneOffertaDTO(tesseraScelta, prezzo);
+					AzioneOffertaDTO azioneOfferta=new AzioneOffertaDTO();
+					azioneOfferta.setMarketableDTO(tesseraScelta);
+					azioneOfferta.setPrezzo(prezzo);
+					action = azioneOfferta;
 				}
 			}
 
@@ -279,7 +288,10 @@ public class ClientOutHandler implements Runnable {
 					System.out.println("Inserire numero offerta valido");
 					comando = stdIn.nextLine();
 				}
-				action = new AzioneAcquistoDTO(Integer.parseInt(comando), gameStateDTO.getGiocatoreDTO());
+				AzioneAcquistoDTO azioneAcquistoDTO=new AzioneAcquistoDTO();
+				azioneAcquistoDTO.setOfferta(Integer.parseInt(comando));
+				azioneAcquistoDTO.setGiocatoreDTO(gameStateDTO.getGiocatoreDTO());
+				action = azioneAcquistoDTO;
 
 			}
 

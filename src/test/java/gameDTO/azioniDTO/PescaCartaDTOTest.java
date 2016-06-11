@@ -1,19 +1,17 @@
 package gameDTO.azioniDTO;
 
 import static org.junit.Assert.*;
-
 import java.io.IOException;
 import java.util.ArrayList;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import game.GameState;
-import game.Giocatore;
-import game.azioni.PescaCarta;
-import gameDTO.azioniDTO.azioneVisitor.AzioneVisitor;
-import gameDTO.azioniDTO.azioneVisitor.AzioneVisitorImpl;
-import utility.exception.AzioneNonEseguibile;
+import common.azioniDTO.PescaCartaDTO;
+import common.azioniDTO.azioneVisitor.AzioneVisitor;
+import common.azioniDTO.azioneVisitor.AzioneVisitorImpl;
+import server.model.azioni.PescaCarta;
+import server.model.game.GameState;
+import server.model.game.Giocatore;
 
 public class PescaCartaDTOTest {
 
@@ -32,7 +30,7 @@ public class PescaCartaDTOTest {
 	}
 
 	@Test
-	public void testAccept() throws AzioneNonEseguibile {
+	public void testAccept(){
 		int numeroCarte=gameState.getGiocatoreCorrente().getCartePolitica().size();
 		PescaCartaDTO pescaDTO=new PescaCartaDTO();
 		PescaCarta azioneParser=(PescaCarta) pescaDTO.accept(visitor);

@@ -9,9 +9,11 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import game.GameState;
-import game.Giocatore;
-import game.PunteggioNobiltà;
+import server.model.bonus.Bonus;
+import server.model.bonus.BonusPuntiNobiltà;
+import server.model.game.GameState;
+import server.model.game.Giocatore;
+import server.model.game.PunteggioNobiltà;
 
 public class BonusPuntiNobiltàTest {
 

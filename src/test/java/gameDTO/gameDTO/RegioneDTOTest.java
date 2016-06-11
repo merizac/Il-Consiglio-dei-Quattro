@@ -7,13 +7,16 @@ import java.util.ArrayList;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import bonus.Bonus;
-import bonus.BonusAiutanti;
-import bonus.BonusPuntiVittoria;
-import game.Consigliere;
-import game.GameState;
-import game.Giocatore;
-import game.TesseraPermesso;
+import common.gameDTO.BalconeDTO;
+import common.gameDTO.RegioneDTO;
+import common.gameDTO.TesseraPermessoDTO;
+import server.model.bonus.Bonus;
+import server.model.bonus.BonusAiutanti;
+import server.model.bonus.BonusPuntiVittoria;
+import server.model.game.Consigliere;
+import server.model.game.GameState;
+import server.model.game.Giocatore;
+import server.model.game.TesseraPermesso;
 
 public class RegioneDTOTest {
 

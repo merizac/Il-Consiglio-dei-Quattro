@@ -8,15 +8,17 @@ import java.util.ArrayList;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import game.Balcone;
-import game.Consigliere;
-import game.GameState;
-import game.Giocatore;
-import game.azioni.ElezioneConsigliere;
-import gameDTO.azioniDTO.azioneVisitor.AzioneVisitor;
-import gameDTO.azioniDTO.azioneVisitor.AzioneVisitorImpl;
-import gameDTO.gameDTO.BalconeDTO;
-import gameDTO.gameDTO.ConsigliereDTO;
+import common.azioniDTO.ElezioneConsigliereDTO;
+import common.azioniDTO.azioneVisitor.AzioneVisitor;
+import common.azioniDTO.azioneVisitor.AzioneVisitorImpl;
+import common.gameDTO.BalconeDTO;
+import common.gameDTO.ConsigliereDTO;
+import server.model.azioni.azioniPrincipali.ElezioneConsigliere;
+import server.model.game.Balcone;
+import server.model.game.Consigliere;
+import server.model.game.GameState;
+import server.model.game.Giocatore;
+import utility.ParameterException;
 
 public class ElezioneConsigliereDTOTest {
 
@@ -78,7 +80,7 @@ public class ElezioneConsigliereDTOTest {
 		assertTrue(balconeDTO==elezione.getBalconeDTO());	}
 	
 	@Test
-	public void testAccept() {
+	public void testAccept() throws ParameterException {
 		ElezioneConsigliereDTO elezione=new ElezioneConsigliereDTO();
 		elezione.setConsigliereDTO(consigliereDTO);
 		elezione.setBalconeDTO(balconeDTO);

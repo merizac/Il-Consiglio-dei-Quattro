@@ -8,18 +8,20 @@ import java.util.ArrayList;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import game.Balcone;
-import game.Consigliere;
-import game.GameState;
-import game.Giocatore;
-import game.Regione;
-import game.azioni.ElezioneConsigliere;
-import game.azioni.ElezioneConsigliereVeloce;
-import gameDTO.azioniDTO.azioneVisitor.AzioneVisitor;
-import gameDTO.azioniDTO.azioneVisitor.AzioneVisitorImpl;
-import gameDTO.gameDTO.BalconeDTO;
-import gameDTO.gameDTO.ConsigliereDTO;
-import gameDTO.gameDTO.RegioneDTO;
+import common.azioniDTO.ElezioneConsigliereVeloceDTO;
+import common.azioniDTO.azioneVisitor.AzioneVisitor;
+import common.azioniDTO.azioneVisitor.AzioneVisitorImpl;
+import common.gameDTO.BalconeDTO;
+import common.gameDTO.ConsigliereDTO;
+import common.gameDTO.RegioneDTO;
+import server.model.azioni.azioniPrincipali.ElezioneConsigliere;
+import server.model.azioni.azioniVeloci.ElezioneConsigliereVeloce;
+import server.model.game.Balcone;
+import server.model.game.Consigliere;
+import server.model.game.GameState;
+import server.model.game.Giocatore;
+import server.model.game.Regione;
+import utility.ParameterException;
 
 public class ElezioneConsigliereVeloceDTOTest {
 
@@ -80,7 +82,7 @@ public class ElezioneConsigliereVeloceDTOTest {
 	}
 
 	@Test
-	public void testAccept() {
+	public void testAccept() throws ParameterException {
 		ElezioneConsigliereVeloceDTO elezione=new ElezioneConsigliereVeloceDTO();
 		elezione.setConsigliere(consigliereDTO);
 		elezione.setBalcone(regioneDTO.getBalcone());

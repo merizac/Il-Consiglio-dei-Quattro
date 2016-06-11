@@ -9,7 +9,11 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import bonus.BonusPuntiVittoria;
+import server.model.bonus.BonusPuntiVittoria;
+import server.model.game.Città;
+import server.model.game.ColoreRe;
+import server.model.game.GameState;
+import server.model.game.Giocatore;
 
 public class ReTest {
 	

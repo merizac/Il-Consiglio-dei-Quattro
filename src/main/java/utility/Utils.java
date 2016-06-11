@@ -1,7 +1,5 @@
 package utility;
 
-import java.util.ArrayList;
-
 public class Utils {
 	
 	public static boolean isNumeric(String numero) {

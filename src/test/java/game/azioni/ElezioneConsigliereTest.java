@@ -6,9 +6,11 @@ import java.util.ArrayList;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import game.Consigliere;
-import game.GameState;
-import game.Giocatore;
+
+import server.model.azioni.azioniPrincipali.ElezioneConsigliere;
+import server.model.game.Consigliere;
+import server.model.game.GameState;
+import server.model.game.Giocatore;
 
 public class ElezioneConsigliereTest {
 

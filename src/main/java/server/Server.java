@@ -18,13 +18,14 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import controller.Controller;
-import game.GameState;
-import game.Giocatore;
-import view.ServerRMIView;
-import view.ServerRMIViewRemote;
-import view.ServerSocketView;
-import view.View;
+
+import server.controller.Controller;
+import server.model.game.GameState;
+import server.model.game.Giocatore;
+import server.view.ServerRMIView;
+import server.view.ServerRMIViewRemote;
+import server.view.ServerSocketView;
+import server.view.View;
 
 public class Server {
 
@@ -38,7 +39,7 @@ public class Server {
 	private final int TIMEOUT = 5000;
 	private Timer timer;
 	private Registry registry;
-	private static Server instance=new Server();
+	private static Server instance = new Server();
 
 	public Server() {
 		this.partite = new HashMap<>();
@@ -47,8 +48,8 @@ public class Server {
 		this.partite.put(gameState, new HashSet<>());
 		this.giocatori = new ArrayList<>();
 	}
-	
-	public static Server getInstance(){
+
+	public static Server getInstance() {
 		return instance;
 	}
 
@@ -70,20 +71,20 @@ public class Server {
 	}
 
 	private void startRMI() throws RemoteException, AlreadyBoundException {
-		
+
 		this.registry = LocateRegistry.createRegistry(CONNESSIONERMI);
 		System.out.println("[SERVER] Server pronto sulla porta : " + CONNESSIONERMI);
-		
+
 		ServerRMIViewRemote game = new ServerRMIView();
 		ServerRMIViewRemote gameRemote = (ServerRMIViewRemote) UnicastRemoteObject.exportObject(game, 0);
-		
+
 		String name = "GIOCO";
 		registry.bind(name, gameRemote);
 	}
 
 	public synchronized void aggiungiGiocatore(Giocatore giocatore, View view) {
 		this.giocatori.add(giocatore);
-		System.out.println("[SERVER] Si è connesso il giocatore : "+ giocatore.getNome());
+		System.out.println("[SERVER] Si è connesso il giocatore : " + giocatore.getNome());
 		this.partite.get(gameState).add(view);
 		if (giocatori.size() == 2) {
 			timer = new Timer();
@@ -100,9 +101,6 @@ public class Server {
 
 	public void aggiungiGiocatoreRMI(Giocatore giocatore, ServerRMIView view) throws RemoteException {
 		this.aggiungiGiocatore(giocatore, view);
-		
-		//ServerRMIViewRemote gameRemote = (ServerRMIViewRemote) UnicastRemoteObject.exportObject(view, 0);
-		
 		String name = "GIOCO";
 		registry.rebind(name, view);
 
@@ -128,11 +126,12 @@ public class Server {
 		}
 
 	}
-	
-	public void disconnettiClient(GameState gameState){
-		for(View v: this.partite.get(gameState)){
+
+	public void disconnettiClient(GameState gameState) {
+		for (View v : this.partite.get(gameState)) {
 			v.disconnetti();
 		}
+		this.partite.remove(gameState);
 	}
 
 	public static void main(String[] args) throws IOException {
@@ -143,19 +142,6 @@ public class Server {
 			e.printStackTrace();
 		}
 		Server.getInstance().startSocket();
-		/*Server server = new Server();
-		try {
-			server.startRMI();
-		} catch (AlreadyBoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		server.startSocket();*/
-	}
-
-	public static void finePartita(GameState gameState2) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

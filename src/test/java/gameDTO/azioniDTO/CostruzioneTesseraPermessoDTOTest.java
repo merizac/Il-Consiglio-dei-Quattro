@@ -8,15 +8,17 @@ import java.util.ArrayList;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import game.Città;
-import game.GameState;
-import game.Giocatore;
-import game.TesseraPermesso;
-import game.azioni.CostruzioneTesseraPermesso;
-import gameDTO.azioniDTO.azioneVisitor.AzioneVisitor;
-import gameDTO.azioniDTO.azioneVisitor.AzioneVisitorImpl;
-import gameDTO.gameDTO.CittàDTO;
-import gameDTO.gameDTO.TesseraPermessoDTO;
+import common.azioniDTO.CostruzioneTesseraPermessoDTO;
+import common.azioniDTO.azioneVisitor.AzioneVisitor;
+import common.azioniDTO.azioneVisitor.AzioneVisitorImpl;
+import common.gameDTO.CittàDTO;
+import common.gameDTO.TesseraPermessoDTO;
+import server.model.azioni.azioniPrincipali.CostruzioneTesseraPermesso;
+import server.model.game.Città;
+import server.model.game.GameState;
+import server.model.game.Giocatore;
+import server.model.game.TesseraPermesso;
+import utility.ParameterException;
 
 public class CostruzioneTesseraPermessoDTOTest {
 
@@ -79,7 +81,7 @@ public class CostruzioneTesseraPermessoDTOTest {
 	}
 
 	@Test
-	public void testAccept() {
+	public void testAccept() throws ParameterException {
 		CostruzioneTesseraPermessoDTO costruzione=new CostruzioneTesseraPermessoDTO();
 		costruzione.setCittà(cittàDTO);
 		costruzione.setTesseraPermesso(tesseraDTO);

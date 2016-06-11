@@ -9,11 +9,13 @@ import java.util.HashSet;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import game.Città;
-import game.Colore;
-import game.Emporio;
-import game.GameState;
-import game.Giocatore;
+import common.gameDTO.CittàDTO;
+import common.gameDTO.ColoreDTO;
+import server.model.game.Città;
+import server.model.game.Colore;
+import server.model.game.Emporio;
+import server.model.game.GameState;
+import server.model.game.Giocatore;
 
 public class CittàDTOTest {
 

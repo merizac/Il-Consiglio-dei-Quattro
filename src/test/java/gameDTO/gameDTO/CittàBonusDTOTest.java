@@ -9,14 +9,15 @@ import java.util.HashSet;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import bonus.Bonus;
-import bonus.BonusAiutanti;
-import game.Città;
-import game.CittàBonus;
-import game.Colore;
-import game.Emporio;
-import game.GameState;
-import game.Giocatore;
+import common.gameDTO.CittàBonusDTO;
+import server.model.bonus.Bonus;
+import server.model.bonus.BonusAiutanti;
+import server.model.game.Città;
+import server.model.game.CittàBonus;
+import server.model.game.Colore;
+import server.model.game.Emporio;
+import server.model.game.GameState;
+import server.model.game.Giocatore;
 
 public class CittàBonusDTOTest {
 	static GameState gameState;

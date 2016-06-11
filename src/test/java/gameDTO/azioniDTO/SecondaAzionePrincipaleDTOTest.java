@@ -8,12 +8,13 @@ import java.util.ArrayList;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import game.Aiutante;
-import game.GameState;
-import game.Giocatore;
-import game.azioni.SecondaAzionePrincipale;
-import gameDTO.azioniDTO.azioneVisitor.AzioneVisitor;
-import gameDTO.azioniDTO.azioneVisitor.AzioneVisitorImpl;
+import common.azioniDTO.SecondaAzionePrincipaleDTO;
+import common.azioniDTO.azioneVisitor.AzioneVisitor;
+import common.azioniDTO.azioneVisitor.AzioneVisitorImpl;
+import server.model.azioni.azioniVeloci.SecondaAzionePrincipale;
+import server.model.game.Aiutante;
+import server.model.game.GameState;
+import server.model.game.Giocatore;
 
 public class SecondaAzionePrincipaleDTOTest {
 

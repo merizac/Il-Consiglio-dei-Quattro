@@ -8,10 +8,11 @@ import java.util.ArrayList;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import game.Aiutante;
-import game.GameState;
-import game.Giocatore;
-import game.market.Marketable;
+import common.gameDTO.AiutanteDTO;
+import server.model.game.Aiutante;
+import server.model.game.GameState;
+import server.model.game.Giocatore;
+import server.model.market.Marketable;
 
 public class AiutanteDTOTest {
 	

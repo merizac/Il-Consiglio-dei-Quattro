@@ -8,6 +8,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import server.model.game.CartaPolitica;
+import server.model.game.Colore;
+import server.model.game.Mazzo;
+
 public class MazzoTest {
 
 	private static ArrayList<CartaPolitica> carte;

@@ -7,10 +7,10 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import game.Aiutante;
-
-import game.GameState;
-import game.Giocatore;
+import server.model.bonus.BonusAiutanti;
+import server.model.game.Aiutante;
+import server.model.game.GameState;
+import server.model.game.Giocatore;
 
 public class BonusAiutantiTest {
 

@@ -8,22 +8,22 @@ import java.util.ArrayList;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import bonus.Bonus;
-import bonus.BonusAiutanti;
-import bonus.BonusAzionePrincipale;
-import bonus.BonusCartePolitica;
-import bonus.BonusMoneta;
-import bonus.BonusNobiltà;
-import bonus.BonusPuntiNobiltà;
-import bonus.BonusPuntiVittoria;
-import controller.Controller;
-import game.CartaPolitica;
-import game.Colore;
-import game.GameState;
-import game.Giocatore;
-import game.Regione;
-import game.TesseraPermesso;
-import gameDTO.gameDTO.GameStateDTO;
+import common.gameDTO.GameStateDTO;
+import server.controller.Controller;
+import server.model.bonus.Bonus;
+import server.model.bonus.BonusAiutanti;
+import server.model.bonus.BonusAzionePrincipale;
+import server.model.bonus.BonusCartePolitica;
+import server.model.bonus.BonusMoneta;
+import server.model.bonus.BonusNobiltà;
+import server.model.bonus.BonusPuntiNobiltà;
+import server.model.bonus.BonusPuntiVittoria;
+import server.model.game.CartaPolitica;
+import server.model.game.Colore;
+import server.model.game.GameState;
+import server.model.game.Giocatore;
+import server.model.game.Regione;
+import server.model.game.TesseraPermesso;
 
 public class AcquistoTesseraPermessoTest {
 

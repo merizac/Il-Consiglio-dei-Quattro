@@ -7,10 +7,11 @@ import java.util.ArrayList;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import bonus.BonusPuntiVittoria;
-import game.ColoreCittà;
-import game.GameState;
-import game.Giocatore;
+import common.gameDTO.ColoreBonusDTO;
+import server.model.bonus.BonusPuntiVittoria;
+import server.model.game.ColoreCittà;
+import server.model.game.GameState;
+import server.model.game.Giocatore;
 
 public class ColoreBonusDTOTest {
 

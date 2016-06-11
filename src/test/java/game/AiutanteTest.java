@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import server.model.game.Aiutante;
+
 public class AiutanteTest {
 
 	@Test(expected=IllegalArgumentException.class)

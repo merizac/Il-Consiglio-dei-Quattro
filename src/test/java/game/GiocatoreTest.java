@@ -8,7 +8,14 @@ import java.util.ArrayList;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import it.polimi.ingsw.cg17.Reader;
+import server.model.game.Aiutante;
+import server.model.game.CartaPolitica;
+import server.model.game.Colore;
+import server.model.game.Emporio;
+import server.model.game.Giocatore;
+import server.model.game.Mazzo;
+import server.model.game.PunteggioNobiltà;
+import server.model.game.Reader;
 
 public class GiocatoreTest {
 	

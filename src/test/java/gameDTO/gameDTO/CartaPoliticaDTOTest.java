@@ -9,12 +9,13 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import game.Aiutante;
-import game.CartaPolitica;
-import game.Colore;
-import game.GameState;
-import game.Giocatore;
-import game.market.Marketable;
+import common.gameDTO.CartaPoliticaDTO;
+import server.model.game.Aiutante;
+import server.model.game.CartaPolitica;
+import server.model.game.Colore;
+import server.model.game.GameState;
+import server.model.game.Giocatore;
+import server.model.market.Marketable;
 
 public class CartaPoliticaDTOTest {
 

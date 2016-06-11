@@ -7,17 +7,19 @@ import java.util.ArrayList;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import game.CittàBonus;
-import game.GameState;
-import game.Giocatore;
-import game.Regione;
-import game.TesseraPermesso;
-import game.azioni.BonusGettoneN;
-import game.azioni.BonusTesseraPermessoN;
-import gameDTO.azioniDTO.azioneVisitor.AzioneVisitor;
-import gameDTO.azioniDTO.azioneVisitor.AzioneVisitorImpl;
-import gameDTO.gameDTO.RegioneDTO;
-import gameDTO.gameDTO.TesseraPermessoDTO;
+import common.azioniDTO.BonusTesseraPermessoNDTO;
+import common.azioniDTO.azioneVisitor.AzioneVisitor;
+import common.azioniDTO.azioneVisitor.AzioneVisitorImpl;
+import common.gameDTO.RegioneDTO;
+import common.gameDTO.TesseraPermessoDTO;
+import server.model.azioni.azioniBonus.BonusGettoneN;
+import server.model.azioni.azioniBonus.BonusTesseraPermessoN;
+import server.model.game.CittàBonus;
+import server.model.game.GameState;
+import server.model.game.Giocatore;
+import server.model.game.Regione;
+import server.model.game.TesseraPermesso;
+import utility.ParameterException;
 
 public class BonusTesseraPermessoNDTOTest {
 
@@ -78,7 +80,7 @@ public class BonusTesseraPermessoNDTOTest {
 	}
 
 	@Test
-	public void testAccept() {
+	public void testAccept() throws ParameterException {
 		BonusTesseraPermessoNDTO bonusTesseraPermessoNDTO=new BonusTesseraPermessoNDTO();
 
 		bonusTesseraPermessoNDTO.setRegione(regioneDTO);

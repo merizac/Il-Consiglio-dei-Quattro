@@ -2,7 +2,8 @@ package client;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import view.clientNotify.ClientNotify;
+
+import server.view.clientNotify.ClientNotify;
 
 public interface ConnessioneRMIRemota extends Remote, Connessione {
 	

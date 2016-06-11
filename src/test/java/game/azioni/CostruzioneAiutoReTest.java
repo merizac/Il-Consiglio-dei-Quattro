@@ -10,22 +10,23 @@ import javax.swing.event.CaretEvent;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import bonus.Bonus;
-import bonus.BonusAiutanti;
-import bonus.BonusMoneta;
-import game.Aiutante;
-import game.Balcone;
-import game.CartaPolitica;
-import game.Città;
-import game.CittàBonus;
-import game.Colore;
-import game.Consigliere;
-import game.Emporio;
-import game.GameState;
-import game.Giocatore;
-import game.PunteggioNobiltà;
-import game.Re;
-import game.TesseraPermesso;
+import server.model.azioni.azioniPrincipali.CostruzioneAiutoRe;
+import server.model.bonus.Bonus;
+import server.model.bonus.BonusAiutanti;
+import server.model.bonus.BonusMoneta;
+import server.model.game.Aiutante;
+import server.model.game.Balcone;
+import server.model.game.CartaPolitica;
+import server.model.game.Città;
+import server.model.game.CittàBonus;
+import server.model.game.Colore;
+import server.model.game.Consigliere;
+import server.model.game.Emporio;
+import server.model.game.GameState;
+import server.model.game.Giocatore;
+import server.model.game.PunteggioNobiltà;
+import server.model.game.Re;
+import server.model.game.TesseraPermesso;
 
 public class CostruzioneAiutoReTest {
 

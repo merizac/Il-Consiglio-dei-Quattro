@@ -7,11 +7,12 @@ import java.util.ArrayList;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import game.GameState;
-import game.Giocatore;
-import game.azioni.IngaggioAiutante;
-import gameDTO.azioniDTO.azioneVisitor.AzioneVisitor;
-import gameDTO.azioniDTO.azioneVisitor.AzioneVisitorImpl;
+import common.azioniDTO.IngaggioAiutanteDTO;
+import common.azioniDTO.azioneVisitor.AzioneVisitor;
+import common.azioniDTO.azioneVisitor.AzioneVisitorImpl;
+import server.model.azioni.azioniVeloci.IngaggioAiutante;
+import server.model.game.GameState;
+import server.model.game.Giocatore;
 
 public class IngaggioAiutanteDTOTest {
 
