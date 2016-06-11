@@ -15,6 +15,7 @@ import server.view.clientNotify.ClientNotify;
 
 public class ConnessioneSocket implements Connessione {
 
+	private Grafica grafica;
 	private GameStateDTO gameStateDTO;
 	private static final int PORT = 29999;
 	private static final String IP = "127.0.0.1";
@@ -23,12 +24,6 @@ public class ConnessioneSocket implements Connessione {
 	private ObjectInputStream socketIn;
 	private boolean fine = false;
 
-	public ConnessioneSocket(String giocatore) {
-		this.gameStateDTO = new GameStateDTO();
-		GiocatoreDTO giocatoreDTO = new GiocatoreDTO();
-		giocatoreDTO.setNome(giocatore);
-		this.gameStateDTO.setGiocatoreDTO(giocatoreDTO);
-	}
 
 	/**
 	 * this method start the connessioneSocket, create the socket, the outputStream, the inputStream
@@ -113,6 +108,22 @@ public class ConnessioneSocket implements Connessione {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * @param grafica the grafica to set
+	 */
+	@Override
+	public void setGrafica(Grafica grafica) {
+		this.grafica = grafica;
+	}
+
+	/**
+	 * @param gameStateDTO the gameStateDTO to set
+	 */
+	@Override
+	public void setGameStateDTO(GameStateDTO gameStateDTO) {
+		this.gameStateDTO = gameStateDTO;
 	}
 
 }

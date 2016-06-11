@@ -27,5 +27,9 @@ public class AzioniClientNotify implements ClientNotify {
 			System.out.println(a);
 		}
 	}
+	/*
+	 * public void stamp(Grafica g){
+	 * g.stampAzioni(azioni);
+	 */
 
 }

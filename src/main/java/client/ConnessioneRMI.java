@@ -19,19 +19,17 @@ import server.view.clientNotify.ClientNotify;
 public class ConnessioneRMI extends UnicastRemoteObject implements Serializable, ConnessioneRMIRemota {
 
 	private static final long serialVersionUID = 5904563829768967721L;
+	private Grafica grafica;
 	private GameStateDTO gameStateDTO;
 	private transient ServerRMIViewRemote view;
 	private transient ClientOutHandler clientOutHandler;
 	private static final int PORT = 1099;
 	private static final String IP = "127.0.0.1";
 
-	public ConnessioneRMI(String giocatore) throws RemoteException {
-		this.gameStateDTO = new GameStateDTO();
-		GiocatoreDTO giocatoreDTO = new GiocatoreDTO();
-		giocatoreDTO.setNome(giocatore);
-		this.gameStateDTO.setGiocatoreDTO(giocatoreDTO);
+	public ConnessioneRMI() throws RemoteException {
+		super();
 	}
-
+	
 	/**
 	 * this method start the connection RMI
 	 */
@@ -86,6 +84,22 @@ public class ConnessioneRMI extends UnicastRemoteObject implements Serializable,
 	@Override
 	public void disconnetti() throws RemoteException {
 		this.clientOutHandler.stop();
+	}
+
+	/**
+	 * @param grafica the grafica to set
+	 */
+	@Override
+	public void setGrafica(Grafica grafica) {
+		this.grafica = grafica;
+	}
+
+	/**
+	 * @param gameStateDTO the gameStateDTO to set
+	 */
+	@Override
+	public void setGameStateDTO(GameStateDTO gameStateDTO) {
+		this.gameStateDTO = gameStateDTO;
 	}
 
 }

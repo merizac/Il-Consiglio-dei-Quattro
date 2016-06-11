@@ -3,6 +3,7 @@ package client;
 import java.rmi.RemoteException;
 
 import common.azioniDTO.AzioneDTO;
+import common.gameDTO.GameStateDTO;
 
 public interface Connessione {
 	/**
@@ -23,5 +24,9 @@ public interface Connessione {
 	 * @throws RemoteException
 	 */
 	public void disconnetti() throws RemoteException;
+	
+	public void setGrafica(Grafica grafica);
+	
+	public void setGameStateDTO(GameStateDTO gameStateDTO);
 
 }
