@@ -21,9 +21,8 @@ public class BonusTesseraAcquistata extends Bonus {
 	}
 
 	@Override
-	public void usaBonus(GameState gameState) {
-		// TODO Auto-generated method stub
-		
+	public void usaBonus(GameState gameState) {		
+		gameState.getGiocatoreCorrente().getBonusNobiltà().add(this.getAzioneBonus());
 	}
 	
 }

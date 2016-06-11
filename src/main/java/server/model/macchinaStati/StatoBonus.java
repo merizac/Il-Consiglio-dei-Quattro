@@ -2,7 +2,6 @@ package server.model.macchinaStati;
 
 import java.util.Arrays;
 import java.util.List;
-
 import server.model.azioni.Azione;
 import server.model.game.GameState;
 import server.model.notify.BonusNotify;
@@ -20,8 +19,6 @@ public class StatoBonus implements Stato {
 		this.azioni=gameState.getGiocatoreCorrente().getBonusNobiltà();
 		gameState.notifyObserver(new BonusNotify(gameState.getGiocatoreCorrente().getBonusNobiltà(), Arrays.asList(gameState.getGiocatoreCorrente())));
 
-		/*this.bonus=gameState.getGiocatoreCorrente().getBonusNobiltà();
-		gameState.notifyObserver(new BonusNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));*/	
 	}
 	
 	@Override
@@ -35,7 +32,7 @@ public class StatoBonus implements Stato {
 
 	@Override
 	public List<Azione> getAzioni() {
-				return azioni;
+			return azioni;
 	}
 
 	/* (non-Javadoc)

@@ -12,17 +12,21 @@ public class BonusTesseraPermessoN extends Azione {
 	/**
 	 * Prendi una tesseraPermesso a faccia in su senza pagarne il costo
 	 */
-	private final int ID=15;
+	private final int ID = 15;
 	private Regione regione;
 	private TesseraPermesso tesseraScoperta;
-	
+
 	@Override
-	public void eseguiAzione(GameState gameState){
-		
+	public void eseguiAzione(GameState gameState) {
+
 		regione.getTesserePermessoScoperte().remove(tesseraScoperta);
 		gameState.getGiocatoreCorrente().getTesserePermesso().add(tesseraScoperta);
-		
+
 		regione.getTesserePermessoScoperte().add(regione.getMazzoTesserePermesso().pescaCarte());
+
+		gameState.getGiocatoreCorrente().getBonusNobiltà().remove(this);
+
+		gameState.getStato().transizioneBonus(gameState);
 	}
 
 	/**
@@ -33,7 +37,8 @@ public class BonusTesseraPermessoN extends Azione {
 	}
 
 	/**
-	 * @param regione the regione to set
+	 * @param regione
+	 *            the regione to set
 	 */
 	public void setRegione(Regione regione) {
 		this.regione = regione;
@@ -47,7 +52,8 @@ public class BonusTesseraPermessoN extends Azione {
 	}
 
 	/**
-	 * @param indiceTesseraScoperta the indiceTesseraScoperta to set
+	 * @param indiceTesseraScoperta
+	 *            the indiceTesseraScoperta to set
 	 */
 	public void setTesseraScoperta(TesseraPermesso tesseraScoperta) {
 		this.tesseraScoperta = tesseraScoperta;
@@ -58,7 +64,9 @@ public class BonusTesseraPermessoN extends Azione {
 		return new BonusTesseraPermessoNDTO();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -69,7 +77,9 @@ public class BonusTesseraPermessoN extends Azione {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override

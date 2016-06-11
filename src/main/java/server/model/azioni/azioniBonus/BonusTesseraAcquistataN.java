@@ -7,27 +7,23 @@ import server.model.bonus.Bonus;
 import server.model.game.GameState;
 import server.model.game.TesseraPermesso;
 
-public class BonusTesseraAcquistataN extends Azione{
-/**
- * ottieni i bonus di una tessera permesso che hai comprato in precedenza
- * anche una di quelle a faccia in giù
- */
-	private final int ID=14;
+public class BonusTesseraAcquistataN extends Azione {
+	/**
+	 * ottieni i bonus di una tessera permesso che hai comprato in precedenza
+	 * anche una di quelle a faccia in giù
+	 */
+	private final int ID = 14;
 	private TesseraPermesso tesseraPermesso;
-	
+
 	@Override
 	public void eseguiAzione(GameState gameState) {
-		TesseraPermesso tesseraScelta;
-		
-		/*if(usata){
-			tesseraScelta = gameState.getGiocatoreCorrente().getTesserePermessoUsate().get(indiceTesseraPermesso);	
-		}
-		else 
-			tesseraScelta = gameState.getGiocatoreCorrente().getTesserePermesso().get(indiceTesseraPermesso);*/
-	
-		for(Bonus b: tesseraPermesso.getBonus()){
+
+		for (Bonus b : tesseraPermesso.getBonus()) {
 			b.usaBonus(gameState);
 		}
+		gameState.getGiocatoreCorrente().getBonusNobiltà().remove(this);
+		gameState.getStato().transizioneBonus(gameState);
+
 	}
 
 	/**
@@ -38,19 +34,21 @@ public class BonusTesseraAcquistataN extends Azione{
 	}
 
 	/**
-	 * @param indiceTesseraPermesso the indiceTesseraPermesso to set
+	 * @param indiceTesseraPermesso
+	 *            the indiceTesseraPermesso to set
 	 */
 	public void setTesseraPermesso(TesseraPermesso tesseraPermesso) {
 		this.tesseraPermesso = tesseraPermesso;
 	}
-
 
 	@Override
 	public AzioneDTO getAzioneDTO() {
 		return new BonusTesseraAcquistataNDTO();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -61,7 +59,9 @@ public class BonusTesseraAcquistataN extends Azione{
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override

@@ -1,8 +1,8 @@
 package server.model.azioni.azioniPrincipali;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
-
 import common.azioniDTO.AzioneDTO;
 import common.azioniDTO.CostruzioneTesseraPermessoDTO;
 import server.model.azioni.azioniBonus.Bonusable;
@@ -22,7 +22,7 @@ import server.model.notify.MessageNotify;
 
 public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonusable {
 
-	private final int ID=3;
+	private final int ID = 3;
 	private TesseraPermesso tesseraPermessoScoperta;
 	private Città cittàCostruzione;
 
@@ -46,8 +46,7 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonu
 			controllaCittàColore(((ColoreCittà) cittàCostruzione.getColoreCittà()), gameState.getGiocatoreCorrente());
 		controllaCittàRegione(cittàCostruzione.getRegione(), gameState.getGiocatoreCorrente());
 
-
-		if(gameState.getGiocatoreCorrente().getEmpori().isEmpty()){
+		if (gameState.getGiocatoreCorrente().getEmpori().isEmpty()) {
 			gameState.setUltimoGiro(true);
 			gameState.getGiocatoreCorrente().aumentaPuntiVittoria(3);
 		}
@@ -55,7 +54,17 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonu
 		gameState.notifyObserver(new GameStateNotify(gameState, gameState.getGiocatori()));
 		gameState.notifyObserver(
 				new GiocatoreNotify(gameState.getGiocatoreCorrente(), Arrays.asList(gameState.getGiocatoreCorrente())));
-		setStatoTransizionePrincipale(gameState);
+
+		ArrayList<Bonus> bonusCasella = gameState.getGiocatoreCorrente().getPunteggioNobiltà().getBonus();
+
+		if (!bonusCasella.isEmpty()) {
+			if (controlloBonus(gameState))
+				setStatoTransizionePrincipale(gameState);
+			else {
+				gameState.getStato().transizioneBonus(gameState);
+
+			}
+		}
 
 	}
 
@@ -84,11 +93,11 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonu
 	 * move the permit tile used from tesserePermesso to tesserePermessoUsate
 	 */
 	private void copriTessera(GameState gameState) {
-//		System.out.println(gameState.getGiocatoreCorrente().getTesserePermesso());
+		// System.out.println(gameState.getGiocatoreCorrente().getTesserePermesso());
 		gameState.getGiocatoreCorrente().getTesserePermesso().remove(tesseraPermessoScoperta);
-//		System.out.println(gameState.getGiocatoreCorrente().getTesserePermesso());
+		// System.out.println(gameState.getGiocatoreCorrente().getTesserePermesso());
 		gameState.getGiocatoreCorrente().getTesserePermessoUsate().add(tesseraPermessoScoperta);
-//		System.out.println(gameState.getGiocatoreCorrente().getTesserePermessoUsate());
+		// System.out.println(gameState.getGiocatoreCorrente().getTesserePermessoUsate());
 	}
 
 	/**
@@ -169,7 +178,9 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonu
 		return new CostruzioneTesseraPermessoDTO();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -180,7 +191,9 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonu
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override

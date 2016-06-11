@@ -3,7 +3,6 @@ package server.model.azioni.azioniBonus;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import common.azioniDTO.AzioneDTO;
 import common.azioniDTO.BonusGettoneNDTO;
 import server.model.azioni.Azione;

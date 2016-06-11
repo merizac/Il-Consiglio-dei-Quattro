@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
-
 import common.azioniDTO.AzioneDTO;
 import common.azioniDTO.CostruzioneAiutoReDTO;
 import server.model.azioni.azioniBonus.Bonusable;
@@ -87,7 +86,16 @@ public class CostruzioneAiutoRe extends AzionePrincipale implements Bonusable{
 		gameState.notifyObserver(new GameStateNotify(gameState, gameState.getGiocatori()));
 		gameState.notifyObserver(new GiocatoreNotify(gameState.getGiocatoreCorrente(), 
 				Arrays.asList(gameState.getGiocatoreCorrente())));
-		setStatoTransizionePrincipale(gameState); 
+		
+	ArrayList<Bonus> bonusCasella = gameState.getGiocatoreCorrente().getPunteggioNobiltà().getBonus();
+		
+		if(!bonusCasella.isEmpty()){	
+				if(controlloBonus(gameState))	
+					setStatoTransizionePrincipale(gameState); 
+				else {
+						gameState.getStato().transizioneBonus(gameState);
+					}
+				}
 	}
 	
 	private void controllaCittàRegione(Regione regione, Giocatore giocatore) {

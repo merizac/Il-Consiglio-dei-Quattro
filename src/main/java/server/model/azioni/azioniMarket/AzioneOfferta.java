@@ -1,7 +1,6 @@
 package server.model.azioni.azioniMarket;
 
 import java.util.Arrays;
-
 import common.azioniDTO.AzioneDTO;
 import common.azioniDTO.AzioneOffertaDTO;
 import server.model.azioni.Azione;
