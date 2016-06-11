@@ -15,6 +15,8 @@ public class StatoBonus implements Stato {
 	 */
 	public StatoBonus(GameState gameState, Stato stato) {
 		System.out.println("[SERVER] "+this);
+		if (stato==null)
+			throw new NullPointerException("Lo stato deve essere lo stato precedente");
 		this.stato = stato;
 		this.azioni=gameState.getGiocatoreCorrente().getBonusNobiltà();
 		gameState.notifyObserver(new BonusNotify(gameState.getGiocatoreCorrente().getBonusNobiltà(), Arrays.asList(gameState.getGiocatoreCorrente())));

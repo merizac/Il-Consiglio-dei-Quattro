@@ -284,7 +284,10 @@ public class GameState extends Observable<Notify> {
 		this.giocatoreCorrente = giocatori.get(0);
 
 	}
-
+/**
+ * 
+ * @return true if next player is the last
+ */
 	public boolean lastNextPlayer() {
 		Giocatore ultimoGiro = giocatori.remove(0);
 		giocatoriFinePartita.add(ultimoGiro);

@@ -59,7 +59,7 @@ public interface Stato {
 					gameState.setStato(new StatoFinePartita(gameState));
 				}
 
-			} else {
+		} else {
 				gameState.setGiocatoreCorrente(gameState.getGiocatori().get(0));
 				if (gameState.getNumeroTurni() != gameState.getGiocatori().size())
 					gameState.setStato(new StartEnd(gameState));
