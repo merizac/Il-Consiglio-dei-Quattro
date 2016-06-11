@@ -32,6 +32,9 @@ public class ConnessioneRMI extends UnicastRemoteObject implements Serializable,
 		this.gameStateDTO.setGiocatoreDTO(giocatoreDTO);
 	}
 
+	/**
+	 * this method start the connection RMI
+	 */
 	@Override
 	public void start() throws RemoteException {
 		String name = "GIOCO";
@@ -55,6 +58,9 @@ public class ConnessioneRMI extends UnicastRemoteObject implements Serializable,
 
 	}
 
+	/**
+	 * this method send the action to the server executing the method eseguiAzione of the ServerRMIViewRemote
+	 */
 	@Override
 	public void inviaAzione(AzioneDTO azioneDTO) throws RemoteException {
 		try {
@@ -65,12 +71,18 @@ public class ConnessioneRMI extends UnicastRemoteObject implements Serializable,
 		}
 	}
 
+	/**
+	 * this method update the client
+	 */
 	@Override
 	public void aggiorna(ClientNotify notify) throws RemoteException {
 		notify.update(gameStateDTO);
 		notify.stamp();
 	}
 
+	/**
+	 * this method disconnect the client
+	 */
 	@Override
 	public void disconnetti() throws RemoteException {
 		this.clientOutHandler.stop();

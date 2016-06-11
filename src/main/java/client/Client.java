@@ -25,13 +25,20 @@ public class Client {
 		}
 
 	}
-
+	/**
+	 * this method start the client
+	 * @throws RemoteException
+	 */
 	private void startClient() throws RemoteException {
 		String giocatore = scegliNome();
 		connessione = scegliConnessione(giocatore);
 		connessione.start();
 	}
-
+	
+	/**
+	 * this method let the client chose the name
+	 * @return the name of the player
+	 */
 	public String scegliNome() {
 		String nome = null;
 		while (nome == null || "".equals(nome)) {
@@ -42,6 +49,12 @@ public class Client {
 		return nome;
 	}
 
+	/**
+	 * this method let the player chose the connection between socket and rmi
+	 * @param giocatore
+	 * @return the connection selected
+	 * @throws RemoteException
+	 */
 	public Connessione scegliConnessione(String giocatore) throws RemoteException {
 		System.out.println("Inserisci connessione\nSocket[1]\nRMI[2]");
 		String connessioneClient=null;

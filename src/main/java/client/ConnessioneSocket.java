@@ -30,6 +30,11 @@ public class ConnessioneSocket implements Connessione {
 		this.gameStateDTO.setGiocatoreDTO(giocatoreDTO);
 	}
 
+	/**
+	 * this method start the connessioneSocket, create the socket, the outputStream, the inputStream
+	 * send the player to the server and start the thread that listen the user and enter in a loop
+	 * where he wait for updating
+	 */
 	@Override
 	public void start() {
 		try {
@@ -66,6 +71,9 @@ public class ConnessioneSocket implements Connessione {
 
 	}
 
+	/**
+	 * listen for updating from the server
+	 */
 	private void listen() {
 		while (!fine) {
 			try {
@@ -80,6 +88,9 @@ public class ConnessioneSocket implements Connessione {
 		}
 	}
 
+	/**
+	 * send an action to the server with the socketOut
+	 */
 	@Override
 	public void inviaAzione(AzioneDTO azioneDTO) {
 		try {
@@ -91,7 +102,9 @@ public class ConnessioneSocket implements Connessione {
 		}
 
 	}
-
+	/**
+	 * close the socket of the client
+	 */
 	@Override
 	public void disconnetti() {
 		try {
