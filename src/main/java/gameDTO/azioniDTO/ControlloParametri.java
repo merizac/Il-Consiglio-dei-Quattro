@@ -29,6 +29,13 @@ import gameDTO.gameDTO.TesseraPermessoDTO;
 
 public class ControlloParametri {
 
+	/**this method check if the regioneDTO is really existing and return that real regione 
+	 * 
+	 * @param regione
+	 * @param list
+	 * @return the regione if match, else IllegalArgumentException
+	 * @throws IllegalArgumentException
+	 */
 	public static Regione cercaRegione(RegioneDTO regione, List<Regione> list) throws IllegalArgumentException {
 		for (Regione r : list) {
 			if (r.getNome().equals(regione.getNome()))
@@ -212,7 +219,14 @@ public class ControlloParametri {
 		}
 		return false;
 	}
-
+	/**
+	 * This method check if consigliere on consigliereDTO is the same of cosnigliere
+	 * on balcone no DTO
+	 * 
+	 * @param consigliereDTO
+	 * @param consiglieri
+	 * @return the consigliere if check, IllegalArgumentException if are not the same
+	 */
 	public static Consigliere cercaConsigliere(ConsigliereDTO consigliereDTO, List<Consigliere> consiglieri)
 			throws IllegalArgumentException {
 		for (Consigliere c : consiglieri) {
