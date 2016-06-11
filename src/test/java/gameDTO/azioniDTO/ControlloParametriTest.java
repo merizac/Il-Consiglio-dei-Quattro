@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import common.azioniDTO.ControlloParametri;
 import common.gameDTO.BalconeDTO;
 import common.gameDTO.CartaPoliticaDTO;
 import common.gameDTO.CittàBonusDTO;
@@ -30,6 +31,7 @@ import server.model.game.GameState;
 import server.model.game.Giocatore;
 import server.model.game.Regione;
 import server.model.game.TesseraPermesso;
+import utility.ParameterException;
 
 public class ControlloParametriTest {
 
@@ -50,8 +52,8 @@ public class ControlloParametriTest {
 		controlloParametri=new ControlloParametri();
 	}
 
-	@Test(expected=IllegalArgumentException.class)
-	public void testCercaRegioneConRegioneNonEsistente() {
+	@Test(expected=ParameterException.class)
+	public void testCercaRegioneConRegioneNonEsistente() throws ParameterException {
 		RegioneDTO regioneDTO=new RegioneDTO();
 		
 		BalconeDTO balconeDTO=new BalconeDTO();
@@ -65,7 +67,7 @@ public class ControlloParametriTest {
 	}
 	
 	@Test
-	public void testCercaRegione() {
+	public void testCercaRegione() throws ParameterException {
 		Regione regione=gameState.getRegioni().get(0);
 		RegioneDTO regioneDTO=new RegioneDTO();
 		regioneDTO.inizializza(regione);
@@ -75,8 +77,8 @@ public class ControlloParametriTest {
 		assertTrue(r==regione);
 	}
 
-	@Test(expected=IllegalArgumentException.class)
-	public void testCercaBalconeConBalconeNonEsistente() {
+	@Test(expected=ParameterException.class)
+	public void testCercaBalconeConBalconeNonEsistente() throws ParameterException {
 		BalconeDTO balconeDTO=new BalconeDTO();
 		ArrayList<ConsigliereDTO> consiglieriDTO=new ArrayList();
 		ConsigliereDTO consigliere=new ConsigliereDTO();
@@ -91,7 +93,7 @@ public class ControlloParametriTest {
 	}
 
 	@Test
-	public void testCercaBalcone() {
+	public void testCercaBalcone() throws ParameterException {
 		Balcone balcone=gameState.getRegioni().get(0).getBalcone();
 		BalconeDTO balconeDTO=new BalconeDTO();
 		balconeDTO.inizializza(balcone);
@@ -101,8 +103,8 @@ public class ControlloParametriTest {
 		assertTrue(b==balcone);
 	}
 
-	@Test(expected=IllegalArgumentException.class)
-	public void testCercaCartePoliticaDiverse() {
+	@Test(expected=ParameterException.class)
+	public void testCercaCartePoliticaDiverse() throws ParameterException {
 		ArrayList<CartaPolitica> cartePolitica=new ArrayList<>();
 		ArrayList<CartaPoliticaDTO> cartePoliticaDTO=new ArrayList<>();
 		
@@ -116,7 +118,7 @@ public class ControlloParametriTest {
 	}
 	
 	@Test
-	public void testCercaCartePolitica() {
+	public void testCercaCartePolitica() throws ParameterException {
 		ArrayList<CartaPolitica> cartePolitica=new ArrayList<>();
 		ArrayList<CartaPoliticaDTO> cartePoliticaDTO=new ArrayList<>();
 		
@@ -140,8 +142,8 @@ public class ControlloParametriTest {
 		assertEquals(vuoto, cartePolitica);
 	}
 
-	@Test(expected=IllegalArgumentException.class)
-	public void testCercaCittàNonEsistente() {
+	@Test(expected=ParameterException.class)
+	public void testCercaCittàNonEsistente() throws ParameterException {
 		CittàDTO cittàDTO=new CittàDTO();
 		ColoreDTO coloreDTO=new ColoreDTO();
 		coloreDTO.inizializza(new Colore("C"));
@@ -152,7 +154,7 @@ public class ControlloParametriTest {
 	}
 	
 	@Test
-	public void testCercaCittà() {
+	public void testCercaCittà() throws ParameterException {
 		Città città=gameState.getRegioni().get(0).getCittàRegione().get(2);
 		CittàDTO cittàDTO=new CittàDTO();
 		cittàDTO.inizializza(città);
@@ -162,8 +164,8 @@ public class ControlloParametriTest {
 		assertTrue(città==c);
 	}
 
-	@Test(expected=IllegalArgumentException.class)
-	public void testCercaCittàBonusNonEsistente() {
+	@Test(expected=ParameterException.class)
+	public void testCercaCittàBonusNonEsistente() throws ParameterException {
 		CittàBonusDTO cittàBonusDTO=new CittàBonusDTO();
 		ColoreDTO coloreDTO=new ColoreDTO();
 		coloreDTO.inizializza(new Colore("C"));
@@ -177,7 +179,7 @@ public class ControlloParametriTest {
 	}
 	
 	@Test
-	public void testCercaCittàBonus() {
+	public void testCercaCittàBonus() throws ParameterException {
 		CittàBonus città=(CittàBonus) gameState.getRegioni().get(0).getCittàRegione().get(2);
 		CittàBonusDTO cittàDTO=new CittàBonusDTO();
 		cittàDTO.inizializza(città);
@@ -187,8 +189,8 @@ public class ControlloParametriTest {
 		assertTrue(città==c);
 	}
 
-	@Test(expected=IllegalArgumentException.class)
-	public void testCercaTesseraPermessoNonEsistente() {
+	@Test(expected=ParameterException.class)
+	public void testCercaTesseraPermessoNonEsistente() throws ParameterException {
 		TesseraPermessoDTO tesseraPermessoDTO=new TesseraPermessoDTO();
 		tesseraPermessoDTO.inizializza(gameState.getRegioni().get(1).getTesserePermessoScoperte().get(0));
 		
@@ -196,7 +198,7 @@ public class ControlloParametriTest {
 	}
 	
 	@Test
-	public void testCercaTesseraPermesso() {
+	public void testCercaTesseraPermesso() throws ParameterException {
 		TesseraPermesso tesseraPermesso=gameState.getRegioni().get(0).getTesserePermessoScoperte().get(0);
 		TesseraPermessoDTO tesseraPermessoDTO=new TesseraPermessoDTO();
 		tesseraPermessoDTO.inizializza(tesseraPermesso);
@@ -204,8 +206,8 @@ public class ControlloParametriTest {
 		controlloParametri.cercaTesseraPermesso(tesseraPermessoDTO, gameState.getRegioni().get(0).getTesserePermessoScoperte());
 	}
 
-	@Test(expected=IllegalArgumentException.class)
-	public void testCercaConsigliereNonEsistente() {
+	@Test(expected=ParameterException.class)
+	public void testCercaConsigliereNonEsistente() throws ParameterException {
 		Consigliere consigliere=new Consigliere(new Colore("A"));
 		ConsigliereDTO consigliereDTO=new ConsigliereDTO();
 		consigliereDTO.inizializza(consigliere);
@@ -214,7 +216,7 @@ public class ControlloParametriTest {
 	}
 
 	@Test
-	public void testCercaConsigliere() {
+	public void testCercaConsigliere() throws ParameterException {
 		Consigliere consigliere=gameState.getConsiglieri().get(0);
 		ConsigliereDTO consigliereDTO=new ConsigliereDTO();
 		consigliereDTO.inizializza(consigliere);
