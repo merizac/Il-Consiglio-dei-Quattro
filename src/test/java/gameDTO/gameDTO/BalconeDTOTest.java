@@ -7,11 +7,15 @@ import java.util.ArrayList;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import game.Balcone;
-import game.Colore;
-import game.Consigliere;
-import game.GameState;
-import game.Giocatore;
+import common.gameDTO.BalconeDTO;
+import common.gameDTO.ConsigliereDTO;
+import server.model.game.Balcone;
+import server.model.game.Colore;
+import server.model.game.Consigliere;
+import server.model.game.GameState;
+import server.model.game.Giocatore;
+
+
 
 public class BalconeDTOTest {
 

@@ -10,26 +10,26 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import bonus.Bonus;
-import bonus.BonusAiutanti;
-import game.Balcone;
-import game.CartaPolitica;
-import game.Città;
-import game.CittàBonus;
-import game.Colore;
-import game.Consigliere;
-import game.GameState;
-import game.Giocatore;
-import game.Regione;
-import game.TesseraPermesso;
-import gameDTO.gameDTO.BalconeDTO;
-import gameDTO.gameDTO.CartaPoliticaDTO;
-import gameDTO.gameDTO.CittàBonusDTO;
-import gameDTO.gameDTO.CittàDTO;
-import gameDTO.gameDTO.ColoreDTO;
-import gameDTO.gameDTO.ConsigliereDTO;
-import gameDTO.gameDTO.RegioneDTO;
-import gameDTO.gameDTO.TesseraPermessoDTO;
+import common.gameDTO.BalconeDTO;
+import common.gameDTO.CartaPoliticaDTO;
+import common.gameDTO.CittàBonusDTO;
+import common.gameDTO.CittàDTO;
+import common.gameDTO.ColoreDTO;
+import common.gameDTO.ConsigliereDTO;
+import common.gameDTO.RegioneDTO;
+import common.gameDTO.TesseraPermessoDTO;
+import server.model.bonus.Bonus;
+import server.model.bonus.BonusAiutanti;
+import server.model.game.Balcone;
+import server.model.game.CartaPolitica;
+import server.model.game.Città;
+import server.model.game.CittàBonus;
+import server.model.game.Colore;
+import server.model.game.Consigliere;
+import server.model.game.GameState;
+import server.model.game.Giocatore;
+import server.model.game.Regione;
+import server.model.game.TesseraPermesso;
 
 public class ControlloParametriTest {
 
