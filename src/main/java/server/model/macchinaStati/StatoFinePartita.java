@@ -20,7 +20,6 @@ public class StatoFinePartita implements Stato {
 		System.out.println("stato fine partita");
 		
 		calcolaVincitore(gameState);
-
 	}
 
 	private void calcolaVincitore(GameState gameState) {
@@ -114,9 +113,9 @@ public class StatoFinePartita implements Stato {
 	 * Each player with the best score of number of tessere permesso win 3 points in Punteggio Vittoria
 	 * @param gameState
 	 */
-private void calcolaTesserePermesso(GameState gameState) {
-	ArrayList<Giocatore> giocatori = new ArrayList<>(gameState.getGiocatoriFinePartita());
-	Collections.sort(giocatori, new Comparator<Giocatore>() {
+	private void calcolaTesserePermesso(GameState gameState) {
+		ArrayList<Giocatore> giocatori = new ArrayList<>(gameState.getGiocatoriFinePartita());
+		Collections.sort(giocatori, new Comparator<Giocatore>() {
 
 			@Override
 			public int compare(Giocatore g1, Giocatore g2) {
@@ -132,12 +131,12 @@ private void calcolaTesserePermesso(GameState gameState) {
 			}
 
 		});	
-
-	int i=0;
-	while(giocatori.get(i).getNumeroTesserePermesso()==giocatori.get(0).getNumeroTesserePermesso() && i<giocatori.size()-1){
-		giocatori.get(i).aumentaPuntiVittoria(3);
-		i++;
-	 }
+	
+		int i=0;
+		while(giocatori.get(i).getNumeroTesserePermesso()==giocatori.get(0).getNumeroTesserePermesso() && i<giocatori.size()-1){
+			giocatori.get(i).aumentaPuntiVittoria(3);
+			i++;
+		}
 }
 
 
@@ -148,9 +147,9 @@ private void calcolaTesserePermesso(GameState gameState) {
  * Comparator is the method that sort the array giocatori in order decrescent of points of nobility
  * @param gameState
  */
-private void calcolaPunteggioNobiltà(GameState gameState) {
-ArrayList<Giocatore> giocatori = new ArrayList<>(gameState.getGiocatoriFinePartita());
-	Collections.sort(giocatori, new Comparator<Giocatore>() {
+	private void calcolaPunteggioNobiltà(GameState gameState) {
+	ArrayList<Giocatore> giocatori = new ArrayList<>(gameState.getGiocatoriFinePartita());
+		Collections.sort(giocatori, new Comparator<Giocatore>() {
 
 			@Override
 			public int compare(Giocatore g1, Giocatore g2) {
@@ -171,16 +170,16 @@ ArrayList<Giocatore> giocatori = new ArrayList<>(gameState.getGiocatoriFineParti
 		ArrayList<Giocatore> secondo = new ArrayList<>();
 		
 		for(Giocatore g: giocatori){
-		 int punti = g.getPunteggioNobiltà().getPuntiNobiltà();
+			int punti = g.getPunteggioNobiltà().getPuntiNobiltà();
 		 
-		 if( punti==primo.get(0).getPunteggioNobiltà().getPuntiNobiltà()){
-			 primo.add(g);
-		 }
+			if( punti==primo.get(0).getPunteggioNobiltà().getPuntiNobiltà()){
+				primo.add(g);
+			}
 		 else if((punti!= primo.get(0).getPunteggioNobiltà().getPuntiNobiltà() && secondo.isEmpty())
 				 || punti == secondo.get(0).getPunteggioNobiltà().getPuntiNobiltà()){
 			 secondo.add(g);
 			 //break;
-		 }
+		}
 
 		}
 		 assegnaPunti(primo, secondo);
@@ -194,17 +193,17 @@ ArrayList<Giocatore> giocatori = new ArrayList<>(gameState.getGiocatoriFineParti
  * @param primo
  * @param secondo
  */
-private void assegnaPunti(ArrayList<Giocatore> primo, ArrayList<Giocatore> secondo) {
-	System.out.println("assegna punti");
-	for (Giocatore g: primo){
-		g.aumentaPuntiVittoria(5);
-		if(primo.size()==1){
-			for(Giocatore g2: secondo){
-				g2.aumentaPuntiVittoria(2);
+	private void assegnaPunti(ArrayList<Giocatore> primo, ArrayList<Giocatore> secondo) {
+		System.out.println("assegna punti");
+		for (Giocatore g: primo){
+			g.aumentaPuntiVittoria(5);
+			if(primo.size()==1){
+				for(Giocatore g2: secondo){
+					g2.aumentaPuntiVittoria(2);
+					}
+				  }
 				}
-			  }
-			}
-	}
+		}
 
 	@Override
 	public List<Azione> getAzioni() {
