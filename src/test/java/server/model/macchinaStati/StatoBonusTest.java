@@ -72,10 +72,10 @@ public class StatoBonusTest {
 		Stato11 stato11=new Stato11(gameState);
 		StatoBonus statoBonus=new StatoBonus(gameState, stato11);
 		gameState.setStato(statoBonus);
-		
+//percorso nobilta non deve avere il bonus
 		statoBonus.transizioneBonus(gameState);
-		
-		assertTrue(gameState.getStato() instanceof Stato01);
+
+		assertTrue(gameState.getStato() instanceof Stato11);
 	}
 	
 	@Test
@@ -157,7 +157,7 @@ public class StatoBonusTest {
 		StatoBonus statoBonus=new StatoBonus(gameState, stato11);
 		statoBonus.transizionePassa(gameState);
  
-		assertTrue(notify.get(1) instanceof MessageNotify);
+		assertTrue(gameState.getStato() instanceof StatoBonus);
 	}
 	
 }
