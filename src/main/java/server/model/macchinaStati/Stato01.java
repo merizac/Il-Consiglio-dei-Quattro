@@ -35,7 +35,7 @@ public class Stato01 implements Stato {
 				gameState.setStato(new StartEnd(gameState));
 			}
 			else{
-				gameState.setStato(new StatoFinePartita(gameState));
+				gameState.calcolaVincitore();
 			}
 			
 		}

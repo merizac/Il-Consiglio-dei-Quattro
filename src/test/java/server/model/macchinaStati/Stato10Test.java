@@ -66,7 +66,7 @@ public class Stato10Test {
 		
 		stato10.transizionePrincipale(gameState);
 		
-		assertTrue(gameState.getStato() instanceof StatoFinePartita);
+		fail();
 	}
 	
 	@Test

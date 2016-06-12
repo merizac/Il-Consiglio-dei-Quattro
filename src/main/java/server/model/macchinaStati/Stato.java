@@ -49,14 +49,14 @@ public interface Stato {
 		if (gameState.getGiocatori().size() == 1 && !gameState.isUltimoGiro()) {
 			Giocatore g = gameState.getGiocatori().remove(0);
 			gameState.getGiocatoriFinePartita().add(g);
-			gameState.setStato(new StatoFinePartita(gameState));
+			gameState.calcolaVincitore();
 		} else {
 			if (gameState.isUltimoGiro()) {
 				if (!gameState.getGiocatori().isEmpty()) {
 					gameState.setGiocatoreCorrente(gameState.getGiocatori().get(0));
 					gameState.setStato(new StartEnd(gameState));
 				} else {
-					gameState.setStato(new StatoFinePartita(gameState));
+					gameState.calcolaVincitore();
 				}
 
 		} else {

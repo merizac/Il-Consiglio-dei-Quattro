@@ -38,7 +38,7 @@ public class StatoTest {
 		
 	}
 	
-	@Test
+/*	@Test
 	public void azioniNonEseguibiliTransizioneExitConUnGiocatoreandNotLastGiro() {
 		notify.clear();
 		Giocatore giocatore=gameState.getGiocatoreCorrente();
@@ -48,11 +48,7 @@ public class StatoTest {
 			gameState.getGiocatori().remove(gameState.getGiocatori().size()-1);
 		}
 		
-		startEnd.transizioneExit(gameState);
-		assertTrue(gameState.getGiocatori().size()==0);
-		assertTrue(gameState.getGiocatoriFinePartita().get(0)==giocatore);
-		assertTrue(gameState.getStato() instanceof StatoFinePartita);
-	}
+	}*/
 	
 	@Test
 	public void azioniNonEseguibiliTransizioneExitLastGiroGiocatoriNonFiniti() {
@@ -66,21 +62,6 @@ public class StatoTest {
 		startEnd.transizioneExit(gameState);
 		
 		assertTrue(gameState.getStato() instanceof StartEnd);
-	}
-	
-	@Test
-	public void azioniNonEseguibiliTransizioneExitLastGiroGiocatoriFiniti() {
-		notify.clear();
-		StartEnd startEnd=new StartEnd(gameState);
-		gameState.setUltimoGiro(true);
-		
-		while(gameState.getGiocatori().size()>0){
-			gameState.getGiocatori().remove(gameState.getGiocatori().size()-1);
-		}
-	
-		startEnd.transizioneExit(gameState);
-		
-		assertTrue(gameState.getStato() instanceof StatoFinePartita);
 	}
 	
 	@Test
