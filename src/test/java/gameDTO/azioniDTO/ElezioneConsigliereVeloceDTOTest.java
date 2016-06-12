@@ -4,17 +4,14 @@ import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
-
 import common.azioniDTO.ElezioneConsigliereVeloceDTO;
 import common.azioniDTO.azioneVisitor.AzioneVisitor;
 import common.azioniDTO.azioneVisitor.AzioneVisitorImpl;
 import common.gameDTO.BalconeDTO;
 import common.gameDTO.ConsigliereDTO;
 import common.gameDTO.RegioneDTO;
-import server.model.azioni.azioniPrincipali.ElezioneConsigliere;
 import server.model.azioni.azioniVeloci.ElezioneConsigliereVeloce;
 import server.model.game.Balcone;
 import server.model.game.Consigliere;
@@ -47,9 +44,7 @@ public class ElezioneConsigliereVeloceDTOTest {
 		consigliereDTO.inizializza(consigliere);
 		regioneDTO=new RegioneDTO();
 		regione=gameState.getRegioni().get(0);
-		regioneDTO.inizializza(regione);
 		balconeDTO.inizializza(balcone);
-
 		visitor = new AzioneVisitorImpl(gameState, gameState.getGiocatoreCorrente());
 	}
 

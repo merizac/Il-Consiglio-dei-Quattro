@@ -76,7 +76,9 @@ public class BonusGettoneN extends Azione {
 
 	@Override
 	public AzioneDTO getAzioneDTO() {
-		return new BonusGettoneNDTO();
+		BonusGettoneNDTO bonus = new BonusGettoneNDTO();
+		bonus.setNumeroGettoni(numeroGettoni);
+		return bonus;
 	}
 
 	/**
