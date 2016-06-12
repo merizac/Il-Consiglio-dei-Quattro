@@ -49,13 +49,22 @@ public class ControlloParametriDTO {
 
 	public static CittàDTO città(String cittàScelta, Set<? extends CittàDTO> città, ColoreDTO colore) {
 		for (CittàDTO c : città) {
-			if (cittàScelta.equals(c.getNome())) {
-				//&& (c.getEmpori().contains(colore.getColore()))
+			if (cittàScelta.equals(c.getNome())&& (!c.getEmpori().contains(colore.getColore()))) {
 				return c;
 			} else
 				continue;
 		}
 		return null;
 	}
+	public static CittàDTO cittàBonus(String cittàScelta, Set<? extends CittàDTO> città, ColoreDTO colore) {
+		for (CittàDTO c : città) {
+			if (cittàScelta.equals(c.getNome())&& (c.getEmpori().contains(colore.getColore()))) {
+				return c;
+			} else
+				continue;
+		}
+		return null;
+	}
+
 
 }
