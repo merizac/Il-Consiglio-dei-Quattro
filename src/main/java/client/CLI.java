@@ -30,12 +30,15 @@ import common.gameDTO.CittàBonusDTO;
 import common.gameDTO.CittàDTO;
 import common.gameDTO.ConsigliereDTO;
 import common.gameDTO.GameStateDTO;
+import common.gameDTO.GiocatoreDTO;
+import common.gameDTO.OffertaDTO;
 import common.gameDTO.RegioneDTO;
 import common.gameDTO.TesseraPermessoDTO;
+import server.model.bonus.Bonus;
 import utility.Utils;
 
 public class CLI implements Grafica, Runnable {
-	
+
 	private Connessione connessione;
 	private GameStateDTO gameStateDTO;
 
@@ -276,7 +279,7 @@ public class CLI implements Grafica, Runnable {
 					tesseraScelta = azioniClient
 							.scegliTesseraGiocatore(gameStateDTO.getGiocatoreDTO().getTesserePermesso(), stdIn);
 					prezzo = azioniClient.scegliPrezzo(stdIn);
-					AzioneOffertaDTO azioneOfferta=new AzioneOffertaDTO();
+					AzioneOffertaDTO azioneOfferta = new AzioneOffertaDTO();
 					azioneOfferta.setMarketableDTO(tesseraScelta);
 					azioneOfferta.setPrezzo(prezzo);
 					action = azioneOfferta;
@@ -290,7 +293,7 @@ public class CLI implements Grafica, Runnable {
 					System.out.println("Inserire numero offerta valido");
 					comando = stdIn.nextLine();
 				}
-				AzioneAcquistoDTO azioneAcquistoDTO=new AzioneAcquistoDTO();
+				AzioneAcquistoDTO azioneAcquistoDTO = new AzioneAcquistoDTO();
 				azioneAcquistoDTO.setOfferta(Integer.parseInt(comando));
 				azioneAcquistoDTO.setGiocatoreDTO(gameStateDTO.getGiocatoreDTO());
 				action = azioneAcquistoDTO;
@@ -312,12 +315,98 @@ public class CLI implements Grafica, Runnable {
 					e.printStackTrace();
 				}
 		}
-		
+
 	}
 
 	@Override
-	public void start() {
-		this.run();
+	public void mostraAzioni(List<AzioneDTO> azioni) {
+		for (AzioneDTO a : azioni) {
+			System.out.println(a);
+		}
+	}
+	@Override
+	public void mostraClassifica(List<GiocatoreDTO> vincenti, List<GiocatoreDTO> perdenti) {
+		for (GiocatoreDTO g : vincenti) {
+			System.out.println(
+					"Giocatore :" + g.getNome().toUpperCase() + " Punteggio " + g.getPunteggioVittoria() + " punti");
+		}
+		for (GiocatoreDTO g : perdenti) {
+			System.out.println(
+					"Giocatore :" + g.getNome().toUpperCase() + " Punteggio " + g.getPunteggioVittoria() + " punti");
+		}
+	}
+	@Override
+	public void mostraGame(GameStateDTO gameStateDTO) {
+		System.out.println("\nCittà\n");
+		for (CittàDTO c : gameStateDTO.getCittà()) {
+			System.out.println(c);
+		}
+		System.out.println("\nRegioni\n");
+		for (RegioneDTO r : gameStateDTO.getRegioni()) {
+			System.out.println(r);
+			String balcone = "Balcone [ ";
+			for (ConsigliereDTO cons : r.getBalcone().getConsiglieri()) {
+				balcone = balcone + cons + " ";
+			}
+			balcone = balcone + "]";
+			System.out.println(balcone);
+			System.out.println("Tessere Permesso Scoperte nella regione " + r.getNome());
+			for (TesseraPermessoDTO t : r.getTesserePermessoScoperte()) {
+				String cittàTessera = " Città [ ";
+				String bonusTessera = ", Bonus [ ";
+				for (CittàDTO ci : t.getCittà()) {
+					cittàTessera = cittàTessera + ci.getNome() + " ";
+				}
+				cittàTessera = cittàTessera + "] ";
+				for (Bonus bonus : t.getBonus()) {
+					bonusTessera = bonusTessera + bonus + " ";
+				}
+				bonusTessera = bonusTessera + "]";
+				System.out.println("Tessera [" + cittàTessera + bonusTessera + " ]");
+
+			}
+			System.out.println("BonusRegione [" + r.getBonusRegione() + " ]\n");
+
+		}
+		String balconeRe = "Balcone Re [ ";
+		for (ConsigliereDTO consRe : gameStateDTO.getPlanciaReDTO().getBalconeRe().getConsiglieri()) {
+			balconeRe = balconeRe + consRe + " ";
+		}
+		balconeRe = balconeRe + "]";
+		System.out.println(balconeRe + "\n");
+		System.out.println(gameStateDTO.getPedinaRE() + "\n");
+
+		String bonusRe = "BonusRe\n";
+
+		for (Bonus b : gameStateDTO.getPlanciaReDTO().getBonusPremioRe()) {
+			bonusRe = bonusRe + b + "\n";
+		}
+		System.out.println(bonusRe);
+		String riserva = "Consiglieri [ ";
+		for (ConsigliereDTO c : gameStateDTO.getConsiglieri()) {
+			riserva = riserva + c.getColoreConsigliere() + " ";
+		}
+		riserva = riserva + "]";
+		System.out.println(riserva);
+
+	}
+
+	@Override
+
+	public void mostraGiocatore(GiocatoreDTO giocatoreDTO) {
+		System.out.println(giocatoreDTO + "\n");
+	}
+
+	@Override
+	public void mostraMessaggio(String messaggio) {
+		System.out.println(messaggio);
+	}
+
+	@Override
+	public void mostraOfferte(List<OffertaDTO> offerte) {
+		for(OffertaDTO o: offerte){
+			System.out.println("\n"+o.getMarketableDTO()+" prezzo: "+ o.getPrezzo());
+		}
 	}
 
 }

@@ -25,8 +25,8 @@ public interface Connessione {
 	 */
 	public void disconnetti() throws RemoteException;
 	
-	public void setGrafica(Grafica grafica);
+	public void setGrafica(Grafica grafica) throws RemoteException;
 	
-	public void setGameStateDTO(GameStateDTO gameStateDTO);
+	public void setGameStateDTO(GameStateDTO gameStateDTO) throws RemoteException;
 
 }

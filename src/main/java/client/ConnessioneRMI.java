@@ -8,11 +8,8 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
 import common.azioniDTO.AzioneDTO;
-import common.azioniDTO.ExitDTO;
 import common.gameDTO.GameStateDTO;
-import common.gameDTO.GiocatoreDTO;
 import server.view.ServerRMIViewRemote;
 import server.view.clientNotify.ClientNotify;
 
@@ -50,10 +47,8 @@ public class ConnessioneRMI extends UnicastRemoteObject implements Serializable,
 			e.printStackTrace();
 		}
 		view.register(this, gameStateDTO.getGiocatoreDTO());
-		ExecutorService executor = Executors.newFixedThreadPool(1);
-		this.clientOutHandler = new ClientOutHandler(this, gameStateDTO);
-		executor.submit(this.clientOutHandler);
-
+		ExecutorService executor=Executors.newSingleThreadExecutor();
+		executor.submit(grafica);
 	}
 
 	/**
@@ -75,7 +70,7 @@ public class ConnessioneRMI extends UnicastRemoteObject implements Serializable,
 	@Override
 	public void aggiorna(ClientNotify notify) throws RemoteException {
 		notify.update(gameStateDTO);
-		notify.stamp();
+		notify.stamp(grafica);
 	}
 
 	/**
@@ -90,7 +85,7 @@ public class ConnessioneRMI extends UnicastRemoteObject implements Serializable,
 	 * @param grafica the grafica to set
 	 */
 	@Override
-	public void setGrafica(Grafica grafica) {
+	public void setGrafica(Grafica grafica) throws RemoteException {
 		this.grafica = grafica;
 	}
 
@@ -98,7 +93,7 @@ public class ConnessioneRMI extends UnicastRemoteObject implements Serializable,
 	 * @param gameStateDTO the gameStateDTO to set
 	 */
 	@Override
-	public void setGameStateDTO(GameStateDTO gameStateDTO) {
+	public void setGameStateDTO(GameStateDTO gameStateDTO) throws RemoteException {
 		this.gameStateDTO = gameStateDTO;
 	}
 

@@ -7,10 +7,8 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
 import common.azioniDTO.AzioneDTO;
 import common.gameDTO.GameStateDTO;
-import common.gameDTO.GiocatoreDTO;
 import server.view.clientNotify.ClientNotify;
 
 public class ConnessioneSocket implements Connessione {
@@ -60,8 +58,9 @@ public class ConnessioneSocket implements Connessione {
 			e.printStackTrace();
 		}
 
-		ExecutorService executor = Executors.newFixedThreadPool(1);
-		executor.submit(new ClientOutHandler(this, gameStateDTO));
+		
+		ExecutorService executor=Executors.newSingleThreadExecutor();
+		executor.submit(grafica);
 		listen();
 
 	}
@@ -74,7 +73,7 @@ public class ConnessioneSocket implements Connessione {
 			try {
 				ClientNotify notify = (ClientNotify) socketIn.readObject();
 				notify.update(gameStateDTO);
-				notify.stamp();
+				notify.stamp(grafica);
 			} catch (EOFException e) {
 				disconnetti();
 			} catch (ClassNotFoundException | IOException e) {

@@ -3,6 +3,7 @@ package server.view.clientNotify;
 import java.util.ArrayList;
 import java.util.List;
 
+import client.Grafica;
 import common.gameDTO.GameStateDTO;
 import common.gameDTO.GiocatoreDTO;
 import server.model.game.Giocatore;
@@ -40,13 +41,8 @@ public class ClassificaClientNotify implements ClientNotify {
 	}
 
 	@Override
-	public void stamp() {
-		for(GiocatoreDTO g: vincenti){
-			System.out.println("Giocatore :"+g.getNome().toUpperCase()+ " Punteggio "+ g.getPunteggioVittoria()+" punti");
-		}
-		for(GiocatoreDTO g: perdenti){
-			System.out.println("Giocatore :"+g.getNome().toUpperCase()+ " Punteggio "+ g.getPunteggioVittoria()+" punti");
-		}
+	public void stamp(Grafica grafica) {
+		grafica.mostraClassifica(vincenti, perdenti);
 	}
 
 }
