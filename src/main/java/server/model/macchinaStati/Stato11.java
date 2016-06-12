@@ -32,7 +32,7 @@ public class Stato11 implements Stato {
 	@Override
 	public void transizionePrincipale(GameState gameState){
 		if(!gameState.isBonusAzionePrincipale()){
-		gameState.setStato(new Stato01(gameState));
+			gameState.setStato(new Stato01(gameState));
 		}
 		else
 			gameState.setBonusAzionePrincipale(false);

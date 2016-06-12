@@ -32,19 +32,21 @@ public class Stato01 implements Stato {
 		if(gameState.isUltimoGiro()){
 			if(!gameState.lastNextPlayer()){
 
-				gameState.setStato(new StartEnd(gameState));}
+				gameState.setStato(new StartEnd(gameState));
+			}
 			else{
-				gameState.setStato(new StatoFinePartita(gameState));}
+				gameState.setStato(new StatoFinePartita(gameState));
+			}
 			
 		}
 		else{
-		gameState.nextPlayer();
-		gameState.prossimoTurno();
-		System.out.println("[SERVER] numero turno 01: "+gameState.getNumeroTurni());
+			gameState.nextPlayer();
+			gameState.prossimoTurno();
+			System.out.println("[SERVER] numero turno 01: "+gameState.getNumeroTurni());
 			if (gameState.getNumeroTurni() != gameState.getGiocatori().size())
-			gameState.setStato(new StartEnd(gameState));
+				gameState.setStato(new StartEnd(gameState));
 			else
-			gameState.setStato(new StatoOffertaMarket(gameState));
+				gameState.setStato(new StatoOffertaMarket(gameState));
 		}	
 	}
 

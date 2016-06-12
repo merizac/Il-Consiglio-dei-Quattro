@@ -40,10 +40,13 @@ public class ElezioneConsigliereVeloceDTOTest {
 		gameState.start(giocatori);
 		
 		consigliereDTO=new ConsigliereDTO();
+		balconeDTO=new BalconeDTO();
 		consigliere=gameState.getConsiglieri().get(0);
 		consigliereDTO.inizializza(consigliere);
 		regioneDTO=new RegioneDTO();
 		regione=gameState.getRegioni().get(0);
+		regioneDTO.inizializza(regione);
+		balcone=regione.getBalcone();
 		balconeDTO.inizializza(balcone);
 		visitor = new AzioneVisitorImpl(gameState, gameState.getGiocatoreCorrente());
 	}
@@ -51,7 +54,7 @@ public class ElezioneConsigliereVeloceDTOTest {
 	@Test
 	public void testGetBalcone() {
 		ElezioneConsigliereVeloceDTO elezione=new ElezioneConsigliereVeloceDTO();
-		elezione.setBalcone(balconeDTO);
+		elezione.setBalcone(regioneDTO.getBalcone());
 		assertTrue(regioneDTO.getBalcone()==elezione.getBalcone());
 	}
 
@@ -83,7 +86,6 @@ public class ElezioneConsigliereVeloceDTOTest {
 		elezione.setBalcone(regioneDTO.getBalcone());
 		
 		ElezioneConsigliereVeloce azioneParser=(ElezioneConsigliereVeloce) elezione.accept(visitor);
-		
 		assertTrue(azioneParser.getConsigliere()==consigliere);
 		assertTrue(azioneParser.getRegione()==regione.getBalcone());
 	}
