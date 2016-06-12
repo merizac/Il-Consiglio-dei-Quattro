@@ -1,5 +1,6 @@
 package server.view.clientNotify;
 
+import client.Grafica;
 import common.gameDTO.GameStateDTO;
 import common.gameDTO.GiocatoreDTO;
 import server.model.game.Giocatore;
@@ -29,11 +30,11 @@ public class VincitoreClientNotify implements ClientNotify {
 	}
 
 	@Override
-	public void stamp() {
-		System.out.println("Complimenti "+giocatoreDTO.getNome().toUpperCase()
-				+ ", hai vinto!!");
-		System.out.println("Hai totalizzato "+ giocatoreDTO.getPunteggioVittoria() + " punti!");
-		
+	public void stamp(Grafica grafica) {
+		String messaggio ="Complimenti "+giocatoreDTO.getNome().toUpperCase()
+				+ ", hai vinto!!";
+		messaggio= messaggio + "Hai totalizzato "+ giocatoreDTO.getPunteggioVittoria() + " punti!";
+		grafica.mostraMessaggio(messaggio);
 	}
 
 }

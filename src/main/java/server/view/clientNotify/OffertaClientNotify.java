@@ -2,6 +2,7 @@ package server.view.clientNotify;
 
 import java.util.List;
 
+import client.Grafica;
 import common.gameDTO.GameStateDTO;
 import common.gameDTO.OffertaDTO;
 
@@ -27,10 +28,8 @@ public class OffertaClientNotify implements ClientNotify {
 	}
 
 	@Override
-	public void stamp() {
-		for(OffertaDTO o: this.offerte){
-			System.out.println("\n"+o.getMarketableDTO()+" prezzo: "+ o.getPrezzo());
-		}
+	public void stamp(Grafica grafica) {
+		grafica.mostraOfferte(offerte);
 	}
 
 }

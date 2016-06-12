@@ -1,5 +1,6 @@
 package server.view.clientNotify;
 
+import client.Grafica;
 import common.gameDTO.GameStateDTO;
 
 public class MessageClientNotify implements ClientNotify {
@@ -25,8 +26,8 @@ public class MessageClientNotify implements ClientNotify {
 	}
 
 	@Override
-	public void stamp() {
-		System.out.println(error);
+	public void stamp(Grafica grafica) {
+		grafica.mostraMessaggio(error);
 	}
 
 }

@@ -318,7 +318,7 @@ public class GameState extends Observable<Notify> {
 			this.notifyObserver(new GiocatoreNotify(g, Arrays.asList(g)));
 		}
 		this.stato = new StartEnd(this);
-
+		
 	}
 
 	/*
