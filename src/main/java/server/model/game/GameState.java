@@ -3,16 +3,24 @@ package server.model.game;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
+import server.model.bonus.Bonus;
+import server.model.game.comparator.ComparatorClassifica;
+import server.model.game.comparator.ComparatorPuntiNobiltà;
+import server.model.game.comparator.ComparatorTesserePermesso;
 import server.model.macchinaStati.StartEnd;
 import server.model.macchinaStati.Stato;
 import server.model.market.Offerta;
+import server.model.notify.ClassificaNotify;
 import server.model.notify.GameStateNotify;
 import server.model.notify.GiocatoreNotify;
 import server.model.notify.Notify;
+import server.model.notify.PerdenteNotify;
+import server.model.notify.VincitoreNotify;
 import utility.Observable;
 
 public class GameState extends Observable<Notify> {
@@ -285,6 +293,10 @@ public class GameState extends Observable<Notify> {
 
 	}
 
+	/**
+	 * 
+	 * @return true if next player is the last
+	 */
 	public boolean lastNextPlayer() {
 		Giocatore ultimoGiro = giocatori.remove(0);
 		giocatoriFinePartita.add(ultimoGiro);
@@ -319,6 +331,126 @@ public class GameState extends Observable<Notify> {
 		}
 		this.stato = new StartEnd(this);
 		
+	}
+
+	public List<Giocatore> calcolaVincitore() {
+		calcolaPunteggioNobiltà();
+		calcolaTesserePermesso();
+		assegnaTessereBonus();
+		return vincitore();
+	}
+
+	private List<Giocatore> vincitore() {
+		ArrayList<Giocatore> giocatoriPerdenti = new ArrayList<>(this.getGiocatoriFinePartita());
+		ComparatorClassifica comparator = new ComparatorClassifica();
+		Collections.sort(giocatoriPerdenti, comparator);
+		List<Giocatore> vincitori = Arrays.asList(giocatoriPerdenti.get(0));
+		giocatoriPerdenti.remove(vincitori.get(0));
+
+		for (Giocatore g : giocatoriPerdenti) {
+			if (comparator.compare(g, vincitori.get(0)) != 0)
+				break;
+			else {
+				vincitori.add(g);
+				giocatoriPerdenti.remove(g);
+			}
+		}
+
+		for (Giocatore g : vincitori) {
+			this.notifyObserver(new VincitoreNotify(Arrays.asList(g), g));
+		}
+
+		for (Giocatore g : giocatoriPerdenti) {
+			this.notifyObserver(new PerdenteNotify(Arrays.asList(g), g));
+		}
+
+		this.notifyObserver(new ClassificaNotify(vincitori, giocatoriPerdenti, giocatoriFinePartita));
+		return vincitori;
+	}
+
+	/**
+	 * add points of TessereBonus to the players who owns that.
+	 * 
+	 * @param gameState
+	 */
+	private void assegnaTessereBonus() {
+		for (Giocatore g : giocatoriFinePartita) {
+			if (!g.getTessereBonus().isEmpty()) {
+				for (Bonus b : g.getTessereBonus()) {
+					b.usaBonus(this);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Sort giocatori by order decrescent of number of TesserePermesso (coperte
+	 * e scoperte) Each player with the best score of number of tessere permesso
+	 * win 3 points in Punteggio Vittoria
+	 * 
+	 * @param gameState
+	 */
+	private void calcolaTesserePermesso() {
+		Collections.sort(giocatoriFinePartita, new ComparatorTesserePermesso());
+
+		int i = 0;
+		while (giocatoriFinePartita.get(i).getNumeroTesserePermesso() == giocatoriFinePartita.get(0).getNumeroTesserePermesso()
+				&& i < giocatoriFinePartita.size() - 1) {
+			giocatoriFinePartita.get(i).aumentaPuntiVittoria(3);
+			i++;
+		}
+	}
+
+	/**
+	 * this method creaates two arraylist: one for players who obtain the best
+	 * points on Punteggio Nobiltà, and the second for players who do the second
+	 * best points in Punteggio Nobiltà Comparator is the method that sort the
+	 * array giocatori in order decrescent of points of nobility
+	 * 
+	 * @param gameState
+	 */
+	private void calcolaPunteggioNobiltà() {
+		Collections.sort(giocatori, new ComparatorPuntiNobiltà());
+		ArrayList<Giocatore> primo = new ArrayList<>();
+		primo.add(giocatori.get(0));
+		giocatori.remove(primo.get(0));
+		ArrayList<Giocatore> secondo = new ArrayList<>();
+
+		for (Giocatore g : giocatori) {
+			int punti = g.getPunteggioNobiltà().getPuntiNobiltà();
+
+			if (punti == primo.get(0).getPunteggioNobiltà().getPuntiNobiltà()) {
+				primo.add(g);
+			} else if ((punti != primo.get(0).getPunteggioNobiltà().getPuntiNobiltà() && secondo.isEmpty())
+					|| punti == secondo.get(0).getPunteggioNobiltà().getPuntiNobiltà()) {
+				secondo.add(g);
+				// break;
+			}
+
+		}
+		assegnaPunti(primo, secondo);
+	}
+
+	/**
+	 * This method add at players points extra for the best points if there are
+	 * more then one player in primo, all that player win 5 points in Punteggio
+	 * vittoria and there isn't a second position if there is just one player
+	 * with the best score, he win 5 points extra in Punteggio Vittoria and all
+	 * players with second best score win 3 points of Punteggio Vittoria.
+	 * 
+	 * @param primo
+	 * @param secondo
+	 */
+	private void assegnaPunti(ArrayList<Giocatore> primo, ArrayList<Giocatore> secondo) {
+		System.out.println("assegna punti");
+		for (Giocatore g : primo) {
+			g.aumentaPuntiVittoria(5);
+			if (primo.size() == 1) {
+				for (Giocatore g2 : secondo) {
+					g2.aumentaPuntiVittoria(2);
+				}
+			}
+		}
 	}
 
 	/*

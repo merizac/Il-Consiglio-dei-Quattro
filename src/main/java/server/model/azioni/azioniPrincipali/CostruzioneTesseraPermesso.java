@@ -7,6 +7,7 @@ import common.azioniDTO.AzioneDTO;
 import common.azioniDTO.CostruzioneTesseraPermessoDTO;
 import server.model.azioni.azioniBonus.Bonusable;
 import server.model.bonus.Bonus;
+import server.model.bonus.BonusPuntiNobiltà;
 import server.model.game.Città;
 import server.model.game.CittàBonus;
 import server.model.game.Colore;
@@ -31,7 +32,7 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonu
 	 */
 	@Override
 	public void eseguiAzione(GameState gameState) {
-
+		boolean nob = false;
 		if (!pagoAiutanti(gameState)) {
 			gameState.notifyObserver(new MessageNotify("Errore: i soldi non sono sufficienti",
 					Arrays.asList(gameState.getGiocatoreCorrente())));
@@ -39,7 +40,7 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonu
 		}
 
 		costruisci(gameState);
-		prendiBonus(gameState);
+		nob = prendiBonus(gameState, nob);
 		copriTessera(gameState);
 
 		if (cittàCostruzione instanceof CittàBonus)
@@ -56,14 +57,25 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonu
 				new GiocatoreNotify(gameState.getGiocatoreCorrente(), Arrays.asList(gameState.getGiocatoreCorrente())));
 
 		ArrayList<Bonus> bonusCasella = gameState.getGiocatoreCorrente().getPunteggioNobiltà().getBonus();
+		System.out.println(gameState.getGiocatoreCorrente().getPunteggioNobiltà().getPuntiNobiltà());
+		System.out.println(gameState.getGiocatoreCorrente().getPunteggioNobiltà().getBonus());
+		System.out.println(nob);
+		System.out.println(bonusCasella.isEmpty());
 
-		if (!bonusCasella.isEmpty()) {
-			if (controlloBonus(gameState))
-				setStatoTransizionePrincipale(gameState);
-			else {
-				gameState.getStato().transizioneBonus(gameState);
-
+		if (nob) {
+			if (!bonusCasella.isEmpty()) {
+				if (controlloBonus(gameState)) {
+					setStatoTransizionePrincipale(gameState);
+				} else {
+					gameState.getStato().transizioneBonus(gameState);
+				}
 			}
+			else {
+				setStatoTransizionePrincipale(gameState);
+			}
+		}
+		else {
+			setStatoTransizionePrincipale(gameState);
 		}
 
 	}
@@ -133,14 +145,19 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonu
 	 * give to the player the bonus of the city connected to the city where the
 	 * player has built
 	 */
-	private void prendiBonus(GameState gameState) {
+	private boolean prendiBonus(GameState gameState, boolean nob) {
 		Colore coloreEmporio = gameState.getGiocatoreCorrente().getColoreGiocatore();
 		Set<CittàBonus> cittàCollegate = gameState.getMappa().trovaCittà(cittàCostruzione, coloreEmporio);
 		for (CittàBonus c : cittàCollegate) {
 			for (Bonus b : c.getBonus()) {
 				b.usaBonus(gameState);
+				if(b instanceof BonusPuntiNobiltà){
+					nob = true;
+				}
+				else nob =false;
 			}
 		}
+		return nob;
 	}
 
 	/**

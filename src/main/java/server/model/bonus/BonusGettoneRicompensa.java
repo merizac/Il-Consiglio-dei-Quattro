@@ -36,7 +36,7 @@ public class BonusGettoneRicompensa extends Bonus {
 	
 	@Override
 	public void usaBonus(GameState gameState) {		
-		
+		gameState.getGiocatoreCorrente().getBonusNobiltà().add(this.getAzioneBonus());
 	}	
 
 	/* (non-Javadoc)
@@ -115,11 +115,4 @@ public class BonusGettoneRicompensa extends Bonus {
 		if(numeroGettoni>2) throw new IllegalArgumentException("il bonus può avere al massimo due gettoni");
 		this.numeroGettoni = numeroGettoni;
 	}
-	
-	
-	
-	
-
-	
-	
 }

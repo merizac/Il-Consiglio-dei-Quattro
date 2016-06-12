@@ -36,15 +36,7 @@ public class ColoreBonusDTOTest {
 		
 		assertTrue(colore.getBonusDTO().equals(new BonusPuntiVittoria(3)));		
 	}
-
-	@Test
-	public void testSetBonus() {
-		ColoreBonusDTO colore=new ColoreBonusDTO();
-		colore.setBonus(new BonusPuntiVittoria(3));
-		
-		assertTrue(colore.getBonusDTO().equals(new BonusPuntiVittoria(3)));
-	}
-
+	
 	@Test
 	public void testInizializzaColoreCittà() {
 		ColoreBonusDTO colore=new ColoreBonusDTO();
@@ -53,5 +45,14 @@ public class ColoreBonusDTOTest {
 		assertEquals(coloreCittà.getColore(), colore.getColore());
 		assertTrue(coloreCittà.getBonusColore()==colore.getBonusDTO());
 	}
+	
+	@Test
+	public void testSetBonus() {
+		ColoreBonusDTO colore=new ColoreBonusDTO();
+		colore.setBonus(new BonusPuntiVittoria(3));
+		
+		assertTrue(colore.getBonusDTO().equals(new BonusPuntiVittoria(3)));
+	}
+
 
 }

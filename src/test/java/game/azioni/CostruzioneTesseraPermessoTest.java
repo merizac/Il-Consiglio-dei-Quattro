@@ -13,6 +13,7 @@ import server.model.bonus.Bonus;
 import server.model.bonus.BonusAiutanti;
 import server.model.bonus.BonusMoneta;
 import server.model.bonus.BonusPuntiVittoria;
+import server.model.game.Aiutante;
 import server.model.game.Città;
 import server.model.game.CittàBonus;
 import server.model.game.Colore;
@@ -41,6 +42,7 @@ public class CostruzioneTesseraPermessoTest {
 	@Test
 	public void testEseguiAzione(){
 		//perndo le città per il test
+		gameState.getGiocatoreCorrente().setAiutanti(new Aiutante(1));
 		CittàBonus cittàCostruzione=null;
 		CittàBonus cittàVicina=null;
 		for (Città c: regione.getCittàRegione()){

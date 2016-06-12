@@ -50,7 +50,7 @@ public class CostruzioneAiutoReTest {
 	
 	@Test
 	public void azioneBuonFine() {
-		
+		gameState.getGiocatoreCorrente().setAiutanti(new Aiutante(1));
 		CostruzioneAiutoRe costruzioneAiutoRe=new CostruzioneAiutoRe();
 		//set carte che passa il giocatore
 		Balcone balconeRe=gameState.getPlanciaRe().getBalconeRe();

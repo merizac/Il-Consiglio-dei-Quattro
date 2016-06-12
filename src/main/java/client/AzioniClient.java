@@ -7,6 +7,7 @@ import java.util.Set;
 
 import common.gameDTO.BalconeDTO;
 import common.gameDTO.CartaPoliticaDTO;
+import common.gameDTO.CittàBonusDTO;
 import common.gameDTO.CittàDTO;
 import common.gameDTO.ColoreDTO;
 import common.gameDTO.ConsigliereDTO;
@@ -191,13 +192,24 @@ public class AzioniClient {
 	 * @param stdIn
 	 * @return the politic card DTO
 	 */
+
+	public CittàDTO scegliCittàBonus(Set<CittàBonusDTO> città, ColoreDTO coloreGiocatore, Scanner stdIn, String input) {
+		CittàDTO cittàScelta = ControlloParametriDTO.cittàBonus(input, città, coloreGiocatore);
+		while (cittàScelta == null) {
+			System.out.println("la città selezionata non è corretta!\n Inserire di nuovo");
+			comando = stdIn.nextLine();
+			cittàScelta = ControlloParametriDTO.cittàBonus(comando, città, coloreGiocatore);
+		}
+		return cittàScelta;
+	}
+	
 	public CartaPoliticaDTO scegliCarta(List<CartaPoliticaDTO> cartePolitica, Scanner stdIn) {
 		System.out.println("Seleziona la carta politica");
 		System.out.println(cartePolitica);
 		comando = stdIn.nextLine();
 		CartaPoliticaDTO cartaScelta = ControlloParametriDTO.carteGiocatore(comando, cartePolitica);
 		while (cartaScelta == null) {
-			System.out.println("la carta selezionanata non è esistente!\n Inserire di nuovo");
+			System.out.println("la carta selezionata non è esistente!\n Inserire di nuovo");
 			comando = stdIn.nextLine();
 			cartaScelta = ControlloParametriDTO.carteGiocatore(comando, cartePolitica);
 		}
@@ -217,5 +229,4 @@ public class AzioniClient {
 		}
 		return Integer.parseInt(comando);
 	}
-
 }

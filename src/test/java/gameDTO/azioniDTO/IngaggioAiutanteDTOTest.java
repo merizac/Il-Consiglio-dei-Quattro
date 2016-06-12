@@ -11,6 +11,7 @@ import common.azioniDTO.IngaggioAiutanteDTO;
 import common.azioniDTO.azioneVisitor.AzioneVisitor;
 import common.azioniDTO.azioneVisitor.AzioneVisitorImpl;
 import server.model.azioni.azioniVeloci.IngaggioAiutante;
+import server.model.game.Aiutante;
 import server.model.game.GameState;
 import server.model.game.Giocatore;
 
@@ -27,6 +28,7 @@ public class IngaggioAiutanteDTOTest {
 		gameState=new GameState();
 		gameState.start(giocatori);
 		gameState.getGiocatoreCorrente().setPunteggioRicchezza(5);
+		gameState.getGiocatoreCorrente().setAiutanti(new Aiutante(1));;
 		
 		visitor = new AzioneVisitorImpl(gameState, gameState.getGiocatoreCorrente());
 	}

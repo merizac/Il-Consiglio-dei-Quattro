@@ -170,7 +170,6 @@ public class ControlloParametri {
 	private static boolean stessiBonus(List<Bonus> bonusTesseraDTO, List<Bonus> bonus) {
 		int i;
 		for (i = 0; i <= bonusTesseraDTO.size() - 1; i++) {
-			System.out.println("indice :" + i);
 			if (!bonusTesseraDTO.get(i).getClass().getName().equals(bonus.get(i).getClass().getName()))
 				break;
 			else {
@@ -195,8 +194,6 @@ public class ControlloParametri {
 	private static boolean stesseCittà(List<CittàDTO> cittàTesseraDTO, List<Città> città) {
 		int i;
 		for (i = 0; i <= cittàTesseraDTO.size() - 1; i++) {
-			System.out.println("Città tesseraDTO: " + cittàTesseraDTO.get(i).getNome());
-			System.out.println("Città tesseragiocatore: " + città.get(i).getNome());
 			if (!cittàTesseraDTO.get(i).getNome().equals(città.get(i).getNome()))
 				break;
 			else {

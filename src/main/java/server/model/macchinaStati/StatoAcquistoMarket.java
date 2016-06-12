@@ -29,7 +29,6 @@ public class StatoAcquistoMarket implements Stato {
 		Collections.shuffle(giocatori);
 		gameState.notifyObserver(new OffertaNotify(gameState.getOfferteMarket(), Arrays.asList(giocatori.get(0))));
 		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(giocatori.get(0))));
-		
 	}
 
 	@Override

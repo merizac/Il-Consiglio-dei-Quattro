@@ -23,8 +23,12 @@ public class StatoOffertaMarket implements Stato {
 
 	@Override
 	public void transizionePassa(GameState gameState){
+		System.out.println("NumeroTurno1: "+gameState.getNumeroTurni());
+		
 		gameState.decrementaTurno();
 		gameState.nextPlayer();
+		System.out.println("NumeroTurno2: "+gameState.getNumeroTurni());
+		
 		if(gameState.getNumeroTurni()!=0){
 			System.out.println("market giocatorecorrente: "+ gameState.getGiocatoreCorrente().getNome());
 			gameState.setStato(new StatoOffertaMarket(gameState));

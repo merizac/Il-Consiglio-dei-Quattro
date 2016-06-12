@@ -38,6 +38,7 @@ public class BonusAiutantiTest {
 		ArrayList<Giocatore> giocatori=new ArrayList<>();
 		giocatori.add(giocatore);
 		gameState.start(giocatori);
+		gameState.getGiocatoreCorrente().setAiutanti(new Aiutante(1));
 		BonusAiutanti b=new BonusAiutanti(3);
 		b.usaBonus(gameState);
 		assertEquals(aiutantiPrima.getAiutante(), giocatore.getAiutanti().getAiutante());

@@ -7,12 +7,15 @@ import common.azioniDTO.AcquistoTesseraPermessoDTO;
 import common.azioniDTO.AzioneDTO;
 import server.model.azioni.azioniBonus.Bonusable;
 import server.model.bonus.Bonus;
+import server.model.bonus.BonusPuntiNobiltà;
 import server.model.game.CartaPolitica;
 import server.model.game.Colore;
 import server.model.game.Consigliere;
 import server.model.game.GameState;
 import server.model.game.Regione;
 import server.model.game.TesseraPermesso;
+import server.model.notify.GameStateNotify;
+import server.model.notify.GiocatoreNotify;
 import server.model.notify.MessageNotify;
 
 public class AcquistoTesseraPermesso extends AzionePrincipale implements Bonusable {
@@ -31,6 +34,8 @@ public class AcquistoTesseraPermesso extends AzionePrincipale implements Bonusab
 	 */
 	@Override
 	public void eseguiAzione(GameState gameState) {
+
+		boolean nob = false;
 
 		if (carteGiocatore.isEmpty()) {
 			gameState.notifyObserver(new MessageNotify("Errore: non sono presenti carte",
@@ -52,9 +57,9 @@ public class AcquistoTesseraPermesso extends AzionePrincipale implements Bonusab
 		}
 
 		for (CartaPolitica c : carteGiocatore) {
-
 			gameState.getGiocatoreCorrente().getCartePolitica().remove(c);
-			gameState.getMazzoCartePolitica().aggiungiCarte(carteGiocatore);
+			gameState.getMazzoCartePolitica().getCarte().add(c);
+//			gameState.getMazzoCartePolitica().aggiungiCarte(carteGiocatore);
 		}
 
 		regione.getTesserePermessoScoperte().remove(tesseraScoperta);
@@ -63,19 +68,27 @@ public class AcquistoTesseraPermesso extends AzionePrincipale implements Bonusab
 		regione.getTesserePermessoScoperte().add(regione.getMazzoTesserePermesso().pescaCarte());
 
 		for (Bonus b : tesseraScoperta.getBonus()) {
-			System.out.println(b);
 			b.usaBonus(gameState);
+			if (b instanceof BonusPuntiNobiltà) {
+				nob = true;
+			}
 		}
 		ArrayList<Bonus> bonusCasella = gameState.getGiocatoreCorrente().getPunteggioNobiltà().getBonus();
 
-		if (!bonusCasella.isEmpty()) {
-			if (controlloBonus(gameState))
-				setStatoTransizionePrincipale(gameState);
-			else {
-				gameState.getStato().transizioneBonus(gameState);
-
+		if (nob) {
+			if (!bonusCasella.isEmpty()) {
+				if (controlloBonus(gameState)) {
+					setStatoTransizionePrincipale(gameState);
+				} else {
+					gameState.getStato().transizioneBonus(gameState);
+				}
 			}
+		} else {
+			setStatoTransizionePrincipale(gameState);
 		}
+		gameState.notifyObserver(new GameStateNotify(gameState, gameState.getGiocatori()));
+		gameState.notifyObserver(
+				new GiocatoreNotify(gameState.getGiocatoreCorrente(), Arrays.asList(gameState.getGiocatoreCorrente())));
 	}
 
 	/**

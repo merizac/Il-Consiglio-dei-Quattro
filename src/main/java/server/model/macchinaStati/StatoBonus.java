@@ -3,6 +3,8 @@ package server.model.macchinaStati;
 import java.util.Arrays;
 import java.util.List;
 import server.model.azioni.Azione;
+import server.model.azioni.Passa;
+import server.model.azioni.azioniBonus.PassaBonus;
 import server.model.game.GameState;
 import server.model.notify.BonusNotify;
 
@@ -15,8 +17,11 @@ public class StatoBonus implements Stato {
 	 */
 	public StatoBonus(GameState gameState, Stato stato) {
 		System.out.println("[SERVER] "+this);
+		if (stato==null)
+			throw new NullPointerException("Lo stato deve essere lo stato precedente");
 		this.stato = stato;
 		this.azioni=gameState.getGiocatoreCorrente().getBonusNobiltà();
+		this.azioni.add(new PassaBonus());
 		gameState.notifyObserver(new BonusNotify(gameState.getGiocatoreCorrente().getBonusNobiltà(), Arrays.asList(gameState.getGiocatoreCorrente())));
 
 	}
@@ -29,6 +34,10 @@ public class StatoBonus implements Stato {
 		else gameState.setStato(new StatoBonus(gameState, stato));
 	}
 
+	@Override
+	public void transizionePassa(GameState gameState) {
+		this.transizioneBonus(gameState);
+	}
 
 	@Override
 	public List<Azione> getAzioni() {

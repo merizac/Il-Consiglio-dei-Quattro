@@ -62,7 +62,7 @@ public class BonusGettoneNDTO implements AzioneDTO {
 	@Override
 	public String toString() {
 		if (numeroGettoni == 1) {
-			return "BonusGettone [B3]";
+			return "Bonus Gettone [B3]";
 		} else
 			return "Bonus Gettone [B4]";
 	}

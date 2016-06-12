@@ -4,17 +4,14 @@ import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
-
 import common.azioniDTO.ElezioneConsigliereVeloceDTO;
 import common.azioniDTO.azioneVisitor.AzioneVisitor;
 import common.azioniDTO.azioneVisitor.AzioneVisitorImpl;
 import common.gameDTO.BalconeDTO;
 import common.gameDTO.ConsigliereDTO;
 import common.gameDTO.RegioneDTO;
-import server.model.azioni.azioniPrincipali.ElezioneConsigliere;
 import server.model.azioni.azioniVeloci.ElezioneConsigliereVeloce;
 import server.model.game.Balcone;
 import server.model.game.Consigliere;
@@ -43,20 +40,21 @@ public class ElezioneConsigliereVeloceDTOTest {
 		gameState.start(giocatori);
 		
 		consigliereDTO=new ConsigliereDTO();
+		balconeDTO=new BalconeDTO();
 		consigliere=gameState.getConsiglieri().get(0);
 		consigliereDTO.inizializza(consigliere);
 		regioneDTO=new RegioneDTO();
 		regione=gameState.getRegioni().get(0);
 		regioneDTO.inizializza(regione);
+		balcone=regione.getBalcone();
 		balconeDTO.inizializza(balcone);
-
 		visitor = new AzioneVisitorImpl(gameState, gameState.getGiocatoreCorrente());
 	}
 
 	@Test
 	public void testGetBalcone() {
 		ElezioneConsigliereVeloceDTO elezione=new ElezioneConsigliereVeloceDTO();
-		elezione.setBalcone(balconeDTO);
+		elezione.setBalcone(regioneDTO.getBalcone());
 		assertTrue(regioneDTO.getBalcone()==elezione.getBalcone());
 	}
 
@@ -88,7 +86,6 @@ public class ElezioneConsigliereVeloceDTOTest {
 		elezione.setBalcone(regioneDTO.getBalcone());
 		
 		ElezioneConsigliereVeloce azioneParser=(ElezioneConsigliereVeloce) elezione.accept(visitor);
-		
 		assertTrue(azioneParser.getConsigliere()==consigliere);
 		assertTrue(azioneParser.getRegione()==regione.getBalcone());
 	}

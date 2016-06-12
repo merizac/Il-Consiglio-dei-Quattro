@@ -33,7 +33,7 @@ public class Server {
 	private final static int CONNESSIONERMI = 1099;
 	private Controller controller;
 	private GameState gameState;
-	private Map<GameState, Set<View>> partite;
+	private static Map<GameState, Set<View>> partite;
 	private List<Giocatore> giocatori;
 	private boolean end = false;
 	private final int TIMEOUT = 5000;
@@ -133,11 +133,11 @@ public class Server {
 
 	}
 
-	public void disconnettiClient(GameState gameState) {
-		for (View v : this.partite.get(gameState)) {
+	public static void disconnettiClient(GameState gameState) {
+		for (View v : Server.partite.get(gameState)) {
 			v.disconnetti();
 		}
-		this.partite.remove(gameState);
+		Server.partite.remove(gameState);
 	}
 
 	public static void main(String[] args) throws IOException {
