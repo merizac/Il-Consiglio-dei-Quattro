@@ -96,9 +96,7 @@ public class BonusGettoneN extends Azione {
 		this.numeroGettoni = numeroGettoni;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -106,12 +104,11 @@ public class BonusGettoneN extends Azione {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ID;
+		result = prime * result + numeroGettoni;
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -125,7 +122,11 @@ public class BonusGettoneN extends Azione {
 		BonusGettoneN other = (BonusGettoneN) obj;
 		if (ID != other.ID)
 			return false;
+		if (numeroGettoni != other.numeroGettoni)
+			return false;
 		return true;
 	}
+
+	
 
 }

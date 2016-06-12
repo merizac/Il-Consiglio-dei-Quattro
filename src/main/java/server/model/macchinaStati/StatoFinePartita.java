@@ -142,7 +142,7 @@ public class StatoFinePartita implements Stato {
 
 	
 /**
- * this method creaates two arraylist: one for players who obtain the best points on Punteggio Nobiltà, 
+ * this method creates two arraylist: one for players who obtain the best points on Punteggio Nobiltà, 
  * and the second for players who do the second best points in Punteggio Nobiltà
  * Comparator is the method that sort the array giocatori in order decrescent of points of nobility
  * @param gameState

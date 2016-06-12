@@ -18,6 +18,7 @@ import common.azioniDTO.ElezioneConsigliereDTO;
 import common.azioniDTO.ElezioneConsigliereVeloceDTO;
 import common.azioniDTO.ExitDTO;
 import common.azioniDTO.IngaggioAiutanteDTO;
+import common.azioniDTO.PassaBonusDTO;
 import common.azioniDTO.PassaDTO;
 import common.azioniDTO.PescaCartaDTO;
 import common.azioniDTO.SecondaAzionePrincipaleDTO;
@@ -27,6 +28,7 @@ import server.model.azioni.PescaCarta;
 import server.model.azioni.azioniBonus.BonusGettoneN;
 import server.model.azioni.azioniBonus.BonusTesseraAcquistataN;
 import server.model.azioni.azioniBonus.BonusTesseraPermessoN;
+import server.model.azioni.azioniBonus.PassaBonus;
 import server.model.azioni.azioniMarket.AzioneAcquisto;
 import server.model.azioni.azioniMarket.AzioneOfferta;
 import server.model.azioni.azioniPrincipali.AcquistoTesseraPermesso;
@@ -162,6 +164,13 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 	public Passa visit(PassaDTO passaDTO) {
 		return new Passa();
 	}
+	
+	@Override
+	public PassaBonus visit(PassaBonusDTO passaBonusDTO) throws ParameterException {
+		PassaBonus passaBonus = new PassaBonus();
+		passaBonus.setBonus(passaBonusDTO.getBonus().accept(this));
+		return passaBonus;
+	}
 
 	@Override
 	public AzioneOfferta visit(AzioneOffertaDTO azioneOffertaDTO) throws ParameterException {
@@ -230,6 +239,4 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 		exit.setGiocatore(giocatore);
 		return exit;
 	}
-
-
 }

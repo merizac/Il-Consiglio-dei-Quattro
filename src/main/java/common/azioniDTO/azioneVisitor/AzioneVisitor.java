@@ -13,6 +13,7 @@ import common.azioniDTO.ElezioneConsigliereDTO;
 import common.azioniDTO.ElezioneConsigliereVeloceDTO;
 import common.azioniDTO.ExitDTO;
 import common.azioniDTO.IngaggioAiutanteDTO;
+import common.azioniDTO.PassaBonusDTO;
 import common.azioniDTO.PassaDTO;
 import common.azioniDTO.PescaCartaDTO;
 import common.azioniDTO.SecondaAzionePrincipaleDTO;
@@ -22,6 +23,7 @@ import server.model.azioni.PescaCarta;
 import server.model.azioni.azioniBonus.BonusGettoneN;
 import server.model.azioni.azioniBonus.BonusTesseraAcquistataN;
 import server.model.azioni.azioniBonus.BonusTesseraPermessoN;
+import server.model.azioni.azioniBonus.PassaBonus;
 import server.model.azioni.azioniMarket.AzioneAcquisto;
 import server.model.azioni.azioniMarket.AzioneOfferta;
 import server.model.azioni.azioniPrincipali.AcquistoTesseraPermesso;
@@ -52,5 +54,5 @@ public interface AzioneVisitor {
 	public BonusTesseraPermessoN visit(BonusTesseraPermessoNDTO bonusTesseraPermessoDTO) throws ParameterException;
 	public Exit visit(ExitDTO exitDTO) throws ParameterException;
 	public BonusGettoneN visit(BonusGettoneNDTO bonusGettoneNDTO) throws ParameterException;
-	
+	public PassaBonus visit(PassaBonusDTO passaBonusDTO) throws ParameterException;
 }

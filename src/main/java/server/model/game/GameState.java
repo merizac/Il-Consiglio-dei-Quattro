@@ -240,8 +240,8 @@ public class GameState extends Observable<Notify> {
 	public void creaGiocatori(List<Giocatore> giocatori) {
 		int i = 0;
 		for (Giocatore g : giocatori) {
-			g.setAiutanti(new Aiutante(10 + i));
-			g.setPunteggioNobiltà(this.getPlanciaRe().getPercorsoNobiltà().get(0));
+			g.setAiutanti(new Aiutante(1 + i));
+			g.setPunteggioNobiltà(this.getPlanciaRe().getPercorsoNobiltà().get(3));
 			g.setPunteggioRicchezza(10 + i);
 			g.setPunteggioVittoria(0);
 			g.setColoreGiocatore(new Colore(String.valueOf(i)));
