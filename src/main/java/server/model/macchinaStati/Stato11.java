@@ -34,8 +34,10 @@ public class Stato11 implements Stato {
 		if(!gameState.isBonusAzionePrincipale()){
 			gameState.setStato(new Stato01(gameState));
 		}
-		else
+		else{
 			gameState.setBonusAzionePrincipale(false);
+			gameState.setStato(new Stato11(gameState));
+		}
 	}
 	
 	@Override
