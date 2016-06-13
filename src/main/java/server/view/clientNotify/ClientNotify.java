@@ -2,9 +2,10 @@ package server.view.clientNotify;
 
 import java.io.Serializable;
 
+import client.Grafica;
 import common.gameDTO.GameStateDTO;
 
 public interface ClientNotify extends Serializable {
 	public void update(GameStateDTO gameStateDTO);
-	public void stamp();
+	public void stamp(Grafica grafica);
 }

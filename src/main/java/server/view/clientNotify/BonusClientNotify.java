@@ -3,6 +3,7 @@ package server.view.clientNotify;
 import java.util.ArrayList;
 import java.util.List;
 
+import client.Grafica;
 import common.azioniDTO.AzioneDTO;
 import common.gameDTO.GameStateDTO;
 
@@ -23,10 +24,7 @@ public class BonusClientNotify implements ClientNotify {
 	}
 
 	@Override
-	public void stamp() {
-		System.out.println("Hai vinto un Bonus nel Percorso Nobiltà!\n");
-		for(AzioneDTO b: bonus){
-			System.out.println(b);
-		}
+	public void stamp(Grafica grafica) {
+		grafica.mostraAzioni(bonus);
 	}
 }

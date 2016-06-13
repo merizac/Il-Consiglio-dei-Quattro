@@ -1,5 +1,6 @@
 package server.view.clientNotify;
 
+import client.Grafica;
 import common.gameDTO.GameStateDTO;
 import common.gameDTO.GiocatoreDTO;
 
@@ -24,8 +25,9 @@ public class GiocatoreDisconnessoClientNotify implements ClientNotify {
 	}
 
 	@Override
-	public void stamp() {
-		System.out.println("Il giocatore "+giocatoreDisconnesso.getNome()+" ha abbandonato la partita\n");
+	public void stamp(Grafica grafica) {
+		String messaggio = "Il giocatore "+giocatoreDisconnesso.getNome()+" ha abbandonato la partita\n";
+		grafica.mostraMessaggio(messaggio);
 	}
 
 }

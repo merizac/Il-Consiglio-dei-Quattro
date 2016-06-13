@@ -2,6 +2,7 @@ package server.view.clientNotify;
 
 import java.util.List;
 
+import client.Grafica;
 import common.azioniDTO.AzioneDTO;
 import common.gameDTO.GameStateDTO;
 
@@ -22,10 +23,8 @@ public class AzioniClientNotify implements ClientNotify {
 	}
 
 	@Override
-	public void stamp() {
-		for(AzioneDTO a: azioni){
-			System.out.println(a);
-		}
+	public void stamp(Grafica grafica) {
+		grafica.mostraAzioni(azioni);
 	}
 
 }
