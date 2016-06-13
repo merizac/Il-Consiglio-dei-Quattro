@@ -334,25 +334,34 @@ public class GameState extends Observable<Notify> {
 	}
 
 	public List<Giocatore> calcolaVincitore() {
-		calcolaPunteggioNobiltà();
 		calcolaTesserePermesso();
+		calcolaPunteggioNobiltà();
 		assegnaTessereBonus();
 		return vincitore();
 	}
 
 	private List<Giocatore> vincitore() {
-		ArrayList<Giocatore> giocatoriPerdenti = new ArrayList<>(this.getGiocatoriFinePartita());
+		
+		ArrayList<Giocatore> giocatoritmp = new ArrayList<>(this.getGiocatoriFinePartita());
+		ArrayList<Giocatore> giocatoriPerdenti = new ArrayList<>();
 		ComparatorClassifica comparator = new ComparatorClassifica();
-		Collections.sort(giocatoriPerdenti, comparator);
-		List<Giocatore> vincitori = Arrays.asList(giocatoriPerdenti.get(0));
-		giocatoriPerdenti.remove(vincitori.get(0));
+		Collections.sort(giocatoritmp, comparator);
+		List<Giocatore> vincitori = new ArrayList<>();
+		vincitori.add(giocatoritmp.get(0));
+		giocatoritmp.remove(vincitori.get(0));
 
-		for (Giocatore g : giocatoriPerdenti) {
-			if (comparator.compare(g, vincitori.get(0)) != 0)
+		for (Giocatore g : giocatoritmp) {
+			System.out.println("SonoEntratoInGiocatorePerdente");
+			if (comparator.compare(g, vincitori.get(0)) != 0){
+				giocatoriPerdenti.add(g);
 				break;
+			}
 			else {
 				vincitori.add(g);
-				giocatoriPerdenti.remove(g);
+				//giocatoriPerdenti.remove(g);
+				
+				if(giocatoritmp.isEmpty())
+					break;
 			}
 		}
 
@@ -375,6 +384,7 @@ public class GameState extends Observable<Notify> {
 	 */
 	private void assegnaTessereBonus() {
 		for (Giocatore g : giocatoriFinePartita) {
+			this.setGiocatoreCorrente(g);
 			if (!g.getTessereBonus().isEmpty()) {
 				for (Bonus b : g.getTessereBonus()) {
 					b.usaBonus(this);
@@ -394,10 +404,12 @@ public class GameState extends Observable<Notify> {
 		Collections.sort(giocatoriFinePartita, new ComparatorTesserePermesso());
 
 		int i = 0;
-		while (giocatoriFinePartita.get(i).getNumeroTesserePermesso() == giocatoriFinePartita.get(0).getNumeroTesserePermesso()
-				&& i < giocatoriFinePartita.size() - 1) {
-			giocatoriFinePartita.get(i).aumentaPuntiVittoria(3);
-			i++;
+		while (i < giocatoriFinePartita.size()) {
+			if(giocatoriFinePartita.get(i).getNumeroTesserePermesso() == giocatoriFinePartita.get(0).getNumeroTesserePermesso()){
+				giocatoriFinePartita.get(i).aumentaPuntiVittoria(3);
+				i++;
+			}
+			else break;
 		}
 	}
 
@@ -411,12 +423,13 @@ public class GameState extends Observable<Notify> {
 	 */
 	private void calcolaPunteggioNobiltà() {
 		Collections.sort(giocatoriFinePartita, new ComparatorPuntiNobiltà());
+		ArrayList<Giocatore> giocatori = new ArrayList<>(giocatoriFinePartita);
 		ArrayList<Giocatore> primo = new ArrayList<>();
-		primo.add(giocatoriFinePartita.get(0));
-		giocatoriFinePartita.remove(primo.get(0));
+		primo.add(giocatori.get(0));
+		giocatori.remove(primo.get(0));
 		ArrayList<Giocatore> secondo = new ArrayList<>();
 
-		for (Giocatore g : giocatoriFinePartita) {
+		for (Giocatore g : giocatori) {
 			int punti = g.getPunteggioNobiltà().getPuntiNobiltà();
 
 			if (punti == primo.get(0).getPunteggioNobiltà().getPuntiNobiltà()) {
@@ -426,9 +439,9 @@ public class GameState extends Observable<Notify> {
 				secondo.add(g);
 				// break;
 			}
-
 		}
 		assegnaPunti(primo, secondo);
+		
 	}
 
 	/**
