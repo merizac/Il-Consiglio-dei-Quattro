@@ -1,5 +1,6 @@
 package server.view.clientNotify;
 
+import client.Grafica;
 import common.gameDTO.GameStateDTO;
 import common.gameDTO.GiocatoreDTO;
 
@@ -32,8 +33,8 @@ public class GiocatoreClientNotify implements ClientNotify {
 	}
 
 	@Override
-	public void stamp() {
-		System.out.println(giocatoreDTO+"\n");
+	public void stamp(Grafica grafica) {
+		grafica.mostraGiocatore(giocatoreDTO);
 	}
 
 }

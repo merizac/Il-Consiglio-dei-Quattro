@@ -119,6 +119,12 @@ public class Server {
 			this.gameState = new GameState();
 			this.controller = new Controller(gameState);
 			this.partite.put(this.gameState, new HashSet<>());
+			
+			ServerRMIViewRemote game = new ServerRMIView();
+			ServerRMIViewRemote gameRemote = (ServerRMIViewRemote) UnicastRemoteObject.exportObject(game, 0);
+
+			String name = "GIOCO";
+			registry.rebind(name, gameRemote);
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

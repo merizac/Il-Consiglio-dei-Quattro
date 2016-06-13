@@ -20,9 +20,9 @@ public class AzioniClient {
 	private String comando;
 
 	/**
-	 * this method let the player choose the consigliere which want to add int
-	 * the balcony if the player insert a consigliere that not exists, he will
-	 * insert again the consigliere
+	 * this method let the player choose a counselor which want to add into
+	 * the balcony if the player insert a counselor that not exists, he will
+	 * insert again the counselor
 	 * 
 	 * @return ConsigliereDTO choose from the player
 	 */
@@ -40,8 +40,8 @@ public class AzioniClient {
 	}
 
 	/**
-	 * this method let the player choose the Regione if the player insert a
-	 * regione that not exists, he will insert again the regione
+	 * this method let the player choose the region if the player insert a
+	 * region that not exists, he will insert again the region
 	 * 
 	 * @return RegioneDTO choose from the player
 	 */
@@ -58,7 +58,14 @@ public class AzioniClient {
 		}
 		return regioneScelta;
 	}
-
+	
+	/**
+	 * this method let the player chose the balcony where he want to elect a counselor
+	 * @param regioni
+	 * @param balconeRe
+	 * @param stdIn
+	 * @return the balcony DTO selected
+	 */
 	public BalconeDTO scegliBalcone(List<RegioneDTO> regioni, BalconeDTO balconeRe, Scanner stdIn) {
 		BalconeDTO balconeScelto = null;
 		boolean ok = false;
@@ -89,7 +96,12 @@ public class AzioniClient {
 		}
 		return balconeScelto;
 	}
-
+	/**
+	 * this method let the player chose cards that hew want to use 
+	 * @param carteGiocatore
+	 * @param stdIn
+	 * @return cards DTO selected
+	 */
 	public List<CartaPoliticaDTO> scegliCarte(List<CartaPoliticaDTO> carteGiocatore, Scanner stdIn) {
 		List<CartaPoliticaDTO> cartePolitica = new ArrayList<>();
 		int numeroCarte = 4;
@@ -116,7 +128,12 @@ public class AzioniClient {
 		}
 		return cartePolitica;
 	}
-
+	/**
+	 * this method let the player to chose a permit tile of the region selected 
+	 * @param tessere
+	 * @param stdIn
+	 * @return the permit tile DTO selected
+	 */
 	public TesseraPermessoDTO scegliTesseraRegione(List<TesseraPermessoDTO> tessere, Scanner stdIn) {
 
 		System.out.println("Seleziona tessera permesso[1/2]");
@@ -130,7 +147,12 @@ public class AzioniClient {
 
 		return tessere.get((Integer.parseInt(comando) - 1));
 	}
-
+	/**
+	 * this method let the player to chose a permit tile from his permit tiles not yet used
+	 * @param list
+	 * @param stdIn
+	 * @return the permit tile DTO selected
+	 */
 	public TesseraPermessoDTO scegliTesseraGiocatore(List<TesseraPermessoDTO> list, Scanner stdIn) {
 		System.out.println("Seleziona l'indice di una tessera permesso non ancora usata");
 		System.out.println(list);
@@ -144,6 +166,13 @@ public class AzioniClient {
 		return tesseraScelta;
 	}
 
+	/**
+	 * this method let the player chose a city where he want to build an emporium
+	 * @param città
+	 * @param coloreGiocatore
+	 * @param stdIn
+	 * @return the city DTO selected
+	 */
 	public CittàDTO scegliCittà(Set<? extends CittàDTO> città, ColoreDTO coloreGiocatore, Scanner stdIn) {
 		System.out.println("Seleziona la città");
 		System.out.println(città);
@@ -156,6 +185,13 @@ public class AzioniClient {
 		}
 		return cittàScelta;
 	}
+	
+	/**
+	 * this method let the player to chose a politic card from the politic cards of his hand
+	 * @param cartePolitica
+	 * @param stdIn
+	 * @return the politic card DTO
+	 */
 
 	public CittàDTO scegliCittàBonus(Set<CittàBonusDTO> città, ColoreDTO coloreGiocatore, Scanner stdIn, String input) {
 		CittàDTO cittàScelta = ControlloParametriDTO.cittàBonus(input, città, coloreGiocatore);
@@ -179,7 +215,11 @@ public class AzioniClient {
 		}
 		return cartaScelta;
 	}
-
+	/**
+	 * this method let the player chose the price for an offer
+	 * @param stdIn
+	 * @return the price
+	 */
 	public int scegliPrezzo(Scanner stdIn) {
 		System.out.println("A quale prezzo?");
 		comando = stdIn.nextLine();

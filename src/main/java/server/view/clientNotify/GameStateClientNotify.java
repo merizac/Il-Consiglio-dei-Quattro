@@ -2,12 +2,8 @@ package server.view.clientNotify;
 
 import java.util.ArrayList;
 
-import common.gameDTO.CittàDTO;
-import common.gameDTO.ConsigliereDTO;
+import client.Grafica;
 import common.gameDTO.GameStateDTO;
-import common.gameDTO.RegioneDTO;
-import common.gameDTO.TesseraPermessoDTO;
-import server.model.bonus.Bonus;
 
 public class GameStateClientNotify implements ClientNotify {
 
@@ -35,58 +31,7 @@ public class GameStateClientNotify implements ClientNotify {
 	}
 
 	@Override
-	public void stamp() {
-		System.out.println("\nCittà\n");
-		for (CittàDTO c : gameStateDTO.getCittà()) {
-				System.out.println(c);
-		}
-		System.out.println("\nRegioni\n");
-		for (RegioneDTO r : gameStateDTO.getRegioni()) {
-			System.out.println(r);
-			String balcone = "Balcone [ ";
-			for (ConsigliereDTO cons : r.getBalcone().getConsiglieri()) {
-				balcone = balcone + cons + " ";
-			}
-			balcone = balcone + "]";
-			System.out.println(balcone);
-			System.out.println("Tessere Permesso Scoperte nella regione " + r.getNome());
-			for (TesseraPermessoDTO t : r.getTesserePermessoScoperte()) {
-				String cittàTessera = " Città [ ";
-				String bonusTessera = ", Bonus [ ";
-				for (CittàDTO ci : t.getCittà()) {
-					cittàTessera = cittàTessera + ci.getNome() + " ";
-				}
-				cittàTessera = cittàTessera + "] ";
-				for (Bonus bonus : t.getBonus()) {
-					bonusTessera = bonusTessera + bonus + " ";
-				}
-				bonusTessera = bonusTessera + "]";
-				System.out.println("Tessera [" + cittàTessera + bonusTessera + " ]");
-
-			}
-			System.out.println("BonusRegione [" + r.getBonusRegione() + " ]\n");
-
-		}
-		String balconeRe = "Balcone Re [ ";
-		for (ConsigliereDTO consRe : gameStateDTO.getPlanciaReDTO().getBalconeRe().getConsiglieri()) {
-			balconeRe = balconeRe + consRe + " ";
-		}
-		balconeRe = balconeRe + "]";
-		System.out.println(balconeRe + "\n");
-		System.out.println(gameStateDTO.getPedinaRE() + "\n");
-
-		String bonusRe = "BonusRe\n";
-
-		for (Bonus b : gameStateDTO.getPlanciaReDTO().getBonusPremioRe()) {
-			bonusRe = bonusRe + b + "\n";
-		}
-		System.out.println(bonusRe);
-		String riserva = "Consiglieri [ ";
-		for (ConsigliereDTO c : gameStateDTO.getConsiglieri()) {
-			riserva = riserva + c.getColoreConsigliere() + " ";
-		}
-		riserva = riserva + "]";
-		System.out.println(riserva);
-
+	public void stamp(Grafica grafica) {
+		grafica.mostraGame(gameStateDTO);
 	}
 }

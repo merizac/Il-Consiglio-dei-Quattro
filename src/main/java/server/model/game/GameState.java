@@ -330,7 +330,7 @@ public class GameState extends Observable<Notify> {
 			this.notifyObserver(new GiocatoreNotify(g, Arrays.asList(g)));
 		}
 		this.stato = new StartEnd(this);
-
+		
 	}
 
 	public List<Giocatore> calcolaVincitore() {
@@ -410,13 +410,13 @@ public class GameState extends Observable<Notify> {
 	 * @param gameState
 	 */
 	private void calcolaPunteggioNobiltà() {
-		Collections.sort(giocatori, new ComparatorPuntiNobiltà());
+		Collections.sort(giocatoriFinePartita, new ComparatorPuntiNobiltà());
 		ArrayList<Giocatore> primo = new ArrayList<>();
-		primo.add(giocatori.get(0));
-		giocatori.remove(primo.get(0));
+		primo.add(giocatoriFinePartita.get(0));
+		giocatoriFinePartita.remove(primo.get(0));
 		ArrayList<Giocatore> secondo = new ArrayList<>();
 
-		for (Giocatore g : giocatori) {
+		for (Giocatore g : giocatoriFinePartita) {
 			int punti = g.getPunteggioNobiltà().getPuntiNobiltà();
 
 			if (punti == primo.get(0).getPunteggioNobiltà().getPuntiNobiltà()) {
