@@ -19,7 +19,6 @@ public class ConnessioneRMI extends UnicastRemoteObject implements Serializable,
 	private Grafica grafica;
 	private GameStateDTO gameStateDTO;
 	private transient ServerRMIViewRemote view;
-	private transient ClientOutHandler clientOutHandler;
 	private static final int PORT = 1099;
 	private static final String IP = "127.0.0.1";
 
@@ -78,7 +77,7 @@ public class ConnessioneRMI extends UnicastRemoteObject implements Serializable,
 	 */
 	@Override
 	public void disconnetti() throws RemoteException {
-		this.clientOutHandler.stop();
+		
 	}
 
 	/**
