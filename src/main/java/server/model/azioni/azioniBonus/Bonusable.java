@@ -23,6 +23,9 @@ public interface Bonusable {
 			if (gameState.getGiocatoreCorrente().getBonusNobiltà().isEmpty()){
 				return true;
 			}
-			else return false;	
+			else {
+				System.out.println("Sono tornato FALSO");
+				return false;
+			}
 		}
 }
