@@ -42,7 +42,7 @@ public class PassaBonusDTO implements AzioneDTO {
 	 */
 	@Override
 	public String toString() {
-		return "Passa  [Passa]";
+		return "Passa  [Passa Bonus]";
 	}
 
 }

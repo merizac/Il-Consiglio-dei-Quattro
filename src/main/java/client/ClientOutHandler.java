@@ -212,6 +212,7 @@ public class ClientOutHandler implements Runnable {
 						città.add((CittàBonusDTO) c);
 					}
 				}
+				System.out.println("\n\nB3 città" + città.isEmpty()+"\n\n");
 				if (!città.isEmpty()) {
 					System.out.println("Scegli una città");
 					System.out.println(città);

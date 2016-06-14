@@ -249,7 +249,7 @@ public class GameState extends Observable<Notify> {
 		int i = 0;
 		for (Giocatore g : giocatori) {
 			g.setAiutanti(new Aiutante(1 + i));
-			g.setPunteggioNobiltà(this.getPlanciaRe().getPercorsoNobiltà().get(0));
+			g.setPunteggioNobiltà(this.getPlanciaRe().getPercorsoNobiltà().get(3));
 			g.setPunteggioRicchezza(10 + i);
 			g.setPunteggioVittoria(0);
 			g.setColoreGiocatore(new Colore(String.valueOf(i)));
@@ -402,7 +402,7 @@ public class GameState extends Observable<Notify> {
 	}
 
 	/**
-	 * this method creaates two arraylist: one for players who obtain the best
+	 * this method creates two arraylist: one for players who obtain the best
 	 * points on Punteggio Nobiltà, and the second for players who do the second
 	 * best points in Punteggio Nobiltà Comparator is the method that sort the
 	 * array giocatori in order decrescent of points of nobility
