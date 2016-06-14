@@ -20,7 +20,6 @@ import server.model.notify.MessageNotify;
 
 public class AcquistoTesseraPermesso extends AzionePrincipale implements Bonusable {
 
-	private final int ID = 2;
 	private List<CartaPolitica> carteGiocatore;
 	private Regione regione;
 	private TesseraPermesso tesseraScoperta;
@@ -217,38 +216,6 @@ public class AcquistoTesseraPermesso extends AzionePrincipale implements Bonusab
 		if (tesseraScoperta == null)
 			throw new IllegalArgumentException("La tessera permesso non può esserre null");
 		this.tesseraScoperta = tesseraScoperta;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ID;
-		return result;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		AcquistoTesseraPermesso other = (AcquistoTesseraPermesso) obj;
-		if (ID != other.ID)
-			return false;
-		return true;
 	}
 
 }

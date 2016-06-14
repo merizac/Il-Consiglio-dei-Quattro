@@ -11,7 +11,6 @@ import server.model.notify.MessageNotify;
 
 public class IngaggioAiutante extends AzioneVeloce {
 
-	private final int ID=5;
 	/**
 	 * @return true if the player has enough money, and add one aiutante
 	 */
@@ -38,31 +37,4 @@ public class IngaggioAiutante extends AzioneVeloce {
 		return new IngaggioAiutanteDTO();
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ID;
-		return result;
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		IngaggioAiutante other = (IngaggioAiutante) obj;
-		if (ID != other.ID)
-			return false;
-		return true;
-	}
 }

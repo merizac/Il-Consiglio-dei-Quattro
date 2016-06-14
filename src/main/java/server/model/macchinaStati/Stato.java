@@ -70,5 +70,14 @@ public interface Stato {
 	}
 
 	public List<Azione> getAzioni();
+	
+	public default boolean daEseguire(List<Azione> azioniStato,Azione azione){
+		for(Azione a: azioniStato)
+		{
+			if(azione.getClass().equals(a.getClass()))
+				return true;
+		}
+		return false;
+	}
 
 }

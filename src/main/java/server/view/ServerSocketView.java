@@ -89,7 +89,7 @@ public class ServerSocketView extends View implements Runnable {
 						disconnetti();
 						this.notifyObserver(azione);
 					} else if (azione.isTurno(giocatore, gameState)
-							&& gameState.getStato().getAzioni().contains(azione)) {
+							&& gameState.getStato().daEseguire(gameState.getStato().getAzioni(), azione)) {
 						this.notifyObserver(azione);
 						System.out.println("[SERVER] Inviata l'azione " + azione);
 					} else {

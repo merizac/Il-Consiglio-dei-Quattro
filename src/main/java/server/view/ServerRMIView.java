@@ -71,8 +71,8 @@ public class ServerRMIView extends View implements ServerRMIViewRemote{
 				this.unregister(getConnessione(((Exit) azione).getGiocatore()));
 				this.notifyObserver(azione);
 			}
-			else if (azione.isTurno(this.giocatori.get(connessioneRMIRemota), gameState)){
-				//&& gameState.getStato().getAzioni().contains(azione)) {
+			else if (azione.isTurno(this.giocatori.get(connessioneRMIRemota), gameState) &&
+				gameState.getStato().daEseguire(gameState.getStato().getAzioni(), azione)){
 			System.out.println("[SERVER] Inviata l'azione "+azione);
 			this.notifyObserver(azione);
 		}
