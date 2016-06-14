@@ -15,7 +15,6 @@ public class Passa extends Azione {
 
 	@Override
 	public boolean isTurno(Giocatore giocatore, GameState gameState) {
-		System.out.println("entrato");
 		if (gameState.getStato() instanceof StatoAcquistoMarket)
 			return giocatore.equals(((StatoAcquistoMarket) gameState.getStato()).getGiocatori().get(0));
 		else

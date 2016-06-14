@@ -85,6 +85,9 @@ public class ServerSocketView extends View implements Runnable {
 					}
 					System.out
 							.println("[SERVER] Ricevuta l'azione " + azione + " dal giocatore " + giocatore.getNome());
+					System.out.println(azione.isTurno(giocatore, gameState));
+					System.out.println(gameState.getStato().getAzioni().contains(azione));
+
 					if (azione instanceof Exit) {
 						disconnetti();
 						this.notifyObserver(azione);
