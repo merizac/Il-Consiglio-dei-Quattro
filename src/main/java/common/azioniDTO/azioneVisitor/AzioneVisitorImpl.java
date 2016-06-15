@@ -185,10 +185,10 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 	public AzioneAcquisto visit(AzioneAcquistoDTO azioneAcquistoDTO) throws ParameterException {
 		AzioneAcquisto azioneAcquisto = new AzioneAcquisto();
 		Offerta offerta = ControlloParametri.cercaOfferta(gameState.getOfferteMarket(), azioneAcquistoDTO.getOfferta());
-		Giocatore giocatore = ControlloParametri.cercaGiocatore(azioneAcquistoDTO.getGiocatoreDTO(), gameState.getGiocatori()
+		Giocatore giocatoreAcquisto = ControlloParametri.cercaGiocatore(azioneAcquistoDTO.getGiocatoreDTO(), gameState.getGiocatori()
 				);
 		azioneAcquisto.setOfferta(offerta);
-		azioneAcquisto.setAcquirente(giocatore);
+		azioneAcquisto.setAcquirente(giocatoreAcquisto);
 		return azioneAcquisto;
 	}
 
@@ -235,8 +235,8 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 	@Override
 	public Exit visit(ExitDTO exitDTO) throws ParameterException {
 		Exit exit=new Exit();
-		Giocatore giocatore=ControlloParametri.cercaGiocatore(exitDTO.getGiocatoreDTO(), gameState.getGiocatori());
-		exit.setGiocatore(giocatore);
+		Giocatore giocatoreDisconnesso=ControlloParametri.cercaGiocatore(exitDTO.getGiocatoreDTO(), gameState.getGiocatori());
+		exit.setGiocatore(giocatoreDisconnesso);
 		return exit;
 	}
 }

@@ -31,14 +31,6 @@ public class BonusPuntiNobiltà extends Bonus {
 		PunteggioNobiltà nuovaPosizioneNobiltà = gameState.getPlanciaRe().getPercorsoNobiltà().get(puntiNuovi);
 		
 		gameState.getGiocatoreCorrente().setPunteggioNobiltà(nuovaPosizioneNobiltà);
-		
-		/*ArrayList<Bonus> bonusCasella = gameState.getGiocatoreCorrente().getPunteggioNobiltà().getBonus();
-		
-		if (!bonusCasella.isEmpty()) {
-			for(Bonus bonus: bonusCasella){
-				bonus.usaBonus(gameState);
-				}
-			}*/
 	}
 
 	/* (non-Javadoc)

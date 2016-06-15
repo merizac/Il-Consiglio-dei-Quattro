@@ -12,8 +12,6 @@ public class PescaCarta extends Azione {
 	@Override
 	public void eseguiAzione(GameState gameState){
 		gameState.getGiocatoreCorrente().getCartePolitica().add(gameState.getMazzoCartePolitica().pescaCarte());
-		System.out.println("azione pesca carta");
-		System.out.println(gameState.getStato());
 		gameState.notifyObserver(new GiocatoreNotify(gameState.getGiocatoreCorrente(), 
 				Arrays.asList(gameState.getGiocatoreCorrente())));
 		gameState.getStato().transizionePescaCarta(gameState);

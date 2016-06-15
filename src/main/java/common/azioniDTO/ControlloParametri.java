@@ -78,7 +78,6 @@ public class ControlloParametri {
 			} else
 				throw new ParameterException("La carta "+ c.getColore()+" è inesistente");
 		}
-		System.out.println(carteGiocatore);
 		return carteGiocatore;
 	}
 
@@ -91,14 +90,11 @@ public class ControlloParametri {
 	}
 
 	public static Città cercaCittàBonus(CittàDTO città, Set<Città> cittàGameState) throws ParameterException {
-		if (città instanceof CittàBonusDTO) {
-			System.out.println("test bonus :" + (((CittàBonusDTO) città).getBonus()));
-			System.out.println("test bonus :" + (((CittàBonusDTO) città).getBonus()));
-		}
+		
 		for (Città c : cittàGameState) {
 			if (c.getNome().equals(città.getNome()) && (c instanceof CittàBonus)) {
 				for (Bonus b : ((CittàBonus) c).getBonus()) {
-					if ((b instanceof BonusPuntiNobiltà))
+					if (b instanceof BonusPuntiNobiltà)
 						throw new ParameterException("La città "+ c.getNome()+ " contiene un bonus punti nobiltà!");
 				}
 				return c;

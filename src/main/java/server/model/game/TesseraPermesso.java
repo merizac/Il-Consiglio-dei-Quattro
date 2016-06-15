@@ -1,7 +1,6 @@
 package server.model.game;
 
-import java.util.ArrayList;
-
+import java.util.List;
 import common.gameDTO.MarketableDTO;
 import common.gameDTO.TesseraPermessoDTO;
 import server.model.bonus.*;
@@ -10,18 +9,18 @@ import server.model.market.Offerta;
 
 public final class TesseraPermesso implements Marketable {
 
-	private final ArrayList<Città> città;
-	private final ArrayList<Bonus> bonus;
+	private final List<Città> città;
+	private final List<Bonus> bonus;
 	private final Regione regione;
 
 
 	/**
-	 * @param città
-	 * @param bonus
+	 * @param cit
+	 * @param bonus2
 	 * @param regione
 	 */
-	public TesseraPermesso(ArrayList<Città> città, ArrayList<Bonus> bonus, Regione regione){
-		this.città = città;
+	public TesseraPermesso(List<Città> cit, List<Bonus> bonus, Regione regione){
+		this.città = cit;
 		this.bonus = bonus;
 		this.regione = regione;
 		regione.getMazzoTesserePermesso().getCarte().add(this);
@@ -38,7 +37,7 @@ public final class TesseraPermesso implements Marketable {
 	/**
 	 * @return the città
 	 */
-	public ArrayList<Città> getCittà() {
+	public List<Città> getCittà() {
 		return città;
 	}
 
@@ -46,7 +45,7 @@ public final class TesseraPermesso implements Marketable {
 	/**
 	 * @return the bonus
 	 */
-	public ArrayList<Bonus> getBonus() {
+	public List<Bonus> getBonus() {
 		return bonus;
 	}
 

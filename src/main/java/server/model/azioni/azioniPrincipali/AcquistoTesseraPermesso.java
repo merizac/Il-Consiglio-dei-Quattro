@@ -58,7 +58,6 @@ public class AcquistoTesseraPermesso extends AzionePrincipale implements Bonusab
 		for (CartaPolitica c : carteGiocatore) {
 			gameState.getGiocatoreCorrente().getCartePolitica().remove(c);
 			gameState.getMazzoCartePolitica().getCarte().add(c);
-//			gameState.getMazzoCartePolitica().aggiungiCarte(carteGiocatore);
 		}
 
 		regione.getTesserePermessoScoperte().remove(tesseraScoperta);
@@ -72,7 +71,7 @@ public class AcquistoTesseraPermesso extends AzionePrincipale implements Bonusab
 				nob = true;
 			}
 		}
-		ArrayList<Bonus> bonusCasella = gameState.getGiocatoreCorrente().getPunteggioNobiltà().getBonus();
+		List<Bonus> bonusCasella = gameState.getGiocatoreCorrente().getPunteggioNobiltà().getBonus();
 
 		if (nob) {
 			if (!bonusCasella.isEmpty()) {

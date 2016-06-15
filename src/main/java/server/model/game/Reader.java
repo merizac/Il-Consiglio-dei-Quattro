@@ -22,18 +22,18 @@ import utility.Utils;
 
 public class Reader {
 
-	private ArrayList<Consigliere> consiglieri; 
-	private ArrayList<Regione> regioni ;
-	private ArrayList<Città> cities ;
+	private List<Consigliere> consiglieri; 
+	private List<Regione> regioni ;
+	private List<Città> cities ;
 	
 	public Reader(){
-		this.consiglieri= new ArrayList<Consigliere>();
-		this.regioni = new ArrayList<Regione>();
-		this.cities = new ArrayList<Città>();
+		this.consiglieri= new ArrayList<>();
+		this.regioni = new ArrayList<>();
+		this.cities = new ArrayList<>();
 	}
 
 	public PlanciaRe creazionePlanciaRe() throws IOException {
-		ArrayList<Bonus> bonusRe = letturaBonusRe();
+		List<Bonus> bonusRe = letturaBonusRe();
 		Balcone balconeRe = new Balcone(4, consiglieri);
 		PlanciaRe planciaRe = new PlanciaRe(balconeRe, bonusRe, letturaPunteggioNobiltà());
 
@@ -48,7 +48,7 @@ public class Reader {
 	// costruiscre la mappa e mette le tessere permesso alle regioni
 	public Mappa creazioneMappa(String configurazione) throws IOException {
 		creazioneCittà(configurazione);
-		Mappa mappa = new Mappa(new HashSet<Città>(cities));
+		Mappa mappa = new Mappa(new HashSet<>(cities));
 		letturaTesserePermesso(cities, regioni);
 		return mappa;
 	}
@@ -62,12 +62,12 @@ public class Reader {
 
 	public Mazzo<CartaPolitica> letturaCartePolitica() throws IOException {
 
-		ArrayList<CartaPolitica> cartaPoliticaList = new ArrayList<CartaPolitica>();
+		List<CartaPolitica> cartaPoliticaList = new ArrayList<>();
 		FileReader cartaPolitica = new FileReader("src/main/resources/mappa1ColoriConsiglieriCartePolitica.txt");
 		BufferedReader b;
 		b = new BufferedReader(cartaPolitica);
 		String stringaLetta;
-		int quantità = 0;
+		int quantità;
 		Colore colore = null;
 		stringaLetta = b.readLine();
 
@@ -77,11 +77,11 @@ public class Reader {
 			StringTokenizer st = new StringTokenizer(stringaLetta);
 
 			String tmp = st.nextToken();
-			if (tmp.equals("Colore")) {
+			if ("Colore".equals(tmp)) {
 				colore = new Colore(st.nextToken());
 			}
 
-			if (tmp.equals("CartePolitica")) {
+			if ("CartePolitica".equals(tmp)) {
 				quantità = Integer.parseInt(st.nextToken());
 				for (int i = 0; i < quantità; i++) {
 					CartaPolitica carta = new CartaPolitica(colore);
@@ -93,46 +93,46 @@ public class Reader {
 		b.close();
 		cartaPolitica.close();
 		Collections.shuffle(cartaPoliticaList);
-		return new Mazzo<CartaPolitica>(cartaPoliticaList);
+		return new Mazzo<>(cartaPoliticaList);
 	}
 
-	public ArrayList<PunteggioNobiltà> letturaPunteggioNobiltà() throws NumberFormatException, IOException {
+	public List<PunteggioNobiltà> letturaPunteggioNobiltà() throws NumberFormatException, IOException {
 
 		FileReader punteggioNobiltà = new FileReader("src/main/resources/punteggioNobiltà.txt");
 		BufferedReader b;
 		b = new BufferedReader(punteggioNobiltà);
 		String stringaLetta;
 		int lunghezza = Integer.parseInt(b.readLine());
-		ArrayList<PunteggioNobiltà> nobiltà = new ArrayList<PunteggioNobiltà>(lunghezza);
+		List<PunteggioNobiltà> nobiltà = new ArrayList<>(lunghezza);
 
 		for (int i = 0; i < lunghezza; i++) {
-			ArrayList<Bonus> bonus = new ArrayList<Bonus>();
+			List<Bonus> bonus = new ArrayList<>();
 			stringaLetta = b.readLine();
 
-			if (!stringaLetta.equals("no")) {
+			if (!"no".equals(stringaLetta)) {
 				StringTokenizer st = new StringTokenizer(stringaLetta);
 				while (st.hasMoreTokens()) {
 					String tmp = st.nextToken();
-					if (tmp.equals("BonusAiutanti")) {
+					if ("BonusAiutanti".equals(tmp)) {
 						int quantità = Integer.parseInt(st.nextToken());
 						bonus.add(new BonusAiutanti(quantità));
-					} else if (tmp.equals("BonusGettoneRicompensa")) {
+					} else if ("BonusGettoneRicompensa".equals(tmp)) {
 						int quantità = Integer.parseInt(st.nextToken());
 						bonus.add(new BonusGettoneRicompensa(quantità));
-					} else if (tmp.equals("BonusTesseraPermesso")) {
+					} else if ("BonusTesseraPermesso".equals(tmp)) {
 						bonus.add(new BonusTesseraPermesso());
-					} else if (tmp.equals("BonusTesseraPermessoUsata")) {
+					} else if ("BonusTesseraPermessoUsata".equals(tmp)) {
 						bonus.add(new BonusTesseraAcquistata());
-					} else if (tmp.equals("BonusAzionePrincipale")) {
+					} else if ("BonusAzionePrincipale".equals(tmp)) {
 						int quantità = Integer.parseInt(st.nextToken());
 						bonus.add(new BonusAzionePrincipale(quantità));
-					} else if (tmp.equals("BonusPuntiVittoria")) {
+					} else if ("BonusPuntiVittoria".equals(tmp)) {
 						int quantità = Integer.parseInt(st.nextToken());
 						bonus.add(new BonusPuntiVittoria(quantità));
-					} else if (tmp.equals("BonusCartePolitica")) {
+					} else if ("BonusCartePolitica".equals(tmp)) {
 						int quantità = Integer.parseInt(st.nextToken());
 						bonus.add(new BonusCartePolitica(quantità));
-					} else if (tmp.equals("BonusMoneta")) {
+					} else if ("BonusMoneta".equals(tmp)) {
 						int quantità = Integer.parseInt(st.nextToken());
 						bonus.add(new BonusCartePolitica(quantità));
 					}
@@ -145,14 +145,14 @@ public class Reader {
 		return nobiltà;
 	}
 
-	public ArrayList<Consigliere> letturaConsigliere() throws IOException {
+	public List<Consigliere> letturaConsigliere() throws IOException {
 
 		FileReader cons = new FileReader("src/main/resources/mappa1ColoriConsiglieriCartePolitica.txt");
 
 		BufferedReader b;
 		b = new BufferedReader(cons);
 		String stringaLetta;
-		int quantità = 0;
+		int quantità;
 		Colore colore = null;
 		stringaLetta = b.readLine();
 
@@ -162,11 +162,11 @@ public class Reader {
 			StringTokenizer st = new StringTokenizer(stringaLetta);
 
 			String tmp = st.nextToken();
-			if (tmp.equals("Colore")) {
+			if ("Colore".equals(tmp)) {
 				colore = new Colore(st.nextToken());
 			}
 
-			if (tmp.equals("Consiglieri")) {
+			if ("Consiglieri".equals(tmp)) {
 				quantità = Integer.parseInt(st.nextToken());
 				for (int i = 0; i < quantità; i++) {
 					Consigliere consigliere = new Consigliere(colore);
@@ -181,7 +181,7 @@ public class Reader {
 		return consiglieri;
 	}
 
-	public ArrayList<Regione> letturaRegioni() throws IOException {
+	public List<Regione> letturaRegioni() throws IOException {
 
 		FileReader reg = new FileReader("src/main/resources/regioni.txt");
 		BufferedReader b;
@@ -198,7 +198,7 @@ public class Reader {
 				int nbonus = 0;
 				if (st.hasMoreTokens())
 					nbonus = Integer.parseInt(st.nextToken());
-				Mazzo<TesseraPermesso> mazzo = new Mazzo<TesseraPermesso>();
+				Mazzo<TesseraPermesso> mazzo = new Mazzo<>();
 				Balcone balcone = new Balcone(4, consiglieri);
 				BonusPuntiVittoria bonusPuntiVittoria = new BonusPuntiVittoria(nbonus);
 				Regione regione = new Regione(nomeregione, mazzo, bonusPuntiVittoria, balcone);
@@ -210,9 +210,9 @@ public class Reader {
 		return regioni;
 	}
 
-	public ArrayList<Città> letturaCittà(String configurazione) throws IOException {
+	public List<Città> letturaCittà(String configurazione) throws IOException {
 
-		ArrayList<Colore> coloriCittà = new ArrayList<Colore>();
+		List<Colore> coloriCittà = new ArrayList<>();
 		FileReader città = new FileReader("src/main/resources/" + configurazione + "Città.txt");
 		BufferedReader b;
 		b = new BufferedReader(città);
@@ -220,13 +220,13 @@ public class Reader {
 		stringaLetta = b.readLine();
 
 		// Creo coloricittà salvati in un arraylist
-		while (!stringaLetta.equals("CITTA")) {
+		while (!"CITTA".equals(stringaLetta)) {
 			StringTokenizer st = new StringTokenizer(stringaLetta);
 			String colore = st.nextToken();
-			ColoreCittà colorecittà = null;
-			ColoreRe coloreRe = null;
-			int puntiBonus = 0;
-			if (!colore.equals("Re")) {
+			ColoreCittà colorecittà;
+			ColoreRe coloreRe;
+			int puntiBonus;
+			if (!"Re".equals(colore)) {
 				if (st.hasMoreTokens()) {
 					puntiBonus = Integer.parseInt(st.nextToken());
 					colorecittà = new ColoreCittà(colore, new BonusPuntiVittoria(puntiBonus));
@@ -253,7 +253,7 @@ public class Reader {
 						for (Colore color : coloriCittà) {
 							if (col.equals(color.getColore())) {
 								if (!col.equals("Re")) {
-									ArrayList<Bonus> bonus = new ArrayList<>();
+									List<Bonus> bonus = new ArrayList<>();
 									ColoreCittà colore = (ColoreCittà) color;
 									CittàBonus c = new CittàBonus(nome, regione, colore, bonus);
 									cities.add(c);
@@ -271,7 +271,7 @@ public class Reader {
 		}
 		String stringa = b.readLine();
 		if (stringa != null) {
-			if (stringa.equals("CITTACOLLEGATE")) {
+			if ("CITTACOLLEGATE".equals(stringa)) {
 				for (Città c : cities) {
 					StringTokenizer st = new StringTokenizer(b.readLine());
 					if (st.hasMoreTokens()) {
@@ -294,9 +294,9 @@ public class Reader {
 		return cities;
 	}
 
-	public ArrayList<Bonus> letturaBonusRe() throws IOException {
+	public List<Bonus> letturaBonusRe() throws IOException {
 
-		ArrayList<Bonus> bonusRe = new ArrayList<>();
+		List<Bonus> bonusRe = new ArrayList<>();
 
 		FileReader bonus = new FileReader("src/main/resources/bonusRe.txt");
 		BufferedReader b;
@@ -315,7 +315,7 @@ public class Reader {
 
 	public void letturaBonusTondiCittà() throws IOException {
 
-		List<ArrayList<Bonus>> listaBonusTondi = new ArrayList<ArrayList<Bonus>>();
+		List<List<Bonus>> listaBonusTondi = new ArrayList<>();
 		FileReader bonusDelleCittà = new FileReader("src/main/resources/bonusDelleCittà.txt");
 		BufferedReader b;
 		b = new BufferedReader(bonusDelleCittà);
@@ -330,26 +330,27 @@ public class Reader {
 			// spezzo la riga letta in token e leggo nome bonus e intero per i
 			// bonus di cui ne ho bisogno
 			StringTokenizer st = new StringTokenizer(stringaLetta);
-			ArrayList<Bonus> bonus = new ArrayList<>();
+			List<Bonus> bonus = new ArrayList<>();
+			int quantità;
 
 			while (st.hasMoreTokens()) {
 
 				String nomeBonus = st.nextToken();
 
-				if (nomeBonus.equals("BonusCartePolitica")) {
-					int quantità = Integer.parseInt(st.nextToken());
+				if ("BonusCartePolitica".equals(nomeBonus)) {
+					quantità = Integer.parseInt(st.nextToken());
 					bonus.add(new BonusCartePolitica(quantità));
-				} else if (nomeBonus.equals("BonusMoneta")) {
-					int quantità = Integer.parseInt(st.nextToken());
+				} else if ("BonusMoneta".equals(nomeBonus)) {
+					quantità = Integer.parseInt(st.nextToken());
 					bonus.add(new BonusMoneta(quantità));
-				} else if (nomeBonus.equals("BonusPuntiNobiltà")) {
-					int quantità = Integer.parseInt(st.nextToken());
+				} else if ("BonusPuntiNobiltà".equals(nomeBonus)) {
+					quantità = Integer.parseInt(st.nextToken());
 					bonus.add(new BonusPuntiNobiltà(quantità));
-				} else if (nomeBonus.equals("BonusAiutanti")) {
-					int quantità = Integer.parseInt(st.nextToken());
+				} else if ("BonusAiutanti".equals(nomeBonus)) {
+					quantità = Integer.parseInt(st.nextToken());
 					bonus.add(new BonusAiutanti(quantità));
-				} else if (nomeBonus.equals("BonusPuntiVittoria")) {
-					int quantità = Integer.parseInt(st.nextToken());
+				} else if ("BonusPuntiVittoria".equals(nomeBonus)) {
+					quantità = Integer.parseInt(st.nextToken());
 					bonus.add(new BonusPuntiVittoria(quantità));
 				}
 			}
@@ -367,7 +368,7 @@ public class Reader {
 		}
 	}
 
-	public void letturaTesserePermesso(ArrayList<Città> cities, ArrayList<Regione> regioni) throws IOException {
+	public void letturaTesserePermesso(List<Città> cities, List<Regione> regioni) throws IOException {
 
 		FileReader t = new FileReader("src/main/resources/tesseraPermesso.txt");
 		BufferedReader b;
@@ -380,9 +381,9 @@ public class Reader {
 			for (Regione r : regioni) {
 				if (stringaLetta == null)
 					break;
-				while (!stringaLetta.equals("FINEREGIONE")) {
+				while (!"FINEREGIONE".equals(stringaLetta)) {
 					StringTokenizer st = new StringTokenizer(stringaLetta);
-					ArrayList<Città> cit = new ArrayList<>();
+					List<Città> cit = new ArrayList<>();
 					// aggiunge le citta all'arraylist
 					while (st.hasMoreTokens()) {
 						cit.add(findCittà(st.nextToken()));
@@ -390,28 +391,29 @@ public class Reader {
 
 					// aggiunge i bonus all'arraylist
 					stringaLetta = b.readLine();
-					ArrayList<Bonus> bonus = new ArrayList<Bonus>();
+					List<Bonus> bonus = new ArrayList<>();
 					StringTokenizer str = new StringTokenizer(stringaLetta);
+					int quantità;
 
 					String tmp = str.nextToken();
 					while (true) {
-						if (tmp.equals("BonusAiutanti")) {
-							int quantità = Integer.parseInt(str.nextToken());
+						if ("BonusAiutanti".equals(tmp)) {
+							quantità = Integer.parseInt(str.nextToken());
 							bonus.add(new BonusAiutanti(quantità));
-						} else if (tmp.equals("BonusAzionePrincipale")) {
-							int quantità = Integer.parseInt(str.nextToken());
+						} else if ("BonusAzionePrincipale".equals(tmp)) {
+							quantità = Integer.parseInt(str.nextToken());
 							bonus.add(new BonusAzionePrincipale(quantità));
-						} else if (tmp.equals("BonusMoneta")) {
-							int quantità = Integer.parseInt(str.nextToken());
+						} else if ("BonusMoneta".equals(tmp)) {
+							quantità = Integer.parseInt(str.nextToken());
 							bonus.add(new BonusMoneta(quantità));
-						} else if (tmp.equals("BonusPuntiVittoria")) {
-							int quantità = Integer.parseInt(str.nextToken());
+						} else if ("BonusPuntiVittoria".equals(tmp)) {
+							quantità = Integer.parseInt(str.nextToken());
 							bonus.add(new BonusPuntiVittoria(quantità));
-						} else if (tmp.equals("BonusCartePolitica")) {
-							int quantità = Integer.parseInt(str.nextToken());
+						} else if ("BonusCartePolitica".equals(tmp)) {
+							quantità = Integer.parseInt(str.nextToken());
 							bonus.add(new BonusCartePolitica(quantità));
-						} else if (tmp.equals("BonusPuntiNobiltà")) {
-							int quantità = Integer.parseInt(str.nextToken());
+						} else if ("BonusPuntiNobiltà".equals(tmp)) {
+							quantità = Integer.parseInt(str.nextToken());
 							bonus.add(new BonusPuntiNobiltà(quantità));
 						}
 						if (str.hasMoreTokens())
@@ -456,7 +458,7 @@ public class Reader {
 
 	public Città findCittàRe() {
 		for (Città c : cities) {
-			if (c.getColoreCittà().getColore().equals("Re")) {
+			if ("Re".equals(c.getColoreCittà().getColore())) {
 				return c;
 			}
 		}

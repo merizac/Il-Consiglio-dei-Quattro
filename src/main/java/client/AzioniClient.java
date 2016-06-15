@@ -28,7 +28,7 @@ public class AzioniClient {
 	 */
 	public ConsigliereDTO scegliConsigliere(List<ConsigliereDTO> consiglieri, Scanner stdIn) {
 		System.out.println("scegli consigliere");
-		System.out.println(consiglieri);
+		System.out.println(consiglieri.toString());
 		comando = stdIn.nextLine();
 		ConsigliereDTO consigliereScelto = ControlloParametriDTO.consiglieri(comando, consiglieri);
 		while (consigliereScelto == null) {
@@ -48,7 +48,7 @@ public class AzioniClient {
 	public RegioneDTO scegliRegione(List<RegioneDTO> regioni, Scanner stdIn) {
 
 		System.out.println("Scegli la regione");
-		System.out.println(regioni);
+		System.out.println(regioni.toString());
 		comando = stdIn.nextLine();
 		RegioneDTO regioneScelta = ControlloParametriDTO.regioni(comando, regioni);
 		while (regioneScelta == null) {
@@ -81,13 +81,13 @@ public class AzioniClient {
 			if (comando.equals("Mare")) {
 				ok = true;
 				balconeScelto = regioni.get(0).getBalcone();
-			} else if (comando.equals("Collina")) {
+			} else if ("Collina".equals(comando)) {
 				ok = true;
 				balconeScelto = regioni.get(1).getBalcone();
-			} else if (comando.equals("Montagna")) {
+			} else if ("Montagna".equals(comando)) {
 				ok = true;
 				balconeScelto = regioni.get(2).getBalcone();
-			} else if (comando.equals("Re")) {
+			} else if ("Re".equals(comando)) {
 				ok = true;
 				balconeScelto = balconeRe;
 			} else {
@@ -108,7 +108,7 @@ public class AzioniClient {
 		while (numeroCarte != 0) {
 			numeroCarte--;
 			System.out.println("Scegli il colore delle carte politica nella tua mano");
-			System.out.println(carteGiocatore);
+			System.out.println(carteGiocatore.toString());
 			comando = stdIn.nextLine();
 			CartaPoliticaDTO cartaScelta = ControlloParametriDTO.carteGiocatore(comando, carteGiocatore);
 			while (cartaScelta == null) {
@@ -120,7 +120,7 @@ public class AzioniClient {
 			if (numeroCarte != 0) {
 				System.out.println("Vuoi aggiungere un'altra carta [Y/Other]");
 				comando = stdIn.nextLine();
-				if (comando.equals("Y")) {
+				if ("Y".equals(comando)) {
 					continue;
 				} else
 					break;
@@ -138,14 +138,14 @@ public class AzioniClient {
 
 		System.out.println("Seleziona tessera permesso[1/2]");
 		for (TesseraPermessoDTO t : tessere)
-			System.out.println(t);
+			System.out.println(t.toString());
 		comando = stdIn.nextLine();
-		while (!comando.equals("1") && !comando.equals("2")) {
+		while (!"1".equals(comando) && !"2".equals(comando)) {
 			System.out.println("tessera selezionata non è esistente|\n Inserire di nuovo");
 			comando = stdIn.nextLine();
 		}
 
-		return tessere.get((Integer.parseInt(comando) - 1));
+		return tessere.get(Integer.parseInt(comando) - 1);
 	}
 	/**
 	 * this method let the player to chose a permit tile from his permit tiles not yet used
@@ -155,7 +155,7 @@ public class AzioniClient {
 	 */
 	public TesseraPermessoDTO scegliTesseraGiocatore(List<TesseraPermessoDTO> list, Scanner stdIn) {
 		System.out.println("Seleziona l'indice di una tessera permesso non ancora usata");
-		System.out.println(list);
+		System.out.println(list.toString());
 		comando = stdIn.nextLine();
 		TesseraPermessoDTO tesseraScelta = ControlloParametriDTO.tessereGiocatore(comando, list);
 		while (tesseraScelta == null) {
@@ -175,7 +175,7 @@ public class AzioniClient {
 	 */
 	public CittàDTO scegliCittà(Set<? extends CittàDTO> città, ColoreDTO coloreGiocatore, Scanner stdIn) {
 		System.out.println("Seleziona la città");
-		System.out.println(città);
+		System.out.println(città.toString());
 		comando = stdIn.nextLine();
 		CittàDTO cittàScelta = ControlloParametriDTO.città(comando, città, coloreGiocatore);
 		while (cittàScelta == null) {
@@ -205,7 +205,7 @@ public class AzioniClient {
 	
 	public CartaPoliticaDTO scegliCarta(List<CartaPoliticaDTO> cartePolitica, Scanner stdIn) {
 		System.out.println("Seleziona la carta politica");
-		System.out.println(cartePolitica);
+		System.out.println(cartePolitica.toString());
 		comando = stdIn.nextLine();
 		CartaPoliticaDTO cartaScelta = ControlloParametriDTO.carteGiocatore(comando, cartePolitica);
 		while (cartaScelta == null) {

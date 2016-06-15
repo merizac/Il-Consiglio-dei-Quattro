@@ -1,7 +1,7 @@
 package server.model.azioni.azioniBonus;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import server.model.bonus.Bonus;
 import server.model.game.GameState;
 import server.model.notify.GameStateNotify;
@@ -11,7 +11,7 @@ import server.model.notify.GiocatoreNotify;
 public interface Bonusable {
 
 	public default boolean controlloBonus(GameState gameState){
-		ArrayList<Bonus> bonusCasella = gameState.getGiocatoreCorrente().getPunteggioNobiltà().getBonus();
+		List<Bonus> bonusCasella = gameState.getGiocatoreCorrente().getPunteggioNobiltà().getBonus();
 		
 		
 			for(Bonus bonus: bonusCasella){
@@ -24,7 +24,6 @@ public interface Bonusable {
 				return true;
 			}
 			else {
-				System.out.println("Sono tornato FALSO");
 				return false;
 			}
 		}

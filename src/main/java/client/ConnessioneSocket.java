@@ -5,13 +5,14 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.rmi.RemoteException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import common.azioniDTO.AzioneDTO;
 import common.gameDTO.GameStateDTO;
 import server.view.clientNotify.ClientNotify;
 
-public class ConnessioneSocket implements Connessione {
+public class ConnessioneSocket implements Connessione, Runnable {
 
 	private Grafica grafica;
 	private GameStateDTO gameStateDTO;
@@ -22,14 +23,8 @@ public class ConnessioneSocket implements Connessione {
 	private ObjectInputStream socketIn;
 	private boolean fine = false;
 
-
-	/**
-	 * this method start the connessioneSocket, create the socket, the outputStream, the inputStream
-	 * send the player to the server and start the thread that listen the user and enter in a loop
-	 * where he wait for updating
-	 */
 	@Override
-	public void start() {
+	public void run() {
 		try {
 			this.socket = new Socket(IP, PORT);
 		} catch (IOException e) {
@@ -48,7 +43,7 @@ public class ConnessioneSocket implements Connessione {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("Connection create");
+		System.out.println("Connessione socket creata");
 
 		try {
 			socketOut.writeObject(gameStateDTO.getGiocatoreDTO());
@@ -57,14 +52,9 @@ public class ConnessioneSocket implements Connessione {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		
-		ExecutorService executor=Executors.newSingleThreadExecutor();
-		executor.submit(grafica);
 		listen();
-
 	}
-
+	
 	/**
 	 * listen for updating from the server
 	 */
@@ -75,7 +65,7 @@ public class ConnessioneSocket implements Connessione {
 				notify.update(gameStateDTO);
 				notify.stamp(grafica);
 			} catch (EOFException e) {
-				disconnetti();
+				e.printStackTrace();
 			} catch (ClassNotFoundException | IOException e) {
 				e.printStackTrace();
 			}
@@ -124,5 +114,12 @@ public class ConnessioneSocket implements Connessione {
 	public void setGameStateDTO(GameStateDTO gameStateDTO) {
 		this.gameStateDTO = gameStateDTO;
 	}
+
+	@Override
+	public void start() throws RemoteException {
+		ExecutorService executor = Executors.newSingleThreadExecutor();
+		executor.submit(this);
+	}
+
 
 }

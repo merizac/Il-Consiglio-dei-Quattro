@@ -1,6 +1,7 @@
 package server.model.game;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import server.model.bonus.Bonus;
 
@@ -8,11 +9,11 @@ public class Regione  {
 
 	private final String nome;
 	private final Mazzo<TesseraPermesso> mazzoTesserePermesso;
-	private final ArrayList<TesseraPermesso> tesserePermessoScoperte;
+	private final List<TesseraPermesso> tesserePermessoScoperte;
 	private final Bonus bonusRegione;
 	private boolean bonusAssegnato=false;
 	private final Balcone balcone;
-	private ArrayList<Città> cittàRegione;
+	private List<Città> cittàRegione;
 	/**
 	 * @param nome
 	 * @param mazzoTesserePermesso
@@ -44,7 +45,7 @@ public class Regione  {
 	/**
 	 * @return the tesserePermessoScoperte
 	 */
-	public ArrayList<TesseraPermesso> getTesserePermessoScoperte() {
+	public List<TesseraPermesso> getTesserePermessoScoperte() {
 		return tesserePermessoScoperte;
 	}
 	/**
@@ -62,7 +63,7 @@ public class Regione  {
 	/**
 	 * @return the cittàRegione
 	 */
-	public ArrayList<Città> getCittàRegione() {
+	public List<Città> getCittàRegione() {
 		return cittàRegione;
 	}
 	/* (non-Javadoc)

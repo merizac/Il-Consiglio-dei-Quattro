@@ -13,9 +13,9 @@ public class StartEnd implements Stato {
 	private List<Azione> azioni;
 
 	public StartEnd(GameState gameState) {
-		System.out.println("[SERVER] "+this);
-			azioni=Arrays.asList(new PescaCarta());
-			gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
+		System.out.println("[SERVER] " + this);
+		azioni = Arrays.asList(new PescaCarta());
+		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
 	}
 
 	@Override
@@ -24,7 +24,6 @@ public class StartEnd implements Stato {
 
 	}
 
-	
 	@Override
 	public List<Azione> getAzioni() {
 		return this.azioni;

@@ -351,7 +351,6 @@ public class GameState extends Observable<Notify> {
 		giocatoritmp.remove(vincitori.get(0));
 
 		for (Giocatore g : giocatoritmp) {
-			System.out.println("SonoEntratoInGiocatorePerdente");
 			if (comparator.compare(g, vincitori.get(0)) != 0){
 				giocatoriPerdenti.add(g);
 				break;
@@ -455,7 +454,6 @@ public class GameState extends Observable<Notify> {
 	 * @param secondo
 	 */
 	private void assegnaPunti(ArrayList<Giocatore> primo, ArrayList<Giocatore> secondo) {
-		System.out.println("assegna punti");
 		for (Giocatore g : primo) {
 			g.aumentaPuntiVittoria(5);
 			if (primo.size() == 1) {

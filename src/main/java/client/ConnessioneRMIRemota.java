@@ -14,10 +14,4 @@ public interface ConnessioneRMIRemota extends Remote, Connessione {
 	 */
 	public void aggiorna(ClientNotify notify) throws RemoteException;
 	
-	/**
-	 * this method start the connessioneRMIRemota
-	 */
-	@Override
-	public void start() throws RemoteException;
-	
 }

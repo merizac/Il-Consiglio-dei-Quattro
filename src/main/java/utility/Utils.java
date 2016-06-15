@@ -1,5 +1,6 @@
 package utility;
 
+
 public class Utils {
 	
 	public static boolean isNumeric(String numero) {
@@ -11,6 +12,5 @@ public class Utils {
 			return false;
 		}
 	}
-
 	
 }

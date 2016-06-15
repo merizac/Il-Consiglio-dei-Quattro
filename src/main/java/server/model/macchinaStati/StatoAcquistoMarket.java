@@ -15,13 +15,13 @@ import server.model.notify.OffertaNotify;
 
 public class StatoAcquistoMarket implements Stato {
 
-	private ArrayList<Giocatore> giocatori;
+	private List<Giocatore> giocatori;
 	private List<Azione> azioni;
 	
 	public StatoAcquistoMarket(GameState gameState){
 		System.out.println("[SERVER] "+this);
 		this.azioni=Arrays.asList(new AzioneAcquisto(), new Passa());
-		this.giocatori=new ArrayList<Giocatore>(gameState.getGiocatori());
+		this.giocatori=new ArrayList<>(gameState.getGiocatori());
 		inizializzaStato(gameState);
 	}
 	
@@ -60,7 +60,7 @@ public class StatoAcquistoMarket implements Stato {
 	/**
 	 * @return the giocatori
 	 */
-	public ArrayList<Giocatore> getGiocatori() {
+	public List<Giocatore> getGiocatori() {
 		return giocatori;
 	}
 

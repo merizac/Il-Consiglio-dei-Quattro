@@ -42,10 +42,10 @@ public class Server {
 	private static Server instance = new Server();
 
 	public Server() {
-		this.partite = new HashMap<>();
+		Server.partite = new HashMap<>();
 		this.gameState = new GameState();
 		this.controller = new Controller(gameState);
-		this.partite.put(gameState, new HashSet<>());
+		Server.partite.put(gameState, new HashSet<>());
 		this.giocatori = new ArrayList<>();
 	}
 
@@ -85,7 +85,7 @@ public class Server {
 	public synchronized void aggiungiGiocatore(Giocatore giocatore, View view) {
 		this.giocatori.add(giocatore);
 		System.out.println("[SERVER] Si è connesso il giocatore : " + giocatore.getNome());
-		this.partite.get(gameState).add(view);
+		Server.partite.get(gameState).add(view);
 		if (giocatori.size() == 2) {
 			timer = new Timer();
 			timer.schedule(new TimerTask() {
@@ -108,7 +108,7 @@ public class Server {
 
 	private void creaGioco() {
 		try {
-			for (View v : this.partite.get(gameState)) {
+			for (View v : Server.partite.get(gameState)) {
 				v.setGameState(gameState);
 				this.gameState.registerObserver(v);
 				v.registerObserver(this.controller);
@@ -118,7 +118,7 @@ public class Server {
 			this.giocatori.clear();
 			this.gameState = new GameState();
 			this.controller = new Controller(gameState);
-			this.partite.put(this.gameState, new HashSet<>());
+			Server.partite.put(this.gameState, new HashSet<>());
 			
 			ServerRMIViewRemote game = new ServerRMIView();
 			ServerRMIViewRemote gameRemote = (ServerRMIViewRemote) UnicastRemoteObject.exportObject(game, 0);

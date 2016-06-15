@@ -1,9 +1,6 @@
 package server.model.bonus;
 
-
-import java.util.ArrayList;
 import java.util.List;
-
 import common.gameDTO.CittàBonusDTO;
 import server.model.azioni.Azione;
 import server.model.azioni.azioniBonus.BonusGettoneN;
@@ -90,7 +87,7 @@ public class BonusGettoneRicompensa extends Bonus {
 	/**
 	 * @param cittàGiocatore the cittàGiocatore to set
 	 */
-	public void setCittàGiocatore(ArrayList<CittàBonus> cittàGiocatore) {
+	public void setCittàGiocatore(List<CittàBonus> cittàGiocatore) {
 		this.cittàGiocatore = cittàGiocatore;
 	}
 

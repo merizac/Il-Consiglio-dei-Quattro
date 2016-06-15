@@ -24,15 +24,15 @@ public class GameStateDTO implements Serializable {
 	private List<AzioneDTO> azioniDisponibili;
 	private GiocatoreDTO giocatoreDTO;
 	private List<OffertaDTO> offerte;
-	
+
 	public void inizializza(GameState gameState) {
 		this.città = new HashSet<>();
 		for (Città c : gameState.getCittà()) {
 			if (c instanceof CittàBonus) {
 				CittàBonusDTO cittàBonusDTO = new CittàBonusDTO();
-				cittàBonusDTO.inizializza((CittàBonus)c);
+				cittàBonusDTO.inizializza((CittàBonus) c);
 				città.add(cittàBonusDTO);
-			} else if (c instanceof Città) {
+			} else {
 				CittàDTO cittàDTO = new CittàDTO();
 				cittàDTO.inizializza(c);
 				città.add(cittàDTO);
@@ -48,7 +48,7 @@ public class GameStateDTO implements Serializable {
 		ReDTO pedinaRe = new ReDTO();
 		pedinaRe.inizializza(gameState.getPedinaRe());
 		this.setPedinaRE(pedinaRe);
-		PlanciaReDTO planciaReDTO = new PlanciaReDTO();
+		planciaReDTO = new PlanciaReDTO();
 		planciaReDTO.inizializza(gameState.getPlanciaRe());
 		this.setPlanciaReDTO(planciaReDTO);
 		this.consiglieri = new ArrayList<>();
@@ -171,7 +171,7 @@ public class GameStateDTO implements Serializable {
 	public List<OffertaDTO> getOfferte() {
 		return offerte;
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * 

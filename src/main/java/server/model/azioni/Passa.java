@@ -10,7 +10,6 @@ public class Passa extends Azione {
 	@Override
 	public void eseguiAzione(GameState gameState) {
 		gameState.getStato().transizionePassa(gameState);
-		System.out.println("Stato :" + gameState.getStato());
 	}
 
 	@Override

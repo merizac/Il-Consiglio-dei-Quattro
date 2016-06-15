@@ -40,8 +40,11 @@ import utility.Utils;
 
 public class CLI implements Grafica, Runnable {
 
+	private static final String SOCKET = "1";
+	private static final String RMI = "2";
 	private Connessione connessione;
 	private GameStateDTO gameStateDTO;
+	private Scanner stdIn;
 
 	@Override
 	public void setConnessione(Connessione connessione) {
@@ -56,9 +59,33 @@ public class CLI implements Grafica, Runnable {
 	@Override
 	public void run() {
 
+		stdIn = new Scanner(System.in);
+
+		this.scegliNome();
+
 		System.out.println("CIAO " + gameStateDTO.getGiocatoreDTO().getNome().toUpperCase()
 				+ ", BENVENUTO IN UNA NUOVA PARTITA DEL *Consiglio dei Quattro* !");
-		Scanner stdIn = new Scanner(System.in);
+		try {
+			this.connessione = scegliConnessione();
+		} catch (RemoteException e1) {
+			e1.printStackTrace();
+		}
+		try {
+			this.connessione.setGrafica(this);
+		} catch (RemoteException e1) {
+			e1.printStackTrace();
+		}
+
+		try {
+			this.connessione.setGameStateDTO(this.gameStateDTO);
+		} catch (RemoteException e1) {
+			e1.printStackTrace();
+		}
+		try {
+			this.connessione.start();
+		} catch (RemoteException e1) {
+			e1.printStackTrace();
+		}
 
 		while (true) {
 			AzioneDTO action = null;
@@ -83,8 +110,8 @@ public class CLI implements Grafica, Runnable {
 			else if ("Passa".equals(inputLine)) {
 				action = new PassaDTO();
 			}
-			
-			else if ("Passa Bonus".equals(inputLine)){
+
+			else if ("Passa Bonus".equals(inputLine)) {
 				action = new PassaBonusDTO();
 			}
 
@@ -195,7 +222,7 @@ public class CLI implements Grafica, Runnable {
 
 					if ("1".equals(input)) {
 						bonus.setUsata(true);
-						System.out.println(gameStateDTO.getGiocatoreDTO().getTesserePermessoUsate());
+						System.out.println(gameStateDTO.getGiocatoreDTO().getTesserePermessoUsate().toString());
 						System.out.println("Scegli l'indice della tessera");
 						input = stdIn.nextLine();
 						tesseraScelta = azioniClient.scegliTesseraGiocatore(
@@ -203,7 +230,7 @@ public class CLI implements Grafica, Runnable {
 						action = bonus;
 					} else if ("2".equals(input)) {
 						bonus.setUsata(false);
-						System.out.println(gameStateDTO.getGiocatoreDTO().getTesserePermesso());
+						System.out.println(gameStateDTO.getGiocatoreDTO().getTesserePermesso().toString());
 						System.out.println("Scegli l'indice della tessera");
 						input = stdIn.nextLine();
 
@@ -224,7 +251,7 @@ public class CLI implements Grafica, Runnable {
 				}
 				if (!città.isEmpty()) {
 					System.out.println("Scegli una città");
-					System.out.println(città);
+					System.out.println(città.toString());
 					String input = stdIn.nextLine();
 					cittàScelta = azioniClient.scegliCittàBonus(città,
 							gameStateDTO.getGiocatoreDTO().getColoreGiocatore(), stdIn, input);
@@ -246,7 +273,7 @@ public class CLI implements Grafica, Runnable {
 				for (CittàDTO c : gameStateDTO.getCittà()) {
 					if (c.getEmpori().contains(gameStateDTO.getGiocatoreDTO().getColoreGiocatore().getColore())
 							&& (c instanceof CittàBonusDTO)) {
-						System.out.println(c);
+						System.out.println(c.toString());
 						città.add((CittàBonusDTO) c);
 					}
 				}
@@ -349,13 +376,60 @@ public class CLI implements Grafica, Runnable {
 
 	}
 
+	/**
+	 * this method let the client chose the name
+	 * 
+	 * @return the name of the player
+	 */
+	public void scegliNome() {
+		String nome = null;
+		while (nome == null || "".equals(nome)) {
+			System.out.println("Inserisci il nome");
+			nome = stdIn.nextLine();
+		}
+
+		GiocatoreDTO giocatoreDTO = new GiocatoreDTO();
+		giocatoreDTO.setNome(nome);
+		this.gameStateDTO = new GameStateDTO();
+		this.gameStateDTO.setGiocatoreDTO(giocatoreDTO);
+	}
+
+	/**
+	 * this method let the player chose the connection between socket and rmi
+	 * 
+	 * @param giocatore
+	 * @return the connection selected
+	 * @throws RemoteException
+	 */
+	public Connessione scegliConnessione() throws RemoteException {
+		System.out.println("Inserisci connessione\nSocket[1]\nRMI[2]");
+		String connessioneClient = null;
+		while (true) {
+			{
+				connessioneClient = stdIn.nextLine();
+				if (SOCKET.equals(connessioneClient)) {
+					return new ConnessioneSocket();
+
+				} else if (RMI.equals(connessioneClient))
+					try {
+						return new ConnessioneRMI();
+					} catch (RemoteException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				else
+					System.out.println("Inserisci un valore valido");
+			}
+		}
+	}
 
 	@Override
 	public void mostraAzioni(List<AzioneDTO> azioni) {
 		for (AzioneDTO a : azioni) {
-			System.out.println(a);
+			System.out.println(a.toString());
 		}
 	}
+
 	@Override
 	public void mostraClassifica(List<GiocatoreDTO> vincenti, List<GiocatoreDTO> perdenti) {
 		for (GiocatoreDTO g : vincenti) {
@@ -367,15 +441,16 @@ public class CLI implements Grafica, Runnable {
 					"Giocatore :" + g.getNome().toUpperCase() + " Punteggio " + g.getPunteggioVittoria() + " punti");
 		}
 	}
+
 	@Override
 	public void mostraGame(GameStateDTO gameStateDTO) {
-		System.out.println("\nCittà\n");
+		System.out.println("\nCittà");
 		for (CittàDTO c : gameStateDTO.getCittà()) {
-			System.out.println(c);
+			System.out.println(c.toString());
 		}
-		System.out.println("\nRegioni\n");
+		System.out.println("\nRegioni");
 		for (RegioneDTO r : gameStateDTO.getRegioni()) {
-			System.out.println(r);
+			System.out.println(r.toString());
 			String balcone = "Balcone [ ";
 			for (ConsigliereDTO cons : r.getBalcone().getConsiglieri()) {
 				balcone = balcone + cons + " ";
@@ -397,7 +472,7 @@ public class CLI implements Grafica, Runnable {
 				System.out.println("Tessera [" + cittàTessera + bonusTessera + " ]");
 
 			}
-			System.out.println("BonusRegione [" + r.getBonusRegione() + " ]\n");
+			System.out.println("BonusRegione [" + r.getBonusRegione() + " ]");
 
 		}
 		String balconeRe = "Balcone Re [ ";
@@ -405,8 +480,8 @@ public class CLI implements Grafica, Runnable {
 			balconeRe = balconeRe + consRe + " ";
 		}
 		balconeRe = balconeRe + "]";
-		System.out.println(balconeRe + "\n");
-		System.out.println(gameStateDTO.getPedinaRE() + "\n");
+		System.out.println(balconeRe);
+		System.out.println(gameStateDTO.getPedinaRE().toString());
 
 		String bonusRe = "BonusRe\n";
 
@@ -426,7 +501,7 @@ public class CLI implements Grafica, Runnable {
 	@Override
 
 	public void mostraGiocatore(GiocatoreDTO giocatoreDTO) {
-		System.out.println(giocatoreDTO + "\n");
+		System.out.println(giocatoreDTO.toString());
 	}
 
 	@Override
@@ -436,8 +511,8 @@ public class CLI implements Grafica, Runnable {
 
 	@Override
 	public void mostraOfferte(List<OffertaDTO> offerte) {
-		for(OffertaDTO o: offerte){
-			System.out.println("\n"+o.getMarketableDTO()+" prezzo: "+ o.getPrezzo());
+		for (OffertaDTO o : offerte) {
+			System.out.println("\n" + o.getMarketableDTO() + " prezzo: " + o.getPrezzo());
 		}
 	}
 

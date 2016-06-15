@@ -22,10 +22,7 @@ public class AzioneOfferta extends Azione {
 			gameState.notifyObserver(new MessageNotify("uesta offerta non è effettuabile",
 					Arrays.asList(gameState.getGiocatoreCorrente())));
 		else{
-			System.out.println(marketable);
-			System.out.println(prezzo);
 			gameState.getOfferteMarket().add(new Offerta(gameState.getGiocatoreCorrente(), marketable, prezzo));
-			System.out.println(gameState.getStato());
 			gameState.getStato().transizioneOfferta(gameState);
 		}
 	}

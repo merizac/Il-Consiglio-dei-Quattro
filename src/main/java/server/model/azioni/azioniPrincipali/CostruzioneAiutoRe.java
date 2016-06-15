@@ -82,7 +82,7 @@ public class CostruzioneAiutoRe extends AzionePrincipale implements Bonusable {
 		gameState.notifyObserver(
 				new GiocatoreNotify(gameState.getGiocatoreCorrente(), Arrays.asList(gameState.getGiocatoreCorrente())));
 
-		ArrayList<Bonus> bonusCasella = gameState.getGiocatoreCorrente().getPunteggioNobiltà().getBonus();
+		List<Bonus> bonusCasella = gameState.getGiocatoreCorrente().getPunteggioNobiltà().getBonus();
 
 		if (nob) {
 			if (!bonusCasella.isEmpty()) {

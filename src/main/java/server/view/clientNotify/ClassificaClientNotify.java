@@ -19,7 +19,6 @@ public class ClassificaClientNotify implements ClientNotify {
 	 * @param vincenti
 	 */
 	public ClassificaClientNotify(List<Giocatore> vincenti, List<Giocatore> perdenti) {
-		System.out.println("classifica Client Notify");
 		this.vincenti=new ArrayList<>();
 		this.perdenti=new ArrayList<>();
 		for(Giocatore g:vincenti){

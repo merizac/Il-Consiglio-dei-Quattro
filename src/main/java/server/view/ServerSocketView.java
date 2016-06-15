@@ -6,7 +6,6 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.SocketException;
 import java.util.Arrays;
-
 import common.azioniDTO.AzioneDTO;
 import common.azioniDTO.azioneVisitor.AzioneVisitor;
 import common.azioniDTO.azioneVisitor.AzioneVisitorImpl;
@@ -83,10 +82,7 @@ public class ServerSocketView extends View implements Runnable {
 								" dal giocatore "+this.giocatore.getNome()+" con errore: "+e.getMessage());
 						continue;
 					}
-					System.out
-							.println("[SERVER] Ricevuta l'azione " + azione + " dal giocatore " + giocatore.getNome());
-					System.out.println(azione.isTurno(giocatore, gameState));
-					System.out.println(gameState.getStato().getAzioni().contains(azione));
+					System.out.println("[SERVER] Ricevuta l'azione " + azione + " dal giocatore " + giocatore.getNome());
 
 					if (azione instanceof Exit) {
 						disconnetti();

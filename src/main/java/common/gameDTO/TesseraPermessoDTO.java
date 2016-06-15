@@ -48,12 +48,12 @@ public class TesseraPermessoDTO implements Serializable, MarketableDTO {
 	 */
 	@Override
 	public String toString() {
-		String città=" [";
+		String cittàToString=" [";
 		for(CittàDTO c: this.città){
-			città=città+c.getNome()+" ";
+			cittàToString=cittàToString+c.getNome()+" ";
 		}
-		città=città+"]";
-		return "TesseraPermesso  città:" + città + ", bonus:" + bonus;
+		cittàToString=cittàToString+"]";
+		return "TesseraPermesso  città:" + cittàToString + ", bonus:" + bonus;
 	}
 	
 	

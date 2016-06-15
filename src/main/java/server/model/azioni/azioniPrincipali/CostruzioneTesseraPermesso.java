@@ -1,7 +1,7 @@
 package server.model.azioni.azioniPrincipali;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import common.azioniDTO.AzioneDTO;
 import common.azioniDTO.CostruzioneTesseraPermessoDTO;
@@ -55,11 +55,7 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonu
 		gameState.notifyObserver(
 				new GiocatoreNotify(gameState.getGiocatoreCorrente(), Arrays.asList(gameState.getGiocatoreCorrente())));
 
-		ArrayList<Bonus> bonusCasella = gameState.getGiocatoreCorrente().getPunteggioNobiltà().getBonus();
-		System.out.println(gameState.getGiocatoreCorrente().getPunteggioNobiltà().getPuntiNobiltà());
-		System.out.println(gameState.getGiocatoreCorrente().getPunteggioNobiltà().getBonus());
-		System.out.println(nob);
-		System.out.println(bonusCasella.isEmpty());
+		List<Bonus> bonusCasella = gameState.getGiocatoreCorrente().getPunteggioNobiltà().getBonus();
 
 		if (nob) {
 			if (!bonusCasella.isEmpty()) {
@@ -104,11 +100,8 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonu
 	 * move the permit tile used from tesserePermesso to tesserePermessoUsate
 	 */
 	private void copriTessera(GameState gameState) {
-		// System.out.println(gameState.getGiocatoreCorrente().getTesserePermesso());
 		gameState.getGiocatoreCorrente().getTesserePermesso().remove(tesseraPermessoScoperta);
-		// System.out.println(gameState.getGiocatoreCorrente().getTesserePermesso());
 		gameState.getGiocatoreCorrente().getTesserePermessoUsate().add(tesseraPermessoScoperta);
-		// System.out.println(gameState.getGiocatoreCorrente().getTesserePermessoUsate());
 	}
 
 	/**

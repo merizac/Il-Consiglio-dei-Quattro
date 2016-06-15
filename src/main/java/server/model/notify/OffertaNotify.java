@@ -30,14 +30,14 @@ public class OffertaNotify implements Notify {
 
 	@Override
 	public ClientNotify notifyToClientNotify() {
-		List<OffertaDTO> offerte=new ArrayList<>();
+		List<OffertaDTO> offerteDTO=new ArrayList<>();
 		for(Offerta o: this.offerte)
 		{
 			OffertaDTO offertaDTO=new OffertaDTO();
 			offertaDTO.inizializza(o);
-			offerte.add(offertaDTO);
+			offerteDTO.add(offertaDTO);
 		}
-		return new OffertaClientNotify(offerte);
+		return new OffertaClientNotify(offerteDTO);
 	}
 
 }

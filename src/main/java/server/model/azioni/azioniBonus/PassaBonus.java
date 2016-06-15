@@ -13,8 +13,6 @@ public class PassaBonus extends Azione{
 	public void eseguiAzione(GameState gameState) {
 		gameState.getGiocatoreCorrente().getBonusNobiltà().remove(this.bonus);
 		gameState.getStato().transizionePassa(gameState);
-		System.out.println("Stato :" + gameState.getStato());
-
 	}
 
 	@Override

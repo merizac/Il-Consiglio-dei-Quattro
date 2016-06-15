@@ -1,20 +1,20 @@
 package server.model.game;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import server.model.bonus.*;
 
 public final class PunteggioNobiltà  {
 
 	private final int puntiNobiltà;
-	private final ArrayList<Bonus> bonus;
+	private final List<Bonus> bonus;
 	
 	
 	/**
 	 * @param puntiNobiltà
 	 * @param bonus
 	 */
-	public PunteggioNobiltà(int puntiNobiltà, ArrayList<Bonus> bonus) {
+	public PunteggioNobiltà(int puntiNobiltà, List<Bonus> bonus) {
 		this.puntiNobiltà = puntiNobiltà;
 		this.bonus = bonus;
 	}
@@ -23,7 +23,7 @@ public final class PunteggioNobiltà  {
 	 * get bonus
 	 * @return ArrayList<Bonus>
 	 */
-	public ArrayList<Bonus> getBonus() {
+	public List<Bonus> getBonus() {
 		return this.bonus;
 	}
 
