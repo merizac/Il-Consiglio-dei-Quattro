@@ -14,6 +14,9 @@ public class BonusTesseraAcquistataN extends Azione {
 	 */
 	private TesseraPermesso tesseraPermesso;
 
+	/**
+	 * use bonus in the selected TesseraPermesso that player already choose, and notify
+	 */
 	@Override
 	public void eseguiAzione(GameState gameState) {
 

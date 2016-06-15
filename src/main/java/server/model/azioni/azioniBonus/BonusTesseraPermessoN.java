@@ -15,16 +15,18 @@ public class BonusTesseraPermessoN extends Azione {
 	private Regione regione;
 	private TesseraPermesso tesseraScoperta;
 
+	/**
+	 * take one tesseraPermesso from the selected region. (so remove that from
+	 * the region and add to the tessere of the player
+	 * 
+	 */
 	@Override
 	public void eseguiAzione(GameState gameState) {
 
 		regione.getTesserePermessoScoperte().remove(tesseraScoperta);
 		gameState.getGiocatoreCorrente().getTesserePermesso().add(tesseraScoperta);
-
 		regione.getTesserePermessoScoperte().add(regione.getMazzoTesserePermesso().pescaCarte());
-
 		gameState.getGiocatoreCorrente().getBonusNobiltà().remove(this);
-
 		gameState.getStato().transizioneBonus(gameState);
 	}
 

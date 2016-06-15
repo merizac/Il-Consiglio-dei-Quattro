@@ -13,11 +13,10 @@ import common.azioniDTO.AzioneDTO;
 import common.azioniDTO.ElezioneConsigliereDTO;
 
 public class ElezioneConsigliereVeloce extends AzioneVeloce {
-	
+
 	private Balcone balcone;
 	private Consigliere consigliere;
 
-	
 	/**
 	 * @return the balcone
 	 * 
@@ -26,20 +25,15 @@ public class ElezioneConsigliereVeloce extends AzioneVeloce {
 		return balcone;
 	}
 
-
-
-
 	/**
-	 * @param balcone the balcone to set
+	 * @param balcone
+	 *            the balcone to set
 	 */
 	public void setBalcone(Balcone balcone) {
-		if(balcone==null)
+		if (balcone == null)
 			throw new NullPointerException("Il balcone passato è null");
 		this.balcone = balcone;
 	}
-
-
-
 
 	/**
 	 * @return the consigliere
@@ -48,20 +42,15 @@ public class ElezioneConsigliereVeloce extends AzioneVeloce {
 		return consigliere;
 	}
 
-
-
-
 	/**
-	 * @param consigliere the consigliere to set
+	 * @param consigliere
+	 *            the consigliere to set
 	 */
 	public void setConsigliere(Consigliere consigliere) {
-		if(consigliere==null)
+		if (consigliere == null)
 			throw new NullPointerException("Il consigliere passato è null");
 		this.consigliere = consigliere;
 	}
-
-
-
 
 	/**
 	 * check the number of aiutanti and if giocatoreCorrente has 1 aiutante
@@ -80,7 +69,7 @@ public class ElezioneConsigliereVeloce extends AzioneVeloce {
 			Consigliere consigliereTolto = this.balcone.aggiungiConsigliere(consigliere);
 			gameState.getConsiglieri().remove(consigliere);
 			gameState.getConsiglieri().add(consigliereTolto);
-			
+
 			gameState.notifyObserver(new GameStateNotify(gameState, gameState.getGiocatori()));
 			gameState.notifyObserver(new GiocatoreNotify(gameState.getGiocatoreCorrente(),
 					Arrays.asList(gameState.getGiocatoreCorrente())));
@@ -89,9 +78,9 @@ public class ElezioneConsigliereVeloce extends AzioneVeloce {
 
 	}
 
-
-
-
+	/**
+	 * @return DTO action
+	 */
 	@Override
 	public AzioneDTO getAzioneDTO() {
 		return new ElezioneConsigliereDTO();

@@ -16,10 +16,16 @@ public class BonusTesseraPermesso extends Bonus {
 		// TODO Auto-generated constructor stub
 	}
 	
+	/**
+	 * @return the corresponding action
+	 */
 	public Azione getAzioneBonus(){
 		return new BonusTesseraPermessoN();
 	}
 
+	/**
+	 * add the corresponding action to the list of bonus in current player
+	 */
 	@Override
 	public void usaBonus(GameState gameState) {		
 		gameState.getGiocatoreCorrente().getBonusNobiltà().add(this.getAzioneBonus());

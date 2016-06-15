@@ -8,7 +8,7 @@ public abstract class Bonus implements Serializable {
 	
 
 	/**
-	 * 
+	 * serializable
 	 */
 	private static final long serialVersionUID = -3855830326284346402L;
 	

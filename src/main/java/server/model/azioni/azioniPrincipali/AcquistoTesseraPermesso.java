@@ -202,6 +202,9 @@ public class AcquistoTesseraPermesso extends AzionePrincipale implements Bonusab
 		return tesseraScoperta;
 	}
 
+	/**
+	 * @return DTO action
+	 */
 	@Override
 	public AzioneDTO getAzioneDTO() {
 		return new AcquistoTesseraPermessoDTO();

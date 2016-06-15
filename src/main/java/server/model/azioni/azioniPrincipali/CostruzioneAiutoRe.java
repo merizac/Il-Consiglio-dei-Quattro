@@ -32,11 +32,17 @@ public class CostruzioneAiutoRe extends AzionePrincipale implements Bonusable {
 	private List<CartaPolitica> carteGiocatore;
 
 	/**
-	 * execute the action
+	 * check if the cards of the player are of the same color of consiglieri in the balcony
+	 * check if the player has enough aiutanti in case of in the city there are already emporium
+	 * calculate how many money the player have to pay for the balcony
+	 * move the king in the city in which the player ask to move
+	 * build in that city
+	 * check if the player had finisched emporium, in that case set transition in state pattern for the last round
+	 * check if the player has wins point of nobility, in that case check if casella in nobility track contains bonus
 	 */
 	@Override
 	public void eseguiAzione(GameState gameState) {
-		boolean nob=false;
+		boolean nob = false;
 		balcone = gameState.getPlanciaRe().getBalconeRe();
 		Mappa mappa = gameState.getMappa();
 		if (!controllaColori()) {
@@ -97,6 +103,12 @@ public class CostruzioneAiutoRe extends AzionePrincipale implements Bonusable {
 		}
 	}
 
+	/**
+	 * cheack if player can win bonus of the region
+	 * 
+	 * @param regione
+	 * @param giocatore
+	 */
 	private void controllaCittàRegione(Regione regione, Giocatore giocatore) {
 		for (Città c : regione.getCittàRegione()) {
 			if (!c.emporioColore(giocatore.getColoreGiocatore()))
@@ -107,6 +119,12 @@ public class CostruzioneAiutoRe extends AzionePrincipale implements Bonusable {
 
 	}
 
+	/**
+	 * check if the player can win bonus of color
+	 * 
+	 * @param coloreCittà
+	 * @param giocatore
+	 */
 	private void controllaCittàColore(ColoreCittà coloreCittà, Giocatore giocatore) {
 		if (coloreCittà.isAssegnatoBonus())
 			return;
@@ -146,10 +164,10 @@ public class CostruzioneAiutoRe extends AzionePrincipale implements Bonusable {
 		for (CittàBonus c : cittàCollegate) {
 			for (Bonus b : c.getBonus()) {
 				b.usaBonus(gameState);
-				if (b instanceof BonusPuntiNobiltà){
+				if (b instanceof BonusPuntiNobiltà) {
 					nob = true;
-				}
-				else nob=false;
+				} else
+					nob = false;
 			}
 		}
 		return nob;
@@ -269,6 +287,9 @@ public class CostruzioneAiutoRe extends AzionePrincipale implements Bonusable {
 		this.carteGiocatore = carteGiocatore;
 	}
 
+	/**
+	 * @return DTO action
+	 */
 	@Override
 	public AzioneDTO getAzioneDTO() {
 		return new CostruzioneAiutoReDTO();

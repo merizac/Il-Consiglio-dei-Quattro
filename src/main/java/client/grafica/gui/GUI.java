@@ -1,7 +1,6 @@
 package client.grafica.gui;
 
 import java.util.List;
-
 import client.connessione.Connessione;
 import client.grafica.Grafica;
 import common.azioniDTO.AzioneDTO;
