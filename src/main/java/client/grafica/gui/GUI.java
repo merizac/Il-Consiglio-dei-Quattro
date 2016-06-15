@@ -57,7 +57,7 @@ public class GUI extends Application implements Grafica {
 		finestra.setScene(theScene);
 		finestra.show();
 		
-		for(int i=0; i<10000; i++){
+/*		for(int i=0; i<10000; i++){
 			System.out.println(i);
 		}
 		
@@ -67,7 +67,7 @@ public class GUI extends Application implements Grafica {
 		theScene = new Scene(root);
 		
 		finestra.setScene(theScene);
-		finestra.show();
+		finestra.show();*/
 		
 		}
 
