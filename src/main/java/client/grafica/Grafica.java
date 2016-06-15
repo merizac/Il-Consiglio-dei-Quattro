@@ -1,5 +1,6 @@
 package client.grafica;
 
+import java.io.IOException;
 import java.util.List;
 
 import client.connessione.Connessione;
@@ -7,6 +8,7 @@ import common.azioniDTO.AzioneDTO;
 import common.gameDTO.GameStateDTO;
 import common.gameDTO.GiocatoreDTO;
 import common.gameDTO.OffertaDTO;
+import server.view.clientNotify.ClientNotify;
 
 public interface Grafica extends Runnable{
 	
@@ -18,11 +20,13 @@ public interface Grafica extends Runnable{
 
 	public void mostraClassifica(List<GiocatoreDTO> vincenti, List<GiocatoreDTO> perdenti);
 
-	public void mostraGame(GameStateDTO gameStateDTO);
+	public void mostraGame(GameStateDTO gameStateDTO) throws IOException;
 
 	public void mostraGiocatore(GiocatoreDTO giocatoreDTO);
 
 	public void mostraMessaggio(String messaggio);
 
 	public void mostraOfferte(List<OffertaDTO> offerte);
+
+	public void notify(Grafica grafica, ClientNotify notify);
 }

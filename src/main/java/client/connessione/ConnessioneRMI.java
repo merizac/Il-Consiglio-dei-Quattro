@@ -1,5 +1,6 @@
 package client.connessione;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.rmi.AccessException;
 import java.rmi.NotBoundException;
@@ -77,7 +78,12 @@ public class ConnessioneRMI extends UnicastRemoteObject implements Serializable,
 	@Override
 	public void aggiorna(ClientNotify notify) throws RemoteException {
 		notify.update(gameStateDTO);
-		notify.stamp(grafica);
+		try {
+			notify.stamp(grafica);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**

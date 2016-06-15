@@ -1,5 +1,6 @@
 package server.view.clientNotify;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import client.grafica.Grafica;
@@ -31,7 +32,7 @@ public class GameStateClientNotify implements ClientNotify {
 	}
 
 	@Override
-	public void stamp(Grafica grafica) {
+	public void stamp(Grafica grafica) throws IOException {
 		grafica.mostraGame(gameStateDTO);
 	}
 }

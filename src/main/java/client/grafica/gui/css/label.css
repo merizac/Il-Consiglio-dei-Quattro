@@ -1,6 +1,7 @@
-#background {
-	-fx-background-image: url("https://www.google.com/images/srpr/logo3w.png");
-    -fx-background-color: #1d1d1d;
+.background {
+  -fx-background-image: url("./map_1080.jpg");
+  /*https://www.google.com/images/srpr/logo3w.png */
+  -fx-background-color: #1d1d1d;
 }
 
 .label {
@@ -28,10 +29,10 @@
 }
 
 .error{
-	-fx-font: 12px Tahoma;
+  -fx-font: 12px Tahoma;
     -fx-stroke: red;
     -fx-opacity: 1.0;   
-	
+  
 }
 
 /*
