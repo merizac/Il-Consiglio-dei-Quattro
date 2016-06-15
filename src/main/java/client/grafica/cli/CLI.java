@@ -1,5 +1,6 @@
 package client.grafica.cli;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -41,6 +42,7 @@ import common.gameDTO.OffertaDTO;
 import common.gameDTO.RegioneDTO;
 import common.gameDTO.TesseraPermessoDTO;
 import server.model.bonus.Bonus;
+import server.view.clientNotify.ClientNotify;
 import utility.Utils;
 
 public class CLI implements Grafica, Runnable {
@@ -518,6 +520,17 @@ public class CLI implements Grafica, Runnable {
 	public void mostraOfferte(List<OffertaDTO> offerte) {
 		for (OffertaDTO o : offerte) {
 			System.out.println("\n" + o.getMarketableDTO() + " prezzo: " + o.getPrezzo());
+		}
+	}
+
+	@Override
+	public void notify(Grafica grafica,ClientNotify notify) {
+		notify.update(gameStateDTO);
+		try {
+			notify.stamp(grafica);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

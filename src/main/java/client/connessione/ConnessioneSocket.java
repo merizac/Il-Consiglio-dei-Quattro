@@ -64,8 +64,7 @@ public class ConnessioneSocket implements Connessione, Runnable {
 		while (!fine) {
 			try {
 				ClientNotify notify = (ClientNotify) socketIn.readObject();
-				notify.update(gameStateDTO);
-				notify.stamp(grafica);
+				grafica.notify(grafica, notify);
 			} catch (EOFException e) {
 				e.printStackTrace();
 			} catch (ClassNotFoundException | IOException e) {

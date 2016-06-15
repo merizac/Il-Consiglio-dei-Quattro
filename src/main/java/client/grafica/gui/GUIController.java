@@ -81,12 +81,4 @@ public class GUIController {
 		
 	}
 	
-/*	@FXML
-	private Label lblOutput;
-
-	@FXML
-	private void handleClick(ActionEvent event) {
-	    lblOutput.setText("This");
-	}
-*/
 }
