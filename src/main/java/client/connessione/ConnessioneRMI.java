@@ -1,4 +1,4 @@
-package client;
+package client.connessione;
 
 import java.io.Serializable;
 import java.rmi.AccessException;
@@ -10,6 +10,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import client.grafica.Grafica;
 import common.azioniDTO.AzioneDTO;
 import common.gameDTO.GameStateDTO;
 import server.view.ServerRMIViewRemote;

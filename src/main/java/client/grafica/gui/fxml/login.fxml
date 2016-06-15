@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import java.net.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="420.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.grafica.gui.GUIController">
+   <children>
+      <AnchorPane id="login" prefHeight="300.0" prefWidth="420.0" stylesheets="@../css/label.css">
+         <children>
+            <Label layoutX="80.0" layoutY="31.0" text="Il Consiglio dei Quattro" />
+            <Button fx:id="iscriviGiocatore" layoutX="374.0" layoutY="261.0" mnemonicParsing="false" onAction="#button" text="Ok" />
+            <CheckBox fx:id="socket" contentDisplay="BOTTOM" layoutX="169.0" layoutY="163.0" mnemonicParsing="false" styleClass="label-bright" text="Socket" />
+            <CheckBox fx:id="rmi" contentDisplay="BOTTOM" layoutX="169.0" layoutY="219.0" mnemonicParsing="false" styleClass="label-bright" text="RMI" />
+            <TextField fx:id="nome" layoutX="128.0" layoutY="89.0" onInputMethodTextChanged="#button" prefHeight="25.0" prefWidth="170.0" promptText="Nome Giocatore" />
+            <Text fx:id="errormessage" layoutX="108.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="148.13671875" />
+         </children>
+      </AnchorPane>
+   </children>
+</Pane>

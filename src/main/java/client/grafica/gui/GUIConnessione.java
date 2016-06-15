@@ -1,7 +1,8 @@
-package client;
+package client.grafica.gui;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -18,8 +19,10 @@ public class GUIConnessione extends Application{
 				
 				
 				
-//				Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("provamappa.fxml"));
-//				theScene = new Scene(root);
+	//			Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("gui/Connessione.fxml"));
+	//			Parent root = FXMLLoader.load(getClass().getResource("Connessione.fxml"));
+				Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("client/grafica/gui/fxml/login.fxml"));
+				theScene = new Scene(root);
 				
 				//scene.getStylesheets().add(getClass().getResource("font.css").toExternalForm());
 				//scene.getStylesheets().add("http://fonts.googleapis.com/css?family=IM+Fell+English+SC");

@@ -1,7 +1,8 @@
-package client;
+package client.connessione;
 
 import java.rmi.RemoteException;
 
+import client.grafica.Grafica;
 import common.azioniDTO.AzioneDTO;
 import common.gameDTO.GameStateDTO;
 

@@ -1,7 +1,8 @@
-package client;
+package client.grafica;
 
 import java.util.List;
 
+import client.connessione.Connessione;
 import common.azioniDTO.AzioneDTO;
 import common.gameDTO.GameStateDTO;
 import common.gameDTO.GiocatoreDTO;

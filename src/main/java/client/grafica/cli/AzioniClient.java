@@ -1,10 +1,11 @@
-package client;
+package client.grafica.cli;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
+import client.ControlloParametriDTO;
 import common.gameDTO.BalconeDTO;
 import common.gameDTO.CartaPoliticaDTO;
 import common.gameDTO.CittàBonusDTO;

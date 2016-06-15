@@ -1,6 +1,6 @@
 package server.view.clientNotify;
 
-import client.Grafica;
+import client.grafica.Grafica;
 import common.gameDTO.GameStateDTO;
 import common.gameDTO.GiocatoreDTO;
 import server.model.game.Giocatore;

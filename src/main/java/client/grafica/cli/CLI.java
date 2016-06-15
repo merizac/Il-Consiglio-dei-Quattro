@@ -1,4 +1,4 @@
-package client;
+package client.grafica.cli;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -6,6 +6,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
+
+import client.connessione.Connessione;
+import client.connessione.ConnessioneRMI;
+import client.connessione.ConnessioneSocket;
+import client.grafica.Grafica;
 import common.azioniDTO.AcquistoTesseraPermessoDTO;
 import common.azioniDTO.AzioneAcquistoDTO;
 import common.azioniDTO.AzioneDTO;

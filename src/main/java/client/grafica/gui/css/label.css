@@ -1,0 +1,42 @@
+#background {
+	-fx-background-image: url("https://www.google.com/images/srpr/logo3w.png");
+    -fx-background-color: #1d1d1d;
+}
+
+.label {
+    -fx-font-size: 16.0pt;
+/*  -fx-font-family: "Baskerville Old Face";*/
+    -fx-font-family: "Algerian";
+    -fx-text-fill: white;
+    -fx-opacity: 1.0; 
+   -fx-effect: dropshadow(three-pass-box, black, 20, 0.2, 0, 0); 
+   
+}
+
+.label-bright {
+    -fx-font-size: 12.0pt;
+    -fx-font-family: "Algerian";
+    -fx-text-fill: white;
+    -fx-opacity: 1.0;   
+}
+
+#login {
+  -fx-background-image: url("./login.jpg");
+  -fx-background-repeat: stretch; 
+  -fx-background-size: 420 300;
+  -fx-background-position: center center;
+}
+
+/*
+#anchorPane { 
+    -fx-border-width: 2px;
+    -fx-border-color: chartreuse;
+}
+#stackPane {
+    -fx-border-width: 2px;
+    -fx-border-color: red;
+
+    /* didn't work 
+   -fx-hgap: 100%;
+   -fx-vgap: 100%;
+}*/

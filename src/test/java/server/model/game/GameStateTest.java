@@ -40,7 +40,7 @@ public class GameStateTest {
 		gameState.start(giocatori);
 	}
 
-	@Test
+/*	@Test
 	public void testGetConsigliere() {
 		Consigliere consigliereAspettato = new Consigliere(new Colore("A"));
 		gameState.getConsiglieri().add(consigliereAspettato);
@@ -207,8 +207,8 @@ public class GameStateTest {
 		gameState.prossimoTurno();
 
 		assertTrue(turno + 1 == gameState.getNumeroTurni());
-	}
-/*
+	}*/
+
 	@Test public void testCreaGiocatoriUGUALE2() {
 		gameState.getGiocatori().clear();
 		List<Giocatore> giocatori = new ArrayList<>();
@@ -286,7 +286,7 @@ public class GameStateTest {
 		assertTrue(6 == g2.getCartePolitica().size());
 		assertTrue(gameState.getGiocatori().contains(g2));
 	}
-	*/
+/*	
 	@Test
 	public void testNextPlayer() {
 		Giocatore fineTurno = gameState.getGiocatori().get(0);
@@ -1077,5 +1077,5 @@ public class GameStateTest {
 		assertEquals(8, gameState.getGiocatoriFinePartita().get(2).getPunteggioVittoria());
 		assertEquals(8, gameState.getGiocatoriFinePartita().get(1).getPunteggioVittoria());
 	}
-
+*/
 }

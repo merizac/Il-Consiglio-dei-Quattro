@@ -4,7 +4,8 @@ import java.rmi.RemoteException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import client.ConnessioneRMIRemota;
+
+import client.connessione.ConnessioneRMIRemota;
 import common.azioniDTO.AzioneDTO;
 import common.azioniDTO.azioneVisitor.AzioneVisitor;
 import common.azioniDTO.azioneVisitor.AzioneVisitorImpl;

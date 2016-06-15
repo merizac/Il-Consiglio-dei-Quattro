@@ -3,7 +3,7 @@ package server.view;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-import client.ConnessioneRMIRemota;
+import client.connessione.ConnessioneRMIRemota;
 import common.azioniDTO.AzioneDTO;
 import common.gameDTO.GiocatoreDTO;
 

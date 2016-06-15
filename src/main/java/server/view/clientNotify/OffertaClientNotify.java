@@ -2,7 +2,7 @@ package server.view.clientNotify;
 
 import java.util.List;
 
-import client.Grafica;
+import client.grafica.Grafica;
 import common.gameDTO.GameStateDTO;
 import common.gameDTO.OffertaDTO;
 

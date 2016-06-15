@@ -5,6 +5,10 @@ import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import client.grafica.Grafica;
+import client.grafica.cli.CLI;
+import client.grafica.gui.GUI;
+
 public class Client {
 
 	private static final String CLI = "CLI";

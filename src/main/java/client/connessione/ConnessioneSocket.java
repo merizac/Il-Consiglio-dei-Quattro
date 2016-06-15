@@ -1,4 +1,4 @@
-package client;
+package client.connessione;
 
 import java.io.EOFException;
 import java.io.IOException;
@@ -8,6 +8,8 @@ import java.net.Socket;
 import java.rmi.RemoteException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import client.grafica.Grafica;
 import common.azioniDTO.AzioneDTO;
 import common.gameDTO.GameStateDTO;
 import server.view.clientNotify.ClientNotify;

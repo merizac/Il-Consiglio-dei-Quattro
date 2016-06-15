@@ -2,7 +2,7 @@ package server.view.clientNotify;
 
 import java.util.ArrayList;
 
-import client.Grafica;
+import client.grafica.Grafica;
 import common.gameDTO.GameStateDTO;
 
 public class GameStateClientNotify implements ClientNotify {
