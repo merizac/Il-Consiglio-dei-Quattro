@@ -56,6 +56,7 @@ public class GUIController {
 	
 		GiocatoreDTO giocatoreDTO=new GiocatoreDTO();
 		giocatoreDTO.setNome(nome.getText());
+		gui.getGameStateDTO().setGiocatoreDTO(giocatoreDTO);
 		
 		if(socket.isSelected())
 			gui.setConnessione(new ConnessioneSocket());
@@ -69,6 +70,7 @@ public class GUIController {
 		
 		gui.setGiocatoreDTO(giocatoreDTO);
 		try {
+			gui.getConnessione().setGameStateDTO(gui.getGameStateDTO());
 			gui.getConnessione().setGrafica(gui);
 			gui.getConnessione().start();
 		} catch (RemoteException e1) {

@@ -31,7 +31,7 @@ public class ConnessioneRMI extends UnicastRemoteObject implements Serializable,
 
 	@Override
 	public void start() throws RemoteException {
-		String name = "GIOCa";
+		String name = "GIOCO";
 		Registry registry = null;
 		try {
 			registry = LocateRegistry.getRegistry(IP, PORT);
@@ -49,6 +49,7 @@ public class ConnessioneRMI extends UnicastRemoteObject implements Serializable,
 				e.printStackTrace();
 			}
 			try {
+				System.out.println(gameStateDTO.getGiocatoreDTO().getNome());
 				view.register(this, gameStateDTO.getGiocatoreDTO());
 			} catch (RemoteException e) {
 				e.printStackTrace();

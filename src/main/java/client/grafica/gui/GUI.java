@@ -30,6 +30,10 @@ public class GUI extends Application implements Grafica {
 		this.gameStateDTO = gameStateDTO;
 	}
 	
+	public GameStateDTO getGameStateDTO(){
+		return this.gameStateDTO;
+	}
+	
 	public void setGiocatoreDTO(GiocatoreDTO giocatoreDTO){
 		if(giocatoreDTO==null)
 			throw new IllegalArgumentException("Giocatore null");
@@ -55,20 +59,7 @@ public class GUI extends Application implements Grafica {
 		controller.setGui(this);
 		
 		finestra.setScene(theScene);
-		finestra.show();
-		
-		for(int i=0; i<10000; i++){
-			System.out.println(i);
-		}
-		
-		fxmloader.setLocation(getClass().getClassLoader().getResource("client/grafica/gui/fxml/game.fxml"));
-		
-		root = fxmloader.load();
-		theScene = new Scene(root);
-		
-		finestra.setScene(theScene);
-		finestra.show();
-		
+		finestra.show();		
 		}
 
 	@Override
@@ -109,11 +100,7 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public void run() {
-		try{
-		Application.launch();}
-		catch(Exception e){
-			e.printStackTrace();
-		}
+		Application.launch();
 	}
 	
 	
