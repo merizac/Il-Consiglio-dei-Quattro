@@ -1,6 +1,7 @@
 .background {
   -fx-background-image: url("./map_1080.jpg");
   /*https://www.google.com/images/srpr/logo3w.png */
+  -fx-background-size: 903 615;
   -fx-background-color: #1d1d1d;
 }
 
