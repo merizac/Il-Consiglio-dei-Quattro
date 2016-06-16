@@ -1,0 +1,13 @@
+.background {
+  -fx-background-image: url("./carta_macchie.jpg");
+  /*https://www.google.com/images/srpr/logo3w.png */
+/*-fx-background-repeat: stretch;*/
+}
+.textArea {
+ 	fx-background-color: trasparent;
+}
+
+.emporium{
+	-fx-blend-mode:ADD;	
+	-fx-blend-mode:red;
+}
