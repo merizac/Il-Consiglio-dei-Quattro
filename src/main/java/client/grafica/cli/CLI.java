@@ -45,7 +45,7 @@ import server.model.bonus.Bonus;
 import server.view.clientNotify.ClientNotify;
 import utility.Utils;
 
-public class CLI implements Grafica, Runnable {
+public class CLI implements Grafica {
 
 	private static final String SOCKET = "1";
 	private static final String RMI = "2";
