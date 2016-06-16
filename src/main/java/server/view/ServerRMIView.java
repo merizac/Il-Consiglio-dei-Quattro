@@ -26,6 +26,7 @@ public class ServerRMIView extends View implements ServerRMIViewRemote{
 	private Map<ConnessioneRMIRemota, Giocatore> giocatori;
 
 	/**
+	 * create a ServerRMIView
 	 * @param giocatore
 	 * @param server
 	 */
@@ -33,6 +34,10 @@ public class ServerRMIView extends View implements ServerRMIViewRemote{
 		this.giocatori=new HashMap<>();
 	}
 
+	/**
+	 * update the clients
+	 * @param notify
+	 */
 	@Override
 	public void update(Notify o) {
 		for(ConnessioneRMIRemota c: giocatori.keySet()){
@@ -52,7 +57,10 @@ public class ServerRMIView extends View implements ServerRMIViewRemote{
 			}
 		}
 	}
-
+	/**
+	 * parse the action received from a client and execute it 
+	 * @param azioneDTO, connessioneRMIRemota
+	 */
 	@Override
 	public void eseguiAzione(AzioneDTO azioneDTO, ConnessioneRMIRemota connessioneRMIRemota) throws RemoteException {
 		AzioneVisitor azioneVisitor = new AzioneVisitorImpl(gameState, this.giocatori.get(connessioneRMIRemota));
@@ -83,7 +91,10 @@ public class ServerRMIView extends View implements ServerRMIViewRemote{
 		}
 
 	}
-
+	/**
+	 * register the player on the server
+	 * @param connessioneRMIRemota, giocatoreDTO
+	 */
 	@Override
 	public ServerRMIViewRemote register(ConnessioneRMIRemota connessioneRMIRemota, GiocatoreDTO giocatoreDTO)
 			throws RemoteException {
@@ -92,17 +103,28 @@ public class ServerRMIView extends View implements ServerRMIViewRemote{
 		Server.getInstance().aggiungiGiocatoreRMI(giocatore, this);
 		return this;
 	}
+	/**
+	 * unregister the player from the server
+	 * @param connessioneRMIRemota
+	 */
 	@Override
 	public void unregister(ConnessioneRMIRemota connessioneRMIRemota) throws RemoteException{
 		System.out.println("[SERVER] Il giocatore "+this.giocatori.get(connessioneRMIRemota).getNome()+ " è stato rimosso");
 		this.giocatori.remove(connessioneRMIRemota);
 	}
 
+	/**
+	 * set the gameState
+	 * @param gameState
+	 */
 	@Override
 	public void setGameState(GameState gameState) {
 		this.gameState=gameState;
 	}
 
+	/**
+	 * disconnect all the client 
+	 */
 	@Override
 	public void disconnetti() {
 		for(ConnessioneRMIRemota c: this.giocatori.keySet()){
@@ -117,6 +139,11 @@ public class ServerRMIView extends View implements ServerRMIViewRemote{
 		}
 	}
 	
+	/**
+	 * 
+	 * @param giocatore
+	 * @return connessioneRMIRemota associated to the player
+	 */
 	public ConnessioneRMIRemota getConnessione(Giocatore giocatore){
 		for(ConnessioneRMIRemota c:giocatori.keySet()){
 			if(this.giocatori.get(c).equals(giocatore))

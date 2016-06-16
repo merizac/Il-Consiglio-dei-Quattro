@@ -54,16 +54,6 @@ public class CLI implements Grafica {
 	private Scanner stdIn;
 
 	@Override
-	public void setConnessione(Connessione connessione) {
-		this.connessione = connessione;
-	}
-
-	@Override
-	public void setGameStateDTO(GameStateDTO gameStateDTO) {
-		this.gameStateDTO = gameStateDTO;
-	}
-
-	@Override
 	public void run() {
 
 		stdIn = new Scanner(System.in);
@@ -382,9 +372,24 @@ public class CLI implements Grafica {
 		}
 
 	}
+	
+	/**
+	 * set the connection
+	 */
+	@Override
+	public void setConnessione(Connessione connessione) {
+		this.connessione = connessione;
+	}
+	/**
+	 * set the gameStateDTO
+	 */
+	@Override
+	public void setGameStateDTO(GameStateDTO gameStateDTO) {
+		this.gameStateDTO = gameStateDTO;
+	}
 
 	/**
-	 * this method let the client chose the name
+	 *let the client chose the name
 	 * 
 	 * @return the name of the player
 	 */
@@ -402,7 +407,7 @@ public class CLI implements Grafica {
 	}
 
 	/**
-	 * this method let the player chose the connection between socket and rmi
+	 *let the player chose the connection between socket and rmi
 	 * 
 	 * @param giocatore
 	 * @return the connection selected
@@ -429,14 +434,18 @@ public class CLI implements Grafica {
 			}
 		}
 	}
-
+	/**
+	 * show the actions available 
+	 */
 	@Override
 	public void mostraAzioni(List<AzioneDTO> azioni) {
 		for (AzioneDTO a : azioni) {
 			System.out.println(a.toString());
 		}
 	}
-
+	/**
+	 * show the placement of the players
+	 */
 	@Override
 	public void mostraClassifica(List<GiocatoreDTO> vincenti, List<GiocatoreDTO> perdenti) {
 		for (GiocatoreDTO g : vincenti) {
@@ -448,7 +457,9 @@ public class CLI implements Grafica {
 					"Giocatore :" + g.getNome().toUpperCase() + " Punteggio " + g.getPunteggioVittoria() + " punti");
 		}
 	}
-
+	/**
+	 * show the game
+	 */
 	@Override
 	public void mostraGame(GameStateDTO gameStateDTO) {
 		System.out.println("\nCittà");
@@ -505,17 +516,23 @@ public class CLI implements Grafica {
 
 	}
 
+	/**
+	 * show the currant state of the player
+	 */
 	@Override
-
 	public void mostraGiocatore(GiocatoreDTO giocatoreDTO) {
 		System.out.println(giocatoreDTO.toString());
 	}
-
+	/**
+	 * show a message from the server
+	 */
 	@Override
 	public void mostraMessaggio(String messaggio) {
 		System.out.println(messaggio);
 	}
-
+	/**
+	 * show object in sale in the market state
+	 */
 	@Override
 	public void mostraOfferte(List<OffertaDTO> offerte) {
 		for (OffertaDTO o : offerte) {
@@ -523,6 +540,9 @@ public class CLI implements Grafica {
 		}
 	}
 
+	/**
+	 * update the client after receiving a notify
+	 */
 	@Override
 	public void notify(Grafica grafica,ClientNotify notify) {
 		notify.update(gameStateDTO);

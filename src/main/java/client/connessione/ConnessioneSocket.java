@@ -25,6 +25,10 @@ public class ConnessioneSocket implements Connessione, Runnable {
 	private ObjectInputStream socketIn;
 	private boolean fine = false;
 
+	/**
+	 * create the socket and the stream from the server and to the server
+	 * then listen for update from the server
+	 */
 	@Override
 	public void run() {
 		try {
@@ -57,9 +61,6 @@ public class ConnessioneSocket implements Connessione, Runnable {
 		listen();
 	}
 	
-	/**
-	 * listen for updating from the server
-	 */
 	private void listen() {
 		while (!fine) {
 			try {
@@ -101,7 +102,8 @@ public class ConnessioneSocket implements Connessione, Runnable {
 	}
 
 	/**
-	 * @param grafica the grafica to set
+	 * set the grafica
+	 * @param grafica 
 	 */
 	@Override
 	public void setGrafica(Grafica grafica) {
@@ -109,13 +111,17 @@ public class ConnessioneSocket implements Connessione, Runnable {
 	}
 
 	/**
-	 * @param gameStateDTO the gameStateDTO to set
+	 * set the gameState
+	 * @param gameStateDTO
 	 */
 	@Override
 	public void setGameStateDTO(GameStateDTO gameStateDTO) {
 		this.gameStateDTO = gameStateDTO;
 	}
 
+	/**
+	 * submit this thread with a single thread executor
+	 */
 	@Override
 	public void start() throws RemoteException {
 		ExecutorService executor = Executors.newSingleThreadExecutor();

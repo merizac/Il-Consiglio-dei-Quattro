@@ -27,13 +27,22 @@ public class ServerSocketView extends View implements Runnable {
 	private ObjectOutputStream socketOut;
 	private GameState gameState;
 	private Giocatore giocatore;
-
+	
+	/**
+	 * constructor of the ServerSocketView with the socket passed as argument, and create the ObjectInputStream
+	 * and the ObjectOutputStream
+	 * @param socket
+	 * @throws IOException
+	 */
 	public ServerSocketView(Socket socket) throws IOException {
 		this.socket = socket;
 		this.socketIn = new ObjectInputStream(socket.getInputStream());
 		this.socketOut = new ObjectOutputStream(socket.getOutputStream());
 	}
 
+	/**
+	 * update the relative client
+	 */
 	@Override
 	public void update(Notify o) {
 		if (o.daInviare(giocatore)) {
@@ -47,7 +56,10 @@ public class ServerSocketView extends View implements Runnable {
 			}
 		}
 	}
-
+	
+	/**
+	 * set the playerDTO and the listen for action from the client
+	 */
 	@Override
 	public void run() {
 
@@ -107,14 +119,17 @@ public class ServerSocketView extends View implements Runnable {
 	}
 
 	/**
+	 * set the gameState
 	 * @param gameState
-	 *            the gameState to set
 	 */
 	@Override
 	public void setGameState(GameState gameState) {
 		this.gameState = gameState;
 	}
 
+	/**
+	 * unregister himself as an observer of the gameState and then close the socket
+	 */
 	@Override
 	public void disconnetti() {
 		try {

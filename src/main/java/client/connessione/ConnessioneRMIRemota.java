@@ -8,7 +8,7 @@ import server.view.clientNotify.ClientNotify;
 public interface ConnessioneRMIRemota extends Remote, Connessione {
 	
 	/**
-	 * this method update the client
+	 * update the client
 	 * @param notify
 	 * @throws RemoteException
 	 */

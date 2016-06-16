@@ -14,6 +14,10 @@ public class Client {
 	private static final String CLI = "CLI";
 	private static final String GUI = "GUI";
 
+	/**
+	 * create a new client and start it with the selected graphic
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		Client client = new Client();
 		try {
@@ -24,11 +28,6 @@ public class Client {
 		}
 	}
 
-	/**
-	 * this method start the client
-	 * 
-	 * @throws RemoteException
-	 */
 	private void startClient() throws RemoteException {
 
 		Scanner stdIn = new Scanner(System.in);

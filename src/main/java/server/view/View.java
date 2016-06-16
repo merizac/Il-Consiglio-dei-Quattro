@@ -7,18 +7,21 @@ import utility.Observable;
 import utility.Observer;
 
 public abstract class View extends Observable <Azione> implements Observer <Notify>{
-	
 
-	public View(){
-	}
-	
-
+	/**
+	 * update a client
+	 */
 	@Override
 	public void update(Notify notify) {
 		
 	}
+	/**
+	 * set the gameState
+	 * @param gameState
+	 */
 	public abstract void setGameState(GameState gameState);
-
-
+	/**
+	 * disconnect the client
+	 */
 	public abstract void disconnetti();
 }

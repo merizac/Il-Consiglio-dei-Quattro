@@ -25,11 +25,16 @@ public class ConnessioneRMI extends UnicastRemoteObject implements Serializable,
 	private transient ServerRMIViewRemote view;
 	private static final int PORT = 1099;
 	private static final String IP = "127.0.0.1";
-
+	/**
+	 * constructor of ConnessioneRMI
+	 * @throws RemoteException
+	 */
 	public ConnessioneRMI() throws RemoteException {
 		super();
 	}
-
+	/*
+	 *set the registry, look on the server for the ServerRMIView , register the player
+	 */
 	@Override
 	public void start() throws RemoteException {
 		String name = "GIOCO";
@@ -60,7 +65,7 @@ public class ConnessioneRMI extends UnicastRemoteObject implements Serializable,
 	}
 
 	/**
-	 * this method send the action to the server executing the method
+	 * send the action to the server executing the method
 	 * eseguiAzione of the ServerRMIViewRemote
 	 */
 	@Override
@@ -73,7 +78,7 @@ public class ConnessioneRMI extends UnicastRemoteObject implements Serializable,
 	}
 
 	/**
-	 * this method update the client
+	 * update the model on the client
 	 */
 	@Override
 	public void aggiorna(ClientNotify notify) throws RemoteException {
@@ -95,8 +100,8 @@ public class ConnessioneRMI extends UnicastRemoteObject implements Serializable,
 	}
 
 	/**
+	 * set the grafica
 	 * @param grafica
-	 *            the grafica to set
 	 */
 	@Override
 	public void setGrafica(Grafica grafica) throws RemoteException {
@@ -104,8 +109,8 @@ public class ConnessioneRMI extends UnicastRemoteObject implements Serializable,
 	}
 
 	/**
+	 * set the gameState
 	 * @param gameStateDTO
-	 *            the gameStateDTO to set
 	 */
 	@Override
 	public void setGameStateDTO(GameStateDTO gameStateDTO) throws RemoteException {

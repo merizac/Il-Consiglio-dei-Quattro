@@ -25,9 +25,17 @@ public interface Connessione {
 	 * @throws RemoteException
 	 */
 	public void disconnetti() throws RemoteException;
-	
+	/**
+	 * this method set the graphic to the connection
+	 * @param grafica
+	 * @throws RemoteException
+	 */
 	public void setGrafica(Grafica grafica) throws RemoteException;
-	
+	/**
+	 * this method set the gameStateDTO to the connection
+	 * @param gameStateDTO
+	 * @throws RemoteException
+	 */
 	public void setGameStateDTO(GameStateDTO gameStateDTO) throws RemoteException;
 
 }

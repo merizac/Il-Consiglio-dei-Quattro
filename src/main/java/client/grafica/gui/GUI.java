@@ -87,6 +87,7 @@ public class GUI extends Application implements Grafica {
 
 		GUIGameController controller = fxmloader.getController();
 		controller.setGameStateDTO(gameStateDTO);
+		controller.initialize();
 		finestra.setScene(theScene);
 		finestra.show();
 
