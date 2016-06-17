@@ -27,10 +27,11 @@ public class ServerSocketView extends View implements Runnable {
 	private ObjectOutputStream socketOut;
 	private GameState gameState;
 	private Giocatore giocatore;
-	
+
 	/**
-	 * constructor of the ServerSocketView with the socket passed as argument, and create the ObjectInputStream
-	 * and the ObjectOutputStream
+	 * constructor of the ServerSocketView with the socket passed as argument,
+	 * and create the ObjectInputStream and the ObjectOutputStream
+	 * 
 	 * @param socket
 	 * @throws IOException
 	 */
@@ -56,7 +57,7 @@ public class ServerSocketView extends View implements Runnable {
 			}
 		}
 	}
-	
+
 	/**
 	 * set the playerDTO and the listen for action from the client
 	 */
@@ -85,16 +86,17 @@ public class ServerSocketView extends View implements Runnable {
 
 					AzioneDTO action = (AzioneDTO) object;
 					AzioneVisitor azioneVisitor = new AzioneVisitorImpl(gameState, giocatore);
-					Azione azione=null;
+					Azione azione = null;
 					try {
 						azione = action.accept(azioneVisitor);
 					} catch (ParameterException e) {
 						update(new MessageNotify(e.getMessage(), Arrays.asList(gameState.getGiocatoreCorrente())));
-						System.out.println("[SERVER] Ricevuta l'azione " + azione+
-								" dal giocatore "+this.giocatore.getNome()+" con errore: "+e.getMessage());
+						System.out.println("[SERVER] Ricevuta l'azione " + azione + " dal giocatore "
+								+ this.giocatore.getNome() + " con errore: " + e.getMessage());
 						continue;
 					}
-					System.out.println("[SERVER] Ricevuta l'azione " + azione + " dal giocatore " + giocatore.getNome());
+					System.out
+							.println("[SERVER] Ricevuta l'azione " + azione + " dal giocatore " + giocatore.getNome());
 
 					if (azione instanceof Exit) {
 						disconnetti();
@@ -109,10 +111,11 @@ public class ServerSocketView extends View implements Runnable {
 					}
 
 				}
-			} catch (SocketException e) {
-				disconnetti();
 			} catch (ClassNotFoundException | IOException e1) {
-				//e1.printStackTrace();
+				disconnetti();
+				Exit exit = new Exit();
+				exit.setGiocatore(giocatore);
+				this.notifyObserver(exit);
 			}
 
 		}
@@ -120,6 +123,7 @@ public class ServerSocketView extends View implements Runnable {
 
 	/**
 	 * set the gameState
+	 * 
 	 * @param gameState
 	 */
 	@Override
@@ -128,7 +132,8 @@ public class ServerSocketView extends View implements Runnable {
 	}
 
 	/**
-	 * unregister himself as an observer of the gameState and then close the socket
+	 * unregister himself as an observer of the gameState and then close the
+	 * socket
 	 */
 	@Override
 	public void disconnetti() {

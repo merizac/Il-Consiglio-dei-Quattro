@@ -6,17 +6,21 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.grafica.gui.GUIGameController">
    <children>
       <BorderPane layoutX="-11.0" layoutY="-8.0" prefHeight="728.0" prefWidth="1159.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
-            <SplitPane dividerPositions="0.636150234741784" prefHeight="635.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
+            <SplitPane dividerPositions="0.636150234741784, 0.5" prefHeight="635.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
                <items>
-                  <ImageView fitHeight="633.0" fitWidth="861.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../css/mappa.jpg" />
-                     </image>
-                  </ImageView>
+                  <AnchorPane>
+                     <children>
+                        <ImageView fitHeight="633.0" fitWidth="861.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../css/mappa.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
                   <SplitPane dividerPositions="0.7330173775671406" orientation="VERTICAL" prefHeight="539.0" prefWidth="462.0">
                     <items>
                         <TitledPane animated="false" collapsible="false" prefHeight="463.0" prefWidth="462.0" text="Giocatore">
@@ -260,6 +264,7 @@
                         </TabPane>
                     </items>
                   </SplitPane>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
                </items>
             </SplitPane>
          </left>

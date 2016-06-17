@@ -21,6 +21,10 @@ public class ColoreDTO implements Serializable{
 		this.colore = colore;
 	}
 	
+	/**
+	 * map olore into coloreDTO
+	 * @param colore
+	 */
 	public void inizializza(Colore colore){
 		this.setColore(colore.getColore());
 	}

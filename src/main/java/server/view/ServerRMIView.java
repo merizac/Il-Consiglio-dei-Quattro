@@ -46,7 +46,6 @@ public class ServerRMIView extends View implements ServerRMIViewRemote{
 				try {
 					c.aggiorna(o.notifyToClientNotify());
 				} catch (RemoteException e) {
-					// TODO Auto-generated catch block
 					try {
 						this.unregister(c);
 					} catch (RemoteException e1) {

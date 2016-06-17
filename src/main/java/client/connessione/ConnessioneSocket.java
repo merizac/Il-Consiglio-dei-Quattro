@@ -65,11 +65,11 @@ public class ConnessioneSocket implements Connessione, Runnable {
 		while (!fine) {
 			try {
 				ClientNotify notify = (ClientNotify) socketIn.readObject();
-				grafica.notify(grafica, notify);
+				grafica.notify(notify);
 			} catch (EOFException e) {
 				e.printStackTrace();
 			} catch (ClassNotFoundException | IOException e) {
-				e.printStackTrace();
+				disconnetti();
 			}
 		}
 	}

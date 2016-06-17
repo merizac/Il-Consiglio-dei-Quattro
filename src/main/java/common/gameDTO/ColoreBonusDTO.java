@@ -22,6 +22,10 @@ public class ColoreBonusDTO extends ColoreDTO implements Serializable {
 		this.bonus = bonus;
 	}
 	
+	/**
+	 * map a coloreCittà into a ColoreBonusDTO
+	 * @param coloreCittà
+	 */
 	public void inizializza(ColoreCittà coloreCittà){
 		this.setColore(coloreCittà.getColore());
 		this.setBonus(coloreCittà.getBonusColore());

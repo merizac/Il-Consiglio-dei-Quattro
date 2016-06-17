@@ -52,8 +52,10 @@ public class CittàDTO implements Serializable{
 	public void setEmpori(Set<String> empori) {
 		this.empori = empori;
 	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+
+	/**
+	 * map a città into a cittàDTO
+	 * @param città
 	 */
 	public void inizializza(Città città){
 		this.setNome(città.getNome());
@@ -66,6 +68,9 @@ public class CittàDTO implements Serializable{
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return nome + " Colore:" + ColoreDTO

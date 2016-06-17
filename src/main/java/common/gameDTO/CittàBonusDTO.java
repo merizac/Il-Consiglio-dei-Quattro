@@ -12,6 +12,7 @@ public class CittàBonusDTO extends CittàDTO implements Serializable{
 
 	private static final long serialVersionUID = 6054052021956866160L;
 	private List<Bonus> bonus;
+	
 	/**
 	 * @return the bonus
 	 */
@@ -25,6 +26,10 @@ public class CittàBonusDTO extends CittàDTO implements Serializable{
 		this.bonus = bonus;
 	}
 	
+	/**
+	 * map a cittàBonus into a cittàBonusDTO
+	 * @param cittàBonus
+	 */
 	public void inizializza(CittàBonus cittàBonus){
 		this.setNome(cittàBonus.getNome());
 		ColoreDTO coloreDTO=new ColoreDTO();

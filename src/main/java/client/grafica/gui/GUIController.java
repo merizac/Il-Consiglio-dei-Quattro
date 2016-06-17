@@ -1,5 +1,6 @@
 package client.grafica.gui;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 
 import client.connessione.ConnessioneRMI;
@@ -74,6 +75,12 @@ public class GUIController {
 			gui.getConnessione().setGrafica(gui);
 			gui.getConnessione().start();
 		} catch (RemoteException e1) {
+			e1.printStackTrace();
+		}
+		try {
+			gui.inizializza();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		

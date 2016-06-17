@@ -53,8 +53,7 @@ public class CLI implements Grafica {
 	private GameStateDTO gameStateDTO;
 	private Scanner stdIn;
 
-	@Override
-	public void run() {
+	public void start() {
 
 		stdIn = new Scanner(System.in);
 
@@ -544,14 +543,18 @@ public class CLI implements Grafica {
 	 * update the client after receiving a notify
 	 */
 	@Override
-	public void notify(Grafica grafica,ClientNotify notify) {
+	public void notify(ClientNotify notify) {
 		notify.update(gameStateDTO);
 		try {
-			notify.stamp(grafica);
+			notify.stamp(this);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public static void main(String[] args){
+		CLI cli =new CLI();
+		cli.start();
 	}
 
 }

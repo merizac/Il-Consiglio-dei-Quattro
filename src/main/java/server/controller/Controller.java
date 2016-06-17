@@ -8,10 +8,18 @@ public class Controller implements Observer<Azione> {
 
 	private GameState gameState;
 
+	/**
+	 * Constructor of controller with the gameState passed 
+	 * @param gameState
+	 */
 	public Controller(GameState gameState) {
 		this.gameState = gameState;
 	}
 
+	/**
+	 * execute the action passed
+	 * @param azione
+	 */
 	@Override
 	public void update(Azione azione) {
 			azione.eseguiAzione(gameState);

@@ -9,10 +9,11 @@ import common.gameDTO.GameStateDTO;
 import common.gameDTO.GiocatoreDTO;
 import common.gameDTO.OffertaDTO;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import server.view.clientNotify.ClientNotify;
 
@@ -20,6 +21,7 @@ public class GUI extends Application implements Grafica {
 
 	private Connessione connessione;
 	private GameStateDTO gameStateDTO;
+	private GUIGameController controller;
 	private Stage finestra;
 
 	@Override
@@ -64,10 +66,23 @@ public class GUI extends Application implements Grafica {
 		finestra.show();
 	}
 
+	public void inizializza() throws IOException {
+		FXMLLoader fxmloader = new FXMLLoader();
+		fxmloader.setLocation(getClass().getClassLoader().getResource("client/grafica/gui/fxml/gameState.fxml"));
+
+		Parent root = fxmloader.load();
+		Scene theScene = new Scene(root);
+
+		controller = fxmloader.getController();
+		controller.setGameStateDTO(this.gameStateDTO);
+		controller.setGui(this);
+		finestra.setScene(theScene);
+		finestra.show();
+	}
+
 	@Override
 	public void mostraAzioni(List<AzioneDTO> azioni) {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
@@ -78,18 +93,6 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public void mostraGame(GameStateDTO gameStateDTO) throws IOException {
-
-		FXMLLoader fxmloader = new FXMLLoader();
-		fxmloader.setLocation(getClass().getClassLoader().getResource("client/grafica/gui/fxml/game.fxml"));
-
-		Parent root = fxmloader.load();
-		Scene theScene = new Scene(root);
-
-		GUIGameController controller = fxmloader.getController();
-		controller.setGameStateDTO(gameStateDTO);
-		controller.initialize();
-		finestra.setScene(theScene);
-		finestra.show();
 
 	}
 
@@ -112,24 +115,19 @@ public class GUI extends Application implements Grafica {
 	}
 
 	@Override
-	public void run() {
-		Application.launch();
+	public void notify(ClientNotify notify) {
+		notify.update(gameStateDTO);
+		try {
+			notify.stamp(this);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
-	@Override
-	public void notify(Grafica grafica, ClientNotify notify) {
-		Platform.runLater(new Runnable() {
 
-			@Override
-			public void run() {
-				notify.update(gameStateDTO);
-				try {
-					notify.stamp(grafica);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		});
+	public static void main(String[] args) {
+		Application.launch(args);
 	}
 }

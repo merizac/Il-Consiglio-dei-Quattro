@@ -9,9 +9,6 @@ import server.model.game.Consigliere;
 
 public class BalconeDTO implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -6523476700234911129L;
 	private List<ConsigliereDTO> consiglieri;
 
@@ -29,6 +26,10 @@ public class BalconeDTO implements Serializable{
 		this.consiglieri = consiglieri;
 	}
 	
+	/**
+	 * map the balcone to the balconeDTO
+	 * @param balcone
+	 */
 	public void inizializza(Balcone balcone){
 		this.consiglieri=new ArrayList<>();
 		for(Consigliere c: balcone.getConsigliere()){

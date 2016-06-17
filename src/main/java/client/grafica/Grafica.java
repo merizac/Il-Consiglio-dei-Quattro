@@ -10,7 +10,7 @@ import common.gameDTO.GiocatoreDTO;
 import common.gameDTO.OffertaDTO;
 import server.view.clientNotify.ClientNotify;
 
-public interface Grafica extends Runnable{
+public interface Grafica {
 	
 	public void setConnessione(Connessione connessione);
 
@@ -28,5 +28,5 @@ public interface Grafica extends Runnable{
 
 	public void mostraOfferte(List<OffertaDTO> offerte);
 
-	public void notify(Grafica grafica, ClientNotify notify);
+	public void notify(ClientNotify notify);
 }
