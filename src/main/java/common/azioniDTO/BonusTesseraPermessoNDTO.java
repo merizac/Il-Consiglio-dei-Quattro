@@ -1,12 +1,13 @@
 package common.azioniDTO;
 
 import common.azioniDTO.azioneVisitor.AzioneVisitor;
+import common.azioniDTO.azioniSetParametri.BonusTesseraPermessoParametri;
 import common.gameDTO.RegioneDTO;
 import common.gameDTO.TesseraPermessoDTO;
 import server.model.azioni.Azione;
 import utility.ParameterException;
 
-public class BonusTesseraPermessoNDTO implements AzioneDTO {
+public class BonusTesseraPermessoNDTO implements AzioneDTO, AzioneParametri {
 
 	/**
 	 * 
@@ -64,6 +65,12 @@ public class BonusTesseraPermessoNDTO implements AzioneDTO {
 	@Override
 	public String toString() {
 		return "BonusTesseraPermesso [B1]";
+	}
+
+
+	@Override
+	public BonusTesseraPermessoParametri parametri() {
+		return new BonusTesseraPermessoParametri(this);
 	}
 
 }

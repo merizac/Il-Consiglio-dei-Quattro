@@ -17,7 +17,7 @@ public class PassaDTO implements AzioneDTO {
 	 */
 	@Override
 	public String toString() {
-		return "Passa  [Passa]";
+		return "Passa";
 	}
 
 }

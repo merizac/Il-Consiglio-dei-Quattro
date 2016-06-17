@@ -1,13 +1,13 @@
 package common.azioniDTO;
 
-
 import common.azioniDTO.azioneVisitor.AzioneVisitor;
+import common.azioniDTO.azioniSetParametri.CostruzioneTesseraPermessoParametri;
 import common.gameDTO.CittàDTO;
 import common.gameDTO.TesseraPermessoDTO;
 import server.model.azioni.Azione;
 import utility.ParameterException;
 
-public class CostruzioneTesseraPermessoDTO implements AzioneDTO {
+public class CostruzioneTesseraPermessoDTO implements AzioneDTO, AzioneParametri {
 
 	/**
 	 * 
@@ -50,7 +50,12 @@ public class CostruzioneTesseraPermessoDTO implements AzioneDTO {
 	 */
 	@Override
 	public String toString() {
-		return "Costruire con una tessera permesso  [P3]";
+		return "P3";
+	}
+	
+	@Override
+	public CostruzioneTesseraPermessoParametri parametri() {
+		return new CostruzioneTesseraPermessoParametri(this);
 	}
 	
 	

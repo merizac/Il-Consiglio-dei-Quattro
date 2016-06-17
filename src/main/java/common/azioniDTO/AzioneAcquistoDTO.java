@@ -1,21 +1,22 @@
 package common.azioniDTO;
 
 import common.azioniDTO.azioneVisitor.AzioneVisitor;
+import common.azioniDTO.azioniSetParametri.AzioneAcquistoParametri;
 import common.gameDTO.GiocatoreDTO;
 import server.model.azioni.Azione;
 import utility.ParameterException;
 
-public class AzioneAcquistoDTO implements AzioneDTO {
+public class AzioneAcquistoDTO implements AzioneDTO, AzioneParametri {
 
 	private static final long serialVersionUID = -7696287909942735586L;
-	private int offerta;
+	private int offertaDTO;
 	private GiocatoreDTO giocatoreDTO;
 
 	/**
 	 * @return the offerta
 	 */
 	public int getOfferta() {
-		return offerta;
+		return offertaDTO;
 	}
 	
 
@@ -36,16 +37,14 @@ public class AzioneAcquistoDTO implements AzioneDTO {
 	 */
 	@Override
 	public String toString() {
-		return "Per acquistare  [Acquista]";
+		return "Acquista";
 	}
 
 	/**
 	 * @param offerta the offerta to set
 	 */
-	public void setOfferta(int offerta) {
-		if(offerta<1)
-			throw new IllegalArgumentException("L'indice dell'offerta deve esere maggiore di zero!");
-		this.offerta = offerta;
+	public void setOfferta(int offertaDTO) {
+		this.offertaDTO = offertaDTO;
 	}
 
 	/**
@@ -55,6 +54,11 @@ public class AzioneAcquistoDTO implements AzioneDTO {
 		if(giocatoreDTO==null)
 			throw new IllegalArgumentException("Il giocatoreDTO non può essere null!");
 		this.giocatoreDTO = giocatoreDTO;
+	}
+
+	@Override
+	public AzioneAcquistoParametri parametri() {
+		return new AzioneAcquistoParametri(this);
 	}
 
 }

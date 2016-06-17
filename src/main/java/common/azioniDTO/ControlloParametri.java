@@ -8,7 +8,6 @@ import java.util.Set;
 
 import common.gameDTO.BalconeDTO;
 import common.gameDTO.CartaPoliticaDTO;
-import common.gameDTO.CittàBonusDTO;
 import common.gameDTO.CittàDTO;
 import common.gameDTO.ConsigliereDTO;
 import common.gameDTO.GiocatoreDTO;

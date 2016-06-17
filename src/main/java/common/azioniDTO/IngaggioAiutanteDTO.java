@@ -20,7 +20,7 @@ public class IngaggioAiutanteDTO implements AzioneDTO {
 	 */
 	@Override
 	public String toString() {
-		return "IngaggioAiutante  [V1]";
+		return "V1";
 	}
 
 }

@@ -3,12 +3,13 @@ package common.azioniDTO;
 import java.util.List;
 
 import common.azioniDTO.azioneVisitor.AzioneVisitor;
+import common.azioniDTO.azioniSetParametri.CostruzioneAiutoReParametri;
 import common.gameDTO.CartaPoliticaDTO;
 import common.gameDTO.CittàDTO;
 import server.model.azioni.Azione;
 import utility.ParameterException;
 
-public class CostruzioneAiutoReDTO implements AzioneDTO {
+public class CostruzioneAiutoReDTO implements AzioneDTO, AzioneParametri {
 
 	/**
 	 * 
@@ -51,7 +52,12 @@ public class CostruzioneAiutoReDTO implements AzioneDTO {
 	 */
 	@Override
 	public String toString() {
-		return "Costruire con l'aiuto del re  [P4]";
+		return "P4";
+	}
+	
+	@Override
+	public CostruzioneAiutoReParametri parametri() {
+		return new CostruzioneAiutoReParametri(this);
 	}
 	
 	

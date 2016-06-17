@@ -1,11 +1,12 @@
 package common.azioniDTO;
 
 import common.azioniDTO.azioneVisitor.AzioneVisitor;
+import common.azioniDTO.azioniSetParametri.CambioTesseraPermessoParametri;
 import common.gameDTO.RegioneDTO;
 import server.model.azioni.Azione;
 import utility.ParameterException;
 
-public class CambioTesserePermessoDTO implements AzioneDTO {
+public class CambioTesserePermessoDTO implements AzioneDTO, AzioneParametri {
 
 	/**
 	 * 
@@ -38,7 +39,12 @@ public class CambioTesserePermessoDTO implements AzioneDTO {
 	 */
 	@Override
 	public String toString() {
-		return "Cambiare le tessere permesso  [V2]";
+		return "V2";
+	}
+
+	@Override
+	public CambioTesseraPermessoParametri parametri() {
+		return new CambioTesseraPermessoParametri(this);
 	}
 	
 }

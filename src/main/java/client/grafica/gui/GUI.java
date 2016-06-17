@@ -2,18 +2,27 @@ package client.grafica.gui;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
+
 import client.connessione.Connessione;
 import client.grafica.Grafica;
 import common.azioniDTO.AzioneDTO;
+import common.gameDTO.BalconeDTO;
+import common.gameDTO.CartaPoliticaDTO;
+import common.gameDTO.CittàBonusDTO;
+import common.gameDTO.CittàDTO;
+import common.gameDTO.ColoreDTO;
+import common.gameDTO.ConsigliereDTO;
 import common.gameDTO.GameStateDTO;
 import common.gameDTO.GiocatoreDTO;
+import common.gameDTO.MarketableDTO;
 import common.gameDTO.OffertaDTO;
+import common.gameDTO.RegioneDTO;
+import common.gameDTO.TesseraPermessoDTO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import server.view.clientNotify.ClientNotify;
 
@@ -129,5 +138,77 @@ public class GUI extends Application implements Grafica {
 
 	public static void main(String[] args) {
 		Application.launch(args);
+	}
+
+	@Override
+	public ConsigliereDTO scegliConsigliere(List<ConsigliereDTO> consiglieri) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public BalconeDTO scegliBalcone(List<RegioneDTO> regioni, BalconeDTO balconeRe) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public RegioneDTO scegliRegione(List<RegioneDTO> regioni) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TesseraPermessoDTO scegliTesseraRegione(List<TesseraPermessoDTO> tesserePermessoScoperte) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int scegliPrezzo() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public CartaPoliticaDTO scegliCarta(List<CartaPoliticaDTO> cartePolitica) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CittàDTO scegliCittàBonus(Set<CittàBonusDTO> città, ColoreDTO coloreGiocatore) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CittàDTO scegliCittà(Set<? extends CittàDTO> città, ColoreDTO coloreGiocatore) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TesseraPermessoDTO scegliTesseraGiocatore(List<TesseraPermessoDTO> list) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<CartaPoliticaDTO> scegliCarte(List<CartaPoliticaDTO> carteGiocatore) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public MarketableDTO scegliMarketable() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int scegliOfferta(List<OffertaDTO> offerte) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
