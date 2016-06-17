@@ -76,7 +76,7 @@
                                           <Pane prefHeight="162.0" prefWidth="458.0">
                                              <children>
                                                 <Label layoutX="187.0" layoutY="6.0" text="Azioni Principali" />
-                                                <Button layoutX="53.0" layoutY="23.0" mnemonicParsing="false" text="Elezione consigliere" />
+                                                <Button fx:id="elezioneConsigliere" layoutX="53.0" layoutY="23.0" mnemonicParsing="false" text="Elezione consigliere" />
                                                 <Button layoutX="262.0" layoutY="23.0" mnemonicParsing="false" text="Acquisto tessera permesso" />
                                                 <Button layoutX="14.0" layoutY="57.0" mnemonicParsing="false" text="Costruzione con tessera permesso" />
                                                 <Button layoutX="268.0" layoutY="57.0" mnemonicParsing="false" text="Costruzione con aiuto re" />
