@@ -7,7 +7,7 @@ import org.junit.Test;
 
 public class BonusGettoneRicompensaTest {
 
-	@BeforeClass
+/*	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
 
@@ -69,6 +69,6 @@ public class BonusGettoneRicompensaTest {
 	@Test
 	public void testSetNumeroGettoni() {
 		fail("Not yet implemented");
-	}
+	}*/
 
 }

@@ -7,7 +7,7 @@ import org.junit.Test;
 
 public class PassaDTOTest {
 
-	@BeforeClass
+/*	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
 
@@ -20,5 +20,5 @@ public class PassaDTOTest {
 	public void testToString() {
 		fail("Not yet implemented");
 	}
-
+*/
 }

@@ -7,7 +7,7 @@ import org.junit.Test;
 
 public class ExitTest {
 
-	@BeforeClass
+/*	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
 
@@ -34,6 +34,6 @@ public class ExitTest {
 	@Test
 	public void testIsTurno() {
 		fail("Not yet implemented");
-	}
+	}*/
 
 }
