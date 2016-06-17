@@ -90,4 +90,18 @@ public class ElezioneConsigliereVeloceDTOTest {
 		assertTrue(azioneParser.getRegione()==regione.getBalcone());
 	}
 
+	@Test
+	public void testToString() {
+		ElezioneConsigliereVeloceDTO elezione=new ElezioneConsigliereVeloceDTO();
+
+		assertEquals("Eleggere un consigliere  [V3]", elezione.toString());
+	}
+	
+	@Test
+	public void testSetRegione() {
+		ElezioneConsigliereVeloceDTO elezione=new ElezioneConsigliereVeloceDTO();
+		elezione.setRegione(regioneDTO.getBalcone());;
+		assertTrue(regioneDTO.getBalcone()==elezione.getBalcone());
+	}
+
 }

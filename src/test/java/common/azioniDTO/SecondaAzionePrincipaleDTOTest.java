@@ -41,4 +41,9 @@ public class SecondaAzionePrincipaleDTOTest {
 		assertTrue(0==gameState.getGiocatoreCorrente().getAiutanti().getAiutante());
 	}
 
+	@Test
+	public void testToString() {
+		SecondaAzionePrincipaleDTO azione=new SecondaAzionePrincipaleDTO();
+		assertEquals("Seconda azione Principale  [V4]", azione.toString());
+	}
 }

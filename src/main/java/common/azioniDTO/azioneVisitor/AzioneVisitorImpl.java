@@ -185,8 +185,7 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 	public AzioneAcquisto visit(AzioneAcquistoDTO azioneAcquistoDTO) throws ParameterException {
 		AzioneAcquisto azioneAcquisto = new AzioneAcquisto();
 		Offerta offerta = ControlloParametri.cercaOfferta(gameState.getOfferteMarket(), azioneAcquistoDTO.getOfferta());
-		Giocatore giocatoreAcquisto = ControlloParametri.cercaGiocatore(azioneAcquistoDTO.getGiocatoreDTO(), gameState.getGiocatori()
-				);
+		Giocatore giocatoreAcquisto = ControlloParametri.cercaGiocatore(azioneAcquistoDTO.getGiocatoreDTO(), gameState.getGiocatori());
 		azioneAcquisto.setOfferta(offerta);
 		azioneAcquisto.setAcquirente(giocatoreAcquisto);
 		return azioneAcquisto;
@@ -197,8 +196,7 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 		BonusGettoneN bonusGettone = new BonusGettoneN();
 		bonusGettone.setCittà(new ArrayList<>());
 		for (int i = 0; i < bonusGettoneDTO.getNumeroGettoni(); i++) {
-			CittàBonus città = (CittàBonus) ControlloParametri.cercaCittàBonus(bonusGettoneDTO.getCittà().get(i),
-					gameState.getCittà());
+			CittàBonus città = (CittàBonus) ControlloParametri.cercaCittàBonus(bonusGettoneDTO.getCittà().get(i), gameState.getCittà());
 			bonusGettone.getCittà().add(città);
 		}
 		bonusGettone.setNumeroGettoni(bonusGettoneDTO.getNumeroGettoni());

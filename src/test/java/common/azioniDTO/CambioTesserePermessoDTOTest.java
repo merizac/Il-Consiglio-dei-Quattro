@@ -63,4 +63,9 @@ public class CambioTesserePermessoDTOTest {
 		assertTrue(regione==azioneVisitor.getRegione());
 	}
 
+	@Test
+	public void testToString() {
+		CambioTesserePermessoDTO cambio=new CambioTesserePermessoDTO();
+		assertEquals("Cambiare le tessere permesso  [V2]", cambio.toString());
+	}
 }
