@@ -1,18 +1,18 @@
 package server.model.game;
 
-
 public class Emporio {
-
+	/**
+	 * is the same color of player
+	 * 
+	 */
 	private final Colore colore;
 
-	
 	/**
 	 * @param colore
 	 */
 	public Emporio(Colore colore) {
 		this.colore = colore;
 	}
-
 
 	/**
 	 * 
@@ -22,8 +22,9 @@ public class Emporio {
 		return this.colore;
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -34,8 +35,9 @@ public class Emporio {
 		return result;
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -55,16 +57,14 @@ public class Emporio {
 		return true;
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
 		return colore.toString();
 	}
-	
-	
-	
-	
+
 }

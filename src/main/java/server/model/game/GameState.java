@@ -245,6 +245,11 @@ public class GameState extends Observable<Notify> {
 	 * } } this.giocatoreCorrente = this.giocatori.get(0); }
 	 */
 
+	/**
+	 * create players at start of the game
+	 * 
+	 * @param giocatori
+	 */
 	public void creaGiocatori(List<Giocatore> giocatori) {
 		int i = 0;
 		for (Giocatore g : giocatori) {
@@ -277,6 +282,12 @@ public class GameState extends Observable<Notify> {
 		this.giocatoreCorrente = this.giocatori.get(0);
 	}
 
+	/**
+	 * set politic cards to each player in the game
+	 * 
+	 * @param numeroCarte
+	 * @return
+	 */
 	private List<CartaPolitica> assegnaCartePolitica(int numeroCarte) {
 		ArrayList<CartaPolitica> carte = new ArrayList<>();
 		for (int i = 0; i < numeroCarte; i++) {
@@ -286,6 +297,9 @@ public class GameState extends Observable<Notify> {
 		return carte;
 	}
 
+	/**
+	 * change player at the end of the turn
+	 */
 	public void nextPlayer() {
 		Giocatore fineTurno = giocatori.remove(0);
 		giocatori.add(fineTurno);
@@ -308,10 +322,19 @@ public class GameState extends Observable<Notify> {
 		}
 	}
 
+	/**
+	 * return turn -1
+	 */
 	public void decrementaTurno() {
 		this.numeroTurni--;
 	}
 
+	/**
+	 * initialize game
+	 * 
+	 * @param giocatori
+	 * @throws IOException
+	 */
 	public void start(List<Giocatore> giocatori) throws IOException {
 		Reader reader = new Reader();
 		this.consiglieri = reader.letturaConsigliere();
@@ -330,9 +353,14 @@ public class GameState extends Observable<Notify> {
 			this.notifyObserver(new GiocatoreNotify(g, Arrays.asList(g)));
 		}
 		this.stato = new StartEnd(this);
-		
+
 	}
 
+	/**
+	 * calculate the winner at the end of the game
+	 * 
+	 * @return plyers who won
+	 */
 	public List<Giocatore> calcolaVincitore() {
 		calcolaTesserePermesso();
 		calcolaPunteggioNobiltà();
@@ -340,8 +368,11 @@ public class GameState extends Observable<Notify> {
 		return vincitore();
 	}
 
+	/**
+	 * @return players that have best points and so the winners
+	 */
 	private List<Giocatore> vincitore() {
-		
+
 		ArrayList<Giocatore> giocatoritmp = new ArrayList<>(this.getGiocatoriFinePartita());
 		ArrayList<Giocatore> giocatoriPerdenti = new ArrayList<>();
 		ComparatorClassifica comparator = new ComparatorClassifica();
@@ -351,15 +382,14 @@ public class GameState extends Observable<Notify> {
 		giocatoritmp.remove(vincitori.get(0));
 
 		for (Giocatore g : giocatoritmp) {
-			if (comparator.compare(g, vincitori.get(0)) != 0){
+			if (comparator.compare(g, vincitori.get(0)) != 0) {
 				giocatoriPerdenti.add(g);
 				break;
-			}
-			else {
+			} else {
 				vincitori.add(g);
-				//giocatoriPerdenti.remove(g);
-				
-				if(giocatoritmp.isEmpty())
+				// giocatoriPerdenti.remove(g);
+
+				if (giocatoritmp.isEmpty())
 					break;
 			}
 		}
@@ -404,11 +434,12 @@ public class GameState extends Observable<Notify> {
 
 		int i = 0;
 		while (i < giocatoriFinePartita.size()) {
-			if(giocatoriFinePartita.get(i).getNumeroTesserePermesso() == giocatoriFinePartita.get(0).getNumeroTesserePermesso()){
+			if (giocatoriFinePartita.get(i).getNumeroTesserePermesso() == giocatoriFinePartita.get(0)
+					.getNumeroTesserePermesso()) {
 				giocatoriFinePartita.get(i).aumentaPuntiVittoria(3);
 				i++;
-			}
-			else break;
+			} else
+				break;
 		}
 	}
 
@@ -440,7 +471,7 @@ public class GameState extends Observable<Notify> {
 			}
 		}
 		assegnaPunti(primo, secondo);
-		
+
 	}
 
 	/**

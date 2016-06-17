@@ -62,6 +62,11 @@ public class Aiutante implements Marketable {
 
 	}
 
+	/**
+	 * buy action for market. if one player want to buy one aiutante he has to
+	 * pay the money that the other player chose
+	 * 
+	 */
 	@Override
 	public boolean acquista(Giocatore acquirente, Offerta offerta) {
 		if (!acquirente.diminuisciRicchezza(offerta.getPrezzo()))
@@ -74,6 +79,9 @@ public class Aiutante implements Marketable {
 		}
 	}
 
+	/**
+	 * check if player can sell aiutante
+	 */
 	@Override
 	public boolean possiede(Giocatore venditore) {
 		if (venditore.getAiutanti().getAiutante() == 0) {

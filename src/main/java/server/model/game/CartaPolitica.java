@@ -68,6 +68,10 @@ public class CartaPolitica implements Marketable {
 		return colore.toString();
 	}
 
+	/**
+	 * check if the player who is buying the object can pay the money
+	 * 
+	 */
 	@Override
 	public boolean acquista(Giocatore acquirente, Offerta offerta) {
 		if (!acquirente.diminuisciRicchezza(offerta.getPrezzo()))
@@ -80,6 +84,9 @@ public class CartaPolitica implements Marketable {
 		}
 	}
 
+	/**
+	 * check if the player can sell the object
+	 */
 	@Override
 	public boolean possiede(Giocatore venditore) {
 		if (!venditore.getCartePolitica().contains(this)) {
