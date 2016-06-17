@@ -8,9 +8,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.grafica.gui.GUIGameController">
    <children>
-      <BorderPane layoutX="-11.0" layoutY="-8.0" prefHeight="728.0" prefWidth="1159.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane layoutX="-11.0" layoutY="-8.0" prefHeight="720.0" prefWidth="1253.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="0.0">
          <left>
-            <SplitPane dividerPositions="0.636150234741784, 0.5" prefHeight="635.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
+            <SplitPane dividerPositions="0.636150234741784" prefHeight="635.0" prefWidth="1248.0" BorderPane.alignment="CENTER">
                <items>
                   <AnchorPane>
                      <children>
@@ -21,13 +21,13 @@
                         </ImageView>
                      </children>
                   </AnchorPane>
-                  <SplitPane dividerPositions="0.7330173775671406" orientation="VERTICAL" prefHeight="539.0" prefWidth="462.0">
+                  <SplitPane dividerPositions="0.7330173775671406" orientation="VERTICAL" prefHeight="610.0" prefWidth="457.0">
                     <items>
-                        <TitledPane animated="false" collapsible="false" prefHeight="463.0" prefWidth="462.0" text="Giocatore">
+                        <TitledPane animated="false" collapsible="false" prefHeight="461.0" prefWidth="480.0" text="Giocatore">
                           <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="272.0" prefWidth="433.0" styleClass="background" stylesheets="@../css/game.css">
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="435.0" prefWidth="455.0" styleClass="background" stylesheets="@../css/game.css">
                                  <children>
-                                    <VBox layoutX="1.0" prefHeight="345.0" prefWidth="458.0">
+                                    <VBox layoutX="1.0" prefHeight="345.0" prefWidth="433.0">
                                        <children>
                                           <Pane prefHeight="59.0" prefWidth="458.0">
                                              <children>
@@ -264,12 +264,11 @@
                         </TabPane>
                     </items>
                   </SplitPane>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
                </items>
             </SplitPane>
          </left>
          <bottom>
-            <SplitPane dividerPositions="0.09154929577464789, 0.2777777777777778, 0.5485133020344288" prefHeight="88.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
+            <SplitPane dividerPositions="0.09190887666928516, 0.2867242733699921, 0.5483110761979576" prefHeight="88.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
                <items>
                   <TitledPane alignment="TOP_LEFT" animated="false" prefHeight="86.0" prefWidth="534.0" text="Riserva">
                     <content>
@@ -291,40 +290,46 @@
                   </TitledPane>
                   <TitledPane animated="false" collapsible="false" text="Carte Politica">
                      <content>
-                        <ScrollPane prefHeight="60.0" prefWidth="81.0">
+                        <ScrollPane prefHeight="60.0" prefWidth="230.0">
                           <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="60.0" prefWidth="230.0" styleClass="background" stylesheets="@../css/game.css">
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="60.0" prefWidth="239.0" styleClass="background" stylesheets="@../css/game.css">
                                  <children>
                                     <ImageView fitHeight="55.0" fitWidth="43.0" layoutX="2.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../css/politicCard/led-3.png" />
+                                          <Image url="@../css/politicCard/bianca.png" />
                                        </image>
                                     </ImageView>
                                     <ImageView fitHeight="55.0" fitWidth="43.0" layoutX="39.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../css/politicCard/led-3.png" />
+                                          <Image url="@../css/politicCard/nera.png" />
                                        </image>
                                     </ImageView>
                                     <ImageView fitHeight="55.0" fitWidth="43.0" layoutX="113.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../css/politicCard/led-3.png" />
+                                          <Image url="@../css/politicCard/rosa.png" />
                                        </image>
                                     </ImageView>
                                     <ImageView fitHeight="55.0" fitWidth="43.0" layoutX="76.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../css/politicCard/led-3.png" />
+                                          <Image url="@../css/politicCard/viola.png" />
                                        </image>
                                     </ImageView>
                                     <ImageView fitHeight="55.0" fitWidth="43.0" layoutX="150.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../css/politicCard/led-3.png" />
+                                          <Image url="@../css/politicCard/blu.png" />
                                        </image>
                                     </ImageView>
                                     <ImageView fitHeight="55.0" fitWidth="43.0" layoutX="187.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../css/politicCard/led-3.png" />
+                                          <Image url="@../css/politicCard/multicolore.png" />
                                        </image>
                                     </ImageView>
+                                    <Text fx:id="bianca" layoutX="11.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="19.0" />
+                                    <Text fx:id="bianca1" layoutX="48.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="19.0" />
+                                    <Text fx:id="bianca11" layoutX="85.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="19.0" />
+                                    <Text fx:id="bianca111" layoutX="122.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="19.0" />
+                                    <Text fx:id="bianca1111" layoutX="159.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="19.0" />
+                                    <Text fx:id="multicolore" layoutX="196.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="19.0" />
                                  </children>
                               </AnchorPane>
                           </content>
@@ -374,9 +379,9 @@
                         </ScrollPane>
                      </content>
                   </TitledPane>
-                  <ScrollPane prefHeight="86.0" prefWidth="170.0">
+                  <ScrollPane prefHeight="50.0" prefWidth="580.0">
                      <content>
-                        <AnchorPane prefHeight="175.0" prefWidth="556.0" />
+                        <AnchorPane prefHeight="175.0" prefWidth="540.0" />
                      </content></ScrollPane>
                </items>
             </SplitPane>

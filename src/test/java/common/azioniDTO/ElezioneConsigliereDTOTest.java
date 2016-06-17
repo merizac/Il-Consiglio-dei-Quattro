@@ -90,5 +90,11 @@ public class ElezioneConsigliereDTOTest {
 		assertTrue(azioneParser.getBalcone()==balcone);
 		assertTrue(azioneParser.getConsigliere()==consigliere);
 	}
+	
+	@Test
+	public void testToString(){
+		ElezioneConsigliereDTO elezione=new ElezioneConsigliereDTO();
+		assertEquals("Eleggere un consigliere  [P1]", elezione.toString());
+	}
 
 }

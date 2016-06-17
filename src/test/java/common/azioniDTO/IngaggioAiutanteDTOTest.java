@@ -43,4 +43,9 @@ public class IngaggioAiutanteDTOTest {
 		assertTrue(gameState.getGiocatoreCorrente().getAiutanti().getAiutante()==2);
 	}
 
+	@Test
+	public void testToString() {
+		IngaggioAiutanteDTO ingaggio=new IngaggioAiutanteDTO();
+		assertEquals("IngaggioAiutante  [V1]", ingaggio.toString());
+	}
 }

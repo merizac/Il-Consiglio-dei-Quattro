@@ -84,5 +84,12 @@ public class BonusTesseraAcquistataNDTOTest {
 		
 		assertTrue(!azione.isUsata());
 	}
+	
+	@Test
+	public void testToString(){
+		BonusTesseraAcquistataNDTO azione=new BonusTesseraAcquistataNDTO();
+		assertEquals("BonusTesseraAcquistata [B2]", azione.toString());
+	}
+
 
 }

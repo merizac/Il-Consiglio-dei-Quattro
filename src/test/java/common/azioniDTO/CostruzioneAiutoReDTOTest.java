@@ -100,5 +100,12 @@ public class CostruzioneAiutoReDTOTest {
 		
 		assertTrue(azioneParser.getClass()==CostruzioneAiutoRe.class);
 	}
+	
+	@Test
+	public void testToString() {
+		CostruzioneAiutoReDTO costruzione=new CostruzioneAiutoReDTO();
+		assertEquals("Costruire con l'aiuto del re  [P4]", costruzione.toString());
+	}
+
 
 }

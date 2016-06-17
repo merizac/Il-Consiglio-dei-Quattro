@@ -1,47 +1,56 @@
 package common.azioniDTO;
 
 import static org.junit.Assert.*;
+
 import java.io.IOException;
 import java.util.ArrayList;
+
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import common.azioniDTO.PescaCartaDTO;
 import common.azioniDTO.azioneVisitor.AzioneVisitor;
 import common.azioniDTO.azioneVisitor.AzioneVisitorImpl;
-import server.model.azioni.PescaCarta;
+import common.gameDTO.GiocatoreDTO;
+import server.model.azioni.Exit;
 import server.model.game.GameState;
 import server.model.game.Giocatore;
+import utility.ParameterException;
 
-public class PescaCartaDTOTest {
+public class ExitDTOTest {
 
 	static GameState gameState;
+	static GiocatoreDTO giocatoreDTO;
 	static AzioneVisitor visitor;
-
+	static Giocatore giocatore;
+	static ExitDTO exitDTO;
+	
 	@BeforeClass
 	public static void setUpBeforeClass() throws IOException {
 		ArrayList<Giocatore> giocatori=new ArrayList<>();
-		Giocatore giocatore=new Giocatore("Giocatore");
+		giocatore=new Giocatore("Giocatore");
 		giocatori.add(giocatore);
 		gameState=new GameState();
 		gameState.start(giocatori);
-		
+		giocatoreDTO=new GiocatoreDTO();
+		giocatoreDTO.inizializza(giocatore);
 		visitor = new AzioneVisitorImpl(gameState, gameState.getGiocatoreCorrente());
 	}
 
-	@Test
-	public void testAccept(){
-		int numeroCarte=gameState.getGiocatoreCorrente().getCartePolitica().size();
-		PescaCartaDTO pescaDTO=new PescaCartaDTO();
-		PescaCarta azioneParser=(PescaCarta) pescaDTO.accept(visitor);
-		azioneParser.eseguiAzione(gameState);
-		assertTrue(gameState.getGiocatoreCorrente().getCartePolitica().size()==numeroCarte+1);
+	@Before
+	public void testExitDTO() {
+		exitDTO=new ExitDTO(giocatoreDTO);
 	}
 
 	@Test
-	public void testToString() {
-		PescaCartaDTO pescaDTO=new PescaCartaDTO();
-		assertEquals("E' il tuo turno!\n"+ "Pesca una carta politica per iniziare il turno!  [Pesca]",pescaDTO.toString() );
+	public void testAccept() throws ParameterException {
+		Exit exit=exitDTO.accept(visitor);
+		assertEquals(giocatore, exit.getGiocatore());
 	}
-	
+
+	@Test
+	public void testGetGiocatoreDTO() {
+		assertTrue(giocatoreDTO==exitDTO.getGiocatoreDTO());
+	}
+
 }

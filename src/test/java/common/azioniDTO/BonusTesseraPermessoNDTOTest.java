@@ -91,5 +91,12 @@ public class BonusTesseraPermessoNDTOTest {
 		assertTrue(tessera==azioneParser.getTesseraScoperta());
 		assertTrue(regione==azioneParser.getRegione());
 	}
+	
+	@Test
+	public void testToString() {
+		BonusTesseraPermessoNDTO bonusTesseraPermessoNDTO=new BonusTesseraPermessoNDTO();
+		assertEquals("BonusTesseraPermesso [B1]", bonusTesseraPermessoNDTO.toString());
+	}
+
 
 }

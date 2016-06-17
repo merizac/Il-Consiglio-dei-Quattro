@@ -92,5 +92,11 @@ public class CostruzioneTesseraPermessoDTOTest {
 		assertTrue(città==azioneParser.getCittàCostruzione());
 		assertTrue(tessera==azioneParser.getTesseraPermessoScoperta());
 	}
+	
+	@Test
+	public void testToString() {
+		CostruzioneTesseraPermessoDTO costruzione=new CostruzioneTesseraPermessoDTO();
+		assertEquals("Costruire con una tessera permesso  [P3]", costruzione.toString());
+	}
 
 }
