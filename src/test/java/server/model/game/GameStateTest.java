@@ -209,7 +209,7 @@ public class GameStateTest {
 		assertTrue(turno + 1 == gameState.getNumeroTurni());
 	}*/
 
-	@Test public void testCreaGiocatoriUGUALE2() {
+/*	@Test public void testCreaGiocatoriUGUALE2() {
 		gameState.getGiocatori().clear();
 		List<Giocatore> giocatori = new ArrayList<>();
 		Giocatore gamer1 = new Giocatore("Giocatore1");
@@ -285,7 +285,57 @@ public class GameStateTest {
 		assertTrue(10 == g2.getEmpori().size());
 		assertTrue(6 == g2.getCartePolitica().size());
 		assertTrue(gameState.getGiocatori().contains(g2));
-	}
+	}*/
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 /*	
 	@Test
 	public void testNextPlayer() {
