@@ -57,7 +57,7 @@ public class AcquistoTesseraPermessoDTO implements AzioneDTO, AzioneParametri {
 	 */
 	@Override
 	public String toString() {
-		return "P2";
+		return "Acquistare una tessera permesso [P2]";
 	}
 	/**
 	 * @return the tesseraPermesso

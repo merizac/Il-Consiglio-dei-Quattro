@@ -18,7 +18,7 @@ public class SecondaAzionePrincipaleDTO implements AzioneDTO {
 	 */
 	@Override
 	public String toString() {
-		return "V4";
+		return "Seconda azione Principale  [V4]";
 	}
 
 }

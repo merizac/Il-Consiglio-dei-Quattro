@@ -37,7 +37,7 @@ public class AzioneAcquistoDTO implements AzioneDTO, AzioneParametri {
 	 */
 	@Override
 	public String toString() {
-		return "Acquista";
+		return "Per acquistare  [Acquista]";
 	}
 
 	/**

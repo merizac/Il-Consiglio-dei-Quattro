@@ -50,7 +50,7 @@ public class CostruzioneTesseraPermessoDTO implements AzioneDTO, AzioneParametri
 	 */
 	@Override
 	public String toString() {
-		return "P3";
+		return "Costruire con una tessera permesso  [P3]";
 	}
 	
 	@Override

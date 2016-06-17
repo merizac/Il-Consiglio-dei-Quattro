@@ -49,7 +49,7 @@ public class ElezioneConsigliereVeloceDTO implements AzioneDTO, AzioneParametri 
 	 */
 	@Override
 	public String toString() {
-		return "V3";
+		return "Eleggere un consigliere  [V3]";
 	}
 	/**
 	 * @param balcone the balcone to set

@@ -52,7 +52,7 @@ public class CostruzioneAiutoReDTO implements AzioneDTO, AzioneParametri {
 	 */
 	@Override
 	public String toString() {
-		return "P4";
+		return "Costruire con l'aiuto del re  [P4]";
 	}
 	
 	@Override

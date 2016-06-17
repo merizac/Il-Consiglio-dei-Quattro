@@ -52,6 +52,6 @@ public class ElezioneConsigliereDTO implements AzioneDTO,AzioneParametri {
 	 */
 	@Override
 	public String toString() {
-		return "P1";
+		return "Eleggere un consigliere  [P1]";
 	}
 }

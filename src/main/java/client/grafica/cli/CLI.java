@@ -3,7 +3,6 @@ package client.grafica.cli;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
@@ -15,10 +14,7 @@ import client.connessione.ConnessioneSocket;
 import client.grafica.Grafica;
 import common.azioniDTO.AzioneDTO;
 import common.azioniDTO.AzioneParametri;
-import common.azioniDTO.BonusGettoneNDTO;
 import common.azioniDTO.BonusTesseraAcquistataNDTO;
-import common.azioniDTO.ExitDTO;
-import common.azioniDTO.PassaBonusDTO;
 import common.gameDTO.AiutanteDTO;
 import common.gameDTO.BalconeDTO;
 import common.gameDTO.CartaPoliticaDTO;
@@ -83,13 +79,9 @@ public class CLI implements Grafica {
 			
 			AzioneDTO action=gameStateDTO.getAzioniDisponibili()
 					.stream()
-					.filter(a -> a.toString().equals(inputLine))
+					.filter(a -> a.toString().contains(inputLine))
 					.findAny()
 					.orElse(null);
-
-			/*for (AzioneDTO a : gameStateDTO.getAzioniDisponibili())
-				if (a.toString().equals(inputLine))
-					action = a;*/
 
 			if (action == null)
 				System.out.println("L'azione non esiste \nInserire un'azione valida");
@@ -107,9 +99,10 @@ public class CLI implements Grafica {
 
 			}
 
-			if ("B2".equals(inputLine)) {
+		/*	if ("B2".equals(inputLine)) {
 
 				BonusTesseraAcquistataNDTO bonus = new BonusTesseraAcquistataNDTO();
+				bonus.parametri().setParametri(this, gameStateDTO);
 				if (gameStateDTO.getGiocatoreDTO().getTesserePermesso().isEmpty()
 						&& gameStateDTO.getGiocatoreDTO().getTesserePermessoUsate().isEmpty()) {
 					System.out.println("Non hai tessere permesso! \nNon puoi utilizzare il bonus!");
@@ -222,7 +215,7 @@ public class CLI implements Grafica {
 				} catch (RemoteException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}
+				}*/
 		}
 	}
 

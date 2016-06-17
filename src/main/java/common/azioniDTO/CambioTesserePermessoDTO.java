@@ -39,7 +39,7 @@ public class CambioTesserePermessoDTO implements AzioneDTO, AzioneParametri {
 	 */
 	@Override
 	public String toString() {
-		return "V2";
+		return "Cambiare le tessere permesso  [V2]";
 	}
 
 	@Override

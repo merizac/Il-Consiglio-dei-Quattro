@@ -41,7 +41,7 @@ public class AzioneOffertaDTO implements AzioneDTO, AzioneParametri {
 	 */
 	@Override
 	public String toString() {
-		return "Offerta";
+		return "Per fare un'offerta  [Offerta] ";
 	}
 
 
