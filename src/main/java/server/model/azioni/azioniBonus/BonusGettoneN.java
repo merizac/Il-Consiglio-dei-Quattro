@@ -19,6 +19,9 @@ public class BonusGettoneN extends Azione {
 	 * scegliere uno dei gettoni avanzamento ul percorso nobiltà
 	 */
 	private List<CittàBonus> città;
+	/**
+	 * number of gettoni which the player can get
+	 */
 	private int numeroGettoni;
 
 	/**

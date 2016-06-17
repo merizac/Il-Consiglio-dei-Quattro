@@ -12,26 +12,31 @@ import server.model.notify.MessageNotify;
 public class IngaggioAiutante extends AzioneVeloce {
 
 	/**
-	 * @return true if the player has enough money, and add one aiutante
+	 * the player has to pay 3 money for one aiutante
+	 * notify
+	 * set transition in state pattern
 	 */
 	@Override
 	public void eseguiAzione(GameState gameState) {
-		if(!gameState.getGiocatoreCorrente().diminuisciRicchezza(3)){
+		if (!gameState.getGiocatoreCorrente().diminuisciRicchezza(3)) {
 			gameState.notifyObserver(new MessageNotify("Errore: i soldi non sono sufficienti",
 					Arrays.asList(gameState.getGiocatoreCorrente())));
 			return;
 		}
-		
+
 		else {
 			gameState.getGiocatoreCorrente().getAiutanti().aggiungiAiutanti(1);
-			
+
 			gameState.notifyObserver(new GameStateNotify(gameState, gameState.getGiocatori()));
 			gameState.notifyObserver(new GiocatoreNotify(gameState.getGiocatoreCorrente(),
 					Arrays.asList(gameState.getGiocatoreCorrente())));
-			setStatoTransizioneVeloce(gameState); 
-			}	
+			setStatoTransizioneVeloce(gameState);
 		}
+	}
 
+	/**
+	 * @return DTO action
+	 */
 	@Override
 	public AzioneDTO getAzioneDTO() {
 		return new IngaggioAiutanteDTO();

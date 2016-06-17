@@ -25,12 +25,19 @@ public class BonusGettoneRicompensa extends Bonus {
 		this.numeroGettoni=quantità;
 	}
 
+	/**
+	 * 
+	 * @return the corresponding action
+	 */
 	public Azione getAzioneBonus(){
 		BonusGettoneN bonusGettone = new BonusGettoneN();
 		bonusGettone.setNumeroGettoni(numeroGettoni);
 		return bonusGettone;
 	}
 	
+	/**
+	 * add the corresponding action of in a list of bonus in current player
+	 */
 	@Override
 	public void usaBonus(GameState gameState) {		
 		gameState.getGiocatoreCorrente().getBonusNobiltà().add(this.getAzioneBonus());

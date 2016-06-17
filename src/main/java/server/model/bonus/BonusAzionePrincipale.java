@@ -21,6 +21,10 @@ public class BonusAzionePrincipale extends Bonus {
 		this.numBonus = numBonus;
 	}
 
+	/**
+	 * set transition in state pattern
+	 * notify player that he wins a bonus
+	 */
 	@Override
 	public void usaBonus(GameState gameState) {
 		gameState.setBonusAzionePrincipale(true);

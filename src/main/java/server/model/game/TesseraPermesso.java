@@ -13,19 +13,17 @@ public final class TesseraPermesso implements Marketable {
 	private final List<Bonus> bonus;
 	private final Regione regione;
 
-
 	/**
 	 * @param cit
 	 * @param bonus2
 	 * @param regione
 	 */
-	public TesseraPermesso(List<Città> cit, List<Bonus> bonus, Regione regione){
+	public TesseraPermesso(List<Città> cit, List<Bonus> bonus, Regione regione) {
 		this.città = cit;
 		this.bonus = bonus;
 		this.regione = regione;
 		regione.getMazzoTesserePermesso().getCarte().add(this);
 	}
-
 
 	/**
 	 * @return the regione
@@ -33,14 +31,13 @@ public final class TesseraPermesso implements Marketable {
 	public Regione getRegione() {
 		return regione;
 	}
-	
+
 	/**
 	 * @return the città
 	 */
 	public List<Città> getCittà() {
 		return città;
 	}
-
 
 	/**
 	 * @return the bonus
@@ -49,7 +46,9 @@ public final class TesseraPermesso implements Marketable {
 		return bonus;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -57,12 +56,14 @@ public final class TesseraPermesso implements Marketable {
 		return "TesseraPermesso [ (" + città + "), (" + bonus + ") ]";
 	}
 
-
+	/**
+	 * check if the player can buy this object in market
+	 */
 	@Override
 	public boolean acquista(Giocatore acquirente, Offerta offerta) {
-		if(!acquirente.diminuisciRicchezza(offerta.getPrezzo()))
+		if (!acquirente.diminuisciRicchezza(offerta.getPrezzo()))
 			return false;
-		else{
+		else {
 			acquirente.aggiungiTesseraPermesso(this);
 			offerta.getVenditore().rimuoviTesseraPermesso(this);
 			offerta.getVenditore().aumentaRicchezza(offerta.getPrezzo());
@@ -70,17 +71,20 @@ public final class TesseraPermesso implements Marketable {
 		}
 	}
 
-
+	/**
+	 * check if the player can sell this object in the market
+	 */
 	@Override
 	public boolean possiede(Giocatore venditore) {
-		if(!venditore.getTesserePermesso().contains(this))
+		if (!venditore.getTesserePermesso().contains(this))
 			return false;
 		else
 			return true;
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -93,8 +97,9 @@ public final class TesseraPermesso implements Marketable {
 		return result;
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -124,13 +129,9 @@ public final class TesseraPermesso implements Marketable {
 		return true;
 	}
 
-
 	@Override
 	public MarketableDTO instance() {
 		return new TesseraPermessoDTO();
 	}
-	
-	
-
 
 }

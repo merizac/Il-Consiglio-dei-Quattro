@@ -5,7 +5,10 @@ import java.util.Comparator;
 import server.model.game.Giocatore;
 
 public class ComparatorClassifica implements Comparator<Giocatore>{
-
+/**
+ * compare puntiVittoria and number of aiutanti.
+ * order players by this values for chose the winner
+ */
 	@Override
 	public int compare(Giocatore g1, Giocatore g2) {
 		int puntiVittoria1 = g1.getPunteggioVittoria();

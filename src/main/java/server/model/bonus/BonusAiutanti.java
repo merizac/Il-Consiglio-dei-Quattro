@@ -13,7 +13,7 @@ public class BonusAiutanti extends Bonus {
 	private static final long serialVersionUID = -5026851552875939482L;
 	private int aiutanti;
 	/**
-	 * 
+	 * costruttore
 	 * @param aiutanti
 	 * @param partita
 	 */

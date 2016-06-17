@@ -9,6 +9,12 @@ public class Exit extends Azione {
 
 	private Giocatore giocatore;
 
+	/**
+	 * when a player request the exit action, he is going out of the game.
+	 * this method remove the player from the list of players and add in GiocatoriFinePartita
+	 * notify the disconnession of the player
+	 * set transition in state pattern
+	 */
 	@Override
 	public void eseguiAzione(GameState gameState){
 		gameState.getGiocatori().remove(giocatore);
@@ -19,6 +25,9 @@ public class Exit extends Azione {
 		}
 	}
 
+	/**
+	 * @return DTO action
+	 */
 	@Override
 	public AzioneDTO getAzioneDTO() {
 		// TODO Auto-generated method stub

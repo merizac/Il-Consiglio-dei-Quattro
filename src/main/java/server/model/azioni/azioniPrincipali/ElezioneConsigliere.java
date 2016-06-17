@@ -54,6 +54,9 @@ public class ElezioneConsigliere extends AzionePrincipale {
 		setStatoTransizionePrincipale(gameState);
 	}
 
+	/**
+	 * @return dto action
+	 */
 	@Override
 	public AzioneDTO getAzioneDTO() {
 		return new ElezioneConsigliereDTO();

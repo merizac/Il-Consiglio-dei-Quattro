@@ -31,6 +31,9 @@ public class SecondaAzionePrincipale extends AzioneVeloce {
 		}
 	}
 
+	/**
+	 * @return DTO action
+	 */
 	@Override
 	public AzioneDTO getAzioneDTO() {
 		return new SecondaAzionePrincipaleDTO();

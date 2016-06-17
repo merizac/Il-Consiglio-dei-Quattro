@@ -27,7 +27,13 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonu
 	private Città cittàCostruzione;
 
 	/**
-	 * execute the action
+	 * check if player had enough money
+	 * build in the city that player choose
+	 * win bonus if the city is a bonus city or if it's next to bonus cities of the same player
+	 * notify changes
+	 * check if player win nobility points, in that case check if there are bonus in nobility track.
+	 * set the right transition in state pattern
+	 * 
 	 */
 	@Override
 	public void eseguiAzione(GameState gameState) {
@@ -74,7 +80,13 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonu
 		}
 
 	}
-
+	
+	/**
+	 * cheack if player can win bonus of the region
+	 * 
+	 * @param regione
+	 * @param giocatore
+	 */
 	private void controllaCittàRegione(Regione regione, Giocatore giocatore) {
 		for (Città c : regione.getCittàRegione()) {
 			if (!c.emporioColore(giocatore.getColoreGiocatore()))
@@ -84,7 +96,13 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonu
 		regione.setBonusAssegnato(true);
 
 	}
-
+	
+	/**
+	 * check if the player can win bonus of color
+	 * 
+	 * @param coloreCittà
+	 * @param giocatore
+	 */
 	private void controllaCittàColore(ColoreCittà coloreCittà, Giocatore giocatore) {
 		if (coloreCittà.isAssegnatoBonus())
 			return;
@@ -182,6 +200,9 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonu
 		return cittàCostruzione;
 	}
 
+	/**
+	 * @return DTO action
+	 */
 	@Override
 	public AzioneDTO getAzioneDTO() {
 		return new CostruzioneTesseraPermessoDTO();

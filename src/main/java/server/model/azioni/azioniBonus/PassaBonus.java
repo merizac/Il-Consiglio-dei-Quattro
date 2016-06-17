@@ -5,10 +5,13 @@ import common.azioniDTO.PassaBonusDTO;
 import server.model.azioni.Azione;
 import server.model.game.GameState;
 
-public class PassaBonus extends Azione{
+public class PassaBonus extends Azione {
 
 	private Azione bonus;
 
+	/**
+	 * this action is used when player wins a nobility bonus but he can't use it. (for examples because he hasn't any build)
+	 */
 	@Override
 	public void eseguiAzione(GameState gameState) {
 		gameState.getGiocatoreCorrente().getBonusNobiltà().remove(this.bonus);
@@ -28,10 +31,11 @@ public class PassaBonus extends Azione{
 	}
 
 	/**
-	 * @param bonus the bonus to set
+	 * @param bonus
+	 *            the bonus to set
 	 */
 	public void setBonus(Azione bonus) {
 		this.bonus = bonus;
 	}
-	
+
 }

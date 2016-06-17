@@ -31,7 +31,10 @@ public class CittàBonus extends Città {
 	public List<Bonus> getBonus() {
 		return bonus;
 	}
-	
+	/**
+	 * 
+	 * @param bonus
+	 */
 	public void setBonus(List<Bonus> bonus) {
 		this.bonus = bonus;
 	}

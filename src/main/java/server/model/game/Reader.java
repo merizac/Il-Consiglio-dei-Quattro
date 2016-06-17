@@ -22,12 +22,12 @@ import utility.Utils;
 
 public class Reader {
 
-	private List<Consigliere> consiglieri; 
-	private List<Regione> regioni ;
-	private List<Città> cities ;
-	
-	public Reader(){
-		this.consiglieri= new ArrayList<>();
+	private List<Consigliere> consiglieri;
+	private List<Regione> regioni;
+	private List<Città> cities;
+
+	public Reader() {
+		this.consiglieri = new ArrayList<>();
 		this.regioni = new ArrayList<>();
 		this.cities = new ArrayList<>();
 	}
@@ -40,12 +40,23 @@ public class Reader {
 		return planciaRe;
 	}
 
+	/**
+	 * create king
+	 * 
+	 * @return
+	 */
 	public Re creazioneRe() {
 		Re re = new Re(findCittàRe());
 		return re;
 	}
-	
-	// costruiscre la mappa e mette le tessere permesso alle regioni
+
+	/**
+	 * costruiscre la mappa e mette le tessere permesso alle regioni
+	 * 
+	 * @param configurazione
+	 * @return
+	 * @throws IOException
+	 */
 	public Mappa creazioneMappa(String configurazione) throws IOException {
 		creazioneCittà(configurazione);
 		Mappa mappa = new Mappa(new HashSet<>(cities));
@@ -53,7 +64,12 @@ public class Reader {
 		return mappa;
 	}
 
-	// crea città e gli mette i bonus rotondi
+	/**
+	 * crea città e gli mette i bonus rotondi
+	 * 
+	 * @param configurazione
+	 * @throws IOException
+	 */
 	public void creazioneCittà(String configurazione) throws IOException {
 		cities = letturaCittà(configurazione);
 		letturaBonusTondiCittà();

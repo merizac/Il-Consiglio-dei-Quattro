@@ -171,10 +171,17 @@ public class Giocatore {
 		return empori;
 	}
 
+	/**
+	 * 
+	 * @return bonus nobiltà
+	 */
 	public List<Azione> getBonusNobiltà() {
 		return bonusNobiltà;
 	}
 
+	/**
+	 * 
+	 */
 	public void aumentaRicchezza(int monete) {
 		this.punteggioRicchezza = this.punteggioRicchezza + monete;
 	}
@@ -211,22 +218,47 @@ public class Giocatore {
 		this.cartePolitica.add(cartaDaAggiungere);
 	}
 
+	/**
+	 * remove politic card from player
+	 * 
+	 * @param cartaPolitica
+	 */
 	public void rimuoviCartaPolitica(CartaPolitica cartaPolitica) {
 		this.cartePolitica.remove(cartaPolitica);
 	}
 
+	/**
+	 * add tessera permesso to player
+	 * 
+	 * @param tesseraPermesso
+	 */
 	public void aggiungiTesseraPermesso(TesseraPermesso tesseraPermesso) {
 		this.tesserePermesso.add(tesseraPermesso);
 	}
 
+	/**
+	 * remove tessera permesso from player
+	 * 
+	 * @param tesseraPermesso
+	 */
 	public void rimuoviTesseraPermesso(TesseraPermesso tesseraPermesso) {
 		this.tesserePermesso.remove(tesseraPermesso);
 	}
 
+	/**
+	 * add emporiums
+	 * 
+	 * @param empori
+	 */
 	public void aggiungiEmpori(List<Emporio> empori) {
 		this.empori.addAll(empori);
 	}
 
+	/**
+	 * create emporium
+	 * 
+	 * @param colore
+	 */
 	public void creaEmpori(Colore colore) {
 		for (int i = 0; i < 10; i++) {
 			Emporio emporio = new Emporio(colore);
