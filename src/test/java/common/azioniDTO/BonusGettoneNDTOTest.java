@@ -19,6 +19,8 @@ import common.gameDTO.TesseraPermessoDTO;
 import server.model.azioni.Azione;
 import server.model.azioni.azioniBonus.BonusGettoneN;
 import server.model.azioni.azioniPrincipali.AcquistoTesseraPermesso;
+import server.model.bonus.Bonus;
+import server.model.bonus.BonusPuntiNobiltà;
 import server.model.game.CartaPolitica;
 import server.model.game.CittàBonus;
 import server.model.game.Colore;
@@ -66,7 +68,18 @@ public class BonusGettoneNDTOTest {
 	@Test
 	public void testAccept() throws ParameterException {
 		ArrayList<CittàBonus> c=new ArrayList<>();
-		c.add((CittàBonus) gameState.getRegioni().get(0).getCittàRegione().get(0));
+		CittàBonus city=(CittàBonus) gameState.getRegioni().get(0).getCittàRegione().get(0);
+		int i=1;
+		for(Bonus b:city.getBonus()){
+			if(b instanceof BonusPuntiNobiltà){
+				city=(CittàBonus) gameState.getRegioni().get(0).getCittàRegione().get(i);
+				i++;
+			}
+			else{
+				c.add(city);
+				break;
+			}
+		}
 		
 		bonusGettoneNDTO.setNumeroGettoni(1);
 		bonusGettoneNDTO.setCittà(città);
