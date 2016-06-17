@@ -1,13 +1,26 @@
 .background {
-  -fx-background-image: url("./carta_macchie.jpg");
-  /*https://www.google.com/images/srpr/logo3w.png */
-/*-fx-background-repeat: stretch;*/
+	-fx-background-image: url("./carta_macchie.jpg");
 }
 .textArea {
- 	fx-background-color: trasparent;
+ 	-fx-background-color: black;
+ 	-fx-font: 10.0px Tahoma;
+    -fx-fill: white;
 }
 
-.emporium{
-	-fx-blend-mode:ADD;	
-	-fx-blend-mode:red;
+.label {
+    -fx-font-size: 10.0pt;
+    -fx-font-family: "Calibri";
+    -fx-text-fill: black;
+    -fx-opacity: 1.0;   
+}
+
+.button {
+	-fx-effect: dropshadow(three-pass-box, black, 10, 0.2, 0, 0); 
+	-fx-background-repeat: stretch; 
+	-fx-background-position: center center;
+	-fx-background-image: url("./antica1.jpg");
+    -fx-font-size: 9.0pt;
+    -fx-font-family: "Calibri";
+    -fx-text-fill: black;
+    -fx-opacity: 1.0;   
 }
