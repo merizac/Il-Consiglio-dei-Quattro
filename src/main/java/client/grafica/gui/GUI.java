@@ -93,7 +93,7 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public void mostraGame(GameStateDTO gameStateDTO) throws IOException {
-
+		
 	}
 
 	@Override
