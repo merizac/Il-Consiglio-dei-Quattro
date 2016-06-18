@@ -22,6 +22,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import server.model.bonus.Bonus;
 import server.model.game.TesseraPermesso;
@@ -76,6 +77,37 @@ public class GUIGameController {
 	private Button ingaggioAiutante;
 	@FXML
 	private Button secondaAzionePrincipale;
+	
+	@FXML
+	private Circle gettoneArkon;
+	@FXML
+	private Circle gettoneCastrum;
+	@FXML
+	private Circle gettoneBurgen;
+	@FXML
+	private Circle gettoneDorful;
+	@FXML
+	private Circle gettoneEsti;
+	@FXML
+	private Circle gettoneFramek;
+	@FXML
+	private Circle gettoneGraden;
+	@FXML
+	private Circle gettoneHellar;
+	@FXML
+	private Circle gettoneIndur;
+	@FXML
+	private Circle gettoneJuvelar;
+	@FXML
+	private Circle gettoneKultos;
+	@FXML
+	private Circle gettoneNaris;
+	@FXML
+	private Circle gettoneLyram;
+	@FXML
+	private Circle gettoneOsium;
+	@FXML
+	private Circle gettoneMerkatim;
 
 	
 	public GUIGameController(){
