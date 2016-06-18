@@ -14,7 +14,6 @@ import client.connessione.ConnessioneSocket;
 import client.grafica.Grafica;
 import common.azioniDTO.AzioneDTO;
 import common.azioniDTO.AzioneParametri;
-import common.azioniDTO.BonusTesseraAcquistataNDTO;
 import common.gameDTO.AiutanteDTO;
 import common.gameDTO.BalconeDTO;
 import common.gameDTO.CartaPoliticaDTO;
