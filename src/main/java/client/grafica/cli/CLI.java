@@ -538,6 +538,17 @@ public class CLI implements Grafica {
 			System.out.println("\n" + o.getMarketableDTO() + " prezzo: " + o.getPrezzo());
 		}
 	}
+	
+	@Override
+	public void mostraAvversario(GiocatoreDTO avversario) {
+		System.out.println("\nGiocatore :"+ avversario.getNome());
+		System.out.println("Punti vittoria "+ avversario.getPunteggioVittoria());
+		System.out.println("Punti ricchezza "+ avversario.getPunteggioRicchezza());
+		System.out.println("Punti nobiltà "+ avversario.getPunteggioNobiltà());
+		System.out.println("Empori "+ avversario.getEmpori());
+		System.out.println("Aiutanti "+ avversario.getAiutanti() );
+		System.out.println("Tessere permesso "+avversario.getTesserePermesso()+"\n");
+	}
 
 	/**
 	 * update the client after receiving a notify
@@ -556,5 +567,6 @@ public class CLI implements Grafica {
 		CLI cli =new CLI();
 		cli.start();
 	}
+
 
 }

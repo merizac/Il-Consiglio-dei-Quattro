@@ -11,6 +11,7 @@ import server.model.game.Città;
 import server.model.game.CittàBonus;
 import server.model.game.Consigliere;
 import server.model.game.GameState;
+import server.model.game.Giocatore;
 import server.model.game.Regione;
 
 public class GameStateDTO implements Serializable {
@@ -23,9 +24,12 @@ public class GameStateDTO implements Serializable {
 	private List<ConsigliereDTO> consiglieri;
 	private List<AzioneDTO> azioniDisponibili;
 	private GiocatoreDTO giocatoreDTO;
+	private List<GiocatoreDTO> avversari;
 	private List<OffertaDTO> offerte;
 
 	public void inizializza(GameState gameState) {
+		
+		this.avversari=new ArrayList<>();
 		this.città = new HashSet<>();
 		for (Città c : gameState.getCittà()) {
 			if (c instanceof CittàBonus) {
@@ -170,6 +174,15 @@ public class GameStateDTO implements Serializable {
 	 */
 	public List<OffertaDTO> getOfferte() {
 		return offerte;
+	}
+	
+	public List<GiocatoreDTO> getAvversari() {
+		return this.avversari;
+	}
+	
+
+	public void setAvversari(List<GiocatoreDTO> avversari) {
+		this.avversari=avversari;
 	}
 
 	/*

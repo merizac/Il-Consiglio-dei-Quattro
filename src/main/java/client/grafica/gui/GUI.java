@@ -97,11 +97,7 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public void mostraGame(GameStateDTO gameStateDTO) throws IOException {
-		/*for(RegioneDTO r: gameStateDTO.getRegioni()){
-			for(ConsigliereDTO c: r.getBalcone().getConsiglieri()){
-//				controller.setConsigliere(new ImageView(url));
-			}
-		}*/
+
 	}
 
 	@Override
@@ -145,5 +141,11 @@ public class GUI extends Application implements Grafica {
 
 	public static void main(String[] args) {
 		Application.launch(args);
+	}
+
+	@Override
+	public void mostraAvversario(GiocatoreDTO avversario) {
+		// TODO Auto-generated method stub
+		
 	}
 }
