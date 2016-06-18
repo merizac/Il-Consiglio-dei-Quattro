@@ -50,7 +50,7 @@ public class BonusCartePolitica extends Bonus {
 	 */
 	@Override
 	public String toString() {
-		return "BonusCartePolitica [cartePolitica=" + cartePolitica + "]";
+		return "BonusCartePolitica " + cartePolitica;
 	}
 
 	/**

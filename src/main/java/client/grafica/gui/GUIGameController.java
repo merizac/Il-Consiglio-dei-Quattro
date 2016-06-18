@@ -100,7 +100,21 @@ public class GUIGameController {
 		this.mappaCarte.put("Arancione", new Image(getClass().getResource("css/politicCard/Arancione.png").toExternalForm()));
 		this.mappaCarte.put("Azzurro", new Image(getClass().getResource("css/politicCard/Azzurro.png").toExternalForm()));
 		this.mappaCarte.put("Multicolore", new Image(getClass().getResource("css/politicCard/Multicolore.png").toExternalForm()));
-		//this.mappaTessere.put("TesseraPermesso [ ( Arkon ), (  ) ]", new Image(getClass().getResource("css/permitTile/3.6.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso [ ( Arkon Burgen Esti ), ( BonusMoneta 2 ) ]", new Image(getClass().getResource("css/permitTile/3.11.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso [ ( Arkon Burgen Castrum ), ( BonusAiutanti 2 ) ]", new Image(getClass().getResource("css/permitTile/3.12.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso [ ( Arkon ), ( BonusMoneta 3 BonusPuntiVittoria 4 ) ]", new Image(getClass().getResource("css/permitTile/3.6.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso [ ( Esti ), ( BonusAzionePrincipale 1 BonusMoneta 2 ) ]", new Image(getClass().getResource("css/permitTile/3.15.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso [ ( Castrum ), ( BonusAiutanti 2 BonusMoneta 3 ) ]", new Image(getClass().getResource("css/permitTile/3.7.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso [ ( Dorful ), ( BonusPuntiVittoria 7 ) ]", new Image(getClass().getResource("css/permitTile/3.8.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso [ ( Burgen ), ( BonusCartePolitica 3 BonusAiutanti 1 ) ]", new Image(getClass().getResource("css/permitTile/3.2.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso [ ( Arkon Esti ), ( BonusPuntiNobiltà 2 ) ]", new Image(getClass().getResource("css/permitTile/3.10.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso [ ( Dorful Esti ), ( BonusPuntiVittoria 2 BonusAiutanti 1 ) ]", new Image(getClass().getResource("css/permitTile/3.3.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso [ ( Arkon Burgen ), ( BonusMoneta 3 BonusCartePolitica 1 ) ]", new Image(getClass().getResource("css/permitTile/3.9.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso [ ( Arkon Dorful Esti ), ( BonusMoneta 1 BonusPuntiVittoria 2 ) ]", new Image(getClass().getResource("css/permitTile/3.1.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso [ ( Castrum Dorful ), ( BonusPuntiVittoria 3 BonusAiutanti 1 ) ]", new Image(getClass().getResource("css/permitTile/3.5.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso [ ( Burgen Castrum Dorful ), ( BonusAiutanti 1 BonusPuntiVittoria 1 ) ]", new Image(getClass().getResource("css/permitTile/3.13.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso [ ( Castrum Dorful Esti ), ( BonusCartePolitica 1 BonusPuntiNobiltà 1 ) ]", new Image(getClass().getResource("css/permitTile/3.14.png").toExternalForm()));
+
 	}
 	
 	/**
@@ -179,28 +193,32 @@ public class GUIGameController {
 		Platform.runLater(new Runnable() {
 			
 			HBox tessere;
+			Map<String, Image> mappaTessere;
 			
 			@Override
 			public void run() {
 				try{
-					for(int i=0; i<tesserePermesso.size(); i++){
+
+					for(TesseraPermessoDTO t:tesserePermesso){
 						ImageView image = new ImageView();
 						image.setFitHeight(60);
 						image.setPreserveRatio(true);
-						image.setImage(new Image(getClass().getResource("/client/grafica/gui/css/permitTile/PermitWhite.png").toExternalForm()));
+
+						image.setImage(this.mappaTessere.get(t.toString()));
 						tessere.getChildren().add(image);
-				
+
 					}}
 				catch(Exception e){
 					e.printStackTrace();
 				}
 			}
 			
-			public Runnable setTessere(HBox tessere){
+			public Runnable setTessere(HBox tessere,Map<String, Image> mappaTessere){
 				this.tessere= tessere;
+				this.mappaTessere=mappaTessere;
 				return this;
 			}
-		}.setTessere(this.tesserePermesso));	
+		}.setTessere(this.tesserePermesso,this.mappaTessere));	
 	}
 
 	@FXML

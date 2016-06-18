@@ -37,7 +37,7 @@ public class BonusAiutanti extends Bonus {
 	 */
 	@Override
 	public String toString() {
-		return "BonusAiutanti [aiutanti=" + aiutanti + "]";
+		return "BonusAiutanti " + aiutanti;
 	}
 	/**
 	 * @return the aiutanti

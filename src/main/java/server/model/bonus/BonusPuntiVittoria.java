@@ -41,7 +41,7 @@ public class BonusPuntiVittoria extends Bonus {
 	
 	@Override
 	public String toString() {
-		return "BonusPuntiVittoria [puntiVittoria=" + puntiVittoria + "]";
+		return "BonusPuntiVittoria " + puntiVittoria;
 	}
 
 	/* (non-Javadoc)
