@@ -130,4 +130,10 @@ public class GUI extends Application implements Grafica {
 	public static void main(String[] args) {
 		Application.launch(args);
 	}
+
+	@Override
+	public void mostraAvversario(GiocatoreDTO avversario) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -29,6 +29,7 @@ public class GameStateClientNotify implements ClientNotify {
 		gameStateDTO.setPedinaRE(this.gameStateDTO.getPedinaRE());
 		gameStateDTO.setPlanciaReDTO(this.gameStateDTO.getPlanciaReDTO());
 		gameStateDTO.setRegioni(this.gameStateDTO.getRegioni());
+		gameStateDTO.setAvversari(this.gameStateDTO.getAvversari());
 	}
 
 	@Override

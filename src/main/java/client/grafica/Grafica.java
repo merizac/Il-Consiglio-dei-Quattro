@@ -29,4 +29,6 @@ public interface Grafica {
 	public void mostraOfferte(List<OffertaDTO> offerte);
 
 	public void notify(ClientNotify notify);
+
+	public void mostraAvversario(GiocatoreDTO avversario);
 }

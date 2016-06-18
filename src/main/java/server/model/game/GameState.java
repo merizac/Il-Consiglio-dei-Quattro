@@ -15,6 +15,7 @@ import server.model.game.comparator.ComparatorTesserePermesso;
 import server.model.macchinaStati.StartEnd;
 import server.model.macchinaStati.Stato;
 import server.model.market.Offerta;
+import server.model.notify.AvversarioNotify;
 import server.model.notify.ClassificaNotify;
 import server.model.notify.GameStateNotify;
 import server.model.notify.GiocatoreNotify;
@@ -351,6 +352,12 @@ public class GameState extends Observable<Notify> {
 
 		for (Giocatore g : giocatori) {
 			this.notifyObserver(new GiocatoreNotify(g, Arrays.asList(g)));
+			List<Giocatore> avversari = new ArrayList<>(giocatori);
+			avversari.remove(g);
+			for (Giocatore a : avversari) {
+				this.notifyObserver(new AvversarioNotify(a, Arrays.asList(g)));
+			}
+
 		}
 		this.stato = new StartEnd(this);
 
