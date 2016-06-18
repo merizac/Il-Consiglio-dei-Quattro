@@ -11,4 +11,4 @@ BonusMoneta 1 BonusAiutanti 1
 BonusAiutanti 2
 BonusAiutanti 1
 BonusAiutanti 1 BonusCartePolitica 1
-BonusCartePolitica 1
+BonusCartePolitica 1 BonusPuntiVittoria 1

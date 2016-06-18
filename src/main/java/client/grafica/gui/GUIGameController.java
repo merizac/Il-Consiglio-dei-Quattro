@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import common.gameDTO.CartaPoliticaDTO;
+import common.gameDTO.CittàDTO;
 import common.azioniDTO.AcquistoTesseraPermessoDTO;
 import common.azioniDTO.AzioneDTO;
 import common.azioniDTO.CambioTesserePermessoDTO;
@@ -22,6 +23,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import server.model.bonus.Bonus;
 import server.model.game.TesseraPermesso;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
@@ -32,6 +34,7 @@ public class GUIGameController {
 	private GUI gui;
 	private Map<String, Image> mappaCarte=new HashMap<>();
 	private Map<String, Image> mappaTessere=new HashMap<>();
+	private Map<String, Image> mappaGettoni = new HashMap<>();
 	
 	@FXML
 	private Text bianca;
@@ -76,6 +79,20 @@ public class GUIGameController {
 
 	
 	public GUIGameController(){
+		this.mappaGettoni.put("BonusPuntiNobiltà 1", new Image(getClass().getResource("css/gettoni/15.png").toExternalForm()));
+		this.mappaGettoni.put("BonusPuntiNobiltà 1", new Image(getClass().getResource("css/gettoni/1.png").toExternalForm()));
+		this.mappaGettoni.put("BonusCartePolitica 1", new Image(getClass().getResource("css/gettoni/7.png").toExternalForm()));
+		this.mappaGettoni.put("BonusPuntiVittoria 1", new Image(getClass().getResource("css/gettoni/14.png").toExternalForm()));
+		this.mappaGettoni.put("BonusPuntiVittoria 2", new Image(getClass().getResource("css/gettoni/6.png").toExternalForm()));
+		this.mappaGettoni.put("BonusPuntiVittoria 3", new Image(getClass().getResource("css/gettoni/3.png").toExternalForm()));
+		this.mappaGettoni.put("BonusMoneta 3", new Image(getClass().getResource("css/gettoni/10.png").toExternalForm()));
+		this.mappaGettoni.put("BonusMoneta 2", new Image(getClass().getResource("css/gettoni/12.png").toExternalForm()));
+		this.mappaGettoni.put("BonusMoneta 1", new Image(getClass().getResource("css/gettoni/5.png").toExternalForm()));
+		this.mappaGettoni.put("BonusMoneta 1 BonusAiutanti 1", new Image(getClass().getResource("css/gettoni/13.png").toExternalForm()));
+		this.mappaGettoni.put("BonusAiutanti 2", new Image(getClass().getResource("css/gettoni/2.png").toExternalForm()));
+		this.mappaGettoni.put("BonusAiutanti 1", new Image(getClass().getResource("css/gettoni/11.png").toExternalForm()));
+		this.mappaGettoni.put("BonusAiutanti 1 BonusCartePolitica 1", new Image(getClass().getResource("css/gettoni/4.png").toExternalForm()));
+		this.mappaGettoni.put("BonusCartePolitica 1 BonusPuntiVittoria 1", new Image(getClass().getResource("css/gettoni/9.png").toExternalForm()));
 		this.mappaCarte.put("Bianco", new Image(getClass().getResource("css/politicCard/Bianco.png").toExternalForm()));
 		this.mappaCarte.put("Nero", new Image(getClass().getResource("css/politicCard/Nero.png").toExternalForm()));
 		this.mappaCarte.put("Viola", new Image(getClass().getResource("css/politicCard/Viola.png").toExternalForm()));
@@ -83,7 +100,7 @@ public class GUIGameController {
 		this.mappaCarte.put("Arancione", new Image(getClass().getResource("css/politicCard/Arancione.png").toExternalForm()));
 		this.mappaCarte.put("Azzurro", new Image(getClass().getResource("css/politicCard/Azzurro.png").toExternalForm()));
 		this.mappaCarte.put("Multicolore", new Image(getClass().getResource("css/politicCard/Multicolore.png").toExternalForm()));
-		this.mappaTessere.put("TesseraPermesso [ ( Arkon ), (  ) ]", new Image(getClass().getResource("css/permitTile/3.6.png").toExternalForm()));
+		//this.mappaTessere.put("TesseraPermesso [ ( Arkon ), (  ) ]", new Image(getClass().getResource("css/permitTile/3.6.png").toExternalForm()));
 	}
 	
 	/**
@@ -154,6 +171,9 @@ public class GUIGameController {
 		}.setCarte(this.cartePolitica,this.mappaCarte));	
 	}
 
+	public void mostraGettoni(List<CittàDTO> città){
+		
+	}
 
 	public void mostraTesserePermesso(List<TesseraPermessoDTO> tesserePermesso) {
 		Platform.runLater(new Runnable() {
@@ -163,21 +183,13 @@ public class GUIGameController {
 			@Override
 			public void run() {
 				try{
-					/*for(int i=0; i<tesserePermesso.size(); i++){
+					for(int i=0; i<tesserePermesso.size(); i++){
 						ImageView image = new ImageView();
 						image.setFitHeight(60);
 						image.setPreserveRatio(true);
 						image.setImage(new Image(getClass().getResource("/client/grafica/gui/css/permitTile/PermitWhite.png").toExternalForm()));
-						tessere.getChildren().add(image);*/
-					for(TesseraPermessoDTO t:tesserePermesso){
-						Pane pane=new Pane();
-						pane.setStyle("-fx-background-image: url('./login.jpg');-fx-background-repeat: stretch;-fx-background-size: contain;-fx-background-position: center center;");
-						VBox valori=new VBox();
-						
-						
-						
-						pane.getChildren().add(valori);
-						tessere.getChildren().add(pane);
+						tessere.getChildren().add(image);
+				
 					}}
 				catch(Exception e){
 					e.printStackTrace();

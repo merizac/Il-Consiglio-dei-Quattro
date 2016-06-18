@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
-
 import client.connessione.Connessione;
 import client.connessione.ConnessioneRMI;
 import client.connessione.ConnessioneSocket;
