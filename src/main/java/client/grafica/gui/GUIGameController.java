@@ -1,6 +1,8 @@
 package client.grafica.gui;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import common.gameDTO.CartaPoliticaDTO;
 import common.azioniDTO.AcquistoTesseraPermessoDTO;
@@ -17,7 +19,10 @@ import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import server.model.game.TesseraPermesso;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 
@@ -25,6 +30,8 @@ public class GUIGameController {
 
 	private GameStateDTO gameStateDTO;
 	private GUI gui;
+	private Map<String, Image> mappaCarte=new HashMap<>();
+	private Map<String, Image> mappaTessere=new HashMap<>();
 	
 	@FXML
 	private Text bianca;
@@ -67,7 +74,18 @@ public class GUIGameController {
 	@FXML
 	private Button secondaAzionePrincipale;
 
-
+	
+	public GUIGameController(){
+		this.mappaCarte.put("Bianco", new Image(getClass().getResource("css/politicCard/Bianco.png").toExternalForm()));
+		this.mappaCarte.put("Nero", new Image(getClass().getResource("css/politicCard/Nero.png").toExternalForm()));
+		this.mappaCarte.put("Viola", new Image(getClass().getResource("css/politicCard/Viola.png").toExternalForm()));
+		this.mappaCarte.put("Rosa", new Image(getClass().getResource("css/politicCard/Rosa.png").toExternalForm()));
+		this.mappaCarte.put("Arancione", new Image(getClass().getResource("css/politicCard/Arancione.png").toExternalForm()));
+		this.mappaCarte.put("Azzurro", new Image(getClass().getResource("css/politicCard/Azzurro.png").toExternalForm()));
+		this.mappaCarte.put("Multicolore", new Image(getClass().getResource("css/politicCard/Multicolore.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso [ ( Arkon ), (  ) ]", new Image(getClass().getResource("css/permitTile/3.6.png").toExternalForm()));
+	}
+	
 	/**
 	 * @param gameStateDTO
 	 *            the gameStateDTO to set
@@ -112,7 +130,7 @@ public class GUIGameController {
 		Platform.runLater(new Runnable() {
 			
 			HBox carte;
-			
+			Map<String, Image> mappaCarte;
 			@Override
 			public void run() {
 				try{
@@ -120,7 +138,7 @@ public class GUIGameController {
 						ImageView image = new ImageView();
 						image.setFitHeight(60);
 						image.setPreserveRatio(true);
-						image.setImage(new Image(getClass().getResource("/client/grafica/gui/css/politicCard/"+c.getColore()+".png").toExternalForm()));
+						image.setImage(this.mappaCarte.get(c.getColore()));
 						carte.getChildren().add(image);
 					}}
 				catch(Exception e){
@@ -128,11 +146,12 @@ public class GUIGameController {
 				}
 			}
 			
-			public Runnable setCarte (HBox carte){
+			public Runnable setCarte (HBox carte, Map<String, Image> mappaCarte){
 				this.carte= carte;
+				this.mappaCarte=mappaCarte;
 				return this;
 			}
-		}.setCarte(this.cartePolitica));	
+		}.setCarte(this.cartePolitica,this.mappaCarte));	
 	}
 
 
@@ -144,12 +163,21 @@ public class GUIGameController {
 			@Override
 			public void run() {
 				try{
-					for(int i=0; i<tesserePermesso.size(); i++){
+					/*for(int i=0; i<tesserePermesso.size(); i++){
 						ImageView image = new ImageView();
 						image.setFitHeight(60);
 						image.setPreserveRatio(true);
 						image.setImage(new Image(getClass().getResource("/client/grafica/gui/css/permitTile/PermitWhite.png").toExternalForm()));
-						tessere.getChildren().add(image);
+						tessere.getChildren().add(image);*/
+					for(TesseraPermessoDTO t:tesserePermesso){
+						Pane pane=new Pane();
+						pane.setStyle("-fx-background-image: url('./login.jpg');-fx-background-repeat: stretch;-fx-background-size: contain;-fx-background-position: center center;");
+						VBox valori=new VBox();
+						
+						
+						
+						pane.getChildren().add(valori);
+						tessere.getChildren().add(pane);
 					}}
 				catch(Exception e){
 					e.printStackTrace();

@@ -16,7 +16,7 @@
 }
 
 #login {
-  -fx-background-image: url("./login.jpg");
+  -fx-background-image: url('./login.jpg');
   -fx-background-repeat: stretch; 
   -fx-background-size: 420 300;/*contain */
   -fx-background-position: center center;
