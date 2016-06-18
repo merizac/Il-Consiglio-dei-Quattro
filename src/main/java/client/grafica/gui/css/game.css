@@ -24,3 +24,8 @@
     -fx-text-fill: black;
     -fx-opacity: 1.0;   
 }
+
+.scoreGiocatori{
+	-fx-font: 12.0px Tahoma;
+    -fx-fill: white;
+}

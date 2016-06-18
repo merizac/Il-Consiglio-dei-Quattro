@@ -6,6 +6,7 @@ import java.util.List;
 
 import common.azioniDTO.AzioneDTO;
 import server.model.bonus.Bonus;
+import server.model.bonus.BonusPuntiVittoria;
 import server.model.game.CartaPolitica;
 import server.model.game.Giocatore;
 import server.model.game.TesseraPermesso;
@@ -19,7 +20,7 @@ public class GiocatoreDTO implements Serializable {
 	private List<CartaPoliticaDTO> cartePolitica;
 	private List<TesseraPermessoDTO> tesserePermesso;
 	private List<TesseraPermessoDTO> tesserePermessoUsate; 
-	private List<Bonus> tessereBonus;
+	private int tessereBonus;
 	private int empori;
 	private int aiutanti;
 	private int punteggioVittoria;
@@ -32,7 +33,6 @@ public class GiocatoreDTO implements Serializable {
 		this.cartePolitica=new ArrayList<>();
 		this.tesserePermesso= new ArrayList<>();
 		this.tesserePermessoUsate =new ArrayList<>();
-		this.tessereBonus =new ArrayList<>();
 	}
 	/**
 	 * @return the nome
@@ -97,13 +97,13 @@ public class GiocatoreDTO implements Serializable {
 	/**
 	 * @return the tessereBonus
 	 */
-	public List<Bonus> getTessereBonus() {
+	public int getTessereBonus() {
 		return tessereBonus;
 	}
 	/**
 	 * @param tessereBonus the tessereBonus to set
 	 */
-	public void setTessereBonus(List<Bonus> tessereBonus) {
+	public void setTessereBonus(int tessereBonus) {
 		this.tessereBonus = tessereBonus;
 	}
 	/**
@@ -195,7 +195,11 @@ public class GiocatoreDTO implements Serializable {
 			tesseraPermessoUsataDTO.inizializza(t);
 			this.tesserePermessoUsate.add(tesseraPermessoUsataDTO);
 		}
-		this.setTessereBonus(giocatore.getTessereBonus());	
+		int n=0;
+		for(Bonus b:giocatore.getTessereBonus()){
+			n=((BonusPuntiVittoria) b).getPuntiVittoria();
+		}
+		this.setTessereBonus(n);	
 	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()

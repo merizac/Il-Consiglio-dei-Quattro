@@ -5,15 +5,19 @@ import java.util.List;
 import client.connessione.Connessione;
 import client.grafica.Grafica;
 import common.azioniDTO.AzioneDTO;
+import common.gameDTO.CartaPoliticaDTO;
+import common.gameDTO.ConsigliereDTO;
 import common.gameDTO.GameStateDTO;
 import common.gameDTO.GiocatoreDTO;
 import common.gameDTO.OffertaDTO;
+import common.gameDTO.RegioneDTO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import server.view.clientNotify.ClientNotify;
 
@@ -93,19 +97,31 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public void mostraGame(GameStateDTO gameStateDTO) throws IOException {
-
+		/*for(RegioneDTO r: gameStateDTO.getRegioni()){
+			for(ConsigliereDTO c: r.getBalcone().getConsiglieri()){
+//				controller.setConsigliere(new ImageView(url));
+			}
+		}*/
 	}
 
 	@Override
 	public void mostraGiocatore(GiocatoreDTO giocatoreDTO) {
-		// TODO Auto-generated method stub
-
+		gameStateDTO.getGiocatoreDTO().getTesserePermesso().add(gameStateDTO.getRegioni().get(0).getTesserePermessoScoperte().get(0));
+		controller.mostraTesserePermesso(giocatoreDTO.getTesserePermesso());
+		controller.mostraCartePolitica(giocatoreDTO.getCartePolitica());
+		controller.mostraNomeGiocatore(giocatoreDTO.getNome());
+		controller.mostraPuntiGiocatore(giocatoreDTO.getPunteggioVittoria());
+		controller.mostraMoneteGiocatore(giocatoreDTO.getPunteggioRicchezza());
+		controller.mostraAiutantiGiocatore(giocatoreDTO.getAiutanti());
+		controller.mostraEmporiGiocatore(giocatoreDTO.getEmpori());
+		controller.mostraTessereBonusGiocatore(giocatoreDTO.getTessereBonus());
 	}
 
 	@Override
 	public void mostraMessaggio(String messaggio) {
-		// TODO Auto-generated method stub
-
+		Text text=new Text();
+		text.setText(messaggio);
+		
 	}
 
 	@Override

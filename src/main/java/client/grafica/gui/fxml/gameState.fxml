@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
@@ -10,11 +11,11 @@
    <children>
       <BorderPane layoutX="-11.0" layoutY="-8.0" prefHeight="720.0" prefWidth="1253.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="0.0">
          <left>
-            <SplitPane dividerPositions="0.636150234741784" prefHeight="635.0" prefWidth="1248.0" BorderPane.alignment="CENTER">
+            <SplitPane dividerPositions="0.6142969363707776" prefHeight="599.0" prefWidth="1275.0" BorderPane.alignment="CENTER">
                <items>
-                  <AnchorPane>
+                  <AnchorPane prefHeight="603.0" prefWidth="773.0">
                      <children>
-                        <ImageView fitHeight="633.0" fitWidth="861.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="629.0" fitWidth="821.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../css/mappa.jpg" />
                            </image>
@@ -48,7 +49,7 @@
                                                             <Image url="@../css/Assistant.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <Text layoutX="11.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NomeGiocatore" />
+                                                      <Text fx:id="nomeGiocatore" layoutX="14.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="93.0" />
                                                       <ImageView fitHeight="38.0" fitWidth="41.0" layoutX="250.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
                                                             <Image url="@../css/Emporium.png" />
@@ -59,6 +60,11 @@
                                                             <Image url="@../css/BonusGiocatori.png" />
                                                          </image>
                                                       </ImageView>
+                                                      <Text fx:id="puntiGiocatore" layoutX="124.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="scoreGiocatori" wrappingWidth="22.0" />
+                                                      <Text fx:id="moneteGiocatore" layoutX="177.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="scoreGiocatori" wrappingWidth="22.0" />
+                                                      <Text fx:id="aiutantiGiocatore" layoutX="223.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="scoreGiocatori" wrappingWidth="15.0" />
+                                                      <Text fx:id="emporiGiocatore" layoutX="259.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="scoreGiocatori" wrappingWidth="22.0" />
+                                                      <Text fx:id="tesserebonusGiocatore" layoutX="378.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="scoreGiocatori" wrappingWidth="24.0" />
                                                    </children>
                                                 </AnchorPane>
                                              </children>
@@ -288,94 +294,21 @@
                         </AnchorPane>
                     </content>
                   </TitledPane>
-                  <TitledPane animated="false" collapsible="false" text="Carte Politica">
+                  <TitledPane animated="false" collapsible="false" prefHeight="86.0" prefWidth="245.0" text="Carte Politica">
                      <content>
-                        <ScrollPane prefHeight="60.0" prefWidth="230.0">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="60.0" prefWidth="239.0" styleClass="background" stylesheets="@../css/game.css">
-                                 <children>
-                                    <ImageView fitHeight="55.0" fitWidth="43.0" layoutX="2.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../css/politicCard/bianca.png" />
-                                       </image>
-                                    </ImageView>
-                                    <ImageView fitHeight="55.0" fitWidth="43.0" layoutX="39.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../css/politicCard/nera.png" />
-                                       </image>
-                                    </ImageView>
-                                    <ImageView fitHeight="55.0" fitWidth="43.0" layoutX="113.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../css/politicCard/rosa.png" />
-                                       </image>
-                                    </ImageView>
-                                    <ImageView fitHeight="55.0" fitWidth="43.0" layoutX="76.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../css/politicCard/viola.png" />
-                                       </image>
-                                    </ImageView>
-                                    <ImageView fitHeight="55.0" fitWidth="43.0" layoutX="150.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../css/politicCard/blu.png" />
-                                       </image>
-                                    </ImageView>
-                                    <ImageView fitHeight="55.0" fitWidth="43.0" layoutX="187.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../css/politicCard/multicolore.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Text fx:id="bianca" layoutX="11.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="19.0" />
-                                    <Text fx:id="bianca1" layoutX="48.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="19.0" />
-                                    <Text fx:id="bianca11" layoutX="85.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="19.0" />
-                                    <Text fx:id="bianca111" layoutX="122.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="19.0" />
-                                    <Text fx:id="bianca1111" layoutX="159.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="19.0" />
-                                    <Text fx:id="multicolore" layoutX="196.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="19.0" />
-                                 </children>
-                              </AnchorPane>
-                          </content>
+                        <ScrollPane prefViewportHeight="60.0" prefViewportWidth="200.0" prefWidth="245.0">
+                           <content>
+                              <HBox fx:id="cartePolitica" minWidth="245.0" prefHeight="60.0" styleClass="background" stylesheets="@../css/game.css" />
+                           </content>
                         </ScrollPane>
                      </content>
                   </TitledPane>
-                  <TitledPane animated="false" collapsible="false" prefHeight="86.0" prefWidth="334.0" text="Tessere Permesso">
+                  <TitledPane animated="false" collapsible="false" maxWidth="325.0" prefHeight="86.0" prefWidth="325.0" text="Tessere Permesso">
                      <content>
-                        <ScrollPane prefHeight="60.0" prefWidth="165.0">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="60.0" prefWidth="337.0" styleClass="background" stylesheets="@../css/game.css">
-                                 <children>
-                                    <ImageView fitHeight="58.0" fitWidth="54.0" layoutX="3.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../css/permitTile/PermitWhite.png" />
-                                       </image>
-                                    </ImageView>
-                                    <ImageView fitHeight="58.0" fitWidth="54.0" layoutX="57.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../css/permitTile/PermitWhite.png" />
-                                       </image>
-                                    </ImageView>
-                                    <ImageView fitHeight="58.0" fitWidth="54.0" layoutX="165.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../css/permitTile/PermitWhite.png" />
-                                       </image>
-                                    </ImageView>
-                                    <ImageView fitHeight="58.0" fitWidth="54.0" layoutX="111.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../css/permitTile/PermitWhite.png" />
-                                       </image>
-                                    </ImageView>
-                                    <ImageView fitHeight="58.0" fitWidth="54.0" layoutX="219.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../css/permitTile/PermitWhite.png" />
-                                       </image>
-                                    </ImageView>
-                                    <ImageView fitHeight="58.0" fitWidth="54.0" layoutX="273.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../css/permitTile/PermitWhite.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Text layoutX="285.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usate" />
-                                 </children>
-                              </AnchorPane>
-                          </content>
+                        <ScrollPane prefViewportHeight="60.0" prefViewportWidth="56.0" prefWidth="325.0">
+                           <content>
+                              <HBox fx:id="tesserePermesso" layoutX="3.0" layoutY="3.0" maxHeight="60.0" prefHeight="60.0" prefWidth="325.0" spacing="20.0" styleClass="background" stylesheets="@../css/game.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </content>
                         </ScrollPane>
                      </content>
                   </TitledPane>
