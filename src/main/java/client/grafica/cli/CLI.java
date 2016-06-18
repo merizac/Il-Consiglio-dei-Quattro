@@ -388,7 +388,9 @@ public class CLI implements Grafica {
 	@Override
 	public void mostraOfferte(List<OffertaDTO> offerte) {
 		for (OffertaDTO o : offerte) {
-			System.out.println("\n" + o.getMarketableDTO() + " prezzo: " + o.getPrezzo());
+			int i=1;
+			System.out.println("\n" + o.getMarketableDTO() + " prezzo: " + o.getPrezzo()+ " ["+i+"]");
+			i++;
 		}
 	}
 	

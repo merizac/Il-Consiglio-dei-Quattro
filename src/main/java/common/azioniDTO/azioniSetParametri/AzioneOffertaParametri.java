@@ -15,8 +15,8 @@ public class AzioneOffertaParametri implements SetterParametri {
 
 	@Override
 	public void setParametri(Grafica grafica, GameStateDTO gameStateDTO) {
-		int prezzo=grafica.scegliPrezzo();
 		MarketableDTO marketableDTO=grafica.scegliMarketable();
+		int prezzo=grafica.scegliPrezzo();
 		
 		azioneOffertaDTO.setMarketableDTO(marketableDTO);
 		azioneOffertaDTO.setPrezzo(prezzo);
