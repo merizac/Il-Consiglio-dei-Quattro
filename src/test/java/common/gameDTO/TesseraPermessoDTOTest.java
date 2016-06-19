@@ -3,7 +3,9 @@ package common.gameDTO;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.BeforeClass;
@@ -98,5 +100,36 @@ public class TesseraPermessoDTOTest {
 	public void testCreaMarketableDTO() {
 
 	}
+
+	@Test
+	public void testToString() {
+		List<Città> c=new ArrayList<>();
+		c.add(gameState.getRegioni().get(0).getCittàRegione().get(2));
+		c.add(gameState.getRegioni().get(0).getCittàRegione().get(1));
+		c.add(gameState.getRegioni().get(0).getCittàRegione().get(0));
+		
+		TesseraPermesso t=new TesseraPermesso(c, Arrays.asList(new BonusAiutanti(2)), gameState.getRegioni().get(0));
+		TesseraPermessoDTO tDTO=new TesseraPermessoDTO();
+		tDTO.inizializza(t);
+		System.out.println(tDTO);
+		assertEquals("TesseraPermesso  città:[Arkon, Burgen, Castrum], bonus:[BonusAiutanti 2]", tDTO.toString());
+	}
+	
+	@Test 
+	public void testOrdinaCittà(){
+		List<Città> c=new ArrayList<>();
+		c.add(gameState.getRegioni().get(0).getCittàRegione().get(2));
+		c.add(gameState.getRegioni().get(0).getCittàRegione().get(1));
+		c.add(gameState.getRegioni().get(0).getCittàRegione().get(0));
+		
+		TesseraPermesso t=new TesseraPermesso(c, Arrays.asList(new BonusAiutanti(2)), gameState.getRegioni().get(0));
+		TesseraPermessoDTO tDTO=new TesseraPermessoDTO();
+		tDTO.inizializza(t);
+		List<String> città=tDTO.ordinaCittà();
+		assertEquals(città.get(0),"Arkon");
+		assertEquals(città.get(1),"Burgen");
+		assertEquals(città.get(2),"Castrum");
+	}
+
 
 }
