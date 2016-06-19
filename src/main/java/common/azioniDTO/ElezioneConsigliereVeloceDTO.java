@@ -1,12 +1,13 @@
 package common.azioniDTO;
 
 import common.azioniDTO.azioneVisitor.AzioneVisitor;
+import common.azioniDTO.azioniSetParametri.ElezioneConsigliereVeloceParametri;
 import common.gameDTO.BalconeDTO;
 import common.gameDTO.ConsigliereDTO;
 import server.model.azioni.Azione;
 import utility.ParameterException;
 
-public class ElezioneConsigliereVeloceDTO implements AzioneDTO {
+public class ElezioneConsigliereVeloceDTO implements AzioneDTO, AzioneParametri {
 
 	/**
 	 * 
@@ -55,6 +56,9 @@ public class ElezioneConsigliereVeloceDTO implements AzioneDTO {
 	 */
 	public void setBalcone(BalconeDTO balcone) {
 		this.balcone = balcone;
+	}
+	public ElezioneConsigliereVeloceParametri parametri() {
+		return new ElezioneConsigliereVeloceParametri(this);
 	}
 	
 }

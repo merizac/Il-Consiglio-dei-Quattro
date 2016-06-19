@@ -6,11 +6,9 @@ import server.model.game.GameState;
 import server.model.notify.GameStateNotify;
 import server.model.notify.GiocatoreNotify;
 import server.model.notify.MessageNotify;
-
 import java.util.Arrays;
-
 import common.azioniDTO.AzioneDTO;
-import common.azioniDTO.ElezioneConsigliereDTO;
+import common.azioniDTO.ElezioneConsigliereVeloceDTO;
 
 public class ElezioneConsigliereVeloce extends AzioneVeloce {
 
@@ -83,7 +81,7 @@ public class ElezioneConsigliereVeloce extends AzioneVeloce {
 	 */
 	@Override
 	public AzioneDTO getAzioneDTO() {
-		return new ElezioneConsigliereDTO();
+		return new ElezioneConsigliereVeloceDTO();
 	}
 
 }

@@ -1,12 +1,13 @@
 package common.azioniDTO;
 
 import common.azioniDTO.azioneVisitor.AzioneVisitor;
+import common.azioniDTO.azioniSetParametri.ElezioneConsigliereParametri;
 import common.gameDTO.BalconeDTO;
 import common.gameDTO.ConsigliereDTO;
 import server.model.azioni.Azione;
 import utility.ParameterException;
 
-public class ElezioneConsigliereDTO implements AzioneDTO {
+public class ElezioneConsigliereDTO implements AzioneDTO,AzioneParametri {
 
 	private static final long serialVersionUID = 4208578701329743704L;
 	private ConsigliereDTO consigliereDTO;
@@ -40,6 +41,11 @@ public class ElezioneConsigliereDTO implements AzioneDTO {
 	 */
 	public void setBalconeDTO(BalconeDTO balconeDTO) {
 		this.balconeDTO = balconeDTO;
+	}
+	
+	@Override
+	public ElezioneConsigliereParametri parametri(){
+		return new ElezioneConsigliereParametri(this);
 	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
