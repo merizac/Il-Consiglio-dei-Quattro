@@ -122,6 +122,20 @@ public class GUIGameController {
 	private ImageView gettoneOsium;
 	@FXML
 	private ImageView gettoneMerkatim;
+	@FXML
+	private ImageView mare;
+	@FXML
+	private ImageView collina;
+	@FXML
+	private ImageView montagna;
+	@FXML
+	private ImageView oro;
+	@FXML
+	private ImageView argento;
+	@FXML
+	private ImageView bronzo;
+	@FXML
+	private ImageView ferro;
 
 	public GUIGameController() {
 		this.mappaGettoni.put("[BonusPuntiNobiltà 1]",
@@ -311,7 +325,20 @@ public class GUIGameController {
 	public void mostraTessereBonusGiocatore(int punti) {
 		tesserebonusGiocatore.setText(Integer.toString(punti));
 	}
+	
+	public void mostraBonusRegione() {
+		mare.setImage(new Image(getClass().getResource("css/tessereBonus/mare.png").toExternalForm()));
+		collina.setImage(new Image(getClass().getResource("css/tessereBonus/collina.png").toExternalForm()));
+		montagna.setImage(new Image(getClass().getResource("css/tessereBonus/montagna.png").toExternalForm()));
+	}
 
+	public void mostraBonusColore() {
+		oro.setImage(new Image(getClass().getResource("css/tessereBonus/oro.png").toExternalForm()));
+		argento.setImage(new Image(getClass().getResource("css/tessereBonus/argento.png").toExternalForm()));
+		bronzo.setImage(new Image(getClass().getResource("css/tessereBonus/bronzo.png").toExternalForm()));
+		ferro.setImage(new Image(getClass().getResource("css/tessereBonus/ferro.png").toExternalForm()));
+	}
+	
 	public void mostraCartePolitica(List<CartaPoliticaDTO> cartePolitica) {
 		Platform.runLater(new Runnable() {
 

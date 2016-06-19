@@ -70,6 +70,13 @@
                         <ImageView fx:id="gettoneMerkatim" fitHeight="44.0" fitWidth="46.0" layoutX="554.0" layoutY="284.0" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fx:id="gettoneNaris" fitHeight="44.0" fitWidth="46.0" layoutX="699.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fx:id="gettoneOsium" fitHeight="44.0" fitWidth="46.0" layoutX="706.0" layoutY="227.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="mare" fitHeight="37.0" fitWidth="66.0" layoutX="183.0" layoutY="358.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="collina" fitHeight="37.0" fitWidth="66.0" layoutX="446.0" layoutY="357.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="montagna" fitHeight="37.0" fitWidth="66.0" layoutX="731.0" layoutY="357.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="ferro" fitHeight="32.0" fitWidth="59.0" layoutX="620.0" layoutY="586.0" pickOnBounds="true" preserveRatio="true" rotate="45.0" />
+                        <ImageView fx:id="bronzo" fitHeight="32.0" fitWidth="59.0" layoutX="660.0" layoutY="584.0" pickOnBounds="true" preserveRatio="true" rotate="45.0" />
+                        <ImageView fx:id="argento" fitHeight="32.0" fitWidth="59.0" layoutX="706.0" layoutY="578.0" pickOnBounds="true" preserveRatio="true" rotate="45.0" />
+                        <ImageView fx:id="oro" fitHeight="32.0" fitWidth="59.0" layoutX="747.0" layoutY="574.0" pickOnBounds="true" preserveRatio="true" rotate="45.0" />
                      </children>
                   </AnchorPane>
                   <SplitPane dividerPositions="0.726984126984127" orientation="VERTICAL" prefHeight="610.0" prefWidth="457.0">
