@@ -29,8 +29,18 @@
                                     <Image url="@../css/permitTile/Mare.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="tesseraMare1" fitHeight="68.0" fitWidth="61.0" layoutX="66.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="tesseraMare2" fitHeight="68.0" fitWidth="61.0" layoutX="132.0" pickOnBounds="true" preserveRatio="true" />
+                              <AnchorPane layoutX="66.0" layoutY="1.0">
+                                 <children>
+                                    <Button fx:id="bottoneTM1" mnemonicParsing="false" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <ImageView fx:id="tesseraMare1" fitHeight="68.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="132.0">
+                                 <children>
+                                    <ImageView fx:id="tesseraMare2" fitHeight="68.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true" />
+                                    <Button fx:id="bottoneTM2" mnemonicParsing="false" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
                            </children>
                         </AnchorPane>
                         <AnchorPane layoutX="286.0" layoutY="417.0" prefHeight="70.0" prefWidth="193.0">
@@ -40,7 +50,12 @@
                                     <Image url="@../css/permitTile/Collina.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="tesseraCollina2" fitHeight="68.0" fitWidth="61.0" layoutX="132.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
+                              <AnchorPane layoutX="132.0" layoutY="1.0">
+                                 <children>
+                                    <ImageView fx:id="tesseraCollina2" fitHeight="68.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true" />
+                                    <Button mnemonicParsing="false" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
                               <ImageView fx:id="tesseraCollina1" fitHeight="68.0" fitWidth="61.0" layoutX="66.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
                            </children>
                         </AnchorPane>
@@ -51,10 +66,49 @@
                                     <Image url="@../css/permitTile/Montagna.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="tesseraMontagna1" fitHeight="68.0" fitWidth="61.0" layoutX="66.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="tesseraMontagna2" fitHeight="68.0" fitWidth="61.0" layoutX="132.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
+                              <AnchorPane layoutX="66.0" layoutY="2.0">
+                                 <children>
+                                    <ImageView fx:id="tesseraMontagna1" fitHeight="68.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true" />
+                                    <Button mnemonicParsing="false" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="132.0" layoutY="1.0">
+                                 <children>
+                                    <ImageView fx:id="tesseraMontagna2" fitHeight="68.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true" />
+                                    <Button mnemonicParsing="false" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
                            </children>
                         </AnchorPane>
+
+                        <HBox fx:id="balconeMare" layoutX="88.0" layoutY="501.0" prefHeight="30.0" prefWidth="90.0" spacing="3.0" style="-fx-background-color: black;">
+                           <padding>
+                              <Insets left="1.0" right="1.0" top="5.0" />
+                           </padding>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets></HBox>
+                        <HBox fx:id="balconeCollina" layoutX="351.0" layoutY="506.0" prefHeight="30.0" prefWidth="90.0" spacing="3.0" style="-fx-background-color: black;">
+                           <padding>
+                              <Insets left="1.0" right="1.0" top="5.0" />
+                           </padding>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets></HBox>
+                        <HBox fx:id="balconeRe" layoutX="520.0" layoutY="540.0" prefHeight="30.0" prefWidth="92.0" spacing="3.0" style="-fx-background-color: black;">
+                           <padding>
+                              <Insets left="1.0" right="1.0" top="5.0" />
+                           </padding>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets></HBox>
+                        <HBox fx:id="balconeMontagna" layoutX="645.0" layoutY="506.0" prefHeight="30.0" prefWidth="91.0" spacing="3.0" style="-fx-background-color: black;">
+                           <padding>
+                              <Insets left="1.0" right="1.0" top="5.0" />
+                           </padding>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets></HBox>
                         <ImageView fx:id="gettoneArkon" fitHeight="44.0" fitWidth="46.0" layoutX="24.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fx:id="gettoneBurgen" fitHeight="44.0" fitWidth="42.0" layoutX="18.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fx:id="gettoneEsti" fitHeight="44.0" fitWidth="46.0" layoutX="60.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true" />
@@ -82,10 +136,10 @@
                   </AnchorPane>
                   <SplitPane dividerPositions="0.726984126984127" orientation="VERTICAL" prefHeight="610.0" prefWidth="457.0">
                     <items>
-                        <TitledPane animated="false" collapsible="false" prefHeight="459.0" prefWidth="479.0" text="Giocatore">
-                           <content>
-                              <VBox prefHeight="370.0" prefWidth="465.0">
-                                 <children>
+                        <VBox prefHeight="370.0" prefWidth="465.0">
+                           <children>
+                              <TitledPane animated="false" collapsible="false" prefHeight="177.0" prefWidth="465.0" text="Giocatore">
+                                 <content>
                                     <Pane prefHeight="59.0" prefWidth="458.0">
                                        <children>
                                           <AnchorPane layoutX="-10.0" layoutY="-11.0" prefHeight="73.0" prefWidth="462.0">
@@ -105,7 +159,7 @@
                                                       <Image url="@../css/Assistant.png" />
                                                    </image>
                                                 </ImageView>
-                                                <Text fx:id="nomeGiocatore" layoutX="14.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="93.0" />
+                                                <Text fx:id="nomeGiocatore" layoutX="14.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="93.0" />
                                                 <ImageView fitHeight="38.0" fitWidth="41.0" layoutX="250.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../css/Emporium.png" />
@@ -116,7 +170,7 @@
                                                       <Image url="@../css/BonusGiocatori.png" />
                                                    </image>
                                                 </ImageView>
-                                                <Text fx:id="puntiGiocatore" layoutX="124.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="scoreGiocatori" wrappingWidth="22.0" />
+                                                <Text fx:id="puntiGiocatore" layoutX="124.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="scoreGiocatori" wrappingWidth="22.0" />
                                                 <Text fx:id="moneteGiocatore" layoutX="177.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="scoreGiocatori" wrappingWidth="22.0" />
                                                 <Text fx:id="aiutantiGiocatore" layoutX="223.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="scoreGiocatori" wrappingWidth="15.0" />
                                                 <Text fx:id="emporiGiocatore" layoutX="259.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="scoreGiocatori" wrappingWidth="22.0" />
@@ -125,34 +179,66 @@
                                           </AnchorPane>
                                        </children>
                                     </Pane>
-                                    <Pane prefHeight="28.0" prefWidth="458.0">
+                                 </content>
+                              </TitledPane>
+                              <TitledPane alignment="CENTER" animated="false" collapsible="false" text="Azioni Principali">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                        <children>
-                                          <AnchorPane layoutY="-2.0" prefHeight="33.0" prefWidth="460.0">
+                                          <GridPane layoutX="-8.0" layoutY="8.0" prefHeight="90.0" prefWidth="463.0">
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="234.0" minWidth="10.0" prefWidth="234.0" />
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="233.0" minWidth="10.0" prefWidth="233.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
                                              <children>
-                                                <Label layoutX="6.0" layoutY="6.0" text="Guarda cosa devi fare!" />
-                                                <Text layoutX="135.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="310.13671875" />
+                                                <Button mnemonicParsing="false" prefWidth="209.0" text="Elezione Consigliere" GridPane.halignment="CENTER" />
+                                                <Button mnemonicParsing="false" prefWidth="209.0" text="Acquisto Tessera Permesso" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                                                <Button mnemonicParsing="false" text="Costruzione Tessera Permesso" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                                                <Button mnemonicParsing="false" prefWidth="209.0" text="Costruzione Aiuto Re" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                                              </children>
-                                          </AnchorPane>
+                                          </GridPane>
                                        </children>
-                                    </Pane>
-                                    <Pane prefHeight="162.0" prefWidth="458.0">
+                                    </AnchorPane>
+                                </content>
+                              </TitledPane>
+                              <TitledPane alignment="CENTER" animated="false" collapsible="false" text="Azioni Veloci">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                        <children>
-                                          <Label layoutX="187.0" layoutY="6.0" text="Azioni Principali" />
-                                          <Button layoutX="53.0" layoutY="23.0" mnemonicParsing="false" text="Elezione consigliere" />
-                                          <Button layoutX="262.0" layoutY="23.0" mnemonicParsing="false" text="Acquisto tessera permesso" />
-                                          <Button layoutX="14.0" layoutY="57.0" mnemonicParsing="false" text="Costruzione con tessera permesso" />
-                                          <Button layoutX="268.0" layoutY="57.0" mnemonicParsing="false" text="Costruzione con aiuto re" />
-                                          <Button layoutX="268.0" layoutY="133.0" mnemonicParsing="false" text="Azione principale aggiuntiva" />
-                                          <Button layoutX="14.0" layoutY="133.0" mnemonicParsing="false" text="Elezione consigliere con aiutante" />
-                                          <Button layoutX="262.0" layoutY="99.0" mnemonicParsing="false" text="Cambio tessere permesso" />
-                                          <Button layoutX="53.0" layoutY="99.0" mnemonicParsing="false" text="Ingaggio aiutante" />
-                                          <Label layoutX="195.0" layoutY="82.0" text="Azioni Veloci" />
+                                          <GridPane prefHeight="90.0" prefWidth="463.0">
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                             <children>
+                                                <Button mnemonicParsing="false" prefWidth="209.0" text="Ingaggio Aiutante" GridPane.halignment="CENTER" />
+                                                <Button mnemonicParsing="false" prefWidth="209.0" text="Elezione Consigliere" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                                                <Button mnemonicParsing="false" prefWidth="209.0" text="Cambio Tessere Permeso" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                                                <Button mnemonicParsing="false" prefWidth="209.0" text="Azione Principale" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                                             </children>
+                                          </GridPane>
                                        </children>
-                                    </Pane>
-                                 </children>
-                              </VBox>
-                           </content>
-                        </TitledPane>
+                                    </AnchorPane>
+                                </content>
+                              </TitledPane>
+                              <ScrollPane maxHeight="130.0" minHeight="130.0" prefHeight="130.0" prefWidth="465.0">
+                                <content>
+                                  <AnchorPane maxWidth="460.0" minHeight="130.0" minWidth="0.0" prefHeight="130.0" prefWidth="465.0">
+                                       <children>
+                                          <TextArea fx:id="message" editable="false" maxWidth="465.0" minHeight="130.0" prefHeight="130.0" prefWidth="465.0" />
+                                       </children></AnchorPane>
+                                </content>
+                              </ScrollPane>
+                           </children>
+                        </VBox>
                         <TabPane prefHeight="31.0" prefWidth="467.0" tabClosingPolicy="UNAVAILABLE">
                           <tabs>
                             <Tab text="Giocatore 1">
@@ -243,7 +329,7 @@
             </SplitPane>
          </left>
          <bottom>
-            <SplitPane dividerPositions="0.2209, 0.42, 0.55" prefHeight="88.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
+            <SplitPane dividerPositions="0.09190887666928516, 0.2867242733699921, 0.5" prefHeight="88.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
                <items>
                   <TitledPane alignment="TOP_LEFT" animated="false" prefHeight="86.0" prefWidth="215.0" text="Riserva" SplitPane.resizableWithParent="false">
                     <content>

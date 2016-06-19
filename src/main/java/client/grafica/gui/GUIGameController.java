@@ -6,13 +6,7 @@ import java.util.Map;
 import common.gameDTO.CartaPoliticaDTO;
 import common.gameDTO.CittàBonusDTO;
 import common.gameDTO.CittàDTO;
-import common.azioniDTO.AcquistoTesseraPermessoDTO;
-import common.azioniDTO.AzioneDTO;
-import common.azioniDTO.CambioTesserePermessoDTO;
-import common.azioniDTO.CostruzioneAiutoReDTO;
-import common.azioniDTO.ElezioneConsigliereDTO;
-import common.azioniDTO.IngaggioAiutanteDTO;
-import common.azioniDTO.SecondaAzionePrincipaleDTO;
+import common.gameDTO.ConsigliereDTO;
 import common.gameDTO.GameStateDTO;
 import common.gameDTO.GiocatoreDTO;
 import common.gameDTO.RegioneDTO;
@@ -23,11 +17,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
-import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 
 public class GUIGameController {
 
@@ -36,6 +28,7 @@ public class GUIGameController {
 	private Map<String, Image> mappaCarte = new HashMap<>();
 	private Map<String, Image> mappaTessere = new HashMap<>();
 	private Map<String, Image> mappaGettoni = new HashMap<>();
+	private Map<String, Image> mappaConsiglieri = new HashMap<>();
 
 	@FXML
 	private Text bianca;
@@ -72,9 +65,6 @@ public class GUIGameController {
 
 	@FXML
 	private VBox giocatori;
-
-	private AzioneDTO azioneCorrente;
-
 	@FXML
 	private Button elezioneConsigliere;
 	@FXML
@@ -92,6 +82,14 @@ public class GUIGameController {
 	@FXML
 	private Button secondaAzionePrincipale;
 
+	@FXML
+	private HBox balconeMare;
+	@FXML
+	private HBox balconeCollina;
+	@FXML
+	private HBox balconeMontagna;
+	@FXML
+	private HBox balconeRe;
 	@FXML
 	private ImageView gettoneArkon;
 	@FXML
@@ -138,8 +136,24 @@ public class GUIGameController {
 	private ImageView ferro;
 	@FXML
 	private ImageView king;
+	@FXML
+	private TextArea message;
 
 	public GUIGameController() {
+
+		this.mappaConsiglieri.put("Arancione",
+				new Image(getClass().getResource("css/consiglieri/Arancione.png").toExternalForm()));
+		this.mappaConsiglieri.put("Azzurro",
+				new Image(getClass().getResource("css/consiglieri/Azzurro.png").toExternalForm()));
+		this.mappaConsiglieri.put("Bianco",
+				new Image(getClass().getResource("css/consiglieri/Bianco.png").toExternalForm()));
+		this.mappaConsiglieri.put("Nero",
+				new Image(getClass().getResource("css/consiglieri/Nero.png").toExternalForm()));
+		this.mappaConsiglieri.put("Rosa",
+				new Image(getClass().getResource("css/consiglieri/Rosa.png").toExternalForm()));
+		this.mappaConsiglieri.put("Viola",
+				new Image(getClass().getResource("css/consiglieri/Viola.png").toExternalForm()));
+
 		this.mappaGettoni.put("[BonusPuntiNobiltà 1]",
 				new Image(getClass().getResource("css/gettoni/15.png").toExternalForm()));
 		this.mappaGettoni.put("[BonusPuntiNobiltà 1]",
@@ -168,6 +182,7 @@ public class GUIGameController {
 				new Image(getClass().getResource("css/gettoni/4.png").toExternalForm()));
 		this.mappaGettoni.put("[BonusCartePolitica 1, BonusPuntiVittoria 1]",
 				new Image(getClass().getResource("css/gettoni/9.png").toExternalForm()));
+
 		this.mappaCarte.put("Bianco", new Image(getClass().getResource("css/politicCard/Bianco.png").toExternalForm()));
 		this.mappaCarte.put("Nero", new Image(getClass().getResource("css/politicCard/Nero.png").toExternalForm()));
 		this.mappaCarte.put("Viola", new Image(getClass().getResource("css/politicCard/Viola.png").toExternalForm()));
@@ -373,37 +388,52 @@ public class GUIGameController {
 
 			@Override
 			public void run() {
-				if (città.get(0) instanceof CittàBonusDTO){
-					gettoneArkon.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(0)).getBonus().toString()));}
-				if (città.get(1) instanceof CittàBonusDTO){
-					gettoneBurgen.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(1)).getBonus().toString()));}
-				if (città.get(2) instanceof CittàBonusDTO){
-					gettoneCastrum.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(2)).getBonus().toString()));}
-				if (città.get(3) instanceof CittàBonusDTO){
-					gettoneDorful.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(3)).getBonus().toString()));}
-				if (città.get(4) instanceof CittàBonusDTO){
-					gettoneEsti.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(4)).getBonus().toString()));}
-				if (città.get(5) instanceof CittàBonusDTO){
-					gettoneFramek.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(5)).getBonus().toString()));}
-				if (città.get(6) instanceof CittàBonusDTO){
-					gettoneGraden.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(6)).getBonus().toString()));}
-				if (città.get(7) instanceof CittàBonusDTO){
-					gettoneHellar.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(7)).getBonus().toString()));}
-				if (città.get(8) instanceof CittàBonusDTO){
-					gettoneIndur.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(8)).getBonus().toString()));}
-				if (città.get(9) instanceof CittàBonusDTO){
-					gettoneJuvelar.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(9)).getBonus().toString()));}
-				if (città.get(10) instanceof CittàBonusDTO){
-					gettoneKultos.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(10)).getBonus().toString()));}
-				if (città.get(11) instanceof CittàBonusDTO){
-					gettoneLyram.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(11)).getBonus().toString()));}
-				if (città.get(12) instanceof CittàBonusDTO){
-					gettoneMerkatim.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(12)).getBonus().toString()));}
-				if (città.get(13) instanceof CittàBonusDTO){
-					gettoneNaris.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(13)).getBonus().toString()));}
-				if (città.get(14) instanceof CittàBonusDTO){
-					gettoneOsium.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(14)).getBonus().toString()));}
-				
+				if (città.get(0) instanceof CittàBonusDTO) {
+					gettoneArkon.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(0)).getBonus().toString()));
+				}
+				if (città.get(1) instanceof CittàBonusDTO) {
+					gettoneBurgen.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(1)).getBonus().toString()));
+				}
+				if (città.get(2) instanceof CittàBonusDTO) {
+					gettoneCastrum.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(2)).getBonus().toString()));
+				}
+				if (città.get(3) instanceof CittàBonusDTO) {
+					gettoneDorful.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(3)).getBonus().toString()));
+				}
+				if (città.get(4) instanceof CittàBonusDTO) {
+					gettoneEsti.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(4)).getBonus().toString()));
+				}
+				if (città.get(5) instanceof CittàBonusDTO) {
+					gettoneFramek.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(5)).getBonus().toString()));
+				}
+				if (città.get(6) instanceof CittàBonusDTO) {
+					gettoneGraden.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(6)).getBonus().toString()));
+				}
+				if (città.get(7) instanceof CittàBonusDTO) {
+					gettoneHellar.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(7)).getBonus().toString()));
+				}
+				if (città.get(8) instanceof CittàBonusDTO) {
+					gettoneIndur.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(8)).getBonus().toString()));
+				}
+				if (città.get(9) instanceof CittàBonusDTO) {
+					gettoneJuvelar.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(9)).getBonus().toString()));
+				}
+				if (città.get(10) instanceof CittàBonusDTO) {
+					gettoneKultos.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(10)).getBonus().toString()));
+				}
+				if (città.get(11) instanceof CittàBonusDTO) {
+					gettoneLyram.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(11)).getBonus().toString()));
+				}
+				if (città.get(12) instanceof CittàBonusDTO) {
+					gettoneMerkatim.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(12)).getBonus().toString()));
+				}
+				if (città.get(13) instanceof CittàBonusDTO) {
+					gettoneNaris.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(13)).getBonus().toString()));
+				}
+				if (città.get(14) instanceof CittàBonusDTO) {
+					gettoneOsium.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(14)).getBonus().toString()));
+				}
+
 			}
 		});
 	}
@@ -422,6 +452,7 @@ public class GUIGameController {
 						image.setFitHeight(60);
 						image.setPreserveRatio(true);
 						image.setImage(this.mappaTessere.get(t.toString()));
+
 						tessere.getChildren().add(image);
 					}
 				} catch (Exception e) {
@@ -465,27 +496,42 @@ public class GUIGameController {
 		 */
 	}
 
-	@FXML
-	public void handleAction(ActionEvent action) {
-		if (azioneCorrente != null) {
-			// do something
-		}
-		if (action.getSource().equals(elezioneConsigliere))
-			azioneCorrente = new ElezioneConsigliereDTO();
-		else if (action.getSource().equals(acquistoTesseraPermesso))
-			azioneCorrente = new AcquistoTesseraPermessoDTO();
-		else if (action.getSource().equals(costruzioneAiutoRe))
-			azioneCorrente = new CostruzioneAiutoReDTO();
-		else if (action.getSource().equals(costruzioneTesseraPermesso))
-			azioneCorrente = new CostruzioneAiutoReDTO();
-		else if (action.getSource().equals(cambioTesseraPermesso))
-			azioneCorrente = new CambioTesserePermessoDTO();
-		else if (action.getSource().equals(elezioneConsigliereVeloce))
-			azioneCorrente = new ElezioneConsigliereDTO();
-		else if (action.getSource().equals(ingaggioAiutante))
-			azioneCorrente = new IngaggioAiutanteDTO();
-		else if (action.getSource().equals(secondaAzionePrincipale))
-			azioneCorrente = new SecondaAzionePrincipaleDTO();
+	public void mostaConsiglieri() {
+		Platform.runLater(new Runnable() {
 
+			@Override
+			public void run() {
+				for (ConsigliereDTO c : gameStateDTO.getRegioni().get(0).getBalcone().getConsiglieri()) {
+					ImageView imageView = new ImageView(mappaConsiglieri.get(c.toString()));
+					imageView.setFitHeight(25);
+					imageView.setPreserveRatio(true);
+					balconeMare.getChildren().add(imageView);
+				}
+
+				for (ConsigliereDTO c : gameStateDTO.getRegioni().get(1).getBalcone().getConsiglieri()) {
+					ImageView imageView = new ImageView(mappaConsiglieri.get(c.toString()));
+					imageView.setFitHeight(25);
+					imageView.setPreserveRatio(true);
+					balconeCollina.getChildren().add(imageView);
+				}
+				for (ConsigliereDTO c : gameStateDTO.getRegioni().get(2).getBalcone().getConsiglieri()) {
+					ImageView imageView = new ImageView(mappaConsiglieri.get(c.toString()));
+					imageView.setFitHeight(25);
+					imageView.setPreserveRatio(true);
+					balconeMontagna.getChildren().add(imageView);
+				}
+				for (ConsigliereDTO c : gameStateDTO.getPlanciaReDTO().getBalconeRe().getConsiglieri()) {
+					ImageView imageView = new ImageView(mappaConsiglieri.get(c.toString()));
+					imageView.setFitHeight(25);
+					imageView.setPreserveRatio(true);
+					balconeRe.getChildren().add(imageView);
+				}
+			}
+		});
 	}
+
+	public TextArea getMessage() {
+		return this.message;
+	}
+
 }
