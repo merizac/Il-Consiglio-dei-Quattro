@@ -27,13 +27,15 @@
                         <Circle fx:id="gettoneDorful" fill="DODGERBLUE" layoutX="164.0" layoutY="195.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
                         <Circle fx:id="gettoneEsti" fill="DODGERBLUE" layoutX="80.0" layoutY="288.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
                         <Circle fx:id="gettoneFramek" fill="DODGERBLUE" layoutX="323.0" layoutY="46.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fx:id="gettoneGraden" fill="DODGERBLUE" layoutX="329.0" layoutY="163.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fx:id="gettoneHellar" fill="DODGERBLUE" layoutX="343.0" layoutY="274.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="gettoneGraden" fill="DODGERBLUE" layoutX="328.0" layoutY="166.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="gettoneHellar" fill="DODGERBLUE" layoutX="343.0" layoutY="271.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
                         <Circle fx:id="gettoneIndur" fill="DODGERBLUE" layoutX="464.0" layoutY="46.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
                         <Circle fx:id="gettoneMerkatim" fill="DODGERBLUE" layoutX="578.0" layoutY="308.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
                         <Circle fx:id="gettoneLyram" fill="DODGERBLUE" layoutX="585.0" layoutY="175.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
                         <Circle fx:id="gettoneKultos" fill="DODGERBLUE" layoutX="612.0" layoutY="40.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
                         <Circle fx:id="gettoneJuvelar" fill="DODGERBLUE" layoutX="454.0" layoutY="203.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="gettoneLyram1" fill="DODGERBLUE" layoutX="722.0" layoutY="110.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="gettoneLyram2" fill="DODGERBLUE" layoutX="728.0" layoutY="250.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
                      </children>
                   </AnchorPane>
                   <SplitPane dividerPositions="0.7330173775671406" orientation="VERTICAL" prefHeight="610.0" prefWidth="457.0">
