@@ -107,8 +107,7 @@ public class GUI extends Application implements Grafica {
 	public void mostraGame(GameStateDTO gameStateDTO) throws IOException {
 		controller.mostraTesserePermessoRegioni(gameStateDTO.getRegioni());
 		controller.mostraGettoni(new ArrayList<>(gameStateDTO.getCittà()));
-		controller.mostraBonusRegione();
-		controller.mostraBonusColore();
+		controller.mostraTessereBonus();
 	}
 
 	@Override
