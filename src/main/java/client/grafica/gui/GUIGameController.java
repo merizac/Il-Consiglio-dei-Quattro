@@ -12,6 +12,8 @@ import common.gameDTO.GiocatoreDTO;
 import common.gameDTO.RegioneDTO;
 import common.gameDTO.TesseraPermessoDTO;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -328,33 +330,32 @@ public class GUIGameController {
 		tesserebonusGiocatore.setText(Integer.toString(punti));
 	}
 
-	public void mostraCartePolitica(List<CartaPoliticaDTO> cartePolitica) {
+	public void mostraCartePolitica(List<CartaPoliticaDTO> carte) {
 		Platform.runLater(new Runnable() {
-
-			HBox carte;
-			Map<String, Image> mappaCarte;
-
+			
 			@Override
 			public void run() {
-				try {
-					for (CartaPoliticaDTO c : cartePolitica) {
-						ImageView image = new ImageView();
-						image.setFitHeight(60);
-						image.setPreserveRatio(true);
-						image.setImage(this.mappaCarte.get(c.getColore()));
-						carte.getChildren().add(image);
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
+				for (CartaPoliticaDTO c : carte) {
+					
+					ImageView image = new ImageView();
+					image.setPreserveRatio(true);
+					image.setFitHeight(60);
+					image.setImage(mappaCarte.get(c.getColore()));
+					Button tp= new Button();
+					tp.setUserData(c);
+					tp.setGraphic(image);
+					cartePolitica.getChildren().add(tp);
+			        tp.setOnAction(new EventHandler<ActionEvent>() {
+						
+						@Override
+						public void handle(ActionEvent event) {
+							handleCartaPolitica(event);
+						}
+
+					});
 				}
 			}
-
-			public Runnable setCarte(HBox carte, Map<String, Image> mappaCarte) {
-				this.carte = carte;
-				this.mappaCarte = mappaCarte;
-				return this;
-			}
-		}.setCarte(this.cartePolitica, this.mappaCarte));
+		});
 	}
 
 	public void mostraGettoni(List<CittàDTO> città) {
@@ -412,34 +413,22 @@ public class GUIGameController {
 		});
 	}
 
-	public void mostraTesserePermesso(List<TesseraPermessoDTO> tesserePermesso) {
+	public void mostraTesserePermesso(List<TesseraPermessoDTO> tessere) {
 		Platform.runLater(new Runnable() {
-
-			HBox tessere;
-			Map<String, Image> mappaTessere;
-
+			
 			@Override
 			public void run() {
-				try {
-					for (TesseraPermessoDTO t : tesserePermesso) {
-						ImageView image = new ImageView();
-						image.setFitHeight(60);
-						image.setPreserveRatio(true);
-						image.setImage(this.mappaTessere.get(t.toString()));
-
-						tessere.getChildren().add(image);
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
+				for (TesseraPermessoDTO t : tessere) {
+					ImageView image = new ImageView();
+					image.setFitHeight(60);
+					image.setPreserveRatio(true);
+					image.setImage(mappaTessere.get(t.toString()));
+			        Button tp = new Button();
+			        tp.setGraphic(image);
+			        tp.setUserData(t);
 				}
 			}
-
-			public Runnable setTessere(HBox tessere, Map<String, Image> mappaTessere) {
-				this.tessere = tessere;
-				this.mappaTessere = mappaTessere;
-				return this;
-			}
-		}.setTessere(this.tesserePermesso, this.mappaTessere));
+		});
 	}
 
 	public void mostraTesserePermessoRegioni(List<RegioneDTO> regioni) {
@@ -506,6 +495,10 @@ public class GUIGameController {
 
 	public TextArea getMessage() {
 		return this.message;
+	}
+	
+	public void handleCartaPolitica(ActionEvent event) {
+
 	}
 
 }
