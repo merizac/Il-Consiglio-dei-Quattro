@@ -1,6 +1,8 @@
 package client.grafica.gui;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -103,6 +105,7 @@ public class GUI extends Application implements Grafica {
 	@Override
 	public void mostraGame(GameStateDTO gameStateDTO) throws IOException {
 		controller.mostraTesserePermessoRegioni(gameStateDTO.getRegioni());
+		controller.mostraGettoni(new ArrayList<>(gameStateDTO.getCittà()));
 	}
 
 	@Override

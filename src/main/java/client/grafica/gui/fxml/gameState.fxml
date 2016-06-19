@@ -17,7 +17,7 @@
                <items>
                   <AnchorPane prefHeight="603.0" prefWidth="773.0">
                      <children>
-                        <ImageView fitHeight="629.0" fitWidth="821.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="gettoneArkon" fitHeight="629.0" fitWidth="821.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../css/mappa.jpg" />
                            </image>
@@ -80,25 +80,26 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <Circle fx:id="gettoneArkon" fill="DODGERBLUE" layoutX="47.0" layoutY="34.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fx:id="gettoneCastrum" fill="DODGERBLUE" layoutX="172.0" layoutY="74.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fx:id="gettoneBurgen" fill="DODGERBLUE" layoutX="40.0" layoutY="163.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fx:id="gettoneDorful" fill="DODGERBLUE" layoutX="164.0" layoutY="195.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fx:id="gettoneEsti" fill="DODGERBLUE" layoutX="80.0" layoutY="288.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fx:id="gettoneFramek" fill="DODGERBLUE" layoutX="323.0" layoutY="46.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fx:id="gettoneGraden" fill="DODGERBLUE" layoutX="328.0" layoutY="166.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fx:id="gettoneHellar" fill="DODGERBLUE" layoutX="343.0" layoutY="271.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fx:id="gettoneIndur" fill="DODGERBLUE" layoutX="464.0" layoutY="46.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fx:id="gettoneMerkatim" fill="DODGERBLUE" layoutX="578.0" layoutY="308.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fx:id="gettoneLyram" fill="DODGERBLUE" layoutX="585.0" layoutY="175.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fx:id="gettoneKultos" fill="DODGERBLUE" layoutX="612.0" layoutY="40.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fx:id="gettoneJuvelar" fill="DODGERBLUE" layoutX="454.0" layoutY="203.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fx:id="gettoneLyram1" fill="DODGERBLUE" layoutX="722.0" layoutY="110.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fx:id="gettoneLyram2" fill="DODGERBLUE" layoutX="728.0" layoutY="250.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+
                         <HBox id="balconeMare" layoutX="88.0" layoutY="501.0" prefHeight="30.0" prefWidth="90.0" styleClass="balcone" stylesheets="@../css/game.css" />
                         <HBox id="balconeCollina" layoutX="351.0" layoutY="506.0" prefHeight="30.0" prefWidth="90.0" styleClass="balcone" stylesheets="@../css/game.css" />
                         <HBox id="balconeRe" layoutX="520.0" layoutY="540.0" prefHeight="30.0" prefWidth="92.0" styleClass="balcone" stylesheets="@../css/game.css" />
                         <HBox id="balconeMontagna" layoutX="645.0" layoutY="506.0" prefHeight="30.0" prefWidth="91.0" styleClass="balcone" stylesheets="@../css/game.css" />
+                        <ImageView fx:id="gettoneArkon" fitHeight="44.0" fitWidth="46.0" layoutX="24.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="gettoneBurgen" fitHeight="44.0" fitWidth="42.0" layoutX="18.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="gettoneEsti" fitHeight="44.0" fitWidth="46.0" layoutX="60.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="gettoneDorful" fitHeight="43.0" fitWidth="42.0" layoutX="143.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="gettoneCastrum" fitHeight="44.0" fitWidth="46.0" layoutX="151.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="gettoneFramek" fitHeight="44.0" fitWidth="46.0" layoutX="300.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="gettoneGraden" fitHeight="44.0" fitWidth="46.0" layoutX="306.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="gettoneHellar" fitHeight="44.0" fitWidth="46.0" layoutX="322.0" layoutY="249.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="gettoneJuvelar" fitHeight="44.0" fitWidth="46.0" layoutX="432.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="gettoneIndur" fitHeight="44.0" fitWidth="46.0" layoutX="441.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="gettoneKultos" fitHeight="44.0" fitWidth="46.0" layoutX="588.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="gettoneLyram" fitHeight="44.0" fitWidth="46.0" layoutX="563.0" layoutY="153.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="gettoneMerkatim" fitHeight="44.0" fitWidth="46.0" layoutX="554.0" layoutY="284.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="gettoneNaris" fitHeight="44.0" fitWidth="46.0" layoutX="699.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="gettoneOsium" fitHeight="44.0" fitWidth="46.0" layoutX="706.0" layoutY="227.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </AnchorPane>
                   <SplitPane dividerPositions="0.726984126984127" orientation="VERTICAL" prefHeight="610.0" prefWidth="457.0">
