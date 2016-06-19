@@ -106,6 +106,7 @@ public class GUI extends Application implements Grafica {
 	public void mostraGame(GameStateDTO gameStateDTO) throws IOException {
 		controller.mostraTesserePermessoRegioni(gameStateDTO.getRegioni());
 		controller.mostraGettoni(new ArrayList<>(gameStateDTO.getCittà()));
+		controller.mostaConsiglieri();
 	}
 
 	@Override
@@ -122,7 +123,7 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public void mostraMessaggio(String messaggio) {
-		
+		controller.getMessage().appendText(messaggio);
 	}
 
 	@Override
