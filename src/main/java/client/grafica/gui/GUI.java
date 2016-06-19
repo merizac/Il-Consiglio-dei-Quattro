@@ -23,7 +23,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import server.view.clientNotify.ClientNotify;
 
@@ -120,8 +119,6 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public void mostraMessaggio(String messaggio) {
-		Text text=new Text();
-		text.setText(messaggio);
 		
 	}
 
@@ -153,7 +150,6 @@ public class GUI extends Application implements Grafica {
 		controller.mostraAvversario(gameStateDTO.getAvversari());
 	}
 	public ConsigliereDTO scegliConsigliere(List<ConsigliereDTO> consiglieri) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

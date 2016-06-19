@@ -42,6 +42,7 @@ public class GUIGameController {
 	private Map<String, Image> mappaCarte=new HashMap<>();
 	private Map<String, Image> mappaTessere=new HashMap<>();
 	private Map<String, Image> mappaGettoni = new HashMap<>();
+	private Map<String, Image> mappaConsiglieri = new HashMap<>();
 	
 	@FXML
 	private Text bianca;
@@ -78,11 +79,6 @@ public class GUIGameController {
 	
 	@FXML
 	private VBox giocatori;
-	
-	
-	
-	private AzioneDTO azioneCorrente;
-
 	@FXML
 	private Button elezioneConsigliere;
 	@FXML
@@ -130,9 +126,25 @@ public class GUIGameController {
 	private Circle gettoneOsium;
 	@FXML
 	private Circle gettoneMerkatim;
+	
+	@FXML
+	private HBox balconeMare;
+	@FXML
+	private HBox balconeCollina;
+	@FXML
+	private HBox balconeMontagna;
+	@FXML
+	private HBox balconeRe;
 
 	
 	public GUIGameController(){
+		
+		this.mappaCarte.put("Bianco", null);
+		this.mappaCarte.put("Nero", null);
+		this.mappaCarte.put("Viola", null);
+		this.mappaCarte.put("Arancione", null);
+		this.mappaCarte.put("Azzurro", null);
+		
 		this.mappaGettoni.put("BonusPuntiNobiltà 1", new Image(getClass().getResource("css/gettoni/15.png").toExternalForm()));
 		this.mappaGettoni.put("BonusPuntiNobiltà 1", new Image(getClass().getResource("css/gettoni/1.png").toExternalForm()));
 		this.mappaGettoni.put("BonusCartePolitica 1", new Image(getClass().getResource("css/gettoni/7.png").toExternalForm()));
@@ -291,6 +303,7 @@ public class GUIGameController {
 						image.setFitHeight(60);
 						image.setPreserveRatio(true);
 						image.setImage(this.mappaTessere.get(t.toString()));
+						
 						tessere.getChildren().add(image);
 					}}
 				catch(Exception e){
@@ -342,28 +355,9 @@ public class GUIGameController {
 		}.setTessere(this.giocatori,this.mappaTessere, avversari));	
 */
 	}
-
-	@FXML
-	public void handleAction(ActionEvent action) {
-		if (azioneCorrente != null) {
-			// do something
-		}
-		if (action.getSource().equals(elezioneConsigliere))
-			azioneCorrente = new ElezioneConsigliereDTO();
-		else if (action.getSource().equals(acquistoTesseraPermesso))
-			azioneCorrente = new AcquistoTesseraPermessoDTO();
-		else if (action.getSource().equals(costruzioneAiutoRe))
-			azioneCorrente = new CostruzioneAiutoReDTO();
-		else if (action.getSource().equals(costruzioneTesseraPermesso))
-			azioneCorrente = new CostruzioneAiutoReDTO();
-		else if (action.getSource().equals(cambioTesseraPermesso))
-			azioneCorrente = new CambioTesserePermessoDTO();
-		else if(action.getSource().equals(elezioneConsigliereVeloce))
-			azioneCorrente = new ElezioneConsigliereDTO();
-		else if(action.getSource().equals(ingaggioAiutante))
-			azioneCorrente=new IngaggioAiutanteDTO();
-		else if(action.getSource().equals(secondaAzionePrincipale))
-			azioneCorrente=new SecondaAzionePrincipaleDTO();
+	
+	public void mostraConsiglieri(){
 		
 	}
+
 }

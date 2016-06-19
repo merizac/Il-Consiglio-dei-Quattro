@@ -29,3 +29,7 @@
 	-fx-font: 12.0px Tahoma;
     -fx-fill: white;
 }
+
+.balcone{
+	-fx-background-image: url("./balcone.jpg");
+}
