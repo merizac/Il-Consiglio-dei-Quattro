@@ -78,6 +78,9 @@ public class TesseraPermessoTest {
 		assertTrue(tessera.instance() instanceof TesseraPermessoDTO);
 	}
 	
-	
+	@Test
+	public void testToString(){
+		
+	}
 
 }

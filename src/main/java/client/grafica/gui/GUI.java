@@ -92,12 +92,11 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public void mostraGame(GameStateDTO gameStateDTO) throws IOException {
-
+		controller.mostraTesserePermessoRegioni(gameStateDTO.getRegioni());
 	}
 
 	@Override
 	public void mostraGiocatore(GiocatoreDTO giocatoreDTO) {
-		gameStateDTO.getGiocatoreDTO().getTesserePermesso().add(gameStateDTO.getRegioni().get(0).getTesserePermessoScoperte().get(0));
 		controller.mostraTesserePermesso(giocatoreDTO.getTesserePermesso());
 		controller.mostraCartePolitica(giocatoreDTO.getCartePolitica());
 		controller.mostraNomeGiocatore(giocatoreDTO.getNome());
@@ -140,7 +139,7 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public void mostraAvversario(GiocatoreDTO avversario) {
-		// TODO Auto-generated method stub
+		controller.mostraAvversario(gameStateDTO.getAvversari());
 		
 	}
 }

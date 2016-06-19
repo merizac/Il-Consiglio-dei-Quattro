@@ -1,5 +1,6 @@
 package client.grafica.gui;
 
+import java.awt.ScrollPane;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,8 @@ import common.azioniDTO.ElezioneConsigliereDTO;
 import common.azioniDTO.IngaggioAiutanteDTO;
 import common.azioniDTO.SecondaAzionePrincipaleDTO;
 import common.gameDTO.GameStateDTO;
+import common.gameDTO.GiocatoreDTO;
+import common.gameDTO.RegioneDTO;
 import common.gameDTO.TesseraPermessoDTO;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -28,6 +31,9 @@ import server.model.bonus.Bonus;
 import server.model.game.TesseraPermesso;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
+import javafx.scene.control.SplitPane;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 
 public class GUIGameController {
 
@@ -57,8 +63,24 @@ public class GUIGameController {
 	private Text emporiGiocatore;
 	@FXML
 	private Text tesserebonusGiocatore;
+	@FXML
+	private ImageView tesseraMare1;
+	@FXML
+	private ImageView tesseraMare2;
+	@FXML
+	private ImageView tesseraCollina1;
+	@FXML
+	private ImageView tesseraCollina2;
+	@FXML
+	private ImageView tesseraMontagna1;
+	@FXML
+	private ImageView tesseraMontagna2;
 	
-
+	@FXML
+	private VBox giocatori;
+	
+	
+	
 	private AzioneDTO azioneCorrente;
 
 	@FXML
@@ -132,20 +154,54 @@ public class GUIGameController {
 		this.mappaCarte.put("Arancione", new Image(getClass().getResource("css/politicCard/Arancione.png").toExternalForm()));
 		this.mappaCarte.put("Azzurro", new Image(getClass().getResource("css/politicCard/Azzurro.png").toExternalForm()));
 		this.mappaCarte.put("Multicolore", new Image(getClass().getResource("css/politicCard/Multicolore.png").toExternalForm()));
-		this.mappaTessere.put("TesseraPermesso [ ( Arkon Burgen Esti ), ( BonusMoneta 2 ) ]", new Image(getClass().getResource("css/permitTile/3.11.png").toExternalForm()));
-		this.mappaTessere.put("TesseraPermesso [ ( Arkon Burgen Castrum ), ( BonusAiutanti 2 ) ]", new Image(getClass().getResource("css/permitTile/3.12.png").toExternalForm()));
-		this.mappaTessere.put("TesseraPermesso [ ( Arkon ), ( BonusMoneta 3 BonusPuntiVittoria 4 ) ]", new Image(getClass().getResource("css/permitTile/3.6.png").toExternalForm()));
-		this.mappaTessere.put("TesseraPermesso [ ( Esti ), ( BonusAzionePrincipale 1 BonusMoneta 2 ) ]", new Image(getClass().getResource("css/permitTile/3.15.png").toExternalForm()));
-		this.mappaTessere.put("TesseraPermesso [ ( Castrum ), ( BonusAiutanti 2 BonusMoneta 3 ) ]", new Image(getClass().getResource("css/permitTile/3.7.png").toExternalForm()));
-		this.mappaTessere.put("TesseraPermesso [ ( Dorful ), ( BonusPuntiVittoria 7 ) ]", new Image(getClass().getResource("css/permitTile/3.8.png").toExternalForm()));
-		this.mappaTessere.put("TesseraPermesso [ ( Burgen ), ( BonusCartePolitica 3 BonusAiutanti 1 ) ]", new Image(getClass().getResource("css/permitTile/3.2.png").toExternalForm()));
-		this.mappaTessere.put("TesseraPermesso [ ( Arkon Esti ), ( BonusPuntiNobiltà 2 ) ]", new Image(getClass().getResource("css/permitTile/3.10.png").toExternalForm()));
-		this.mappaTessere.put("TesseraPermesso [ ( Dorful Esti ), ( BonusPuntiVittoria 2 BonusAiutanti 1 ) ]", new Image(getClass().getResource("css/permitTile/3.3.png").toExternalForm()));
-		this.mappaTessere.put("TesseraPermesso [ ( Arkon Burgen ), ( BonusMoneta 3 BonusCartePolitica 1 ) ]", new Image(getClass().getResource("css/permitTile/3.9.png").toExternalForm()));
-		this.mappaTessere.put("TesseraPermesso [ ( Arkon Dorful Esti ), ( BonusMoneta 1 BonusPuntiVittoria 2 ) ]", new Image(getClass().getResource("css/permitTile/3.1.png").toExternalForm()));
-		this.mappaTessere.put("TesseraPermesso [ ( Castrum Dorful ), ( BonusPuntiVittoria 3 BonusAiutanti 1 ) ]", new Image(getClass().getResource("css/permitTile/3.5.png").toExternalForm()));
-		this.mappaTessere.put("TesseraPermesso [ ( Burgen Castrum Dorful ), ( BonusAiutanti 1 BonusPuntiVittoria 1 ) ]", new Image(getClass().getResource("css/permitTile/3.13.png").toExternalForm()));
-		this.mappaTessere.put("TesseraPermesso [ ( Castrum Dorful Esti ), ( BonusCartePolitica 1 BonusPuntiNobiltà 1 ) ]", new Image(getClass().getResource("css/permitTile/3.14.png").toExternalForm()));
+
+	//mare
+		this.mappaTessere.put("TesseraPermesso  città:[Arkon, Burgen, Esti], bonus:[BonusMoneta 2]", new Image(getClass().getResource("css/permitTile/3.11.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Arkon, Burgen, Castrum], bonus:[BonusAiutanti 2]", new Image(getClass().getResource("css/permitTile/3.12.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Arkon], bonus:[BonusMoneta 3, BonusPuntiVittoria 4]", new Image(getClass().getResource("css/permitTile/3.6.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Esti], bonus:[BonusAzionePrincipale 1, BonusMoneta]", new Image(getClass().getResource("css/permitTile/3.15.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Castrum], bonus:[BonusAiutanti 2, BonusMoneta 3]", new Image(getClass().getResource("css/permitTile/3.7.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Dorful], bonus:[BonusPuntiVittoria 7]", new Image(getClass().getResource("css/permitTile/3.8.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Burgen], bonus:[BonusCartePolitica 3, BonusAiutanti 1]", new Image(getClass().getResource("css/permitTile/3.2.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Arkon, Esti], bonus:[BonusPuntiNobiltà 2]", new Image(getClass().getResource("css/permitTile/3.10.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Dorful, Esti], bonus:[BonusPuntiVittoria 2, BonusAiutanti 1]", new Image(getClass().getResource("css/permitTile/3.3.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Arkon, Burgen], bonus:[BonusMoneta 3, BonusCartePolitica 1]", new Image(getClass().getResource("css/permitTile/3.9.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Arkon, Dorful, Esti], bonus:[BonusMoneta 1, BonusPuntiVittoria 2]", new Image(getClass().getResource("css/permitTile/3.1.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Castrum, Dorful], bonus:[BonusPuntiVittoria 3, BonusAiutanti 1]", new Image(getClass().getResource("css/permitTile/3.5.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Burgen, Castrum, Dorful], bonus:[BonusAiutanti 1, BonusPuntiVittoria 1]", new Image(getClass().getResource("css/permitTile/3.13.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Castrum, Dorful, Esti], bonus:[BonusCartePolitica 1, BonusPuntiNobiltà 1]", new Image(getClass().getResource("css/permitTile/3.14.png").toExternalForm()));
+	//collina
+		this.mappaTessere.put("TesseraPermesso  città:[Hellar], bonus:[BonusAiutanti 4]", new Image(getClass().getResource("css/permitTile/1.6.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Framek, Juvelar], bonus:[BonusAiutanti 2, BonusMoneta 1]", new Image(getClass().getResource("css/permitTile/1.8.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Indur], bonus:[BonusCartePolitica 2, BonusAiutanti 2]", new Image(getClass().getResource("css/permitTile/1.10.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Juvelar], bonus:[BonusAzionePrincipale 1, BonusPuntiVittoria 2]", new Image(getClass().getResource("css/permitTile/1.11.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Framek, Graden], bonus:[BonusMoneta 5]", new Image(getClass().getResource("css/permitTile/1.9.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Graden, Hellar], bonus:[BonusAiutanti 3]", new Image(getClass().getResource("css/permitTile/1.15.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Indur, Juvelar], bonus:[BonusCartePolitica 2, BonusPuntiNobiltà 1]", new Image(getClass().getResource("css/permitTile/1.13.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Framek], bonus:[BonusCartePolitica 2, BonusMoneta 4]", new Image(getClass().getResource("css/permitTile/1.7.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Graden, Hellar, Indur], bonus:[BonusCartePolitica 1, BonusAiutanti 1]", new Image(getClass().getResource("css/permitTile/1.5.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Graden], bonus:[BonusAiutanti 2, BonusPuntiVittoria 2, BonusPuntiNobiltà 1]", new Image(getClass().getResource("css/permitTile/1.3.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Hellar, Indur], bonus:[BonusPuntiVittoria 5]", new Image(getClass().getResource("css/permitTile/1.2.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Framek, Indur, Juvelar], bonus:[BonusAiutanti 1, BonusPuntiNobiltà 1]", new Image(getClass().getResource("css/permitTile/1.4.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Framek, Graden, Hellar], bonus:[BonusPuntiNobiltà 1, BonusMoneta 1]", new Image(getClass().getResource("css/permitTile/1.1.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Framek, Graden, Juvelar], bonus:[BonusMoneta 2, BonusPuntiVittoria 1]", new Image(getClass().getResource("css/permitTile/1.14.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Indur, Juvelar, Hellar], bonus:[BonusCartePolitica 1]", new Image(getClass().getResource("css/permitTile/1.12.png").toExternalForm()));
+	//montagna
+		this.mappaTessere.put("TesseraPermesso  città:[Naris], bonus:[BonusMoneta 7]", new Image(getClass().getResource("css/permitTile/2.1.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Naris, Merkatim], bonus:[BonusAzionePrincipale 1]", new Image(getClass().getResource("css/permitTile/2.14.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Kultos], bonus:[BonusCartePolitica 4]", new Image(getClass().getResource("css/permitTile/2.8.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Lyram, Merkatim], bonus:[BonusCartePolitica 3]", new Image(getClass().getResource("css/permitTile/2.6.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Merkatim], bonus:[BonusPuntiVittoria 5, BonusPuntiNobiltà 1]", new Image(getClass().getResource("css/permitTile/2.11.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Osium, Kultos], bonus:[BonusCartePolitica 2, BonusPuntiNobiltà 1]", new Image(getClass().getResource("css/permitTile/2.3.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Kultos, Lyram], bonus:[BonusCartePolitica 1, BonusAiutanti 2]", new Image(getClass().getResource("css/permitTile/2.13.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Lyram], bonus:[BonusMoneta 1, BonusAiutanti 3]", new Image(getClass().getResource("css/permitTile/2.10.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Osium], bonus:[BonusCartePolitica 3, BonusPuntiNobiltà 1]", new Image(getClass().getResource("css/permitTile/2.9.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Kultos, Naris, Osium], bonus:[BonusCartePolitica 1, BonusPuntiVittoria 1]", new Image(getClass().getResource("css/permitTile/2.12.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Naris, Osium], bonus:[BonusPuntiVittoria 2, BonusCartePolitica 2]", new Image(getClass().getResource("css/permitTile/2.15.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Kultos, Lyram, Merkatim], bonus:[BonusAiutanti 1, BonusMoneta 1]", new Image(getClass().getResource("css/permitTile/2.2.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Kultos, Lyram, Osium], bonus:[BonusCartePolitica 1, BonusMoneta 1]", new Image(getClass().getResource("css/permitTile/2.4.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Merkatim, Naris, Osium], bonus:[BonusPuntiNobiltà 1, BonusPuntiVittoria 1]", new Image(getClass().getResource("css/permitTile/2.7.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Lyram, Merkatim, Naris], bonus:[BonusPuntiVittoria 3]", new Image(getClass().getResource("css/permitTile/2.5.png").toExternalForm()));
 
 	}
 	
@@ -230,15 +286,12 @@ public class GUIGameController {
 			@Override
 			public void run() {
 				try{
-
 					for(TesseraPermessoDTO t:tesserePermesso){
 						ImageView image = new ImageView();
 						image.setFitHeight(60);
 						image.setPreserveRatio(true);
-
 						image.setImage(this.mappaTessere.get(t.toString()));
 						tessere.getChildren().add(image);
-
 					}}
 				catch(Exception e){
 					e.printStackTrace();
@@ -251,6 +304,43 @@ public class GUIGameController {
 				return this;
 			}
 		}.setTessere(this.tesserePermesso,this.mappaTessere));	
+	}
+	
+	public void mostraTesserePermessoRegioni(List<RegioneDTO> regioni){
+		tesseraCollina1.setImage(this.mappaTessere.get(regioni.get(1).getTesserePermessoScoperte().get(0).toString()));
+		tesseraCollina2.setImage(this.mappaTessere.get(regioni.get(1).getTesserePermessoScoperte().get(1).toString()));
+		tesseraMare1.setImage(this.mappaTessere.get(regioni.get(0).getTesserePermessoScoperte().get(0).toString()));
+		tesseraMare2.setImage(this.mappaTessere.get(regioni.get(0).getTesserePermessoScoperte().get(1).toString()));
+		tesseraMontagna1.setImage(this.mappaTessere.get(regioni.get(2).getTesserePermessoScoperte().get(0).toString()));
+		tesseraMontagna2.setImage(this.mappaTessere.get(regioni.get(2).getTesserePermessoScoperte().get(1).toString()));
+	}
+	
+	public void mostraAvversario(List<GiocatoreDTO> avversari){
+/*		Platform.runLater(new Runnable() {
+			
+			VBox giocatori;
+			Map<String, Image> mappaTessere;
+			List<GiocatoreDTO> avversari;
+			
+			@Override
+			public void run() {
+				try{
+					for(GiocatoreDTO g:avversari){
+						
+					}}
+				catch(Exception e){
+					e.printStackTrace();
+				}
+			}
+			
+			public Runnable setTessere(VBox giocatori, Map<String, Image> mappaTessere, List<GiocatoreDTO> avversari){
+				this.giocatori= giocatori;
+				this.mappaTessere=mappaTessere;
+				this.avversari=avversari;
+				return this;
+			}
+		}.setTessere(this.giocatori,this.mappaTessere, avversari));	
+*/
 	}
 
 	@FXML
