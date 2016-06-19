@@ -1,11 +1,12 @@
 package common.azioniDTO;
 
 import common.azioniDTO.azioneVisitor.AzioneVisitor;
+import common.azioniDTO.azioniSetParametri.AzioneOffertaParametri;
 import common.gameDTO.MarketableDTO;
 import server.model.azioni.Azione;
 import utility.ParameterException;
 
-public class AzioneOffertaDTO implements AzioneDTO {
+public class AzioneOffertaDTO implements AzioneDTO, AzioneParametri {
 
 	/**
 	 * 
@@ -61,6 +62,11 @@ public class AzioneOffertaDTO implements AzioneDTO {
 		if(marketableDTO==null)
 			throw new NullPointerException("L'oggetto marketableDTO non può essere null");
 		this.marketableDTO = marketableDTO;
+	}
+
+	@Override
+	public AzioneOffertaParametri parametri() {
+		return new AzioneOffertaParametri(this);
 	}
 
 }

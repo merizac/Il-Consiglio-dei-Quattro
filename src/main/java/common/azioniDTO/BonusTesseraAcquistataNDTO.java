@@ -52,6 +52,4 @@ public class BonusTesseraAcquistataNDTO implements AzioneDTO{
 		this.usata = usata;
 	}
 	
-	
-	
 }
