@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import common.gameDTO.CartaPoliticaDTO;
+import common.gameDTO.CittàDTO;
 import common.azioniDTO.AcquistoTesseraPermessoDTO;
 import common.azioniDTO.AzioneDTO;
 import common.azioniDTO.CambioTesserePermessoDTO;
@@ -24,7 +25,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+import server.model.bonus.Bonus;
 import server.model.game.TesseraPermesso;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
@@ -38,6 +41,7 @@ public class GUIGameController {
 	private GUI gui;
 	private Map<String, Image> mappaCarte=new HashMap<>();
 	private Map<String, Image> mappaTessere=new HashMap<>();
+	private Map<String, Image> mappaGettoni = new HashMap<>();
 	
 	@FXML
 	private Text bianca;
@@ -95,9 +99,54 @@ public class GUIGameController {
 	private Button ingaggioAiutante;
 	@FXML
 	private Button secondaAzionePrincipale;
+	
+	@FXML
+	private Circle gettoneArkon;
+	@FXML
+	private Circle gettoneCastrum;
+	@FXML
+	private Circle gettoneBurgen;
+	@FXML
+	private Circle gettoneDorful;
+	@FXML
+	private Circle gettoneEsti;
+	@FXML
+	private Circle gettoneFramek;
+	@FXML
+	private Circle gettoneGraden;
+	@FXML
+	private Circle gettoneHellar;
+	@FXML
+	private Circle gettoneIndur;
+	@FXML
+	private Circle gettoneJuvelar;
+	@FXML
+	private Circle gettoneKultos;
+	@FXML
+	private Circle gettoneNaris;
+	@FXML
+	private Circle gettoneLyram;
+	@FXML
+	private Circle gettoneOsium;
+	@FXML
+	private Circle gettoneMerkatim;
 
 	
 	public GUIGameController(){
+		this.mappaGettoni.put("BonusPuntiNobiltà 1", new Image(getClass().getResource("css/gettoni/15.png").toExternalForm()));
+		this.mappaGettoni.put("BonusPuntiNobiltà 1", new Image(getClass().getResource("css/gettoni/1.png").toExternalForm()));
+		this.mappaGettoni.put("BonusCartePolitica 1", new Image(getClass().getResource("css/gettoni/7.png").toExternalForm()));
+		this.mappaGettoni.put("BonusPuntiVittoria 1", new Image(getClass().getResource("css/gettoni/14.png").toExternalForm()));
+		this.mappaGettoni.put("BonusPuntiVittoria 2", new Image(getClass().getResource("css/gettoni/6.png").toExternalForm()));
+		this.mappaGettoni.put("BonusPuntiVittoria 3", new Image(getClass().getResource("css/gettoni/3.png").toExternalForm()));
+		this.mappaGettoni.put("BonusMoneta 3", new Image(getClass().getResource("css/gettoni/10.png").toExternalForm()));
+		this.mappaGettoni.put("BonusMoneta 2", new Image(getClass().getResource("css/gettoni/12.png").toExternalForm()));
+		this.mappaGettoni.put("BonusMoneta 1", new Image(getClass().getResource("css/gettoni/5.png").toExternalForm()));
+		this.mappaGettoni.put("BonusMoneta 1 BonusAiutanti 1", new Image(getClass().getResource("css/gettoni/13.png").toExternalForm()));
+		this.mappaGettoni.put("BonusAiutanti 2", new Image(getClass().getResource("css/gettoni/2.png").toExternalForm()));
+		this.mappaGettoni.put("BonusAiutanti 1", new Image(getClass().getResource("css/gettoni/11.png").toExternalForm()));
+		this.mappaGettoni.put("BonusAiutanti 1 BonusCartePolitica 1", new Image(getClass().getResource("css/gettoni/4.png").toExternalForm()));
+		this.mappaGettoni.put("BonusCartePolitica 1 BonusPuntiVittoria 1", new Image(getClass().getResource("css/gettoni/9.png").toExternalForm()));
 		this.mappaCarte.put("Bianco", new Image(getClass().getResource("css/politicCard/Bianco.png").toExternalForm()));
 		this.mappaCarte.put("Nero", new Image(getClass().getResource("css/politicCard/Nero.png").toExternalForm()));
 		this.mappaCarte.put("Viola", new Image(getClass().getResource("css/politicCard/Viola.png").toExternalForm()));
@@ -105,6 +154,7 @@ public class GUIGameController {
 		this.mappaCarte.put("Arancione", new Image(getClass().getResource("css/politicCard/Arancione.png").toExternalForm()));
 		this.mappaCarte.put("Azzurro", new Image(getClass().getResource("css/politicCard/Azzurro.png").toExternalForm()));
 		this.mappaCarte.put("Multicolore", new Image(getClass().getResource("css/politicCard/Multicolore.png").toExternalForm()));
+
 	//mare
 		this.mappaTessere.put("TesseraPermesso  città:[Arkon, Burgen, Esti], bonus:[BonusMoneta 2]", new Image(getClass().getResource("css/permitTile/3.11.png").toExternalForm()));
 		this.mappaTessere.put("TesseraPermesso  città:[Arkon, Burgen, Castrum], bonus:[BonusAiutanti 2]", new Image(getClass().getResource("css/permitTile/3.12.png").toExternalForm()));
@@ -223,6 +273,9 @@ public class GUIGameController {
 		}.setCarte(this.cartePolitica,this.mappaCarte));	
 	}
 
+	public void mostraGettoni(List<CittàDTO> città){
+		
+	}
 
 	public void mostraTesserePermesso(List<TesseraPermessoDTO> tesserePermesso) {
 		Platform.runLater(new Runnable() {
@@ -237,7 +290,6 @@ public class GUIGameController {
 						ImageView image = new ImageView();
 						image.setFitHeight(60);
 						image.setPreserveRatio(true);
-						System.out.println(t.toString());
 						image.setImage(this.mappaTessere.get(t.toString()));
 						tessere.getChildren().add(image);
 					}}
