@@ -113,6 +113,7 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public void mostraGiocatore(GiocatoreDTO giocatoreDTO) {
+		giocatoreDTO.getTesserePermesso().add(gameStateDTO.getRegioni().get(0).getTesserePermessoScoperte().get(0));
 		controller.mostraTesserePermesso(giocatoreDTO.getTesserePermesso());
 		controller.mostraCartePolitica(giocatoreDTO.getCartePolitica());
 		controller.mostraNomeGiocatore(giocatoreDTO.getNome());
@@ -153,6 +154,7 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public void mostraAvversario(GiocatoreDTO avversario) {
+		gameStateDTO.getAvversari().get(0).getTesserePermesso().add(gameStateDTO.getRegioni().get(0).getTesserePermessoScoperte().get(0));
 		controller.mostraAvversario(gameStateDTO.getAvversari());
 	}
 	public ConsigliereDTO scegliConsigliere(List<ConsigliereDTO> consiglieri) {
