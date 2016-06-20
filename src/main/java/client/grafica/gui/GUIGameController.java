@@ -3,6 +3,8 @@ package client.grafica.gui;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import common.azioniDTO.AzioneDTO;
 import common.gameDTO.CartaPoliticaDTO;
 import common.gameDTO.CittàBonusDTO;
 import common.gameDTO.CittàDTO;
@@ -18,9 +20,14 @@ import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 
 public class GUIGameController {
@@ -66,7 +73,13 @@ public class GUIGameController {
 	private ImageView tesseraMontagna2;
 
 	@FXML
-	private VBox giocatori;
+	private TabPane giocatori;
+	
+	
+	
+	private AzioneDTO azioneCorrente;
+
+
 	@FXML
 	private Button elezioneConsigliere;
 	@FXML
@@ -302,7 +315,6 @@ public class GUIGameController {
 				new Image(getClass().getResource("css/permitTile/2.7.png").toExternalForm()));
 		this.mappaTessere.put("TesseraPermesso  città:[Lyram, Merkatim, Naris], bonus:[BonusPuntiVittoria 3]",
 				new Image(getClass().getResource("css/permitTile/2.5.png").toExternalForm()));
-
 	}
 
 	/**
@@ -466,23 +478,68 @@ public class GUIGameController {
 		tesseraMontagna2.setImage(this.mappaTessere.get(regioni.get(2).getTesserePermessoScoperte().get(1).toString()));
 	}
 
-	public void mostraAvversario(List<GiocatoreDTO> avversari) {
-		/*
-		 * Platform.runLater(new Runnable() {
-		 * 
-		 * VBox giocatori; Map<String, Image> mappaTessere; List<GiocatoreDTO>
-		 * avversari;
-		 * 
-		 * @Override public void run() { try{ for(GiocatoreDTO g:avversari){
-		 * 
-		 * }} catch(Exception e){ e.printStackTrace(); } }
-		 * 
-		 * public Runnable setTessere(VBox giocatori, Map<String, Image>
-		 * mappaTessere, List<GiocatoreDTO> avversari){ this.giocatori=
-		 * giocatori; this.mappaTessere=mappaTessere; this.avversari=avversari;
-		 * return this; } }.setTessere(this.giocatori,this.mappaTessere,
-		 * avversari));
-		 */
+	
+	public void mostraAvversario(List<GiocatoreDTO> avversari){
+		Platform.runLater(new Runnable() {
+			
+			TabPane giocatori;
+			Map<String, Image> mappaTessere;
+			List<GiocatoreDTO> avversari;
+			
+			@Override
+			public void run() {
+				try{
+					for(GiocatoreDTO g:avversari){
+						Tab tab=new Tab();
+						VBox vbox=new VBox();
+						HBox hbox=new HBox();
+						ImageView puntiV=new ImageView();
+						puntiV.setImage(new Image(getClass().getResource("css/Point.png").toExternalForm()));
+						puntiV.setPreserveRatio(true);
+						puntiV.setFitHeight(40);
+						Text npuntiV=new Text();
+						npuntiV.setText(Integer.toString(g.getPunteggioVittoria()));
+						npuntiV.relocate(20, 20);
+						hbox.setSpacing(10);						
+						
+						hbox.getChildren().add(puntiV);
+						vbox.getChildren().add(hbox);
+						tab.setContent(vbox);
+						giocatori.getTabs().add(tab);
+						
+						hbox.setSpacing(5);
+						tab.setText(g.getNome());
+						
+						
+						ImageView puntiR=new ImageView();
+						puntiR.setImage(new Image(getClass().getResource("css/Coins.png").toExternalForm()));
+						puntiR.setPreserveRatio(true);
+						puntiR.setFitHeight(40);
+						Text npuntiR=new Text();
+						npuntiR.setText(Integer.toString(g.getPunteggioRicchezza()));
+						npuntiR.relocate(10, 10);
+						
+						
+						hbox.getChildren().add(npuntiR);
+						hbox.getChildren().add(puntiR);		
+						
+						Pane pane=new Pane();
+						pane.getChildren().add(npuntiV);
+						pane.setStyle("-fx-background-image: url('./css/Point.png'); -fx-background-repeat: no-repeat; -fx-background-size: contain;");
+						hbox.getChildren().add(pane);
+					}}
+				catch(Exception e){
+					e.printStackTrace();
+				}
+			}
+			
+			public Runnable setAvversari(TabPane giocatori, Map<String, Image> mappaTessere, List<GiocatoreDTO> avversari){
+				this.giocatori= giocatori;
+				this.mappaTessere=mappaTessere;
+				this.avversari=avversari;
+				return this;
+			}
+		}.setAvversari(this.giocatori,this.mappaTessere, avversari));	
 	}
 
 	public void mostaConsiglieri() {

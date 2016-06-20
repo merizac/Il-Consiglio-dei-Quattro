@@ -239,7 +239,7 @@
                               </ScrollPane>
                            </children>
                         </VBox>
-                        <TabPane prefHeight="31.0" prefWidth="467.0" tabClosingPolicy="UNAVAILABLE">
+                        <TabPane fx:id="giocatori" prefHeight="31.0" prefWidth="467.0" tabClosingPolicy="UNAVAILABLE">
                           <tabs>
                             <Tab text="Giocatore 1">
                                  <content>
