@@ -1,5 +1,6 @@
 package client.grafica.gui;
 
+import java.awt.BorderLayout;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,10 +16,12 @@ import common.gameDTO.RegioneDTO;
 import common.gameDTO.TesseraPermessoDTO;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -374,22 +377,17 @@ public class GUIGameController {
 			@Override
 			public void run() {
 				for (CartaPoliticaDTO c : carte) {
-					
-					ImageView image = new ImageView();
-					image.setPreserveRatio(true);
-					image.setFitHeight(60);
-					image.setImage(mappaCarte.get(c.getColore()));
-					Button tp= new Button();
-					tp.setUserData(c);
-					tp.setGraphic(image);
-					cartePolitica.getChildren().add(tp);
-			        tp.setOnAction(new EventHandler<ActionEvent>() {
-						
+					ImageView imageView=new ImageView(mappaCarte.get(c.toString()));
+					imageView.setFitHeight(60);
+					imageView.setPreserveRatio(true);
+					imageView.setUserData(c);
+					cartePolitica.getChildren().add(imageView);
+			        imageView.setOnMouseClicked(new EventHandler<Event>() {
+
 						@Override
-						public void handle(ActionEvent event) {
+						public void handle(Event event) {
 							handleCartaPolitica(event);
 						}
-
 					});
 				}
 			}
@@ -471,14 +469,25 @@ public class GUIGameController {
 
 	public void mostraTesserePermessoRegioni(List<RegioneDTO> regioni) {
 		tesseraCollina1.setImage(this.mappaTessere.get(regioni.get(1).getTesserePermessoScoperte().get(0).toString()));
+		tesseraCollina1.setUserData(regioni.get(1).getTesserePermessoScoperte().get(0));
 		tesseraCollina2.setImage(this.mappaTessere.get(regioni.get(1).getTesserePermessoScoperte().get(1).toString()));
+		tesseraCollina2.setUserData(regioni.get(1).getTesserePermessoScoperte().get(1));
 		tesseraMare1.setImage(this.mappaTessere.get(regioni.get(0).getTesserePermessoScoperte().get(0).toString()));
+		tesseraMare1.setUserData(regioni.get(0).getTesserePermessoScoperte().get(0));
 		tesseraMare2.setImage(this.mappaTessere.get(regioni.get(0).getTesserePermessoScoperte().get(1).toString()));
+		tesseraMare2.setUserData(regioni.get(0).getTesserePermessoScoperte().get(1));
 		tesseraMontagna1.setImage(this.mappaTessere.get(regioni.get(2).getTesserePermessoScoperte().get(0).toString()));
+		tesseraMontagna1.setUserData(regioni.get(2).getTesserePermessoScoperte().get(0));
 		tesseraMontagna2.setImage(this.mappaTessere.get(regioni.get(2).getTesserePermessoScoperte().get(1).toString()));
+		tesseraMontagna1.setUserData(regioni.get(2).getTesserePermessoScoperte().get(1));
 	}
 
 	
+	@FXML
+	public void handleTesseraPermessoRegione(Event event) {
+		System.out.println(((ImageView)event.getSource()).getUserData());
+	}
+
 	public void mostraAvversario(List<GiocatoreDTO> avversari){
 		Platform.runLater(new Runnable() {
 			
@@ -580,8 +589,8 @@ public class GUIGameController {
 		return this.message;
 	}
 	
-	public void handleCartaPolitica(ActionEvent event) {
-		System.out.println(((Button)event.getSource()).getUserData());
+	public void handleCartaPolitica(Event event) {
+		System.out.println(((ImageView)event.getSource()).getUserData());
 	}
 
 }
