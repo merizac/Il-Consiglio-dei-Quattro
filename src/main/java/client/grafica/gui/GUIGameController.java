@@ -21,6 +21,11 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -43,10 +48,7 @@ public class GUIGameController {
 	private Map<String, Image> mappaConsiglieri = new HashMap<>();
 	private Map<String,Image> mappaConsiglieriRiserva = new HashMap<>();
 
-	@FXML
-	private Text bianca;
-	@FXML
-	private Text multicolore;
+
 	@FXML
 	private HBox tesserePermesso;
 	@FXML
@@ -75,13 +77,8 @@ public class GUIGameController {
 	private ImageView tesseraMontagna1;
 	@FXML
 	private ImageView tesseraMontagna2;
-
 	@FXML
 	private TabPane giocatori;
-	
-	
-	
-	private AzioneDTO azioneCorrente;
 
 	@FXML
 	private ImageView consigliere1;
@@ -99,6 +96,7 @@ public class GUIGameController {
 	private ImageView consigliere7;
 	@FXML
 	private ImageView consigliere8;
+	
 	@FXML
 	private Button elezioneConsigliere;
 	@FXML
@@ -124,6 +122,7 @@ public class GUIGameController {
 	private HBox balconeMontagna;
 	@FXML
 	private HBox balconeRe;
+	
 	@FXML
 	private ImageView gettoneArkon;
 	@FXML
@@ -154,6 +153,7 @@ public class GUIGameController {
 	private ImageView gettoneOsium;
 	@FXML
 	private ImageView gettoneMerkatim;
+	
 	@FXML
 	private ImageView mare;
 	@FXML
@@ -170,6 +170,7 @@ public class GUIGameController {
 	private ImageView ferro;
 	@FXML
 	private ImageView king;
+	
 	@FXML
 	private TextArea message;
 
@@ -406,18 +407,22 @@ public class GUIGameController {
 			@Override
 			public void run() {
 				for (CartaPoliticaDTO c : carte) {
-					ImageView imageView=new ImageView(mappaCarte.get(c.toString()));
-					imageView.setFitHeight(60);
+					/*ImageView imageView=new ImageView(mappaCarte.get(c.toString()));
+					imageView.setFitHeight(65);
 					imageView.setPreserveRatio(true);
-					imageView.setUserData(c);
-					cartePolitica.getChildren().add(imageView);
-			        imageView.setOnMouseClicked(new EventHandler<Event>() {
+					imageView.setUserData(c);*/
+					Image image=mappaCarte.get(c.toString());
+					Button tp= new Button();
+					Background sfondo= new Background(new BackgroundImage(mappaCarte.get(c.toString()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT));
+					tp.backgroundProperty().set(sfondo);
+					cartePolitica.getChildren().add(tp);
+			     /*   imageView.setOnMouseClicked(new EventHandler<Event>() {
 
 						@Override
 						public void handle(Event event) {
 							handleCartaPolitica(event);
 						}
-					});
+					});*/
 				}
 			}
 		});
