@@ -29,3 +29,9 @@
 	-fx-font: 12.0px Tahoma;
     -fx-fill: white;
 }
+
+.vittoria{
+	-fx-background-image: url("./Point.png"); 	
+	-fx-font: 10.0px Tahoma;
+    -fx-fill: white;
+}

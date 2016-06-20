@@ -25,6 +25,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import server.model.bonus.Bonus;
@@ -77,7 +78,7 @@ public class GUIGameController {
 	private ImageView tesseraMontagna2;
 	
 	@FXML
-	private VBox giocatori;
+	private TabPane giocatori;
 	
 	
 	
@@ -192,7 +193,7 @@ public class GUIGameController {
 		this.mappaTessere.put("TesseraPermesso  città:[Kultos], bonus:[BonusCartePolitica 4]", new Image(getClass().getResource("css/permitTile/2.8.png").toExternalForm()));
 		this.mappaTessere.put("TesseraPermesso  città:[Lyram, Merkatim], bonus:[BonusCartePolitica 3]", new Image(getClass().getResource("css/permitTile/2.6.png").toExternalForm()));
 		this.mappaTessere.put("TesseraPermesso  città:[Merkatim], bonus:[BonusPuntiVittoria 5, BonusPuntiNobiltà 1]", new Image(getClass().getResource("css/permitTile/2.11.png").toExternalForm()));
-		this.mappaTessere.put("TesseraPermesso  città:[Osium, Kultos], bonus:[BonusCartePolitica 2, BonusPuntiNobiltà 1]", new Image(getClass().getResource("css/permitTile/2.3.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso  città:[Kultos, Osium], bonus:[BonusCartePolitica 2, BonusPuntiNobiltà 1]", new Image(getClass().getResource("css/permitTile/2.3.png").toExternalForm()));
 		this.mappaTessere.put("TesseraPermesso  città:[Kultos, Lyram], bonus:[BonusCartePolitica 1, BonusAiutanti 2]", new Image(getClass().getResource("css/permitTile/2.13.png").toExternalForm()));
 		this.mappaTessere.put("TesseraPermesso  città:[Lyram], bonus:[BonusMoneta 1, BonusAiutanti 3]", new Image(getClass().getResource("css/permitTile/2.10.png").toExternalForm()));
 		this.mappaTessere.put("TesseraPermesso  città:[Osium], bonus:[BonusCartePolitica 3, BonusPuntiNobiltà 1]", new Image(getClass().getResource("css/permitTile/2.9.png").toExternalForm()));
@@ -204,7 +205,7 @@ public class GUIGameController {
 		this.mappaTessere.put("TesseraPermesso  città:[Lyram, Merkatim, Naris], bonus:[BonusPuntiVittoria 3]", new Image(getClass().getResource("css/permitTile/2.5.png").toExternalForm()));
 
 	}
-	
+		
 	/**
 	 * @param gameStateDTO
 	 *            the gameStateDTO to set
@@ -316,9 +317,9 @@ public class GUIGameController {
 	}
 	
 	public void mostraAvversario(List<GiocatoreDTO> avversari){
-/*		Platform.runLater(new Runnable() {
+		Platform.runLater(new Runnable() {
 			
-			VBox giocatori;
+			TabPane giocatori;
 			Map<String, Image> mappaTessere;
 			List<GiocatoreDTO> avversari;
 			
@@ -326,21 +327,57 @@ public class GUIGameController {
 			public void run() {
 				try{
 					for(GiocatoreDTO g:avversari){
+						Tab tab=new Tab();
+						VBox vbox=new VBox();
+						HBox hbox=new HBox();
+						ImageView puntiV=new ImageView();
+						puntiV.setImage(new Image(getClass().getResource("css/Point.png").toExternalForm()));
+						puntiV.setPreserveRatio(true);
+						puntiV.setFitHeight(40);
+						Text npuntiV=new Text();
+						npuntiV.setText(Integer.toString(g.getPunteggioVittoria()));
+						npuntiV.relocate(20, 20);
+						hbox.setSpacing(10);						
 						
+						hbox.getChildren().add(puntiV);
+						vbox.getChildren().add(hbox);
+						tab.setContent(vbox);
+						giocatori.getTabs().add(tab);
+						
+						hbox.setSpacing(5);
+						tab.setText(g.getNome());
+						
+						
+						ImageView puntiR=new ImageView();
+						puntiR.setImage(new Image(getClass().getResource("css/Coins.png").toExternalForm()));
+						puntiR.setPreserveRatio(true);
+						puntiR.setFitHeight(40);
+						Text npuntiR=new Text();
+						npuntiR.setText(Integer.toString(g.getPunteggioRicchezza()));
+						npuntiR.relocate(10, 10);
+						
+						
+						hbox.getChildren().add(npuntiR);
+						hbox.getChildren().add(puntiR);		
+						
+						Pane pane=new Pane();
+						pane.getChildren().add(npuntiV);
+						pane.setStyle("-fx-background-image: url('./css/Point.png'); -fx-background-repeat: no-repeat; -fx-background-size: contain;");
+						hbox.getChildren().add(pane);
 					}}
 				catch(Exception e){
 					e.printStackTrace();
 				}
 			}
 			
-			public Runnable setTessere(VBox giocatori, Map<String, Image> mappaTessere, List<GiocatoreDTO> avversari){
+			public Runnable setAvversari(TabPane giocatori, Map<String, Image> mappaTessere, List<GiocatoreDTO> avversari){
 				this.giocatori= giocatori;
 				this.mappaTessere=mappaTessere;
 				this.avversari=avversari;
 				return this;
 			}
-		}.setTessere(this.giocatori,this.mappaTessere, avversari));	
-*/
+		}.setAvversari(this.giocatori,this.mappaTessere, avversari));	
+
 	}
 
 	@FXML

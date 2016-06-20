@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import javafx.scene.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.geometry.*?>
@@ -144,7 +143,7 @@
                               </VBox>
                            </content>
                         </TitledPane>
-                        <TabPane prefHeight="31.0" prefWidth="467.0" tabClosingPolicy="UNAVAILABLE">
+                        <TabPane fx:id="giocatori" prefHeight="31.0" prefWidth="467.0" tabClosingPolicy="UNAVAILABLE">
                           <tabs>
                             <Tab text="Giocatore 1">
                                  <content>
