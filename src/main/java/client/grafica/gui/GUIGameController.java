@@ -524,7 +524,7 @@ public class GUIGameController {
 	}
 	
 	public void handleCartaPolitica(ActionEvent event) {
-
+		System.out.println(((Button)event.getSource()).getUserData());
 	}
 
 }
