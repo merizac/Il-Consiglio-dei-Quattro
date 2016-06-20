@@ -2,9 +2,11 @@ package common.gameDTO;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 import common.azioniDTO.AzioneDTO;
 import server.model.game.Città;
@@ -13,6 +15,7 @@ import server.model.game.Consigliere;
 import server.model.game.GameState;
 import server.model.game.Giocatore;
 import server.model.game.Regione;
+import server.model.game.comparator.ComparatorOrdineAlfabetico;
 
 public class GameStateDTO implements Serializable {
 
@@ -30,7 +33,7 @@ public class GameStateDTO implements Serializable {
 	public void inizializza(GameState gameState) {
 		
 		this.avversari=new ArrayList<>();
-		this.città = new HashSet<>();
+		this.città = new TreeSet<>(new ComparatorOrdineAlfabetico());
 		for (Città c : gameState.getCittà()) {
 			if (c instanceof CittàBonus) {
 				CittàBonusDTO cittàBonusDTO = new CittàBonusDTO();
@@ -41,7 +44,6 @@ public class GameStateDTO implements Serializable {
 				cittàDTO.inizializza(c);
 				città.add(cittàDTO);
 			}
-
 		}
 		this.regioni = new ArrayList<>();
 		for (Regione r : gameState.getRegioni()) {
