@@ -155,6 +155,37 @@ public class GUIGameController {
 	private ImageView gettoneOsium;
 	@FXML
 	private ImageView gettoneMerkatim;
+
+	@FXML
+	private Button Arkon;
+	@FXML
+	private Button Burgen;
+	@FXML
+	private Button Castrum;
+	@FXML
+	private Button Dorful;
+	@FXML
+	private Button Esti;
+	@FXML
+	private Button Framek;
+	@FXML
+	private Button Indur;
+	@FXML
+	private Button Graden;
+	@FXML
+	private Button Juvelar;
+	@FXML
+	private Button Hellar;
+	@FXML
+	private Button Kultos;
+	@FXML
+	private Button Naris;
+	@FXML
+	private Button Lyram;
+	@FXML
+	private Button Osium;
+	@FXML
+	private Button Merkatim;
 	@FXML
 	private ImageView mare;
 	@FXML
@@ -712,5 +743,9 @@ public class GUIGameController {
 	@FXML
 	public void handleConsigliereRiserva(Event event){
 		System.out.println(((ImageView)event.getSource()).getUserData());
+	}
+	@FXML
+	public void selezionaCittà(ActionEvent event){
+		System.out.println(((Button)event.getSource()).getUserData());
 	}
 }
