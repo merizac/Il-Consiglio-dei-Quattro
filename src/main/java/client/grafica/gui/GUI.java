@@ -107,7 +107,8 @@ public class GUI extends Application implements Grafica {
 		controller.mostraTesserePermessoRegioni(gameStateDTO.getRegioni());
 		controller.mostraGettoni(new ArrayList<>(gameStateDTO.getCittà()));
 		controller.mostraTessereBonus();
-		controller.mostaConsiglieri();
+		controller.mostraConsiglieriBalcone();
+		controller.mostraRiserva(gameStateDTO.getConsiglieri());
 }
 
 	@Override

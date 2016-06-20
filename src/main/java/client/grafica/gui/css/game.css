@@ -33,3 +33,92 @@
 .balcone{
 	-fx-background-image: url("./balcone.jpg");
 }
+
+.cartaPoliticaArancione{
+	-fx-background-position: center center;
+	-fx-border-radius: 8.0;
+	-fx-background-radius: 8.0;
+	-fx-border-width: 3px;
+	-fx-border-color: black;
+	-fx-background-image: url('./politicCard/Arancione.png');
+	-fx-background-size: contain;
+	-fx-size : 35 55;
+}
+
+.cartaPoliticaAzzurro{
+	-fx-background-position: center center;
+	-fx-border-radius: 8.0;
+	-fx-background-radius: 8.0;
+	-fx-border-width: 3px;
+	-fx-border-color: black;
+	-fx-background-image: url('./politicCard/Azzurro.png');
+	-fx-background-size: contain;
+	-fx-size : 35 55;
+}
+
+.cartaPoliticaBianco{
+	-fx-background-position: center center;
+	-fx-border-radius: 8.0;
+	-fx-background-radius: 8.0;
+	-fx-border-width: 3px;
+	-fx-border-color: black;
+	-fx-background-image: url('./politicCard/Bianco.png');
+	-fx-background-size: contain;
+	-fx-size : 35 55;
+}
+
+.cartaPoliticaNero{
+	-fx-background-position: center center;
+	-fx-border-radius: 8.0;
+	-fx-background-radius: 8.0;
+	-fx-border-width: 3px;
+	-fx-border-color: black;
+	-fx-background-image: url('./politicCard/Nero.png');
+	-fx-background-size: contain;
+	-fx-size : 35 55;
+}
+.cartaPoliticaRosa{
+	-fx-background-position: center center;
+	-fx-border-radius: 8.0;
+	-fx-background-radius: 8.0;
+	-fx-border-width: 3px;
+	-fx-border-color: black;
+	-fx-background-image: url('./politicCard/Rosa.png');
+	-fx-background-size: contain;
+	-fx-size : 35 55;
+}
+.cartaPoliticaMulticolore{
+	-fx-background-position: center center;
+	-fx-border-radius: 8.0;
+	-fx-background-radius: 8.0;
+	-fx-border-width: 3px;
+	-fx-border-color: black;
+	-fx-background-image: url('./politicCard/Multicolore.png');
+	-fx-background-size: contain;
+	-fx-size : 35 55;
+}
+.cartaPoliticaMulticolore{
+	-fx-background-position: center center;
+	-fx-border-radius: 8.0;
+	-fx-background-radius: 8.0;
+	-fx-border-width: 3px;
+	-fx-border-color: black;
+	-fx-background-image: url('./politicCard/Multicolore.png');
+	-fx-background-size: contain;
+	-fx-size : 35 55;
+}
+.cartaPoliticaMulticolore{
+	-fx-background-position: center center;
+	-fx-border-radius: 8.0;
+	-fx-background-radius: 8.0;
+	-fx-border-width: 3px;
+	-fx-border-color: black;
+	-fx-background-image: url('./politicCard/Multicolore.png');
+	-fx-background-size: contain;
+	-fx-size : 35 55;
+}
+
+
+.scroll-bar{
+	-fx-background-color:transparent;
+}

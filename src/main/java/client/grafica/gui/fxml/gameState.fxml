@@ -9,362 +9,287 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.grafica.gui.GUIGameController">
-   <children>
-      <BorderPane layoutX="-11.0" layoutY="-8.0" prefHeight="720.0" prefWidth="1253.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="0.0">
-         <left>
-            <SplitPane dividerPositions="0.6142969363707776" prefHeight="720.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
-               <items>
-                  <AnchorPane prefHeight="603.0" prefWidth="773.0">
-                     <children>
-                        <ImageView fx:id="gettoneArkon" fitHeight="629.0" fitWidth="821.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../css/mappa.jpg" />
-                           </image>
-                        </ImageView>
-                        <AnchorPane layoutX="22.0" layoutY="417.0" prefHeight="70.0" prefWidth="193.0">
-                           <children>
-                              <ImageView fitHeight="68.0" fitWidth="61.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../css/permitTile/Mare.png" />
-                                 </image>
-                              </ImageView>
-                              <AnchorPane layoutX="66.0" layoutY="1.0">
-                                 <children>
-                                    <Button fx:id="bottoneTM1" mnemonicParsing="false" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                    <ImageView fx:id="tesseraMare1" fitHeight="68.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true" />
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane layoutX="132.0">
-                                 <children>
-                                    <ImageView fx:id="tesseraMare2" fitHeight="68.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true" />
-                                    <Button fx:id="bottoneTM2" mnemonicParsing="false" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                 </children>
-                              </AnchorPane>
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane layoutX="286.0" layoutY="417.0" prefHeight="70.0" prefWidth="193.0">
-                           <children>
-                              <ImageView fitHeight="68.0" fitWidth="61.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../css/permitTile/Collina.png" />
-                                 </image>
-                              </ImageView>
-                              <AnchorPane layoutX="132.0" layoutY="1.0">
-                                 <children>
-                                    <ImageView fx:id="tesseraCollina2" fitHeight="68.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true" />
-                                    <Button mnemonicParsing="false" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                 </children>
-                              </AnchorPane>
-                              <ImageView fx:id="tesseraCollina1" fitHeight="68.0" fitWidth="61.0" layoutX="66.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane layoutX="578.0" layoutY="417.0" prefHeight="70.0" prefWidth="193.0">
-                           <children>
-                              <ImageView fitHeight="68.0" fitWidth="61.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../css/permitTile/Montagna.png" />
-                                 </image>
-                              </ImageView>
-                              <AnchorPane layoutX="66.0" layoutY="2.0">
-                                 <children>
-                                    <ImageView fx:id="tesseraMontagna1" fitHeight="68.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true" />
-                                    <Button mnemonicParsing="false" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane layoutX="132.0" layoutY="1.0">
-                                 <children>
-                                    <ImageView fx:id="tesseraMontagna2" fitHeight="68.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true" />
-                                    <Button mnemonicParsing="false" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                 </children>
-                              </AnchorPane>
-                           </children>
-                        </AnchorPane>
 
-                        <HBox fx:id="balconeMare" layoutX="88.0" layoutY="501.0" prefHeight="30.0" prefWidth="90.0" spacing="3.0" style="-fx-background-color: black;">
-                           <padding>
-                              <Insets left="1.0" right="1.0" top="5.0" />
-                           </padding>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets></HBox>
-                        <HBox fx:id="balconeCollina" layoutX="351.0" layoutY="506.0" prefHeight="30.0" prefWidth="90.0" spacing="3.0" style="-fx-background-color: black;">
-                           <padding>
-                              <Insets left="1.0" right="1.0" top="5.0" />
-                           </padding>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets></HBox>
-                        <HBox fx:id="balconeRe" layoutX="520.0" layoutY="540.0" prefHeight="30.0" prefWidth="92.0" spacing="3.0" style="-fx-background-color: black;">
-                           <padding>
-                              <Insets left="1.0" right="1.0" top="5.0" />
-                           </padding>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets></HBox>
-                        <HBox fx:id="balconeMontagna" layoutX="645.0" layoutY="506.0" prefHeight="30.0" prefWidth="91.0" spacing="3.0" style="-fx-background-color: black;">
-                           <padding>
-                              <Insets left="1.0" right="1.0" top="5.0" />
-                           </padding>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets></HBox>
-                        <ImageView fx:id="gettoneArkon" fitHeight="44.0" fitWidth="46.0" layoutX="24.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="gettoneBurgen" fitHeight="44.0" fitWidth="42.0" layoutX="18.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="gettoneEsti" fitHeight="44.0" fitWidth="46.0" layoutX="60.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="gettoneDorful" fitHeight="43.0" fitWidth="42.0" layoutX="143.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="gettoneCastrum" fitHeight="44.0" fitWidth="46.0" layoutX="151.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="gettoneFramek" fitHeight="44.0" fitWidth="46.0" layoutX="300.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="gettoneGraden" fitHeight="44.0" fitWidth="46.0" layoutX="306.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="gettoneHellar" fitHeight="44.0" fitWidth="46.0" layoutX="322.0" layoutY="249.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="gettoneJuvelar" fitHeight="44.0" fitWidth="46.0" layoutX="432.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="gettoneIndur" fitHeight="44.0" fitWidth="46.0" layoutX="441.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="gettoneKultos" fitHeight="44.0" fitWidth="46.0" layoutX="588.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="gettoneLyram" fitHeight="44.0" fitWidth="46.0" layoutX="563.0" layoutY="153.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="gettoneMerkatim" fitHeight="44.0" fitWidth="46.0" layoutX="554.0" layoutY="284.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="gettoneNaris" fitHeight="44.0" fitWidth="46.0" layoutX="699.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="gettoneOsium" fitHeight="44.0" fitWidth="46.0" layoutX="706.0" layoutY="227.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="mare" fitHeight="37.0" fitWidth="66.0" layoutX="183.0" layoutY="358.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="collina" fitHeight="37.0" fitWidth="66.0" layoutX="446.0" layoutY="357.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="montagna" fitHeight="37.0" fitWidth="66.0" layoutX="731.0" layoutY="357.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="ferro" fitHeight="32.0" fitWidth="59.0" layoutX="620.0" layoutY="586.0" pickOnBounds="true" preserveRatio="true" rotate="45.0" />
-                        <ImageView fx:id="bronzo" fitHeight="32.0" fitWidth="59.0" layoutX="660.0" layoutY="584.0" pickOnBounds="true" preserveRatio="true" rotate="45.0" />
-                        <ImageView fx:id="argento" fitHeight="32.0" fitWidth="59.0" layoutX="706.0" layoutY="578.0" pickOnBounds="true" preserveRatio="true" rotate="45.0" />
-                        <ImageView fx:id="oro" fitHeight="32.0" fitWidth="59.0" layoutX="747.0" layoutY="574.0" pickOnBounds="true" preserveRatio="true" rotate="45.0" />
-                        <ImageView fx:id="king" fitHeight="32.0" fitWidth="59.0" layoutX="745.0" layoutY="517.0" pickOnBounds="true" preserveRatio="true" rotate="45.0" />
-                     </children>
-                  </AnchorPane>
-                  <SplitPane dividerPositions="0.726984126984127" orientation="VERTICAL" prefHeight="610.0" prefWidth="457.0">
-                    <items>
-                        <VBox prefHeight="370.0" prefWidth="465.0">
+<ScrollPane prefHeight="722.0" prefWidth="1282.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.grafica.gui.GUIGameController">
+   <content>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0">
+         <children>
+            <HBox prefHeight="571.0" prefWidth="1266.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <VBox>
+                     <children>
+                        <AnchorPane prefHeight="590.0" prefWidth="716.0">
                            <children>
-                              <TitledPane animated="false" collapsible="false" prefHeight="177.0" prefWidth="465.0" text="Giocatore">
+                              <ImageView fx:id="gettoneArkon" fitHeight="590.0" fitWidth="755.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../css/mappa.jpg" />
+                                 </image>
+                              </ImageView>
+                              <AnchorPane layoutX="19.0" layoutY="387.0" prefHeight="70.0" prefWidth="193.0">
+                                 <children>
+                                    <ImageView fitHeight="68.0" fitWidth="61.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../css/permitTile/Mare.png" />
+                                       </image>
+                                    </ImageView>
+                                    <AnchorPane layoutX="66.0" layoutY="1.0">
+                                       <children>
+                                          <ImageView fx:id="tesseraMare1" fitHeight="68.0" fitWidth="61.0" onMouseClicked="#handleTesseraPermessoRegione" pickOnBounds="true" preserveRatio="true" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="132.0">
+                                       <children>
+                                          <ImageView fx:id="tesseraMare2" fitHeight="68.0" fitWidth="61.0" onMouseClicked="#handleTesseraPermessoRegione" pickOnBounds="true" preserveRatio="true" />
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="264.0" layoutY="388.0" prefHeight="70.0" prefWidth="193.0">
+                                 <children>
+                                    <ImageView fitHeight="68.0" fitWidth="61.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../css/permitTile/Collina.png" />
+                                       </image>
+                                    </ImageView>
+                                    <AnchorPane layoutX="132.0" layoutY="1.0">
+                                       <children>
+                                          <ImageView fx:id="tesseraCollina2" fitHeight="68.0" fitWidth="61.0" onMouseClicked="#handleTesseraPermessoRegione" pickOnBounds="true" preserveRatio="true" />
+                                       </children>
+                                    </AnchorPane>
+                                    <ImageView fx:id="tesseraCollina1" fitHeight="68.0" fitWidth="61.0" layoutX="66.0" layoutY="1.0" onMouseClicked="#handleTesseraPermessoRegione" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="537.0" layoutY="389.0" prefHeight="70.0" prefWidth="193.0">
+                                 <children>
+                                    <ImageView fitHeight="68.0" fitWidth="61.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../css/permitTile/Montagna.png" />
+                                       </image>
+                                    </ImageView>
+                                    <AnchorPane layoutX="66.0" layoutY="2.0">
+                                       <children>
+                                          <ImageView fx:id="tesseraMontagna1" fitHeight="68.0" fitWidth="61.0" onMouseClicked="#handleTesseraPermessoRegione" pickOnBounds="true" preserveRatio="true" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="132.0" layoutY="1.0">
+                                       <children>
+                                          <ImageView fx:id="tesseraMontagna2" fitHeight="68.0" fitWidth="61.0" onMouseClicked="#handleTesseraPermessoRegione" pickOnBounds="true" preserveRatio="true" />
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+      
+                                    <HBox fx:id="balconeMare" layoutX="86.0" layoutY="473.0" prefHeight="30.0" prefWidth="90.0" spacing="3.0" style="-fx-background-color: black;">
+                                 <padding>
+                                    <Insets left="1.0" right="1.0" top="5.0" />
+                                 </padding>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </HBox>
+                              <HBox fx:id="balconeCollina" layoutX="324.0" layoutY="471.0" prefHeight="30.0" prefWidth="90.0" spacing="3.0" style="-fx-background-color: black;">
+                                 <padding>
+                                    <Insets left="1.0" right="1.0" top="5.0" />
+                                 </padding>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </HBox>
+                              <HBox fx:id="balconeRe" layoutX="486.0" layoutY="504.0" prefHeight="30.0" prefWidth="92.0" spacing="3.0" style="-fx-background-color: black;">
+                                 <padding>
+                                    <Insets left="1.0" right="1.0" top="5.0" />
+                                 </padding>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <children>
+                                    <ImageView fx:id="oro" fitHeight="32.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="balconeMontagna" layoutX="645.0" layoutY="506.0" prefHeight="30.0" prefWidth="91.0" spacing="3.0" style="-fx-background-color: black;">
+                                 <padding>
+                                    <Insets left="1.0" right="1.0" top="5.0" />
+                                 </padding>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </HBox>
+                              <ImageView fx:id="gettoneArkon" fitHeight="44.0" fitWidth="46.0" layoutX="24.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="gettoneBurgen" fitHeight="44.0" fitWidth="42.0" layoutX="18.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="gettoneEsti" fitHeight="44.0" fitWidth="46.0" layoutX="60.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="gettoneDorful" fitHeight="43.0" fitWidth="42.0" layoutX="143.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="gettoneCastrum" fitHeight="44.0" fitWidth="46.0" layoutX="151.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="gettoneFramek" fitHeight="44.0" fitWidth="46.0" layoutX="300.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="gettoneGraden" fitHeight="44.0" fitWidth="46.0" layoutX="306.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="gettoneHellar" fitHeight="44.0" fitWidth="46.0" layoutX="322.0" layoutY="249.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="gettoneJuvelar" fitHeight="44.0" fitWidth="46.0" layoutX="432.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="gettoneIndur" fitHeight="44.0" fitWidth="46.0" layoutX="441.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="gettoneKultos" fitHeight="44.0" fitWidth="46.0" layoutX="588.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="gettoneLyram" fitHeight="44.0" fitWidth="46.0" layoutX="563.0" layoutY="153.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="gettoneMerkatim" fitHeight="44.0" fitWidth="46.0" layoutX="554.0" layoutY="284.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="gettoneNaris" fitHeight="44.0" fitWidth="46.0" layoutX="699.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="gettoneOsium" fitHeight="44.0" fitWidth="46.0" layoutX="676.0" layoutY="232.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="mare" fitHeight="37.0" fitWidth="66.0" layoutX="183.0" layoutY="358.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="collina" fitHeight="37.0" fitWidth="66.0" layoutX="446.0" layoutY="357.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="montagna" fitHeight="37.0" fitWidth="66.0" layoutX="473.0" layoutY="278.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="ferro" fitHeight="32.0" fitWidth="59.0" layoutX="362.0" layoutY="507.0" pickOnBounds="true" preserveRatio="true" rotate="45.0" />
+                              <ImageView fx:id="bronzo" fitHeight="32.0" fitWidth="59.0" layoutX="402.0" layoutY="505.0" pickOnBounds="true" preserveRatio="true" rotate="45.0" />
+                              <ImageView fx:id="argento" fitHeight="32.0" fitWidth="59.0" layoutX="448.0" layoutY="499.0" pickOnBounds="true" preserveRatio="true" rotate="45.0" />
+                              <ImageView fx:id="king" fitHeight="32.0" fitWidth="59.0" layoutX="487.0" layoutY="438.0" pickOnBounds="true" preserveRatio="true" rotate="45.0" />
+                           </children>
+                        </AnchorPane>
+                        <HBox>
+                           <children>
+                              <TitledPane alignment="TOP_LEFT" animated="false" prefHeight="138.0" prefWidth="285.0" text="Riserva">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="60.0" prefWidth="83.0" styleClass="background" stylesheets="@../css/game.css">
+                                       <children>
+                                          <HBox prefHeight="61.0" prefWidth="212.0">
+                                             <children>
+                                                <ImageView fx:id="consigliere1" fitHeight="61.0" fitWidth="26.455" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
+                                                <ImageView fx:id="consigliere2" fitHeight="61.0" fitWidth="26.455" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
+                                                <ImageView fx:id="consigliere3" fitHeight="61.0" fitWidth="26.455" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
+                                                <ImageView fx:id="consigliere4" fitHeight="61.0" fitWidth="26.455" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
+                                                <ImageView fx:id="consigliere5" fitHeight="61.0" fitWidth="26.455" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
+                                                <ImageView fx:id="consigliere6" fitHeight="61.0" fitWidth="26.455" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
+                                                <ImageView fx:id="consigliere7" fitHeight="61.0" fitWidth="26.455" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
+                                                <ImageView fx:id="consigliere8" fitHeight="61.0" fitWidth="26.455" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </TitledPane>
+                              <TabPane fx:id="giocatori" prefHeight="130.0" prefWidth="470.0" tabClosingPolicy="UNAVAILABLE" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="590.0" prefWidth="536.0">
+                     <children>
+                        <TitledPane animated="false" collapsible="false" prefHeight="87.0" prefWidth="465.0" text="Giocatore">
+                           <content>
+                              <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="61.0" prefWidth="461.0">
+                                 <children>
+                                    <ImageView fitHeight="44.0" fitWidth="32.0" layoutX="119.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../css/Point.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitHeight="37.0" fitWidth="37.0" layoutX="170.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../css/Coins.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitHeight="38.0" fitWidth="20.0" layoutX="222.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../css/Assistant.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Text fx:id="nomeGiocatore" layoutX="14.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="93.0" />
+                                    <ImageView fitHeight="38.0" fitWidth="41.0" layoutX="250.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../css/Emporium.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitHeight="46.0" fitWidth="78.0" layoutX="365.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../css/BonusGiocatori.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Text fx:id="puntiGiocatore" layoutX="124.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="scoreGiocatori" wrappingWidth="22.0" />
+                                    <Text fx:id="moneteGiocatore" layoutX="177.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="scoreGiocatori" wrappingWidth="22.0" />
+                                    <Text fx:id="aiutantiGiocatore" layoutX="223.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="scoreGiocatori" wrappingWidth="15.0" />
+                                    <Text fx:id="emporiGiocatore" layoutX="259.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="scoreGiocatori" wrappingWidth="22.0" />
+                                    <Text fx:id="tesserebonusGiocatore" layoutX="378.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="scoreGiocatori" wrappingWidth="24.0" />
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </TitledPane>
+                        <TitledPane animated="false" collapsible="false" text="Tessere Permesso">
+                           <content>
+                              <ScrollPane maxHeight="-Infinity" prefHeight="73.0" prefViewportHeight="60.0" prefViewportWidth="56.0">
                                  <content>
-                                    <Pane prefHeight="59.0" prefWidth="458.0">
-                                       <children>
-                                          <AnchorPane layoutX="-10.0" layoutY="-11.0" prefHeight="73.0" prefWidth="462.0">
-                                             <children>
-                                                <ImageView fitHeight="44.0" fitWidth="32.0" layoutX="119.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../css/Point.png" />
-                                                   </image>
-                                                </ImageView>
-                                                <ImageView fitHeight="37.0" fitWidth="37.0" layoutX="170.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../css/Coins.png" />
-                                                   </image>
-                                                </ImageView>
-                                                <ImageView fitHeight="38.0" fitWidth="20.0" layoutX="222.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../css/Assistant.png" />
-                                                   </image>
-                                                </ImageView>
-                                                <Text fx:id="nomeGiocatore" layoutX="14.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="93.0" />
-                                                <ImageView fitHeight="38.0" fitWidth="41.0" layoutX="250.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../css/Emporium.png" />
-                                                   </image>
-                                                </ImageView>
-                                                <ImageView fitHeight="46.0" fitWidth="78.0" layoutX="365.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../css/BonusGiocatori.png" />
-                                                   </image>
-                                                </ImageView>
-                                                <Text fx:id="puntiGiocatore" layoutX="124.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="scoreGiocatori" wrappingWidth="22.0" />
-                                                <Text fx:id="moneteGiocatore" layoutX="177.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="scoreGiocatori" wrappingWidth="22.0" />
-                                                <Text fx:id="aiutantiGiocatore" layoutX="223.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="scoreGiocatori" wrappingWidth="15.0" />
-                                                <Text fx:id="emporiGiocatore" layoutX="259.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="scoreGiocatori" wrappingWidth="22.0" />
-                                                <Text fx:id="tesserebonusGiocatore" layoutX="378.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="scoreGiocatori" wrappingWidth="24.0" />
-                                             </children>
-                                          </AnchorPane>
-                                       </children>
-                                    </Pane>
+                                    <HBox fx:id="tesserePermesso" layoutX="3.0" layoutY="3.0" prefHeight="70.0" prefWidth="523.0" spacing="20.0" styleClass="background" stylesheets="@../css/game.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </content>
-                              </TitledPane>
-                              <TitledPane alignment="CENTER" animated="false" collapsible="false" text="Azioni Principali">
+                              </ScrollPane>
+                           </content>
+                        </TitledPane>
+                        <TitledPane animated="false" collapsible="false" text="Carte Politica">
+                           <content>
+                              <ScrollPane maxHeight="-Infinity" prefHeight="72.0" prefViewportHeight="60.0" prefViewportWidth="200.0" prefWidth="523.0">
+                                 <content>
+                                    <HBox fx:id="cartePolitica" maxHeight="-Infinity" prefHeight="70.0" prefWidth="523.0" styleClass="background" stylesheets="@../css/game.css" />
+                                 </content>
+                              </ScrollPane>
+                           </content>
+                        </TitledPane>
+                        <TitledPane collapsible="false" text="Server Message">
+                           <content>
+                              <ScrollPane maxHeight="50.0" minHeight="50.0" prefHeight="79.0" prefWidth="465.0">
                                 <content>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                  <AnchorPane maxWidth="460.0" minHeight="50.0" minWidth="0.0" prefHeight="50.0" prefWidth="465.0">
                                        <children>
-                                          <GridPane layoutY="7.0" prefHeight="81.0" prefWidth="455.0">
-                                            <columnConstraints>
-                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="234.0" minWidth="10.0" prefWidth="234.0" />
-                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="233.0" minWidth="10.0" prefWidth="233.0" />
-                                            </columnConstraints>
-                                            <rowConstraints>
-                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                            </rowConstraints>
-                                             <children>
-                                                <Button mnemonicParsing="false" prefWidth="209.0" text="Elezione Consigliere" GridPane.halignment="CENTER" />
-                                                <Button mnemonicParsing="false" prefWidth="209.0" text="Acquisto Tessera Permesso" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-                                                <Button mnemonicParsing="false" text="Costruzione Tessera Permesso" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                                                <Button mnemonicParsing="false" prefWidth="209.0" text="Costruzione Aiuto Re" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                                             </children>
-                                          </GridPane>
+                                          <TextArea fx:id="message" editable="false" minHeight="65.0" prefHeight="50.0" />
                                        </children>
                                     </AnchorPane>
-                                </content>
-                              </TitledPane>
-                              <TitledPane alignment="CENTER" animated="false" collapsible="false" text="Azioni Veloci">
-                                <content>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                       <children>
-                                          <GridPane layoutX="3.0" layoutY="-1.0" prefHeight="85.0" prefWidth="448.0">
-                                            <columnConstraints>
-                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                            </columnConstraints>
-                                            <rowConstraints>
-                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                            </rowConstraints>
-                                             <children>
-                                                <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="213.0" text="Ingaggio Aiutante" GridPane.halignment="CENTER" />
-                                                <Button mnemonicParsing="false" prefWidth="209.0" text="Elezione Consigliere" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-                                                <Button mnemonicParsing="false" prefWidth="209.0" text="Cambio Tessere Permeso" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                                                <Button mnemonicParsing="false" prefWidth="209.0" text="Azione Principale" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                                             </children>
-                                          </GridPane>
-                                       </children>
-                                    </AnchorPane>
-                                </content>
-                              </TitledPane>
-                              <ScrollPane maxHeight="130.0" minHeight="130.0" prefHeight="130.0" prefWidth="465.0">
-                                <content>
-                                  <AnchorPane maxWidth="460.0" minHeight="130.0" minWidth="0.0" prefHeight="130.0" prefWidth="465.0">
-                                       <children>
-                                          <TextArea fx:id="message" editable="false" maxWidth="465.0" minHeight="130.0" prefHeight="130.0" prefWidth="465.0" />
-                                       </children></AnchorPane>
                                 </content>
                               </ScrollPane>
-                           </children>
-                        </VBox>
-                        <TabPane fx:id="giocatori" prefHeight="31.0" prefWidth="467.0" tabClosingPolicy="UNAVAILABLE">
-                          <tabs>
-                            <Tab text="Giocatore 1">
-                                 <content>
-                                  <AnchorPane prefHeight="177.0" prefWidth="467.0" styleClass="background" stylesheets="@../css/game.css">
-                                       <children>
-                                          <Text fx:id="nomeGiocatore1" layoutX="85.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="80.0" />
-                                          <ImageView fitHeight="38.0" fitWidth="33.0" layoutX="189.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../css/Point.png" />
-                                             </image>
-                                          </ImageView>
-                                          <ImageView fitHeight="38.0" fitWidth="33.0" layoutX="231.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../css/Coins.png" />
-                                             </image>
-                                          </ImageView>
-                                          <ImageView fitHeight="38.0" fitWidth="33.0" layoutX="287.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../css/Assistant.png" />
-                                             </image>
-                                          </ImageView>
-                                          <ImageView fitHeight="38.0" fitWidth="33.0" layoutX="327.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../css/Emporium.png" />
-                                             </image>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="59.0" layoutX="381.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../css/BonusGiocatori.png" />
-                                             </image>
-                                          </ImageView>
-                                          <Label layoutX="14.0" layoutY="22.0" stylesheets="@../css/game.css" text="Nome" />
-                                          <ScrollPane layoutX="-3.0" layoutY="48.0" prefHeight="93.0" prefViewportHeight="91.0" prefViewportWidth="464.0" prefWidth="472.0">
-                                             <content>
-                                                <HBox fx:id="tesserePermessoGiocatore1" layoutX="-3.0" layoutY="48.0" prefHeight="87.0" prefWidth="464.0" />
-                                             </content>
-                                          </ScrollPane>
-                                       </children>
-                                    </AnchorPane>
-                                 </content>
-                              </Tab>
-                              <Tab text="Giocatore 2">
-                                 <content>
-                                    <AnchorPane prefHeight="177.0" prefWidth="467.0" styleClass="background" stylesheets="@../css/game.css">
-                                       <children>
-                                          <Text fx:id="nomeGiocatore11" layoutX="85.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="80.0" />
-                                          <ImageView fitHeight="38.0" fitWidth="33.0" layoutX="189.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../css/Point.png" />
-                                             </image>
-                                          </ImageView>
-                                          <ImageView fitHeight="38.0" fitWidth="33.0" layoutX="231.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../css/Coins.png" />
-                                             </image>
-                                          </ImageView>
-                                          <ImageView fitHeight="38.0" fitWidth="33.0" layoutX="287.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../css/Assistant.png" />
-                                             </image>
-                                          </ImageView>
-                                          <ImageView fitHeight="38.0" fitWidth="33.0" layoutX="327.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../css/Emporium.png" />
-                                             </image>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="59.0" layoutX="381.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../css/BonusGiocatori.png" />
-                                             </image>
-                                          </ImageView>
-                                          <Label layoutX="14.0" layoutY="22.0" stylesheets="@../css/game.css" text="Nome" />
-                                          <ScrollPane layoutX="-3.0" layoutY="48.0" prefViewportHeight="91.0" prefViewportWidth="464.0">
-                                             <content>
-                                                <HBox fx:id="tesserePermessoGiocatore11" layoutX="-3.0" layoutY="48.0" prefHeight="87.0" prefWidth="464.0" />
-                                             </content>
-                                          </ScrollPane>
-                                       </children>
-                                    </AnchorPane>
-                                 </content>
-                              </Tab>
-                          </tabs>
-                        </TabPane>
-                    </items>
-                  </SplitPane>
-               </items>
-            </SplitPane>
-         </left>
-         <bottom>
-            <SplitPane dividerPositions="0.09190887666928516, 0.2867242733699921, 0.5" prefHeight="88.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
-               <items>
-                  <TitledPane alignment="TOP_LEFT" animated="false" prefHeight="86.0" prefWidth="215.0" text="Riserva" SplitPane.resizableWithParent="false">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="60.0" prefWidth="83.0" styleClass="background" stylesheets="@../css/game.css">
-                           <children>
-                              <HBox fx:id="riserva" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="-8.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-5.0" />
-                           </children>
-                        </AnchorPane>
-                    </content>
-                  </TitledPane>
-                  <TitledPane animated="false" collapsible="false" prefHeight="86.0" prefWidth="270.0" text="Carte Politica">
-                     <content>
-                        <ScrollPane prefViewportHeight="60.0" prefViewportWidth="200.0" prefWidth="245.0">
-                           <content>
-                              <HBox fx:id="cartePolitica" minWidth="245.0" prefHeight="60.0" />
                            </content>
-                        </ScrollPane>
-                     </content>
-                     <padding>
-                        <Insets top="5.0" />
-                     </padding>
-                  </TitledPane>
-                  <TitledPane animated="false" collapsible="false" prefHeight="86.0" prefWidth="250.0" text="Tessere Permesso">
-                     <content>
-                        <ScrollPane prefViewportHeight="60.0" prefViewportWidth="56.0" prefWidth="325.0">
-                           <content>
-                              <HBox fx:id="tesserePermesso" layoutX="3.0" layoutY="3.0" maxHeight="60.0" prefHeight="60.0" prefWidth="325.0" spacing="20.0" styleClass="background" stylesheets="@../css/game.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                           </content>
-                        </ScrollPane>
-                     </content>
-                  </TitledPane>
-                  <ScrollPane prefHeight="86.0" prefWidth="517.0" />
-               </items>
-            </SplitPane>
-         </bottom>
-      </BorderPane>
-   </children>
-</AnchorPane>
+                        </TitledPane>
+                        <TitledPane alignment="CENTER" animated="false" collapsible="false" maxHeight="-Infinity" prefHeight="120.0" text="Azioni Principali">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="150.0" prefWidth="200.0">
+                                 <children>
+                                    <GridPane layoutX="45.0" layoutY="7.0" prefHeight="81.0" prefWidth="441.0">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="234.0" minWidth="10.0" prefWidth="234.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="233.0" minWidth="10.0" prefWidth="233.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Button mnemonicParsing="false" prefWidth="209.0" text="Elezione Consigliere" GridPane.halignment="CENTER" />
+                                          <Button mnemonicParsing="false" prefWidth="209.0" text="Acquisto Tessera Permesso" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                                          <Button mnemonicParsing="false" text="Costruzione Tessera Permesso" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                                          <Button mnemonicParsing="false" prefWidth="209.0" text="Costruzione Aiuto Re" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </TitledPane>
+                        <TitledPane alignment="CENTER" animated="false" collapsible="false" maxHeight="-Infinity" prefHeight="120.0" prefWidth="460.0" text="Azioni Veloci">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <GridPane layoutX="48.0" layoutY="-1.0" prefHeight="85.0" prefWidth="433.0">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="213.0" text="Ingaggio Aiutante" GridPane.halignment="CENTER" />
+                                          <Button mnemonicParsing="false" prefWidth="209.0" text="Elezione Consigliere" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                                          <Button mnemonicParsing="false" prefWidth="209.0" text="Cambio Tessere Permeso" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                                          <Button mnemonicParsing="false" prefWidth="209.0" text="Azione Principale" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </TitledPane>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+   </content>
+</ScrollPane>
