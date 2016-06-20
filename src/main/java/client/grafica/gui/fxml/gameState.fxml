@@ -125,39 +125,39 @@
                               <ImageView fx:id="argento" fitHeight="32.0" fitWidth="59.0" layoutX="662.0" layoutY="544.0" pickOnBounds="true" preserveRatio="true" rotate="45.0" />
                               <ImageView fx:id="king" fitHeight="32.0" fitWidth="59.0" layoutX="694.0" layoutY="484.0" pickOnBounds="true" preserveRatio="true" rotate="45.0" />
                               <ImageView fx:id="oro" fitHeight="32.0" fitWidth="59.0" layoutX="701.0" layoutY="537.0" pickOnBounds="true" preserveRatio="true" rotate="45.0" />
-                              <Button fx:id="Arkon" layoutX="32.0" layoutY="30.0" mnemonicParsing="false" onAction="#selezionaCittà" prefHeight="56.0" prefWidth="72.0" rotate="5.0" style="-fx-background-color: transparent;" />
-                              <Button fx:id="Burgen" layoutX="18.0" layoutY="159.0" mnemonicParsing="false" onAction="#selezionaCittà" prefHeight="56.0" prefWidth="72.0" rotate="5.0" style="-fx-background-color: transparent;" />
-                              <Button fx:id="Esti" layoutX="63.0" layoutY="270.0" mnemonicParsing="false" onAction="#selezionaCittà" prefHeight="56.0" prefWidth="72.0" rotate="5.0" style="-fx-background-color: transparent;" />
-                              <Button fx:id="Castrum" layoutX="150.0" layoutY="69.0" mnemonicParsing="false" onAction="#selezionaCittà" prefHeight="56.0" prefWidth="72.0" rotate="5.0" style="-fx-background-color: transparent;" />
-                              <Button fx:id="Dorful" layoutX="145.0" layoutY="184.0" mnemonicParsing="false" onAction="#selezionaCittà" prefHeight="56.0" prefWidth="72.0" rotate="5.0" style="-fx-background-color: transparent;" />
-                              <Button fx:id="Framek" layoutX="289.0" layoutY="48.0" mnemonicParsing="false" onAction="#selezionaCittà" prefHeight="56.0" prefWidth="72.0" rotate="5.0" style="-fx-background-color: transparent;" />
-                              <Button fx:id="Graden" layoutX="297.0" layoutY="157.0" mnemonicParsing="false" onAction="#selezionaCittà" prefHeight="56.0" prefWidth="72.0" rotate="5.0" style="-fx-background-color: transparent;" />
-                              <Button fx:id="Hellar" layoutX="313.0" layoutY="256.0" mnemonicParsing="false" onAction="#selezionaCittà" prefHeight="56.0" prefWidth="72.0" rotate="5.0" style="-fx-background-color: transparent;" />
-                              <Button fx:id="Indur" layoutX="423.0" layoutY="45.0" mnemonicParsing="false" onAction="#selezionaCittà" prefHeight="56.0" prefWidth="72.0" rotate="5.0" style="-fx-background-color: transparent;" />
-                              <Button fx:id="Juvelar" layoutX="413.0" layoutY="191.0" mnemonicParsing="false" onAction="#selezionaCittà" prefHeight="56.0" prefWidth="72.0" rotate="5.0" style="-fx-background-color: transparent;" />
-                              <Button fx:id="Kultos" layoutX="563.0" layoutY="38.0" mnemonicParsing="false" onAction="#selezionaCittà" prefHeight="56.0" prefWidth="72.0" rotate="5.0" style="-fx-background-color: transparent;" />
-                              <Button fx:id="Lyram" layoutX="545.0" layoutY="161.0" mnemonicParsing="false" onAction="#selezionaCittà" prefHeight="56.0" prefWidth="72.0" rotate="5.0" style="-fx-background-color: transparent;" />
-                              <Button fx:id="Merkatim" layoutX="535.0" layoutY="284.0" mnemonicParsing="false" onAction="#selezionaCittà" prefHeight="56.0" prefWidth="72.0" rotate="5.0" style="-fx-background-color: transparent;" />
-                              <Button fx:id="Naris" layoutX="656.0" layoutY="105.0" mnemonicParsing="false" onAction="#selezionaCittà" prefHeight="56.0" prefWidth="72.0" rotate="5.0" style="-fx-background-color: transparent;" />
-                              <Button fx:id="Osium" layoutX="664.0" layoutY="234.0" mnemonicParsing="false" onAction="#selezionaCittà" prefHeight="56.0" prefWidth="72.0" rotate="5.0" style="-fx-background-color: transparent;" />
+                              <Button fx:id="arkon" layoutX="32.0" layoutY="30.0" mnemonicParsing="false" onAction="#selezionaCittà" prefHeight="56.0" prefWidth="72.0" rotate="5.0" style="-fx-background-color: transparent;" />
+                              <Button fx:id="burgen" layoutX="18.0" layoutY="159.0" mnemonicParsing="false" onAction="#selezionaCittà" prefHeight="56.0" prefWidth="72.0" rotate="5.0" style="-fx-background-color: transparent;" />
+                              <Button fx:id="esti" layoutX="63.0" layoutY="270.0" mnemonicParsing="false" onAction="#selezionaCittà" prefHeight="56.0" prefWidth="72.0" rotate="5.0" style="-fx-background-color: transparent;" />
+                              <Button fx:id="castrum" layoutX="150.0" layoutY="69.0" mnemonicParsing="false" onAction="#selezionaCittà" prefHeight="56.0" prefWidth="72.0" rotate="5.0" style="-fx-background-color: transparent;" />
+                              <Button fx:id="dorful" layoutX="145.0" layoutY="184.0" mnemonicParsing="false" onAction="#selezionaCittà" prefHeight="56.0" prefWidth="72.0" rotate="5.0" style="-fx-background-color: transparent;" />
+                              <Button fx:id="framek" layoutX="289.0" layoutY="48.0" mnemonicParsing="false" onAction="#selezionaCittà" prefHeight="56.0" prefWidth="72.0" rotate="5.0" style="-fx-background-color: transparent;" />
+                              <Button fx:id="graden" layoutX="297.0" layoutY="157.0" mnemonicParsing="false" onAction="#selezionaCittà" prefHeight="56.0" prefWidth="72.0" rotate="5.0" style="-fx-background-color: transparent;" />
+                              <Button fx:id="hellar" layoutX="313.0" layoutY="256.0" mnemonicParsing="false" onAction="#selezionaCittà" prefHeight="56.0" prefWidth="72.0" rotate="5.0" style="-fx-background-color: transparent;" />
+                              <Button fx:id="indur" layoutX="423.0" layoutY="45.0" mnemonicParsing="false" onAction="#selezionaCittà" prefHeight="56.0" prefWidth="72.0" rotate="5.0" style="-fx-background-color: transparent;" />
+                              <Button fx:id="juvelar" layoutX="413.0" layoutY="191.0" mnemonicParsing="false" onAction="#selezionaCittà" prefHeight="56.0" prefWidth="72.0" rotate="5.0" style="-fx-background-color: transparent;" />
+                              <Button fx:id="kultos" layoutX="563.0" layoutY="38.0" mnemonicParsing="false" onAction="#selezionaCittà" prefHeight="56.0" prefWidth="72.0" rotate="5.0" style="-fx-background-color: transparent;" />
+                              <Button fx:id="lyram" layoutX="545.0" layoutY="161.0" mnemonicParsing="false" onAction="#selezionaCittà" prefHeight="56.0" prefWidth="72.0" rotate="5.0" style="-fx-background-color: transparent;" />
+                              <Button fx:id="merkatim" layoutX="535.0" layoutY="284.0" mnemonicParsing="false" onAction="#selezionaCittà" prefHeight="56.0" prefWidth="72.0" rotate="5.0" style="-fx-background-color: transparent;" />
+                              <Button fx:id="naris" layoutX="656.0" layoutY="105.0" mnemonicParsing="false" onAction="#selezionaCittà" prefHeight="56.0" prefWidth="72.0" rotate="5.0" style="-fx-background-color: transparent;" />
+                              <Button fx:id="osium" layoutX="664.0" layoutY="234.0" mnemonicParsing="false" onAction="#selezionaCittà" prefHeight="56.0" prefWidth="72.0" rotate="5.0" style="-fx-background-color: transparent;" />
                            </children>
                         </AnchorPane>
                         <HBox>
                            <children>
-                              <TitledPane alignment="TOP_LEFT" animated="false" prefHeight="138.0" prefWidth="285.0" text="Riserva">
+                              <TitledPane alignment="TOP_LEFT" animated="false" prefHeight="130.0" prefWidth="242.0" text="Riserva">
                                 <content>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="60.0" prefWidth="83.0" styleClass="background" stylesheets="@../css/game.css">
                                        <children>
-                                          <HBox prefHeight="61.0" prefWidth="212.0">
+                                          <HBox layoutY="17.0" prefHeight="68.0" prefWidth="241.0">
                                              <children>
-                                                <ImageView fx:id="consigliere1" fitHeight="61.0" fitWidth="26.455" pickOnBounds="true" preserveRatio="true" />
-                                                <ImageView fx:id="consigliere2" fitHeight="61.0" fitWidth="26.455" pickOnBounds="true" preserveRatio="true" />
-                                                <ImageView fx:id="consigliere3" fitHeight="61.0" fitWidth="26.455" pickOnBounds="true" preserveRatio="true" />
-                                                <ImageView fx:id="consigliere4" fitHeight="61.0" fitWidth="26.455" pickOnBounds="true" preserveRatio="true" />
-                                                <ImageView fx:id="consigliere5" fitHeight="61.0" fitWidth="26.455" pickOnBounds="true" preserveRatio="true" />
-                                                <ImageView fx:id="consigliere6" fitHeight="61.0" fitWidth="26.455" pickOnBounds="true" preserveRatio="true" />
-                                                <ImageView fx:id="consigliere7" fitHeight="61.0" fitWidth="26.455" pickOnBounds="true" preserveRatio="true" />
-                                                <ImageView fx:id="consigliere8" fitHeight="61.0" fitWidth="26.455" pickOnBounds="true" preserveRatio="true" />
+                                                <Button fx:id="consigliere1" mnemonicParsing="false" onAction="#handleConsigliereRiserva" prefHeight="103.0" prefWidth="30.125" style="-fx-background-color: transparent;" />
+                                                <Button fx:id="consigliere2" mnemonicParsing="false" onAction="#handleConsigliereRiserva" prefHeight="103.0" prefWidth="30.125" style="-fx-background-color: transparent;" />
+                                                <Button fx:id="consigliere3" mnemonicParsing="false" onAction="#handleConsigliereRiserva" prefHeight="103.0" prefWidth="30.125" style="-fx-background-color: transparent;" />
+                                                <Button fx:id="consigliere4" mnemonicParsing="false" onAction="#handleConsigliereRiserva" prefHeight="103.0" prefWidth="30.125" style="-fx-background-color: transparent;" />
+                                                <Button fx:id="consigliere5" mnemonicParsing="false" onAction="#handleConsigliereRiserva" prefHeight="103.0" prefWidth="30.125" style="-fx-background-color: transparent;" />
+                                                <Button fx:id="consigliere6" mnemonicParsing="false" onAction="#handleConsigliereRiserva" prefHeight="103.0" prefWidth="30.125" style="-fx-background-color: transparent;" />
+                                                <Button fx:id="consigliere7" mnemonicParsing="false" onAction="#handleConsigliereRiserva" prefHeight="103.0" prefWidth="30.125" style="-fx-background-color: transparent;" />
+                                                <Button fx:id="consigliere8" mnemonicParsing="false" onAction="#handleConsigliereRiserva" prefHeight="103.0" prefWidth="30.125" style="-fx-background-color: transparent;" />
                                              </children>
                                           </HBox>
                                        </children>
