@@ -179,9 +179,9 @@ public class GameStateDTO implements Serializable {
 	}
 	
 	public List<GiocatoreDTO> getAvversari() {
+		
 		return this.avversari;
 	}
-	
 
 	public void setAvversari(List<GiocatoreDTO> avversari) {
 		this.avversari=avversari;
