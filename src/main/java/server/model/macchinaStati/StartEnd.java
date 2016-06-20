@@ -13,6 +13,11 @@ public class StartEnd implements Stato {
 
 	private List<Azione> azioni;
 
+	/**
+	 * start end state 
+	 * the only action that the player can do is pick politic card
+	 * @param gameState
+	 */
 	public StartEnd(GameState gameState) {
 		System.out.println("[SERVER] " + this);
 		gameState.notifyObserver(new MessageNotify(gameState.getGiocatoreCorrente().getNome()+ " é il tuo turno!\n"
@@ -21,12 +26,18 @@ public class StartEnd implements Stato {
 		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
 	}
 
+	/**
+	 * transition when player pick a politic card
+	 */
 	@Override
 	public void transizionePescaCarta(GameState gameState) {
 		gameState.setStato(new Stato11(gameState));
 
 	}
-
+	
+	/**
+	 * get avaiable action
+	 */
 	@Override
 	public List<Azione> getAzioni() {
 		return this.azioni;

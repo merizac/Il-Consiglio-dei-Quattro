@@ -1,6 +1,7 @@
 package client.grafica.gui;
 
 import java.awt.BorderLayout;
+import java.awt.ScrollPane;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -153,7 +154,37 @@ public class GUIGameController {
 	private ImageView gettoneOsium;
 	@FXML
 	private ImageView gettoneMerkatim;
-	
+
+	@FXML
+	private Button Arkon;
+	@FXML
+	private Button Burgen;
+	@FXML
+	private Button Castrum;
+	@FXML
+	private Button Dorful;
+	@FXML
+	private Button Esti;
+	@FXML
+	private Button Framek;
+	@FXML
+	private Button Indur;
+	@FXML
+	private Button Graden;
+	@FXML
+	private Button Juvelar;
+	@FXML
+	private Button Hellar;
+	@FXML
+	private Button Kultos;
+	@FXML
+	private Button Naris;
+	@FXML
+	private Button Lyram;
+	@FXML
+	private Button Osium;
+	@FXML
+	private Button Merkatim;
 	@FXML
 	private ImageView mare;
 	@FXML
@@ -496,6 +527,7 @@ public class GUIGameController {
 			        Button tp = new Button();
 			        tp.setGraphic(image);
 			        tp.setUserData(t);
+			        tesserePermesso.getChildren().add(tp);
 				}
 			}
 		});
@@ -564,41 +596,98 @@ public class GUIGameController {
 						Tab tab=new Tab();
 						VBox vbox=new VBox();
 						HBox hbox=new HBox();
+						hbox.setSpacing(15);
+						vbox.setSpacing(5);
+						tab.setText(g.getNome());
+						//hbox.relocate(20, 5);
+						vbox.getChildren().add(hbox);
+						tab.setContent(vbox);
+						giocatori.getTabs().add(tab);
+					
+						Pane pane1=new Pane();
 						ImageView puntiV=new ImageView();
 						puntiV.setImage(new Image(getClass().getResource("css/Point.png").toExternalForm()));
 						puntiV.setPreserveRatio(true);
 						puntiV.setFitHeight(40);
 						Text npuntiV=new Text();
 						npuntiV.setText(Integer.toString(g.getPunteggioVittoria()));
-						npuntiV.relocate(20, 20);
-						hbox.setSpacing(10);						
-						
-						hbox.getChildren().add(puntiV);
-						vbox.getChildren().add(hbox);
-						tab.setContent(vbox);
-						giocatori.getTabs().add(tab);
-						
-						hbox.setSpacing(5);
-						tab.setText(g.getNome());
-						
-						
+						npuntiV.relocate(10, 13);
+						pane1.getChildren().add(puntiV);
+						pane1.getChildren().add(npuntiV);
+						hbox.getChildren().add(pane1);
+												
+						Pane pane2=new Pane();
 						ImageView puntiR=new ImageView();
 						puntiR.setImage(new Image(getClass().getResource("css/Coins.png").toExternalForm()));
 						puntiR.setPreserveRatio(true);
 						puntiR.setFitHeight(40);
 						Text npuntiR=new Text();
 						npuntiR.setText(Integer.toString(g.getPunteggioRicchezza()));
-						npuntiR.relocate(10, 10);
+						npuntiR.relocate(10, 13);
+						pane2.getChildren().add(puntiR);
+						pane2.getChildren().add(npuntiR);
+						hbox.getChildren().add(pane2);
+			
+						Pane pane3=new Pane();
+						ImageView aiutanti=new ImageView();
+						aiutanti.setImage(new Image(getClass().getResource("css/Assistant.png").toExternalForm()));
+						aiutanti.setPreserveRatio(true);
+						aiutanti.setFitHeight(40);
+						Text naiutanti=new Text();
+						naiutanti.setText(Integer.toString(g.getAiutanti()));
+						naiutanti.relocate(5, 13);
+						pane3.getChildren().add(aiutanti);
+						pane3.getChildren().add(naiutanti);
+						hbox.getChildren().add(pane3);
 						
+						Pane pane4=new Pane();
+						ImageView emporio=new ImageView();
+						emporio.setImage(new Image(getClass().getResource("css/Emporium.png").toExternalForm()));
+						emporio.setPreserveRatio(true);
+						emporio.setFitHeight(40);
+						Text empori=new Text();
+						empori.setText(Integer.toString(g.getEmpori()));
+						empori.relocate(10, 13);
+						pane4.getChildren().add(emporio);
+						pane4.getChildren().add(empori);
+						hbox.getChildren().add(pane4);
 						
-						hbox.getChildren().add(npuntiR);
-						hbox.getChildren().add(puntiR);		
-						
-						Pane pane=new Pane();
-						pane.getChildren().add(npuntiV);
-						pane.setStyle("-fx-background-image: url('./css/Point.png'); -fx-background-repeat: no-repeat; -fx-background-size: contain;");
-						hbox.getChildren().add(pane);
-					}}
+						Pane pane5=new Pane();
+						ImageView nobilty=new ImageView();
+						nobilty.setImage(new Image(getClass().getResource("css/Nobility.png").toExternalForm()));
+						nobilty.setPreserveRatio(true);
+						nobilty.setFitHeight(40);
+						Text nobiltyPoint=new Text();
+						nobiltyPoint.setText(Integer.toString(g.getPunteggioNobiltà()));
+						nobiltyPoint.relocate(10, 13);
+						pane5.getChildren().add(nobilty);
+						pane5.getChildren().add(nobiltyPoint);
+						hbox.getChildren().add(pane5);
+
+						Pane pane6=new Pane();
+						ImageView puntiBonus=new ImageView();
+						puntiBonus.setImage(new Image(getClass().getResource("css/BonusGiocatori.png").toExternalForm()));
+						puntiBonus.setPreserveRatio(true);
+						puntiBonus.setFitHeight(40);
+						Text npuntiBonus=new Text();
+						npuntiBonus.setText(Integer.toString(g.getPunteggioNobiltà()));
+						npuntiBonus.relocate(20, 13);
+						pane6.getChildren().add(puntiBonus);
+						pane6.getChildren().add(npuntiBonus);
+						hbox.getChildren().add(pane6);
+
+						HBox hbox1=new HBox();
+						for (TesseraPermessoDTO t : g.getTesserePermesso()) {
+							ImageView image = new ImageView();
+							image.setFitHeight(60);
+							image.setPreserveRatio(true);
+							image.setImage(mappaTessere.get(t.toString()));
+					        hbox1.getChildren().add(image);
+						}
+						vbox.getChildren().add(hbox1);
+
+					}
+				}
 				catch(Exception e){
 					e.printStackTrace();
 				}
@@ -658,5 +747,9 @@ public class GUIGameController {
 	@FXML
 	public void handleConsigliereRiserva(Event event){
 		System.out.println(((ImageView)event.getSource()).getUserData());
+	}
+	@FXML
+	public void selezionaCittà(ActionEvent event){
+		System.out.println(((Button)event.getSource()).getUserData());
 	}
 }
