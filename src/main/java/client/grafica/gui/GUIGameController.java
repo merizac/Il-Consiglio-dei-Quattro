@@ -5,6 +5,7 @@ import java.awt.ScrollPane;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import common.azioniDTO.AzioneDTO;
 import common.gameDTO.CartaPoliticaDTO;
@@ -47,7 +48,7 @@ public class GUIGameController {
 	private Map<String, Image> mappaTessere = new HashMap<>();
 	private Map<String, Image> mappaGettoni = new HashMap<>();
 	private Map<String, Image> mappaConsiglieri = new HashMap<>();
-	private Map<String,Image> mappaConsiglieriRiserva = new HashMap<>();
+	private Map<String, Image> mappaConsiglieriRiserva = new HashMap<>();
 
 
 	@FXML
@@ -156,35 +157,35 @@ public class GUIGameController {
 	private ImageView gettoneMerkatim;
 
 	@FXML
-	private Button Arkon;
+	private Button arkon;
 	@FXML
-	private Button Burgen;
+	private Button burgen;
 	@FXML
-	private Button Castrum;
+	private Button castrum;
 	@FXML
-	private Button Dorful;
+	private Button dorful;
 	@FXML
-	private Button Esti;
+	private Button esti;
 	@FXML
-	private Button Framek;
+	private Button framek;
 	@FXML
-	private Button Indur;
+	private Button indur;
 	@FXML
-	private Button Graden;
+	private Button graden;
 	@FXML
-	private Button Juvelar;
+	private Button juvelar;
 	@FXML
-	private Button Hellar;
+	private Button hellar;
 	@FXML
-	private Button Kultos;
+	private Button kultos;
 	@FXML
-	private Button Naris;
+	private Button naris;
 	@FXML
-	private Button Lyram;
+	private Button lyram;
 	@FXML
-	private Button Osium;
+	private Button osium;
 	@FXML
-	private Button Merkatim;
+	private Button merkatim;
 	@FXML
 	private ImageView mare;
 	@FXML
@@ -751,5 +752,23 @@ public class GUIGameController {
 	@FXML
 	public void selezionaCittà(ActionEvent event){
 		System.out.println(((Button)event.getSource()).getUserData());
+	}
+
+	public void assegnaBottoniCittà(List<CittàDTO> città) {
+		arkon.setUserData(città.get(0));
+		burgen.setUserData(città.get(1));
+		castrum.setUserData(città.get(2));
+		dorful.setUserData(città.get(3));
+		esti.setUserData(città.get(4));
+		framek.setUserData(città.get(5));
+		graden.setUserData(città.get(6));
+		hellar.setUserData(città.get(7));
+		indur.setUserData(città.get(8));
+		juvelar.setUserData(città.get(9));
+		kultos.setUserData(città.get(10));
+		lyram.setUserData(città.get(11));
+		merkatim.setUserData(città.get(12));
+		naris.setUserData(città.get(13));
+		osium.setUserData(città.get(14));
 	}
 }
