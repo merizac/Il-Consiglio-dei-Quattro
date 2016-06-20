@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import common.azioniDTO.AzioneDTO;
 import common.gameDTO.CartaPoliticaDTO;
 import common.gameDTO.CittàBonusDTO;
 import common.gameDTO.CittàDTO;
@@ -27,12 +26,9 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
@@ -67,17 +63,17 @@ public class GUIGameController {
 	@FXML
 	private Text tesserebonusGiocatore;
 	@FXML
-	private ImageView tesseraMare1;
+	private Button tesseraMare1;
 	@FXML
-	private ImageView tesseraMare2;
+	private Button tesseraMare2;
 	@FXML
-	private ImageView tesseraCollina1;
+	private Button tesseraCollina1;
 	@FXML
-	private ImageView tesseraCollina2;
+	private Button tesseraCollina2;
 	@FXML
-	private ImageView tesseraMontagna1;
+	private Button tesseraMontagna1;
 	@FXML
-	private ImageView tesseraMontagna2;
+	private Button tesseraMontagna2;
 	@FXML
 	private TabPane giocatori;
 
@@ -438,23 +434,24 @@ public class GUIGameController {
 			@Override
 			public void run() {
 				for (CartaPoliticaDTO c : carte) {
-					/*ImageView imageView=new ImageView(mappaCarte.get(c.toString()));
-					imageView.setFitHeight(65);
-					imageView.setPreserveRatio(true);
-					imageView.setUserData(c);*/
-					Image image=mappaCarte.get(c.toString());
-					Button tp= new Button();
-					Background sfondo= new Background(new BackgroundImage(mappaCarte.get(c.toString()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT));
-					tp.backgroundProperty().set(sfondo);
-					cartePolitica.getChildren().add(tp);
-			     /*   imageView.setOnMouseClicked(new EventHandler<Event>() {
 
+					Button tp= new Button();
+					tp.setPrefHeight(60);
+					tp.setPrefWidth(45);
+					Background sfondo= new Background(new BackgroundImage(mappaCarte.get(c.toString()), BackgroundRepeat.NO_REPEAT,
+							BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(45, 60, false, false, true, true)));
+					tp.backgroundProperty().set(sfondo);
+					tp.setUserData(c);
+					cartePolitica.getChildren().add(tp);
+					tp.setOnAction(new EventHandler<ActionEvent>() {
+						
 						@Override
-						public void handle(Event event) {
+						public void handle(ActionEvent event) {
 							handleCartaPolitica(event);
 						}
-					});*/
+					});
 				}
+
 			}
 		});
 	}
@@ -563,23 +560,47 @@ public class GUIGameController {
 	
 
 	public void mostraTesserePermessoRegioni(List<RegioneDTO> regioni) {
-		tesseraCollina1.setImage(this.mappaTessere.get(regioni.get(1).getTesserePermessoScoperte().get(0).toString()));
-		tesseraCollina1.setUserData(regioni.get(1).getTesserePermessoScoperte().get(0));
-		tesseraCollina2.setImage(this.mappaTessere.get(regioni.get(1).getTesserePermessoScoperte().get(1).toString()));
+		
+		Background sfondo= new Background(new BackgroundImage(this.mappaTessere.get(regioni.get(1).getTesserePermessoScoperte().get(0).toString())
+				, BackgroundRepeat.NO_REPEAT,
+				BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(45, 60, false, false, true, true)));
+		tesseraCollina1.backgroundProperty().set(sfondo);
+		tesseraCollina1.setUserData(this.mappaTessere.get(regioni.get(1).getTesserePermessoScoperte().get(0)));
+		
+		Background sfondo2= new Background(new BackgroundImage(this.mappaTessere.get(regioni.get(1).getTesserePermessoScoperte().get(1).toString())
+				, BackgroundRepeat.NO_REPEAT,
+				BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(45, 60, false, false, true, true)));
+		tesseraCollina2.backgroundProperty().set(sfondo2);
 		tesseraCollina2.setUserData(regioni.get(1).getTesserePermessoScoperte().get(1));
-		tesseraMare1.setImage(this.mappaTessere.get(regioni.get(0).getTesserePermessoScoperte().get(0).toString()));
+		
+		Background sfondo3= new Background(new BackgroundImage(this.mappaTessere.get(regioni.get(0).getTesserePermessoScoperte().get(0).toString())
+				, BackgroundRepeat.NO_REPEAT,
+				BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(45, 60, false, false, true, true)));
+		tesseraMare1.backgroundProperty().set(sfondo3);
 		tesseraMare1.setUserData(regioni.get(0).getTesserePermessoScoperte().get(0));
-		tesseraMare2.setImage(this.mappaTessere.get(regioni.get(0).getTesserePermessoScoperte().get(1).toString()));
+		
+		Background sfondo4= new Background(new BackgroundImage(this.mappaTessere.get(regioni.get(0).getTesserePermessoScoperte().get(1).toString())
+				, BackgroundRepeat.NO_REPEAT,
+				BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(45, 60, false, false, true, true)));
+		tesseraMare2.backgroundProperty().set(sfondo4);
 		tesseraMare2.setUserData(regioni.get(0).getTesserePermessoScoperte().get(1));
-		tesseraMontagna1.setImage(this.mappaTessere.get(regioni.get(2).getTesserePermessoScoperte().get(0).toString()));
+		
+		Background sfondo5= new Background(new BackgroundImage(this.mappaTessere.get(regioni.get(2).getTesserePermessoScoperte().get(0).toString())
+				, BackgroundRepeat.NO_REPEAT,
+				BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(45, 60, false, false, true, true)));
+		tesseraMontagna1.backgroundProperty().set(sfondo5);
 		tesseraMontagna1.setUserData(regioni.get(2).getTesserePermessoScoperte().get(0));
-		tesseraMontagna2.setImage(this.mappaTessere.get(regioni.get(2).getTesserePermessoScoperte().get(1).toString()));
-		tesseraMontagna1.setUserData(regioni.get(2).getTesserePermessoScoperte().get(1));
+		
+		Background sfondo6= new Background(new BackgroundImage(this.mappaTessere.get(regioni.get(2).getTesserePermessoScoperte().get(1).toString())
+				, BackgroundRepeat.NO_REPEAT,
+				BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(45, 60, false, false, true, true)));
+		tesseraMontagna2.backgroundProperty().set(sfondo6);
+		tesseraMontagna2.setUserData(regioni.get(2).getTesserePermessoScoperte().get(1));
 	}
 	
 	@FXML
 	public void handleTesseraPermessoRegione(Event event) {
-		System.out.println(((ImageView)event.getSource()).getUserData());
+		System.out.println(((Button)event.getSource()).getUserData());
 	}
 
 	public void mostraAvversario(List<GiocatoreDTO> avversari){
@@ -741,7 +762,7 @@ public class GUIGameController {
 	}
 	
 	public void handleCartaPolitica(Event event) {
-		System.out.println(((ImageView)event.getSource()).getUserData());
+		System.out.println(((Button)event.getSource()).getUserData());
 	}
 	
 	@FXML

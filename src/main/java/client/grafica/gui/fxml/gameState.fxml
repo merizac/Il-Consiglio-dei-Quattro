@@ -26,55 +26,47 @@
                               </ImageView>
                               <AnchorPane layoutX="19.0" layoutY="387.0" prefHeight="70.0" prefWidth="193.0">
                                  <children>
-                                    <ImageView fitHeight="68.0" fitWidth="61.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../css/permitTile/Mare.png" />
-                                       </image>
-                                    </ImageView>
-                                    <AnchorPane layoutX="66.0" layoutY="1.0">
+                                    <HBox spacing="2.0">
                                        <children>
-                                          <ImageView fx:id="tesseraMare1" fitHeight="68.0" fitWidth="61.0" onMouseClicked="#handleTesseraPermessoRegione" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fitHeight="68.0" fitWidth="61.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../css/permitTile/Mare.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Button fx:id="tesseraMare1" layoutX="63.0" mnemonicParsing="false" onAction="#handleTesseraPermessoRegione" prefHeight="68.0" prefWidth="61.0" style="-fx-background-color: transparent;" />
+                                          <Button fx:id="tesseraMare2" layoutX="118.0" mnemonicParsing="false" onAction="#handleTesseraPermessoRegione" prefHeight="68.0" prefWidth="61.0" style="-fx-background-color: transparent;" />
                                        </children>
-                                    </AnchorPane>
-                                    <AnchorPane layoutX="132.0">
-                                       <children>
-                                          <ImageView fx:id="tesseraMare2" fitHeight="68.0" fitWidth="61.0" onMouseClicked="#handleTesseraPermessoRegione" pickOnBounds="true" preserveRatio="true" />
-                                       </children>
-                                    </AnchorPane>
+                                    </HBox>
                                  </children>
                               </AnchorPane>
                               <AnchorPane layoutX="264.0" layoutY="388.0" prefHeight="70.0" prefWidth="193.0">
                                  <children>
-                                    <ImageView fitHeight="68.0" fitWidth="61.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../css/permitTile/Collina.png" />
-                                       </image>
-                                    </ImageView>
-                                    <AnchorPane layoutX="132.0" layoutY="1.0">
+                                    <HBox layoutY="1.0" spacing="2.0">
                                        <children>
-                                          <ImageView fx:id="tesseraCollina2" fitHeight="68.0" fitWidth="61.0" onMouseClicked="#handleTesseraPermessoRegione" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fitHeight="68.0" fitWidth="61.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../css/permitTile/Collina.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Button fx:id="tesseraCollina1" layoutX="66.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleTesseraPermessoRegione" prefHeight="68.0" prefWidth="61.0" style="-fx-background-color: transparent;" />
+                                          <Button fx:id="tesseraCollina2" layoutX="127.0" layoutY="4.0" mnemonicParsing="false" onAction="#handleTesseraPermessoRegione" prefHeight="68.0" prefWidth="61.0" style="-fx-background-color: transparent;" />
                                        </children>
-                                    </AnchorPane>
-                                    <ImageView fx:id="tesseraCollina1" fitHeight="68.0" fitWidth="61.0" layoutX="66.0" layoutY="1.0" onMouseClicked="#handleTesseraPermessoRegione" pickOnBounds="true" preserveRatio="true" />
+                                    </HBox>
                                  </children>
                               </AnchorPane>
                               <AnchorPane layoutX="537.0" layoutY="389.0" prefHeight="70.0" prefWidth="193.0">
                                  <children>
-                                    <ImageView fitHeight="68.0" fitWidth="61.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../css/permitTile/Montagna.png" />
-                                       </image>
-                                    </ImageView>
-                                    <AnchorPane layoutX="66.0" layoutY="2.0">
+                                    <HBox spacing="2.0">
                                        <children>
-                                          <ImageView fx:id="tesseraMontagna1" fitHeight="68.0" fitWidth="61.0" onMouseClicked="#handleTesseraPermessoRegione" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fitHeight="68.0" fitWidth="61.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../css/permitTile/Montagna.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Button fx:id="tesseraMontagna1" mnemonicParsing="false" onAction="#handleTesseraPermessoRegione" prefHeight="68.0" prefWidth="61.0" style="-fx-background-color: transparent;" />
+                                          <Button fx:id="tesseraMontagna2" mnemonicParsing="false" onAction="#handleTesseraPermessoRegione" prefHeight="68.0" prefWidth="61.0" style="-fx-background-color: transparent;" />
                                        </children>
-                                    </AnchorPane>
-                                    <AnchorPane layoutX="132.0" layoutY="1.0">
-                                       <children>
-                                          <ImageView fx:id="tesseraMontagna2" fitHeight="68.0" fitWidth="61.0" onMouseClicked="#handleTesseraPermessoRegione" pickOnBounds="true" preserveRatio="true" />
-                                       </children>
-                                    </AnchorPane>
+                                    </HBox>
                                  </children>
                               </AnchorPane>
       
