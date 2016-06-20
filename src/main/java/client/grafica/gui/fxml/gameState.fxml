@@ -231,7 +231,7 @@
                            <content>
                               <ScrollPane maxHeight="-Infinity" prefHeight="72.0" prefViewportHeight="60.0" prefViewportWidth="200.0" prefWidth="523.0">
                                  <content>
-                                    <HBox fx:id="cartePolitica" maxHeight="-Infinity" prefHeight="70.0" prefWidth="523.0" styleClass="background" stylesheets="@../css/game.css" />
+                                    <HBox fx:id="cartePolitica" maxHeight="-Infinity" prefHeight="70.0" prefWidth="523.0" spacing="10.0" stylesheets="@../css/game.css" />
                                  </content>
                               </ScrollPane>
                            </content>
