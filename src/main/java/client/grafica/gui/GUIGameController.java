@@ -566,7 +566,6 @@ public class GUIGameController {
 						tab.setContent(vbox);
 						giocatori.getTabs().add(tab);
 
-
 						Pane pane1=new Pane();
 						ImageView puntiV=new ImageView();
 						puntiV.setImage(new Image(getClass().getResource("css/Point.png").toExternalForm()));
