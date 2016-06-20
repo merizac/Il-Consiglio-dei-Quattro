@@ -329,13 +329,24 @@
             </SplitPane>
          </left>
          <bottom>
-            <SplitPane dividerPositions="0.09190887666928516, 0.2867242733699921, 0.5" prefHeight="88.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
+            <SplitPane dividerPositions="0.17136150234741784, 0.37167449139280123, 0.6338028169014085" prefHeight="88.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
                <items>
                   <TitledPane alignment="TOP_LEFT" animated="false" prefHeight="86.0" prefWidth="215.0" text="Riserva" SplitPane.resizableWithParent="false">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="60.0" prefWidth="83.0" styleClass="background" stylesheets="@../css/game.css">
                            <children>
-                              <HBox fx:id="riserva" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="-8.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-5.0" />
+                              <HBox prefHeight="61.0" prefWidth="212.0">
+                                 <children>
+                                    <ImageView fx:id="consigliere1" fitHeight="61.0" fitWidth="26.455" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="consigliere2" fitHeight="61.0" fitWidth="26.455" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="consigliere3" fitHeight="61.0" fitWidth="26.455" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="consigliere4" fitHeight="61.0" fitWidth="26.455" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="consigliere5" fitHeight="61.0" fitWidth="26.455" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="consigliere6" fitHeight="61.0" fitWidth="26.455" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="consigliere7" fitHeight="61.0" fitWidth="26.455" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="consigliere8" fitHeight="61.0" fitWidth="26.455" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </HBox>
                            </children>
                         </AnchorPane>
                     </content>

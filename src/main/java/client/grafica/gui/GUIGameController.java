@@ -15,6 +15,7 @@ import common.gameDTO.RegioneDTO;
 import common.gameDTO.TesseraPermessoDTO;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
@@ -38,6 +39,7 @@ public class GUIGameController {
 	private Map<String, Image> mappaTessere = new HashMap<>();
 	private Map<String, Image> mappaGettoni = new HashMap<>();
 	private Map<String, Image> mappaConsiglieri = new HashMap<>();
+	private Map<String,Image> mappaConsiglieriRiserva = new HashMap<>();
 
 	@FXML
 	private Text bianca;
@@ -79,7 +81,22 @@ public class GUIGameController {
 	
 	private AzioneDTO azioneCorrente;
 
-
+	@FXML
+	private ImageView consigliere1;
+	@FXML
+	private ImageView consigliere2;
+	@FXML
+	private ImageView consigliere3;
+	@FXML
+	private ImageView consigliere4;
+	@FXML
+	private ImageView consigliere5;
+	@FXML
+	private ImageView consigliere6;
+	@FXML
+	private ImageView consigliere7;
+	@FXML
+	private ImageView consigliere8;
 	@FXML
 	private Button elezioneConsigliere;
 	@FXML
@@ -168,6 +185,19 @@ public class GUIGameController {
 				new Image(getClass().getResource("css/consiglieri/Rosa.png").toExternalForm()));
 		this.mappaConsiglieri.put("Viola",
 				new Image(getClass().getResource("css/consiglieri/Viola.png").toExternalForm()));
+		
+		this.mappaConsiglieriRiserva.put("Arancione",
+				new Image(getClass().getResource("css/consiglieriRiserva/Arancione.png").toExternalForm()));
+		this.mappaConsiglieriRiserva.put("Azzurro",
+				new Image(getClass().getResource("css/consiglieriRiserva/Azzurro.png").toExternalForm()));
+		this.mappaConsiglieriRiserva.put("Bianco",
+				new Image(getClass().getResource("css/consiglieriRiserva/Bianco.png").toExternalForm()));
+		this.mappaConsiglieriRiserva.put("Nero",
+				new Image(getClass().getResource("css/consiglieriRiserva/Nero.png").toExternalForm()));
+		this.mappaConsiglieriRiserva.put("Rosa",
+				new Image(getClass().getResource("css/consiglieriRiserva/Rosa.png").toExternalForm()));
+		this.mappaConsiglieriRiserva.put("Viola",
+				new Image(getClass().getResource("css/consiglieriRiserva/Viola.png").toExternalForm()));
 
 		this.mappaGettoni.put("[BonusPuntiNobiltà 1]",
 				new Image(getClass().getResource("css/gettoni/15.png").toExternalForm()));
@@ -468,6 +498,35 @@ public class GUIGameController {
 			}
 		});
 	}
+	
+	public void mostraRiserva(List<ConsigliereDTO> consiglieri) {
+		Platform.runLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				consigliere1.setImage(mappaConsiglieriRiserva.get(consiglieri.get(0).getColoreConsigliere().toString()));
+				consigliere1.setUserData(consiglieri.get(0).getColoreConsigliere());
+				consigliere2.setImage(mappaConsiglieriRiserva.get(consiglieri.get(1).getColoreConsigliere().toString()));
+				consigliere2.setUserData(consiglieri.get(1).getColoreConsigliere());
+				consigliere3.setImage(mappaConsiglieriRiserva.get(consiglieri.get(2).getColoreConsigliere().toString()));
+				consigliere3.setUserData(consiglieri.get(2).getColoreConsigliere());
+				consigliere4.setImage(mappaConsiglieriRiserva.get(consiglieri.get(3).getColoreConsigliere().toString()));
+				consigliere4.setUserData(consiglieri.get(3).getColoreConsigliere());
+				consigliere5.setImage(mappaConsiglieriRiserva.get(consiglieri.get(4).getColoreConsigliere().toString()));
+				consigliere5.setUserData(consiglieri.get(4).getColoreConsigliere());
+				consigliere6.setImage(mappaConsiglieriRiserva.get(consiglieri.get(5).getColoreConsigliere().toString()));
+				consigliere6.setUserData(consiglieri.get(5).getColoreConsigliere());
+				consigliere7.setImage(mappaConsiglieriRiserva.get(consiglieri.get(6).getColoreConsigliere().toString()));
+				consigliere7.setUserData(consiglieri.get(6).getColoreConsigliere());
+				consigliere8.setImage(mappaConsiglieriRiserva.get(consiglieri.get(7).getColoreConsigliere().toString()));
+				consigliere8.setUserData(consiglieri.get(7).getColoreConsigliere());
+
+			}
+				
+			
+		});
+}
+	
 
 	public void mostraTesserePermessoRegioni(List<RegioneDTO> regioni) {
 		tesseraCollina1.setImage(this.mappaTessere.get(regioni.get(1).getTesserePermessoScoperte().get(0).toString()));
@@ -478,7 +537,6 @@ public class GUIGameController {
 		tesseraMontagna2.setImage(this.mappaTessere.get(regioni.get(2).getTesserePermessoScoperte().get(1).toString()));
 	}
 
-	
 	public void mostraAvversario(List<GiocatoreDTO> avversari){
 		Platform.runLater(new Runnable() {
 			
@@ -542,7 +600,7 @@ public class GUIGameController {
 		}.setAvversari(this.giocatori,this.mappaTessere, avversari));	
 	}
 
-	public void mostaConsiglieri() {
+	public void mostraConsiglieriBalcone() {
 		Platform.runLater(new Runnable() {
 
 			@Override
@@ -583,5 +641,9 @@ public class GUIGameController {
 	public void handleCartaPolitica(ActionEvent event) {
 		System.out.println(((Button)event.getSource()).getUserData());
 	}
-
+	
+	@FXML
+	public void handleConsigliereRiserva(Event event){
+		System.out.println(((ImageView)event.getSource()).getUserData());
+	}
 }
