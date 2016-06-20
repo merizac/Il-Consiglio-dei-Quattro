@@ -271,25 +271,58 @@
                         </SplitPane>
                      </items>
                   </SplitPane>
-               </left>
-               <bottom>
-                  <SplitPane dividerPositions="0.5" prefHeight="88.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
-                     <items>
-                        <TitledPane alignment="TOP_LEFT" animated="false" prefHeight="86.0" prefWidth="215.0" text="Riserva" SplitPane.resizableWithParent="false">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="60.0" prefWidth="83.0" styleClass="background" stylesheets="@../css/game.css">
+
+               </items>
+            </SplitPane>
+         </left>
+         <bottom>
+            <SplitPane dividerPositions="0.17136150234741784, 0.37167449139280123, 0.6338028169014085" prefHeight="88.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
+               <items>
+                  <TitledPane alignment="TOP_LEFT" animated="false" prefHeight="86.0" prefWidth="215.0" text="Riserva" SplitPane.resizableWithParent="false">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="60.0" prefWidth="83.0" styleClass="background" stylesheets="@../css/game.css">
+                           <children>
+                              <HBox prefHeight="61.0" prefWidth="212.0">
                                  <children>
-                                    <HBox fx:id="riserva" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="-8.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-5.0" />
+                                    <ImageView fx:id="consigliere1" fitHeight="61.0" fitWidth="26.455" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="consigliere2" fitHeight="61.0" fitWidth="26.455" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="consigliere3" fitHeight="61.0" fitWidth="26.455" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="consigliere4" fitHeight="61.0" fitWidth="26.455" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="consigliere5" fitHeight="61.0" fitWidth="26.455" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="consigliere6" fitHeight="61.0" fitWidth="26.455" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="consigliere7" fitHeight="61.0" fitWidth="26.455" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="consigliere8" fitHeight="61.0" fitWidth="26.455" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
                                  </children>
-                              </AnchorPane>
-                          </content>
-                        </TitledPane>
-                        <TabPane fx:id="giocatori" prefHeight="31.0" prefWidth="467.0" tabClosingPolicy="UNAVAILABLE" />
-                     </items>
-                  </SplitPane>
-               </bottom>
-            </BorderPane>
-         </children>
-      </AnchorPane>
-   </content>
-</ScrollPane>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </TitledPane>
+                  <TitledPane animated="false" collapsible="false" prefHeight="86.0" prefWidth="270.0" text="Carte Politica">
+                     <content>
+                        <ScrollPane prefViewportHeight="60.0" prefViewportWidth="200.0" prefWidth="245.0">
+                           <content>
+                              <HBox fx:id="cartePolitica" minWidth="245.0" prefHeight="60.0" />
+                           </content>
+                        </ScrollPane>
+                     </content>
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
+                  </TitledPane>
+                  <TitledPane animated="false" collapsible="false" prefHeight="86.0" prefWidth="250.0" text="Tessere Permesso">
+                     <content>
+                        <ScrollPane prefViewportHeight="60.0" prefViewportWidth="56.0" prefWidth="325.0">
+                           <content>
+                              <HBox fx:id="tesserePermesso" layoutX="3.0" layoutY="3.0" maxHeight="60.0" prefHeight="60.0" prefWidth="325.0" spacing="20.0" styleClass="background" stylesheets="@../css/game.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </content>
+                        </ScrollPane>
+                     </content>
+                  </TitledPane>
+                  <ScrollPane prefHeight="86.0" prefWidth="517.0" />
+               </items>
+            </SplitPane>
+         </bottom>
+      </BorderPane>
+   </children>
+</AnchorPane>
