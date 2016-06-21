@@ -3,12 +3,13 @@ package common.azioniDTO;
 import java.util.List;
 
 import common.azioniDTO.azioneVisitor.AzioneVisitor;
+import common.azioniDTO.azioniSetParametri.BonusGettoneParametri;
 import common.gameDTO.CittàBonusDTO;
 import server.model.azioni.azioniBonus.BonusGettoneN;
 import utility.ParameterException;
 
 
-public class BonusGettoneNDTO implements AzioneDTO {
+public class BonusGettoneNDTO implements AzioneDTO, AzioneParametri {
 
 	/**
 	 * 
@@ -61,10 +62,12 @@ public class BonusGettoneNDTO implements AzioneDTO {
 	 */
 	@Override
 	public String toString() {
-		if (numeroGettoni == 1) {
 			return "Bonus Gettone [B3]";
-		} else
-			return "Bonus Gettone [B4]";
+	}
+
+	@Override
+	public BonusGettoneParametri parametri() {
+		return new BonusGettoneParametri(this);
 	}
 
 }

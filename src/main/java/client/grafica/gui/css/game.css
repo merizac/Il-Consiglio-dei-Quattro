@@ -14,7 +14,7 @@
     -fx-opacity: 1.0;   
 }
 
-/*.button {
+.button {
 	-fx-effect: dropshadow(three-pass-box, black, 10, 0.2, 0, 0); 
 	-fx-background-repeat: stretch; 
 	-fx-background-position: center center;
@@ -23,7 +23,7 @@
     -fx-font-family: "Calibri";
     -fx-text-fill: black;
     -fx-opacity: 1.0;   
-}*/
+}
 
 .scoreGiocatori{
 	-fx-font: 12.0px Tahoma;

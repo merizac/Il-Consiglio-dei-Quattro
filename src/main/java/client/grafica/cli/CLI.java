@@ -3,6 +3,7 @@ package client.grafica.cli;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
@@ -14,6 +15,8 @@ import client.connessione.ConnessioneSocket;
 import client.grafica.Grafica;
 import common.azioniDTO.AzioneDTO;
 import common.azioniDTO.AzioneParametri;
+import common.azioniDTO.BonusGettoneNDTO;
+import common.azioniDTO.ExitDTO;
 import common.gameDTO.AiutanteDTO;
 import common.gameDTO.BalconeDTO;
 import common.gameDTO.CartaPoliticaDTO;
@@ -70,24 +73,21 @@ public class CLI implements Grafica {
 		}
 
 		while (true) {
-			TesseraPermessoDTO tesseraScelta;
-			CittàDTO cittàScelta;
-			AzioniClient azioniClient = new AzioniClient();
 
 			String inputLine = stdIn.nextLine();
-			
-			AzioneDTO action=gameStateDTO.getAzioniDisponibili()
-					.stream()
-					.filter(a -> a.toString().contains(inputLine))
-					.findAny()
-					.orElse(null);
+
+			AzioneDTO action = gameStateDTO.getAzioniDisponibili().stream()
+					.filter(a -> a.toString().contains(inputLine)).findAny().orElse(null);
 
 			if (action == null)
 				System.out.println("L'azione non esiste \nInserire un'azione valida");
 
 			else {
 
-				if (action instanceof AzioneParametri)
+				if ("Exit".equals(inputLine))
+					action = new ExitDTO(gameStateDTO.getGiocatoreDTO());
+
+				else if (action instanceof AzioneParametri)
 					((AzioneParametri) action).parametri().setParametri(this, gameStateDTO);
 				try {
 					connessione.inviaAzione(action);
@@ -98,124 +98,8 @@ public class CLI implements Grafica {
 
 			}
 
-		/*	if ("B2".equals(inputLine)) {
-
-				BonusTesseraAcquistataNDTO bonus = new BonusTesseraAcquistataNDTO();
-				bonus.parametri().setParametri(this, gameStateDTO);
-				if (gameStateDTO.getGiocatoreDTO().getTesserePermesso().isEmpty()
-						&& gameStateDTO.getGiocatoreDTO().getTesserePermessoUsate().isEmpty()) {
-					System.out.println("Non hai tessere permesso! \nNon puoi utilizzare il bonus!");
-					PassaBonusDTO passaBonus = new PassaBonusDTO();
-					passaBonus.setBonus(new BonusTesseraAcquistataNDTO());
-					action = passaBonus;
-				} else {
-					tesseraScelta = null;
-					System.out.println("Vuoi prendere i bonus di una tessera già usata [1] o di una scoperta [2] ?");
-					String input = stdIn.nextLine();
-					boolean b = false;
-					while (!b) {
-						while (!Utils.isNumeric(input)) {
-							System.out.println("valore non valido");
-							input = stdIn.nextLine();
-						}
-						if (Integer.parseInt(input) == 1 || Integer.parseInt(input) == 2) {
-							b = true;
-						}
-					}
-
-					if ("1".equals(input)) {
-						bonus.setUsata(true);
-						System.out.println(gameStateDTO.getGiocatoreDTO().getTesserePermessoUsate().toString());
-						System.out.println("Scegli l'indice della tessera");
-						input = stdIn.nextLine();
-						tesseraScelta = azioniClient.scegliTesseraGiocatore(
-								gameStateDTO.getGiocatoreDTO().getTesserePermessoUsate(), stdIn);
-						action = bonus;
-					} else if ("2".equals(input)) {
-						bonus.setUsata(false);
-						System.out.println(gameStateDTO.getGiocatoreDTO().getTesserePermesso().toString());
-						System.out.println("Scegli l'indice della tessera");
-						input = stdIn.nextLine();
-
-						tesseraScelta = azioniClient
-								.scegliTesseraGiocatore(gameStateDTO.getGiocatoreDTO().getTesserePermesso(), stdIn);
-						action = bonus;
-					}
-				}
-			}
-
-			else if ("B3".equals(inputLine)) {
-				Set<CittàBonusDTO> città = new HashSet<>();
-				for (CittàDTO c : gameStateDTO.getCittà()) {
-					if (c.getEmpori().contains(gameStateDTO.getGiocatoreDTO().getColoreGiocatore().getColore())
-							&& (c instanceof CittàBonusDTO)) {
-						città.add((CittàBonusDTO) c);
-					}
-				}
-				if (!città.isEmpty()) {
-					System.out.println("Scegli una città");
-					System.out.println(città.toString());
-					String input = stdIn.nextLine();
-					cittàScelta = azioniClient.scegliCittàBonus(città,
-							gameStateDTO.getGiocatoreDTO().getColoreGiocatore(), stdIn, input);
-					List<CittàBonusDTO> cittàb = new ArrayList<>();
-					cittàb.add((CittàBonusDTO) cittàScelta);
-					BonusGettoneNDTO bonus = new BonusGettoneNDTO();
-					bonus.setCittà(cittàb);
-					action = bonus;
-				} else {
-					System.out.println("Non hai costruito in nessuna città! \nNon puoi utilizzare il bonus!");
-					PassaBonusDTO passaBonus = new PassaBonusDTO();
-					passaBonus.setBonus(new BonusGettoneNDTO());
-					action = passaBonus;
-				}
-			}
-
-			else if ("B4".equals(inputLine)) {
-				Set<CittàBonusDTO> città = new HashSet<>();
-				for (CittàDTO c : gameStateDTO.getCittà()) {
-					if (c.getEmpori().contains(gameStateDTO.getGiocatoreDTO().getColoreGiocatore().getColore())
-							&& (c instanceof CittàBonusDTO)) {
-						System.out.println(c.toString());
-						città.add((CittàBonusDTO) c);
-					}
-				}
-				if (!città.isEmpty()) {
-					System.out.println("Scegli una città");
-					String input = stdIn.nextLine();
-					List<CittàBonusDTO> cittàb = new ArrayList<>();
-					for (int i = 0; i < 2; i++) {
-						input = stdIn.nextLine();
-						cittàScelta = azioniClient.scegliCittàBonus(città,
-								gameStateDTO.getGiocatoreDTO().getColoreGiocatore(), stdIn, input);
-						cittàb.add((CittàBonusDTO) cittàScelta);
-						System.out.println("Scegli un'altra città con gettone dei bonus diverso dalla prima");
-					}
-
-					BonusGettoneNDTO bonus = new BonusGettoneNDTO();
-					bonus.setCittà(cittàb);
-					action = bonus;
-				} else {
-					System.out.println("Non hai costruito in nessuna città! \nNon puoi utilizzare il bonus!");
-					PassaBonusDTO passaBonus = new PassaBonusDTO();
-					passaBonus.setBonus(new BonusGettoneNDTO());
-					action = passaBonus;
-				}
-
-			}
-
-			else if ("Exit".equals(inputLine)) {
-				action = new ExitDTO(gameStateDTO.getGiocatoreDTO());
-			}
-
-			if (action != null)
-				try {
-					connessione.inviaAzione(action);
-				} catch (RemoteException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}*/
 		}
+
 	}
 
 	/**
@@ -387,14 +271,14 @@ public class CLI implements Grafica {
 	@Override
 	public void mostraOfferte(List<OffertaDTO> offerte) {
 		for (OffertaDTO o : offerte) {
-			int i=1;
-			System.out.println("\n" + o.getMarketableDTO() + " prezzo: " + o.getPrezzo()+ " ["+i+"]");
+			int i = 1;
+			System.out.println("\n" + o.getMarketableDTO() + " prezzo: " + o.getPrezzo() + " [" + i + "]");
 			i++;
 		}
 	}
-	
+
 	@Override
-	public int scegliOfferta(List<OffertaDTO> offerte){
+	public int scegliOfferta(List<OffertaDTO> offerte) {
 		System.out.println("Che cosa vuoi acquistare?");
 		String comando = stdIn.nextLine();
 		boolean ok = false;
@@ -405,12 +289,12 @@ public class CLI implements Grafica {
 				comando = stdIn.nextLine();
 			}
 
-			if (Integer.parseInt(comando)>0 && Integer.parseInt(comando)<=offerte.size())
+			if (Integer.parseInt(comando) > 0 && Integer.parseInt(comando) <= offerte.size())
 				ok = true;
 		}
-		
+
 		return Integer.parseInt(comando);
-		
+
 	}
 
 	@Override
@@ -623,6 +507,19 @@ public class CLI implements Grafica {
 		return cittàScelta;
 	}
 
+	@Override
+	public CittàDTO scegliCittàBonus(Set<CittàBonusDTO> città, ColoreDTO coloreGiocatore, String input) {
+
+		CittàDTO cittàScelta = ControlloParametriDTO.cittàBonus(input, città, coloreGiocatore);
+		while (cittàScelta == null) {
+			System.out.println("la città selezionata non è corretta!\n Inserire di nuovo");
+			String comando = stdIn.nextLine();
+			cittàScelta = ControlloParametriDTO.cittàBonus(comando, città, coloreGiocatore);
+		}
+		return cittàScelta;
+
+	}
+
 	/**
 	 * this method let the player to chose a politic card from the politic cards
 	 * of his hand
@@ -631,19 +528,6 @@ public class CLI implements Grafica {
 	 * @param stdIn
 	 * @return the politic card DTO
 	 */
-	@Override
-	public CittàDTO scegliCittàBonus(Set<CittàBonusDTO> città, ColoreDTO coloreGiocatore) {
-		/*
-		 * CittàDTO cittàScelta = ControlloParametriDTO.cittàBonus(input, città,
-		 * coloreGiocatore); while (cittàScelta == null) { System.out.println(
-		 * "la città selezionata non è corretta!\n Inserire di nuovo"); String
-		 * comando = stdIn.nextLine(); cittàScelta =
-		 * ControlloParametriDTO.cittàBonus(comando, città, coloreGiocatore); }
-		 * return cittàScelta;
-		 */
-		return null;
-	}
-
 	@Override
 	public CartaPoliticaDTO scegliCarta(List<CartaPoliticaDTO> cartePolitica) {
 		System.out.println("Seleziona la carta politica");
@@ -674,16 +558,16 @@ public class CLI implements Grafica {
 		}
 		return Integer.parseInt(comando);
 	}
-	
+
 	@Override
 	public void mostraAvversario(GiocatoreDTO avversario) {
-		System.out.println("\nGiocatore :"+ avversario.getNome());
-		System.out.println("Punti vittoria "+ avversario.getPunteggioVittoria());
-		System.out.println("Punti ricchezza "+ avversario.getPunteggioRicchezza());
-		System.out.println("Punti nobiltà "+ avversario.getPunteggioNobiltà());
-		System.out.println("Empori "+ avversario.getEmpori());
-		System.out.println("Aiutanti "+ avversario.getAiutanti() );
-		System.out.println("Tessere permesso "+avversario.getTesserePermesso()+"\n");
+		System.out.println("\nGiocatore :" + avversario.getNome());
+		System.out.println("Punti vittoria " + avversario.getPunteggioVittoria());
+		System.out.println("Punti ricchezza " + avversario.getPunteggioRicchezza());
+		System.out.println("Punti nobiltà " + avversario.getPunteggioNobiltà());
+		System.out.println("Empori " + avversario.getEmpori());
+		System.out.println("Aiutanti " + avversario.getAiutanti());
+		System.out.println("Tessere permesso " + avversario.getTesserePermesso() + "\n");
 	}
 
 	/**
@@ -704,5 +588,71 @@ public class CLI implements Grafica {
 		cli.start();
 	}
 
+	@Override
+	public int scegliUsataONonUsata() {
+		System.out.println("Vuoi prendere i bonus di una tessera già usata [1] o di una scoperta [2] ?");
+		String input = stdIn.nextLine();
+		boolean b = false;
+		while (!b) {
+			while (!Utils.isNumeric(input)) {
+				System.out.println("valore non valido");
+				input = stdIn.nextLine();
+			}
+			if (Integer.parseInt(input) == 1 || Integer.parseInt(input) == 2) {
+				b = true;
+			}
+		}
 
+		return Integer.parseInt(input);
+	}
+
+	@Override
+	public List<CittàBonusDTO> scegliUnaCittà() {
+
+		Set<CittàBonusDTO> città = new HashSet<>();
+		for (CittàDTO c : gameStateDTO.getCittà()) {
+			if (c.getEmpori().contains(gameStateDTO.getGiocatoreDTO().getColoreGiocatore().getColore())
+					&& (c instanceof CittàBonusDTO)) {
+				città.add((CittàBonusDTO) c);
+			}
+		}
+		BonusGettoneNDTO bonus = new BonusGettoneNDTO();
+		bonus.parametri().setParametri(this, gameStateDTO);
+
+		System.out.println("Scegli una città");
+		System.out.println(città.toString());
+		String input = stdIn.nextLine();
+		CittàDTO cittàScelta = this.scegliCittàBonus(città, gameStateDTO.getGiocatoreDTO().getColoreGiocatore(), input);
+		List<CittàBonusDTO> cittàb = new ArrayList<>();
+		cittàb.add((CittàBonusDTO) cittàScelta);
+
+		return cittàb;
+
+	}
+
+	@Override
+	public List<CittàBonusDTO> scegliDueCittà() {
+
+		Set<CittàBonusDTO> città = new HashSet<>();
+		for (CittàDTO c : gameStateDTO.getCittà()) {
+			if (c.getEmpori().contains(gameStateDTO.getGiocatoreDTO().getColoreGiocatore().getColore())
+					&& (c instanceof CittàBonusDTO)) {
+				System.out.println(c.toString());
+				città.add((CittàBonusDTO) c);
+			}
+		}
+
+		System.out.println("Scegli una città");
+		String input = stdIn.nextLine();
+		List<CittàBonusDTO> cittàb = new ArrayList<>();
+		for (int i = 0; i < 2; i++) {
+			input = stdIn.nextLine();
+			CittàDTO cittàScelta = this.scegliCittàBonus(città, gameStateDTO.getGiocatoreDTO().getColoreGiocatore(),
+					input);
+			cittàb.add((CittàBonusDTO) cittàScelta);
+			System.out.println("Scegli un'altra città con gettone dei bonus diverso dalla prima");
+		}
+
+		return cittàb;
+	}
 }

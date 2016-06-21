@@ -1,11 +1,12 @@
 package common.azioniDTO;
 
 import common.azioniDTO.azioneVisitor.AzioneVisitor;
+import common.azioniDTO.azioniSetParametri.BonusTesseraAcquistataParametri;
 import common.gameDTO.TesseraPermessoDTO;
 import server.model.azioni.Azione;
 import utility.ParameterException;
 
-public class BonusTesseraAcquistataNDTO implements AzioneDTO{
+public class BonusTesseraAcquistataNDTO implements AzioneDTO, AzioneParametri{
 
 	private boolean usata;
 	/**
@@ -50,6 +51,11 @@ public class BonusTesseraAcquistataNDTO implements AzioneDTO{
 	 */
 	public void setUsata(boolean usata) {
 		this.usata = usata;
+	}
+	
+	@Override
+	public BonusTesseraAcquistataParametri parametri() {
+		return new BonusTesseraAcquistataParametri(this);
 	}
 	
 }

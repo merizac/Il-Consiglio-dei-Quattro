@@ -1,9 +1,15 @@
 package client.grafica.gui;
 
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import common.azioniDTO.ElezioneConsigliereDTO;
 import common.gameDTO.CartaPoliticaDTO;
 import common.gameDTO.CittàBonusDTO;
 import common.gameDTO.CittàDTO;
@@ -398,6 +404,19 @@ public class GUIGameController {
 		this.gui = gui;
 	}
 
+	public void elezioneConsigliere(ActionEvent event){
+		ElezioneConsigliereDTO elezione = new ElezioneConsigliereDTO();
+		ExecutorService executor= Executors.newSingleThreadExecutor();
+		executor.submit(new Runnable() {
+			
+			@Override
+			public void run() {
+				elezione.parametri().setParametri(gui, gameStateDTO);
+			}
+		});
+		
+	}
+	
 	public void mostraNomeGiocatore(String nome) {
 		nomeGiocatore.setText(nome);
 	}
@@ -449,14 +468,7 @@ public class GUIGameController {
 					image.setPreserveRatio(true);
 					image.setImage(mappaCarte.get(c.toString()));
 					cartePolitica.getChildren().add(image);
-					image.setOnMouseClicked(new EventHandler<Event>() {
-						
-						@Override
-						public void handle(Event event) {
-							handleCartaPolitica(event);
-						}
-					});
-
+					
 				}
 
 			}
@@ -745,25 +757,35 @@ public class GUIGameController {
 					imageView.setPreserveRatio(true);
 					balconeMare.getChildren().add(imageView);
 				}
-
+				
+				balconeMare.setUserData(gameStateDTO.getRegioni().get(0).getBalcone());
+				
 				for (ConsigliereDTO c : gameStateDTO.getRegioni().get(1).getBalcone().getConsiglieri()) {
 					ImageView imageView = new ImageView(mappaConsiglieri.get(c.toString()));
 					imageView.setFitHeight(25);
 					imageView.setPreserveRatio(true);
 					balconeCollina.getChildren().add(imageView);
 				}
+				
+				balconeCollina.setUserData(gameStateDTO.getRegioni().get(1).getBalcone());
+				
 				for (ConsigliereDTO c : gameStateDTO.getRegioni().get(2).getBalcone().getConsiglieri()) {
 					ImageView imageView = new ImageView(mappaConsiglieri.get(c.toString()));
 					imageView.setFitHeight(25);
 					imageView.setPreserveRatio(true);
 					balconeMontagna.getChildren().add(imageView);
 				}
+				
+				balconeMontagna.setUserData(gameStateDTO.getRegioni().get(2).getBalcone());
+				
 				for (ConsigliereDTO c : gameStateDTO.getPlanciaReDTO().getBalconeRe().getConsiglieri()) {
 					ImageView imageView = new ImageView(mappaConsiglieri.get(c.toString()));
 					imageView.setFitHeight(25);
 					imageView.setPreserveRatio(true);
 					balconeRe.getChildren().add(imageView);
 				}
+				
+				balconeRe.setUserData(gameStateDTO.getPlanciaReDTO().getBalconeRe());
 			}
 		});
 	}
@@ -772,13 +794,23 @@ public class GUIGameController {
 		return this.message;
 	}
 
+	public void handleBalcone(Event event){
+		synchronized (gui.getLock()) {
+			gui.setParametro(((HBox)event.getSource()).getUserData());
+			gui.getLock().notify();
+		}
+	}
+	
 	public void handleCartaPolitica(Event event) {
 		System.out.println(((Node) event.getSource()).getUserData());
 	}
 
 	@FXML
-	public void handleConsigliereRiserva(ActionEvent event) {
-		System.out.println(((Button) event.getSource()).getUserData());
+	public void handleConsigliereRiserva(Event event) {
+		synchronized(gui.getLock()){
+			gui.setParametro(((ImageView)event.getSource()).getUserData());
+			gui.getLock().notify();
+		}
 	}
 
 	@FXML
@@ -802,5 +834,14 @@ public class GUIGameController {
 		merkatim.setUserData(città.get(12));
 		naris.setUserData(città.get(13));
 		osium.setUserData(città.get(14));
+	}
+
+	public List<ImageView> getConsiglieri() {
+		
+		return Arrays.asList(consigliere1, consigliere2, consigliere3, consigliere4, consigliere5, consigliere6, consigliere7, consigliere7);
+	}
+
+	public List<HBox> getBalconi() {
+		return Arrays.asList(balconeMare, balconeCollina, balconeMontagna, balconeRe);
 	}
 }
