@@ -20,6 +20,7 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -278,7 +279,7 @@ public class GUIGameController {
 				new Image(getClass().getResource("css/permitTile/3.12.png").toExternalForm()));
 		this.mappaTessere.put("TesseraPermesso  città:[Arkon], bonus:[BonusMoneta 3, BonusPuntiVittoria 4]",
 				new Image(getClass().getResource("css/permitTile/3.6.png").toExternalForm()));
-		this.mappaTessere.put("TesseraPermesso  città:[Esti], bonus:[BonusAzionePrincipale 1, BonusMoneta]",
+		this.mappaTessere.put("TesseraPermesso  città:[Esti], bonus:[BonusAzionePrincipale 1, BonusMoneta 2]",
 				new Image(getClass().getResource("css/permitTile/3.15.png").toExternalForm()));
 		this.mappaTessere.put("TesseraPermesso  città:[Castrum], bonus:[BonusAiutanti 2, BonusMoneta 3]",
 				new Image(getClass().getResource("css/permitTile/3.7.png").toExternalForm()));
@@ -352,7 +353,7 @@ public class GUIGameController {
 		this.mappaTessere.put("TesseraPermesso  città:[Merkatim], bonus:[BonusPuntiVittoria 5, BonusPuntiNobiltà 1]",
 				new Image(getClass().getResource("css/permitTile/2.11.png").toExternalForm()));
 		this.mappaTessere.put(
-				"TesseraPermesso  città:[Osium, Kultos], bonus:[BonusCartePolitica 2, BonusPuntiNobiltà 1]",
+				"TesseraPermesso  città:[Kultos, Osium], bonus:[BonusCartePolitica 2, BonusPuntiNobiltà 1]",
 				new Image(getClass().getResource("css/permitTile/2.3.png").toExternalForm()));
 		this.mappaTessere.put("TesseraPermesso  città:[Kultos, Lyram], bonus:[BonusCartePolitica 1, BonusAiutanti 2]",
 				new Image(getClass().getResource("css/permitTile/2.13.png").toExternalForm()));
@@ -647,6 +648,7 @@ public class GUIGameController {
 				try {
 					for (GiocatoreDTO g : avversari) {
 						Tab tab = new Tab();
+						
 						VBox vbox = new VBox();
 						HBox hbox = new HBox();
 						hbox.setSpacing(15);
@@ -656,6 +658,7 @@ public class GUIGameController {
 						vbox.getChildren().add(hbox);
 						tab.setContent(vbox);
 						giocatori.getTabs().add(tab);
+						hbox.setPadding(new Insets(5, 0, 0, 20));
 
 						Pane pane1 = new Pane();
 						ImageView puntiV = new ImageView();
