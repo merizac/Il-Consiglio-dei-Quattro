@@ -237,8 +237,8 @@
                                                    <children>
                                                       <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="209.0" text="Costruzione Tessera Permesso" GridPane.rowIndex="3" />
                                                       <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="209.0" text="Costruzione Aiuto Re" GridPane.rowIndex="2" />
-                                                      <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="209.0" text="Elezione Consigliere" GridPane.rowIndex="1" />
-                                                      <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="209.0" text="Acquisto Tessera Permesso" />
+                                                      <Button fx:id="elezioneConsigliere" mnemonicParsing="false" onAction="#elezioneConsigliere" prefHeight="27.0" prefWidth="209.0" text="Elezione Consigliere" GridPane.rowIndex="1" />
+                                                      <Button fx:id="acquistoTesseraPermesso" mnemonicParsing="false" prefHeight="27.0" prefWidth="209.0" text="Acquisto Tessera Permesso" />
                                                    </children>
                                                 </GridPane>
                                              </children>
