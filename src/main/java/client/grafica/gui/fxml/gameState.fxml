@@ -193,7 +193,7 @@
                                                       <Image url="@../css/Point.png" />
                                                    </image>
                                                 </ImageView>
-                                                <Text fx:id="puntiGiocatore" layoutX="21.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="29.779481887817383" />
+                                                <Text fx:id="puntiGiocatore" layoutX="27.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="17.779481887817383" />
                                              </children>
                                           </Pane>
                                           <Pane prefHeight="57.0" prefWidth="72.5">
@@ -203,7 +203,7 @@
                                                       <Image url="@../css/Coins.png" />
                                                    </image>
                                                 </ImageView>
-                                                <Text fx:id="moneteGiocatore" layoutX="20.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="32.07018280029297" />
+                                                <Text fx:id="moneteGiocatore" layoutX="28.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="16.07018280029297" />
                                              </children>
                                           </Pane>
                                           <Pane prefHeight="57.0" prefWidth="72.5">
@@ -223,7 +223,7 @@
                                                       <Image url="@../css/Emporium.png" />
                                                    </image>
                                                 </ImageView>
-                                                <Text fx:id="emporiGiocatore" layoutX="20.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="20.6165771484375" />
+                                                <Text fx:id="emporiGiocatore" layoutX="22.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="16.6165771484375" />
                                              </children>
                                           </Pane>
                                           <Pane prefHeight="57.0" prefWidth="72.5">
@@ -233,7 +233,7 @@
                                                       <Image url="@../css/Nobility.png" />
                                                    </image>
                                                 </ImageView>
-                                                <Text fx:id="nobiltàGiocatore" layoutX="23.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="25.1981201171875" />
+                                                <Text fx:id="nobiltàGiocatore" layoutX="26.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="18.1981201171875" />
                                              </children>
                                           </Pane>
                                           <Pane prefHeight="57.0" prefWidth="72.5">
@@ -243,7 +243,7 @@
                                                       <Image url="@../css/BonusGiocatori.png" />
                                                    </image>
                                                 </ImageView>
-                                                <Text fx:id="tesserebonusGiocatore" layoutX="3.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="27.48876953125" />
+                                                <Text fx:id="tesserebonusGiocatore" layoutX="14.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="20.48876953125" />
                                              </children>
                                           </Pane>
                                        </children>
