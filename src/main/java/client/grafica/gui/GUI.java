@@ -38,8 +38,9 @@ public class GUI extends Application implements Grafica {
 	private GameStateDTO gameStateDTO;
 	private GUIGameController controller;
 	private Stage finestra;
-	private Object lock;
+	private Object lock = new Object();
 	private Object parametro;
+	private boolean carteInserite = true;
 
 	@Override
 	public void setConnessione(Connessione connessione) {
@@ -54,7 +55,8 @@ public class GUI extends Application implements Grafica {
 	}
 
 	/**
-	 * @param lock the lock to set
+	 * @param lock
+	 *            the lock to set
 	 */
 	public void setLock(Object lock) {
 		this.lock = lock;
@@ -68,10 +70,26 @@ public class GUI extends Application implements Grafica {
 	}
 
 	/**
-	 * @param parametro the parametro to set
+	 * @param parametro
+	 *            the parametro to set
 	 */
 	public void setParametro(Object parametro) {
 		this.parametro = parametro;
+	}
+
+	/**
+	 * @return the carteInserite
+	 */
+	public boolean isCarteInserite() {
+		return carteInserite;
+	}
+
+	/**
+	 * @param carteInserite
+	 *            the carteInserite to set
+	 */
+	public void setCarteInserite(boolean carteInserite) {
+		this.carteInserite = carteInserite;
 	}
 
 	@Override
@@ -127,7 +145,7 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public void mostraAzioni(List<AzioneDTO> azioni) {
-		
+
 	}
 
 	@Override
@@ -138,9 +156,9 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public void mostraGame(GameStateDTO gameStateDTO) throws IOException {
-		try{
-		controller.mostraTesserePermessoRegioni(gameStateDTO.getRegioni());}
-		catch(Exception e){
+		try {
+			controller.mostraTesserePermessoRegioni(gameStateDTO.getRegioni());
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		controller.mostraGettoni(new ArrayList<>(gameStateDTO.getCittà()));
@@ -148,12 +166,13 @@ public class GUI extends Application implements Grafica {
 		controller.mostraConsiglieriBalcone();
 		controller.mostraRiserva(gameStateDTO.getConsiglieri());
 		controller.assegnaBottoniCittà(new ArrayList<>(gameStateDTO.getCittà()));
-}
+	}
 
 	@Override
 	public void mostraGiocatore(GiocatoreDTO giocatoreDTO) {
 		giocatoreDTO.getTesserePermesso().add(gameStateDTO.getRegioni().get(0).getTesserePermessoScoperte().get(0));
-		controller.mostraTesserePermesso(giocatoreDTO.getTesserePermesso(),giocatoreDTO.getTesserePermessoUsate().size());
+		controller.mostraTesserePermesso(giocatoreDTO.getTesserePermesso(),
+				giocatoreDTO.getTesserePermessoUsate().size());
 		controller.mostraCartePolitica(giocatoreDTO.getCartePolitica());
 		controller.mostraNomeGiocatore(giocatoreDTO.getNome());
 		controller.mostraPuntiGiocatore(giocatoreDTO.getPunteggioVittoria());
@@ -187,26 +206,26 @@ public class GUI extends Application implements Grafica {
 
 	}
 
-
 	public static void main(String[] args) {
 		Application.launch(args);
 	}
 
 	@Override
 	public void mostraAvversario(GiocatoreDTO avversario) {
-		gameStateDTO.getAvversari().get(0).getTesserePermesso().add(gameStateDTO.getRegioni().get(0).getTesserePermessoScoperte().get(0));
+		gameStateDTO.getAvversari().get(0).getTesserePermesso()
+				.add(gameStateDTO.getRegioni().get(0).getTesserePermessoScoperte().get(0));
 		controller.mostraAvversario(gameStateDTO.getAvversari());
 	}
-	
+
 	@Override
 	public ConsigliereDTO scegliConsigliere(List<ConsigliereDTO> consiglieri) {
-		List<ImageView> riserva=controller.getConsiglieri();
-		for(ImageView consigliere: riserva){
+		List<ImageView> riserva = controller.getConsiglieri();
+		for (ImageView consigliere : riserva) {
 			consigliere.setDisable(false);
 		}
-		
-		synchronized(lock){
-			while(parametro==null){
+
+		synchronized (lock) {
+			while (parametro == null) {
 				try {
 					lock.wait();
 				} catch (InterruptedException e) {
@@ -215,23 +234,29 @@ public class GUI extends Application implements Grafica {
 				}
 			}
 		}
-		ConsigliereDTO consigliereDTO=(ConsigliereDTO) parametro;
-		for(ImageView consigliere: riserva){
-			consigliere.setDisable(true);
+		try {
+			ConsigliereDTO consigliereDTO = (ConsigliereDTO) parametro;
+			for (ImageView consigliere : riserva) {
+				consigliere.setDisable(true);
+			}
+			parametro = null;
+			return consigliereDTO;
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		parametro=null;
-		return consigliereDTO;
+		return null;
+
 	}
 
 	@Override
 	public BalconeDTO scegliBalcone(List<RegioneDTO> regioni, BalconeDTO balconeRe) {
-		List<HBox> balconi=controller.getBalconi();
-		for(HBox balcone:balconi){
+		List<HBox> balconi = controller.getBalconi();
+		for (HBox balcone : balconi) {
 			balcone.setDisable(false);
 		}
-		
+
 		synchronized (lock) {
-			while(parametro==null){
+			while (parametro == null) {
 				try {
 					lock.wait();
 				} catch (InterruptedException e) {
@@ -239,12 +264,12 @@ public class GUI extends Application implements Grafica {
 					e.printStackTrace();
 				}
 			}
-		BalconeDTO balconeDTO=(BalconeDTO) parametro;
-		for(HBox balcone:balconi){
-			balcone.setDisable(true);
-		}
-		parametro=null;
-		return balconeDTO;
+			BalconeDTO balconeDTO = (BalconeDTO) parametro;
+			for (HBox balcone : balconi) {
+				balcone.setDisable(true);
+			}
+			parametro = null;
+			return balconeDTO;
 		}
 	}
 
@@ -256,8 +281,20 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public TesseraPermessoDTO scegliTesseraRegione(List<TesseraPermessoDTO> tesserePermessoScoperte) {
-		// TODO Auto-generated method stub
-		return null;
+		synchronized (lock) {
+			while (parametro == null) {
+				try {
+					lock.wait();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+
+		TesseraPermessoDTO tesseraPermessoDTO = (TesseraPermessoDTO) parametro;
+		parametro = null;
+		return tesseraPermessoDTO;
 	}
 
 	@Override
@@ -286,8 +323,33 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public List<CartaPoliticaDTO> scegliCarte(List<CartaPoliticaDTO> carteGiocatore) {
-		// TODO Auto-generated method stub
-		return null;
+		List<CartaPoliticaDTO> carte = new ArrayList<>();
+		List<ImageView> cartePolitica = this.controller.getCartePolitica();
+		for (ImageView i : cartePolitica)
+			i.setDisable(false);
+
+		synchronized (lock) {
+			while (!isCarteInserite()) {
+				while (parametro == null) {
+					try {
+						lock.wait();
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				
+				carte.add((CartaPoliticaDTO) parametro);
+				
+				if (carte.size() == 1)
+					controller.getConferma().setDisable(false);
+				
+				parametro=null;
+				}
+			}
+
+	return carte;
+
 	}
 
 	@Override

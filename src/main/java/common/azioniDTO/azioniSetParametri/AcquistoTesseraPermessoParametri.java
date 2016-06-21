@@ -20,11 +20,11 @@ public class AcquistoTesseraPermessoParametri implements SetterParametri {
 
 	@Override
 	public void setParametri(Grafica grafica, GameStateDTO gameStateDTO) {
-		RegioneDTO regioneScelta = grafica.scegliRegione(gameStateDTO.getRegioni());
+		
 		List<CartaPoliticaDTO> cartePolitica = grafica
 				.scegliCarte(new ArrayList<>(gameStateDTO.getGiocatoreDTO().getCartePolitica()));
-		TesseraPermessoDTO tesseraScelta = grafica.scegliTesseraRegione(regioneScelta.getTesserePermessoScoperte());
-
+		RegioneDTO regioneScelta = grafica.scegliRegione(gameStateDTO.getRegioni());
+		TesseraPermessoDTO tesseraScelta = grafica.scegliTesseraRegione(regioneScelta.getTesserePermessoScoperte());		
 		acquistoTesseraPermessoDTO.setRegione(regioneScelta);
 		acquistoTesseraPermessoDTO.setCarte(cartePolitica);
 		acquistoTesseraPermessoDTO.setTesseraPermesso(tesseraScelta);
