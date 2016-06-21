@@ -198,12 +198,6 @@ public class GUI extends Application implements Grafica {
 	}
 
 	@Override
-	public CittàDTO scegliCittàBonus(Set<CittàBonusDTO> città, ColoreDTO coloreGiocatore) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public CittàDTO scegliCittà(Set<? extends CittàDTO> città, ColoreDTO coloreGiocatore) {
 		// TODO Auto-generated method stub
 		return null;
@@ -231,5 +225,29 @@ public class GUI extends Application implements Grafica {
 	public int scegliOfferta(List<OffertaDTO> offerte) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public CittàDTO scegliCittàBonus(Set<CittàBonusDTO> città, ColoreDTO coloreGiocatore, String input) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int scegliUsataONonUsata() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<CittàBonusDTO> scegliUnaCittà() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<CittàBonusDTO> scegliDueCittà() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
