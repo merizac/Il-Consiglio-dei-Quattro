@@ -33,8 +33,8 @@
                                                 <Image url="@../css/permitTile/Mare.png" />
                                              </image>
                                           </ImageView>
-                                          <Button fx:id="tesseraMare1" layoutX="63.0" mnemonicParsing="false" onAction="#handleTesseraPermessoRegione" prefHeight="68.0" prefWidth="61.0" style="-fx-background-color: transparent;" />
-                                          <Button fx:id="tesseraMare2" layoutX="118.0" mnemonicParsing="false" onAction="#handleTesseraPermessoRegione" prefHeight="68.0" prefWidth="61.0" style="-fx-background-color: transparent;" />
+                                          <Button fx:id="tesseraMare1" layoutX="63.0" mnemonicParsing="false" onAction="#handleTesseraPermessoRegione" prefHeight="68.0" prefWidth="61.0" visible="false" />
+                                          <Button fx:id="tesseraMare2" layoutX="118.0" mnemonicParsing="false" onAction="#handleTesseraPermessoRegione" prefHeight="68.0" prefWidth="58.0" visible="false" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -48,8 +48,8 @@
                                                 <Image url="@../css/permitTile/Collina.png" />
                                              </image>
                                           </ImageView>
-                                          <Button fx:id="tesseraCollina1" layoutX="66.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleTesseraPermessoRegione" prefHeight="68.0" prefWidth="61.0" style="-fx-background-color: transparent;" />
-                                          <Button fx:id="tesseraCollina2" layoutX="127.0" layoutY="4.0" mnemonicParsing="false" onAction="#handleTesseraPermessoRegione" prefHeight="68.0" prefWidth="61.0" style="-fx-background-color: transparent;" />
+                                          <Button fx:id="tesseraCollina1" layoutX="66.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleTesseraPermessoRegione" opacity="0.0" prefHeight="68.0" prefWidth="61.0" visible="false" />
+                                          <Button fx:id="tesseraCollina2" layoutX="127.0" layoutY="4.0" mnemonicParsing="false" onAction="#handleTesseraPermessoRegione" prefHeight="68.0" prefWidth="61.0" visible="false" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -63,8 +63,8 @@
                                                 <Image url="@../css/permitTile/Montagna.png" />
                                              </image>
                                           </ImageView>
-                                          <Button fx:id="tesseraMontagna1" mnemonicParsing="false" onAction="#handleTesseraPermessoRegione" prefHeight="68.0" prefWidth="61.0" style="-fx-background-color: transparent;" />
-                                          <Button fx:id="tesseraMontagna2" mnemonicParsing="false" onAction="#handleTesseraPermessoRegione" prefHeight="68.0" prefWidth="61.0" style="-fx-background-color: transparent;" />
+                                          <Button fx:id="tesseraMontagna1" mnemonicParsing="false" onAction="#handleTesseraPermessoRegione" prefHeight="68.0" prefWidth="61.0" visible="false" />
+                                          <Button fx:id="tesseraMontagna2" mnemonicParsing="false" onAction="#handleTesseraPermessoRegione" prefHeight="68.0" prefWidth="61.0" visible="false" />
                                        </children>
                                     </HBox>
                                  </children>

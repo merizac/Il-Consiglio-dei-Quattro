@@ -591,36 +591,42 @@ public class GUIGameController {
 				BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(45, 60, false, false, true, true)));
 		tesseraCollina1.backgroundProperty().set(sfondo);
 		tesseraCollina1.setUserData(this.mappaTessere.get(regioni.get(1).getTesserePermessoScoperte().get(0)));
+		tesseraCollina1.setVisible(true);
 		
 		Background sfondo2= new Background(new BackgroundImage(this.mappaTessere.get(regioni.get(1).getTesserePermessoScoperte().get(1).toString())
 				, BackgroundRepeat.NO_REPEAT,
 				BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(45, 60, false, false, true, true)));
 		tesseraCollina2.backgroundProperty().set(sfondo2);
 		tesseraCollina2.setUserData(regioni.get(1).getTesserePermessoScoperte().get(1));
+		tesseraCollina2.setVisible(true);
 		
 		Background sfondo3= new Background(new BackgroundImage(this.mappaTessere.get(regioni.get(0).getTesserePermessoScoperte().get(0).toString())
 				, BackgroundRepeat.NO_REPEAT,
 				BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(45, 60, false, false, true, true)));
 		tesseraMare1.backgroundProperty().set(sfondo3);
 		tesseraMare1.setUserData(regioni.get(0).getTesserePermessoScoperte().get(0));
+		tesseraMare1.setVisible(true);
 		
 		Background sfondo4= new Background(new BackgroundImage(this.mappaTessere.get(regioni.get(0).getTesserePermessoScoperte().get(1).toString())
 				, BackgroundRepeat.NO_REPEAT,
 				BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(45, 60, false, false, true, true)));
 		tesseraMare2.backgroundProperty().set(sfondo4);
 		tesseraMare2.setUserData(regioni.get(0).getTesserePermessoScoperte().get(1));
+		tesseraMare2.setVisible(true);
 		
 		Background sfondo5= new Background(new BackgroundImage(this.mappaTessere.get(regioni.get(2).getTesserePermessoScoperte().get(0).toString())
 				, BackgroundRepeat.NO_REPEAT,
 				BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(45, 60, false, false, true, true)));
 		tesseraMontagna1.backgroundProperty().set(sfondo5);
 		tesseraMontagna1.setUserData(regioni.get(2).getTesserePermessoScoperte().get(0));
+		tesseraMontagna1.setVisible(true);
 		
 		Background sfondo6= new Background(new BackgroundImage(this.mappaTessere.get(regioni.get(2).getTesserePermessoScoperte().get(1).toString())
 				, BackgroundRepeat.NO_REPEAT,
 				BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(45, 60, false, false, true, true)));
 		tesseraMontagna2.backgroundProperty().set(sfondo6);
 		tesseraMontagna2.setUserData(regioni.get(2).getTesserePermessoScoperte().get(1));
+		tesseraMontagna2.setVisible(true);
 	}
 
 	@FXML
