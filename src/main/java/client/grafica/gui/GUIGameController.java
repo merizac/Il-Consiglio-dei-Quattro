@@ -280,7 +280,7 @@ public class GUIGameController {
 				new Image(getClass().getResource("css/permitTile/3.12.png").toExternalForm()));
 		this.mappaTessere.put("TesseraPermesso  città:[Arkon], bonus:[BonusMoneta 3, BonusPuntiVittoria 4]",
 				new Image(getClass().getResource("css/permitTile/3.6.png").toExternalForm()));
-		this.mappaTessere.put("TesseraPermesso  città:[Esti], bonus:[BonusAzionePrincipale 1, BonusMoneta 2]",
+		this.mappaTessere.put("TesseraPermesso  città:[Esti], bonus:[BonusAzionePrincipale, BonusMoneta 2]",
 				new Image(getClass().getResource("css/permitTile/3.15.png").toExternalForm()));
 		this.mappaTessere.put("TesseraPermesso  città:[Castrum], bonus:[BonusAiutanti 2, BonusMoneta 3]",
 				new Image(getClass().getResource("css/permitTile/3.7.png").toExternalForm()));
@@ -312,7 +312,7 @@ public class GUIGameController {
 				new Image(getClass().getResource("css/permitTile/1.8.png").toExternalForm()));
 		this.mappaTessere.put("TesseraPermesso  città:[Indur], bonus:[BonusCartePolitica 2, BonusAiutanti 2]",
 				new Image(getClass().getResource("css/permitTile/1.10.png").toExternalForm()));
-		this.mappaTessere.put("TesseraPermesso  città:[Juvelar], bonus:[BonusAzionePrincipale 1, BonusPuntiVittoria 2]",
+		this.mappaTessere.put("TesseraPermesso  città:[Juvelar], bonus:[BonusAzionePrincipale, BonusPuntiVittoria 2]",
 				new Image(getClass().getResource("css/permitTile/1.11.png").toExternalForm()));
 		this.mappaTessere.put("TesseraPermesso  città:[Framek, Graden], bonus:[BonusMoneta 5]",
 				new Image(getClass().getResource("css/permitTile/1.9.png").toExternalForm()));
@@ -345,7 +345,7 @@ public class GUIGameController {
 		// montagna
 		this.mappaTessere.put("TesseraPermesso  città:[Naris], bonus:[BonusMoneta 7]",
 				new Image(getClass().getResource("css/permitTile/2.1.png").toExternalForm()));
-		this.mappaTessere.put("TesseraPermesso  città:[Naris, Merkatim], bonus:[BonusAzionePrincipale 1]",
+		this.mappaTessere.put("TesseraPermesso  città:[Naris, Merkatim], bonus:[BonusAzionePrincipale]",
 				new Image(getClass().getResource("css/permitTile/2.14.png").toExternalForm()));
 		this.mappaTessere.put("TesseraPermesso  città:[Kultos], bonus:[BonusCartePolitica 4]",
 				new Image(getClass().getResource("css/permitTile/2.8.png").toExternalForm()));
