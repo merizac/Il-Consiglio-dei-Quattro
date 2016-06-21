@@ -3,7 +3,9 @@ package client.grafica.gui;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import client.connessione.Connessione;
@@ -22,13 +24,21 @@ import common.gameDTO.OffertaDTO;
 import common.gameDTO.RegioneDTO;
 import common.gameDTO.TesseraPermessoDTO;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import server.view.clientNotify.ClientNotify;
 
@@ -40,7 +50,8 @@ public class GUI extends Application implements Grafica {
 	private Stage finestra;
 	private Object lock;
 	private Object parametro;
-
+	private Map<GiocatoreDTO, Tab> tabAvversari=new HashMap<>();
+	
 	@Override
 	public void setConnessione(Connessione connessione) {
 		this.connessione = connessione;
@@ -153,7 +164,7 @@ public class GUI extends Application implements Grafica {
 	@Override
 	public void mostraGiocatore(GiocatoreDTO giocatoreDTO) {
 		giocatoreDTO.getTesserePermesso().add(gameStateDTO.getRegioni().get(0).getTesserePermessoScoperte().get(0));
-		controller.mostraTesserePermesso(giocatoreDTO.getTesserePermesso(),giocatoreDTO.getTesserePermessoUsate().size());
+		stampaTesserePermesso(controller.getTesserePermessoGiocatore(), giocatoreDTO.getTesserePermesso(), giocatoreDTO.getTesserePermessoUsate().size(),70);
 		controller.mostraCartePolitica(giocatoreDTO.getCartePolitica());
 		controller.mostraNomeGiocatore(giocatoreDTO.getNome());
 		controller.mostraPuntiGiocatore(giocatoreDTO.getPunteggioVittoria());
@@ -162,6 +173,42 @@ public class GUI extends Application implements Grafica {
 		controller.mostraEmporiGiocatore(giocatoreDTO.getEmpori());
 		controller.mostraTessereBonusGiocatore(giocatoreDTO.getTessereBonus());
 		controller.mostraNobiltàGiocatore(giocatoreDTO.getPunteggioNobiltà());
+	}
+	
+	/**
+	 * 
+	 * @param tesserePermesso HBox where it stamp tessere
+	 * @param tessereUsate 0 if not stamp, else the number of tessere permesso used
+	 */
+	private void stampaTesserePermesso(HBox tesserePermesso, List<TesseraPermessoDTO> tessere, int tessereUsate, int dimensione){
+		Platform.runLater(new Runnable() {
+			Map<String, Image> mappaTessere=controller.getMappaTesserePermesso();
+			
+			@Override
+			public void run() {
+				if(tessereUsate==0){
+					Pane pane=new Pane();
+					ImageView used = new ImageView();
+					Text text=new Text(Integer.toString(tessereUsate));
+					used.setFitHeight(dimensione);
+					used.setPreserveRatio(true);
+					used.setImage(mappaTessere.get("TesseraPermesso"));
+					tesserePermesso.getChildren().add(pane);
+					pane.getChildren().add(used);
+					pane.getChildren().add(text);
+					text.relocate(25, 25);
+				}
+				
+				for (TesseraPermessoDTO t : tessere) {
+					ImageView image = new ImageView();
+					image.setFitHeight(dimensione);
+					image.setPreserveRatio(true);
+					image.setImage(mappaTessere.get(t.toString()));
+					tesserePermesso.getChildren().add(image);
+				}
+			}
+		});
+
 	}
 
 	@Override
@@ -194,9 +241,115 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public void mostraAvversario(GiocatoreDTO avversario) {
-		gameStateDTO.getAvversari().get(0).getTesserePermesso().add(gameStateDTO.getRegioni().get(0).getTesserePermessoScoperte().get(0));
-		controller.mostraAvversario(gameStateDTO.getAvversari());
-	}
+//		controller.mostraAvversario(gameStateDTO.getAvversari());
+		Platform.runLater(new Runnable() {
+			Map<String, Image> mappaTessere=controller.getMappaTesserePermesso();
+			
+			@Override
+			public void run() {
+				TabPane giocatori= controller.getAvversari();
+				Tab tab=null;
+
+				if(!tabAvversari.containsKey(avversario)){
+					tab = new Tab();
+					tab.setText(avversario.getNome());
+					giocatori.getTabs().add(tab);
+					tabAvversari.put(avversario, tab);
+					System.out.println("tabgiocatore non esistente l'ho creato");
+				}
+				else{
+					tab=tabAvversari.get(avversario);
+				}
+
+					VBox vbox = new VBox();
+					HBox hbox = new HBox();
+					hbox.setSpacing(15);
+					vbox.setSpacing(5);
+					tab.setContent(vbox);
+
+					vbox.getChildren().add(hbox);
+					giocatori.getTabs().add(tab);
+					hbox.setPadding(new Insets(5, 0, 0, 20));
+
+					Pane pane1 = new Pane();
+					ImageView puntiV = new ImageView();
+					puntiV.setImage(new Image(getClass().getResource("css/Point.png").toExternalForm()));
+					puntiV.setPreserveRatio(true);
+					puntiV.setFitHeight(40);
+					Text npuntiV = new Text();
+					npuntiV.setText(Integer.toString(avversario.getPunteggioVittoria()));
+					npuntiV.relocate(10, 13);
+					pane1.getChildren().add(puntiV);
+					pane1.getChildren().add(npuntiV);
+					hbox.getChildren().add(pane1);
+
+					Pane pane2 = new Pane();
+					ImageView puntiR = new ImageView();
+					puntiR.setImage(new Image(getClass().getResource("css/Coins.png").toExternalForm()));
+					puntiR.setPreserveRatio(true);
+					puntiR.setFitHeight(40);
+					Text npuntiR = new Text();
+					npuntiR.setText(Integer.toString(avversario.getPunteggioRicchezza()));
+					npuntiR.relocate(10, 15);
+					pane2.getChildren().add(puntiR);
+					pane2.getChildren().add(npuntiR);
+					hbox.getChildren().add(pane2);
+
+					Pane pane3 = new Pane();
+					ImageView aiutanti = new ImageView();
+					aiutanti.setImage(new Image(getClass().getResource("css/Assistant.png").toExternalForm()));
+					aiutanti.setPreserveRatio(true);
+					aiutanti.setFitHeight(40);
+					Text naiutanti = new Text();
+					naiutanti.setText(Integer.toString(avversario.getAiutanti()));
+					naiutanti.relocate(5, 13);
+					pane3.getChildren().add(aiutanti);
+					pane3.getChildren().add(naiutanti);
+					hbox.getChildren().add(pane3);
+
+					Pane pane4 = new Pane();
+					ImageView emporio = new ImageView();
+					emporio.setImage(new Image(getClass().getResource("css/Emporium.png").toExternalForm()));
+					emporio.setPreserveRatio(true);
+					emporio.setFitHeight(40);
+					Text empori = new Text();
+					empori.setText(Integer.toString(avversario.getEmpori()));
+					empori.relocate(10, 15);
+					pane4.getChildren().add(emporio);
+					pane4.getChildren().add(empori);
+					hbox.getChildren().add(pane4);
+
+					Pane pane5 = new Pane();
+					ImageView nobilty = new ImageView();
+					nobilty.setImage(new Image(getClass().getResource("css/Nobility.png").toExternalForm()));
+					nobilty.setPreserveRatio(true);
+					nobilty.setFitHeight(40);
+					Text nobiltyPoint = new Text();
+					nobiltyPoint.setText(Integer.toString(avversario.getPunteggioNobiltà()));
+					nobiltyPoint.relocate(10, 16);
+					pane5.getChildren().add(nobilty);
+					pane5.getChildren().add(nobiltyPoint);
+					hbox.getChildren().add(pane5);
+
+					Pane pane6 = new Pane();
+					ImageView puntiBonus = new ImageView();
+					puntiBonus
+							.setImage(new Image(getClass().getResource("css/BonusGiocatori.png").toExternalForm()));
+					puntiBonus.setPreserveRatio(true);
+					puntiBonus.setFitHeight(40);
+					Text npuntiBonus = new Text();
+					npuntiBonus.setText(Integer.toString(avversario.getPunteggioNobiltà()));
+					npuntiBonus.relocate(20, 13);
+					pane6.getChildren().add(puntiBonus);
+					pane6.getChildren().add(npuntiBonus);
+					hbox.getChildren().add(pane6);
+
+					HBox hbox1 = new HBox();
+					stampaTesserePermesso(hbox1, avversario.getTesserePermesso(), avversario.getTesserePermessoUsate().size(),50);
+					vbox.getChildren().add(hbox1);
+				}
+		});
+}
 	
 	@Override
 	public ConsigliereDTO scegliConsigliere(List<ConsigliereDTO> consiglieri) {

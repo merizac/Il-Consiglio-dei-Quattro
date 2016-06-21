@@ -534,7 +534,7 @@ public class GUIGameController {
 		//stessa cosa delle tessere permesso
 	}
 
-	public void mostraTesserePermesso(List<TesseraPermessoDTO> tessere, int usate) {
+/*	public void mostraTesserePermesso(List<TesseraPermessoDTO> tessere, int usate) {
 		Platform.runLater(new Runnable() {
 
 			@Override
@@ -558,9 +558,8 @@ public class GUIGameController {
 					image.setImage(mappaTessere.get(t.toString()));
 					tesserePermesso.getChildren().add(image);
 				}
-			}
-		});
-	}
+			}});
+	}*/
 
 	public void mostraRiserva(List<ConsigliereDTO> consiglieri) {
 
@@ -609,12 +608,8 @@ public class GUIGameController {
 
 	}
 
-	public void mostraAvversario(List<GiocatoreDTO> avversari) {
+/*	public void mostraAvversario(List<GiocatoreDTO> avversari) {
 		Platform.runLater(new Runnable() {
-
-			TabPane giocatori;
-			Map<String, Image> mappaTessere;
-			List<GiocatoreDTO> avversari;
 
 			@Override
 			public void run() {
@@ -622,12 +617,7 @@ public class GUIGameController {
 					for (GiocatoreDTO g : avversari) {
 						Tab tab = new Tab();
 						VBox vbox = new VBox();
-/*						String css = getClass().getClassLoader().getResource("/css/gameState.css").toExternalForm();
-						giocatori.getStylesheets().clear();
-						giocatori.getStylesheets().add(css);*/
 						HBox hbox = new HBox();
-						/*vbox.setStyle("sfondo");
-						hbox.setStyle("sfondotrasparente");*/
 						hbox.setSpacing(15);
 						vbox.setSpacing(5);
 						tab.setText(g.getNome());
@@ -734,17 +724,10 @@ public class GUIGameController {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}
+			}});
 
-			public Runnable setAvversari(TabPane giocatori, Map<String, Image> mappaTessere,
-					List<GiocatoreDTO> avversari) {
-				this.giocatori = giocatori;
-				this.mappaTessere = mappaTessere;
-				this.avversari = avversari;
-				return this;
-			}
-		}.setAvversari(this.giocatori, this.mappaTessere, avversari));
-	}
+		
+	}*/
 
 	public void mostraConsiglieriBalcone() {
 		Platform.runLater(new Runnable() {
@@ -834,6 +817,18 @@ public class GUIGameController {
 		merkatim.setUserData(città.get(12));
 		naris.setUserData(città.get(13));
 		osium.setUserData(città.get(14));
+	}
+	
+	public TabPane getAvversari(){
+		return this.giocatori;
+	}
+	
+	public HBox getTesserePermessoGiocatore(){
+		return this.tesserePermesso;
+	}
+	
+	public Map<String, Image> getMappaTesserePermesso(){
+		return this.mappaTessere;
 	}
 
 	public List<ImageView> getConsiglieri() {
