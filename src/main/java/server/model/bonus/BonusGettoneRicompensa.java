@@ -1,11 +1,19 @@
 package server.model.bonus;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import common.gameDTO.CittàBonusDTO;
+import common.gameDTO.CittàDTO;
 import server.model.azioni.Azione;
 import server.model.azioni.azioniBonus.BonusGettoneN;
+import server.model.game.Città;
 import server.model.game.CittàBonus;
 import server.model.game.GameState;
+import server.model.notify.MessageNotify;
+import server.view.clientNotify.MessageClientNotify;
 
 public class BonusGettoneRicompensa extends Bonus {
 
@@ -39,8 +47,19 @@ public class BonusGettoneRicompensa extends Bonus {
 	 * add the corresponding action of in a list of bonus in current player
 	 */
 	@Override
-	public void usaBonus(GameState gameState) {		
-		gameState.getGiocatoreCorrente().getBonusNobiltà().add(this.getAzioneBonus());
+	public void usaBonus(GameState gameState) {
+		Set<CittàBonus> città=new HashSet<>();
+		for (Città c : gameState.getCittà()) {
+			if (c.getEmpori().contains(gameState.getGiocatoreCorrente().getColoreGiocatore().getColore())
+					&& (c instanceof CittàBonus)) {
+				città.add((CittàBonus) c);
+			}
+		}
+		if(!città.isEmpty())
+			gameState.getGiocatoreCorrente().getBonusNobiltà().add(this.getAzioneBonus());
+		else
+			gameState.notifyObserver(new MessageNotify("Hai vinto un bonus gettone ricompensa, ma non lo puoi utilizzare!"
+						, Arrays.asList(gameState.getGiocatoreCorrente())));
 	}	
 
 	/* (non-Javadoc)

@@ -51,7 +51,7 @@ public interface Grafica {
 
 	public CartaPoliticaDTO scegliCarta(List<CartaPoliticaDTO> cartePolitica);
 
-	public CittàDTO scegliCittàBonus(Set<CittàBonusDTO> città, ColoreDTO coloreGiocatore);
+	public CittàDTO scegliCittàBonus(Set<CittàBonusDTO> città, ColoreDTO coloreGiocatore, String input);
 
 	public CittàDTO scegliCittà(Set<? extends CittàDTO> città, ColoreDTO coloreGiocatore);
 
@@ -62,4 +62,10 @@ public interface Grafica {
 	public MarketableDTO scegliMarketable();
 
 	public int scegliOfferta(List<OffertaDTO> offerte);
+
+	public int scegliUsataONonUsata();
+
+	public List<CittàBonusDTO> scegliUnaCittà();
+
+	public List<CittàBonusDTO> scegliDueCittà();
 }

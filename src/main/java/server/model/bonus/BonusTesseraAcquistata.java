@@ -1,8 +1,11 @@
 package server.model.bonus;
 
+import java.util.Arrays;
+
 import server.model.azioni.Azione;
 import server.model.azioni.azioniBonus.BonusTesseraAcquistataN;
 import server.model.game.GameState;
+import server.model.notify.MessageNotify;
 
 public class BonusTesseraAcquistata extends Bonus {
 
@@ -28,6 +31,11 @@ public class BonusTesseraAcquistata extends Bonus {
 	 */
 	@Override
 	public void usaBonus(GameState gameState) {		
+		if (gameState.getGiocatoreCorrente().getTesserePermesso().isEmpty()
+				&& gameState.getGiocatoreCorrente().getTesserePermessoUsate().isEmpty())
+		{
+			gameState.notifyObserver(new MessageNotify("Hai vinto un bonus tessera ma non hai tessere permesso! \nNon puoi utilizzare il bonus!", Arrays.asList(gameState.getGiocatoreCorrente())));
+		}
 		gameState.getGiocatoreCorrente().getBonusNobiltà().add(this.getAzioneBonus());
 	}
 	

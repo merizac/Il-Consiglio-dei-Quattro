@@ -22,9 +22,13 @@ import common.gameDTO.OffertaDTO;
 import common.gameDTO.RegioneDTO;
 import common.gameDTO.TesseraPermessoDTO;
 import javafx.application.Application;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import server.view.clientNotify.ClientNotify;
 
@@ -34,10 +38,40 @@ public class GUI extends Application implements Grafica {
 	private GameStateDTO gameStateDTO;
 	private GUIGameController controller;
 	private Stage finestra;
+	private Object lock;
+	private Object parametro;
 
 	@Override
 	public void setConnessione(Connessione connessione) {
 		this.connessione = connessione;
+	}
+
+	/**
+	 * @return the lock
+	 */
+	public Object getLock() {
+		return lock;
+	}
+
+	/**
+	 * @param lock the lock to set
+	 */
+	public void setLock(Object lock) {
+		this.lock = lock;
+	}
+
+	/**
+	 * @return the parametro
+	 */
+	public Object getParametro() {
+		return parametro;
+	}
+
+	/**
+	 * @param parametro the parametro to set
+	 */
+	public void setParametro(Object parametro) {
+		this.parametro = parametro;
 	}
 
 	@Override
@@ -163,14 +197,55 @@ public class GUI extends Application implements Grafica {
 		gameStateDTO.getAvversari().get(0).getTesserePermesso().add(gameStateDTO.getRegioni().get(0).getTesserePermessoScoperte().get(0));
 		controller.mostraAvversario(gameStateDTO.getAvversari());
 	}
+	
+	@Override
 	public ConsigliereDTO scegliConsigliere(List<ConsigliereDTO> consiglieri) {
-		return null;
+		List<ImageView> riserva=controller.getConsiglieri();
+		for(ImageView consigliere: riserva){
+			consigliere.setDisable(false);
+		}
+		
+		synchronized(lock){
+			while(parametro==null){
+				try {
+					lock.wait();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		ConsigliereDTO consigliereDTO=(ConsigliereDTO) parametro;
+		for(ImageView consigliere: riserva){
+			consigliere.setDisable(true);
+		}
+		parametro=null;
+		return consigliereDTO;
 	}
 
 	@Override
 	public BalconeDTO scegliBalcone(List<RegioneDTO> regioni, BalconeDTO balconeRe) {
-		// TODO Auto-generated method stub
-		return null;
+		List<HBox> balconi=controller.getBalconi();
+		for(HBox balcone:balconi){
+			balcone.setDisable(false);
+		}
+		
+		synchronized (lock) {
+			while(parametro==null){
+				try {
+					lock.wait();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		BalconeDTO balconeDTO=(BalconeDTO) parametro;
+		for(HBox balcone:balconi){
+			balcone.setDisable(true);
+		}
+		parametro=null;
+		return balconeDTO;
+		}
 	}
 
 	@Override
