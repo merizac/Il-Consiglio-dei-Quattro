@@ -66,36 +66,36 @@ public class GUIGameController {
 	@FXML
 	private Text nobiltàGiocatore;
 	@FXML
-	private Button tesseraMare1;
+	private ImageView tesseraMare1;
 	@FXML
-	private Button tesseraMare2;
+	private ImageView tesseraMare2;
 	@FXML
-	private Button tesseraCollina1;
+	private ImageView tesseraCollina1;
 	@FXML
-	private Button tesseraCollina2;
+	private ImageView tesseraCollina2;
 	@FXML
-	private Button tesseraMontagna1;
+	private ImageView tesseraMontagna1;
 	@FXML
-	private Button tesseraMontagna2;
+	private ImageView tesseraMontagna2;
 	@FXML
 	private TabPane giocatori;
 
 	@FXML
-	private Button consigliere1;
+	private ImageView consigliere1;
 	@FXML
-	private Button consigliere2;
+	private ImageView consigliere2;
 	@FXML
-	private Button consigliere3;
+	private ImageView consigliere3;
 	@FXML
-	private Button consigliere4;
+	private ImageView consigliere4;
 	@FXML
-	private Button consigliere5;
+	private ImageView consigliere5;
 	@FXML
-	private Button consigliere6;
+	private ImageView consigliere6;
 	@FXML
-	private Button consigliere7;
+	private ImageView consigliere7;
 	@FXML
-	private Button consigliere8;
+	private ImageView consigliere8;
 
 	@FXML
 	private Button elezioneConsigliere;
@@ -539,94 +539,43 @@ public class GUIGameController {
 	}
 
 	public void mostraRiserva(List<ConsigliereDTO> consiglieri) {
-		Background sfondo1 = new Background(
-				new BackgroundImage(mappaConsiglieriRiserva.get(consiglieri.get(0).getColoreConsigliere().toString()),
-						BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
-						new BackgroundSize(75, 241, false, false, true, true)));
-		Background sfondo2 = new Background(
-				new BackgroundImage(mappaConsiglieriRiserva.get(consiglieri.get(1).getColoreConsigliere().toString()),
-						BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
-						new BackgroundSize(75, 241, false, false, true, true)));
-		Background sfondo3 = new Background(
-				new BackgroundImage(mappaConsiglieriRiserva.get(consiglieri.get(2).getColoreConsigliere().toString()),
-						BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
-						new BackgroundSize(75, 241, false, false, true, true)));
-		Background sfondo4 = new Background(
-				new BackgroundImage(mappaConsiglieriRiserva.get(consiglieri.get(3).getColoreConsigliere().toString()),
-						BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
-						new BackgroundSize(30.125, 103, false, false, true, true)));
-		Background sfondo5 = new Background(
-				new BackgroundImage(mappaConsiglieriRiserva.get(consiglieri.get(4).getColoreConsigliere().toString()),
-						BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
-						new BackgroundSize(30.125, 103, false, false, true, true)));
-		Background sfondo6 = new Background(
-				new BackgroundImage(mappaConsiglieriRiserva.get(consiglieri.get(5).getColoreConsigliere().toString()),
-						BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
-						new BackgroundSize(30.125, 103, false, false, true, true)));
-		Background sfondo7 = new Background(
-				new BackgroundImage(mappaConsiglieriRiserva.get(consiglieri.get(6).getColoreConsigliere().toString()),
-						BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
-						new BackgroundSize(30.125, 103, false, false, true, true)));
-		Background sfondo8 = new Background(
-				new BackgroundImage(mappaConsiglieriRiserva.get(consiglieri.get(7).getColoreConsigliere().toString()),
-						BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
-						new BackgroundSize(30.125, 103, false, false, true, true)));
 
-		consigliere1.backgroundProperty().set(sfondo1);
+		consigliere1.setImage(mappaConsiglieriRiserva.get(consiglieri.get(0).getColoreConsigliere().toString()));
 		consigliere1.setUserData(consiglieri.get(0).getColoreConsigliere());
-		consigliere2.backgroundProperty().set(sfondo2);
+		consigliere2.setImage(mappaConsiglieriRiserva.get(consiglieri.get(1).getColoreConsigliere().toString()));
 		consigliere2.setUserData(consiglieri.get(1).getColoreConsigliere());
-		consigliere3.backgroundProperty().set(sfondo3);
+		consigliere3.setImage(mappaConsiglieriRiserva.get(consiglieri.get(2).getColoreConsigliere().toString()));
 		consigliere3.setUserData(consiglieri.get(2).getColoreConsigliere());
-		consigliere4.backgroundProperty().set(sfondo4);
+		consigliere4.setImage(mappaConsiglieriRiserva.get(consiglieri.get(3).getColoreConsigliere().toString()));
 		consigliere4.setUserData(consiglieri.get(3).getColoreConsigliere());
-		consigliere5.backgroundProperty().set(sfondo5);
+		consigliere5.setImage(mappaConsiglieriRiserva.get(consiglieri.get(4).getColoreConsigliere().toString()));
 		consigliere5.setUserData(consiglieri.get(4).getColoreConsigliere());
-		consigliere6.backgroundProperty().set(sfondo6);
+		consigliere6.setImage(mappaConsiglieriRiserva.get(consiglieri.get(5).getColoreConsigliere().toString()));
 		consigliere6.setUserData(consiglieri.get(5).getColoreConsigliere());
-		consigliere7.backgroundProperty().set(sfondo7);
+		consigliere7.setImage(mappaConsiglieriRiserva.get(consiglieri.get(6).getColoreConsigliere().toString()));
 		consigliere7.setUserData(consiglieri.get(6).getColoreConsigliere());
-		consigliere8.backgroundProperty().set(sfondo8);
+		consigliere8.setImage(mappaConsiglieriRiserva.get(consiglieri.get(7).getColoreConsigliere().toString()));
 		consigliere8.setUserData(consiglieri.get(7).getColoreConsigliere());
-
 	}
 
 	public void mostraTesserePermessoRegioni(List<RegioneDTO> regioni) {
 		
-		Background sfondo= new Background(new BackgroundImage(this.mappaTessere.get(regioni.get(1).getTesserePermessoScoperte().get(0).toString())
-				, BackgroundRepeat.NO_REPEAT,
-				BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(45, 60, false, false, true, true)));
-		tesseraCollina1.backgroundProperty().set(sfondo);
+		tesseraCollina1.setImage(this.mappaTessere.get(regioni.get(1).getTesserePermessoScoperte().get(0).toString()));
 		tesseraCollina1.setUserData(this.mappaTessere.get(regioni.get(1).getTesserePermessoScoperte().get(0)));
-		
-		Background sfondo2= new Background(new BackgroundImage(this.mappaTessere.get(regioni.get(1).getTesserePermessoScoperte().get(1).toString())
-				, BackgroundRepeat.NO_REPEAT,
-				BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(45, 60, false, false, true, true)));
-		tesseraCollina2.backgroundProperty().set(sfondo2);
+
+		tesseraCollina2.setImage(this.mappaTessere.get(regioni.get(1).getTesserePermessoScoperte().get(1).toString()));
 		tesseraCollina2.setUserData(regioni.get(1).getTesserePermessoScoperte().get(1));
 		
-		Background sfondo3= new Background(new BackgroundImage(this.mappaTessere.get(regioni.get(0).getTesserePermessoScoperte().get(0).toString())
-				, BackgroundRepeat.NO_REPEAT,
-				BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(45, 60, false, false, true, true)));
-		tesseraMare1.backgroundProperty().set(sfondo3);
+		tesseraMare1.setImage(this.mappaTessere.get(regioni.get(0).getTesserePermessoScoperte().get(0).toString()));
 		tesseraMare1.setUserData(regioni.get(0).getTesserePermessoScoperte().get(0));
 		
-		Background sfondo4= new Background(new BackgroundImage(this.mappaTessere.get(regioni.get(0).getTesserePermessoScoperte().get(1).toString())
-				, BackgroundRepeat.NO_REPEAT,
-				BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(45, 60, false, false, true, true)));
-		tesseraMare2.backgroundProperty().set(sfondo4);
+		tesseraMare2.setImage(this.mappaTessere.get(regioni.get(0).getTesserePermessoScoperte().get(1).toString()));
 		tesseraMare2.setUserData(regioni.get(0).getTesserePermessoScoperte().get(1));
 		
-		Background sfondo5= new Background(new BackgroundImage(this.mappaTessere.get(regioni.get(2).getTesserePermessoScoperte().get(0).toString())
-				, BackgroundRepeat.NO_REPEAT,
-				BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(45, 60, false, false, true, true)));
-		tesseraMontagna1.backgroundProperty().set(sfondo5);
+		tesseraMontagna1.setImage(this.mappaTessere.get(regioni.get(2).getTesserePermessoScoperte().get(0).toString()));
 		tesseraMontagna1.setUserData(regioni.get(2).getTesserePermessoScoperte().get(0));
 		
-		Background sfondo6= new Background(new BackgroundImage(this.mappaTessere.get(regioni.get(2).getTesserePermessoScoperte().get(1).toString())
-				, BackgroundRepeat.NO_REPEAT,
-				BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(45, 60, false, false, true, true)));
-		tesseraMontagna2.backgroundProperty().set(sfondo6);
+		tesseraMontagna2.setImage(this.mappaTessere.get(regioni.get(2).getTesserePermessoScoperte().get(1).toString()));
 		tesseraMontagna2.setUserData(regioni.get(2).getTesserePermessoScoperte().get(1));
 	}
 
