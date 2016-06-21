@@ -1,15 +1,18 @@
 package client.grafica.gui;
 
 
+import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import common.azioniDTO.AcquistoTesseraPermessoDTO;
 import common.azioniDTO.ElezioneConsigliereDTO;
+import common.azioniDTO.PescaCartaDTO;
 import common.gameDTO.CartaPoliticaDTO;
 import common.gameDTO.CittàBonusDTO;
 import common.gameDTO.CittàDTO;
@@ -26,11 +29,6 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -103,6 +101,11 @@ public class GUIGameController {
 	@FXML
 	private ImageView consigliere8;
 
+	
+	@FXML
+	private Button conferma;
+	@FXML
+	private ImageView pescaCarta;
 	@FXML
 	private Button elezioneConsigliere;
 	@FXML
@@ -412,11 +415,43 @@ public class GUIGameController {
 			@Override
 			public void run() {
 				elezione.parametri().setParametri(gui, gameStateDTO);
+				try {
+					gui.getConnessione().inviaAzione(elezione);
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
-		
 	}
 	
+	@FXML
+	public void pescaCarta(Event event){
+		PescaCartaDTO pesca=new PescaCartaDTO();
+		try {
+			gui.getConnessione().inviaAzione(pesca);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void acquistoTesseraPermesso(ActionEvent event){
+		AcquistoTesseraPermessoDTO acquistoTesseraPermessoDTO=new AcquistoTesseraPermessoDTO();
+		ExecutorService executor= Executors.newSingleThreadExecutor();
+		executor.submit(new Runnable() {
+			
+			@Override
+			public void run() {
+				acquistoTesseraPermessoDTO.parametri().setParametri(gui, gameStateDTO);
+			}
+		});
+		try {
+			gui.getConnessione().inviaAzione(acquistoTesseraPermessoDTO);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}
 	public void mostraNomeGiocatore(String nome) {
 		nomeGiocatore.setText(nome);
 	}
@@ -467,8 +502,16 @@ public class GUIGameController {
 					image.setFitHeight(60);
 					image.setPreserveRatio(true);
 					image.setImage(mappaCarte.get(c.toString()));
+					image.setDisable(true);
+					image.setUserData(c);
 					cartePolitica.getChildren().add(image);
-					
+					image.setOnMouseClicked(new EventHandler<Event>() {
+
+						@Override
+						public void handle(Event event) {
+							handleCartaPolitica(event);
+						}
+					});
 				}
 
 			}
@@ -564,21 +607,29 @@ public class GUIGameController {
 	public void mostraRiserva(List<ConsigliereDTO> consiglieri) {
 
 		consigliere1.setImage(mappaConsiglieriRiserva.get(consiglieri.get(0).getColoreConsigliere().toString()));
-		consigliere1.setUserData(consiglieri.get(0).getColoreConsigliere());
+		consigliere1.setUserData(consiglieri.get(0));
+		consigliere1.setDisable(true);
 		consigliere2.setImage(mappaConsiglieriRiserva.get(consiglieri.get(1).getColoreConsigliere().toString()));
-		consigliere2.setUserData(consiglieri.get(1).getColoreConsigliere());
+		consigliere2.setUserData(consiglieri.get(1));
+		consigliere2.setDisable(true);
 		consigliere3.setImage(mappaConsiglieriRiserva.get(consiglieri.get(2).getColoreConsigliere().toString()));
-		consigliere3.setUserData(consiglieri.get(2).getColoreConsigliere());
+		consigliere3.setUserData(consiglieri.get(2));
+		consigliere3.setDisable(true);
 		consigliere4.setImage(mappaConsiglieriRiserva.get(consiglieri.get(3).getColoreConsigliere().toString()));
-		consigliere4.setUserData(consiglieri.get(3).getColoreConsigliere());
+		consigliere4.setUserData(consiglieri.get(3));
+		consigliere4.setDisable(true);
 		consigliere5.setImage(mappaConsiglieriRiserva.get(consiglieri.get(4).getColoreConsigliere().toString()));
-		consigliere5.setUserData(consiglieri.get(4).getColoreConsigliere());
+		consigliere5.setUserData(consiglieri.get(4));
+		consigliere5.setDisable(true);
 		consigliere6.setImage(mappaConsiglieriRiserva.get(consiglieri.get(5).getColoreConsigliere().toString()));
-		consigliere6.setUserData(consiglieri.get(5).getColoreConsigliere());
+		consigliere6.setUserData(consiglieri.get(5));
+		consigliere6.setDisable(true);
 		consigliere7.setImage(mappaConsiglieriRiserva.get(consiglieri.get(6).getColoreConsigliere().toString()));
-		consigliere7.setUserData(consiglieri.get(6).getColoreConsigliere());
+		consigliere7.setUserData(consiglieri.get(6));
+		consigliere7.setDisable(true);
 		consigliere8.setImage(mappaConsiglieriRiserva.get(consiglieri.get(7).getColoreConsigliere().toString()));
-		consigliere8.setUserData(consiglieri.get(7).getColoreConsigliere());
+		consigliere8.setUserData(consiglieri.get(7));
+		consigliere8.setDisable(true);
 	}
 
 	public void mostraTesserePermessoRegioni(List<RegioneDTO> regioni) {
@@ -604,7 +655,9 @@ public class GUIGameController {
 
 	@FXML
 	public void handleTesseraPermessoRegione(Event event) {
-		System.out.println(((Button)event.getSource()).getUserData());
+		synchronized (gui.getLock()) {
+			gui.setParametro(((ImageView)event.getSource()).getUserData());
+		}
 
 	}
 
@@ -742,6 +795,7 @@ public class GUIGameController {
 				}
 				
 				balconeMare.setUserData(gameStateDTO.getRegioni().get(0).getBalcone());
+				balconeMare.setDisable(true);
 				
 				for (ConsigliereDTO c : gameStateDTO.getRegioni().get(1).getBalcone().getConsiglieri()) {
 					ImageView imageView = new ImageView(mappaConsiglieri.get(c.toString()));
@@ -751,6 +805,7 @@ public class GUIGameController {
 				}
 				
 				balconeCollina.setUserData(gameStateDTO.getRegioni().get(1).getBalcone());
+				balconeCollina.setDisable(true);
 				
 				for (ConsigliereDTO c : gameStateDTO.getRegioni().get(2).getBalcone().getConsiglieri()) {
 					ImageView imageView = new ImageView(mappaConsiglieri.get(c.toString()));
@@ -760,6 +815,7 @@ public class GUIGameController {
 				}
 				
 				balconeMontagna.setUserData(gameStateDTO.getRegioni().get(2).getBalcone());
+				balconeMontagna.setDisable(true);
 				
 				for (ConsigliereDTO c : gameStateDTO.getPlanciaReDTO().getBalconeRe().getConsiglieri()) {
 					ImageView imageView = new ImageView(mappaConsiglieri.get(c.toString()));
@@ -769,6 +825,7 @@ public class GUIGameController {
 				}
 				
 				balconeRe.setUserData(gameStateDTO.getPlanciaReDTO().getBalconeRe());
+				balconeRe.setDisable(true);
 			}
 		});
 	}
@@ -784,15 +841,28 @@ public class GUIGameController {
 		}
 	}
 	
+	@FXML
 	public void handleCartaPolitica(Event event) {
-		System.out.println(((Node) event.getSource()).getUserData());
+		synchronized (gui.getLock()) {
+			((ImageView)event.getSource()).setDisable(true);
+			gui.setParametro(((ImageView)event.getSource()).getUserData());
+			gui.getLock().notify();	
+		}
+	}
+	
+	@FXML
+	public void handleConferma(ActionEvent event){
+		synchronized (gui.getLock()) {
+			gui.setCarteInserite(false);
+			gui.getLock().notify();
+		}
 	}
 
 	@FXML
 	public void handleConsigliereRiserva(Event event) {
 		synchronized(gui.getLock()){
 			gui.setParametro(((ImageView)event.getSource()).getUserData());
-			gui.getLock().notify();
+			gui.getLock().notifyAll();
 		}
 	}
 
@@ -839,4 +909,17 @@ public class GUIGameController {
 	public List<HBox> getBalconi() {
 		return Arrays.asList(balconeMare, balconeCollina, balconeMontagna, balconeRe);
 	}
+
+	public List<ImageView> getCartePolitica() {
+		List<ImageView> cartePolitica=new ArrayList<>();
+		for(Node i: this.cartePolitica.getChildren()){
+			cartePolitica.add((ImageView) i);
+		}
+		return cartePolitica;
+	}
+
+	public Button getConferma() {
+		return this.conferma;
+	}
+	
 }

@@ -167,7 +167,7 @@
                               </TitledPane>
                               <TitledPane animated="false" collapsible="false" prefHeight="133.0" prefWidth="108.0" text="Pesca carta!">
                                  <content>
-                                    <ImageView fx:id="mazzoCarte" fitHeight="98.0" fitWidth="77.0" layoutX="17.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="pescaCarta" fitHeight="98.0" fitWidth="77.0" layoutX="17.0" layoutY="9.0" onMouseClicked="#pescaCarta" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../css/politicCard/Retro.png" />
                                        </image>
@@ -182,7 +182,7 @@
                      <children>
                         <TitledPane animated="false" collapsible="false" prefHeight="87.0" prefWidth="465.0" text="Giocatore">
                            <content>
-                              <AnchorPane prefHeight="34.0" prefWidth="523.0">
+                              <AnchorPane prefHeight="34.0" prefWidth="523.0" styleClass="background" stylesheets="@../css/game.css">
                                  <children>
                                     <HBox layoutX="86.0" layoutY="32.0" prefHeight="57.0" prefWidth="435.0" AnchorPane.bottomAnchor="-10.0" AnchorPane.rightAnchor="-10.0">
                                        <children>
@@ -274,7 +274,7 @@
                                           <Insets bottom="-10.0" left="-10.0" top="-10.0" />
                                        </HBox.margin>
                                     </ScrollPane>
-                                    <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="72.0" text="Ok!">
+                                    <Button fx:id="conferma" mnemonicParsing="false" prefHeight="27.0" prefWidth="72.0" text="Ok!">
                                        <HBox.margin>
                                           <Insets left="15.0" top="12.0" />
                                        </HBox.margin>
@@ -318,7 +318,7 @@
                                                       <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="209.0" text="Costruzione Tessera Permesso" GridPane.rowIndex="3" />
                                                       <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="209.0" text="Costruzione Aiuto Re" GridPane.rowIndex="2" />
                                                       <Button fx:id="elezioneConsigliere" mnemonicParsing="false" onAction="#elezioneConsigliere" prefHeight="27.0" prefWidth="209.0" text="Elezione Consigliere" GridPane.rowIndex="1" />
-                                                      <Button fx:id="acquistoTesseraPermesso" mnemonicParsing="false" prefHeight="27.0" prefWidth="209.0" text="Acquisto Tessera Permesso" />
+                                                      <Button fx:id="acquistoTesseraPermesso" mnemonicParsing="false" onAction="#acquistoTesseraPermesso" prefHeight="27.0" prefWidth="209.0" text="Acquisto Tessera Permesso" />
                                                    </children>
                                                 </GridPane>
                                              </children>
