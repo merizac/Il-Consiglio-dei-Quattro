@@ -33,8 +33,8 @@
                                                 <Image url="@../css/permitTile/Mare.png" />
                                              </image>
                                           </ImageView>
-                                          <Button fx:id="tesseraMare1" layoutX="63.0" mnemonicParsing="false" onAction="#handleTesseraPermessoRegione" prefHeight="68.0" prefWidth="61.0" visible="false" />
-                                          <Button fx:id="tesseraMare2" layoutX="118.0" mnemonicParsing="false" onAction="#handleTesseraPermessoRegione" prefHeight="68.0" prefWidth="58.0" visible="false" />
+                                          <ImageView fx:id="tesseraMare1" fitHeight="68.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fx:id="tesseraMare2" fitHeight="68.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -48,8 +48,8 @@
                                                 <Image url="@../css/permitTile/Collina.png" />
                                              </image>
                                           </ImageView>
-                                          <Button fx:id="tesseraCollina1" layoutX="66.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleTesseraPermessoRegione" opacity="0.0" prefHeight="68.0" prefWidth="61.0" visible="false" />
-                                          <Button fx:id="tesseraCollina2" layoutX="127.0" layoutY="4.0" mnemonicParsing="false" onAction="#handleTesseraPermessoRegione" prefHeight="68.0" prefWidth="61.0" visible="false" />
+                                          <ImageView fx:id="tesseraCollina1" fitHeight="68.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fx:id="tesseraCollina2" fitHeight="68.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -63,8 +63,8 @@
                                                 <Image url="@../css/permitTile/Montagna.png" />
                                              </image>
                                           </ImageView>
-                                          <Button fx:id="tesseraMontagna1" mnemonicParsing="false" onAction="#handleTesseraPermessoRegione" prefHeight="68.0" prefWidth="61.0" visible="false" />
-                                          <Button fx:id="tesseraMontagna2" mnemonicParsing="false" onAction="#handleTesseraPermessoRegione" prefHeight="68.0" prefWidth="61.0" visible="false" />
+                                          <ImageView fx:id="tesseraMontagna1" fitHeight="68.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fx:id="tesseraMontagna2" fitHeight="68.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -227,9 +227,9 @@
                         </TitledPane>
                         <TitledPane animated="false" collapsible="false" text="Carte Politica">
                            <content>
-                              <ScrollPane maxHeight="-Infinity" prefHeight="72.0" prefViewportHeight="60.0" prefViewportWidth="200.0" prefWidth="523.0">
+                              <ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" prefHeight="72.0" prefViewportHeight="60.0" prefViewportWidth="200.0" prefWidth="523.0" vbarPolicy="NEVER">
                                  <content>
-                                    <HBox fx:id="cartePolitica" maxHeight="-Infinity" prefHeight="70.0" prefWidth="523.0" spacing="10.0" stylesheets="@../css/game.css" />
+                                    <HBox fx:id="cartePolitica" maxHeight="-Infinity" prefHeight="70.0" prefWidth="523.0" spacing="10.0" styleClass="background" stylesheets="@../css/game.css" />
                                  </content>
                               </ScrollPane>
                            </content>
