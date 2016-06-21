@@ -1,12 +1,9 @@
 package client.grafica.gui;
 
-import java.awt.BorderLayout;
-import java.awt.ScrollPane;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
 import common.gameDTO.CartaPoliticaDTO;
 import common.gameDTO.CittàBonusDTO;
 import common.gameDTO.CittàDTO;
@@ -46,6 +43,8 @@ public class GUIGameController {
 	private Map<String, Image> mappaConsiglieri = new HashMap<>();
 	private Map<String, Image> mappaConsiglieriRiserva = new HashMap<>();
 
+	@FXML
+	private ImageView mazzoCarte;
 	@FXML
 	private HBox tesserePermesso;
 	@FXML
