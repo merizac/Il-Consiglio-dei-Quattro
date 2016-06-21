@@ -17,6 +17,7 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -28,6 +29,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -277,7 +279,7 @@ public class GUIGameController {
 				new Image(getClass().getResource("css/permitTile/3.12.png").toExternalForm()));
 		this.mappaTessere.put("TesseraPermesso  città:[Arkon], bonus:[BonusMoneta 3, BonusPuntiVittoria 4]",
 				new Image(getClass().getResource("css/permitTile/3.6.png").toExternalForm()));
-		this.mappaTessere.put("TesseraPermesso  città:[Esti], bonus:[BonusAzionePrincipale 1, BonusMoneta]",
+		this.mappaTessere.put("TesseraPermesso  città:[Esti], bonus:[BonusAzionePrincipale, BonusMoneta 2]",
 				new Image(getClass().getResource("css/permitTile/3.15.png").toExternalForm()));
 		this.mappaTessere.put("TesseraPermesso  città:[Castrum], bonus:[BonusAiutanti 2, BonusMoneta 3]",
 				new Image(getClass().getResource("css/permitTile/3.7.png").toExternalForm()));
@@ -309,7 +311,7 @@ public class GUIGameController {
 				new Image(getClass().getResource("css/permitTile/1.8.png").toExternalForm()));
 		this.mappaTessere.put("TesseraPermesso  città:[Indur], bonus:[BonusCartePolitica 2, BonusAiutanti 2]",
 				new Image(getClass().getResource("css/permitTile/1.10.png").toExternalForm()));
-		this.mappaTessere.put("TesseraPermesso  città:[Juvelar], bonus:[BonusAzionePrincipale 1, BonusPuntiVittoria 2]",
+		this.mappaTessere.put("TesseraPermesso  città:[Juvelar], bonus:[BonusAzionePrincipale, BonusPuntiVittoria 2]",
 				new Image(getClass().getResource("css/permitTile/1.11.png").toExternalForm()));
 		this.mappaTessere.put("TesseraPermesso  città:[Framek, Graden], bonus:[BonusMoneta 5]",
 				new Image(getClass().getResource("css/permitTile/1.9.png").toExternalForm()));
@@ -342,7 +344,7 @@ public class GUIGameController {
 		// montagna
 		this.mappaTessere.put("TesseraPermesso  città:[Naris], bonus:[BonusMoneta 7]",
 				new Image(getClass().getResource("css/permitTile/2.1.png").toExternalForm()));
-		this.mappaTessere.put("TesseraPermesso  città:[Naris, Merkatim], bonus:[BonusAzionePrincipale 1]",
+		this.mappaTessere.put("TesseraPermesso  città:[Naris, Merkatim], bonus:[BonusAzionePrincipale]",
 				new Image(getClass().getResource("css/permitTile/2.14.png").toExternalForm()));
 		this.mappaTessere.put("TesseraPermesso  città:[Kultos], bonus:[BonusCartePolitica 4]",
 				new Image(getClass().getResource("css/permitTile/2.8.png").toExternalForm()));
@@ -351,7 +353,7 @@ public class GUIGameController {
 		this.mappaTessere.put("TesseraPermesso  città:[Merkatim], bonus:[BonusPuntiVittoria 5, BonusPuntiNobiltà 1]",
 				new Image(getClass().getResource("css/permitTile/2.11.png").toExternalForm()));
 		this.mappaTessere.put(
-				"TesseraPermesso  città:[Osium, Kultos], bonus:[BonusCartePolitica 2, BonusPuntiNobiltà 1]",
+				"TesseraPermesso  città:[Kultos, Osium], bonus:[BonusCartePolitica 2, BonusPuntiNobiltà 1]",
 				new Image(getClass().getResource("css/permitTile/2.3.png").toExternalForm()));
 		this.mappaTessere.put("TesseraPermesso  città:[Kultos, Lyram], bonus:[BonusCartePolitica 1, BonusAiutanti 2]",
 				new Image(getClass().getResource("css/permitTile/2.13.png").toExternalForm()));
@@ -376,6 +378,8 @@ public class GUIGameController {
 				new Image(getClass().getResource("css/permitTile/2.7.png").toExternalForm()));
 		this.mappaTessere.put("TesseraPermesso  città:[Lyram, Merkatim, Naris], bonus:[BonusPuntiVittoria 3]",
 				new Image(getClass().getResource("css/permitTile/2.5.png").toExternalForm()));
+		this.mappaTessere.put("TesseraPermesso",
+				new Image(getClass().getResource("css/permitTile/PermitWhite.png").toExternalForm()));
 	}
 
 	/**
@@ -440,18 +444,15 @@ public class GUIGameController {
 			public void run() {
 				for (CartaPoliticaDTO c : carte) {
 
-					Button tp= new Button();
-					tp.setPrefHeight(60);
-					tp.setPrefWidth(45);
-					Background sfondo= new Background(new BackgroundImage(mappaCarte.get(c.toString()), BackgroundRepeat.NO_REPEAT,
-							BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(45, 60, false, false, true, true)));
-					tp.backgroundProperty().set(sfondo);
-					tp.setUserData(c);
-					cartePolitica.getChildren().add(tp);
-					tp.setOnAction(new EventHandler<ActionEvent>() {
+					ImageView image = new ImageView();
+					image.setFitHeight(60);
+					image.setPreserveRatio(true);
+					image.setImage(mappaCarte.get(c.toString()));
+					cartePolitica.getChildren().add(image);
+					image.setOnMouseClicked(new EventHandler<Event>() {
 						
 						@Override
-						public void handle(ActionEvent event) {
+						public void handle(Event event) {
 							handleCartaPolitica(event);
 						}
 					});
@@ -516,21 +517,34 @@ public class GUIGameController {
 			}
 		});
 	}
+	
+	public void mostraTesserePermessoUsate(List<TesseraPermessoDTO> tessere){
+		//stessa cosa delle tessere permesso
+	}
 
-	public void mostraTesserePermesso(List<TesseraPermessoDTO> tessere) {
+	public void mostraTesserePermesso(List<TesseraPermessoDTO> tessere, int usate) {
 		Platform.runLater(new Runnable() {
 
 			@Override
 			public void run() {
+				Pane pane=new Pane();
+				ImageView used = new ImageView();
+				Text text=new Text(Integer.toString(usate));
+				used.setFitHeight(60);
+				used.setPreserveRatio(true);
+				used.setImage(mappaTessere.get("TesseraPermesso"));
+				tesserePermesso.getChildren().add(pane);
+				pane.getChildren().add(used);
+				pane.getChildren().add(text);
+				text.relocate(20, 20);
+				
+				
 				for (TesseraPermessoDTO t : tessere) {
 					ImageView image = new ImageView();
 					image.setFitHeight(60);
 					image.setPreserveRatio(true);
 					image.setImage(mappaTessere.get(t.toString()));
-					Button tp = new Button();
-					tp.setGraphic(image);
-					tp.setUserData(t);
-					tesserePermesso.getChildren().add(tp);
+					tesserePermesso.getChildren().add(image);
 				}
 			}
 		});
@@ -596,14 +610,19 @@ public class GUIGameController {
 					for (GiocatoreDTO g : avversari) {
 						Tab tab = new Tab();
 						VBox vbox = new VBox();
+/*						String css = getClass().getClassLoader().getResource("/css/gameState.css").toExternalForm();
+						giocatori.getStylesheets().clear();
+						giocatori.getStylesheets().add(css);*/
 						HBox hbox = new HBox();
+						/*vbox.setStyle("sfondo");
+						hbox.setStyle("sfondotrasparente");*/
 						hbox.setSpacing(15);
 						vbox.setSpacing(5);
 						tab.setText(g.getNome());
-						// hbox.relocate(20, 5);
 						vbox.getChildren().add(hbox);
 						tab.setContent(vbox);
 						giocatori.getTabs().add(tab);
+						hbox.setPadding(new Insets(5, 0, 0, 20));
 
 						Pane pane1 = new Pane();
 						ImageView puntiV = new ImageView();
@@ -679,6 +698,17 @@ public class GUIGameController {
 						hbox.getChildren().add(pane6);
 
 						HBox hbox1 = new HBox();
+						Pane pane=new Pane();
+						ImageView used = new ImageView();
+						Text text=new Text(Integer.toString(g.getTesserePermessoUsate().size()));
+						used.setFitHeight(60);
+						used.setPreserveRatio(true);
+						used.setImage(mappaTessere.get("TesseraPermesso"));
+						hbox1.getChildren().add(pane);
+						pane.getChildren().add(used);
+						pane.getChildren().add(text);
+						text.relocate(20, 20);
+
 						for (TesseraPermessoDTO t : g.getTesserePermesso()) {
 							ImageView image = new ImageView();
 							image.setFitHeight(60);
@@ -743,7 +773,7 @@ public class GUIGameController {
 	}
 
 	public void handleCartaPolitica(Event event) {
-		System.out.println(((Button)event.getSource()).getUserData());
+		System.out.println(((Node) event.getSource()).getUserData());
 	}
 
 	@FXML
