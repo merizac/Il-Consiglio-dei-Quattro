@@ -63,6 +63,8 @@ public class GUIGameController {
 	@FXML
 	private Text tesserebonusGiocatore;
 	@FXML
+	private Text nobiltàGiocatore;
+	@FXML
 	private Button tesseraMare1;
 	@FXML
 	private Button tesseraMare2;
@@ -415,6 +417,10 @@ public class GUIGameController {
 
 	public void mostraTessereBonusGiocatore(int punti) {
 		tesserebonusGiocatore.setText(Integer.toString(punti));
+	}
+	
+	public void mostraNobiltàGiocatore(int punti) {
+		nobiltàGiocatore.setText(Integer.toString(punti));
 	}
 
 	public void mostraTessereBonus() {

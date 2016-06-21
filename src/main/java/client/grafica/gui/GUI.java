@@ -127,6 +127,7 @@ public class GUI extends Application implements Grafica {
 		controller.mostraAiutantiGiocatore(giocatoreDTO.getAiutanti());
 		controller.mostraEmporiGiocatore(giocatoreDTO.getEmpori());
 		controller.mostraTessereBonusGiocatore(giocatoreDTO.getTessereBonus());
+		controller.mostraNobiltàGiocatore(giocatoreDTO.getPunteggioNobiltà());
 	}
 
 	@Override
