@@ -164,7 +164,7 @@
                                     </AnchorPane>
                                 </content>
                               </TitledPane>
-                              <TabPane fx:id="giocatori" prefHeight="130.0" prefWidth="470.0" tabClosingPolicy="UNAVAILABLE" />
+                              <TabPane fx:id="giocatori" prefHeight="130.0" prefWidth="470.0" stylesheets="@../css/gameState.css" tabClosingPolicy="UNAVAILABLE" />
                            </children>
                         </HBox>
                      </children>

@@ -119,7 +119,7 @@ public class GUI extends Application implements Grafica {
 	@Override
 	public void mostraGiocatore(GiocatoreDTO giocatoreDTO) {
 		giocatoreDTO.getTesserePermesso().add(gameStateDTO.getRegioni().get(0).getTesserePermessoScoperte().get(0));
-		controller.mostraTesserePermesso(giocatoreDTO.getTesserePermesso());
+		controller.mostraTesserePermesso(giocatoreDTO.getTesserePermesso(),giocatoreDTO.getTesserePermessoUsate().size());
 		controller.mostraCartePolitica(giocatoreDTO.getCartePolitica());
 		controller.mostraNomeGiocatore(giocatoreDTO.getNome());
 		controller.mostraPuntiGiocatore(giocatoreDTO.getPunteggioVittoria());
