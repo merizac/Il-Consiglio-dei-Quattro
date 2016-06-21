@@ -144,11 +144,12 @@
                         </AnchorPane>
                         <HBox>
                            <children>
-                              <TitledPane alignment="TOP_LEFT" animated="false" prefHeight="130.0" prefWidth="246.0" text="Riserva">
+                              <TabPane fx:id="giocatori" prefHeight="130.0" prefWidth="470.0" tabClosingPolicy="UNAVAILABLE" />
+                              <TitledPane alignment="TOP_LEFT" animated="false" prefHeight="130.0" prefWidth="285.0" text="Riserva">
                                 <content>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="102.0" prefWidth="248.0" styleClass="background" stylesheets="@../css/game.css">
                                        <children>
-                                          <HBox layoutY="17.0" prefHeight="69.0" prefWidth="249.0">
+                                          <HBox layoutX="17.0" layoutY="17.0" prefHeight="69.0" prefWidth="249.0">
                                              <children>
                                                 <ImageView fx:id="consigliere1" fitHeight="69.0" fitWidth="30.125" pickOnBounds="true" preserveRatio="true" />
                                                 <ImageView fx:id="consigliere2" fitHeight="69.0" fitWidth="30.125" pickOnBounds="true" preserveRatio="true" />
@@ -164,7 +165,6 @@
                                     </AnchorPane>
                                 </content>
                               </TitledPane>
-                              <TabPane fx:id="giocatori" prefHeight="130.0" prefWidth="470.0" tabClosingPolicy="UNAVAILABLE" />
                            </children>
                         </HBox>
                      </children>
@@ -283,18 +283,26 @@
                                       <rowConstraints>
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
                                           <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="213.0" text="Ingaggio Aiutante" GridPane.halignment="CENTER" />
                                           <Button mnemonicParsing="false" prefWidth="209.0" text="Elezione Consigliere" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
                                           <Button mnemonicParsing="false" prefWidth="209.0" text="Cambio Tessere Permeso" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                                           <Button mnemonicParsing="false" prefWidth="209.0" text="Azione Principale" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                                          <Button mnemonicParsing="false" prefWidth="209.0" text="&gt;&gt; Salta Azione Veloce" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                                        </children>
                                     </GridPane>
                                  </children>
                               </AnchorPane>
                           </content>
                         </TitledPane>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pesca una carta!" />
+                        <ImageView fx:id="mazzoCarte" fitHeight="127.0" fitWidth="124.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../css/politicCard/Retro.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </VBox>
                </children>
