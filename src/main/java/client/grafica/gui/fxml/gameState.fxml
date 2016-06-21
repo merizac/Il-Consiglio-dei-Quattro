@@ -144,20 +144,20 @@
                         </AnchorPane>
                         <HBox>
                            <children>
-                              <TitledPane alignment="TOP_LEFT" animated="false" prefHeight="130.0" prefWidth="242.0" text="Riserva">
+                              <TitledPane alignment="TOP_LEFT" animated="false" prefHeight="130.0" prefWidth="246.0" text="Riserva">
                                 <content>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="60.0" prefWidth="83.0" styleClass="background" stylesheets="@../css/game.css">
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="102.0" prefWidth="248.0" styleClass="background" stylesheets="@../css/game.css">
                                        <children>
-                                          <HBox layoutY="17.0" prefHeight="68.0" prefWidth="241.0">
+                                          <HBox layoutY="17.0" prefHeight="69.0" prefWidth="249.0">
                                              <children>
-                                                <Button fx:id="consigliere1" mnemonicParsing="false" onAction="#handleConsigliereRiserva" prefHeight="103.0" prefWidth="30.125" style="-fx-background-color: transparent;" />
-                                                <Button fx:id="consigliere2" mnemonicParsing="false" onAction="#handleConsigliereRiserva" prefHeight="103.0" prefWidth="30.125" style="-fx-background-color: transparent;" />
-                                                <Button fx:id="consigliere3" mnemonicParsing="false" onAction="#handleConsigliereRiserva" prefHeight="103.0" prefWidth="30.125" style="-fx-background-color: transparent;" />
-                                                <Button fx:id="consigliere4" mnemonicParsing="false" onAction="#handleConsigliereRiserva" prefHeight="103.0" prefWidth="30.125" style="-fx-background-color: transparent;" />
-                                                <Button fx:id="consigliere5" mnemonicParsing="false" onAction="#handleConsigliereRiserva" prefHeight="103.0" prefWidth="30.125" style="-fx-background-color: transparent;" />
-                                                <Button fx:id="consigliere6" mnemonicParsing="false" onAction="#handleConsigliereRiserva" prefHeight="103.0" prefWidth="30.125" style="-fx-background-color: transparent;" />
-                                                <Button fx:id="consigliere7" mnemonicParsing="false" onAction="#handleConsigliereRiserva" prefHeight="103.0" prefWidth="30.125" style="-fx-background-color: transparent;" />
-                                                <Button fx:id="consigliere8" mnemonicParsing="false" onAction="#handleConsigliereRiserva" prefHeight="103.0" prefWidth="30.125" style="-fx-background-color: transparent;" />
+                                                <ImageView fx:id="consigliere1" fitHeight="69.0" fitWidth="30.125" pickOnBounds="true" preserveRatio="true" />
+                                                <ImageView fx:id="consigliere2" fitHeight="69.0" fitWidth="30.125" pickOnBounds="true" preserveRatio="true" />
+                                                <ImageView fx:id="consigliere3" fitHeight="69.0" fitWidth="30.125" pickOnBounds="true" preserveRatio="true" />
+                                                <ImageView fx:id="consigliere4" fitHeight="69.0" fitWidth="30.125" pickOnBounds="true" preserveRatio="true" />
+                                                <ImageView fx:id="consigliere5" fitHeight="69.0" fitWidth="30.125" pickOnBounds="true" preserveRatio="true" />
+                                                <ImageView fx:id="consigliere6" fitHeight="69.0" fitWidth="30.125" pickOnBounds="true" preserveRatio="true" />
+                                                <ImageView fx:id="consigliere7" fitHeight="69.0" fitWidth="30.125" pickOnBounds="true" preserveRatio="true" />
+                                                <ImageView fx:id="consigliere8" fitHeight="69.0" fitWidth="30.125" pickOnBounds="true" preserveRatio="true" />
                                              </children>
                                           </HBox>
                                        </children>
