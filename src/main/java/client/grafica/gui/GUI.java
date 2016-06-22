@@ -8,9 +8,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.sql.rowset.spi.SyncResolver;
+
 import client.connessione.Connessione;
 import client.grafica.Grafica;
+import common.azioniDTO.AcquistoTesseraPermessoDTO;
 import common.azioniDTO.AzioneDTO;
+import common.azioniDTO.CambioTesserePermessoDTO;
+import common.azioniDTO.CostruzioneAiutoReDTO;
+import common.azioniDTO.CostruzioneTesseraPermessoDTO;
+import common.azioniDTO.ElezioneConsigliereDTO;
+import common.azioniDTO.ElezioneConsigliereVeloceDTO;
+import common.azioniDTO.IngaggioAiutanteDTO;
+import common.azioniDTO.SecondaAzionePrincipaleDTO;
 import common.gameDTO.BalconeDTO;
 import common.gameDTO.CartaPoliticaDTO;
 import common.gameDTO.CittàBonusDTO;
@@ -29,8 +39,10 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
@@ -156,7 +168,12 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public void mostraAzioni(List<AzioneDTO> azioni) {
-
+		List<Button> azioniDisponibili=controller.getAzioni();
+		for(AzioneDTO azione:azioni){
+			for(Button b: azioniDisponibili)
+				if(b.getUserData().getClass().equals(azione.getClass()))
+					b.setDisable(false);
+		}
 	}
 
 	@Override
@@ -177,6 +194,30 @@ public class GUI extends Application implements Grafica {
 		controller.mostraConsiglieriBalcone();
 		controller.mostraRiserva(gameStateDTO.getConsiglieri());
 		controller.assegnaBottoniCittà(new ArrayList<>(gameStateDTO.getCittà()));
+		assegnaRegione();
+		assegnaAzioni();
+	}
+
+	private void assegnaAzioni() {
+		List<Button> azioni=controller.getAzioni();
+		azioni.get(0).setUserData(new ElezioneConsigliereDTO());
+		azioni.get(1).setUserData(new AcquistoTesseraPermessoDTO());
+		azioni.get(2).setUserData(new CostruzioneTesseraPermessoDTO());
+		azioni.get(3).setUserData(new CostruzioneAiutoReDTO());
+		azioni.get(4).setUserData(new IngaggioAiutanteDTO());
+		azioni.get(5).setUserData(new CambioTesserePermessoDTO());
+		azioni.get(6).setUserData(new ElezioneConsigliereVeloceDTO());
+		azioni.get(7).setUserData(new SecondaAzionePrincipaleDTO());
+		for(Button b: azioni){
+			b.setDisable(true);
+		}
+	}
+
+	private void assegnaRegione() {
+		List<ImageView> regioni=controller.getRegioni();
+		for(int i=0; i<regioni.size(); i++){
+			regioni.get(i).setUserData(gameStateDTO.getRegioni().get(i));
+		}
 	}
 
 	@Override
@@ -258,6 +299,14 @@ public class GUI extends Application implements Grafica {
 					image.setFitHeight(dimensione);
 					image.setPreserveRatio(true);
 					image.setImage(mappaTessere.get(t.toString()));
+					image.setOnMouseClicked(new EventHandler<Event>() {
+
+						@Override
+						public void handle(Event event) {
+							controller.handleTesseraPermessoGiocatore(event);
+						}
+					});
+					image.setDisable(true);
 					tesserePermesso.getChildren().add(image);
 				}
 			}
@@ -476,15 +525,15 @@ public class GUI extends Application implements Grafica {
 			}
 		}
 		RegioneDTO regioneDTO=(RegioneDTO) parametro;
+		System.out.println(regioneDTO.getNome());
 		List<ImageView> tessere=null;
-		switch(regioneDTO.getNome()){
-		case("Mare"):
+		if("Mare".equals(regioneDTO.getNome()))
 			tessere=controller.getTessereMare();
-		case("Collina"):
+		else if("Collina".equals(regioneDTO.getNome()))
 			tessere=controller.getTessereCollina();
-		case("Montagna"):
+		else
 			tessere=controller.getTessereMontagna();
-		}
+		
 		for(ImageView i: tessere){
 			i.setDisable(false);
 		}
@@ -508,6 +557,7 @@ public class GUI extends Application implements Grafica {
 			}
 		}
 		TesseraPermessoDTO tesseraPermessoDTO = (TesseraPermessoDTO) parametro;
+		System.out.println(tesseraPermessoDTO);
 		List<ImageView> tessere=controller.getTesserePermessoRegioni();
 		for(ImageView i: tessere){
 			i.setDisable(true);
@@ -530,14 +580,49 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public CittàDTO scegliCittà(Set<? extends CittàDTO> città, ColoreDTO coloreGiocatore) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Button> cittàCostruzione=controller.getCittàSenzaEmporio(città);
+		for(Button b: cittàCostruzione)
+			b.setDisable(false);
+		
+		synchronized (lock) {
+			while(parametro==null){
+				try {
+					lock.wait();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		CittàDTO cittàDTO=(CittàDTO) parametro;
+		parametro=null;
+		return cittàDTO;
 	}
 
 	@Override
 	public TesseraPermessoDTO scegliTesseraGiocatore(List<TesseraPermessoDTO> list) {
-		// TODO Auto-generated method stub
-		return null;
+		HBox tessere=controller.getTesserePermessoGiocatore();
+		for(Node i:tessere.getChildren()){
+			i.setDisable(false);
+		}
+		
+		synchronized(lock){
+			while(parametro==null){
+				try {
+					lock.wait();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		TesseraPermessoDTO tesseraPermessoDTO=(TesseraPermessoDTO) parametro;
+		parametro=null;
+		for(Node i: tessere.getChildren()){
+			i.setDisable(true);
+		}
+		return tesseraPermessoDTO;
 	}
 
 	@Override
@@ -558,8 +643,10 @@ public class GUI extends Application implements Grafica {
 					}
 				}
 
-				if (isCarteInserite())
+				if (isCarteInserite()){
+					parametro = null;
 					break;
+				}
 
 				carte.add((CartaPoliticaDTO) parametro);
 
@@ -569,6 +656,7 @@ public class GUI extends Application implements Grafica {
 				parametro = null;
 			}
 		}
+		controller.getConferma().setDisable(true);
 		System.out.println("carte politica" + carte);
 		return carte;
 

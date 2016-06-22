@@ -9,6 +9,7 @@ import common.gameDTO.CartaPoliticaDTO;
 import common.gameDTO.GameStateDTO;
 import common.gameDTO.RegioneDTO;
 import common.gameDTO.TesseraPermessoDTO;
+import utility.AzioneNonEseguibile;
 
 public class AcquistoTesseraPermessoParametri implements SetterParametri {
 	
@@ -19,7 +20,10 @@ public class AcquistoTesseraPermessoParametri implements SetterParametri {
 	}
 
 	@Override
-	public void setParametri(Grafica grafica, GameStateDTO gameStateDTO) {
+	public void setParametri(Grafica grafica, GameStateDTO gameStateDTO) throws AzioneNonEseguibile {
+		
+		if(gameStateDTO.getGiocatoreDTO().getCartePolitica().isEmpty())
+			throw new AzioneNonEseguibile("Errore: non hai carte politica, seleziona un'altra azione");
 		
 		List<CartaPoliticaDTO> cartePolitica = grafica
 				.scegliCarte(new ArrayList<>(gameStateDTO.getGiocatoreDTO().getCartePolitica()));

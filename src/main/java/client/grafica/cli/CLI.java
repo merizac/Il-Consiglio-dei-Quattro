@@ -32,6 +32,7 @@ import common.gameDTO.RegioneDTO;
 import common.gameDTO.TesseraPermessoDTO;
 import server.model.bonus.Bonus;
 import server.view.clientNotify.ClientNotify;
+import utility.AzioneNonEseguibile;
 import utility.Utils;
 
 public class CLI implements Grafica {
@@ -88,7 +89,12 @@ public class CLI implements Grafica {
 					action = new ExitDTO(gameStateDTO.getGiocatoreDTO());
 
 				else if (action instanceof AzioneParametri)
-					((AzioneParametri) action).parametri().setParametri(this, gameStateDTO);
+					try {
+						((AzioneParametri) action).parametri().setParametri(this, gameStateDTO);
+					} catch (AzioneNonEseguibile e1) {
+						this.mostraMessaggio(e1.getMessage());
+						continue;
+					}
 				try {
 					connessione.inviaAzione(action);
 				} catch (RemoteException e) {

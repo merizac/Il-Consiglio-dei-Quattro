@@ -5,6 +5,7 @@ import common.azioniDTO.CostruzioneTesseraPermessoDTO;
 import common.gameDTO.CittàDTO;
 import common.gameDTO.GameStateDTO;
 import common.gameDTO.TesseraPermessoDTO;
+import utility.AzioneNonEseguibile;
 
 public class CostruzioneTesseraPermessoParametri implements SetterParametri {
 
@@ -15,7 +16,10 @@ public class CostruzioneTesseraPermessoParametri implements SetterParametri {
 	}
 
 	@Override
-	public void setParametri(Grafica grafica, GameStateDTO gameStateDTO) {
+	public void setParametri(Grafica grafica, GameStateDTO gameStateDTO) throws AzioneNonEseguibile {
+		
+		if(gameStateDTO.getGiocatoreDTO().getTesserePermesso().isEmpty())
+			throw new AzioneNonEseguibile("Errore: non hai tessere permesso, seleziona un'altra azione");
 		TesseraPermessoDTO tesseraScelta = grafica.scegliTesseraGiocatore(gameStateDTO.getGiocatoreDTO().getTesserePermesso());
 		CittàDTO cittàScelta = grafica.scegliCittà(tesseraScelta.getCittà(),
 				gameStateDTO.getGiocatoreDTO().getColoreGiocatore());

@@ -8,6 +8,7 @@ import common.azioniDTO.CostruzioneAiutoReDTO;
 import common.gameDTO.CartaPoliticaDTO;
 import common.gameDTO.CittàDTO;
 import common.gameDTO.GameStateDTO;
+import utility.AzioneNonEseguibile;
 
 public class CostruzioneAiutoReParametri implements SetterParametri {
 
@@ -18,7 +19,10 @@ public class CostruzioneAiutoReParametri implements SetterParametri {
 	}
 
 	@Override
-	public void setParametri(Grafica grafica, GameStateDTO gameStateDTO) {
+	public void setParametri(Grafica grafica, GameStateDTO gameStateDTO) throws AzioneNonEseguibile {
+		if(gameStateDTO.getGiocatoreDTO().getCartePolitica().isEmpty())
+			throw new AzioneNonEseguibile("Errore: non hai carte politica, seleziona un'altra azione");
+		
 		List<CartaPoliticaDTO>cartePolitica = grafica
 				.scegliCarte(new ArrayList<>(gameStateDTO.getGiocatoreDTO().getCartePolitica()));
 		CittàDTO cittàScelta = grafica.scegliCittà(gameStateDTO.getCittà(),

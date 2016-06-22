@@ -7,12 +7,20 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import common.azioniDTO.AcquistoTesseraPermessoDTO;
+import common.azioniDTO.CambioTesserePermessoDTO;
+import common.azioniDTO.CostruzioneAiutoReDTO;
+import common.azioniDTO.CostruzioneTesseraPermessoDTO;
 import common.azioniDTO.ElezioneConsigliereDTO;
+import common.azioniDTO.ElezioneConsigliereVeloceDTO;
+import common.azioniDTO.IngaggioAiutanteDTO;
+import common.azioniDTO.PassaDTO;
 import common.azioniDTO.PescaCartaDTO;
+import common.azioniDTO.SecondaAzionePrincipaleDTO;
 import common.gameDTO.CartaPoliticaDTO;
 import common.gameDTO.CittàBonusDTO;
 import common.gameDTO.CittàDTO;
@@ -33,6 +41,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import server.model.azioni.azioniVeloci.IngaggioAiutante;
+import utility.AzioneNonEseguibile;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
@@ -103,6 +113,8 @@ public class GUIGameController {
 	
 	@FXML
 	private Button conferma;
+	@FXML
+	private Button passa;
 	@FXML
 	private ImageView pescaCarta;
 	@FXML
@@ -199,6 +211,10 @@ public class GUIGameController {
 	private Button osium;
 	@FXML
 	private Button merkatim;
+	@FXML
+	private List<Button> città=new ArrayList<>();
+	
+	
 	@FXML
 	private ImageView mare;
 	@FXML
@@ -413,6 +429,7 @@ public class GUIGameController {
 		this.gui = gui;
 	}
 
+	@FXML
 	public void elezioneConsigliere(ActionEvent event){
 		ElezioneConsigliereDTO elezione = new ElezioneConsigliereDTO();
 		ExecutorService executor= Executors.newSingleThreadExecutor();
@@ -442,6 +459,7 @@ public class GUIGameController {
 		}
 	}
 
+	@FXML
 	public void acquistoTesseraPermesso(ActionEvent event){
 		AcquistoTesseraPermessoDTO acquistoTesseraPermessoDTO=new AcquistoTesseraPermessoDTO();
 		ExecutorService executor= Executors.newSingleThreadExecutor();
@@ -449,15 +467,138 @@ public class GUIGameController {
 			
 			@Override
 			public void run() {
-				acquistoTesseraPermessoDTO.parametri().setParametri(gui, gameStateDTO);
+				try {
+					acquistoTesseraPermessoDTO.parametri().setParametri(gui, gameStateDTO);
+				} catch (AzioneNonEseguibile e1) {
+					gui.mostraMessaggio(e1.getMessage());
+					return;
+				}
+				try {
+					gui.getConnessione().inviaAzione(acquistoTesseraPermessoDTO);
+				} catch (RemoteException e) {
+					e.printStackTrace();
+				}
 			}
 		});
+	}
+	
+	@FXML
+	public void costruzioneTesseraPermesso (ActionEvent event){
+		CostruzioneTesseraPermessoDTO costruzioneTesseraPermessoDTO= new CostruzioneTesseraPermessoDTO();
+		ExecutorService executor= Executors.newSingleThreadExecutor();
+		executor.submit(new Runnable() {
+			
+			@Override
+			public void run() {
+				try {
+					costruzioneTesseraPermessoDTO.parametri().setParametri(gui, gameStateDTO);
+				} catch (AzioneNonEseguibile e1) {
+					gui.mostraMessaggio(e1.getMessage());
+					return;
+				}
+				try {
+					gui.getConnessione().inviaAzione(costruzioneTesseraPermessoDTO);
+				} catch (RemoteException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
+	@FXML
+	public void costruzioneAiutoRe (ActionEvent event){
+		CostruzioneAiutoReDTO costruzioneAiutoReDTO= new CostruzioneAiutoReDTO();
+		ExecutorService executor= Executors.newSingleThreadExecutor();
+		executor.submit(new Runnable() {
+			
+			@Override
+			public void run() {
+				try {
+					costruzioneAiutoReDTO.parametri().setParametri(gui, gameStateDTO);
+				} catch (AzioneNonEseguibile e1) {
+					gui.mostraMessaggio(e1.getMessage());
+					return;
+				}
+				try {
+					gui.getConnessione().inviaAzione(costruzioneAiutoReDTO);
+				} catch (RemoteException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
+	@FXML
+	public void cambioTesseraPermesso(ActionEvent event){
+		CambioTesserePermessoDTO cambioTesserePermessoDTO=new CambioTesserePermessoDTO();
+		ExecutorService executor= Executors.newSingleThreadExecutor();
+		executor.submit(new Runnable() {
+			
+			@Override
+			public void run() {
+					cambioTesserePermessoDTO.parametri().setParametri(gui, gameStateDTO);
+					try {
+						gui.getConnessione().inviaAzione(cambioTesserePermessoDTO);
+					} catch (RemoteException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+			}
+		});
+	}
+	
+	@FXML
+	public void elezioneConsigliereVeloce(ActionEvent event){
+		ElezioneConsigliereVeloceDTO elezione = new ElezioneConsigliereVeloceDTO();
+		ExecutorService executor= Executors.newSingleThreadExecutor();
+		executor.submit(new Runnable() {
+			
+			@Override
+			public void run() {
+				elezione.parametri().setParametri(gui, gameStateDTO);
+				try {
+					gui.getConnessione().inviaAzione(elezione);
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
+	@FXML
+	public void ingaggioAiutante(ActionEvent event){
+		IngaggioAiutanteDTO ingaggioAiutanteDTO= new IngaggioAiutanteDTO();
 		try {
-			gui.getConnessione().inviaAzione(acquistoTesseraPermessoDTO);
+			gui.getConnessione().inviaAzione(ingaggioAiutanteDTO);
 		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	
+	public void secondaAzionePrincipale(ActionEvent event){
+		SecondaAzionePrincipaleDTO secondaAzionePrincipaleDTO= new SecondaAzionePrincipaleDTO();
+		try {
+			gui.getConnessione().inviaAzione(secondaAzionePrincipaleDTO);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML
+	public void passa(ActionEvent event){
+		PassaDTO passaDTO= new PassaDTO();
+		try {
+			gui.getConnessione().inviaAzione(passaDTO);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public void mostraNomeGiocatore(String nome) {
 		nomeGiocatore.setText(nome);
 	}
@@ -609,6 +750,7 @@ public class GUIGameController {
 	public void handleTesseraPermessoRegione(Event event) {
 		synchronized (gui.getLock()) {
 			gui.setParametro(((ImageView)event.getSource()).getUserData());
+			gui.getLock().notifyAll();
 		}
 
 	}
@@ -618,6 +760,7 @@ public class GUIGameController {
 
 			@Override
 			public void run() {
+				balconeMare.getChildren().clear();
 				for (ConsigliereDTO c : gameStateDTO.getRegioni().get(0).getBalcone().getConsiglieri()) {
 					ImageView imageView = new ImageView(mappaConsiglieri.get(c.toString()));
 					imageView.setFitHeight(25);
@@ -628,6 +771,7 @@ public class GUIGameController {
 				balconeMare.setUserData(gameStateDTO.getRegioni().get(0).getBalcone());
 				balconeMare.setDisable(true);
 				
+				balconeCollina.getChildren().clear();
 				for (ConsigliereDTO c : gameStateDTO.getRegioni().get(1).getBalcone().getConsiglieri()) {
 					ImageView imageView = new ImageView(mappaConsiglieri.get(c.toString()));
 					imageView.setFitHeight(25);
@@ -638,6 +782,7 @@ public class GUIGameController {
 				balconeCollina.setUserData(gameStateDTO.getRegioni().get(1).getBalcone());
 				balconeCollina.setDisable(true);
 				
+				balconeMontagna.getChildren().clear();
 				for (ConsigliereDTO c : gameStateDTO.getRegioni().get(2).getBalcone().getConsiglieri()) {
 					ImageView imageView = new ImageView(mappaConsiglieri.get(c.toString()));
 					imageView.setFitHeight(25);
@@ -648,6 +793,7 @@ public class GUIGameController {
 				balconeMontagna.setUserData(gameStateDTO.getRegioni().get(2).getBalcone());
 				balconeMontagna.setDisable(true);
 				
+				balconeRe.getChildren().clear();
 				for (ConsigliereDTO c : gameStateDTO.getPlanciaReDTO().getBalconeRe().getConsiglieri()) {
 					ImageView imageView = new ImageView(mappaConsiglieri.get(c.toString()));
 					imageView.setFitHeight(25);
@@ -705,28 +851,69 @@ public class GUIGameController {
 			gui.getLock().notifyAll();
 		}
 	}
+	
+	@FXML
+	public void handleTesseraPermessoGiocatore(Event event){
+		synchronized (gui.getLock()) {
+			gui.setParametro(((ImageView)event.getSource()).getUserData());
+			gui.getLock().notifyAll();
+		}
+	}
 
 	@FXML
-	public void selezionaCittà(ActionEvent event) {
-		System.out.println(((Button) event.getSource()).getUserData());
+	public void handleCittà(ActionEvent event) {
+		synchronized (gui.getLock()) {
+			gui.setParametro(((Button)event.getSource()).getUserData());
+			gui.getLock().notifyAll();
+		}
 	}
 
 	public void assegnaBottoniCittà(List<CittàDTO> città) {
 		arkon.setUserData(città.get(0));
+		arkon.setDisable(true);
+		this.città.add(arkon);
 		burgen.setUserData(città.get(1));
+		burgen.setDisable(true);
+		this.città.add(burgen);
 		castrum.setUserData(città.get(2));
+		castrum.setDisable(true);
+		this.città.add(castrum);
 		dorful.setUserData(città.get(3));
+		dorful.setDisable(true);
+		this.città.add(dorful);
 		esti.setUserData(città.get(4));
+		esti.setDisable(true);
+		this.città.add(esti);
 		framek.setUserData(città.get(5));
+		framek.setDisable(true);
+		this.città.add(framek);
 		graden.setUserData(città.get(6));
+		graden.setDisable(true);
+		this.città.add(graden);
 		hellar.setUserData(città.get(7));
+		hellar.setDisable(true);
+		this.città.add(hellar);
 		indur.setUserData(città.get(8));
+		indur.setDisable(true);
+		this.città.add(indur);
 		juvelar.setUserData(città.get(9));
+		juvelar.setDisable(true);
+		this.città.add(juvelar);
 		kultos.setUserData(città.get(10));
+		kultos.setDisable(true);
+		this.città.add(kultos);
 		lyram.setUserData(città.get(11));
+		lyram.setDisable(true);
+		this.città.add(lyram);
 		merkatim.setUserData(città.get(12));
+		merkatim.setDisable(true);
+		this.città.add(merkatim);
 		naris.setUserData(città.get(13));
+		naris.setDisable(true);
+		this.città.add(naris);
 		osium.setUserData(città.get(14));
+		osium.setDisable(true);
+		this.città.add(osium);
 	}
 	
 	public TabPane getAvversari(){
@@ -793,6 +980,22 @@ public class GUIGameController {
 		tessere.addAll(this.getTessereMontagna());
 		
 		return tessere;
+	}
+
+	public List<Button> getCittàSenzaEmporio(Set<? extends CittàDTO> città) {
+		List<Button> cittàCostruzione=new ArrayList<>();
+		for(Button b: this.città){
+			if(!((CittàDTO)b.getUserData()).getEmpori().contains(gameStateDTO.getGiocatoreDTO().getColoreGiocatore())
+					&& città.contains((CittàDTO)b.getUserData()))
+				cittàCostruzione.add(b);
+		}
+		return cittàCostruzione;
+	}
+
+	public List<Button> getAzioni() {
+		return Arrays.asList(elezioneConsigliere, acquistoTesseraPermesso, costruzioneTesseraPermesso, costruzioneAiutoRe,
+				ingaggioAiutante, cambioTesseraPermesso, elezioneConsigliereVeloce, secondaAzionePrincipale, passa);
+				
 	}
 	
 }

@@ -334,8 +334,8 @@
                                                       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                                    </rowConstraints>
                                                    <children>
-                                                      <Button mnemonicParsing="false" mouseTransparent="true" prefHeight="27.0" prefWidth="209.0" styleClass="mybutton" stylesheets="@../css/game.css" text="Costruzione Tessera Permesso" GridPane.rowIndex="3" />
-                                                      <Button mnemonicParsing="false" mouseTransparent="true" prefHeight="27.0" prefWidth="209.0" styleClass="mybutton" stylesheets="@../css/game.css" text="Costruzione Aiuto Re" GridPane.rowIndex="2" />
+                                                      <Button fx:id="costruzioneTesseraPermesso" mnemonicParsing="false" mouseTransparent="true" onAction="#costruzioneTesseraPermesso" prefHeight="27.0" prefWidth="209.0" styleClass="mybutton" stylesheets="@../css/game.css" text="Costruzione Tessera Permesso" GridPane.rowIndex="3" />
+                                                      <Button fx:id="costruzioneAiutoRe" mnemonicParsing="false" mouseTransparent="true" onAction="#costruzioneAiutoRe" prefHeight="27.0" prefWidth="209.0" styleClass="mybutton" stylesheets="@../css/game.css" text="Costruzione Aiuto Re" GridPane.rowIndex="2" />
                                                       <Button fx:id="elezioneConsigliere" mnemonicParsing="false" mouseTransparent="true" onAction="#elezioneConsigliere" prefHeight="27.0" prefWidth="209.0" styleClass="mybutton" stylesheets="@../css/game.css" text="Elezione Consigliere" GridPane.rowIndex="1" />
                                                       <Button fx:id="acquistoTesseraPermesso" mnemonicParsing="false" mouseTransparent="true" onAction="#acquistoTesseraPermesso" prefHeight="27.0" prefWidth="209.0" styleClass="mybutton" stylesheets="@../css/game.css" text="Acquisto Tessera Permesso" />
                                                    </children>
@@ -360,11 +360,11 @@
                                                       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                                    </rowConstraints>
                                                    <children>
-                                                      <Button mnemonicParsing="false" mouseTransparent="true" prefHeight="27.0" prefWidth="209.0" styleClass="mybutton" stylesheets="@../css/game.css" text="Cambio Tessere Permeso" GridPane.rowIndex="3" />
-                                                      <Button mnemonicParsing="false" mouseTransparent="true" prefHeight="27.0" prefWidth="209.0" styleClass="mybutton" stylesheets="@../css/game.css" text="Elezione Consigliere" GridPane.rowIndex="2" />
-                                                      <Button mnemonicParsing="false" mouseTransparent="true" prefHeight="27.0" prefWidth="209.0" styleClass="mybutton" stylesheets="@../css/game.css" text="Ingaggio Aiutante" GridPane.rowIndex="1" />
-                                                      <Button mnemonicParsing="false" mouseTransparent="true" prefHeight="27.0" prefWidth="209.0" styleClass="mybutton" stylesheets="@../css/game.css" text="Azione Principale" />
-                                                      <Button mnemonicParsing="false" mouseTransparent="true" prefHeight="27.0" prefWidth="209.0" styleClass="mybutton" stylesheets="@../css/game.css" text="&gt;&gt; Salta Azione Veloce" GridPane.rowIndex="4" />
+                                                      <Button fx:id="cambioTesseraPermesso" mnemonicParsing="false" mouseTransparent="true" onAction="#cambioTesseraPermesso" prefHeight="27.0" prefWidth="209.0" styleClass="mybutton" stylesheets="@../css/game.css" text="Cambio Tessere Permesso" GridPane.rowIndex="3" />
+                                                      <Button fx:id="elezioneConsigliereVeloce" mnemonicParsing="false" mouseTransparent="true" onAction="#elezioneConsigliereVeloce" prefHeight="27.0" prefWidth="209.0" styleClass="mybutton" stylesheets="@../css/game.css" text="Elezione Consigliere" GridPane.rowIndex="2" />
+                                                      <Button fx:id="ingaggioAiutante" mnemonicParsing="false" mouseTransparent="true" onAction="#ingaggioAiutante" prefHeight="27.0" prefWidth="209.0" styleClass="mybutton" stylesheets="@../css/game.css" text="Ingaggio Aiutante" GridPane.rowIndex="1" />
+                                                      <Button fx:id="secondaAzionePrincipale" mnemonicParsing="false" mouseTransparent="true" onAction="#secondaAzionePrincipale" prefHeight="27.0" prefWidth="209.0" styleClass="mybutton" stylesheets="@../css/game.css" text="Azione Principale" />
+                                                      <Button fx:id="passa" mnemonicParsing="false" mouseTransparent="true" onAction="#passa" prefHeight="27.0" prefWidth="209.0" styleClass="mybutton" stylesheets="@../css/game.css" text="&gt;&gt; Salta Azione Veloce" GridPane.rowIndex="4" />
                                                    </children>
                                                 </GridPane>
                                              </children>
