@@ -78,6 +78,7 @@ public class CLI implements Grafica {
 
 			AzioneDTO action = gameStateDTO.getAzioniDisponibili().stream()
 					.filter(a -> a.toString().contains(inputLine)).findAny().orElse(null);
+			System.out.println("azioni :"+gameStateDTO.getAzioniDisponibili());
 
 			if (action == null)
 				System.out.println("L'azione non esiste \nInserire un'azione valida");
