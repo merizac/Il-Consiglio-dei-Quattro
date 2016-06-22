@@ -184,7 +184,7 @@ public class GUI extends Application implements Grafica {
 		giocatoreDTO.getTesserePermesso().add(gameStateDTO.getRegioni().get(0).getTesserePermessoScoperte().get(0));
 		stampaTesserePermesso(controller.getTesserePermessoGiocatore(), giocatoreDTO.getTesserePermesso(),
 				giocatoreDTO.getTesserePermessoUsate().size(), 70);
-		controller.mostraCartePolitica(giocatoreDTO.getCartePolitica());
+		cartePolitica(giocatoreDTO.getCartePolitica());
 		controller.mostraNomeGiocatore(giocatoreDTO.getNome());
 		controller.mostraPuntiGiocatore(giocatoreDTO.getPunteggioVittoria());
 		controller.mostraMoneteGiocatore(giocatoreDTO.getPunteggioRicchezza());
@@ -193,6 +193,37 @@ public class GUI extends Application implements Grafica {
 		controller.mostraTessereBonusGiocatore(giocatoreDTO.getTessereBonus());
 		controller.mostraNobiltàGiocatore(giocatoreDTO.getPunteggioNobiltà());
 	}
+	
+	private void cartePolitica(List<CartaPoliticaDTO> carte) {
+		Platform.runLater(new Runnable() {
+			Map<String, Image> mappaCarte=controller.getMappaCartePolitica();
+			HBox cartePolitica=controller.getCartePoliticaGiocatore();
+			
+			@Override
+			public void run() {
+				cartePolitica.getChildren().clear();
+				for (CartaPoliticaDTO c : carte) {
+
+					ImageView image = new ImageView();
+					image.setFitHeight(60);
+					image.setPreserveRatio(true);
+					image.setImage(mappaCarte.get(c.toString()));
+					image.setDisable(true);
+					image.setUserData(c);
+					cartePolitica.getChildren().add(image);
+					image.setOnMouseClicked(new EventHandler<Event>() {
+
+						@Override
+						public void handle(Event event) {
+							controller.handleCartaPolitica(event);
+						}
+					});
+				}
+
+			}
+		});
+	}
+
 
 	/**
 	 * 
@@ -208,6 +239,7 @@ public class GUI extends Application implements Grafica {
 
 			@Override
 			public void run() {
+				tesserePermesso.getChildren().clear();
 				if (tessereUsate == 0) {
 					Pane pane = new Pane();
 					ImageView used = new ImageView();
@@ -262,8 +294,6 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public void mostraAvversario(GiocatoreDTO avversario) {
-//		controller.mostraAvversario(gameStateDTO.getAvversari());
-		Application.setUserAgentStylesheet(getClass().getResource("/css/gameState.css").toExternalForm());
 		Platform.runLater(new Runnable() {
 			Map<String, Image> mappaTessere = controller.getMappaTesserePermesso();
 
@@ -274,8 +304,6 @@ public class GUI extends Application implements Grafica {
 
 				if (!tabAvversari.containsKey(avversario)) {
 					tab = new Tab();
-
-					tab.setStyle("background");
 					tab.setText(avversario.getNome());
 					giocatori.getTabs().add(tab);
 					tabAvversari.put(avversario, tab);

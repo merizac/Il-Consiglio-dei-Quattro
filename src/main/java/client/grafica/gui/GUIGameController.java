@@ -497,33 +497,6 @@ public class GUIGameController {
 		king.setImage(new Image(getClass().getResource("css/tessereBonus/king_1.png").toExternalForm()));
 	}
 
-	public void mostraCartePolitica(List<CartaPoliticaDTO> carte) {
-		Platform.runLater(new Runnable() {
-
-			@Override
-			public void run() {
-				for (CartaPoliticaDTO c : carte) {
-
-					ImageView image = new ImageView();
-					image.setFitHeight(60);
-					image.setPreserveRatio(true);
-					image.setImage(mappaCarte.get(c.toString()));
-					image.setDisable(true);
-					image.setUserData(c);
-					cartePolitica.getChildren().add(image);
-					image.setOnMouseClicked(new EventHandler<Event>() {
-
-						@Override
-						public void handle(Event event) {
-							handleCartaPolitica(event);
-						}
-					});
-				}
-
-			}
-		});
-	}
-
 	public void mostraGettoni(List<CittàDTO> città) {
 		Platform.runLater(new Runnable() {
 
@@ -583,33 +556,6 @@ public class GUIGameController {
 		//stessa cosa delle tessere permesso
 	}
 
-/*	public void mostraTesserePermesso(List<TesseraPermessoDTO> tessere, int usate) {
-		Platform.runLater(new Runnable() {
-
-			@Override
-			public void run() {
-				Pane pane=new Pane();
-				ImageView used = new ImageView();
-				Text text=new Text(Integer.toString(usate));
-				used.setFitHeight(60);
-				used.setPreserveRatio(true);
-				used.setImage(mappaTessere.get("TesseraPermesso"));
-				tesserePermesso.getChildren().add(pane);
-				pane.getChildren().add(used);
-				pane.getChildren().add(text);
-				text.relocate(20, 20);
-				
-				
-				for (TesseraPermessoDTO t : tessere) {
-					ImageView image = new ImageView();
-					image.setFitHeight(60);
-					image.setPreserveRatio(true);
-					image.setImage(mappaTessere.get(t.toString()));
-					tesserePermesso.getChildren().add(image);
-				}
-			}});
-	}*/
-
 	public void mostraRiserva(List<ConsigliereDTO> consiglieri) {
 
 		consigliere1.setImage(mappaConsiglieriRiserva.get(consiglieri.get(0).getColoreConsigliere().toString()));
@@ -666,127 +612,6 @@ public class GUIGameController {
 		}
 
 	}
-
-/*	public void mostraAvversario(List<GiocatoreDTO> avversari) {
-		Platform.runLater(new Runnable() {
-
-			@Override
-			public void run() {
-				try {
-					for (GiocatoreDTO g : avversari) {
-						Tab tab = new Tab();
-						VBox vbox = new VBox();
-						HBox hbox = new HBox();
-						hbox.setSpacing(15);
-						vbox.setSpacing(5);
-						tab.setText(g.getNome());
-						vbox.getChildren().add(hbox);
-						tab.setContent(vbox);
-						giocatori.getTabs().add(tab);
-						hbox.setPadding(new Insets(5, 0, 0, 20));
-
-						Pane pane1 = new Pane();
-						ImageView puntiV = new ImageView();
-						puntiV.setImage(new Image(getClass().getResource("css/Point.png").toExternalForm()));
-						puntiV.setPreserveRatio(true);
-						puntiV.setFitHeight(40);
-						Text npuntiV = new Text();
-						npuntiV.setText(Integer.toString(g.getPunteggioVittoria()));
-						npuntiV.relocate(10, 13);
-						pane1.getChildren().add(puntiV);
-						pane1.getChildren().add(npuntiV);
-						hbox.getChildren().add(pane1);
-
-						Pane pane2 = new Pane();
-						ImageView puntiR = new ImageView();
-						puntiR.setImage(new Image(getClass().getResource("css/Coins.png").toExternalForm()));
-						puntiR.setPreserveRatio(true);
-						puntiR.setFitHeight(40);
-						Text npuntiR = new Text();
-						npuntiR.setText(Integer.toString(g.getPunteggioRicchezza()));
-						npuntiR.relocate(10, 13);
-						pane2.getChildren().add(puntiR);
-						pane2.getChildren().add(npuntiR);
-						hbox.getChildren().add(pane2);
-
-						Pane pane3 = new Pane();
-						ImageView aiutanti = new ImageView();
-						aiutanti.setImage(new Image(getClass().getResource("css/Assistant.png").toExternalForm()));
-						aiutanti.setPreserveRatio(true);
-						aiutanti.setFitHeight(40);
-						Text naiutanti = new Text();
-						naiutanti.setText(Integer.toString(g.getAiutanti()));
-						naiutanti.relocate(5, 13);
-						pane3.getChildren().add(aiutanti);
-						pane3.getChildren().add(naiutanti);
-						hbox.getChildren().add(pane3);
-
-						Pane pane4 = new Pane();
-						ImageView emporio = new ImageView();
-						emporio.setImage(new Image(getClass().getResource("css/Emporium.png").toExternalForm()));
-						emporio.setPreserveRatio(true);
-						emporio.setFitHeight(40);
-						Text empori = new Text();
-						empori.setText(Integer.toString(g.getEmpori()));
-						empori.relocate(10, 13);
-						pane4.getChildren().add(emporio);
-						pane4.getChildren().add(empori);
-						hbox.getChildren().add(pane4);
-
-						Pane pane5 = new Pane();
-						ImageView nobilty = new ImageView();
-						nobilty.setImage(new Image(getClass().getResource("css/Nobility.png").toExternalForm()));
-						nobilty.setPreserveRatio(true);
-						nobilty.setFitHeight(40);
-						Text nobiltyPoint = new Text();
-						nobiltyPoint.setText(Integer.toString(g.getPunteggioNobiltà()));
-						nobiltyPoint.relocate(10, 13);
-						pane5.getChildren().add(nobilty);
-						pane5.getChildren().add(nobiltyPoint);
-						hbox.getChildren().add(pane5);
-
-						Pane pane6 = new Pane();
-						ImageView puntiBonus = new ImageView();
-						puntiBonus
-								.setImage(new Image(getClass().getResource("css/BonusGiocatori.png").toExternalForm()));
-						puntiBonus.setPreserveRatio(true);
-						puntiBonus.setFitHeight(40);
-						Text npuntiBonus = new Text();
-						npuntiBonus.setText(Integer.toString(g.getPunteggioNobiltà()));
-						npuntiBonus.relocate(20, 13);
-						pane6.getChildren().add(puntiBonus);
-						pane6.getChildren().add(npuntiBonus);
-						hbox.getChildren().add(pane6);
-
-						HBox hbox1 = new HBox();
-						Pane pane=new Pane();
-						ImageView used = new ImageView();
-						Text text=new Text(Integer.toString(g.getTesserePermessoUsate().size()));
-						used.setFitHeight(60);
-						used.setPreserveRatio(true);
-						used.setImage(mappaTessere.get("TesseraPermesso"));
-						hbox1.getChildren().add(pane);
-						pane.getChildren().add(used);
-						pane.getChildren().add(text);
-						text.relocate(20, 20);
-
-						for (TesseraPermessoDTO t : g.getTesserePermesso()) {
-							ImageView image = new ImageView();
-							image.setFitHeight(60);
-							image.setPreserveRatio(true);
-							image.setImage(mappaTessere.get(t.toString()));
-							hbox1.getChildren().add(image);
-						}
-						vbox.getChildren().add(hbox1);
-
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}});
-
-		
-	}*/
 
 	public void mostraConsiglieriBalcone() {
 		Platform.runLater(new Runnable() {
@@ -912,8 +737,16 @@ public class GUIGameController {
 		return this.tesserePermesso;
 	}
 	
+	public HBox getCartePoliticaGiocatore(){
+		return this.cartePolitica;
+	}
+	
 	public Map<String, Image> getMappaTesserePermesso(){
 		return this.mappaTessere;
+	}
+	
+	public Map<String, Image> getMappaCartePolitica(){
+		return this.mappaCarte;
 	}
 
 	public List<ImageView> getConsiglieri() {
