@@ -33,8 +33,8 @@
                                                 <Image url="@../css/permitTile/Mare.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fx:id="tesseraMare1" fitHeight="68.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true" />
-                                          <ImageView fx:id="tesseraMare2" fitHeight="68.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fx:id="tesseraMare1" fitHeight="68.0" fitWidth="61.0" onMouseClicked="#handleTesseraPermessoRegione" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fx:id="tesseraMare2" fitHeight="68.0" fitWidth="61.0" onMouseClicked="#handleTesseraPermessoRegione" pickOnBounds="true" preserveRatio="true" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -48,8 +48,8 @@
                                                 <Image url="@../css/permitTile/Collina.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fx:id="tesseraCollina1" fitHeight="68.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true" />
-                                          <ImageView fx:id="tesseraCollina2" fitHeight="68.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fx:id="tesseraCollina1" fitHeight="68.0" fitWidth="61.0" onMouseClicked="#handleTesseraPermessoRegione" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fx:id="tesseraCollina2" fitHeight="68.0" fitWidth="61.0" onMouseClicked="#handleTesseraPermessoRegione" pickOnBounds="true" preserveRatio="true" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -63,14 +63,14 @@
                                                 <Image url="@../css/permitTile/Montagna.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fx:id="tesseraMontagna1" fitHeight="68.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true" />
-                                          <ImageView fx:id="tesseraMontagna2" fitHeight="68.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fx:id="tesseraMontagna1" fitHeight="68.0" fitWidth="61.0" onMouseClicked="#handleTesseraPermessoRegione" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fx:id="tesseraMontagna2" fitHeight="68.0" fitWidth="61.0" onMouseClicked="#handleTesseraPermessoRegione" pickOnBounds="true" preserveRatio="true" />
                                        </children>
                                     </HBox>
                                  </children>
                               </AnchorPane>
       
-                                    <HBox fx:id="balconeMare" layoutX="79.0" layoutY="473.0" onMouseClicked="#handleBalcone" prefHeight="30.0" prefWidth="90.0" spacing="3.0" style="-fx-background-color: black;">
+                                    <HBox fx:id="balconeMare" layoutX="79.0" layoutY="473.0" onMouseClicked="#handleBalcone" prefHeight="30.0" prefWidth="90.0" spacing="3.0" styleClass="balcone" stylesheets="@../css/game.css">
                                  <padding>
                                     <Insets left="1.0" right="1.0" top="5.0" />
                                  </padding>
@@ -78,7 +78,7 @@
                                     <Insets />
                                  </opaqueInsets>
                               </HBox>
-                              <HBox fx:id="balconeCollina" layoutX="324.0" layoutY="471.0" onMouseClicked="#handleBalcone" prefHeight="30.0" prefWidth="90.0" spacing="3.0" style="-fx-background-color: black;">
+                              <HBox fx:id="balconeCollina" layoutX="324.0" layoutY="471.0" onMouseClicked="#handleBalcone" prefHeight="30.0" prefWidth="90.0" spacing="3.0" styleClass="balcone" stylesheets="@../css/game.css">
                                  <padding>
                                     <Insets left="1.0" right="1.0" top="5.0" />
                                  </padding>
@@ -86,7 +86,7 @@
                                     <Insets />
                                  </opaqueInsets>
                               </HBox>
-                              <HBox fx:id="balconeRe" layoutX="486.0" layoutY="504.0" onMouseClicked="#handleBalcone" prefHeight="30.0" prefWidth="92.0" spacing="3.0" style="-fx-background-color: black;">
+                              <HBox fx:id="balconeRe" layoutX="486.0" layoutY="504.0" onMouseClicked="#handleBalcone" prefHeight="30.0" prefWidth="92.0" spacing="3.0" styleClass="balcone" stylesheets="@../css/game.css">
                                  <padding>
                                     <Insets left="1.0" right="1.0" top="5.0" />
                                  </padding>
@@ -94,7 +94,7 @@
                                     <Insets />
                                  </opaqueInsets>
                               </HBox>
-                              <HBox fx:id="balconeMontagna" layoutX="601.0" layoutY="473.0" onMouseClicked="#handleBalcone" prefHeight="30.0" prefWidth="91.0" spacing="3.0" style="-fx-background-color: black;">
+                              <HBox fx:id="balconeMontagna" layoutX="601.0" layoutY="473.0" onMouseClicked="#handleBalcone" prefHeight="30.0" prefWidth="91.0" spacing="3.0" styleClass="balcone" stylesheets="@../css/game.css">
                                  <padding>
                                     <Insets left="1.0" right="1.0" top="5.0" />
                                  </padding>
@@ -140,12 +140,27 @@
                               <Button fx:id="merkatim" layoutX="535.0" layoutY="284.0" mnemonicParsing="false" onAction="#selezionaCittà" prefHeight="56.0" prefWidth="72.0" rotate="5.0" style="-fx-background-color: transparent;" />
                               <Button fx:id="naris" layoutX="656.0" layoutY="105.0" mnemonicParsing="false" onAction="#selezionaCittà" prefHeight="56.0" prefWidth="72.0" rotate="5.0" style="-fx-background-color: transparent;" />
                               <Button fx:id="osium" layoutX="664.0" layoutY="234.0" mnemonicParsing="false" onAction="#selezionaCittà" prefHeight="56.0" prefWidth="72.0" rotate="5.0" style="-fx-background-color: transparent;" />
+                              <ImageView fx:id="regioneMare" disable="true" fitHeight="47.0" fitWidth="51.0" layoutX="99.0" layoutY="3.0" onMouseClicked="#handleRegione" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../css/iconeRegioni/seaLogo.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="regioneCollina" disable="true" fitHeight="47.0" fitWidth="51.0" layoutX="364.0" layoutY="3.0" onMouseClicked="#handleRegione" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../css/iconeRegioni/hillsLogo.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="regioneMontagna" disable="true" fitHeight="47.0" fitWidth="51.0" layoutX="630.0" layoutY="3.0" onMouseClicked="#handleRegione" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../css/iconeRegioni/mountainsLogo.png" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </AnchorPane>
                         <HBox>
                            <children>
-                              <TabPane fx:id="giocatori" prefHeight="130.0" prefWidth="362.0" tabClosingPolicy="UNAVAILABLE" />
-                              <TitledPane alignment="TOP_LEFT" animated="false" collapsible="false" prefHeight="130.0" prefWidth="285.0" text="Riserva">
+                              <TabPane fx:id="giocatori" prefHeight="130.0" prefWidth="362.0" styleClass="background" stylesheets="@../css/game.css" tabClosingPolicy="UNAVAILABLE" />
+                              <TitledPane alignment="CENTER" animated="false" collapsible="false" mouseTransparent="true" prefHeight="130.0" prefWidth="285.0" styleClass="titlepane" stylesheets="@../css/game.css" text="Riserva dei Consiglieri">
                                 <content>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="102.0" prefWidth="248.0" styleClass="background" stylesheets="@../css/game.css">
                                        <children>
@@ -165,13 +180,17 @@
                                     </AnchorPane>
                                 </content>
                               </TitledPane>
-                              <TitledPane animated="false" collapsible="false" prefHeight="133.0" prefWidth="108.0" text="Pesca carta!">
+                              <TitledPane alignment="CENTER" animated="false" collapsible="false" mouseTransparent="true" prefHeight="133.0" prefWidth="108.0" styleClass="titlepane" stylesheets="@../css/game.css" text="Pesca carta!">
                                  <content>
-                                    <ImageView fx:id="pescaCarta" fitHeight="98.0" fitWidth="77.0" layoutX="17.0" layoutY="9.0" onMouseClicked="#pescaCarta" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../css/politicCard/Retro.png" />
-                                       </image>
-                                    </ImageView>
+                                    <Pane styleClass="background" stylesheets="@../css/game.css">
+                                       <children>
+                                          <ImageView fx:id="pescaCarta" fitHeight="98.0" fitWidth="77.0" layoutX="20.0" layoutY="3.0" onMouseClicked="#pescaCarta" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../css/politicCard/Retro.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </Pane>
                                  </content>
                               </TitledPane>
                            </children>
@@ -180,9 +199,9 @@
                   </VBox>
                   <VBox prefHeight="720.0" prefWidth="545.0">
                      <children>
-                        <TitledPane animated="false" collapsible="false" prefHeight="87.0" prefWidth="465.0" text="Giocatore">
+                        <TitledPane alignment="CENTER" animated="false" collapsible="false" mouseTransparent="true" prefHeight="87.0" prefWidth="465.0" styleClass="titlepane" stylesheets="@../css/game.css" text="Giocatore">
                            <content>
-                              <AnchorPane prefHeight="34.0" prefWidth="523.0" styleClass="background" stylesheets="@../css/game.css">
+                              <AnchorPane mouseTransparent="true" prefHeight="34.0" prefWidth="523.0" styleClass="background" stylesheets="@../css/game.css">
                                  <children>
                                     <HBox layoutX="86.0" layoutY="32.0" prefHeight="57.0" prefWidth="435.0" AnchorPane.bottomAnchor="-10.0" AnchorPane.rightAnchor="-10.0">
                                        <children>
@@ -193,7 +212,7 @@
                                                       <Image url="@../css/Point.png" />
                                                    </image>
                                                 </ImageView>
-                                                <Text fx:id="puntiGiocatore" layoutX="27.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="17.779481887817383" />
+                                                <Text fx:id="puntiGiocatore" layoutX="14.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="mytext" wrappingWidth="45.0" />
                                              </children>
                                           </Pane>
                                           <Pane prefHeight="57.0" prefWidth="72.5">
@@ -203,17 +222,17 @@
                                                       <Image url="@../css/Coins.png" />
                                                    </image>
                                                 </ImageView>
-                                                <Text fx:id="moneteGiocatore" layoutX="28.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="16.07018280029297" />
+                                                <Text fx:id="moneteGiocatore" layoutX="14.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="mytext" wrappingWidth="45.0" />
                                              </children>
                                           </Pane>
                                           <Pane prefHeight="57.0" prefWidth="72.5">
                                              <children>
-                                                <ImageView fitHeight="58.0" fitWidth="27.0" layoutX="16.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="58.0" fitWidth="27.0" layoutX="24.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../css/Assistant.png" />
                                                    </image>
                                                 </ImageView>
-                                                <Text fx:id="aiutantiGiocatore" layoutX="44.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="26.3433837890625" />
+                                                <Text fx:id="aiutantiGiocatore" layoutX="14.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="mytext" wrappingWidth="45.0" />
                                              </children>
                                           </Pane>
                                           <Pane prefHeight="57.0" prefWidth="72.5">
@@ -223,7 +242,7 @@
                                                       <Image url="@../css/Emporium.png" />
                                                    </image>
                                                 </ImageView>
-                                                <Text fx:id="emporiGiocatore" layoutX="22.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="16.6165771484375" />
+                                                <Text fx:id="emporiGiocatore" layoutX="8.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="mytext" wrappingWidth="45.0" />
                                              </children>
                                           </Pane>
                                           <Pane prefHeight="57.0" prefWidth="72.5">
@@ -233,7 +252,7 @@
                                                       <Image url="@../css/Nobility.png" />
                                                    </image>
                                                 </ImageView>
-                                                <Text fx:id="nobiltàGiocatore" layoutX="26.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="18.1981201171875" />
+                                                <Text fx:id="nobiltàGiocatore" layoutX="13.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="mytext" wrappingWidth="45.0" />
                                              </children>
                                           </Pane>
                                           <Pane prefHeight="57.0" prefWidth="72.5">
@@ -243,17 +262,17 @@
                                                       <Image url="@../css/BonusGiocatori.png" />
                                                    </image>
                                                 </ImageView>
-                                                <Text fx:id="tesserebonusGiocatore" layoutX="14.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="20.48876953125" />
+                                                <Text fx:id="tesserebonusGiocatore" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="mytext" wrappingWidth="45.0" />
                                              </children>
                                           </Pane>
                                        </children>
                                     </HBox>
-                                    <Text fx:id="nomeGiocatore" layoutX="5.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="61.84967041015625" />
+                                    <Text fx:id="nomeGiocatore" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="nomeGiocatore" wrappingWidth="100.84967041015625" />
                                  </children>
                               </AnchorPane>
                            </content>
                         </TitledPane>
-                        <TitledPane animated="false" collapsible="false" text="Tessere Permesso">
+                        <TitledPane alignment="CENTER" animated="false" collapsible="false" mouseTransparent="true" styleClass="titlepane" stylesheets="@../css/game.css" text="Tessere Permesso">
                            <content>
                               <ScrollPane maxHeight="-Infinity" prefHeight="73.0" prefViewportHeight="60.0" prefViewportWidth="56.0">
                                  <content>
@@ -262,19 +281,19 @@
                               </ScrollPane>
                            </content>
                         </TitledPane>
-                        <TitledPane animated="false" collapsible="false" text="Carte Politica">
+                        <TitledPane alignment="CENTER" animated="false" collapsible="false" mouseTransparent="true" prefHeight="103.0" prefWidth="525.0" styleClass="titlepane" stylesheets="@../css/game.css" text="Carte Politica">
                            <content>
-                              <HBox>
+                              <HBox styleClass="background" stylesheets="@../css/game.css">
                                  <children>
-                                    <ScrollPane maxHeight="-Infinity" prefHeight="73.0" prefViewportHeight="60.0" prefViewportWidth="200.0" prefWidth="424.0">
+                                    <ScrollPane maxHeight="-Infinity" prefHeight="95.0" prefViewportHeight="60.0" prefViewportWidth="200.0" prefWidth="424.0">
                                        <content>
-                                          <HBox fx:id="cartePolitica" maxHeight="-Infinity" prefHeight="71.0" prefWidth="422.0" spacing="10.0" styleClass="background" stylesheets="@../css/game.css" />
+                                          <HBox fx:id="cartePolitica" maxHeight="-Infinity" prefHeight="69.0" prefWidth="422.0" spacing="10.0" styleClass="background" stylesheets="@../css/game.css" />
                                        </content>
                                        <HBox.margin>
                                           <Insets bottom="-10.0" left="-10.0" top="-10.0" />
                                        </HBox.margin>
                                     </ScrollPane>
-                                    <Button fx:id="conferma" mnemonicParsing="false" onAction="#handleConferma" prefHeight="27.0" prefWidth="72.0" text="Ok!">
+                                    <Button fx:id="conferma" disable="true" mnemonicParsing="false" onAction="#handleConferma" prefHeight="33.0" prefWidth="72.0" styleClass="mybutton" stylesheets="@../css/game.css" text="Ok!">
                                        <HBox.margin>
                                           <Insets left="15.0" top="12.0" />
                                        </HBox.margin>
@@ -283,13 +302,13 @@
                               </HBox>
                            </content>
                         </TitledPane>
-                        <TitledPane collapsible="false" prefHeight="89.0" prefWidth="525.0" text="Server Message">
+                        <TitledPane alignment="CENTER" animated="false" collapsible="false" mouseTransparent="true" prefHeight="89.0" prefWidth="525.0" styleClass="titlepane" stylesheets="@../css/game.css" text="Server Message">
                            <content>
                               <ScrollPane maxHeight="50.0" minHeight="50.0" prefHeight="79.0" prefWidth="465.0">
                                 <content>
                                   <AnchorPane maxWidth="523.0" minHeight="50.0" minWidth="0.0" prefHeight="50.0" prefWidth="523.0">
                                        <children>
-                                          <TextArea fx:id="message" editable="false" layoutY="-7.0" minHeight="58.0" prefHeight="58.0" prefWidth="522.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <TextArea fx:id="message" editable="false" layoutY="-7.0" minHeight="58.0" prefHeight="58.0" prefWidth="522.0" stylesheets="@../css/game.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                 </content>
@@ -300,9 +319,9 @@
                            <children>
                               <VBox prefHeight="200.0" prefWidth="100.0">
                                  <children>
-                                    <TitledPane alignment="CENTER" animated="false" collapsible="false" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="162.0" prefWidth="232.0" text="Azioni Principali">
+                                    <TitledPane alignment="CENTER" animated="false" collapsible="false" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="true" prefHeight="162.0" prefWidth="232.0" styleClass="titlepane" stylesheets="@../css/game.css" text="Azioni Principali">
                                       <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="67.0" prefWidth="105.0">
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="67.0" prefWidth="105.0" styleClass="background" stylesheets="@../css/game.css">
                                              <children>
                                                 <GridPane layoutX="20.4" layoutY="20.4" prefHeight="132.0" prefWidth="209.0" AnchorPane.bottomAnchor="-0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                    <columnConstraints>
@@ -315,19 +334,19 @@
                                                       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                                    </rowConstraints>
                                                    <children>
-                                                      <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="209.0" text="Costruzione Tessera Permesso" GridPane.rowIndex="3" />
-                                                      <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="209.0" text="Costruzione Aiuto Re" GridPane.rowIndex="2" />
-                                                      <Button fx:id="elezioneConsigliere" mnemonicParsing="false" onAction="#elezioneConsigliere" prefHeight="27.0" prefWidth="209.0" text="Elezione Consigliere" GridPane.rowIndex="1" />
-                                                      <Button fx:id="acquistoTesseraPermesso" mnemonicParsing="false" onAction="#acquistoTesseraPermesso" prefHeight="27.0" prefWidth="209.0" text="Acquisto Tessera Permesso" />
+                                                      <Button mnemonicParsing="false" mouseTransparent="true" prefHeight="27.0" prefWidth="209.0" styleClass="mybutton" stylesheets="@../css/game.css" text="Costruzione Tessera Permesso" GridPane.rowIndex="3" />
+                                                      <Button mnemonicParsing="false" mouseTransparent="true" prefHeight="27.0" prefWidth="209.0" styleClass="mybutton" stylesheets="@../css/game.css" text="Costruzione Aiuto Re" GridPane.rowIndex="2" />
+                                                      <Button fx:id="elezioneConsigliere" mnemonicParsing="false" mouseTransparent="true" onAction="#elezioneConsigliere" prefHeight="27.0" prefWidth="209.0" styleClass="mybutton" stylesheets="@../css/game.css" text="Elezione Consigliere" GridPane.rowIndex="1" />
+                                                      <Button fx:id="acquistoTesseraPermesso" mnemonicParsing="false" mouseTransparent="true" onAction="#acquistoTesseraPermesso" prefHeight="27.0" prefWidth="209.0" styleClass="mybutton" stylesheets="@../css/game.css" text="Acquisto Tessera Permesso" />
                                                    </children>
                                                 </GridPane>
                                              </children>
                                           </AnchorPane>
                                       </content>
                                     </TitledPane>
-                                    <TitledPane alignment="CENTER" animated="false" collapsible="false" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="182.0" prefWidth="232.0" text="Azioni Veloci">
+                                    <TitledPane alignment="CENTER" animated="false" collapsible="false" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="true" prefHeight="182.0" prefWidth="232.0" styleClass="titlepane" stylesheets="@../css/game.css" text="Azioni Veloci">
                                       <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0">
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" styleClass="background" stylesheets="@../css/game.css">
                                              <children>
                                                 <GridPane AnchorPane.bottomAnchor="-0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                    <columnConstraints>
@@ -341,11 +360,11 @@
                                                       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                                    </rowConstraints>
                                                    <children>
-                                                      <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="209.0" text="Cambio Tessere Permeso" GridPane.rowIndex="3" />
-                                                      <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="209.0" text="Elezione Consigliere" GridPane.rowIndex="2" />
-                                                      <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="209.0" text="Ingaggio Aiutante" GridPane.rowIndex="1" />
-                                                      <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="209.0" text="Azione Principale" />
-                                                      <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="209.0" text="&gt;&gt; Salta Azione Veloce" GridPane.rowIndex="4" />
+                                                      <Button mnemonicParsing="false" mouseTransparent="true" prefHeight="27.0" prefWidth="209.0" styleClass="mybutton" stylesheets="@../css/game.css" text="Cambio Tessere Permeso" GridPane.rowIndex="3" />
+                                                      <Button mnemonicParsing="false" mouseTransparent="true" prefHeight="27.0" prefWidth="209.0" styleClass="mybutton" stylesheets="@../css/game.css" text="Elezione Consigliere" GridPane.rowIndex="2" />
+                                                      <Button mnemonicParsing="false" mouseTransparent="true" prefHeight="27.0" prefWidth="209.0" styleClass="mybutton" stylesheets="@../css/game.css" text="Ingaggio Aiutante" GridPane.rowIndex="1" />
+                                                      <Button mnemonicParsing="false" mouseTransparent="true" prefHeight="27.0" prefWidth="209.0" styleClass="mybutton" stylesheets="@../css/game.css" text="Azione Principale" />
+                                                      <Button mnemonicParsing="false" mouseTransparent="true" prefHeight="27.0" prefWidth="209.0" styleClass="mybutton" stylesheets="@../css/game.css" text="&gt;&gt; Salta Azione Veloce" GridPane.rowIndex="4" />
                                                    </children>
                                                 </GridPane>
                                              </children>
@@ -354,11 +373,20 @@
                                     </TitledPane>
                                  </children>
                               </VBox>
-                              <TitledPane animated="false" collapsible="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="344.0" prefWidth="293.0" text="Chat">
-                                <content>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="225.0" prefWidth="291.0" />
-                                </content>
-                              </TitledPane>
+                              <VBox>
+                                 <children>
+                                    <TitledPane alignment="CENTER" animated="false" collapsible="false" mouseTransparent="true" prefHeight="80.0" prefWidth="293.0" styleClass="titlepane" stylesheets="@../css/game.css" text="Bonus">
+                                      <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                      </content>
+                                    </TitledPane>
+                                    <TitledPane alignment="CENTER" animated="false" collapsible="false" minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="true" prefHeight="264.0" prefWidth="293.0" styleClass="titlepane" stylesheets="@../css/game.css" text="Chat">
+                                      <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="279.0" prefWidth="291.0" styleClass="background" stylesheets="@../css/game.css" />
+                                      </content>
+                                    </TitledPane>
+                                 </children>
+                              </VBox>
                            </children>
                         </HBox>
                      </children>

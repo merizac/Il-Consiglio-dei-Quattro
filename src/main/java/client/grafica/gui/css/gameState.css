@@ -1,14 +1,29 @@
-.textArea {
- 	-fx-background-color: black;
- 	-fx-font: 10.0px Tahoma;
-    -fx-fill: white;
+.sfondo{
+ -fx-background-image: url("view/images/various/sfondo.gif");  
+ -fx-background-repeat: repeat;
+/*  -fx-background-size: contain;*/
 }
 
-.sfondo {
-	-fx-background-image: url("./carta_macchie.jpg");
+.button {
+    -fx-border-color: #6b4208;
+    -fx-border-width: 1;
+    -fx-border-curve: yes;
+    -fx-background-radius: 0;
+    -fx-background-color: #d1ca85;
+    -fx-font: 13 Papyrus;
+    -fx-text-fill: #6b4208;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
 }
 
-.sfondotrasparente{
-	-fx-background-color: transparent;
-	
+.label {
+  -fx-font: 15 Papyrus;
+    -fx-text-fill: #6b4208;
+   /*  -fx-font-weight: bold; */
+}
+
+.splitPan {
+   -fx-border-curve: yes;
+  /* -fx-border: 2px solid #d1ca85; bordo dell'elemento */
+  -fx-image: url("view/images/various/sfondo.gif");               /* colore dello sfondo giusto   */
+
 }
