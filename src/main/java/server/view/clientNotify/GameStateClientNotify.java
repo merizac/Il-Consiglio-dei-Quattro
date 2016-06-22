@@ -23,7 +23,7 @@ public class GameStateClientNotify implements ClientNotify {
 	@Override
 	public void update(GameStateDTO gameStateDTO) {
 
-		gameStateDTO.setAzioni(new ArrayList<>());
+		//gameStateDTO.setAzioni(new ArrayList<>());
 		gameStateDTO.setCittà(this.gameStateDTO.getCittà());
 		gameStateDTO.setConsiglieri(this.gameStateDTO.getConsiglieri());
 		gameStateDTO.setPedinaRE(this.gameStateDTO.getPedinaRE());

@@ -20,6 +20,7 @@ import common.azioniDTO.CostruzioneTesseraPermessoDTO;
 import common.azioniDTO.ElezioneConsigliereDTO;
 import common.azioniDTO.ElezioneConsigliereVeloceDTO;
 import common.azioniDTO.IngaggioAiutanteDTO;
+import common.azioniDTO.PassaDTO;
 import common.azioniDTO.SecondaAzionePrincipaleDTO;
 import common.gameDTO.BalconeDTO;
 import common.gameDTO.CartaPoliticaDTO;
@@ -168,12 +169,7 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public void mostraAzioni(List<AzioneDTO> azioni) {
-		List<Button> azioniDisponibili=controller.getAzioni();
-		for(AzioneDTO azione:azioni){
-			for(Button b: azioniDisponibili)
-				if(b.getUserData().getClass().equals(azione.getClass()))
-					b.setDisable(false);
-		}
+		
 	}
 
 	@Override
@@ -208,9 +204,7 @@ public class GUI extends Application implements Grafica {
 		azioni.get(5).setUserData(new CambioTesserePermessoDTO());
 		azioni.get(6).setUserData(new ElezioneConsigliereVeloceDTO());
 		azioni.get(7).setUserData(new SecondaAzionePrincipaleDTO());
-		for(Button b: azioni){
-			b.setDisable(true);
-		}
+		azioni.get(8).setUserData(new PassaDTO());
 	}
 
 	private void assegnaRegione() {

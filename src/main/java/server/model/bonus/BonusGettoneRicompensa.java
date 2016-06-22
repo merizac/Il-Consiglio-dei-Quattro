@@ -11,6 +11,7 @@ import server.model.azioni.Azione;
 import server.model.azioni.azioniBonus.BonusGettoneN;
 import server.model.game.Città;
 import server.model.game.CittàBonus;
+import server.model.game.Emporio;
 import server.model.game.GameState;
 import server.model.notify.MessageNotify;
 import server.view.clientNotify.MessageClientNotify;
@@ -50,7 +51,7 @@ public class BonusGettoneRicompensa extends Bonus {
 	public void usaBonus(GameState gameState) {
 		Set<CittàBonus> città=new HashSet<>();
 		for (Città c : gameState.getCittà()) {
-			if (c.getEmpori().contains(gameState.getGiocatoreCorrente().getColoreGiocatore().getColore())
+			if (c.getEmpori().contains(new Emporio(gameState.getGiocatoreCorrente().getColoreGiocatore()))
 					&& (c instanceof CittàBonus)) {
 				città.add((CittàBonus) c);
 			}

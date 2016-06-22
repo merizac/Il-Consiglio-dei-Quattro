@@ -19,7 +19,7 @@ public class BonusClientNotify implements ClientNotify {
 
 	@Override
 	public void update(GameStateDTO gameStateDTO) {
-		gameStateDTO.getGiocatoreDTO().setBonusNobiltà(bonus);
+		gameStateDTO.setAzioni(bonus);
 	}
 
 	@Override
