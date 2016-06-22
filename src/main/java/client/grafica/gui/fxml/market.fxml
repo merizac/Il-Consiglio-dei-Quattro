@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TitledPane alignment="CENTER" animated="false" collapsible="false" layoutX="29.0" layoutY="30.0" prefHeight="400.0" prefWidth="311.0" text="Oggetti in vendita:" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TitledPane alignment="CENTER" animated="false" collapsible="false" layoutX="29.0" layoutY="30.0" prefHeight="400.0" prefWidth="311.0" stylesheets="@../css/gameState.css" text="Oggetti in vendita:" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="372.0" prefWidth="150.0">
                <children>
@@ -17,9 +18,9 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="300.0" prefWidth="309.0">
                            <children>
-                              <VBox layoutX="-1.0" prefHeight="375.0" prefWidth="311.0">
+                              <VBox layoutX="-1.0" prefHeight="375.0" prefWidth="311.0" stylesheets="@../css/gameState.css">
                                  <children>
-                                    <VBox layoutX="-1.0" prefHeight="296.0" prefWidth="311.0">
+                                    <VBox layoutX="-1.0" prefHeight="296.0" prefWidth="311.0" stylesheets="@../css/gameState.css">
                                        <children>
                                           <HBox prefHeight="37.0" prefWidth="311.0">
                                              <children>
@@ -40,9 +41,9 @@
             </AnchorPane>
         </content>
       </TitledPane>
-      <TitledPane collapsible="false" layoutX="310.0" prefHeight="401.0" prefWidth="291.0">
+      <TitledPane collapsible="false" layoutX="310.0" prefHeight="401.0" prefWidth="291.0" stylesheets="@../css/gameState.css">
          <content>
-            <VBox layoutX="432.0" maxWidth="-Infinity" prefHeight="373.0" prefWidth="282.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
+            <VBox layoutX="432.0" maxWidth="-Infinity" prefHeight="373.0" prefWidth="282.0" stylesheets="@../css/gameState.css" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="250.0" mnemonicParsing="false" text="Fai un' offerta! ">
                      <VBox.margin>
@@ -60,16 +61,16 @@
                            <graphic>
                               <ImageView fitHeight="78.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../git/progettoingsoftware/src/main/java/client/grafica/gui/css/Assistant.png" />
+                                    <Image url="@../css/Assistant.png" />
                                  </image>
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="88.0" prefWidth="82.0">
+                        <Button mnemonicParsing="false" prefHeight="94.0" prefWidth="82.0">
                            <graphic>
                               <ImageView fitHeight="82.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../git/progettoingsoftware/src/main/java/client/grafica/gui/css/politicCard/Retro.png" />
+                                    <Image url="@../css/politicCard/Retro.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -78,7 +79,7 @@
                            <graphic>
                               <ImageView fitHeight="77.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../git/progettoingsoftware/src/main/java/client/grafica/gui/css/permitTile/1.8.png" />
+                                    <Image url="@../css/permitTile/2.15.png" />
                                  </image>
                               </ImageView>
                            </graphic>
