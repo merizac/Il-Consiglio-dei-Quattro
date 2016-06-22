@@ -113,12 +113,6 @@ public class BonusGettoneNDTOTest {
 		bonus.setNumeroGettoni(1);
 		assertEquals("Bonus Gettone [B3]", bonus.toString());
 	}
-	
-	@Test
-	public void testToStringPiùGettoni(){
-		BonusGettoneNDTO bonus=new BonusGettoneNDTO();
-		bonus.setNumeroGettoni(4);
-		assertEquals("Bonus Gettone [B4]", bonus.toString());
-	}
+
 	
 }

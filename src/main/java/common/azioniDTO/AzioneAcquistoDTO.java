@@ -44,6 +44,8 @@ public class AzioneAcquistoDTO implements AzioneDTO, AzioneParametri {
 	 * @param offerta the offerta to set
 	 */
 	public void setOfferta(int offertaDTO) {
+		if (offertaDTO<=0)
+			throw new IllegalArgumentException("L'offerta deve essere positiva");
 		this.offertaDTO = offertaDTO;
 	}
 

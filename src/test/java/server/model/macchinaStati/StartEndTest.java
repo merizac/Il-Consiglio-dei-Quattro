@@ -21,7 +21,7 @@ import utility.Observer;
 
 public class StartEndTest {
 
-	static GameState gameState;
+/*	static GameState gameState;
 	static List<Notify> notify;
 	
 	@BeforeClass
@@ -119,6 +119,6 @@ public class StartEndTest {
 		startEnd.transizioneVeloce(gameState);
  
 		assertTrue(notify.get(1) instanceof MessageNotify);
-	}
+	}*/
 
 }
