@@ -1,10 +1,18 @@
 .background {
 	-fx-background-image: url("./carta_macchie.jpg");
+	-fx-border: transparent;
 }
-.textArea {
- 	-fx-background-color: black;
- 	-fx-font: 10.0px Tahoma;
+
+.mytext{
+ 	-fx-font: 17.0px Algerian;
     -fx-fill: white;
+    -fx-text-alignment: center;
+}
+
+.nomeGiocatore{
+ 	-fx-font: 17.0px Algerian;
+    -fx-fill: gray;
+    -fx-text-alignment: center;
 }
 
 .label {
@@ -14,7 +22,7 @@
     -fx-opacity: 1.0;   
 }
 
-.button {
+.mybutton {
 	-fx-effect: dropshadow(three-pass-box, black, 10, 0.2, 0, 0); 
 	-fx-background-repeat: stretch; 
 	-fx-background-position: center center;
@@ -32,93 +40,39 @@
 
 .balcone{
 	-fx-background-image: url("./balcone.jpg");
+	-fx-border-color: black;
+	-fx-background-image-radius: 20 20 20 20;
+	-fx-border-radius: 20 20 20 20;
 }
 
-.cartaPoliticaArancione{
-	-fx-background-position: center center;
-	-fx-border-radius: 8.0;
-	-fx-background-radius: 8.0;
-	-fx-border-width: 3px;
-	-fx-border-color: black;
-	-fx-background-image: url('./politicCard/Arancione.png');
-	-fx-background-size: contain;
-	-fx-size : 35 55;
-}
-
-.cartaPoliticaAzzurro{
-	-fx-background-position: center center;
-	-fx-border-radius: 8.0;
-	-fx-background-radius: 8.0;
-	-fx-border-width: 3px;
-	-fx-border-color: black;
-	-fx-background-image: url('./politicCard/Azzurro.png');
-	-fx-background-size: contain;
-	-fx-size : 35 55;
-}
-
-.cartaPoliticaBianco{
-	-fx-background-position: center center;
-	-fx-border-radius: 8.0;
-	-fx-background-radius: 8.0;
-	-fx-border-width: 3px;
-	-fx-border-color: black;
-	-fx-background-image: url('./politicCard/Bianco.png');
-	-fx-background-size: contain;
-	-fx-size : 35 55;
-}
-
-.cartaPoliticaNero{
-	-fx-background-position: center center;
-	-fx-border-radius: 8.0;
-	-fx-background-radius: 8.0;
-	-fx-border-width: 3px;
-	-fx-border-color: black;
-	-fx-background-image: url('./politicCard/Nero.png');
-	-fx-background-size: contain;
-	-fx-size : 35 55;
-}
-.cartaPoliticaRosa{
-	-fx-background-position: center center;
-	-fx-border-radius: 8.0;
-	-fx-background-radius: 8.0;
-	-fx-border-width: 3px;
-	-fx-border-color: black;
-	-fx-background-image: url('./politicCard/Rosa.png');
-	-fx-background-size: contain;
-	-fx-size : 35 55;
-}
-.cartaPoliticaMulticolore{
-	-fx-background-position: center center;
-	-fx-border-radius: 8.0;
-	-fx-background-radius: 8.0;
-	-fx-border-width: 3px;
-	-fx-border-color: black;
-	-fx-background-image: url('./politicCard/Multicolore.png');
-	-fx-background-size: contain;
-	-fx-size : 35 55;
-}
-.cartaPoliticaMulticolore{
-	-fx-background-position: center center;
-	-fx-border-radius: 8.0;
-	-fx-background-radius: 8.0;
-	-fx-border-width: 3px;
-	-fx-border-color: black;
-	-fx-background-image: url('./politicCard/Multicolore.png');
-	-fx-background-size: contain;
-	-fx-size : 35 55;
-}
-.cartaPoliticaMulticolore{
-	-fx-background-position: center center;
-	-fx-border-radius: 8.0;
-	-fx-background-radius: 8.0;
-	-fx-border-width: 3px;
-	-fx-border-color: black;
-	-fx-background-image: url('./politicCard/Multicolore.png');
-	-fx-background-size: contain;
-	-fx-size : 35 55;
-}
-
-
-.scroll-bar{
+/*.scroll-bar{
 	-fx-background-color:transparent;
 }
+
+.address .scroll-pane {
+  -fx-background-color: transparent;
+}
+
+.address .scroll-bar .increment-button {
+  visibility: hidden;
+}
+
+.address .scroll-bar .decrement-button {
+  visibility: hidden;
+}
+
+.address .scroll-bar:vertical {
+  -fx-background-color: transparent;
+}
+
+.address .scroll-bar:vertical .track-background {
+  visibility: hidden;
+}
+
+.address .scroll-bar:vertical .track {
+  visibility: hidden;
+}
+
+.address .hide-thumb .scroll-bar:vertical .thumb {
+  -fx-background-color: transparent;
+} */
