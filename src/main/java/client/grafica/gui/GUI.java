@@ -262,7 +262,8 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public void mostraAvversario(GiocatoreDTO avversario) {
-		// controller.mostraAvversario(gameStateDTO.getAvversari());
+//		controller.mostraAvversario(gameStateDTO.getAvversari());
+		Application.setUserAgentStylesheet(getClass().getResource("/css/gameState.css").toExternalForm());
 		Platform.runLater(new Runnable() {
 			Map<String, Image> mappaTessere = controller.getMappaTesserePermesso();
 
@@ -273,6 +274,8 @@ public class GUI extends Application implements Grafica {
 
 				if (!tabAvversari.containsKey(avversario)) {
 					tab = new Tab();
+
+					tab.setStyle("background");
 					tab.setText(avversario.getNome());
 					giocatori.getTabs().add(tab);
 					tabAvversari.put(avversario, tab);
