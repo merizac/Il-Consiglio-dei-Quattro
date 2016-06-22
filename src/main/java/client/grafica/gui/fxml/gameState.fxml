@@ -160,7 +160,7 @@
                         <HBox>
                            <children>
                               <TabPane fx:id="giocatori" prefHeight="130.0" prefWidth="362.0" styleClass="background" stylesheets="@../css/game.css" tabClosingPolicy="UNAVAILABLE" />
-                              <TitledPane alignment="CENTER" animated="false" collapsible="false" prefHeight="130.0" prefWidth="285.0" text="Riserva dei Consiglieri">
+                              <TitledPane alignment="CENTER" animated="false" collapsible="false" mouseTransparent="true" prefHeight="130.0" prefWidth="285.0" styleClass="titlepane" stylesheets="@../css/game.css" text="Riserva dei Consiglieri">
                                 <content>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="102.0" prefWidth="248.0" styleClass="background" stylesheets="@../css/game.css">
                                        <children>
@@ -180,7 +180,7 @@
                                     </AnchorPane>
                                 </content>
                               </TitledPane>
-                              <TitledPane alignment="CENTER" animated="false" collapsible="false" prefHeight="133.0" prefWidth="108.0" styleClass="background" stylesheets="@../css/game.css" text="Pesca carta!">
+                              <TitledPane alignment="CENTER" animated="false" collapsible="false" mouseTransparent="true" prefHeight="133.0" prefWidth="108.0" styleClass="titlepane" stylesheets="@../css/game.css" text="Pesca carta!">
                                  <content>
                                     <Pane styleClass="background" stylesheets="@../css/game.css">
                                        <children>
@@ -199,9 +199,9 @@
                   </VBox>
                   <VBox prefHeight="720.0" prefWidth="545.0">
                      <children>
-                        <TitledPane alignment="CENTER" animated="false" collapsible="false" prefHeight="87.0" prefWidth="465.0" text="Giocatore">
+                        <TitledPane alignment="CENTER" animated="false" collapsible="false" mouseTransparent="true" prefHeight="87.0" prefWidth="465.0" styleClass="titlepane" stylesheets="@../css/game.css" text="Giocatore">
                            <content>
-                              <AnchorPane prefHeight="34.0" prefWidth="523.0" styleClass="background" stylesheets="@../css/game.css">
+                              <AnchorPane mouseTransparent="true" prefHeight="34.0" prefWidth="523.0" styleClass="background" stylesheets="@../css/game.css">
                                  <children>
                                     <HBox layoutX="86.0" layoutY="32.0" prefHeight="57.0" prefWidth="435.0" AnchorPane.bottomAnchor="-10.0" AnchorPane.rightAnchor="-10.0">
                                        <children>
@@ -272,7 +272,7 @@
                               </AnchorPane>
                            </content>
                         </TitledPane>
-                        <TitledPane alignment="CENTER" animated="false" collapsible="false" text="Tessere Permesso">
+                        <TitledPane alignment="CENTER" animated="false" collapsible="false" mouseTransparent="true" styleClass="titlepane" stylesheets="@../css/game.css" text="Tessere Permesso">
                            <content>
                               <ScrollPane maxHeight="-Infinity" prefHeight="73.0" prefViewportHeight="60.0" prefViewportWidth="56.0">
                                  <content>
@@ -281,19 +281,19 @@
                               </ScrollPane>
                            </content>
                         </TitledPane>
-                        <TitledPane alignment="CENTER" animated="false" collapsible="false" prefHeight="103.0" prefWidth="525.0" stylesheets="@../css/game.css" text="Carte Politica">
+                        <TitledPane alignment="CENTER" animated="false" collapsible="false" mouseTransparent="true" prefHeight="103.0" prefWidth="525.0" styleClass="titlepane" stylesheets="@../css/game.css" text="Carte Politica">
                            <content>
                               <HBox styleClass="background" stylesheets="@../css/game.css">
                                  <children>
                                     <ScrollPane maxHeight="-Infinity" prefHeight="95.0" prefViewportHeight="60.0" prefViewportWidth="200.0" prefWidth="424.0">
                                        <content>
-                                          <HBox fx:id="cartePolitica" maxHeight="-Infinity" prefHeight="75.0" prefWidth="422.0" spacing="10.0" styleClass="background" stylesheets="@../css/game.css" />
+                                          <HBox fx:id="cartePolitica" maxHeight="-Infinity" prefHeight="69.0" prefWidth="422.0" spacing="10.0" styleClass="background" stylesheets="@../css/game.css" />
                                        </content>
                                        <HBox.margin>
                                           <Insets bottom="-10.0" left="-10.0" top="-10.0" />
                                        </HBox.margin>
                                     </ScrollPane>
-                                    <Button fx:id="conferma" disable="true" mnemonicParsing="false" onAction="#handleConferma" prefHeight="33.0" prefWidth="72.0" text="Ok!">
+                                    <Button fx:id="conferma" disable="true" mnemonicParsing="false" onAction="#handleConferma" prefHeight="33.0" prefWidth="72.0" styleClass="mybutton" stylesheets="@../css/game.css" text="Ok!">
                                        <HBox.margin>
                                           <Insets left="15.0" top="12.0" />
                                        </HBox.margin>
@@ -302,7 +302,7 @@
                               </HBox>
                            </content>
                         </TitledPane>
-                        <TitledPane alignment="CENTER" collapsible="false" prefHeight="89.0" prefWidth="525.0" stylesheets="@../css/game.css" text="Server Message">
+                        <TitledPane alignment="CENTER" animated="false" collapsible="false" mouseTransparent="true" prefHeight="89.0" prefWidth="525.0" styleClass="titlepane" stylesheets="@../css/game.css" text="Server Message">
                            <content>
                               <ScrollPane maxHeight="50.0" minHeight="50.0" prefHeight="79.0" prefWidth="465.0">
                                 <content>
@@ -319,7 +319,7 @@
                            <children>
                               <VBox prefHeight="200.0" prefWidth="100.0">
                                  <children>
-                                    <TitledPane alignment="CENTER" animated="false" collapsible="false" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="162.0" prefWidth="232.0" text="Azioni Principali">
+                                    <TitledPane alignment="CENTER" animated="false" collapsible="false" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="true" prefHeight="162.0" prefWidth="232.0" styleClass="titlepane" stylesheets="@../css/game.css" text="Azioni Principali">
                                       <content>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="67.0" prefWidth="105.0" styleClass="background" stylesheets="@../css/game.css">
                                              <children>
@@ -334,17 +334,17 @@
                                                       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                                    </rowConstraints>
                                                    <children>
-                                                      <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="209.0" text="Costruzione Tessera Permesso" GridPane.rowIndex="3" />
-                                                      <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="209.0" text="Costruzione Aiuto Re" GridPane.rowIndex="2" />
-                                                      <Button fx:id="elezioneConsigliere" mnemonicParsing="false" onAction="#elezioneConsigliere" prefHeight="27.0" prefWidth="209.0" text="Elezione Consigliere" GridPane.rowIndex="1" />
-                                                      <Button fx:id="acquistoTesseraPermesso" mnemonicParsing="false" onAction="#acquistoTesseraPermesso" prefHeight="27.0" prefWidth="209.0" text="Acquisto Tessera Permesso" />
+                                                      <Button mnemonicParsing="false" mouseTransparent="true" prefHeight="27.0" prefWidth="209.0" styleClass="mybutton" stylesheets="@../css/game.css" text="Costruzione Tessera Permesso" GridPane.rowIndex="3" />
+                                                      <Button mnemonicParsing="false" mouseTransparent="true" prefHeight="27.0" prefWidth="209.0" styleClass="mybutton" stylesheets="@../css/game.css" text="Costruzione Aiuto Re" GridPane.rowIndex="2" />
+                                                      <Button fx:id="elezioneConsigliere" mnemonicParsing="false" mouseTransparent="true" onAction="#elezioneConsigliere" prefHeight="27.0" prefWidth="209.0" styleClass="mybutton" stylesheets="@../css/game.css" text="Elezione Consigliere" GridPane.rowIndex="1" />
+                                                      <Button fx:id="acquistoTesseraPermesso" mnemonicParsing="false" mouseTransparent="true" onAction="#acquistoTesseraPermesso" prefHeight="27.0" prefWidth="209.0" styleClass="mybutton" stylesheets="@../css/game.css" text="Acquisto Tessera Permesso" />
                                                    </children>
                                                 </GridPane>
                                              </children>
                                           </AnchorPane>
                                       </content>
                                     </TitledPane>
-                                    <TitledPane alignment="CENTER" animated="false" collapsible="false" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="182.0" prefWidth="232.0" text="Azioni Veloci">
+                                    <TitledPane alignment="CENTER" animated="false" collapsible="false" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="true" prefHeight="182.0" prefWidth="232.0" styleClass="titlepane" stylesheets="@../css/game.css" text="Azioni Veloci">
                                       <content>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" styleClass="background" stylesheets="@../css/game.css">
                                              <children>
@@ -360,11 +360,11 @@
                                                       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                                    </rowConstraints>
                                                    <children>
-                                                      <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="209.0" text="Cambio Tessere Permeso" GridPane.rowIndex="3" />
-                                                      <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="209.0" text="Elezione Consigliere" GridPane.rowIndex="2" />
-                                                      <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="209.0" text="Ingaggio Aiutante" GridPane.rowIndex="1" />
-                                                      <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="209.0" text="Azione Principale" />
-                                                      <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="209.0" text="&gt;&gt; Salta Azione Veloce" GridPane.rowIndex="4" />
+                                                      <Button mnemonicParsing="false" mouseTransparent="true" prefHeight="27.0" prefWidth="209.0" styleClass="mybutton" stylesheets="@../css/game.css" text="Cambio Tessere Permeso" GridPane.rowIndex="3" />
+                                                      <Button mnemonicParsing="false" mouseTransparent="true" prefHeight="27.0" prefWidth="209.0" styleClass="mybutton" stylesheets="@../css/game.css" text="Elezione Consigliere" GridPane.rowIndex="2" />
+                                                      <Button mnemonicParsing="false" mouseTransparent="true" prefHeight="27.0" prefWidth="209.0" styleClass="mybutton" stylesheets="@../css/game.css" text="Ingaggio Aiutante" GridPane.rowIndex="1" />
+                                                      <Button mnemonicParsing="false" mouseTransparent="true" prefHeight="27.0" prefWidth="209.0" styleClass="mybutton" stylesheets="@../css/game.css" text="Azione Principale" />
+                                                      <Button mnemonicParsing="false" mouseTransparent="true" prefHeight="27.0" prefWidth="209.0" styleClass="mybutton" stylesheets="@../css/game.css" text="&gt;&gt; Salta Azione Veloce" GridPane.rowIndex="4" />
                                                    </children>
                                                 </GridPane>
                                              </children>
@@ -375,12 +375,12 @@
                               </VBox>
                               <VBox>
                                  <children>
-                                    <TitledPane alignment="CENTER" animated="false" collapsible="false" prefHeight="80.0" prefWidth="293.0" text="Bonus">
+                                    <TitledPane alignment="CENTER" animated="false" collapsible="false" mouseTransparent="true" prefHeight="80.0" prefWidth="293.0" styleClass="titlepane" stylesheets="@../css/game.css" text="Bonus">
                                       <content>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                                       </content>
                                     </TitledPane>
-                                    <TitledPane alignment="CENTER" animated="false" collapsible="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="264.0" prefWidth="293.0" text="Chat">
+                                    <TitledPane alignment="CENTER" animated="false" collapsible="false" minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="true" prefHeight="264.0" prefWidth="293.0" styleClass="titlepane" stylesheets="@../css/game.css" text="Chat">
                                       <content>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="279.0" prefWidth="291.0" styleClass="background" stylesheets="@../css/game.css" />
                                       </content>
