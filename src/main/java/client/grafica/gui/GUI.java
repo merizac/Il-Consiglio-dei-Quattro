@@ -448,6 +448,21 @@ public class GUI extends Application implements Grafica {
 			}
 		}
 		RegioneDTO regioneDTO=(RegioneDTO) parametro;
+		List<ImageView> tessere=null;
+		switch(regioneDTO.getNome()){
+		case("Mare"):
+			tessere=controller.getTessereMare();
+		case("Collina"):
+			tessere=controller.getTessereCollina();
+		case("Montagna"):
+			tessere=controller.getTessereMontagna();
+		}
+		for(ImageView i: tessere){
+			i.setDisable(false);
+		}
+		for(ImageView i: r){
+			i.setDisable(true);
+		}
 		parametro=null;
 		return regioneDTO;
 	}
@@ -464,8 +479,11 @@ public class GUI extends Application implements Grafica {
 				}
 			}
 		}
-
 		TesseraPermessoDTO tesseraPermessoDTO = (TesseraPermessoDTO) parametro;
+		List<ImageView> tessere=controller.getTesserePermessoRegioni();
+		for(ImageView i: tessere){
+			i.setDisable(true);
+		}
 		parametro = null;
 		return tesseraPermessoDTO;
 	}

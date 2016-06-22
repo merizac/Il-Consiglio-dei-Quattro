@@ -123,6 +123,13 @@ public class GUIGameController {
 	private Button secondaAzionePrincipale;
 
 	@FXML
+	private ImageView regioneMare;
+	@FXML
+	private ImageView regioneCollina;
+	@FXML
+	private ImageView regioneMontagna;
+	
+	@FXML
 	private HBox balconeMare;
 	@FXML
 	private HBox balconeCollina;
@@ -931,8 +938,28 @@ public class GUIGameController {
 	}
 
 	public List<ImageView> getRegioni() {
-		// TODO Auto-generated method stub
-		return null;
+		return Arrays.asList(regioneMare, regioneCollina, regioneMontagna);
+	}
+
+	public List<ImageView> getTessereMare() {
+		return Arrays.asList(tesseraMare1, tesseraMare2);
+	}
+
+	public List<ImageView> getTessereCollina() {
+		return Arrays.asList(tesseraCollina1, tesseraCollina2);
+	}
+
+	public List<ImageView> getTessereMontagna() {
+		return Arrays.asList(tesseraMontagna1, tesseraMontagna2);
+	}
+
+	public List<ImageView> getTesserePermessoRegioni() {
+		List<ImageView> tessere=new ArrayList<>();
+		tessere.addAll(this.getTessereCollina());
+		tessere.addAll(this.getTessereMare());
+		tessere.addAll(this.getTessereMontagna());
+		
+		return tessere;
 	}
 	
 }
