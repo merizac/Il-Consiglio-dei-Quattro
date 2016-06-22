@@ -49,8 +49,7 @@ public class GUIGameController {
 	private Map<String, Image> mappaConsiglieri = new HashMap<>();
 	private Map<String, Image> mappaConsiglieriRiserva = new HashMap<>();
 
-	@FXML
-	private ImageView mazzoCarte;
+	
 	@FXML
 	private HBox tesserePermesso;
 	@FXML
@@ -853,7 +852,8 @@ public class GUIGameController {
 	@FXML
 	public void handleConferma(ActionEvent event){
 		synchronized (gui.getLock()) {
-			gui.setCarteInserite(false);
+			gui.setCarteInserite(true);
+			gui.setParametro(new Object());
 			gui.getLock().notify();
 		}
 	}
@@ -861,6 +861,14 @@ public class GUIGameController {
 	@FXML
 	public void handleConsigliereRiserva(Event event) {
 		synchronized(gui.getLock()){
+			gui.setParametro(((ImageView)event.getSource()).getUserData());
+			gui.getLock().notifyAll();
+		}
+	}
+	
+	@FXML
+	public void handleRegione(Event event){
+		synchronized (gui.getLock()) {
 			gui.setParametro(((ImageView)event.getSource()).getUserData());
 			gui.getLock().notifyAll();
 		}
@@ -920,6 +928,11 @@ public class GUIGameController {
 
 	public Button getConferma() {
 		return this.conferma;
+	}
+
+	public List<ImageView> getRegioni() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
