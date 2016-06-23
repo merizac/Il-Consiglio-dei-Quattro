@@ -209,9 +209,7 @@ public class GUIGameController {
 	private HBox emporiOsium;
 	@FXML
 	private HBox emporiMerkatim;
-	
-	
-	
+
 	@FXML
 	private Button arkon;
 	@FXML
@@ -482,13 +480,14 @@ public class GUIGameController {
 						for (Button b : getAzioni())
 							b.setDisable(false);
 						return;
-					} else if (azioneDTO instanceof AzioneParametri)
+					} else if (azioneDTO instanceof AzioneParametri) {
 						try {
 							((AzioneParametri) azioneDTO).parametri().setParametri(gui, gameStateDTO);
 						} catch (AzioneNonEseguibile e) {
 							gui.mostraMessaggio(e.getMessage());
 							return;
 						}
+					}
 					try {
 						gui.getConnessione().inviaAzione(azioneDTO);
 						for (Button b : getAzioni())
@@ -501,6 +500,7 @@ public class GUIGameController {
 					e.printStackTrace();
 				}
 			}
+
 		});
 	}
 
@@ -897,6 +897,7 @@ public class GUIGameController {
 	public void handleCartaPolitica(Event event) {
 		synchronized (gui.getLock()) {
 			((ImageView) event.getSource()).setDisable(true);
+			((ImageView) event.getSource()).setOpacity(0.5);
 			gui.setParametro(((ImageView) event.getSource()).getUserData());
 			gui.getLock().notify();
 		}
@@ -915,6 +916,7 @@ public class GUIGameController {
 	public void handleConsigliereRiserva(Event event) {
 		synchronized (gui.getLock()) {
 			gui.setParametro(((ImageView) event.getSource()).getUserData());
+			((ImageView) event.getSource()).setOpacity(0.5);
 			gui.getLock().notifyAll();
 		}
 	}
@@ -1062,11 +1064,12 @@ public class GUIGameController {
 		List<Button> cittàCostruzione = new ArrayList<>();
 		System.out.println(città);
 		for (Button b : this.città) {
-			System.out.println("città tessera "+b.getUserData()+ città.contains(b.getUserData()));
-			if ( !((CittàDTO)b.getUserData()).getEmpori().contains(gameStateDTO.getGiocatoreDTO().getColoreGiocatore()) && città.contains((CittàDTO) b.getUserData()))
+			System.out.println("città tessera " + b.getUserData() + città.contains(b.getUserData()));
+			if (!((CittàDTO) b.getUserData()).getEmpori().contains(gameStateDTO.getGiocatoreDTO().getColoreGiocatore())
+					&& città.contains((CittàDTO) b.getUserData()))
 				cittàCostruzione.add(b);
 		}
-		System.out.println("Città costuzioni: "+cittàCostruzione);
+		System.out.println("Città costuzioni: " + cittàCostruzione);
 		return cittàCostruzione;
 	}
 
@@ -1078,8 +1081,8 @@ public class GUIGameController {
 	}
 
 	public Button getRe() {
-		for(Button b: città)
-			if(b.getUserData().equals(gameStateDTO.getPedinaRE()))
+		for (Button b : città)
+			if (b.getUserData().equals(gameStateDTO.getPedinaRE()))
 				return b;
 		return null;
 	}

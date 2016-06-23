@@ -16,7 +16,10 @@ public class ElezioneConsigliereVeloceParametri implements SetterParametri {
 
 	@Override
 	public void setParametri(Grafica grafica, GameStateDTO gameStateDTO) {
+		
+		grafica.mostraMessaggio("Seleziona il consigliere dalla riserva");
 		ConsigliereDTO consigliereScelto = grafica.scegliConsigliere(gameStateDTO.getConsiglieri());
+		grafica.mostraMessaggio("Seleziona il balcone");
 		BalconeDTO balconeScelto = grafica.scegliBalcone(gameStateDTO.getRegioni(),
 				gameStateDTO.getPlanciaReDTO().getBalconeRe());
 		elezioneConsigliereVeloceDTO.setConsigliere(consigliereScelto);
