@@ -1028,11 +1028,13 @@ public class GUIGameController {
 
 	public List<Button> getCittàSenzaEmporio(Set<? extends CittàDTO> città) {
 		List<Button> cittàCostruzione = new ArrayList<>();
+		System.out.println(città);
 		for (Button b : this.città) {
-			if (!((CittàDTO) b.getUserData()).getEmpori().contains(gameStateDTO.getGiocatoreDTO().getColoreGiocatore())
-					&& città.contains((CittàDTO) b.getUserData()))
+			System.out.println("città tessera "+b.getUserData()+ città.contains(b.getUserData()));
+			if ( !((CittàDTO)b.getUserData()).getEmpori().contains(gameStateDTO.getGiocatoreDTO().getColoreGiocatore()) && città.contains((CittàDTO) b.getUserData()))
 				cittàCostruzione.add(b);
 		}
+		System.out.println("Città costuzioni: "+cittàCostruzione);
 		return cittàCostruzione;
 	}
 
