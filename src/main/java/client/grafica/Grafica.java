@@ -68,4 +68,6 @@ public interface Grafica {
 	public List<CittàBonusDTO> scegliUnaCittà();
 
 	public List<CittàBonusDTO> scegliDueCittà();
+
+	public void startMarket();
 }

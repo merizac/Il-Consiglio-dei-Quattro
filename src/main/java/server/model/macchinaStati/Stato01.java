@@ -11,63 +11,70 @@ import server.model.azioni.azioniVeloci.IngaggioAiutante;
 import server.model.azioni.azioniVeloci.SecondaAzionePrincipale;
 import server.model.game.GameState;
 import server.model.notify.AzioniNotify;
+import server.model.notify.MarketNotify;
 import server.model.notify.MessageNotify;
 
 public class Stato01 implements Stato {
-	
+
 	private List<Azione> azioni;
 
 	public Stato01(GameState gameState) {
-		System.out.println("[SERVER] "+ this);
-		azioni= Arrays.asList(new IngaggioAiutante(), new CambioTesseraPermesso(), 
-				new ElezioneConsigliereVeloce(), new SecondaAzionePrincipale(), new Passa());
+		System.out.println("[SERVER] " + this);
+		azioni = Arrays.asList(new IngaggioAiutante(), new CambioTesseraPermesso(), new ElezioneConsigliereVeloce(),
+				new SecondaAzionePrincipale(), new Passa());
 		gameState.notifyObserver(new MessageNotify("AZIONI VELOCI", Arrays.asList(gameState.getGiocatoreCorrente())));
 		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
-		
-	}
 
+	}
 
 	@Override
 	public void transizioneVeloce(GameState gameState) {
-		if(gameState.isUltimoGiro()){
-			if(!gameState.lastNextPlayer()){
+		if (gameState.isUltimoGiro()) {
+			if (!gameState.lastNextPlayer()) {
 
 				gameState.setStato(new StartEnd(gameState));
-			}
-			else{
+			} else {
 				gameState.calcolaVincitore();
 			}
-			
-		}
-		else{
+
+		} else {
 			gameState.nextPlayer();
 			gameState.prossimoTurno();
-			System.out.println("[SERVER] numero turno 01: "+gameState.getNumeroTurni());
+			System.out.println("[SERVER] numero turno 01: " + gameState.getNumeroTurni());
 			if (gameState.getNumeroTurni() != gameState.getGiocatori().size())
 				gameState.setStato(new StartEnd(gameState));
-			else
+			else {
+				try{
+				gameState.notifyObserver(new MarketNotify(gameState.getGiocatori()));}
+				catch(Exception e){
+					e.printStackTrace();
+				}
 				gameState.setStato(new StatoOffertaMarket(gameState));
-		}	
+
+			}
+		}
+
 	}
 
 	@Override
 	public void transizioneSecondaPrincipale(GameState gameState) {
 		gameState.setStato(new Stato10(gameState));
-		
+
 	}
-	
+
 	@Override
-	public void transizionePassa(GameState gameState){
+	public void transizionePassa(GameState gameState) {
 		this.transizioneVeloce(gameState);
 	}
-	
 
 	@Override
 	public List<Azione> getAzioni() {
 		return this.azioni;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -75,9 +82,4 @@ public class Stato01 implements Stato {
 		return "Stato01";
 	}
 
-
-	
-	
-
-	
 }
