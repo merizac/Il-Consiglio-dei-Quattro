@@ -2,13 +2,11 @@ package client.grafica.gui;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import javax.sql.rowset.spi.SyncResolver;
 
 import client.connessione.Connessione;
 import client.grafica.Grafica;
@@ -300,6 +298,7 @@ public class GUI extends Application implements Grafica {
 						}
 					});
 					image.setDisable(true);
+					image.setUserData(t);
 					tesserePermesso.getChildren().add(image);
 				}
 			}
