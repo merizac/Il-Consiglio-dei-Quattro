@@ -1,5 +1,5 @@
 .scroll-bar{
-	    -fx-background-color:black;
+	    -fx-background-color:transparent;
 }
 
 /* The main scrollbar **track** CSS class  */
@@ -41,7 +41,7 @@
 /* The main scrollbar **thumb** CSS class which we drag every time (movable) */
 .scroll-bar:horizontal .thumb,
 .scroll-bar:vertical .thumb {
-    -fx-background-color:derive(black,90%);
+    -fx-background-color:derive(#B87333,0%);
 	-fx-background-insets: 2, 0, 0;
 	-fx-background-radius: 2em;
 
