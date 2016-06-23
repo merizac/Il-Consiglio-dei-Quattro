@@ -48,9 +48,14 @@
 	
 }
 
+.transparentbutton{
+	-fx-background-color:transparent;
+	
+}
+
 	/*Bernard MT Condensed
 	 *Rockwell Extra Bold 
-	 *    -fx-cursor: "hand";
+	 *-fx-cursor: "hand";
  
 	 */
 .titlepane{
@@ -60,8 +65,6 @@
     -fx-font-size: 10.0pt;  
     -fx-alignment: center;  
     -fx-focus-color: black;
-
-	
 	-fx-border-color:  #d1ca85;
 	-fx-border-width: 1;
 	-fx-border-curve: yes;
