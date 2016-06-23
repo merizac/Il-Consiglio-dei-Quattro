@@ -179,7 +179,39 @@ public class GUIGameController {
 	private ImageView gettoneOsium;
 	@FXML
 	private ImageView gettoneMerkatim;
-
+	@FXML
+	private HBox emporiArkon;
+	@FXML
+	private HBox emporiBurgen;
+	@FXML
+	private HBox emporiCastrum;
+	@FXML
+	private HBox emporiDorful;
+	@FXML
+	private HBox emporiEsti;
+	@FXML
+	private HBox emporiFramek;
+	@FXML
+	private HBox emporiIndur;
+	@FXML
+	private HBox emporiGraden;
+	@FXML
+	private HBox emporiJuvelar;
+	@FXML
+	private HBox emporiHellar;
+	@FXML
+	private HBox emporiKultos;
+	@FXML
+	private HBox emporiNaris;
+	@FXML
+	private HBox emporiLyram;
+	@FXML
+	private HBox emporiOsium;
+	@FXML
+	private HBox emporiMerkatim;
+	
+	
+	
 	@FXML
 	private Button arkon;
 	@FXML
