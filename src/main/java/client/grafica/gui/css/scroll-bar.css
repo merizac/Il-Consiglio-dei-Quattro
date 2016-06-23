@@ -1,8 +1,12 @@
-.scroll-bar{
-	    -fx-background-color:transparent;
+.HBox{
+	-fx-background-color: red;
 }
 
-/* The main scrollbar **track** CSS class  */
+
+.scroll-bar{
+	-fx-background-color:red;
+}
+
 .scroll-bar:horizontal .track,
 .scroll-bar:vertical .track{
 	-fx-background-color:transparent;
@@ -11,7 +15,6 @@
 	-fx-border-radius:2em;
 }
 
-/* The increment and decrement button CSS class of scrollbar */
 .scroll-bar:horizontal .increment-button ,
 .scroll-bar:horizontal .decrement-button {
     -fx-background-color:transparent;
@@ -19,8 +22,6 @@
 	-fx-padding:0 0 10 0;
 
 }
-
-/* The increment and decrement button CSS class of scrollbar */
 
 .scroll-bar:vertical .increment-button ,
 .scroll-bar:vertical .decrement-button {
@@ -38,7 +39,6 @@
 	-fx-padding:0;
 }
 
-/* The main scrollbar **thumb** CSS class which we drag every time (movable) */
 .scroll-bar:horizontal .thumb,
 .scroll-bar:vertical .thumb {
     -fx-background-color:derive(#B87333,0%);

@@ -375,7 +375,7 @@ public class GUI extends Application implements Grafica {
 				TabPane giocatori = controller.getAvversari();
 				Tab tab = null;
 
-			/*	if (!tabAvversari.containsKey(avversario)) {
+				if (!tabAvversari.containsKey(avversario)) {
 					tab = new Tab();
 					tab.setText(avversario.getNome());
 					giocatori.getTabs().add(tab);
@@ -383,15 +383,6 @@ public class GUI extends Application implements Grafica {
 				} else {
 					tab = tabAvversari.get(avversario);
 				}
-				if (!tabAvversari.containsKey(avversario)) {
-					tab = new Tab();
-					tab.setText(avversario.getNome());
-					tabAvversari.put(avversario, tab);
-				}*/
-				
-				tab = new Tab();
-				tab.setText(avversario.getNome());
-				giocatori.getTabs().add(tab);
 				
 				VBox vbox = new VBox();
 				HBox hbox = new HBox();
@@ -400,7 +391,6 @@ public class GUI extends Application implements Grafica {
 				tab.setContent(vbox);
 
 				vbox.getChildren().add(hbox);
-				//giocatori.getTabs().add(tab);
 				hbox.setPadding(new Insets(5, 0, 0, 20));
 
 				Pane pane1 = new Pane();
