@@ -190,6 +190,11 @@ public class GUI extends Application implements Grafica {
 		controller.assegnaBottoniCittà(new ArrayList<>(gameStateDTO.getCittà()));
 		assegnaRegione();
 		assegnaAzioni();
+		assegnaRe();
+	}
+
+	private void assegnaRe() {
+		System.out.println(controller.getRe());
 	}
 
 	private void assegnaAzioni() {
