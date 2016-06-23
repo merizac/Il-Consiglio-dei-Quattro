@@ -665,7 +665,6 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public int scegliOfferta(List<OffertaDTO> offerte) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
