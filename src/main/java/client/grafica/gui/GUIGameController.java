@@ -209,9 +209,8 @@ public class GUIGameController {
 	private HBox emporiOsium;
 	@FXML
 	private HBox emporiMerkatim;
-	
-	
-	
+	@FXML
+	private Button quit;
 	@FXML
 	private Button arkon;
 	@FXML
