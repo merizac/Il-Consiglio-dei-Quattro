@@ -260,12 +260,11 @@ public class GUI extends Application implements Grafica {
 	}
 
 
-	/**
-	 * 
-	 * @param tesserePermesso
-	 *            HBox where it stamp tessere
-	 * @param tessereUsate
-	 *            0 if not stamp, else the number of tessere permesso used
+	/**      
+	 * @param tesserePermesso HBox where it stamp tessere
+	 * @param tessere
+	 * @param tessereUsate 0 if not stamp, else the number of tessere permesso used
+	 * @param dimensione
 	 */
 	private void stampaTesserePermesso(HBox tesserePermesso, List<TesseraPermessoDTO> tessere, int tessereUsate,
 			int dimensione) {
@@ -275,7 +274,7 @@ public class GUI extends Application implements Grafica {
 			@Override
 			public void run() {
 				tesserePermesso.getChildren().clear();
-				if (tessereUsate == 0) {
+				if (tessereUsate != 0) {
 					Pane pane = new Pane();
 					ImageView used = new ImageView();
 					Text text = new Text(Integer.toString(tessereUsate));
