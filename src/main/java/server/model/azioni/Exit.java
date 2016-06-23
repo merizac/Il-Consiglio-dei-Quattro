@@ -1,6 +1,7 @@
 package server.model.azioni;
 
 import common.azioniDTO.AzioneDTO;
+import common.azioniDTO.ExitDTO;
 import server.model.game.GameState;
 import server.model.game.Giocatore;
 import server.model.notify.GiocatoreDisconnessoNotify;
@@ -30,8 +31,7 @@ public class Exit extends Azione {
 	 */
 	@Override
 	public AzioneDTO getAzioneDTO() {
-		// TODO Auto-generated method stub
-		return null;
+		return new ExitDTO();
 	}
 
 	/**

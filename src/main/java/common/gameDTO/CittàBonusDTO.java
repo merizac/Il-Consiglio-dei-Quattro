@@ -51,5 +51,34 @@ public class CittàBonusDTO extends CittàDTO implements Serializable{
 		return this.getNome()+" Colore: "+this.getColoreDTO().getColore()
 				+" Empori: "+this.getEmpori()+" Bonus : "+bonus;
 	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((bonus == null) ? 0 : bonus.hashCode());
+		return result;
+	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (!(obj instanceof CittàBonusDTO))
+			return false;
+		CittàBonusDTO other = (CittàBonusDTO) obj;
+		if (bonus == null) {
+			if (other.bonus != null)
+				return false;
+		} else if (!bonus.equals(other.bonus))
+			return false;
+		return true;
+	}
 
 }

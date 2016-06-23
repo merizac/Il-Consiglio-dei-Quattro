@@ -7,6 +7,7 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.util.Arrays;
 import common.azioniDTO.AzioneDTO;
+import common.azioniDTO.ExitDTO;
 import common.azioniDTO.azioneVisitor.AzioneVisitor;
 import common.azioniDTO.azioneVisitor.AzioneVisitorImpl;
 import common.gameDTO.GiocatoreDTO;
@@ -85,6 +86,13 @@ public class ServerSocketView extends View implements Runnable {
 				if (object instanceof AzioneDTO) {
 
 					AzioneDTO action = (AzioneDTO) object;
+					if(action instanceof ExitDTO){
+						disconnetti();
+						Exit exit = new Exit();
+						exit.setGiocatore(giocatore);
+						this.notifyObserver(exit);
+						return;
+					}
 					AzioneVisitor azioneVisitor = new AzioneVisitorImpl(gameState, giocatore);
 					Azione azione = null;
 					try {
@@ -98,10 +106,7 @@ public class ServerSocketView extends View implements Runnable {
 					System.out
 							.println("[SERVER] Ricevuta l'azione " + azione + " dal giocatore " + giocatore.getNome());
 
-					if (azione instanceof Exit) {
-						disconnetti();
-						this.notifyObserver(azione);
-					} else if (azione.isTurno(giocatore, gameState)
+					if (azione.isTurno(giocatore, gameState)
 							&& gameState.getStato().daEseguire(gameState.getStato().getAzioni(), azione)) {
 						this.notifyObserver(azione);
 						System.out.println("[SERVER] Inviata l'azione " + azione);
@@ -116,6 +121,7 @@ public class ServerSocketView extends View implements Runnable {
 				Exit exit = new Exit();
 				exit.setGiocatore(giocatore);
 				this.notifyObserver(exit);
+				return;
 			}
 
 		}

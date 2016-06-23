@@ -9,9 +9,13 @@ public class ExitDTO implements AzioneDTO {
 
 	private static final long serialVersionUID = -3222018360249512953L;
 	private GiocatoreDTO giocatoreDTO;
-	
-	public ExitDTO(GiocatoreDTO giocatoreDTO){
+
+	public ExitDTO(GiocatoreDTO giocatoreDTO) {
 		this.giocatoreDTO = giocatoreDTO;
+	}
+
+	public ExitDTO() {
+		super();
 	}
 
 	@Override

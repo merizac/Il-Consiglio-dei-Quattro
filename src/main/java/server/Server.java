@@ -36,7 +36,7 @@ public class Server {
 	private static Map<GameState, Set<View>> partite;
 	private List<Giocatore> giocatori;
 	private boolean end = false;
-	private final int TIMEOUT = 5000;
+	private final int TIMEOUT = 10000;
 	private Timer timer;
 	private Registry registry;
 	private static Server instance = new Server();

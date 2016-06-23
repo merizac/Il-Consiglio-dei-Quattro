@@ -179,7 +179,39 @@ public class GUIGameController {
 	private ImageView gettoneOsium;
 	@FXML
 	private ImageView gettoneMerkatim;
-
+	@FXML
+	private HBox emporiArkon;
+	@FXML
+	private HBox emporiBurgen;
+	@FXML
+	private HBox emporiCastrum;
+	@FXML
+	private HBox emporiDorful;
+	@FXML
+	private HBox emporiEsti;
+	@FXML
+	private HBox emporiFramek;
+	@FXML
+	private HBox emporiIndur;
+	@FXML
+	private HBox emporiGraden;
+	@FXML
+	private HBox emporiJuvelar;
+	@FXML
+	private HBox emporiHellar;
+	@FXML
+	private HBox emporiKultos;
+	@FXML
+	private HBox emporiNaris;
+	@FXML
+	private HBox emporiLyram;
+	@FXML
+	private HBox emporiOsium;
+	@FXML
+	private HBox emporiMerkatim;
+	
+	
+	
 	@FXML
 	private Button arkon;
 	@FXML
@@ -1028,11 +1060,13 @@ public class GUIGameController {
 
 	public List<Button> getCittàSenzaEmporio(Set<? extends CittàDTO> città) {
 		List<Button> cittàCostruzione = new ArrayList<>();
+		System.out.println(città);
 		for (Button b : this.città) {
-			if (!((CittàDTO) b.getUserData()).getEmpori().contains(gameStateDTO.getGiocatoreDTO().getColoreGiocatore())
-					&& città.contains((CittàDTO) b.getUserData()))
+			System.out.println("città tessera "+b.getUserData()+ città.contains(b.getUserData()));
+			if ( !((CittàDTO)b.getUserData()).getEmpori().contains(gameStateDTO.getGiocatoreDTO().getColoreGiocatore()) && città.contains((CittàDTO) b.getUserData()))
 				cittàCostruzione.add(b);
 		}
+		System.out.println("Città costuzioni: "+cittàCostruzione);
 		return cittàCostruzione;
 	}
 
@@ -1041,6 +1075,13 @@ public class GUIGameController {
 				costruzioneAiutoRe, ingaggioAiutante, cambioTesseraPermesso, elezioneConsigliereVeloce,
 				secondaAzionePrincipale, passa);
 
+	}
+
+	public Button getRe() {
+		for(Button b: città)
+			if(b.getUserData().equals(gameStateDTO.getPedinaRE()))
+				return b;
+		return null;
 	}
 
 }

@@ -1,6 +1,5 @@
 package client.connessione;
 
-import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -63,15 +62,17 @@ public class ConnessioneSocket implements Connessione, Runnable {
 	
 	private void listen() {
 		while (!fine) {
-			try {
-				ClientNotify notify = (ClientNotify) socketIn.readObject();
+			
+				ClientNotify notify;
+				try {
+					notify = (ClientNotify) socketIn.readObject();
+				} catch (ClassNotFoundException | IOException e) {
+					disconnetti();
+					return;
+				}
 				grafica.notify(notify);
-			} catch (EOFException e) {
-				e.printStackTrace();
-			} catch (ClassNotFoundException | IOException e) {
-				disconnetti();
-			}
 		}
+		
 	}
 
 	/**
@@ -96,8 +97,7 @@ public class ConnessioneSocket implements Connessione, Runnable {
 		try {
 			this.socket.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Client chiuso");
 		}
 	}
 
@@ -126,6 +126,7 @@ public class ConnessioneSocket implements Connessione, Runnable {
 	public void start() throws RemoteException {
 		ExecutorService executor = Executors.newSingleThreadExecutor();
 		executor.submit(this);
+		executor.shutdown();
 	}
 
 
