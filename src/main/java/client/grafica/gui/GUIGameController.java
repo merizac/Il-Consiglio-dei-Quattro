@@ -115,7 +115,7 @@ public class GUIGameController {
 	@FXML
 	private Button passa;
 	@FXML
-	private ImageView pescaCarta;
+	private Button pescaCarta;
 	@FXML
 	private Button elezioneConsigliere;
 	@FXML
