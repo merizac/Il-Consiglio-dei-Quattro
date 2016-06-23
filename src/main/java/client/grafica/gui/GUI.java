@@ -313,13 +313,40 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public void mostraMessaggio(String messaggio) {
-		controller.getMessage().appendText(messaggio);
+		controller.getMessage().appendText("\n"+messaggio);
 	}
 
 	@Override
 	public void mostraOfferte(List<OffertaDTO> offerte) {
 		// TODO Auto-generated method stub
 
+	}
+	
+	@Override
+	public void startMarket() {
+		Platform.runLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				FXMLLoader fxmloader = new FXMLLoader();
+				fxmloader.setLocation(getClass().getClassLoader().getResource("client/grafica/gui/fxml/market.fxml"));
+
+				Parent root=null;
+				try {
+					root = fxmloader.load();
+					Scene theScene = new Scene(root);
+					Stage market=new Stage();
+					//controller = fxmloader.getController();
+					//controller.setGameStateDTO(this.gameStateDTO);
+					//controller.setGui(this);
+					market.setScene(theScene);
+					market.show();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
 	@Override
@@ -477,6 +504,7 @@ public class GUI extends Application implements Grafica {
 			ConsigliereDTO consigliereDTO = (ConsigliereDTO) parametro;
 			for (ImageView consigliere : riserva) {
 				consigliere.setDisable(true);
+				consigliere.setOpacity(1);
 			}
 			parametro = null;
 			return consigliereDTO;
@@ -661,6 +689,8 @@ public class GUI extends Application implements Grafica {
 				parametro = null;
 			}
 		}
+		for(ImageView i: cartePolitica)
+			i.setOpacity(1);
 		controller.getConferma().setDisable(true);
 		System.out.println("carte politica" + carte);
 		return carte;
@@ -702,4 +732,5 @@ public class GUI extends Application implements Grafica {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 }
