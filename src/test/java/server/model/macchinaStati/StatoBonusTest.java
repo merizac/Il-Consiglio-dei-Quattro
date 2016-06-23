@@ -74,7 +74,7 @@ public class StatoBonusTest {
 		gameState.setStato(statoBonus);
 		statoBonus.transizioneBonus(gameState);
 
-		assertTrue(gameState.getStato() instanceof StatoBonus);
+		assertTrue(gameState.getStato() instanceof Stato01);
 	}
 	
 	@Test
@@ -87,7 +87,6 @@ public class StatoBonusTest {
 		gameState.setStato(statoBonus);
 
 		statoBonus.transizioneBonus(gameState);
-		System.out.println(gameState.getStato().toString());
 		assertTrue(gameState.getStato() instanceof StatoBonus);
 	}
 
@@ -155,8 +154,8 @@ public class StatoBonusTest {
 		notify.clear();
 		StatoBonus statoBonus=new StatoBonus(gameState, stato11);
 		statoBonus.transizionePassa(gameState);
- 
-		assertTrue(gameState.getStato() instanceof StatoBonus);
+
+		assertTrue(gameState.getStato() instanceof Stato01);
 	}
 	
 }
