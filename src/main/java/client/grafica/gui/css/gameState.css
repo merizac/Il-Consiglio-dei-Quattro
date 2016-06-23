@@ -1,6 +1,6 @@
 .sfondo{
 -fx-background-image: url("./antica2.jpg"); 
- -fx-background-repeat: repeat;
+/*  -fx-background-repeat: repeat;
 /*  -fx-background-size: contain;*/
 }
 
