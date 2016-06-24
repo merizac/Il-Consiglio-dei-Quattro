@@ -1053,19 +1053,20 @@ public class GUIGameController {
 		tessere.addAll(this.getTessereCollina());
 		tessere.addAll(this.getTessereMare());
 		tessere.addAll(this.getTessereMontagna());
-
 		return tessere;
 	}
 
 	public List<Button> getCittàSenzaEmporio(Set<? extends CittàDTO> città) {
 		List<Button> cittàCostruzione = new ArrayList<>();
-		System.out.println(città);
+		System.out.println(città.getClass());
 		for (Button b : this.città) {
 			System.out.println("città tessera "+b.getUserData()+ città.contains(b.getUserData()));
-			if ( !((CittàDTO)b.getUserData()).getEmpori().contains(gameStateDTO.getGiocatoreDTO().getColoreGiocatore()) && città.contains((CittàDTO) b.getUserData()))
-				cittàCostruzione.add(b);
+			System.out.println("città " + città + "\nb.getuserdata: "+ b.getUserData());
+			if ( !((CittàDTO)b.getUserData()).getEmpori().contains(gameStateDTO.getGiocatoreDTO().getColoreGiocatore()) 
+					&& città.contains((CittàDTO) b.getUserData())){
+				cittàCostruzione.add(b);}
 		}
-		System.out.println("Città costuzioni: "+cittàCostruzione);
+		System.out.println("Città costruzioni: "+cittàCostruzione);
 		return cittàCostruzione;
 	}
 

@@ -10,7 +10,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<ScrollPane prefHeight="722.0" prefWidth="1282.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.grafica.gui.GUIGameController">
+<ScrollPane prefHeight="722.0" prefWidth="1282.0" stylesheets="@../css/scroll-bar.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.grafica.gui.GUIGameController">
    <content>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0">
          <children>
@@ -291,7 +291,7 @@
                         </TitledPane>
                         <TitledPane alignment="CENTER" animated="false" collapsible="false" styleClass="titlepane" stylesheets="@../css/game.css" text="Tessere Permesso">
                            <content>
-                              <ScrollPane maxHeight="-Infinity" prefHeight="73.0" prefViewportHeight="60.0" prefViewportWidth="56.0">
+                              <ScrollPane maxHeight="-Infinity" prefHeight="73.0" prefViewportHeight="60.0" prefViewportWidth="56.0" stylesheets="@../css/scroll-bar.css">
                                  <content>
                                     <HBox fx:id="tesserePermesso" prefHeight="72.0" prefWidth="523.0" spacing="20.0" styleClass="background" stylesheets="@../css/game.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </content>
@@ -382,7 +382,14 @@
                               </VBox>
                               <TitledPane alignment="CENTER" animated="false" collapsible="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="322.0" prefWidth="177.0" styleClass="titlepane" stylesheets="@../css/game.css" text="Chat">
                                 <content>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="270.0" prefWidth="173.0" styleClass="background" stylesheets="@../css/game.css" />
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="270.0" prefWidth="173.0" styleClass="background" stylesheets="@../css/game.css">
+                                       <children>
+                                          <ScrollPane layoutX="-1.0" layoutY="-3.0" prefHeight="300.0" prefWidth="178.0" stylesheets="@../css/scroll-bar.css">
+                                            <content>
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="269.0" prefWidth="173.0" />
+                                            </content>
+                                          </ScrollPane>
+                                       </children></AnchorPane>
                                 </content>
                               </TitledPane>
                            </children>
