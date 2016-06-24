@@ -10,7 +10,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<ScrollPane prefHeight="722.0" prefWidth="1282.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.grafica.gui.GUIGameController">
+<ScrollPane prefHeight="722.0" prefWidth="1282.0" stylesheets="@../css/scroll-bar.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.grafica.gui.GUIGameController">
    <content>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0">
          <children>
@@ -175,7 +175,14 @@
                         </AnchorPane>
                         <HBox>
                            <children>
-                              <TabPane fx:id="giocatori" prefHeight="130.0" prefWidth="362.0" styleClass="background" stylesheets="@../css/game.css" tabClosingPolicy="UNAVAILABLE" />
+                              <TabPane fx:id="giocatori" prefHeight="130.0" prefWidth="362.0" styleClass="background" stylesheets="@../css/game.css" tabClosingPolicy="UNAVAILABLE">
+                                 <tabs>
+                                    <Tab text="prova colori">
+                                      <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                      </content>
+                                    </Tab>
+                                 </tabs></TabPane>
                               <TitledPane alignment="CENTER" animated="false" collapsible="false" prefHeight="130.0" prefWidth="285.0" styleClass="titlepane" stylesheets="@../css/game.css" text="Riserva dei Consiglieri">
                                 <content>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="102.0" prefWidth="248.0" styleClass="background" stylesheets="@../css/game.css">
@@ -224,7 +231,7 @@
                                        <children>
                                           <Pane prefHeight="57.0" prefWidth="72.5">
                                              <children>
-                                                <ImageView fitHeight="64.0" fitWidth="81.0" layoutX="13.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="50.0" fitWidth="81.0" layoutX="18.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../css/Point.png" />
                                                    </image>
@@ -234,7 +241,7 @@
                                           </Pane>
                                           <Pane prefHeight="57.0" prefWidth="72.5">
                                              <children>
-                                                <ImageView fitHeight="55.0" fitWidth="55.0" layoutX="9.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="50.0" fitWidth="55.0" layoutX="12.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../css/Coins.png" />
                                                    </image>
@@ -244,7 +251,7 @@
                                           </Pane>
                                           <Pane prefHeight="57.0" prefWidth="72.5">
                                              <children>
-                                                <ImageView fitHeight="58.0" fitWidth="27.0" layoutX="24.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="50.0" fitWidth="27.0" layoutX="24.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../css/Assistant.png" />
                                                    </image>
@@ -254,7 +261,7 @@
                                           </Pane>
                                           <Pane prefHeight="57.0" prefWidth="72.5">
                                              <children>
-                                                <ImageView fitHeight="54.0" fitWidth="52.0" layoutX="4.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="50.0" fitWidth="52.0" layoutX="5.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../css/Emporium.png" />
                                                    </image>
@@ -264,7 +271,7 @@
                                           </Pane>
                                           <Pane prefHeight="57.0" prefWidth="72.5">
                                              <children>
-                                                <ImageView fitHeight="61.0" fitWidth="85.0" layoutX="5.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="50.0" fitWidth="85.0" layoutX="10.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../css/Nobility.png" />
                                                    </image>
@@ -274,7 +281,7 @@
                                           </Pane>
                                           <Pane prefHeight="57.0" prefWidth="72.5">
                                              <children>
-                                                <ImageView fitHeight="49.0" fitWidth="77.0" layoutX="-2.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="50.0" fitWidth="77.0" layoutX="-2.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../css/BonusGiocatori.png" />
                                                    </image>
@@ -283,6 +290,9 @@
                                              </children>
                                           </Pane>
                                        </children>
+                                       <padding>
+                                          <Insets right="10.0" />
+                                       </padding>
                                     </HBox>
                                     <Text fx:id="nomeGiocatore" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="nomeGiocatore" wrappingWidth="100.84967041015625" />
                                  </children>
@@ -291,7 +301,7 @@
                         </TitledPane>
                         <TitledPane alignment="CENTER" animated="false" collapsible="false" styleClass="titlepane" stylesheets="@../css/game.css" text="Tessere Permesso">
                            <content>
-                              <ScrollPane maxHeight="-Infinity" prefHeight="73.0" prefViewportHeight="60.0" prefViewportWidth="56.0">
+                              <ScrollPane maxHeight="-Infinity" prefHeight="73.0" prefViewportHeight="60.0" prefViewportWidth="56.0" stylesheets="@../css/scroll-bar.css">
                                  <content>
                                     <HBox fx:id="tesserePermesso" prefHeight="72.0" prefWidth="523.0" spacing="20.0" styleClass="background" stylesheets="@../css/game.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </content>
@@ -325,12 +335,7 @@
                         </TitledPane>
                         <TitledPane alignment="CENTER" animated="false" collapsible="false" prefHeight="109.0" prefWidth="529.0" styleClass="titlepane" stylesheets="@../css/game.css" text="Server Message">
                            <content>
-                              <TextArea fx:id="message" editable="false" minHeight="58.0" prefHeight="58.0" prefWidth="522.0">
-                                 <stylesheets>
-                                    <URL value="@../css/game.css" />
-                                    <URL value="@../css/scroll-bar.css" />
-                                 </stylesheets>
-                              </TextArea>
+                              <TextArea fx:id="message" editable="false" minHeight="58.0" prefHeight="58.0" prefWidth="522.0" stylesheets="@../css/scroll-bar.css" />
                            </content>
                         </TitledPane>
                         <HBox>
