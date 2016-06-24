@@ -667,4 +667,10 @@ public class CLI implements Grafica {
 	public void startMarket() {
 		System.out.println("stato market");
 	}
+
+	@Override
+	public void mostraGiocatoreMarket(GiocatoreDTO giocatoreDTO) {
+		// TODO Auto-generated method stub
+		
+	}
 }

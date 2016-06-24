@@ -1,7 +1,16 @@
 package client.grafica.gui;
 
+import java.rmi.RemoteException;
+import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
+import common.azioniDTO.AzioneAcquistoDTO;
+import common.azioniDTO.AzioneDTO;
+import common.azioniDTO.AzioneOffertaDTO;
+import common.azioniDTO.AzioneParametri;
+import common.azioniDTO.PassaDTO;
 import common.gameDTO.GameStateDTO;
 import common.gameDTO.OffertaDTO;
 import javafx.event.ActionEvent;
@@ -12,6 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import utility.AzioneNonEseguibile;
 import utility.Utils;
 
 public class GUIMarketController {
@@ -35,6 +45,15 @@ public class GUIMarketController {
 	private Button passa;
 	@FXML
 	private TextField prezzo;
+	private List<Button> azioni;
+	
+	public GUIMarketController() {
+		
+		acquisto.setUserData(new AzioneAcquistoDTO());
+		offerta.setUserData(new AzioneOffertaDTO());
+		passa.setUserData(new PassaDTO());
+		azioni=Arrays.asList(acquisto, offerta, passa);
+	}
 	
 	
 	public void stampaOfferte(List<OffertaDTO> offerte){
@@ -91,7 +110,46 @@ public class GUIMarketController {
 	}
 	
 	public void handleAzione(ActionEvent event){
-		
+		ExecutorService executor = Executors.newSingleThreadExecutor();
+		executor.submit(new Runnable() {
+
+			@Override
+			public void run() {
+				try {
+					for (Button b : azioni)
+						b.setDisable(true);
+					AzioneDTO azioneDTO = gameStateDTO.getAzioniDisponibili().stream()
+							.filter(a -> a.getClass()
+									.equals(((AzioneDTO) ((Button) event.getSource()).getUserData()).getClass()))
+							.findAny().orElse(null);
+
+					if (azioneDTO == null) {
+						//gui.mostraMessaggio("L'azione non esiste \nInserire un'azione valida");
+						for (Button b : azioni)
+							b.setDisable(false);
+						return;
+					} else if (azioneDTO instanceof AzioneParametri) {
+						try {
+							((AzioneParametri) azioneDTO).parametri().setParametri(gui, gameStateDTO);
+						} catch (AzioneNonEseguibile e) {
+							//gui.mostraMessaggio(e.getMessage());
+							return;
+						}
+					}
+					try {
+						gui.getConnessione().inviaAzione(azioneDTO);
+						for (Button b : azioni)
+							b.setDisable(false);
+					} catch (RemoteException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+
+		});
 	}
 	
 	public void handleOfferta(Event event){

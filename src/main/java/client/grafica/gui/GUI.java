@@ -768,4 +768,10 @@ public class GUI extends Application implements Grafica {
 		return null;
 	}
 
+	@Override
+	public void mostraGiocatoreMarket(GiocatoreDTO giocatoreDTO) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

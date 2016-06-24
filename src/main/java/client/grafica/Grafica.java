@@ -70,4 +70,6 @@ public interface Grafica {
 	public List<CittàBonusDTO> scegliDueCittà();
 
 	public void startMarket();
+
+	public void mostraGiocatoreMarket(GiocatoreDTO giocatoreDTO);
 }
