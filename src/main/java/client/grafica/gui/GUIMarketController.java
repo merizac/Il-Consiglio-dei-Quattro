@@ -56,9 +56,6 @@ public class GUIMarketController {
 	}
 	
 	
-	public void stampaOfferte(List<OffertaDTO> offerte){
-		
-	}
 	
 	public VBox getOfferte(){
 		return offerte;

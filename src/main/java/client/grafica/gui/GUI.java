@@ -268,7 +268,6 @@ public class GUI extends Application implements Grafica {
 		});
 	}
 
-
 	/**      
 	 * @param tesserePermesso HBox where it stamp tessere
 	 * @param tessere
@@ -323,6 +322,53 @@ public class GUI extends Application implements Grafica {
 		controller.getMessage().appendText("\n"+messaggio);
 	}
 
+	@Override
+	public void mostraGiocatoreMarket(GiocatoreDTO giocatore){
+		Platform.runLater(new Runnable() {
+			
+			HBox tesserePermesso=controllerMarket.getTesserePermesso();
+			HBox aiutanti=controllerMarket.getAiutanti();
+			HBox cartePolitica=controllerMarket.getCartePolitica();
+			Map<String, Image> carte=controller.getMappaCartePolitica();
+			Map<String, Image> tessere=controller.getMappaTesserePermesso();
+			Map<String, Image> bonus=controller.getMappaBonus();
+			
+			@Override
+			public void run() {
+				
+				cartePolitica.getChildren().clear();
+				for (CartaPoliticaDTO c : giocatore.getCartePolitica()) {
+					ImageView image = new ImageView();
+					image.setFitHeight(60);
+					image.setPreserveRatio(true);
+					image.setImage(carte.get(c.toString()));
+					image.setDisable(true);
+					image.setUserData(c);
+					cartePolitica.getChildren().add(image);
+				}
+				
+				for(int i=0; i<giocatore.getAiutanti();i++){
+					ImageView image = new ImageView();
+					image.setFitHeight(60);
+					image.setPreserveRatio(true);
+					image.setImage(bonus.get("Aiutante"));
+					image.setDisable(true);
+					image.setUserData(new Aiutante(1));
+					aiutanti.getChildren().add(image);
+				}
+				
+				for (TesseraPermessoDTO t : giocatore.getTesserePermesso()) {
+					ImageView image = new ImageView();
+					image.setFitHeight(60);
+					image.setPreserveRatio(true);
+					image.setImage(tessere.get(t.toString()));
+					image.setDisable(true);
+					image.setUserData(t);
+					tesserePermesso.getChildren().add(image);
+				}
+			}
+		});
+	}
 	
 	@Override
 	public void mostraOfferte(List<OffertaDTO> offerte) {
@@ -351,7 +397,7 @@ public class GUI extends Application implements Grafica {
 		nome.setText(giocatore);
 		ImageView imageview=new ImageView();
 		Image image=null;
-		
+
 		if(oggetto instanceof AiutanteDTO){
 			image=aiutante.get("Aiutante");
 		}
@@ -362,6 +408,7 @@ public class GUI extends Application implements Grafica {
 			image=cartePolitica.get(oggetto.toString());
 		}		
 		
+		imageview.setImage(image);
 		Button soldi=new Button();
 		soldi.setText(Integer.toString(prezzo));
 				
@@ -768,10 +815,5 @@ public class GUI extends Application implements Grafica {
 		return null;
 	}
 
-	@Override
-	public void mostraGiocatoreMarket(GiocatoreDTO giocatoreDTO) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }
