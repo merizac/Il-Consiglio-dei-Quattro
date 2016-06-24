@@ -8,6 +8,8 @@ import client.connessione.ConnessioneSocket;
 import common.gameDTO.GiocatoreDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -37,17 +39,35 @@ public class GUIController {
 	@FXML
 	public void button(ActionEvent e){
 		if(nome.getText().isEmpty()){
-			errormessage.setText("Inserisci il tuo nome");
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Errore");
+			alert.setHeaderText("Non hai inserito il tuo nome!");
+			alert.setContentText("Ooops, riprova!");
+
+			alert.showAndWait();
+			//errormessage.setText("Inserisci il tuo nome");
 			return;
 		}
 		
 		else if(!socket.isSelected() && !rmi.isSelected()){
-			errormessage.setText("Seleziona la connessione");
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Errore");
+			alert.setHeaderText("Non hai inserito la connesione!");
+			alert.setContentText("Ooops, riprova!");
+
+			alert.showAndWait();
+			//errormessage.setText("Seleziona la connessione");
 			return;
 		}
 		
 		else if(socket.isSelected() && rmi.isSelected()){
-			errormessage.setText("Seleziona una sola connessione");
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Errore");
+			alert.setHeaderText("Seleziona una sola connessione!");
+			alert.setContentText("Ooops, riprova!");
+
+			alert.showAndWait();
+			//errormessage.setText("Seleziona una sola connessione");
 			return;
 		}
 		
