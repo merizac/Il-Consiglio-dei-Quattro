@@ -14,12 +14,6 @@ public class GUIMarketController {
 	private VBox offerte;
 	@FXML
 	private HBox vendita;
-	@FXML
-	private Button aiutante;
-	@FXML
-	private Button tesseraPermesso;
-	@FXML
-	private Button cartaPolitica;
 	
 	public void stampaOfferte(List<OffertaDTO> offerte){
 		
