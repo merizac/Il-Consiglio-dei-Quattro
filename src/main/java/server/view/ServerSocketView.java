@@ -13,6 +13,7 @@ import common.azioniDTO.azioneVisitor.AzioneVisitorImpl;
 import common.gameDTO.GiocatoreDTO;
 import server.Server;
 import server.model.azioni.Azione;
+import server.model.azioni.Chat;
 import server.model.azioni.Exit;
 import server.model.game.GameState;
 import server.model.game.Giocatore;
@@ -106,8 +107,9 @@ public class ServerSocketView extends View implements Runnable {
 					System.out
 							.println("[SERVER] Ricevuta l'azione " + azione + " dal giocatore " + giocatore.getNome());
 
-					if (azione.isTurno(giocatore, gameState)
-							&& gameState.getStato().daEseguire(gameState.getStato().getAzioni(), azione)) {
+					if ((azione.isTurno(giocatore, gameState) 
+							&& gameState.getStato().daEseguire(gameState.getStato().getAzioni(), azione))
+							|| (azione instanceof Chat)){
 						this.notifyObserver(azione);
 						System.out.println("[SERVER] Inviata l'azione " + azione);
 					} else {

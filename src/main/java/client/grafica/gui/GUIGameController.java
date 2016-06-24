@@ -14,6 +14,7 @@ import common.azioniDTO.AcquistoTesseraPermessoDTO;
 import common.azioniDTO.AzioneDTO;
 import common.azioniDTO.AzioneParametri;
 import common.azioniDTO.CambioTesserePermessoDTO;
+import common.azioniDTO.ChatDTO;
 import common.azioniDTO.CostruzioneAiutoReDTO;
 import common.azioniDTO.CostruzioneTesseraPermessoDTO;
 import common.azioniDTO.ElezioneConsigliereDTO;
@@ -22,33 +23,28 @@ import common.azioniDTO.IngaggioAiutanteDTO;
 import common.azioniDTO.PassaDTO;
 import common.azioniDTO.PescaCartaDTO;
 import common.azioniDTO.SecondaAzionePrincipaleDTO;
-import common.gameDTO.CartaPoliticaDTO;
 import common.gameDTO.CittàBonusDTO;
 import common.gameDTO.CittàDTO;
 import common.gameDTO.ConsigliereDTO;
 import common.gameDTO.GameStateDTO;
-import common.gameDTO.GiocatoreDTO;
 import common.gameDTO.RegioneDTO;
 import common.gameDTO.TesseraPermessoDTO;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import server.model.azioni.azioniVeloci.IngaggioAiutante;
 import utility.AzioneNonEseguibile;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 
 public class GUIGameController {
 
@@ -263,6 +259,8 @@ public class GUIGameController {
 
 	@FXML
 	private TextArea message;
+	@FXML
+	private TextField chat;
 
 	public GUIGameController() {
 
@@ -931,6 +929,23 @@ public class GUIGameController {
 	}
 
 	@FXML
+	public void handleChat(KeyEvent action) {
+		if (action.getCode() == KeyCode.ENTER) {
+			ChatDTO chat = new ChatDTO();
+			if (!this.chat.getText().isEmpty()) {
+				chat.setMessaggio(gameStateDTO.getGiocatoreDTO().getNome() + ": " + this.chat.getText());
+				this.chat.clear();
+				try {
+					gui.getConnessione().inviaAzione(chat);
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+	@FXML
 	public void handleTesseraPermessoGiocatore(Event event) {
 		synchronized (gui.getLock()) {
 			gui.setParametro(((ImageView) event.getSource()).getUserData());
@@ -1064,13 +1079,14 @@ public class GUIGameController {
 		List<Button> cittàCostruzione = new ArrayList<>();
 		System.out.println(città.getClass());
 		for (Button b : this.città) {
-			System.out.println("città tessera "+b.getUserData()+ città.contains(b.getUserData()));
-			System.out.println("città " + città + "\nb.getuserdata: "+ b.getUserData());
-			if ( !((CittàDTO)b.getUserData()).getEmpori().contains(gameStateDTO.getGiocatoreDTO().getColoreGiocatore()) 
-					&& città.contains((CittàDTO) b.getUserData())){
-				cittàCostruzione.add(b);}
+			System.out.println("città tessera " + b.getUserData() + città.contains(b.getUserData()));
+			System.out.println("città " + città + "\nb.getuserdata: " + b.getUserData());
+			if (!((CittàDTO) b.getUserData()).getEmpori().contains(gameStateDTO.getGiocatoreDTO().getColoreGiocatore())
+					&& città.contains((CittàDTO) b.getUserData())) {
+				cittàCostruzione.add(b);
+			}
 		}
-		System.out.println("Città costruzioni: "+cittàCostruzione);
+		System.out.println("Città costruzioni: " + cittàCostruzione);
 		return cittàCostruzione;
 	}
 

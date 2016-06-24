@@ -11,6 +11,7 @@ import common.azioniDTO.BonusGettoneNDTO;
 import common.azioniDTO.BonusTesseraAcquistataNDTO;
 import common.azioniDTO.BonusTesseraPermessoNDTO;
 import common.azioniDTO.CambioTesserePermessoDTO;
+import common.azioniDTO.ChatDTO;
 import common.azioniDTO.ControlloParametri;
 import common.azioniDTO.CostruzioneAiutoReDTO;
 import common.azioniDTO.CostruzioneTesseraPermessoDTO;
@@ -22,6 +23,7 @@ import common.azioniDTO.PassaBonusDTO;
 import common.azioniDTO.PassaDTO;
 import common.azioniDTO.PescaCartaDTO;
 import common.azioniDTO.SecondaAzionePrincipaleDTO;
+import server.model.azioni.Chat;
 import server.model.azioni.Exit;
 import server.model.azioni.Passa;
 import server.model.azioni.PescaCarta;
@@ -236,5 +238,12 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 		Giocatore giocatoreDisconnesso=ControlloParametri.cercaGiocatore(exitDTO.getGiocatoreDTO(), gameState.getGiocatori());
 		exit.setGiocatore(giocatoreDisconnesso);
 		return exit;
+	}
+
+	@Override
+	public Chat visit(ChatDTO chatDTO)  {
+		Chat chat = new Chat();
+		chat.setMessaggio(chatDTO.getMessaggio());
+		return chat;
 	}
 }

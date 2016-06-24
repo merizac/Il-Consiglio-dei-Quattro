@@ -12,6 +12,7 @@ import common.azioniDTO.azioneVisitor.AzioneVisitorImpl;
 import common.gameDTO.GiocatoreDTO;
 import server.Server;
 import server.model.azioni.Azione;
+import server.model.azioni.Chat;
 import server.model.azioni.Exit;
 import server.model.game.GameState;
 import server.model.game.Giocatore;
@@ -79,8 +80,9 @@ public class ServerRMIView extends View implements ServerRMIViewRemote{
 				this.unregister(getConnessione(((Exit) azione).getGiocatore()));
 				this.notifyObserver(azione);
 			}
-			else if (azione.isTurno(this.giocatori.get(connessioneRMIRemota), gameState) &&
-				gameState.getStato().daEseguire(gameState.getStato().getAzioni(), azione)){
+			else if ((azione.isTurno(this.giocatori.get(connessioneRMIRemota), gameState) &&
+				gameState.getStato().daEseguire(gameState.getStato().getAzioni(), azione))
+					|| (azione instanceof Chat)){
 			System.out.println("[SERVER] Inviata l'azione "+azione);
 			this.notifyObserver(azione);
 		}
