@@ -37,10 +37,6 @@ public class GUIMarketController {
 	private TextField prezzo;
 	
 	
-	public void stampaOfferte(List<OffertaDTO> offerte){
-		
-	}
-	
 	public VBox getOfferte(){
 		return offerte;
 	}
