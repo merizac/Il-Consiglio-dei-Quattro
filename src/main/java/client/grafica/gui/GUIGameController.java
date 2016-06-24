@@ -55,7 +55,8 @@ public class GUIGameController {
 	private Map<String, Image> mappaGettoni = new HashMap<>();
 	private Map<String, Image> mappaConsiglieri = new HashMap<>();
 	private Map<String, Image> mappaConsiglieriRiserva = new HashMap<>();
-
+	private Map<String, Image> mappaBonus=new HashMap<>();
+	
 	@FXML
 	private HBox tesserePermesso;
 	@FXML
@@ -263,7 +264,9 @@ public class GUIGameController {
 	private TextField chat;
 
 	public GUIGameController() {
-
+		this.mappaBonus.put("Aiutante", 
+				new Image(getClass().getResource("css/Assistant.png").toExternalForm()));
+		
 		this.mappaConsiglieri.put("Arancione",
 				new Image(getClass().getResource("css/consiglieri/Arancione.png").toExternalForm()));
 		this.mappaConsiglieri.put("Azzurro",
@@ -463,8 +466,6 @@ public class GUIGameController {
 
 			@Override
 			public void run() {
-				// AzioneDTO azione= (AzioneDTO)
-				// ((Button)event.getSource()).getUserData();
 				try {
 					for (Button b : getAzioni())
 						b.setDisable(true);
@@ -1027,6 +1028,10 @@ public class GUIGameController {
 
 	public Map<String, Image> getMappaCartePolitica() {
 		return this.mappaCarte;
+	}
+	
+	public Map<String, Image> getMappaBonus() {
+		return this.mappaBonus;
 	}
 
 	public List<ImageView> getConsiglieri() {
