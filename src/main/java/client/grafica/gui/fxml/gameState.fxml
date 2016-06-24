@@ -368,17 +368,33 @@
                                              <rowConstraints>
                                                 <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                              </rowConstraints>
+                                          </GridPane>
+                                          <GridPane prefHeight="61.0" prefWidth="173.0">
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
                                              <children>
-                                                <Button fx:id="passa" mnemonicParsing="false" onAction="#handleAzione" prefHeight="30.0" prefWidth="183.0" styleClass="mybutton" stylesheets="@../css/game.css" text="&gt;&gt; Salta Azione Veloce" />
+                                                <Button fx:id="quit" mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Quit" />
                                              </children>
                                           </GridPane>
+                                          <Button fx:id="passa" mnemonicParsing="false" onAction="#handleAzione" prefHeight="6.0" prefWidth="139.0" styleClass="mybutton" stylesheets="@../css/game.css" text="&gt;&gt; Salta Azione Veloce" />
                                        </children>
                                     </HBox>
                                  </children>
                               </VBox>
                               <TitledPane alignment="CENTER" animated="false" collapsible="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="322.0" prefWidth="177.0" styleClass="titlepane" stylesheets="@../css/game.css" text="Chat">
                                 <content>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="270.0" prefWidth="173.0" styleClass="background" stylesheets="@../css/game.css" />
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="270.0" prefWidth="173.0" styleClass="background" stylesheets="@../css/game.css">
+                                       <children>
+                                          <ScrollPane layoutX="-1.0" layoutY="-3.0" prefHeight="300.0" prefWidth="178.0" stylesheets="@../css/scroll-bar.css">
+                                            <content>
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="269.0" prefWidth="173.0" />
+                                            </content>
+                                          </ScrollPane>
+                                       </children></AnchorPane>
                                 </content>
                               </TitledPane>
                            </children>
