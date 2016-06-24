@@ -11,6 +11,7 @@ import javax.swing.plaf.synth.SynthSpinnerUI;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import server.model.azioni.Exit;
 import server.model.azioni.PescaCarta;
 import server.model.game.GameState;
 import server.model.game.Giocatore;
@@ -21,7 +22,7 @@ import utility.Observer;
 
 public class StartEndTest {
 
-/*	static GameState gameState;
+	static GameState gameState;
 	static List<Notify> notify;
 	
 	@BeforeClass
@@ -48,7 +49,7 @@ public class StartEndTest {
 		StartEnd startEnd=new StartEnd(gameState);
 		gameState.setStato(startEnd);
 		assertTrue(gameState.getStato() instanceof StartEnd);
-		assertTrue(notify.get(0) instanceof AzioniNotify);
+		assertTrue(notify.get(1) instanceof AzioniNotify);
 	}
 
 	@Test
@@ -63,8 +64,9 @@ public class StartEndTest {
 	public void testGetAzioni() {
 		StartEnd startEnd=new StartEnd(gameState);
 		gameState.setStato(startEnd);
-		assertTrue(startEnd.getAzioni().size()==1);
+		assertTrue(startEnd.getAzioni().size()==2);
 		assertTrue(startEnd.getAzioni().get(0) instanceof PescaCarta);
+		assertTrue(startEnd.getAzioni().get(1) instanceof Exit);
 	}
 
 	@Test
@@ -73,7 +75,7 @@ public class StartEndTest {
 		StartEnd startEnd=new StartEnd(gameState);
 		startEnd.transizioneBonus(gameState);
  
-		assertTrue(notify.get(1) instanceof MessageNotify);
+		assertTrue(notify.get(2) instanceof MessageNotify);
 	}
 	
 	@Test
@@ -82,7 +84,7 @@ public class StartEndTest {
 		StartEnd startEnd=new StartEnd(gameState);
 		startEnd.transizioneOfferta(gameState);
  
-		assertTrue(notify.get(1) instanceof MessageNotify);
+		assertTrue(notify.get(2) instanceof MessageNotify);
 	}
 	
 	@Test
@@ -91,7 +93,7 @@ public class StartEndTest {
 		StartEnd startEnd=new StartEnd(gameState);
 		startEnd.transizionePassa(gameState);
  
-		assertTrue(notify.get(1) instanceof MessageNotify);
+		assertTrue(notify.get(2) instanceof MessageNotify);
 	}
 
 	@Test
@@ -100,7 +102,7 @@ public class StartEndTest {
 		StartEnd startEnd=new StartEnd(gameState);
 		startEnd.transizionePrincipale(gameState);
  
-		assertTrue(notify.get(1) instanceof MessageNotify);
+		assertTrue(notify.get(2) instanceof MessageNotify);
 	}
 	
 	@Test
@@ -108,8 +110,7 @@ public class StartEndTest {
 		notify.clear();
 		StartEnd startEnd=new StartEnd(gameState);
 		startEnd.transizioneSecondaPrincipale(gameState);
- 
-		assertTrue(notify.get(1) instanceof MessageNotify);
+		assertTrue(notify.get(2) instanceof MessageNotify);
 	}
 	
 	@Test
@@ -118,7 +119,7 @@ public class StartEndTest {
 		StartEnd startEnd=new StartEnd(gameState);
 		startEnd.transizioneVeloce(gameState);
  
-		assertTrue(notify.get(1) instanceof MessageNotify);
-	}*/
+		assertTrue(notify.get(2) instanceof MessageNotify);
+	}
 
 }

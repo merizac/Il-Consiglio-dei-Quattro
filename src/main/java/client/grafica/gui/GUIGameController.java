@@ -59,7 +59,8 @@ public class GUIGameController {
 	private Map<String, Image> mappaGettoni = new HashMap<>();
 	private Map<String, Image> mappaConsiglieri = new HashMap<>();
 	private Map<String, Image> mappaConsiglieriRiserva = new HashMap<>();
-
+	private Map<String, Image> mappaBonus=new HashMap<>();
+	
 	@FXML
 	private HBox tesserePermesso;
 	@FXML
@@ -209,7 +210,8 @@ public class GUIGameController {
 	private HBox emporiOsium;
 	@FXML
 	private HBox emporiMerkatim;
-
+	@FXML
+	private Button quit;
 	@FXML
 	private Button arkon;
 	@FXML
@@ -264,7 +266,9 @@ public class GUIGameController {
 	private TextArea message;
 
 	public GUIGameController() {
-
+		this.mappaBonus.put("Aiutante", 
+				new Image(getClass().getResource("css/Assistant.png").toExternalForm()));
+		
 		this.mappaConsiglieri.put("Arancione",
 				new Image(getClass().getResource("css/consiglieri/Arancione.png").toExternalForm()));
 		this.mappaConsiglieri.put("Azzurro",
@@ -1010,6 +1014,10 @@ public class GUIGameController {
 	public Map<String, Image> getMappaCartePolitica() {
 		return this.mappaCarte;
 	}
+	
+	public Map<String, Image> getMappaBonus() {
+		return this.mappaBonus;
+	}
 
 	public List<ImageView> getConsiglieri() {
 
@@ -1054,20 +1062,20 @@ public class GUIGameController {
 		tessere.addAll(this.getTessereCollina());
 		tessere.addAll(this.getTessereMare());
 		tessere.addAll(this.getTessereMontagna());
-
 		return tessere;
 	}
 
 	public List<Button> getCittàSenzaEmporio(Set<? extends CittàDTO> città) {
 		List<Button> cittàCostruzione = new ArrayList<>();
-		System.out.println(città);
+		System.out.println(città.getClass());
 		for (Button b : this.città) {
-			System.out.println("città tessera " + b.getUserData() + città.contains(b.getUserData()));
-			if (!((CittàDTO) b.getUserData()).getEmpori().contains(gameStateDTO.getGiocatoreDTO().getColoreGiocatore())
-					&& città.contains((CittàDTO) b.getUserData()))
-				cittàCostruzione.add(b);
+			System.out.println("città tessera "+b.getUserData()+ città.contains(b.getUserData()));
+			System.out.println("città " + città + "\nb.getuserdata: "+ b.getUserData());
+			if ( !((CittàDTO)b.getUserData()).getEmpori().contains(gameStateDTO.getGiocatoreDTO().getColoreGiocatore()) 
+					&& città.contains((CittàDTO) b.getUserData())){
+				cittàCostruzione.add(b);}
 		}
-		System.out.println("Città costuzioni: " + cittàCostruzione);
+		System.out.println("Città costruzioni: "+cittàCostruzione);
 		return cittàCostruzione;
 	}
 

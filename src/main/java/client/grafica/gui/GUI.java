@@ -20,6 +20,7 @@ import common.azioniDTO.ElezioneConsigliereVeloceDTO;
 import common.azioniDTO.IngaggioAiutanteDTO;
 import common.azioniDTO.PassaDTO;
 import common.azioniDTO.SecondaAzionePrincipaleDTO;
+import common.gameDTO.AiutanteDTO;
 import common.gameDTO.BalconeDTO;
 import common.gameDTO.CartaPoliticaDTO;
 import common.gameDTO.CittàBonusDTO;
@@ -52,6 +53,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import server.model.game.Aiutante;
+import server.model.game.Giocatore;
+import server.model.market.Offerta;
 import server.view.clientNotify.ClientNotify;
 
 public class GUI extends Application implements Grafica {
@@ -319,10 +323,51 @@ public class GUI extends Application implements Grafica {
 		controller.getMessage().appendText("\n"+messaggio);
 	}
 
+	
 	@Override
 	public void mostraOfferte(List<OffertaDTO> offerte) {
-		// TODO Auto-generated method stub
+		
+		Platform.runLater(new Runnable() {
 
+			VBox vbox=controllerMarket.getOfferte();
+			
+			@Override
+			public void run() {
+				for(OffertaDTO o:offerte){
+					vbox.getChildren().add(stampaOfferta(o.getGiocatoreDTO().getNome(), o.getMarketableDTO(), o.getPrezzo()));
+				}
+			}
+		});
+	}
+	
+	private HBox stampaOfferta(String giocatore, MarketableDTO oggetto, int prezzo){
+		Map<String, Image> tesserePermesso=controller.getMappaTesserePermesso();
+		Map<String, Image> aiutante=controller.getMappaBonus();
+		Map<String, Image> cartePolitica=controller.getMappaCartePolitica();
+
+		HBox hbox=new HBox();
+		Text nome=new Text();
+		nome.setText(giocatore);
+		ImageView imageview=new ImageView();
+		Image image=null;
+		
+		if(oggetto instanceof AiutanteDTO){
+			image=aiutante.get("Aiutante");
+		}
+		if(oggetto instanceof TesseraPermessoDTO){
+			image=tesserePermesso.get(oggetto.toString());
+		}
+		if(oggetto instanceof CartaPoliticaDTO){
+			image=cartePolitica.get(oggetto.toString());
+		}		
+		
+		Button soldi=new Button();
+		soldi.setText(Integer.toString(prezzo));
+				
+		hbox.getChildren().add(nome);
+		hbox.getChildren().add(imageview);
+		hbox.getChildren().add(soldi);
+		return hbox;
 	}
 	
 	@Override

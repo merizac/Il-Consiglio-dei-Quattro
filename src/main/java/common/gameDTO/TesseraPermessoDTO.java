@@ -64,10 +64,15 @@ public class TesseraPermessoDTO implements Serializable, MarketableDTO {
 	public void inizializza(TesseraPermesso t) {
 		
 		for(Città c: t.getCittà()){
+			if(c instanceof Città){
 			CittàDTO cittàDTO=new CittàDTO();
 			cittàDTO.inizializza(c);
-			città.add(cittàDTO);
-		}
+			città.add(cittàDTO);}
+			else{
+				CittàBonusDTO cittàDTO=new CittàBonusDTO();
+				((CittàBonusDTO)cittàDTO).inizializza(c);
+				città.add(cittàDTO);}
+			}
 		this.setBonus(t.getBonus());
 	}
 	
