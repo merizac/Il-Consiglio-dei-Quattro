@@ -328,7 +328,8 @@ public class GUI extends Application implements Grafica {
 	public void mostraOfferte(List<OffertaDTO> offerte) {
 		
 		Platform.runLater(new Runnable() {
-
+			
+			
 			VBox vbox=controllerMarket.getOfferte();
 			
 			@Override
