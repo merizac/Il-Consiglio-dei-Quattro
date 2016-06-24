@@ -59,6 +59,7 @@ public class GUI extends Application implements Grafica {
 	private Connessione connessione;
 	private GameStateDTO gameStateDTO;
 	private GUIGameController controller;
+	private GUIMarketController controllerMarket;
 	private Stage finestra;
 	private Object lock = new Object();
 	private Object parametro;
@@ -338,9 +339,9 @@ public class GUI extends Application implements Grafica {
 					root = fxmloader.load();
 					Scene theScene = new Scene(root);
 					Stage market=new Stage();
-					//controller = fxmloader.getController();
-					//controller.setGameStateDTO(this.gameStateDTO);
-					//controller.setGui(this);
+					controllerMarket = fxmloader.getController();
+					controllerMarket.setGameStateDTO(gameStateDTO);
+					controllerMarket.setGui(GUI.this);
 					market.setScene(theScene);
 					market.show();
 				} catch (Exception e) {
@@ -548,8 +549,23 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public int scegliPrezzo() {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		controllerMarket.getPrezzo().setDisable(false);
+		synchronized (lock) {
+			while(parametro==null){
+				try {
+					lock.wait();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		controllerMarket.getPrezzo().setDisable(true);
+		int prezzo=Integer.parseInt((String) parametro);
+		parametro=null;
+		return prezzo;
 	}
 
 	@Override
@@ -646,8 +662,35 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public MarketableDTO scegliMarketable() {
-		// TODO Auto-generated method stub
-		return null;
+		HBox aiutanti=controllerMarket.getAiutanti();
+		for(Node i: aiutanti.getChildren()){
+			i.setDisable(false);
+		}
+		HBox cartePolitica=controllerMarket.getCartePolitica();
+		for(Node i: cartePolitica.getChildren()){
+			i.setDisable(false);
+		}
+		
+		HBox tesserePermesso=controllerMarket.getTesserePermesso();
+		for(Node i: tesserePermesso.getChildren()){
+			i.setDisable(false);
+		}
+		
+		synchronized (lock) {
+			while(parametro==null){
+				try {
+					lock.wait();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		MarketableDTO marketableDTO=(MarketableDTO) parametro;
+		parametro=null;
+		return marketableDTO;
+		
 	}
 
 	@Override

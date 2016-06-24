@@ -8,6 +8,7 @@ import server.model.azioni.Passa;
 import server.model.azioni.azioniMarket.AzioneOfferta;
 import server.model.game.GameState;
 import server.model.notify.AzioniNotify;
+import server.model.notify.OffertaNotify;
 
 public class StatoOffertaMarket implements Stato {
 
@@ -31,6 +32,7 @@ public class StatoOffertaMarket implements Stato {
 		
 		if(gameState.getNumeroTurni()!=0){
 			System.out.println("market giocatorecorrente: "+ gameState.getGiocatoreCorrente().getNome());
+			gameState.notifyObserver(new OffertaNotify(gameState.getOfferteMarket(), gameState.getGiocatori()));
 			gameState.setStato(new StatoOffertaMarket(gameState));
 
 		}

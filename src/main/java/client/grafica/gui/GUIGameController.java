@@ -464,8 +464,6 @@ public class GUIGameController {
 
 			@Override
 			public void run() {
-				// AzioneDTO azione= (AzioneDTO)
-				// ((Button)event.getSource()).getUserData();
 				try {
 					for (Button b : getAzioni())
 						b.setDisable(true);
