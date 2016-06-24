@@ -8,6 +8,7 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import common.azioniDTO.ExitDTO;
 import server.model.game.GameState;
 import server.model.game.Giocatore;
 import server.model.macchinaStati.StartEnd;
@@ -60,7 +61,7 @@ public class ExitTest {
 	@Test
 	public void testGetAzioneDTO() {
 		Exit exit=new Exit();
-		assertTrue(exit.getAzioneDTO()==null);
+		assertTrue(exit.getAzioneDTO() instanceof ExitDTO);
 	}
 
 	@Test

@@ -46,6 +46,7 @@
 	-fx-border-radius: 20 20 20 20;
 	-fx-background-radius: 8,7,6;
 	
+	
 }
 
 .transparentbutton{
@@ -60,6 +61,7 @@
 	 */
 .titlepane{
 	-fx-color: #B87333;
+
 	-fx-text-fill: white;
 	-fx-font-family: "Algerian";
     -fx-font-size: 10.0pt;  
@@ -71,5 +73,7 @@
 	-fx-padding: 0;         
 	-fx-background-insets: 0;
 	-fx-background-radius: 0;
-	
+}
+.titlepane> .title:hover {
+    -fx-color: #B87333;
 }

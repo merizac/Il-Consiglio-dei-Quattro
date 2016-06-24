@@ -4,12 +4,14 @@ import java.util.Arrays;
 import java.util.List;
 
 import server.model.azioni.Azione;
+import server.model.azioni.Passa;
 import server.model.azioni.azioniPrincipali.AcquistoTesseraPermesso;
 import server.model.azioni.azioniPrincipali.CostruzioneAiutoRe;
 import server.model.azioni.azioniPrincipali.CostruzioneTesseraPermesso;
 import server.model.azioni.azioniPrincipali.ElezioneConsigliere;
 import server.model.game.GameState;
 import server.model.notify.AzioniNotify;
+import server.model.notify.MarketNotify;
 import server.model.notify.MessageNotify;
 
 public class Stato10 implements Stato {
@@ -19,7 +21,7 @@ public class Stato10 implements Stato {
 	public Stato10(GameState gameState) {
 		System.out.println("[SERVER] " + this);
 		azioni = Arrays.asList(new ElezioneConsigliere(), new AcquistoTesseraPermesso(),
-				new CostruzioneTesseraPermesso(), new CostruzioneAiutoRe());
+				new CostruzioneTesseraPermesso(), new CostruzioneAiutoRe(), new Passa());
 		gameState.notifyObserver(
 				new MessageNotify("AZIONI PRINCIPALI", Arrays.asList(gameState.getGiocatoreCorrente())));
 		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
@@ -42,8 +44,9 @@ public class Stato10 implements Stato {
 
 				if (gameState.getNumeroTurni() != gameState.getGiocatori().size())
 					gameState.setStato(new StartEnd(gameState));
-				else
-					gameState.setStato(new StatoOffertaMarket(gameState));
+				else{
+					gameState.notifyObserver(new MarketNotify(gameState.getGiocatori()));
+					gameState.setStato(new StatoOffertaMarket(gameState));}
 			}
 		} else {
 			gameState.setBonusAzionePrincipale(false);

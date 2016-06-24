@@ -8,42 +8,36 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/market.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TitledPane alignment="CENTER" animated="false" collapsible="false" layoutX="29.0" layoutY="30.0" prefHeight="400.0" prefWidth="311.0" stylesheets="@../css/gameState.css" text="Oggetti in vendita:" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TitledPane alignment="CENTER" animated="false" collapsible="false" layoutX="29.0" layoutY="30.0" prefHeight="400.0" prefWidth="311.0" text="Oggetti in vendita:" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="372.0" prefWidth="150.0">
                <children>
-                  <ScrollPane layoutY="-2.0" prefHeight="302.0" prefWidth="312.0">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="300.0" prefWidth="309.0">
+                  <VBox prefHeight="373.0" prefWidth="311.0" styleClass="sfondo" stylesheets="@../css/market.css">
+                     <children>
+                        <HBox prefHeight="37.0" prefWidth="290.0" stylesheets="@../css/market.css">
                            <children>
-                              <VBox layoutX="-1.0" prefHeight="375.0" prefWidth="311.0">
-                                 <children>
-                                    <VBox layoutX="-1.0" prefHeight="296.0" prefWidth="311.0">
-                                       <children>
-                                          <HBox prefHeight="37.0" prefWidth="311.0">
-                                             <children>
-                                                <Label alignment="CENTER" prefHeight="48.0" prefWidth="102.6" text="Giocatore" />
-                                                <Label alignment="CENTER" prefHeight="48.0" prefWidth="102.6" />
-                                                <Label alignment="CENTER" prefHeight="48.0" prefWidth="102.6" text="Prezzo" />
-                                             </children>
-                                          </HBox>
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </VBox>
+                              <Label alignment="CENTER" prefHeight="48.0" prefWidth="102.0" text="Giocatore" />
+                              <Label alignment="CENTER" prefHeight="48.0" prefWidth="102.0" text="Oggetto" />
+                              <Label alignment="CENTER" prefHeight="48.0" prefWidth="102.0" text="Prezzo" />
                            </children>
-                        </AnchorPane>
-                    </content>
-                  </ScrollPane>
+                        </HBox>
+                        <ScrollPane id="slidebar" prefHeight="296.0" prefViewportHeight="296.0" prefViewportWidth="311.0" prefWidth="311.0">
+                           <content>
+                              <VBox fx:id="offerte" prefHeight="280.0" prefWidth="309.0" styleClass="sfondo" />
+                           </content>
+                        </ScrollPane>
+                        <TextArea prefHeight="75.0" prefWidth="311.0" />
+                     </children>
+                  </VBox>
                </children>
             </AnchorPane>
         </content>
       </TitledPane>
-      <TitledPane collapsible="false" layoutX="310.0" prefHeight="401.0" prefWidth="291.0" stylesheets="@../css/gameState.css">
+      <TitledPane collapsible="false" layoutX="310.0" prefHeight="400.0" prefWidth="291.0">
          <content>
-            <VBox layoutX="432.0" maxWidth="-Infinity" prefHeight="373.0" prefWidth="282.0" stylesheets="@../css/gameState.css" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
+            <VBox layoutX="432.0" maxWidth="-Infinity" prefHeight="382.0" prefWidth="290.0" styleClass="sfondo" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="250.0" mnemonicParsing="false" text="Fai un' offerta! ">
                      <VBox.margin>
@@ -55,9 +49,9 @@
                         <Insets left="12.0" />
                      </VBox.margin>
                   </Label>
-                  <HBox prefHeight="88.0" prefWidth="246.0">
+                  <HBox prefHeight="90.0" prefWidth="269.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="77.0">
+                        <Button fx:id="aiutante" mnemonicParsing="false" prefHeight="94.0" prefWidth="82.0">
                            <graphic>
                               <ImageView fitHeight="78.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -65,8 +59,11 @@
                                  </image>
                               </ImageView>
                            </graphic>
+                           <HBox.margin>
+                              <Insets left="1.0" right="1.0" />
+                           </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="94.0" prefWidth="82.0">
+                        <Button fx:id="cartaPolitica" mnemonicParsing="false" prefHeight="94.0" prefWidth="82.0">
                            <graphic>
                               <ImageView fitHeight="82.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -74,8 +71,11 @@
                                  </image>
                               </ImageView>
                            </graphic>
+                           <HBox.margin>
+                              <Insets left="1.0" right="1.0" />
+                           </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="88.0" prefWidth="88.0">
+                        <Button fx:id="tesseraPermesso" mnemonicParsing="false" prefHeight="94.0" prefWidth="82.0">
                            <graphic>
                               <ImageView fitHeight="77.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -83,6 +83,9 @@
                                  </image>
                               </ImageView>
                            </graphic>
+                           <HBox.margin>
+                              <Insets left="1.0" right="1.0" />
+                           </HBox.margin>
                         </Button>
                      </children>
                      <padding>
@@ -92,26 +95,26 @@
                         <Insets left="7.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox prefHeight="80.0" prefWidth="282.0">
-                     <children>
-                        <ScrollPane prefHeight="80.0" prefWidth="302.0">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="78.0" prefWidth="260.0" />
-                          </content>
-                        </ScrollPane>
-                     </children>
+                  <ScrollPane prefViewportHeight="80.0" prefViewportWidth="262.0" stylesheets="@../css/scroll-bar.css">
+                     <content>
+                        <HBox fx:id="vendita" prefHeight="79.0" prefWidth="266.0" styleClass="sfondo" stylesheets="@../css/scroll-bar.css">
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </content>
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>
-                  </HBox>
+                  </ScrollPane>
                   <HBox>
                      <children>
-                        <TextField prefHeight="27.0" prefWidth="214.0" promptText="prezzo di vendita">
+                        <TextField prefHeight="27.0" prefWidth="214.0" promptText="prezzo di vendita" styleClass="mytext-field" stylesheets="@../css/market.css">
                            <VBox.margin>
                               <Insets top="7.0" />
                            </VBox.margin>
                         </TextField>
-                        <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="27.0" prefWidth="39.0" text="Ok">
+                        <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="26.0" prefWidth="44.0" text="Ok">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
@@ -121,22 +124,11 @@
                         <Insets top="7.0" />
                      </VBox.margin>
                   </HBox>
-                  <GridPane prefHeight="70.0" prefWidth="267.0">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
+                  <AnchorPane prefHeight="58.0" prefWidth="262.0">
                      <children>
-                        <Button maxWidth="250.0" mnemonicParsing="false" prefHeight="5.0" prefWidth="250.0" text="Acquista" GridPane.halignment="CENTER" />
-                        <Button maxWidth="250.0" mnemonicParsing="false" text="Passa" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                        <Button layoutX="7.0" layoutY="10.0" maxWidth="250.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="250.0" text="Passa" />
                      </children>
-                     <VBox.margin>
-                        <Insets top="15.0" />
-                     </VBox.margin>
-                  </GridPane>
+                  </AnchorPane>
                </children>
             </VBox>
          </content>

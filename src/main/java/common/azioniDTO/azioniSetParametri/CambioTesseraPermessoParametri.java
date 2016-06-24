@@ -15,6 +15,7 @@ public class CambioTesseraPermessoParametri implements SetterParametri {
 
 	@Override
 	public void setParametri(Grafica grafica, GameStateDTO gameStateDTO) {
+		grafica.mostraMessaggio("Seleziona la regione");
 		RegioneDTO regioneScelta = grafica.scegliRegione(gameStateDTO.getRegioni());
 		cambioTesserePermessoDTO.setRegione(regioneScelta);
 	}

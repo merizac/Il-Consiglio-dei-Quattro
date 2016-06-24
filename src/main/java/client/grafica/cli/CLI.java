@@ -662,4 +662,9 @@ public class CLI implements Grafica {
 
 		return cittàb;
 	}
+
+	@Override
+	public void startMarket() {
+		System.out.println("stato market");
+	}
 }
