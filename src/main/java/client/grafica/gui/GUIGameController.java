@@ -942,6 +942,7 @@ public class GUIGameController {
 		if (action.getCode() == KeyCode.ENTER) {
 			ChatDTO chat = new ChatDTO();
 			if (!this.chat.getText().isEmpty()) {
+				
 				chat.setMessaggio(gameStateDTO.getGiocatoreDTO().getNome() + ": " + this.chat.getText());
 				this.chat.clear();
 				try {
