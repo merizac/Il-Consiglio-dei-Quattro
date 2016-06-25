@@ -68,7 +68,7 @@ public class CittàDTO implements Serializable{
 		}
 	}
 	
-	
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -88,7 +88,7 @@ public class CittàDTO implements Serializable{
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
+		if (!(obj instanceof CittàDTO))
 			return false;
 		CittàDTO other = (CittàDTO) obj;
 		if (nome == null) {
@@ -98,9 +98,8 @@ public class CittàDTO implements Serializable{
 			return false;
 		return true;
 	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
+
+
 	@Override
 	public String toString() {
 		return nome + " Colore:" + ColoreDTO

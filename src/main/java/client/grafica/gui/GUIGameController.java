@@ -1090,7 +1090,6 @@ public class GUIGameController {
 
 	public List<Button> getCittàSenzaEmporio(Set<? extends CittàDTO> città) {
 		List<Button> cittàCostruzione = new ArrayList<>();
-		System.out.println(città.getClass());
 		for (Button b : this.città) {
 			System.out.println("città tessera " + b.getUserData() + città.contains(b.getUserData()));
 			System.out.println("città " + città + "\nb.getuserdata: " + b.getUserData());

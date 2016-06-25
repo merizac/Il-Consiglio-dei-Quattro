@@ -376,7 +376,7 @@
                                     <Button id="transparentbutton" fx:id="costruzioneTesseraPermesso" layoutX="6.0" layoutY="214.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="45.0" prefWidth="168.0" style="-fx-background-color: ;" stylesheets="@../css/game.css" />
                                     <VBox layoutX="351.0" layoutY="-1.0" prefHeight="262.0" prefWidth="175.0">
                                        <children>
-                                          <Button fx:id="quit" mnemonicParsing="false" prefHeight="27.0" prefWidth="174.0" stylesheets="@../css/game.css" text="Quit" />
+                                          <Button fx:id="quit" mnemonicParsing="false" onAction="#handleAzione" prefHeight="27.0" prefWidth="174.0" stylesheets="@../css/game.css" text="Quit" />
                                           <Button fx:id="passa" mnemonicParsing="false" onAction="#handleAzione" prefHeight="27.0" prefWidth="174.0" styleClass="mybutton" stylesheets="@../css/game.css" text="&gt;&gt; Salta Azione Veloce" />
                                        </children>
                                     </VBox>

@@ -11,6 +11,7 @@ import java.util.Set;
 import common.azioniDTO.ControlloParametri;
 import server.model.bonus.Bonus;
 import server.model.game.Città;
+import server.model.game.CittàBonus;
 import server.model.game.Giocatore;
 import server.model.game.TesseraPermesso;
 import server.model.market.Marketable;
@@ -64,14 +65,16 @@ public class TesseraPermessoDTO implements Serializable, MarketableDTO {
 	public void inizializza(TesseraPermesso t) {
 		
 		for(Città c: t.getCittà()){
-			if(c instanceof Città){
-			CittàDTO cittàDTO=new CittàDTO();
-			cittàDTO.inizializza(c);
-			città.add(cittàDTO);}
-			else{
+			if(c instanceof CittàBonus){
 				CittàBonusDTO cittàDTO=new CittàBonusDTO();
-				((CittàBonusDTO)cittàDTO).inizializza(c);
-				città.add(cittàDTO);}
+				((CittàBonusDTO)cittàDTO).inizializza((CittàBonus)c);
+				città.add(cittàDTO);
+			}
+			else{
+				CittàDTO cittàDTO=new CittàDTO();
+				cittàDTO.inizializza(c);
+				città.add(cittàDTO);
+				}
 			}
 		this.setBonus(t.getBonus());
 	}
