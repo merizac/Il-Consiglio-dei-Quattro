@@ -16,8 +16,8 @@ import javafx.scene.text.Text;
 
 public class GUIController {
 	
-	
 	private GUI gui;
+	
 	@FXML
 	private TextField nome;
 	@FXML
@@ -45,7 +45,6 @@ public class GUIController {
 			alert.setContentText("Ooops, riprova!");
 
 			alert.showAndWait();
-			//errormessage.setText("Inserisci il tuo nome");
 			return;
 		}
 		
@@ -56,7 +55,6 @@ public class GUIController {
 			alert.setContentText("Ooops, riprova!");
 
 			alert.showAndWait();
-			//errormessage.setText("Seleziona la connessione");
 			return;
 		}
 		
@@ -67,7 +65,6 @@ public class GUIController {
 			alert.setContentText("Ooops, riprova!");
 
 			alert.showAndWait();
-			//errormessage.setText("Seleziona una sola connessione");
 			return;
 		}
 		
