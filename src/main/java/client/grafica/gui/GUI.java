@@ -319,7 +319,7 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public void mostraMessaggio(String messaggio) {
-		controller.getMessage().appendText("\n"+messaggio);
+		controller.getMessage().appendText("\n[Server]\t"+messaggio);
 	}
 
 	@Override

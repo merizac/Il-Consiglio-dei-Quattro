@@ -28,12 +28,11 @@
                               <Label alignment="CENTER" prefHeight="48.0" prefWidth="102.0" text="Prezzo" />
                            </children>
                         </HBox>
-                        <ScrollPane id="slidebar" prefHeight="335.0" prefViewportHeight="296.0" prefViewportWidth="311.0" prefWidth="311.0">
+                        <ScrollPane id="slidebar" prefHeight="348.0" prefViewportHeight="296.0" prefViewportWidth="311.0" prefWidth="311.0">
                            <content>
-                              <VBox fx:id="offerte" prefHeight="333.0" prefWidth="309.0" styleClass="sfondo" />
+                              <VBox fx:id="offerte" prefHeight="346.0" prefWidth="309.0" styleClass="sfondo" />
                            </content>
                         </ScrollPane>
-                        <TextArea prefHeight="75.0" prefWidth="310.0" />
                      </children>
                   </VBox>
                </children>
@@ -56,7 +55,7 @@
                   </Label>
                   <ScrollPane prefHeight="84.0" prefViewportHeight="94.0" prefViewportWidth="268.0" prefWidth="268.0">
                      <content>
-                        <HBox fx:id="aiutanti" prefHeight="80.0" prefWidth="266.0" styleClass="sfondo" stylesheets="@../css/market.css" />
+                        <HBox fx:id="aiutanti" prefHeight="78.0" prefWidth="266.0" styleClass="sfondo" stylesheets="@../css/market.css" />
                      </content>
                      <VBox.margin>
                         <Insets />
@@ -64,7 +63,7 @@
                   </ScrollPane>
                   <ScrollPane prefHeight="84.0" prefViewportHeight="80.0" prefViewportWidth="262.0" prefWidth="268.0" stylesheets="@../css/scroll-bar.css">
                      <content>
-                        <HBox fx:id="cartePolitica" prefHeight="80.0" prefWidth="266.0" styleClass="sfondo" stylesheets="@../css/scroll-bar.css">
+                        <HBox fx:id="cartePolitica" prefHeight="78.0" prefWidth="266.0" styleClass="sfondo" stylesheets="@../css/scroll-bar.css">
                            <VBox.margin>
                               <Insets top="5.0" />
                            </VBox.margin>
@@ -74,9 +73,9 @@
                         <Insets bottom="5.0" top="5.0" />
                      </VBox.margin>
                   </ScrollPane>
-                  <ScrollPane prefHeight="85.0" prefViewportHeight="58.0" prefViewportWidth="268.0" prefWidth="268.0">
+                  <ScrollPane prefHeight="84.0" prefViewportHeight="58.0" prefViewportWidth="268.0" prefWidth="268.0">
                      <content>
-                        <HBox fx:id="tesserePermesso" prefHeight="80.0" prefWidth="266.0" styleClass="sfondo" stylesheets="@../css/market.css" />
+                        <HBox fx:id="tesserePermesso" prefHeight="78.0" prefWidth="266.0" styleClass="sfondo" stylesheets="@../css/market.css" />
                      </content>
                   </ScrollPane>
                   <HBox>
@@ -85,6 +84,9 @@
                            <VBox.margin>
                               <Insets top="7.0" />
                            </VBox.margin>
+                           <HBox.margin>
+                              <Insets top="5.0" />
+                           </HBox.margin>
                         </TextField>
                         <Button fx:id="ok" alignment="CENTER" contentDisplay="RIGHT" disable="true" mnemonicParsing="false" onAction="#handleOk" prefHeight="26.0" prefWidth="44.0" text="Ok">
                            <HBox.margin>
