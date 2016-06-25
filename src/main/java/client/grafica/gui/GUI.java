@@ -249,7 +249,7 @@ public class GUI extends Application implements Grafica {
 				for (CartaPoliticaDTO c : carte) {
 
 					ImageView image = new ImageView();
-					image.setFitHeight(60);
+					image.setFitHeight(72);
 					image.setPreserveRatio(true);
 					image.setImage(mappaCarte.get(c.toString()));
 					image.setDisable(true);
@@ -326,15 +326,16 @@ public class GUI extends Application implements Grafica {
 	public void mostraGiocatoreMarket(GiocatoreDTO giocatore){
 		Platform.runLater(new Runnable() {
 			
-			HBox tesserePermesso=controllerMarket.getTesserePermesso();
-			HBox aiutanti=controllerMarket.getAiutanti();
-			HBox cartePolitica=controllerMarket.getCartePolitica();
-			Map<String, Image> carte=controller.getMappaCartePolitica();
-			Map<String, Image> tessere=controller.getMappaTesserePermesso();
-			Map<String, Image> bonus=controller.getMappaBonus();
-			
 			@Override
 			public void run() {
+				
+				HBox tesserePermesso=controllerMarket.getTesserePermesso();
+				HBox aiutanti=controllerMarket.getAiutanti();
+				HBox cartePolitica=controllerMarket.getCartePolitica();
+				System.out.println("carte: "+cartePolitica);
+				Map<String, Image> carte=controller.getMappaCartePolitica();
+				Map<String, Image> tessere=controller.getMappaTesserePermesso();
+				Map<String, Image> bonus=controller.getMappaBonus();
 				
 				cartePolitica.getChildren().clear();
 				for (CartaPoliticaDTO c : giocatore.getCartePolitica()) {
@@ -344,19 +345,35 @@ public class GUI extends Application implements Grafica {
 					image.setImage(carte.get(c.toString()));
 					image.setDisable(true);
 					image.setUserData(c);
+					image.setOnMouseClicked(new EventHandler<Event>() {
+
+						@Override
+						public void handle(Event event) {
+							controllerMarket.handleOfferta(event);
+						}
+					});
 					cartePolitica.getChildren().add(image);
 				}
 				
+				aiutanti.getChildren().clear();
 				for(int i=0; i<giocatore.getAiutanti();i++){
 					ImageView image = new ImageView();
 					image.setFitHeight(60);
 					image.setPreserveRatio(true);
 					image.setImage(bonus.get("Aiutante"));
 					image.setDisable(true);
-					image.setUserData(new Aiutante(1));
+					image.setUserData(new AiutanteDTO(1));
+					image.setOnMouseClicked(new EventHandler<Event>() {
+
+						@Override
+						public void handle(Event event) {
+							controllerMarket.handleOfferta(event);
+						}
+					});
 					aiutanti.getChildren().add(image);
 				}
 				
+				tesserePermesso.getChildren().clear();
 				for (TesseraPermessoDTO t : giocatore.getTesserePermesso()) {
 					ImageView image = new ImageView();
 					image.setFitHeight(60);
@@ -364,6 +381,13 @@ public class GUI extends Application implements Grafica {
 					image.setImage(tessere.get(t.toString()));
 					image.setDisable(true);
 					image.setUserData(t);
+					image.setOnMouseClicked(new EventHandler<Event>() {
+
+						@Override
+						public void handle(Event event) {
+							controllerMarket.handleOfferta(event);
+						}
+					});
 					tesserePermesso.getChildren().add(image);
 				}
 			}
@@ -397,7 +421,9 @@ public class GUI extends Application implements Grafica {
 		nome.setText(giocatore);
 		ImageView imageview=new ImageView();
 		Image image=null;
-
+		imageview.setFitHeight(50);
+		imageview.setPreserveRatio(true);
+	
 		if(oggetto instanceof AiutanteDTO){
 			image=aiutante.get("Aiutante");
 		}
@@ -435,6 +461,7 @@ public class GUI extends Application implements Grafica {
 					controllerMarket = fxmloader.getController();
 					controllerMarket.setGameStateDTO(gameStateDTO);
 					controllerMarket.setGui(GUI.this);
+					controllerMarket.inizializza();
 					market.setScene(theScene);
 					market.show();
 				} catch (Exception e) {
@@ -486,8 +513,8 @@ public class GUI extends Application implements Grafica {
 				
 				vbox.getChildren().add(hbox);
 				tab.setContent(vbox);
-				tab.setStyle("-fx-background-color: red;-fx-alignment: CENTER;-fx-text-fill: white;-fx-font-size: 12px;-fx-font-weight: bold;");
-				
+//				tab.setStyle("-fx-background-color: red;-fx-alignment: CENTER;-fx-text-fill: white;-fx-font-size: 12px;-fx-font-weight: bold;");
+								
 				HBox tesserePermesso = new HBox();
 				stampaTesserePermesso(tesserePermesso, avversario.getTesserePermesso(),
 						avversario.getTesserePermessoUsate().size(), 50);
@@ -500,16 +527,16 @@ public class GUI extends Application implements Grafica {
 		HBox hbox = new HBox();
 		hbox.setSpacing(15);
 		hbox.setPadding(new Insets(5, 0, 0, 20));	
-		hbox.getChildren().add(stampaPuntoAvversario("css/Point.png", Integer.toString(avversario.getPunteggioVittoria())));
-		hbox.getChildren().add(stampaPuntoAvversario("css/Coins.png", Integer.toString(avversario.getPunteggioRicchezza())));
-		hbox.getChildren().add(stampaPuntoAvversario("css/Assistant.png", Integer.toString(avversario.getAiutanti())));
-		hbox.getChildren().add(stampaPuntoAvversario("css/Emporium.png", Integer.toString(avversario.getEmpori())));
-		hbox.getChildren().add(stampaPuntoAvversario("css/Nobility.png", Integer.toString(avversario.getPunteggioNobiltà())));
-		hbox.getChildren().add(stampaPuntoAvversario("css/BonusGiocatori.png", Integer.toString(avversario.getTessereBonus())));
+		hbox.getChildren().add(stampaPuntoAvversario("css/Point.png", Integer.toString(avversario.getPunteggioVittoria()),10));
+		hbox.getChildren().add(stampaPuntoAvversario("css/Coins.png", Integer.toString(avversario.getPunteggioRicchezza()),10));
+		hbox.getChildren().add(stampaPuntoAvversario("css/Assistant.png", Integer.toString(avversario.getAiutanti()),4));
+		hbox.getChildren().add(stampaPuntoAvversario("css/Emporium.png", Integer.toString(avversario.getEmpori()),10));
+		hbox.getChildren().add(stampaPuntoAvversario("css/Nobility.png", Integer.toString(avversario.getPunteggioNobiltà()),10));
+		hbox.getChildren().add(stampaPuntoAvversario("css/BonusGiocatori.png", Integer.toString(avversario.getTessereBonus()),10));
 		return hbox;
 	}
 	
-	private Pane stampaPuntoAvversario(String immagine, String punti){
+	private Pane stampaPuntoAvversario(String immagine, String punti, int relocateH){
 		Pane pane = new Pane();
 		ImageView image = new ImageView();
 		image.setImage(new Image(getClass().getResource(immagine).toExternalForm()));
@@ -517,7 +544,7 @@ public class GUI extends Application implements Grafica {
 		image.setFitHeight(40);
 		Text text = new Text();
 		text.setText(punti);
-		text.relocate(10, 13);
+		text.relocate(relocateH, 13);
 		pane.getChildren().add(image);
 		pane.getChildren().add(text);
 		text.setStyle("-fx-font: 17.0px Algerian; -fx-fill: white;");
@@ -657,6 +684,7 @@ public class GUI extends Application implements Grafica {
 		
 		controllerMarket.getPrezzo().setDisable(true);
 		int prezzo=Integer.parseInt((String) parametro);
+		controllerMarket.getOk().setDisable(false);
 		parametro=null;
 		return prezzo;
 	}

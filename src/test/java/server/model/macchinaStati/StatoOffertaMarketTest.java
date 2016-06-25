@@ -54,7 +54,8 @@ public class StatoOffertaMarketTest {
 		StatoOffertaMarket statoOffertaMarket=new StatoOffertaMarket(gameState);
 		gameState.setStato(statoOffertaMarket);
 		assertTrue(gameState.getStato() instanceof StatoOffertaMarket);
-		assertTrue(notify.get(0) instanceof AzioniNotify);
+		System.out.println("notifica :"+notify);
+		assertTrue(notify.get(3) instanceof AzioniNotify);
 	}
 
 	@Test

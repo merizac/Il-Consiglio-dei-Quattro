@@ -7,6 +7,7 @@ import server.model.azioni.Azione;
 import server.model.azioni.Passa;
 import server.model.azioni.azioniMarket.AzioneOfferta;
 import server.model.game.GameState;
+import server.model.game.Giocatore;
 import server.model.notify.AzioniNotify;
 import server.model.notify.GiocatoreMarketNotify;
 import server.model.notify.OffertaNotify;
@@ -18,6 +19,9 @@ public class StatoOffertaMarket implements Stato {
 	public StatoOffertaMarket(GameState gameState) {
 		this.azioni=Arrays.asList(new AzioneOfferta(),new Passa());
 		System.out.println("[SERVER] Azioni Stato Offerta: "+azioni);
+		for(Giocatore g: gameState.getGiocatori()){
+			gameState.notifyObserver(new GiocatoreMarketNotify(g, Arrays.asList(g)));
+		}
 		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), 
 					Arrays.asList(gameState.getGiocatoreCorrente())));
 	}
@@ -33,8 +37,6 @@ public class StatoOffertaMarket implements Stato {
 		
 		if(gameState.getNumeroTurni()!=0){
 			System.out.println("market giocatorecorrente: "+ gameState.getGiocatoreCorrente().getNome());
-			gameState.notifyObserver(new GiocatoreMarketNotify(gameState.getGiocatoreCorrente(), Arrays.asList(gameState.getGiocatoreCorrente())));
-			gameState.notifyObserver(new OffertaNotify(gameState.getOfferteMarket(), gameState.getGiocatori()));
 			gameState.setStato(new StatoOffertaMarket(gameState));
 
 		}
@@ -47,6 +49,7 @@ public class StatoOffertaMarket implements Stato {
 	
 	@Override
 	public void transizioneOfferta(GameState gameState){
+		gameState.notifyObserver(new OffertaNotify(gameState.getOfferteMarket(), gameState.getGiocatori()));
 		gameState.setStato(new StatoOffertaMarket(gameState));
 	}
 

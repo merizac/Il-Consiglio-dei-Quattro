@@ -24,6 +24,6 @@
 
 .error{
   -fx-font: 12px Tahoma;
-    -fx-fill: red;
-    -fx-opacity: 1.0;   
+  -fx-fill: red;
+  -fx-opacity: 1.0;   
 }

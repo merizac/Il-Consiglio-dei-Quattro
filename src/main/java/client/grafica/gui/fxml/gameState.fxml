@@ -79,9 +79,9 @@
                                     <Insets />
                                  </opaqueInsets>
                               </HBox>
-                              <HBox fx:id="balconeCollina" layoutX="324.0" layoutY="471.0" onMouseClicked="#handleBalcone" prefHeight="30.0" prefWidth="90.0" spacing="3.0" styleClass="balcone" stylesheets="@../css/game.css">
+                              <HBox fx:id="balconeCollina" layoutX="326.0" layoutY="473.0" onMouseClicked="#handleBalcone" prefHeight="30.0" prefWidth="90.0" spacing="3.0" styleClass="balcone" stylesheets="@../css/game.css">
                                  <padding>
-                                    <Insets left="1.0" right="1.0" top="5.0" />
+                                    <Insets bottom="3.0" left="1.0" right="1.0" top="3.0" />
                                  </padding>
                                  <opaqueInsets>
                                     <Insets />
@@ -177,7 +177,21 @@
                            <children>
                               <TabPane fx:id="giocatori" prefHeight="130.0" prefWidth="362.0" styleClass="background" stylesheets="@../css/game.css" tabClosingPolicy="UNAVAILABLE">
                                  <tabs>
-                                    <Tab text="prova colori">
+                                    <Tab text="Untitled Tab">
+                                      <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                             <children>
+                                                <Text layoutX="40.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="adasdaskkda" />
+                                             </children>
+                                          </AnchorPane>
+                                      </content>
+                                    </Tab>
+                                    <Tab text="Untitled Tab">
+                                      <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                      </content>
+                                    </Tab>
+                                    <Tab text="Untitled Tab">
                                       <content>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                                       </content>
@@ -207,8 +221,8 @@
                                  <content>
                                     <Pane styleClass="background" stylesheets="@../css/game.css">
                                        <children>
-                                          <Button fx:id="pescaCarta" layoutX="28.0" layoutY="4.0" mnemonicParsing="false" prefHeight="92.0" prefWidth="71.0" style="-fx-background-color: transparent;" />
-                                          <ImageView fitHeight="93.0" fitWidth="66.0" layoutX="30.0" layoutY="4.0" onMouseClicked="#pescaCarta" pickOnBounds="true" preserveRatio="true">
+                                          <Button id="transparentbutton" fx:id="pescaCarta" layoutX="28.0" layoutY="1.0" mnemonicParsing="false" prefHeight="99.0" prefWidth="71.0" style="-fx-background-color: transparent;" />
+                                          <ImageView fitHeight="93.0" fitWidth="66.0" layoutX="33.0" layoutY="4.0" onMouseClicked="#pescaCarta" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../css/politicCard/Retro.png" />
                                              </image>
@@ -227,7 +241,7 @@
                            <content>
                               <AnchorPane mouseTransparent="true" prefHeight="34.0" prefWidth="523.0" styleClass="background" stylesheets="@../css/game.css">
                                  <children>
-                                    <HBox layoutX="86.0" layoutY="32.0" prefHeight="57.0" prefWidth="435.0" AnchorPane.bottomAnchor="-10.0" AnchorPane.rightAnchor="-10.0">
+                                    <HBox layoutX="101.0" layoutY="5.0" prefHeight="60.0" prefWidth="407.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
                                           <Pane prefHeight="57.0" prefWidth="72.5">
                                              <children>
@@ -294,7 +308,7 @@
                                           <Insets right="10.0" />
                                        </padding>
                                     </HBox>
-                                    <Text fx:id="nomeGiocatore" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="nomeGiocatore" wrappingWidth="100.84967041015625" />
+                                    <Text fx:id="nomeGiocatore" layoutX="8.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="nomeGiocatore" wrappingWidth="100.84967041015625" />
                                  </children>
                               </AnchorPane>
                            </content>
@@ -314,7 +328,7 @@
                                  <children>
                                     <ScrollPane maxHeight="-Infinity" prefHeight="95.0" prefViewportHeight="60.0" prefViewportWidth="200.0" prefWidth="424.0" stylesheets="@../css/scroll-bar.css">
                                        <content>
-                                          <HBox fx:id="cartePolitica" maxHeight="-Infinity" prefHeight="69.0" prefWidth="422.0" spacing="10.0" styleClass="background">
+                                          <HBox fx:id="cartePolitica" maxHeight="-Infinity" prefHeight="21.0" prefWidth="422.0" spacing="10.0" styleClass="background">
                                              <stylesheets>
                                                 <URL value="@../css/game.css" />
                                                 <URL value="@../css/scroll-bar.css" />
@@ -326,7 +340,7 @@
                                     </ScrollPane>
                                     <Button fx:id="conferma" disable="true" mnemonicParsing="false" onAction="#handleConferma" prefHeight="33.0" prefWidth="72.0" styleClass="mybutton" stylesheets="@../css/game.css" text="Ok!">
                                        <HBox.margin>
-                                          <Insets left="15.0" top="12.0" />
+                                          <Insets left="15.0" top="10.0" />
                                        </HBox.margin>
                                     </Button>
                                  </children>
@@ -352,17 +366,17 @@
                                           <Image url="@../css/Avalible%20action.jpg" />
                                        </image>
                                     </ImageView>
-                                    <Button fx:id="elezioneConsigliereVeloce" layoutX="183.0" layoutY="164.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="45.0" prefWidth="165.0" styleClass="transparentbutton" stylesheets="@../css/game.css" />
-                                    <Button fx:id="cambioTesseraPermesso" layoutX="182.0" layoutY="112.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="43.0" prefWidth="167.0" styleClass="transparentbutton" stylesheets="@../css/game.css" />
-                                    <Button fx:id="ingaggioAiutante" layoutX="183.0" layoutY="59.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="46.0" prefWidth="166.0" styleClass="transparentbutton" stylesheets="@../css/game.css" />
-                                    <Button fx:id="costruzioneAiutoRe" layoutX="5.0" layoutY="110.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="44.0" prefWidth="167.0" styleClass="transparentbutton" stylesheets="@../css/game.css" />
-                                    <Button fx:id="acquistoTesseraPermesso" layoutX="10.0" layoutY="58.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="47.0" prefWidth="161.0" styleClass="transparentbutton" stylesheets="@../css/game.css" />
-                                    <Button fx:id="elezioneConsigliere" layoutX="6.0" layoutY="161.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="47.0" prefWidth="168.0" styleClass="transparentbutton" stylesheets="@../css/game.css" />
-                                    <Button fx:id="secondaAzionePrincipale" layoutX="187.0" layoutY="214.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="46.0" prefWidth="162.0" style="-fx-background-color: ;" styleClass="transparentbutton" stylesheets="@../css/game.css" />
-                                    <Button fx:id="costruzioneTesseraPermesso" layoutX="6.0" layoutY="214.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="45.0" prefWidth="168.0" style="-fx-background-color: ;" styleClass="transparentbutton" stylesheets="@../css/game.css" />
+                                    <Button id="transparentbutton" fx:id="elezioneConsigliereVeloce" layoutX="183.0" layoutY="164.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="45.0" prefWidth="165.0" stylesheets="@../css/game.css" />
+                                    <Button id="transparentbutton" fx:id="cambioTesseraPermesso" layoutX="182.0" layoutY="112.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="43.0" prefWidth="167.0" stylesheets="@../css/game.css" />
+                                    <Button id="transparentbutton" fx:id="ingaggioAiutante" layoutX="183.0" layoutY="59.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="46.0" prefWidth="166.0" stylesheets="@../css/game.css" />
+                                    <Button id="transparentbutton" fx:id="costruzioneAiutoRe" layoutX="5.0" layoutY="110.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="44.0" prefWidth="167.0" stylesheets="@../css/game.css" />
+                                    <Button id="transparentbutton" fx:id="acquistoTesseraPermesso" layoutX="10.0" layoutY="58.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="47.0" prefWidth="161.0" stylesheets="@../css/game.css" />
+                                    <Button id="transparentbutton" fx:id="elezioneConsigliere" layoutX="6.0" layoutY="161.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="47.0" prefWidth="168.0" stylesheets="@../css/game.css" />
+                                    <Button id="transparentbutton" fx:id="secondaAzionePrincipale" layoutX="187.0" layoutY="214.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="46.0" prefWidth="162.0" style="-fx-background-color: ;" stylesheets="@../css/game.css" />
+                                    <Button id="transparentbutton" fx:id="costruzioneTesseraPermesso" layoutX="6.0" layoutY="214.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="45.0" prefWidth="168.0" style="-fx-background-color: ;" stylesheets="@../css/game.css" />
                                     <VBox layoutX="351.0" layoutY="-1.0" prefHeight="262.0" prefWidth="175.0">
                                        <children>
-                                          <Button fx:id="quit" mnemonicParsing="false" prefHeight="27.0" prefWidth="174.0" text="Quit" />
+                                          <Button fx:id="quit" mnemonicParsing="false" prefHeight="27.0" prefWidth="174.0" stylesheets="@../css/game.css" text="Quit" />
                                           <Button fx:id="passa" mnemonicParsing="false" onAction="#handleAzione" prefHeight="27.0" prefWidth="174.0" styleClass="mybutton" stylesheets="@../css/game.css" text="&gt;&gt; Salta Azione Veloce" />
                                        </children>
                                     </VBox>

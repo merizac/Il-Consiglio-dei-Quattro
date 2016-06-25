@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="600.0" stylesheets="@../css/market.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.grafica.GUIMarketController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="600.0" stylesheets="@../css/market.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.grafica.gui.GUIMarketController">
    <children>
       <TitledPane alignment="CENTER" animated="false" collapsible="false" layoutX="29.0" layoutY="30.0" prefHeight="400.0" prefWidth="311.0" text="Oggetti in vendita:" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
         <content>
@@ -64,7 +64,7 @@
                   </ScrollPane>
                   <ScrollPane prefHeight="84.0" prefViewportHeight="80.0" prefViewportWidth="262.0" prefWidth="268.0" stylesheets="@../css/scroll-bar.css">
                      <content>
-                        <HBox fx:id="cartepolitica" prefHeight="80.0" prefWidth="266.0" styleClass="sfondo" stylesheets="@../css/scroll-bar.css">
+                        <HBox fx:id="cartePolitica" prefHeight="80.0" prefWidth="266.0" styleClass="sfondo" stylesheets="@../css/scroll-bar.css">
                            <VBox.margin>
                               <Insets top="5.0" />
                            </VBox.margin>
@@ -81,12 +81,12 @@
                   </ScrollPane>
                   <HBox>
                      <children>
-                        <TextField fx:id="prezzo" disable="true" prefHeight="27.0" prefWidth="214.0" promptText="prezzo di vendita" styleClass="mytext-field" stylesheets="@../css/market.css">
+                        <TextField fx:id="prezzo" disable="true" onAction="#handlePrezzo" prefHeight="27.0" prefWidth="214.0" promptText="prezzo di vendita" styleClass="mytext-field" stylesheets="@../css/market.css">
                            <VBox.margin>
                               <Insets top="7.0" />
                            </VBox.margin>
                         </TextField>
-                        <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="26.0" prefWidth="44.0" text="Ok">
+                        <Button fx:id="ok" alignment="CENTER" contentDisplay="RIGHT" disable="true" mnemonicParsing="false" onAction="#handleOk" prefHeight="26.0" prefWidth="44.0" text="Ok">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
