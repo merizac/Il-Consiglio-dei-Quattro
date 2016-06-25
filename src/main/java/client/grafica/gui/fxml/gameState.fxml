@@ -175,7 +175,28 @@
                         </AnchorPane>
                         <HBox>
                            <children>
-                              <TabPane fx:id="giocatori" prefHeight="130.0" prefWidth="362.0" styleClass="background" stylesheets="@../css/game.css" tabClosingPolicy="UNAVAILABLE" />
+                              <TabPane fx:id="giocatori" prefHeight="130.0" prefWidth="362.0" styleClass="background" stylesheets="@../css/game.css" tabClosingPolicy="UNAVAILABLE">
+                                 <tabs>
+                                    <Tab text="Untitled Tab">
+                                      <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                             <children>
+                                                <Text layoutX="40.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="adasdaskkda" />
+                                             </children>
+                                          </AnchorPane>
+                                      </content>
+                                    </Tab>
+                                    <Tab text="Untitled Tab">
+                                      <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                      </content>
+                                    </Tab>
+                                    <Tab text="Untitled Tab">
+                                      <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                      </content>
+                                    </Tab>
+                                 </tabs></TabPane>
                               <TitledPane alignment="CENTER" animated="false" collapsible="false" prefHeight="130.0" prefWidth="285.0" styleClass="titlepane" stylesheets="@../css/game.css" text="Riserva dei Consiglieri">
                                 <content>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="102.0" prefWidth="248.0" styleClass="background" stylesheets="@../css/game.css">
