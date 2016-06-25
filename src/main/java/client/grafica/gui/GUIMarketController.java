@@ -10,7 +10,10 @@ import common.azioniDTO.AzioneDTO;
 import common.azioniDTO.AzioneOffertaDTO;
 import common.azioniDTO.AzioneParametri;
 import common.azioniDTO.PassaDTO;
+import common.gameDTO.AiutanteDTO;
+import common.gameDTO.CartaPoliticaDTO;
 import common.gameDTO.GameStateDTO;
+import common.gameDTO.MarketableDTO;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -155,8 +158,15 @@ public class GUIMarketController {
 	public void handleOfferta(Event event) {
 		synchronized (gui.getLock()) {
 			gui.setParametro(((ImageView) event.getSource()).getUserData());
-			((ImageView) event.getSource()).setDisable(true);
-			((ImageView) event.getSource()).setOpacity(0.5);
+			MarketableDTO marketableDTO=(MarketableDTO) ((ImageView) event.getSource()).getUserData();
+			if(marketableDTO instanceof AiutanteDTO)
+				this.aiutanti.getChildren().remove(event.getSource());
+			else if(marketableDTO instanceof CartaPoliticaDTO)
+				this.cartePolitica.getChildren().remove(event.getSource());
+			else
+				this.tesserePermesso.getChildren().remove(event.getSource());
+			//((ImageView) event.getSource()).setDisable(true);
+			//((ImageView) event.getSource()).setOpacity(0.5);
 			gui.getLock().notifyAll();
 		}
 	}
@@ -171,6 +181,13 @@ public class GUIMarketController {
 			gui.setParametro(prezzo);
 			gui.getLock().notifyAll();
 			ok.setDisable(true);
+		}
+	}
+	
+	public void handleAcquisto(ActionEvent event){
+		synchronized(gui.getLock()){
+			gui.setParametro(((Button)event.getSource()).getUserData());
+			gui.getLock().notifyAll();
 		}
 	}
 
