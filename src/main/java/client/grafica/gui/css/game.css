@@ -34,18 +34,14 @@
     -fx-opacity: 1.0;
 }
 
-.scoreGiocatori{
-	-fx-font: 12.0px Tahoma;
-    -fx-fill: white;
-}
 
 .balcone{
-	-fx-background-image: url("./balcone.jpg");
-	-fx-border-color: black;
+	-fx-background-image: url("./balcone.png");
+/*	-fx-border-color: black;
 	-fx-background-image-radius: 20 20 20 20;
 	-fx-border-radius: 20 20 20 20;
 	-fx-background-radius: 8,7,6;
-	
+	-fx-background-image-radius: 5;*/
 	
 }
 
@@ -57,8 +53,7 @@
 
 #quit:hover{
 	-fx-background-color:red;
-	-fx-border-color: black;
-	
+    -fx-text-fill: white;
 }
 
 	/*Bernard MT Condensed
@@ -100,13 +95,12 @@
 .tab{
 	-fx-background-insets: 0 1 0 1,0,0;
 }
+
 .tab-pane .tab
 {
     -fx-background-color: #C3B091;
-    -fx-background-radius: 5px;
-    
-
-}
+    -fx-background-radius: 5px; 
+ }
 
 .tab-pane .tab:selected
 {
@@ -116,9 +110,10 @@
 
 .tab .tab-label { 
     -fx-alignment: CENTER;
-    -fx-text-fill: white;
-    -fx-font-size: 12px;
+    -fx-text-fill: gray;
+   /*-fx-font-size: 12px;*/
     -fx-font-weight: bold;
+    -fx-font: 13.0px Algerian;
 }
 
 .tab:selected .tab-label { 
@@ -239,4 +234,16 @@ titled-pane > .title  > .text{
     -fx-background-color:derive(#7B3F00,0%);
 	-fx-background-insets: 2, 0, 0;
 	-fx-background-radius: 2em;
+}
+
+.text-area {
+    -fx-font-family: calibri;
+    -fx-font-size: 12;
+    -fx-text-fill: black;
+    -fx-display-caret:true;
+}
+
+.text-area .content {
+    -fx-background-color: #F7E7CE;
+    -fx-opacity:0.8;
 }

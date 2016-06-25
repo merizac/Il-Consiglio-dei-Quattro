@@ -514,7 +514,7 @@ public class GUI extends Application implements Grafica {
 				vbox.getChildren().add(hbox);
 				tab.setContent(vbox);
 //				tab.setStyle("-fx-background-color: red;-fx-alignment: CENTER;-fx-text-fill: white;-fx-font-size: 12px;-fx-font-weight: bold;");
-				
+								
 				HBox tesserePermesso = new HBox();
 				stampaTesserePermesso(tesserePermesso, avversario.getTesserePermesso(),
 						avversario.getTesserePermessoUsate().size(), 50);
@@ -547,7 +547,7 @@ public class GUI extends Application implements Grafica {
 		text.relocate(relocateH, 13);
 		pane.getChildren().add(image);
 		pane.getChildren().add(text);
-//		text.setStyle("-fx-font: 17.0px Algerian; -fx-fill: white;");
+		text.setStyle("-fx-font: 17.0px Algerian; -fx-fill: white;");
 		return pane;
 	}
 
