@@ -249,7 +249,7 @@ public class GUI extends Application implements Grafica {
 				for (CartaPoliticaDTO c : carte) {
 
 					ImageView image = new ImageView();
-					image.setFitHeight(60);
+					image.setFitHeight(72);
 					image.setPreserveRatio(true);
 					image.setImage(mappaCarte.get(c.toString()));
 					image.setDisable(true);
@@ -513,7 +513,7 @@ public class GUI extends Application implements Grafica {
 				
 				vbox.getChildren().add(hbox);
 				tab.setContent(vbox);
-				tab.setStyle("-fx-background-color: red;-fx-alignment: CENTER;-fx-text-fill: white;-fx-font-size: 12px;-fx-font-weight: bold;");
+//				tab.setStyle("-fx-background-color: red;-fx-alignment: CENTER;-fx-text-fill: white;-fx-font-size: 12px;-fx-font-weight: bold;");
 				
 				HBox tesserePermesso = new HBox();
 				stampaTesserePermesso(tesserePermesso, avversario.getTesserePermesso(),
@@ -527,16 +527,16 @@ public class GUI extends Application implements Grafica {
 		HBox hbox = new HBox();
 		hbox.setSpacing(15);
 		hbox.setPadding(new Insets(5, 0, 0, 20));	
-		hbox.getChildren().add(stampaPuntoAvversario("css/Point.png", Integer.toString(avversario.getPunteggioVittoria())));
-		hbox.getChildren().add(stampaPuntoAvversario("css/Coins.png", Integer.toString(avversario.getPunteggioRicchezza())));
-		hbox.getChildren().add(stampaPuntoAvversario("css/Assistant.png", Integer.toString(avversario.getAiutanti())));
-		hbox.getChildren().add(stampaPuntoAvversario("css/Emporium.png", Integer.toString(avversario.getEmpori())));
-		hbox.getChildren().add(stampaPuntoAvversario("css/Nobility.png", Integer.toString(avversario.getPunteggioNobiltà())));
-		hbox.getChildren().add(stampaPuntoAvversario("css/BonusGiocatori.png", Integer.toString(avversario.getTessereBonus())));
+		hbox.getChildren().add(stampaPuntoAvversario("css/Point.png", Integer.toString(avversario.getPunteggioVittoria()),10));
+		hbox.getChildren().add(stampaPuntoAvversario("css/Coins.png", Integer.toString(avversario.getPunteggioRicchezza()),10));
+		hbox.getChildren().add(stampaPuntoAvversario("css/Assistant.png", Integer.toString(avversario.getAiutanti()),4));
+		hbox.getChildren().add(stampaPuntoAvversario("css/Emporium.png", Integer.toString(avversario.getEmpori()),10));
+		hbox.getChildren().add(stampaPuntoAvversario("css/Nobility.png", Integer.toString(avversario.getPunteggioNobiltà()),10));
+		hbox.getChildren().add(stampaPuntoAvversario("css/BonusGiocatori.png", Integer.toString(avversario.getTessereBonus()),10));
 		return hbox;
 	}
 	
-	private Pane stampaPuntoAvversario(String immagine, String punti){
+	private Pane stampaPuntoAvversario(String immagine, String punti, int relocateH){
 		Pane pane = new Pane();
 		ImageView image = new ImageView();
 		image.setImage(new Image(getClass().getResource(immagine).toExternalForm()));
@@ -544,10 +544,10 @@ public class GUI extends Application implements Grafica {
 		image.setFitHeight(40);
 		Text text = new Text();
 		text.setText(punti);
-		text.relocate(10, 13);
+		text.relocate(relocateH, 13);
 		pane.getChildren().add(image);
 		pane.getChildren().add(text);
-		text.setStyle("-fx-font: 17.0px Algerian; -fx-fill: white;");
+//		text.setStyle("-fx-font: 17.0px Algerian; -fx-fill: white;");
 		return pane;
 	}
 
