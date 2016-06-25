@@ -337,7 +337,7 @@
                            <content>
                               <VBox styleClass="background" stylesheets="@../css/game.css">
                                  <children>
-                                    <TextArea fx:id="message" editable="false" minHeight="58.0" prefHeight="99.0" prefWidth="501.0" stylesheets="@../css/scroll-bar.css" />
+                                    <ListView fx:id="message" prefHeight="89.0" prefWidth="501.0" />
                                     <TextField fx:id="chat" onKeyPressed="#handleChat" prefHeight="26.0" prefWidth="444.0" />
                                  </children>
                               </VBox>
