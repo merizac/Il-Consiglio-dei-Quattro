@@ -279,6 +279,8 @@ public class GUIGameController {
 		
 		this.mappaBonus.put("Aiutante", 
 				new Image(getClass().getResource("css/Assistant.png").toExternalForm()));
+		this.mappaBonus.put("Re", 
+				new Image(getClass().getResource("css/king.png").toExternalForm()));
 		
 		this.mappaConsiglieri.put("Arancione",
 				new Image(getClass().getResource("css/consiglieri/Arancione.png").toExternalForm()));
@@ -418,7 +420,7 @@ public class GUIGameController {
 		// montagna
 		this.mappaTessere.put("TesseraPermesso  città:[Naris], bonus:[BonusMoneta 7]",
 				new Image(getClass().getResource("css/permitTile/2.1.png").toExternalForm()));
-		this.mappaTessere.put("TesseraPermesso  città:[Naris, Merkatim], bonus:[BonusAzionePrincipale]",
+		this.mappaTessere.put("TesseraPermesso  città:[Merkatim, Naris], bonus:[BonusAzionePrincipale]",
 				new Image(getClass().getResource("css/permitTile/2.14.png").toExternalForm()));
 		this.mappaTessere.put("TesseraPermesso  città:[Kultos], bonus:[BonusCartePolitica 4]",
 				new Image(getClass().getResource("css/permitTile/2.8.png").toExternalForm()));
@@ -1061,6 +1063,18 @@ public class GUIGameController {
 	public List<ImageView> getTessereMontagna() {
 		return Arrays.asList(tesseraMontagna1, tesseraMontagna2);
 	}
+	
+	public List<HBox> getListaEmporiHBox(){
+		return Arrays.asList(emporiArkon,emporiBurgen,emporiCastrum,emporiDorful,emporiEsti,emporiFramek,emporiGraden,emporiHellar,emporiIndur,emporiJuvelar,emporiKultos,emporiLyram,emporiMerkatim,emporiNaris,emporiOsium);
+	}
+	
+
+	/**
+	 * @return the mappaEmpori
+	 */
+	public Map<String, Image> getMappaEmpori() {
+		return mappaEmpori;
+	}
 
 	public List<ImageView> getTesserePermessoRegioni() {
 		List<ImageView> tessere = new ArrayList<>();
@@ -1093,7 +1107,7 @@ public class GUIGameController {
 
 	public Button getRe() {
 		for (Button b : città)
-			if (b.getUserData().equals(gameStateDTO.getPedinaRE()))
+			if ((b.getUserData()).equals(gameStateDTO.getPedinaRE().getCittà()))
 				return b;
 		return null;
 	}

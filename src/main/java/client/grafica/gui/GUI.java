@@ -2,6 +2,7 @@ package client.grafica.gui;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -198,11 +199,46 @@ public class GUI extends Application implements Grafica {
 		assegnaRegione();
 		assegnaAzioni();
 		assegnaRe();
-		controller.stampaEmporiCittà(new ArrayList<>(gameStateDTO.getCittà()));
+		stampaEmporiCittà(new ArrayList<>(gameStateDTO.getCittà()));
+	}
+	
+	private void stampaEmporiCittà(List<CittàDTO> città) {
+		Platform.runLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				List<HBox> hbox=controller.getListaEmporiHBox();
+				Map<String, Image> mappaEmpori=controller.getMappaEmpori();
+						
+				for(int i=0;i<città.size()-1;i++){
+					for(String emporio: città.get(i).getEmpori()){	
+						ImageView imageView=new ImageView();
+						imageView.setImage(mappaEmpori.get(emporio));
+						hbox.get(i).getChildren().add(imageView);
+						imageView.setFitHeight(15);
+						imageView.setPreserveRatio(true);
+					}
+				}
+			}
+		});
 	}
 
+
 	private void assegnaRe() {
-		System.out.println(controller.getRe());
+		Platform.runLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				Map<String, Image> immagineRe=controller.getMappaBonus();
+				ImageView imageView=new ImageView();
+				imageView.setImage(immagineRe.get("Re"));
+				controller.getRe().setGraphic(imageView);
+				imageView.setPreserveRatio(true);
+				imageView.setFitHeight(20);
+				controller.getRe().setOpacity(1);
+				
+			}
+		});
 	}
 
 	private void assegnaAzioni() {
