@@ -197,6 +197,7 @@ public class GUI extends Application implements Grafica {
 		assegnaRegione();
 		assegnaAzioni();
 		assegnaRe();
+		controller.stampaEmporiCittà(new ArrayList<>(gameStateDTO.getCittà()));
 	}
 
 	private void assegnaRe() {
@@ -316,10 +317,64 @@ public class GUI extends Application implements Grafica {
 		});
 
 	}
+	
+	public void stampaConsiglieriBalcone(){
+		Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+				List<HBox> balconi=controller.getBalconi();
+				Map<String, Image> mappaConsiglieri=controller.getMappaConsiglieri();
+				balconi.get(0).getChildren().clear();
+				for (ConsigliereDTO c : gameStateDTO.getRegioni().get(0).getBalcone().getConsiglieri()) {
+					ImageView imageView = new ImageView(mappaConsiglieri.get(c.toString()));
+					imageView.setFitHeight(25);
+					imageView.setPreserveRatio(true);
+					balconi.get(0).getChildren().add(imageView);
+				}
+
+				balconi.get(0).setUserData(gameStateDTO.getRegioni().get(0).getBalcone());
+				balconi.get(0).setDisable(true);
+
+				balconi.get(1).getChildren().clear();
+				for (ConsigliereDTO c : gameStateDTO.getRegioni().get(1).getBalcone().getConsiglieri()) {
+					ImageView imageView = new ImageView(mappaConsiglieri.get(c.toString()));
+					imageView.setFitHeight(25);
+					imageView.setPreserveRatio(true);
+					balconi.get(1).getChildren().add(imageView);
+				}
+
+				balconi.get(1).setUserData(gameStateDTO.getRegioni().get(1).getBalcone());
+				balconi.get(1).setDisable(true);
+
+				balconi.get(2).getChildren().clear();
+				for (ConsigliereDTO c : gameStateDTO.getRegioni().get(2).getBalcone().getConsiglieri()) {
+					ImageView imageView = new ImageView(mappaConsiglieri.get(c.toString()));
+					imageView.setFitHeight(25);
+					imageView.setPreserveRatio(true);
+					balconi.get(2).getChildren().add(imageView);
+				}
+
+				balconi.get(2).setUserData(gameStateDTO.getRegioni().get(2).getBalcone());
+				balconi.get(2).setDisable(true);
+
+				balconi.get(3).getChildren().clear();
+				for (ConsigliereDTO c : gameStateDTO.getPlanciaReDTO().getBalconeRe().getConsiglieri()) {
+					ImageView imageView = new ImageView(mappaConsiglieri.get(c.toString()));
+					imageView.setFitHeight(25);
+					imageView.setPreserveRatio(true);
+					balconi.get(3).getChildren().add(imageView);
+				}
+
+				balconi.get(3).setUserData(gameStateDTO.getPlanciaReDTO().getBalconeRe());
+				balconi.get(3).setDisable(true);
+			}
+		});
+	}
 
 	@Override
 	public void mostraMessaggio(String messaggio) {
-		controller.getMessage().appendText("\n[Server]\t"+messaggio);
+		controller.getMessage().appendText("\n"+messaggio);
 	}
 
 	@Override
