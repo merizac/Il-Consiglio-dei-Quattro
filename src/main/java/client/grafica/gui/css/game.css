@@ -48,8 +48,19 @@
 #transparentbutton{
 	-fx-background-color:transparent;
 	-fx-border-color: transparent;
+	-fx-text-fill: transparent;
 }
 
+#transparentbutton:hover{
+	-fx-background-color:#808080;
+	-fx-opacity: 0.8;
+	-fx-text-fill: white;
+	-fx-border-color: transparent;
+}
+
+#consiglieriRiserva:hover{
+	-fx-opacity:0.4;
+}
 
 #quit:hover{
 	-fx-background-color:red;

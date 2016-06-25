@@ -35,6 +35,7 @@ import common.gameDTO.RegioneDTO;
 import common.gameDTO.TesseraPermessoDTO;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -226,7 +227,6 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public void mostraGiocatore(GiocatoreDTO giocatoreDTO) {
-		giocatoreDTO.getTesserePermesso().add(gameStateDTO.getRegioni().get(0).getTesserePermessoScoperte().get(0));
 		stampaTesserePermesso(controller.getTesserePermessoGiocatore(), giocatoreDTO.getTesserePermesso(),
 				giocatoreDTO.getTesserePermessoUsate().size(), 70);
 		cartePolitica(giocatoreDTO.getCartePolitica());
@@ -459,14 +459,15 @@ public class GUI extends Application implements Grafica {
 			
 			@Override
 			public void run() {
+				vbox.getChildren().clear();
 				for(OffertaDTO o:offerte){
-					vbox.getChildren().add(stampaOfferta(o.getGiocatoreDTO().getNome(), o.getMarketableDTO(), o.getPrezzo()));
+					vbox.getChildren().add(stampaOfferta(o, o.getGiocatoreDTO().getNome(), o.getMarketableDTO(), o.getPrezzo()));
 				}
 			}
 		});
 	}
 	
-	private HBox stampaOfferta(String giocatore, MarketableDTO oggetto, int prezzo){
+	private HBox stampaOfferta(OffertaDTO offerta, String giocatore, MarketableDTO oggetto, int prezzo){
 		Map<String, Image> tesserePermesso=controller.getMappaTesserePermesso();
 		Map<String, Image> aiutante=controller.getMappaBonus();
 		Map<String, Image> cartePolitica=controller.getMappaCartePolitica();
@@ -492,7 +493,15 @@ public class GUI extends Application implements Grafica {
 		imageview.setImage(image);
 		Button soldi=new Button();
 		soldi.setText(Integer.toString(prezzo));
-				
+		soldi.setUserData(offerta);
+		soldi.setDisable(true);
+		soldi.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				controllerMarket.handleAcquisto(event);
+			}
+		});
 		hbox.getChildren().add(nome);
 		hbox.getChildren().add(imageview);
 		hbox.getChildren().add(soldi);
@@ -803,7 +812,7 @@ public class GUI extends Application implements Grafica {
 		List<ImageView> cartePolitica = this.controller.getCartePolitica();
 		for (ImageView i : cartePolitica)
 			i.setDisable(false);
-		while (cartePolitica.size() != 4) {
+		while (carte.size() != 4) {
 			synchronized (lock) {
 				while (parametro == null) {
 
@@ -817,6 +826,7 @@ public class GUI extends Application implements Grafica {
 
 				if (isCarteInserite()){
 					parametro = null;
+					setCarteInserite(false);
 					break;
 				}
 
@@ -863,6 +873,18 @@ public class GUI extends Application implements Grafica {
 			}
 		}
 		
+		
+		for(Node i: aiutanti.getChildren()){
+			i.setDisable(true);
+		}
+		
+		for(Node i: cartePolitica.getChildren()){
+			i.setDisable(true);
+		}
+		
+		for(Node i: tesserePermesso.getChildren()){
+			i.setDisable(true);
+		}
 		MarketableDTO marketableDTO=(MarketableDTO) parametro;
 		parametro=null;
 		return marketableDTO;
@@ -871,7 +893,34 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public int scegliOfferta(List<OffertaDTO> offerte) {
-		return 0;
+		List<Node> offerteMarket=controllerMarket.getOfferte().getChildren();
+		for(Node offerta: offerteMarket){
+			for(Node node:((HBox)offerta).getChildren()){
+				if(node instanceof Button){
+					node.setDisable(false);
+				}
+			}
+		}
+		
+		synchronized(lock){
+			while(parametro==null)
+				try {
+					lock.wait();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		}
+		OffertaDTO offertaDTO=(OffertaDTO) parametro;
+		parametro=null;
+		for(Node offerta: offerteMarket){
+			for(Node node:((HBox)offerta).getChildren()){
+				if(node instanceof Button){
+					node.setDisable(true);
+				}
+			}
+		}
+		return offerte.indexOf(offertaDTO)+1;
 	}
 
 	@Override

@@ -175,42 +175,21 @@
                         </AnchorPane>
                         <HBox>
                            <children>
-                              <TabPane fx:id="giocatori" prefHeight="130.0" prefWidth="362.0" styleClass="background" stylesheets="@../css/game.css" tabClosingPolicy="UNAVAILABLE">
-                                 <tabs>
-                                    <Tab text="Untitled Tab">
-                                      <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                             <children>
-                                                <Text layoutX="40.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="adasdaskkda" />
-                                             </children>
-                                          </AnchorPane>
-                                      </content>
-                                    </Tab>
-                                    <Tab text="Untitled Tab">
-                                      <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                                      </content>
-                                    </Tab>
-                                    <Tab text="Untitled Tab">
-                                      <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                                      </content>
-                                    </Tab>
-                                 </tabs></TabPane>
+                              <TabPane fx:id="giocatori" prefHeight="130.0" prefWidth="362.0" styleClass="background" stylesheets="@../css/game.css" tabClosingPolicy="UNAVAILABLE" />
                               <TitledPane alignment="CENTER" animated="false" collapsible="false" prefHeight="130.0" prefWidth="285.0" styleClass="titlepane" stylesheets="@../css/game.css" text="Riserva dei Consiglieri">
                                 <content>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="102.0" prefWidth="248.0" styleClass="background" stylesheets="@../css/game.css">
                                        <children>
                                           <HBox layoutX="17.0" layoutY="17.0" prefHeight="69.0" prefWidth="249.0">
                                              <children>
-                                                <ImageView fx:id="consigliere1" fitHeight="69.0" fitWidth="30.125" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
-                                                <ImageView fx:id="consigliere2" fitHeight="69.0" fitWidth="30.125" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
-                                                <ImageView fx:id="consigliere3" fitHeight="69.0" fitWidth="30.125" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
-                                                <ImageView fx:id="consigliere4" fitHeight="69.0" fitWidth="30.125" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
-                                                <ImageView fx:id="consigliere5" fitHeight="69.0" fitWidth="30.125" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
-                                                <ImageView fx:id="consigliere6" fitHeight="69.0" fitWidth="30.125" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
-                                                <ImageView fx:id="consigliere7" fitHeight="69.0" fitWidth="30.125" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
-                                                <ImageView fx:id="consigliere8" fitHeight="69.0" fitWidth="30.125" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
+                                                <ImageView id="consiglieriRiserva" fx:id="consigliere1" fitHeight="69.0" fitWidth="30.125" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
+                                                <ImageView id="consiglieriRiserva" fx:id="consigliere2" fitHeight="69.0" fitWidth="30.125" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
+                                                <ImageView id="consiglieriRiserva" fx:id="consigliere3" fitHeight="69.0" fitWidth="30.125" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
+                                                <ImageView id="consiglieriRiserva" fx:id="consigliere4" fitHeight="69.0" fitWidth="30.125" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
+                                                <ImageView id="consiglieriRiserva" fx:id="consigliere5" fitHeight="69.0" fitWidth="30.125" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
+                                                <ImageView id="consiglieriRiserva" fx:id="consigliere6" fitHeight="69.0" fitWidth="30.125" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
+                                                <ImageView id="consiglieriRiserva" fx:id="consigliere7" fitHeight="69.0" fitWidth="30.125" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
+                                                <ImageView id="consiglieriRiserva" fx:id="consigliere8" fitHeight="69.0" fitWidth="34.0" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
                                              </children>
                                           </HBox>
                                        </children>
@@ -366,17 +345,17 @@
                                           <Image url="@../css/Avalible%20action.jpg" />
                                        </image>
                                     </ImageView>
-                                    <Button id="transparentbutton" fx:id="elezioneConsigliereVeloce" layoutX="183.0" layoutY="164.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="45.0" prefWidth="165.0" stylesheets="@../css/game.css" />
-                                    <Button id="transparentbutton" fx:id="cambioTesseraPermesso" layoutX="182.0" layoutY="112.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="43.0" prefWidth="167.0" stylesheets="@../css/game.css" />
-                                    <Button id="transparentbutton" fx:id="ingaggioAiutante" layoutX="183.0" layoutY="59.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="46.0" prefWidth="166.0" stylesheets="@../css/game.css" />
-                                    <Button id="transparentbutton" fx:id="costruzioneAiutoRe" layoutX="5.0" layoutY="110.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="44.0" prefWidth="167.0" stylesheets="@../css/game.css" />
-                                    <Button id="transparentbutton" fx:id="acquistoTesseraPermesso" layoutX="10.0" layoutY="58.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="47.0" prefWidth="161.0" stylesheets="@../css/game.css" />
-                                    <Button id="transparentbutton" fx:id="elezioneConsigliere" layoutX="6.0" layoutY="161.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="47.0" prefWidth="168.0" stylesheets="@../css/game.css" />
-                                    <Button id="transparentbutton" fx:id="secondaAzionePrincipale" layoutX="187.0" layoutY="214.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="46.0" prefWidth="162.0" style="-fx-background-color: ;" stylesheets="@../css/game.css" />
-                                    <Button id="transparentbutton" fx:id="costruzioneTesseraPermesso" layoutX="6.0" layoutY="214.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="45.0" prefWidth="168.0" style="-fx-background-color: ;" stylesheets="@../css/game.css" />
+                                    <Button id="transparentbutton" fx:id="elezioneConsigliereVeloce" layoutX="183.0" layoutY="164.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="45.0" prefWidth="165.0" stylesheets="@../css/game.css" text="Elezione Consigliere" />
+                                    <Button id="transparentbutton" fx:id="cambioTesseraPermesso" layoutX="182.0" layoutY="112.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="43.0" prefWidth="167.0" stylesheets="@../css/game.css" text="Cambio Tessere" />
+                                    <Button id="transparentbutton" fx:id="ingaggioAiutante" layoutX="183.0" layoutY="59.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="46.0" prefWidth="166.0" stylesheets="@../css/game.css" text="Ingaggio Aiutante" />
+                                    <Button id="transparentbutton" fx:id="costruzioneAiutoRe" layoutX="5.0" layoutY="110.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="44.0" prefWidth="167.0" stylesheets="@../css/game.css" text="Costruzione Re" />
+                                    <Button id="transparentbutton" fx:id="acquistoTesseraPermesso" layoutY="58.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="47.0" prefWidth="171.0" stylesheets="@../css/game.css" text="Acquisto Tess. Permesso" />
+                                    <Button id="transparentbutton" fx:id="elezioneConsigliere" layoutX="6.0" layoutY="161.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="47.0" prefWidth="168.0" stylesheets="@../css/game.css" text="Elezione Consigliere" />
+                                    <Button id="transparentbutton" fx:id="secondaAzionePrincipale" layoutX="187.0" layoutY="214.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="46.0" prefWidth="162.0" style="-fx-background-color: ;" stylesheets="@../css/game.css" text="Azione Principale" />
+                                    <Button id="transparentbutton" fx:id="costruzioneTesseraPermesso" layoutX="3.0" layoutY="214.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="45.0" prefWidth="171.0" style="-fx-background-color: ;" stylesheets="@../css/game.css" text="Costruzione Tessera" />
                                     <VBox layoutX="351.0" layoutY="-1.0" prefHeight="262.0" prefWidth="175.0">
                                        <children>
-                                          <Button fx:id="quit" mnemonicParsing="false" prefHeight="27.0" prefWidth="174.0" stylesheets="@../css/game.css" text="Quit" />
+                                          <Button fx:id="quit" mnemonicParsing="false" onAction="#handleAzione" prefHeight="27.0" prefWidth="174.0" stylesheets="@../css/game.css" text="Quit" />
                                           <Button fx:id="passa" mnemonicParsing="false" onAction="#handleAzione" prefHeight="27.0" prefWidth="174.0" styleClass="mybutton" stylesheets="@../css/game.css" text="&gt;&gt; Salta Azione Veloce" />
                                        </children>
                                     </VBox>
