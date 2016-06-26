@@ -415,7 +415,7 @@ public class GUIGameController {
 		this.mappaTessere.put(
 				"TesseraPermesso  città:[Framek, Graden, Juvelar], bonus:[BonusMoneta 2, BonusPuntiVittoria 1]",
 				new Image(getClass().getResource("css/permitTile/1.14.png").toExternalForm()));
-		this.mappaTessere.put("TesseraPermesso  città:[Indur, Juvelar, Hellar], bonus:[BonusCartePolitica 1]",
+		this.mappaTessere.put("TesseraPermesso  città:[Hellar, Indur, Juvelar], bonus:[BonusCartePolitica 1]",
 				new Image(getClass().getResource("css/permitTile/1.12.png").toExternalForm()));
 		// montagna
 		this.mappaTessere.put("TesseraPermesso  città:[Naris], bonus:[BonusMoneta 7]",
@@ -842,7 +842,7 @@ public class GUIGameController {
 	public void mostraTesserePermessoRegioni(List<RegioneDTO> regioni) {
 
 		tesseraCollina1.setImage(this.mappaTessere.get(regioni.get(1).getTesserePermessoScoperte().get(0).toString()));
-		tesseraCollina1.setUserData(this.mappaTessere.get(regioni.get(1).getTesserePermessoScoperte().get(0)));
+		tesseraCollina1.setUserData(regioni.get(1).getTesserePermessoScoperte().get(0));
 
 		tesseraCollina2.setImage(this.mappaTessere.get(regioni.get(1).getTesserePermessoScoperte().get(1).toString()));
 		tesseraCollina2.setUserData(regioni.get(1).getTesserePermessoScoperte().get(1));
@@ -1106,9 +1106,9 @@ public class GUIGameController {
 	}
 
 	public Button getRe() {
-		System.out.println("Città in cui si trova il re: -------- "+gameStateDTO.getPedinaRE().getCittà() );
 		for (Button b : città){
-			if ((b.getUserData()).equals(gameStateDTO.getPedinaRE().getCittà())){
+			b.setStyle("transparentbutton");
+			if (((CittàDTO)b.getUserData()).getNome().equals(gameStateDTO.getPedinaRE().getCittà().getNome())){
 				return b;
 			}
 		}

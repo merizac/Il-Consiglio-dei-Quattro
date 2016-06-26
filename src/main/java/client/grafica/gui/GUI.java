@@ -236,7 +236,8 @@ public class GUI extends Application implements Grafica {
 				Map<String, Image> immagineRe=controller.getMappaBonus();
 				ImageView imageView=new ImageView();
 				imageView.setImage(immagineRe.get("Re"));
-				controller.getRe().setGraphic(imageView);
+				controller.getRe().setStyle("bottoneRe");
+	//			controller.getRe().setGraphic(imageView);
 				imageView.setPreserveRatio(true);
 				imageView.setFitHeight(20);
 				controller.getRe().setOpacity(1);
