@@ -236,13 +236,11 @@ public class GUI extends Application implements Grafica {
 				Map<String, Image> immagineRe=controller.getMappaBonus();
 				ImageView imageView=new ImageView();
 				imageView.setImage(immagineRe.get("Re"));
-				controller.getRe().setStyle("bottoneRe");
-	//			controller.getRe().setGraphic(imageView);
+				controller.getRe().getChildren().add(imageView);
 				imageView.setPreserveRatio(true);
 				imageView.setFitHeight(20);
-				controller.getRe().setOpacity(1);
-				imageView.setTranslateX(32);
-				imageView.setTranslateY(-32);
+				imageView.setTranslateX(60);
+				imageView.setTranslateY(-15);
 				imageView.setRotate(40);
 			}
 		});
@@ -804,8 +802,8 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public CittàDTO scegliCittà(Set<? extends CittàDTO> città, ColoreDTO coloreGiocatore) {
-		List<Button> cittàCostruzione=controller.getCittàSenzaEmporio(città);
-		for(Button b: cittàCostruzione)
+		List<Pane> cittàCostruzione=controller.getCittàSenzaEmporio(città);
+		for(Pane b: cittàCostruzione)
 			b.setDisable(false);
 		
 		synchronized (lock) {

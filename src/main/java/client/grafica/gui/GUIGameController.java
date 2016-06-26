@@ -38,6 +38,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import server.model.game.Emporio;
 import utility.AzioneNonEseguibile;
@@ -213,37 +214,37 @@ public class GUIGameController {
 	@FXML
 	private Button quit;
 	@FXML
-	private Button arkon;
+	private Pane arkon;
 	@FXML
-	private Button burgen;
+	private Pane burgen;
 	@FXML
-	private Button castrum;
+	private Pane castrum;
 	@FXML
-	private Button dorful;
+	private Pane dorful;
 	@FXML
-	private Button esti;
+	private Pane esti;
 	@FXML
-	private Button framek;
+	private Pane framek;
 	@FXML
-	private Button indur;
+	private Pane indur;
 	@FXML
-	private Button graden;
+	private Pane graden;
 	@FXML
-	private Button juvelar;
+	private Pane juvelar;
 	@FXML
-	private Button hellar;
+	private Pane hellar;
 	@FXML
-	private Button kultos;
+	private Pane kultos;
 	@FXML
-	private Button naris;
+	private Pane naris;
 	@FXML
-	private Button lyram;
+	private Pane lyram;
 	@FXML
-	private Button osium;
+	private Pane osium;
 	@FXML
-	private Button merkatim;
+	private Pane merkatim;
 	@FXML
-	private List<Button> città = new ArrayList<>();
+	private List<Pane> città = new ArrayList<>();
 
 	@FXML
 	private ImageView mare;
@@ -947,9 +948,9 @@ public class GUIGameController {
 	}
 
 	@FXML
-	public void handleCittà(ActionEvent event) {
+	public void handleCittà(Event event) {
 		synchronized (gui.getLock()) {
-			gui.setParametro(((Button) event.getSource()).getUserData());
+			gui.setParametro(((Pane) event.getSource()).getUserData());
 			gui.getLock().notifyAll();
 		}
 	}
@@ -1084,17 +1085,14 @@ public class GUIGameController {
 		return tessere;
 	}
 
-	public List<Button> getCittàSenzaEmporio(Set<? extends CittàDTO> città) {
-		List<Button> cittàCostruzione = new ArrayList<>();
-		for (Button b : this.città) {
-			System.out.println("città tessera " + b.getUserData() + città.contains(b.getUserData()));
-			System.out.println("città " + città + "\nb.getuserdata: " + b.getUserData());
+	public List<Pane> getCittàSenzaEmporio(Set<? extends CittàDTO> città) {
+		List<Pane> cittàCostruzione = new ArrayList<>();
+		for (Pane b : this.città) {
 			if (!((CittàDTO) b.getUserData()).getEmpori().contains(gameStateDTO.getGiocatoreDTO().getColoreGiocatore())
 					&& città.contains((CittàDTO) b.getUserData())) {
 				cittàCostruzione.add(b);
 			}
 		}
-		System.out.println("Città costruzioni: " + cittàCostruzione);
 		return cittàCostruzione;
 	}
 
@@ -1105,14 +1103,15 @@ public class GUIGameController {
 
 	}
 
-	public Button getRe() {
-
-		for (Button b : città){
+	public Pane getRe() {
+		Pane cittàRe=null;
+		for (Pane b : città){
+			b.getChildren().clear();
 			if (((CittàDTO)b.getUserData()).getNome().equals(gameStateDTO.getPedinaRE().getCittà().getNome())){
-				return b;
+				cittàRe=b;
 			}
 		}
-		return null;
+		return cittàRe;
 	}
 
 	/**
