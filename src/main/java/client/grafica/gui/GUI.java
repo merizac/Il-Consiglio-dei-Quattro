@@ -69,6 +69,7 @@ public class GUI extends Application implements Grafica {
 	private GUIGameController controller;
 	private GUIMarketController controllerMarket;
 	private Stage finestra;
+	private Stage market;
 	private Object lock = new Object();
 	private Object parametro;
 	private boolean carteInserite = false;
@@ -235,7 +236,8 @@ public class GUI extends Application implements Grafica {
 				Map<String, Image> immagineRe=controller.getMappaBonus();
 				ImageView imageView=new ImageView();
 				imageView.setImage(immagineRe.get("Re"));
-				controller.getRe().setGraphic(imageView);
+				controller.getRe().setStyle("bottoneRe");
+	//			controller.getRe().setGraphic(imageView);
 				imageView.setPreserveRatio(true);
 				imageView.setFitHeight(20);
 				controller.getRe().setOpacity(1);
@@ -258,7 +260,6 @@ public class GUI extends Application implements Grafica {
 		azioni.get(7).setUserData(new SecondaAzionePrincipaleDTO());
 		azioni.get(8).setUserData(new PassaDTO());
 		azioni.get(9).setUserData(new PescaCartaDTO());
-		azioni.stream().forEach(a-> System.out.println(a+""+a.getUserData()));
 	}
 
 	private void assegnaRegione() {
@@ -564,7 +565,7 @@ public class GUI extends Application implements Grafica {
 				try {
 					root = fxmloader.load();
 					Scene theScene = new Scene(root);
-					Stage market=new Stage();
+					market=new Stage();
 					controllerMarket = fxmloader.getController();
 					controllerMarket.setGameStateDTO(gameStateDTO);
 					controllerMarket.setGui(GUI.this);
@@ -987,6 +988,18 @@ public class GUI extends Application implements Grafica {
 	public List<CittàBonusDTO> scegliDueCittà() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void fineMarket() {
+		Platform.runLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				market.close();
+			}
+		});
+		
 	}
 
 

@@ -10,6 +10,7 @@ import server.model.game.GameState;
 import server.model.game.Giocatore;
 import server.model.notify.AzioniNotify;
 import server.model.notify.GiocatoreMarketNotify;
+import server.model.notify.MarketNotify;
 import server.model.notify.OffertaNotify;
 
 public class StatoOffertaMarket implements Stato {
@@ -43,8 +44,9 @@ public class StatoOffertaMarket implements Stato {
 
 		}
 		else{
-			if(gameState.getOfferteMarket().isEmpty())
-				gameState.setStato(new StartEnd(gameState));
+			if(gameState.getOfferteMarket().isEmpty()){
+				gameState.notifyObserver(new MarketNotify(gameState.getGiocatori(), true));
+				gameState.setStato(new StartEnd(gameState));}
 			else
 				gameState.setStato(new StatoAcquistoMarket(gameState));}
 	}

@@ -45,7 +45,7 @@ public class Stato01 implements Stato {
 				gameState.setStato(new StartEnd(gameState));
 			else {
 				try{
-				gameState.notifyObserver(new MarketNotify(gameState.getGiocatori()));}
+				gameState.notifyObserver(new MarketNotify(gameState.getGiocatori(), false));}
 				catch(Exception e){
 					e.printStackTrace();
 				}

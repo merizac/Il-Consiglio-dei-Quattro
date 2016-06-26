@@ -11,6 +11,7 @@ import server.model.azioni.azioniMarket.AzioneAcquisto;
 import server.model.game.GameState;
 import server.model.game.Giocatore;
 import server.model.notify.AzioniNotify;
+import server.model.notify.MarketNotify;
 import server.model.notify.MessageNotify;
 import server.model.notify.OffertaNotify;
 import server.view.clientNotify.MessageClientNotify;
@@ -43,6 +44,7 @@ public class StatoAcquistoMarket implements Stato {
 			gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(giocatori.get(0))));
 		} else {
 			gameState.getOfferteMarket().clear();
+			gameState.notifyObserver(new MarketNotify(gameState.getGiocatori(), true));
 			gameState.setStato(new StartEnd(gameState));
 		}
 	}

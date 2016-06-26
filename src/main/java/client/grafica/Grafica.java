@@ -72,4 +72,6 @@ public interface Grafica {
 	public void startMarket();
 
 	public void mostraGiocatoreMarket(GiocatoreDTO giocatoreDTO);
+
+	public void fineMarket();
 }

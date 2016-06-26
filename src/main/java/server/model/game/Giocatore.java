@@ -266,22 +266,19 @@ public class Giocatore {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	
+	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((coloreGiocatore == null) ? 0 : coloreGiocatore.hashCode());
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -290,22 +287,17 @@ public class Giocatore {
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
+		if (!(obj instanceof Giocatore))
 			return false;
 		Giocatore other = (Giocatore) obj;
-		if (nome == null) {
-			if (other.nome != null)
+		if (coloreGiocatore == null) {
+			if (other.coloreGiocatore != null)
 				return false;
-		} else if (!nome.equals(other.nome))
+		} else if (!coloreGiocatore.equals(other.coloreGiocatore))
 			return false;
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
 		return "Giocatore: " + nome + ", " + coloreGiocatore + "\ncartePolitica [" + cartePolitica + "]"

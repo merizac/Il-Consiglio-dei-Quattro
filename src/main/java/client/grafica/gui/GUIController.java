@@ -15,9 +15,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
 public class GUIController {
-	
+
 	private GUI gui;
-	
+
 	@FXML
 	private TextField nome;
 	@FXML
@@ -26,19 +26,18 @@ public class GUIController {
 	private CheckBox socket;
 	@FXML
 	private CheckBox rmi;
-	
+
 	/**
-	 * @param gui the gui to set
+	 * @param gui
+	 *            the gui to set
 	 */
 	public void setGui(GUI gui) {
 		this.gui = gui;
 	}
 
-
-
 	@FXML
-	public void button(ActionEvent e){
-		if(nome.getText().isEmpty()){
+	public void button(ActionEvent e) {
+		if (nome.getText().isEmpty()) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Errore");
 			alert.setHeaderText("Non hai inserito il tuo nome!");
@@ -47,8 +46,8 @@ public class GUIController {
 			alert.showAndWait();
 			return;
 		}
-		
-		else if(!socket.isSelected() && !rmi.isSelected()){
+
+		else if (!socket.isSelected() && !rmi.isSelected()) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Errore");
 			alert.setHeaderText("Non hai inserito la connesione!");
@@ -57,8 +56,8 @@ public class GUIController {
 			alert.showAndWait();
 			return;
 		}
-		
-		else if(socket.isSelected() && rmi.isSelected()){
+
+		else if (socket.isSelected() && rmi.isSelected()) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Errore");
 			alert.setHeaderText("Seleziona una sola connessione!");
@@ -67,16 +66,12 @@ public class GUIController {
 			alert.showAndWait();
 			return;
 		}
-		
-		else{
-			System.out.println("premuto bottone");
 
-	
-		GiocatoreDTO giocatoreDTO=new GiocatoreDTO();
+		GiocatoreDTO giocatoreDTO = new GiocatoreDTO();
 		giocatoreDTO.setNome(nome.getText());
 		gui.getGameStateDTO().setGiocatoreDTO(giocatoreDTO);
-		
-		if(socket.isSelected())
+
+		if (socket.isSelected())
 			gui.setConnessione(new ConnessioneSocket());
 		else
 			try {
@@ -85,7 +80,7 @@ public class GUIController {
 				// TODO Auto-generated catch block
 				e2.printStackTrace();
 			}
-		
+
 		gui.setGiocatoreDTO(giocatoreDTO);
 		try {
 			gui.getConnessione().setGameStateDTO(gui.getGameStateDTO());
@@ -100,9 +95,7 @@ public class GUIController {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
-		}
-		
+
 	}
-	
+
 }

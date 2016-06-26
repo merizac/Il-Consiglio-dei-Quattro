@@ -415,7 +415,7 @@ public class GUIGameController {
 		this.mappaTessere.put(
 				"TesseraPermesso  città:[Framek, Graden, Juvelar], bonus:[BonusMoneta 2, BonusPuntiVittoria 1]",
 				new Image(getClass().getResource("css/permitTile/1.14.png").toExternalForm()));
-		this.mappaTessere.put("TesseraPermesso  città:[Indur, Juvelar, Hellar], bonus:[BonusCartePolitica 1]",
+		this.mappaTessere.put("TesseraPermesso  città:[Hellar, Indur, Juvelar], bonus:[BonusCartePolitica 1]",
 				new Image(getClass().getResource("css/permitTile/1.12.png").toExternalForm()));
 		// montagna
 		this.mappaTessere.put("TesseraPermesso  città:[Naris], bonus:[BonusMoneta 7]",
@@ -524,7 +524,7 @@ public class GUIGameController {
 
 		});
 	}
-
+/*
 	@FXML
 	public void elezioneConsigliere(ActionEvent event) {
 		ElezioneConsigliereDTO elezione = new ElezioneConsigliereDTO();
@@ -544,7 +544,7 @@ public class GUIGameController {
 		});
 	}
 
-/*	@FXML
+	@FXML
 	public void pescaCarta(Event event) {
 		PescaCartaDTO pesca = new PescaCartaDTO();
 		try {
@@ -553,7 +553,7 @@ public class GUIGameController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}*/
+	}
 
 	@FXML
 	public void acquistoTesseraPermesso(ActionEvent event) {
@@ -693,7 +693,7 @@ public class GUIGameController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 	public void mostraNomeGiocatore(String nome) {
 		nomeGiocatore.setText(nome);
@@ -842,7 +842,7 @@ public class GUIGameController {
 	public void mostraTesserePermessoRegioni(List<RegioneDTO> regioni) {
 
 		tesseraCollina1.setImage(this.mappaTessere.get(regioni.get(1).getTesserePermessoScoperte().get(0).toString()));
-		tesseraCollina1.setUserData(this.mappaTessere.get(regioni.get(1).getTesserePermessoScoperte().get(0)));
+		tesseraCollina1.setUserData(regioni.get(1).getTesserePermessoScoperte().get(0));
 
 		tesseraCollina2.setImage(this.mappaTessere.get(regioni.get(1).getTesserePermessoScoperte().get(1).toString()));
 		tesseraCollina2.setUserData(regioni.get(1).getTesserePermessoScoperte().get(1));
@@ -1029,7 +1029,7 @@ public class GUIGameController {
 	public List<ImageView> getConsiglieri() {
 
 		return Arrays.asList(consigliere1, consigliere2, consigliere3, consigliere4, consigliere5, consigliere6,
-				consigliere7, consigliere7);
+				consigliere7, consigliere7, consigliere8);
 	}
 
 	public List<HBox> getBalconi() {
@@ -1106,9 +1106,12 @@ public class GUIGameController {
 	}
 
 	public Button getRe() {
-		for (Button b : città)
-			if ((b.getUserData()).equals(gameStateDTO.getPedinaRE().getCittà()))
+
+		for (Button b : città){
+			if (((CittàDTO)b.getUserData()).getNome().equals(gameStateDTO.getPedinaRE().getCittà().getNome())){
 				return b;
+			}
+		}
 		return null;
 	}
 
