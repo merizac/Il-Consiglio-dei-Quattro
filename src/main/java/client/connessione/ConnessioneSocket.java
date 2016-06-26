@@ -52,6 +52,7 @@ public class ConnessioneSocket implements Connessione, Runnable {
 
 		try {
 			socketOut.writeObject(gameStateDTO.getGiocatoreDTO());
+			socketOut.reset();
 			socketOut.flush();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

@@ -156,21 +156,21 @@
                                     <Image url="@../css/iconeRegioni/mountainsLogo.png" />
                                  </image>
                               </ImageView>
-                              <HBox fx:id="emporiArkon" layoutX="20.0" layoutY="92.0" prefHeight="20.0" prefWidth="80.0" style="-fx-background-color: transparent;" />
-                              <HBox fx:id="emporiCastrum" layoutX="146.0" layoutY="131.0" prefHeight="20.0" prefWidth="80.0" style="-fx-background-color: transparent;" />
-                              <HBox fx:id="emporiBurgen" layoutX="15.0" layoutY="217.0" prefHeight="20.0" prefWidth="80.0" style="-fx-background-color: transparent;" />
-                              <HBox fx:id="emporiDorful" layoutX="139.0" layoutY="247.0" prefHeight="20.0" prefWidth="80.0" style="-fx-background-color: transparent;" />
-                              <HBox fx:id="emporiEsti" layoutX="55.0" layoutY="333.0" prefHeight="20.0" prefWidth="80.0" style="-fx-background-color: transparent;" />
-                              <HBox fx:id="emporiFramek" layoutX="286.0" layoutY="111.0" prefHeight="20.0" prefWidth="80.0" style="-fx-background-color: transparent;" />
-                              <HBox fx:id="emporiGraden" layoutX="292.0" layoutY="217.0" prefHeight="20.0" prefWidth="80.0" style="-fx-background-color: transparent;" />
-                              <HBox fx:id="emporiHellar" layoutX="310.0" layoutY="319.0" prefHeight="20.0" prefWidth="80.0" style="-fx-background-color: transparent;" />
-                              <HBox fx:id="emporiIndur" layoutX="419.0" layoutY="101.0" prefHeight="20.0" prefWidth="80.0" style="-fx-background-color: transparent;" />
-                              <HBox fx:id="emporiJuvelar" layoutX="410.0" layoutY="257.0" prefHeight="20.0" prefWidth="80.0" style="-fx-background-color: transparent;" />
-                              <HBox fx:id="emporiMerkatim" layoutX="525.0" layoutY="342.0" prefHeight="20.0" prefWidth="80.0" style="-fx-background-color: transparent;" />
-                              <HBox fx:id="emporiLyram" layoutX="540.0" layoutY="225.0" prefHeight="20.0" prefWidth="80.0" style="-fx-background-color: transparent;" />
-                              <HBox fx:id="emporiKultos" layoutX="558.0" layoutY="102.0" prefHeight="20.0" prefWidth="80.0" style="-fx-background-color: transparent;" />
-                              <HBox fx:id="emporiNaris" layoutX="652.0" layoutY="169.0" prefHeight="20.0" prefWidth="80.0" style="-fx-background-color: transparent;" />
-                              <HBox fx:id="emporiOsium" layoutX="664.0" layoutY="297.0" prefHeight="20.0" prefWidth="80.0" style="-fx-background-color: transparent;" />
+                              <HBox fx:id="emporiArkon" layoutX="20.0" layoutY="92.0" prefHeight="20.0" prefWidth="80.0" />
+                              <HBox fx:id="emporiCastrum" layoutX="146.0" layoutY="131.0" prefHeight="20.0" prefWidth="80.0" />
+                              <HBox fx:id="emporiBurgen" layoutX="15.0" layoutY="217.0" prefHeight="20.0" prefWidth="80.0" />
+                              <HBox fx:id="emporiDorful" layoutX="139.0" layoutY="247.0" prefHeight="20.0" prefWidth="80.0" />
+                              <HBox fx:id="emporiEsti" layoutX="55.0" layoutY="333.0" prefHeight="20.0" prefWidth="80.0" />
+                              <HBox fx:id="emporiFramek" layoutX="286.0" layoutY="111.0" prefHeight="20.0" prefWidth="80.0" />
+                              <HBox fx:id="emporiGraden" layoutX="292.0" layoutY="217.0" prefHeight="20.0" prefWidth="80.0" />
+                              <HBox fx:id="emporiHellar" layoutX="310.0" layoutY="319.0" prefHeight="20.0" prefWidth="80.0" />
+                              <HBox fx:id="emporiIndur" layoutX="419.0" layoutY="101.0" prefHeight="20.0" prefWidth="80.0" />
+                              <HBox fx:id="emporiJuvelar" layoutX="410.0" layoutY="257.0" prefHeight="20.0" prefWidth="80.0" />
+                              <HBox fx:id="emporiMerkatim" layoutX="525.0" layoutY="342.0" prefHeight="20.0" prefWidth="80.0" />
+                              <HBox fx:id="emporiLyram" layoutX="540.0" layoutY="225.0" prefHeight="20.0" prefWidth="80.0" />
+                              <HBox fx:id="emporiKultos" layoutX="558.0" layoutY="102.0" prefHeight="20.0" prefWidth="80.0" />
+                              <HBox fx:id="emporiNaris" layoutX="652.0" layoutY="169.0" prefHeight="20.0" prefWidth="80.0" />
+                              <HBox fx:id="emporiOsium" layoutX="664.0" layoutY="297.0" prefHeight="20.0" prefWidth="80.0" />
                            </children>
                         </AnchorPane>
                         <HBox>
@@ -200,12 +200,12 @@
                                  <content>
                                     <Pane styleClass="background" stylesheets="@../css/game.css">
                                        <children>
-                                          <Button id="transparentbutton" fx:id="pescaCarta" layoutX="28.0" layoutY="1.0" mnemonicParsing="false" prefHeight="99.0" prefWidth="71.0" style="-fx-background-color: transparent;" />
-                                          <ImageView fitHeight="93.0" fitWidth="66.0" layoutX="33.0" layoutY="4.0" onMouseClicked="#pescaCarta" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="93.0" fitWidth="66.0" layoutX="33.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../css/politicCard/Retro.png" />
                                              </image>
                                           </ImageView>
+                                          <Button id="transparentbutton" fx:id="pescaCarta" layoutX="28.0" layoutY="1.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="99.0" prefWidth="71.0" style="-fx-background-color: transparent;" />
                                        </children>
                                     </Pane>
                                  </content>
@@ -351,8 +351,8 @@
                                     <Button id="transparentbutton" fx:id="costruzioneAiutoRe" layoutX="5.0" layoutY="110.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="44.0" prefWidth="167.0" stylesheets="@../css/game.css" text="Costruzione Re" />
                                     <Button id="transparentbutton" fx:id="acquistoTesseraPermesso" layoutY="58.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="47.0" prefWidth="171.0" stylesheets="@../css/game.css" text="Acquisto Tess. Permesso" />
                                     <Button id="transparentbutton" fx:id="elezioneConsigliere" layoutX="6.0" layoutY="161.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="47.0" prefWidth="168.0" stylesheets="@../css/game.css" text="Elezione Consigliere" />
-                                    <Button id="transparentbutton" fx:id="secondaAzionePrincipale" layoutX="187.0" layoutY="214.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="46.0" prefWidth="162.0" style="-fx-background-color: ;" stylesheets="@../css/game.css" text="Azione Principale" />
-                                    <Button id="transparentbutton" fx:id="costruzioneTesseraPermesso" layoutX="3.0" layoutY="214.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="45.0" prefWidth="171.0" style="-fx-background-color: ;" stylesheets="@../css/game.css" text="Costruzione Tessera" />
+                                    <Button id="transparentbutton" fx:id="secondaAzionePrincipale" layoutX="187.0" layoutY="214.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="46.0" prefWidth="162.0" stylesheets="@../css/game.css" text="Azione Principale" />
+                                    <Button id="transparentbutton" fx:id="costruzioneTesseraPermesso" layoutX="3.0" layoutY="214.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="45.0" prefWidth="171.0" stylesheets="@../css/game.css" text="Costruzione Tessera" />
                                     <VBox layoutX="351.0" layoutY="-1.0" prefHeight="262.0" prefWidth="175.0">
                                        <children>
                                           <Button fx:id="quit" mnemonicParsing="false" onAction="#handleAzione" prefHeight="27.0" prefWidth="174.0" stylesheets="@../css/game.css" text="Quit" />

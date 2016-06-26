@@ -2,6 +2,7 @@ package client.grafica.gui;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,7 @@ import common.azioniDTO.ElezioneConsigliereDTO;
 import common.azioniDTO.ElezioneConsigliereVeloceDTO;
 import common.azioniDTO.IngaggioAiutanteDTO;
 import common.azioniDTO.PassaDTO;
+import common.azioniDTO.PescaCartaDTO;
 import common.azioniDTO.SecondaAzionePrincipaleDTO;
 import common.gameDTO.AiutanteDTO;
 import common.gameDTO.BalconeDTO;
@@ -45,6 +47,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
@@ -198,10 +201,49 @@ public class GUI extends Application implements Grafica {
 		assegnaRegione();
 		assegnaAzioni();
 		assegnaRe();
+		stampaEmporiCittà(new ArrayList<>(gameStateDTO.getCittà()));
+	}
+	
+	private void stampaEmporiCittà(List<CittàDTO> città) {
+		Platform.runLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				List<HBox> hbox=controller.getListaEmporiHBox();
+				Map<String, Image> mappaEmpori=controller.getMappaEmpori();
+						
+				for(int i=0;i<città.size()-1;i++){
+					hbox.get(i).getChildren().clear();
+					for(String emporio: città.get(i).getEmpori()){	
+						ImageView imageView=new ImageView();
+						imageView.setImage(mappaEmpori.get(emporio));
+						hbox.get(i).getChildren().add(imageView);
+						imageView.setFitHeight(15);
+						imageView.setPreserveRatio(true);
+					}
+				}
+			}
+		});
 	}
 
+
 	private void assegnaRe() {
-		System.out.println(controller.getRe());
+		Platform.runLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				Map<String, Image> immagineRe=controller.getMappaBonus();
+				ImageView imageView=new ImageView();
+				imageView.setImage(immagineRe.get("Re"));
+				controller.getRe().setGraphic(imageView);
+				imageView.setPreserveRatio(true);
+				imageView.setFitHeight(20);
+				controller.getRe().setOpacity(1);
+				imageView.setTranslateX(32);
+				imageView.setTranslateY(-32);
+				imageView.setRotate(40);
+			}
+		});
 	}
 
 	private void assegnaAzioni() {
@@ -215,6 +257,8 @@ public class GUI extends Application implements Grafica {
 		azioni.get(6).setUserData(new ElezioneConsigliereVeloceDTO());
 		azioni.get(7).setUserData(new SecondaAzionePrincipaleDTO());
 		azioni.get(8).setUserData(new PassaDTO());
+		azioni.get(9).setUserData(new PescaCartaDTO());
+		azioni.stream().forEach(a-> System.out.println(a+""+a.getUserData()));
 	}
 
 	private void assegnaRegione() {
@@ -316,10 +360,64 @@ public class GUI extends Application implements Grafica {
 		});
 
 	}
+	
+	public void stampaConsiglieriBalcone(){
+		Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+				List<HBox> balconi=controller.getBalconi();
+				Map<String, Image> mappaConsiglieri=controller.getMappaConsiglieri();
+				balconi.get(0).getChildren().clear();
+				for (ConsigliereDTO c : gameStateDTO.getRegioni().get(0).getBalcone().getConsiglieri()) {
+					ImageView imageView = new ImageView(mappaConsiglieri.get(c.toString()));
+					imageView.setFitHeight(25);
+					imageView.setPreserveRatio(true);
+					balconi.get(0).getChildren().add(imageView);
+				}
+
+				balconi.get(0).setUserData(gameStateDTO.getRegioni().get(0).getBalcone());
+				balconi.get(0).setDisable(true);
+
+				balconi.get(1).getChildren().clear();
+				for (ConsigliereDTO c : gameStateDTO.getRegioni().get(1).getBalcone().getConsiglieri()) {
+					ImageView imageView = new ImageView(mappaConsiglieri.get(c.toString()));
+					imageView.setFitHeight(25);
+					imageView.setPreserveRatio(true);
+					balconi.get(1).getChildren().add(imageView);
+				}
+
+				balconi.get(1).setUserData(gameStateDTO.getRegioni().get(1).getBalcone());
+				balconi.get(1).setDisable(true);
+
+				balconi.get(2).getChildren().clear();
+				for (ConsigliereDTO c : gameStateDTO.getRegioni().get(2).getBalcone().getConsiglieri()) {
+					ImageView imageView = new ImageView(mappaConsiglieri.get(c.toString()));
+					imageView.setFitHeight(25);
+					imageView.setPreserveRatio(true);
+					balconi.get(2).getChildren().add(imageView);
+				}
+
+				balconi.get(2).setUserData(gameStateDTO.getRegioni().get(2).getBalcone());
+				balconi.get(2).setDisable(true);
+
+				balconi.get(3).getChildren().clear();
+				for (ConsigliereDTO c : gameStateDTO.getPlanciaReDTO().getBalconeRe().getConsiglieri()) {
+					ImageView imageView = new ImageView(mappaConsiglieri.get(c.toString()));
+					imageView.setFitHeight(25);
+					imageView.setPreserveRatio(true);
+					balconi.get(3).getChildren().add(imageView);
+				}
+
+				balconi.get(3).setUserData(gameStateDTO.getPlanciaReDTO().getBalconeRe());
+				balconi.get(3).setDisable(true);
+			}
+		});
+	}
 
 	@Override
 	public void mostraMessaggio(String messaggio) {
-		controller.getMessage().appendText("\n[Server]\t"+messaggio);
+		controller.getMessage().appendText("\n"+messaggio);
 	}
 
 	@Override
@@ -522,7 +620,6 @@ public class GUI extends Application implements Grafica {
 				
 				vbox.getChildren().add(hbox);
 				tab.setContent(vbox);
-//				tab.setStyle("-fx-background-color: red;-fx-alignment: CENTER;-fx-text-fill: white;-fx-font-size: 12px;-fx-font-weight: bold;");
 								
 				HBox tesserePermesso = new HBox();
 				stampaTesserePermesso(tesserePermesso, avversario.getTesserePermesso(),
