@@ -492,10 +492,8 @@ public class GUI extends Application implements Grafica {
 	}
 	
 	@Override
-	public void mostraOfferte(List<OffertaDTO> offerte) {
-		
+	public void mostraOfferte(List<OffertaDTO> offerte) {	
 		Platform.runLater(new Runnable() {
-			
 			
 			VBox vbox=controllerMarket.getOfferte();
 			
@@ -503,7 +501,9 @@ public class GUI extends Application implements Grafica {
 			public void run() {
 				vbox.getChildren().clear();
 				for(OffertaDTO o:offerte){
-					vbox.getChildren().add(stampaOfferta(o, o.getGiocatoreDTO().getNome(), o.getMarketableDTO(), o.getPrezzo()));
+					Pane pane=stampaOfferta(o, o.getGiocatoreDTO().getNome(), o.getMarketableDTO(), o.getPrezzo());
+					vbox.setMargin(pane, new Insets(5, 0, 0, 3));
+					vbox.getChildren().add(pane);
 				}
 			}
 		});
@@ -547,6 +547,8 @@ public class GUI extends Application implements Grafica {
 				controllerMarket.handleAcquisto(event);
 			}
 		});
+		hbox.setMargin(nome, new Insets(16, 0, 0, 0));
+		hbox.setMargin(soldi, new Insets(4, 0, 0, 0));
 		hbox.getChildren().add(nome);
 		hbox.getChildren().add(soldi);
 		hbox.getChildren().add(imageview);
@@ -634,22 +636,25 @@ public class GUI extends Application implements Grafica {
 	}
 	
 	private HBox stampaPuntiAvversario(GiocatoreDTO avversario){
+		Map<String, Image> mappaEmpori=controller.getMappaEmpori();
+		Map<String, Image> mappaBonus=controller.getMappaBonus();
+		
 		HBox hbox = new HBox();
 		hbox.setSpacing(15);
 		hbox.setPadding(new Insets(5, 0, 0, 20));	
-		hbox.getChildren().add(stampaPuntoAvversario("css/Point.png", Integer.toString(avversario.getPunteggioVittoria()),10));
-		hbox.getChildren().add(stampaPuntoAvversario("css/Coins.png", Integer.toString(avversario.getPunteggioRicchezza()),10));
-		hbox.getChildren().add(stampaPuntoAvversario("css/Assistant.png", Integer.toString(avversario.getAiutanti()),4));
-		hbox.getChildren().add(stampaPuntoAvversario("css/Emporium.png", Integer.toString(avversario.getEmpori()),10));
-		hbox.getChildren().add(stampaPuntoAvversario("css/Nobility.png", Integer.toString(avversario.getPunteggioNobiltà()),10));
-		hbox.getChildren().add(stampaPuntoAvversario("css/BonusGiocatori.png", Integer.toString(avversario.getTessereBonus()),10));
+		hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("Punto"), Integer.toString(avversario.getPunteggioVittoria()),10));
+		hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("Soldo"), Integer.toString(avversario.getPunteggioRicchezza()),10));
+		hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("Aiutante"), Integer.toString(avversario.getAiutanti()),4));
+		hbox.getChildren().add(stampaPuntoAvversario(mappaEmpori.get(avversario.getColoreGiocatore().getColore()), Integer.toString(avversario.getEmpori()),10));
+		hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("Nobiltà"), Integer.toString(avversario.getPunteggioNobiltà()),10));
+		hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("BonusGiocatore"), Integer.toString(avversario.getTessereBonus()),10));
 		return hbox;
 	}
 	
-	private Pane stampaPuntoAvversario(String immagine, String punti, int relocateH){
+	private Pane stampaPuntoAvversario(Image immagine, String punti, int relocateH){
 		Pane pane = new Pane();
 		ImageView image = new ImageView();
-		image.setImage(new Image(getClass().getResource(immagine).toExternalForm()));
+		image.setImage(immagine);
 		image.setPreserveRatio(true);
 		image.setFitHeight(40);
 		Text text = new Text();
