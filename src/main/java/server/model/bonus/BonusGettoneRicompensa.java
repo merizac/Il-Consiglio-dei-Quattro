@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Set;
 
 import common.gameDTO.CittàBonusDTO;
-import common.gameDTO.CittàDTO;
 import server.model.azioni.Azione;
 import server.model.azioni.azioniBonus.BonusGettoneN;
 import server.model.game.Città;
@@ -14,7 +13,6 @@ import server.model.game.CittàBonus;
 import server.model.game.Emporio;
 import server.model.game.GameState;
 import server.model.notify.MessageNotify;
-import server.view.clientNotify.MessageClientNotify;
 
 public class BonusGettoneRicompensa extends Bonus {
 

@@ -78,16 +78,15 @@ public class AcquistoTesseraPermesso extends AzionePrincipale implements Bonusab
 				if (controlloBonus(gameState)) {
 					setStatoTransizionePrincipale(gameState);
 				} else {
+					gameState.notifyObserver(new GameStateNotify(gameState, gameState.getGiocatori()));
+					gameState.notifyObserver(new GiocatoreNotify(gameState.getGiocatoreCorrente(), Arrays.asList(gameState.getGiocatoreCorrente())));
 					gameState.getStato().transizioneBonus(gameState);
 				}
 			}
 		} else {
 			setStatoTransizionePrincipale(gameState);
 		}
-		gameState.notifyObserver(new GameStateNotify(gameState, gameState.getGiocatori()));
-		gameState.notifyObserver(
-				new GiocatoreNotify(gameState.getGiocatoreCorrente(), Arrays.asList(gameState.getGiocatoreCorrente())));
-	}
+			}
 
 	/**
 	 * 
