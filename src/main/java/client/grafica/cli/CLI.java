@@ -623,9 +623,7 @@ public class CLI implements Grafica {
 				città.add((CittàBonusDTO) c);
 			}
 		}
-		BonusGettoneNDTO bonus = new BonusGettoneNDTO();
-		bonus.parametri().setParametri(this, gameStateDTO);
-
+		
 		System.out.println("Scegli una città");
 		System.out.println(città.toString());
 		String input = stdIn.nextLine();
