@@ -121,11 +121,11 @@
                               <ImageView fx:id="mare" fitHeight="37.0" fitWidth="66.0" layoutX="164.0" layoutY="336.0" pickOnBounds="true" preserveRatio="true" />
                               <ImageView fx:id="collina" fitHeight="37.0" fitWidth="66.0" layoutX="407.0" layoutY="334.0" pickOnBounds="true" preserveRatio="true" />
                               <ImageView fx:id="montagna" fitHeight="37.0" fitWidth="66.0" layoutX="682.0" layoutY="334.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="ferro" fitHeight="32.0" fitWidth="59.0" layoutX="577.0" layoutY="549.0" pickOnBounds="true" preserveRatio="true" rotate="45.0" />
-                              <ImageView fx:id="bronzo" fitHeight="32.0" fitWidth="59.0" layoutX="619.0" layoutY="549.0" pickOnBounds="true" preserveRatio="true" rotate="45.0" />
-                              <ImageView fx:id="argento" fitHeight="32.0" fitWidth="59.0" layoutX="662.0" layoutY="544.0" pickOnBounds="true" preserveRatio="true" rotate="45.0" />
-                              <ImageView fx:id="king" fitHeight="32.0" fitWidth="59.0" layoutX="694.0" layoutY="484.0" pickOnBounds="true" preserveRatio="true" rotate="45.0" />
-                              <ImageView fx:id="oro" fitHeight="32.0" fitWidth="59.0" layoutX="694.0" layoutY="535.0" pickOnBounds="true" preserveRatio="true" rotate="45.0" />
+                              <ImageView fx:id="ferro" fitHeight="33.0" fitWidth="53.0" layoutX="575.0" layoutY="549.0" pickOnBounds="true" preserveRatio="true" rotate="45.0" />
+                              <ImageView fx:id="bronzo" fitHeight="33.0" fitWidth="53.0" layoutX="612.0" layoutY="549.0" pickOnBounds="true" preserveRatio="true" rotate="45.0" />
+                              <ImageView fx:id="argento" fitHeight="33.0" fitWidth="53.0" layoutX="656.0" layoutY="543.0" pickOnBounds="true" preserveRatio="true" rotate="45.0" />
+                              <ImageView fx:id="king" fitHeight="33.0" fitWidth="53.0" layoutX="694.0" layoutY="487.0" pickOnBounds="true" preserveRatio="true" rotate="45.0" />
+                              <ImageView fx:id="oro" fitHeight="33.0" fitWidth="53.0" layoutX="694.0" layoutY="543.0" pickOnBounds="true" preserveRatio="true" rotate="45.0" />
                               <Button fx:id="arkon" layoutX="32.0" layoutY="30.0" mnemonicParsing="false" onAction="#handleCittà" prefHeight="56.0" prefWidth="72.0" rotate="5.0" style="-fx-background-color: transparent;" />
                               <Button fx:id="burgen" layoutX="18.0" layoutY="159.0" mnemonicParsing="false" onAction="#handleCittà" prefHeight="56.0" prefWidth="72.0" rotate="5.0" style="-fx-background-color: transparent;" />
                               <Button fx:id="esti" layoutX="63.0" layoutY="270.0" mnemonicParsing="false" onAction="#handleCittà" prefHeight="56.0" prefWidth="72.0" rotate="5.0" style="-fx-background-color: transparent;" />
