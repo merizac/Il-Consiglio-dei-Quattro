@@ -189,7 +189,7 @@
                                                 <ImageView id="consiglieriRiserva" fx:id="consigliere5" fitHeight="69.0" fitWidth="30.125" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
                                                 <ImageView id="consiglieriRiserva" fx:id="consigliere6" fitHeight="69.0" fitWidth="30.125" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
                                                 <ImageView id="consiglieriRiserva" fx:id="consigliere7" fitHeight="69.0" fitWidth="30.125" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
-                                                <ImageView id="consiglieriRiserva" fx:id="consigliere8" fitHeight="69.0" fitWidth="34.0" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
+                                                <ImageView id="consiglieriRiserva" fx:id="consigliere8" fitHeight="69.0" fitWidth="30.125" onMouseClicked="#handleConsigliereRiserva" pickOnBounds="true" preserveRatio="true" />
                                              </children>
                                           </HBox>
                                        </children>
