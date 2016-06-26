@@ -282,6 +282,10 @@ public class GUIGameController {
 				new Image(getClass().getResource("css/Assistant.png").toExternalForm()));
 		this.mappaBonus.put("Re", 
 				new Image(getClass().getResource("css/king.png").toExternalForm()));
+		this.mappaBonus.put("Punto",new Image(getClass().getResource("css/Point.png").toExternalForm()));
+		this.mappaBonus.put("Nobiltà",new Image(getClass().getResource("css/Nobility.png").toExternalForm()));
+		this.mappaBonus.put("BonusGiocatore",new Image(getClass().getResource("css/BonusGiocatori.png").toExternalForm()));
+		this.mappaBonus.put("Soldo",new Image(getClass().getResource("css/Coins.png").toExternalForm()));
 		
 		this.mappaConsiglieri.put("Arancione",
 				new Image(getClass().getResource("css/consiglieri/Arancione.png").toExternalForm()));

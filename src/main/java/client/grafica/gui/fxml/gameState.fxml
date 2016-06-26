@@ -95,7 +95,7 @@
                                     <Insets />
                                  </opaqueInsets>
                               </HBox>
-                              <HBox fx:id="balconeMontagna" layoutX="601.0" layoutY="473.0" onMouseClicked="#handleBalcone" prefHeight="30.0" prefWidth="91.0" spacing="3.0" styleClass="balcone" stylesheets="@../css/game.css">
+                              <HBox fx:id="balconeMontagna" layoutX="599.0" layoutY="473.0" onMouseClicked="#handleBalcone" prefHeight="30.0" prefWidth="91.0" spacing="3.0" styleClass="balcone" stylesheets="@../css/game.css">
                                  <padding>
                                     <Insets left="1.0" right="1.0" top="5.0" />
                                  </padding>
@@ -121,11 +121,11 @@
                               <ImageView fx:id="mare" fitHeight="37.0" fitWidth="66.0" layoutX="164.0" layoutY="336.0" pickOnBounds="true" preserveRatio="true" />
                               <ImageView fx:id="collina" fitHeight="37.0" fitWidth="66.0" layoutX="407.0" layoutY="334.0" pickOnBounds="true" preserveRatio="true" />
                               <ImageView fx:id="montagna" fitHeight="37.0" fitWidth="66.0" layoutX="682.0" layoutY="334.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="ferro" fitHeight="33.0" fitWidth="53.0" layoutX="575.0" layoutY="549.0" pickOnBounds="true" preserveRatio="true" rotate="45.0" />
-                              <ImageView fx:id="bronzo" fitHeight="33.0" fitWidth="53.0" layoutX="612.0" layoutY="549.0" pickOnBounds="true" preserveRatio="true" rotate="45.0" />
-                              <ImageView fx:id="argento" fitHeight="33.0" fitWidth="53.0" layoutX="656.0" layoutY="543.0" pickOnBounds="true" preserveRatio="true" rotate="45.0" />
-                              <ImageView fx:id="king" fitHeight="33.0" fitWidth="53.0" layoutX="694.0" layoutY="487.0" pickOnBounds="true" preserveRatio="true" rotate="45.0" />
-                              <ImageView fx:id="oro" fitHeight="33.0" fitWidth="53.0" layoutX="694.0" layoutY="543.0" pickOnBounds="true" preserveRatio="true" rotate="45.0" />
+                              <ImageView fx:id="ferro" fitHeight="29.0" fitWidth="46.0" layoutX="581.0" layoutY="549.0" pickOnBounds="true" preserveRatio="true" rotate="45.0" />
+                              <ImageView fx:id="bronzo" fitHeight="29.0" fitWidth="46.0" layoutX="621.0" layoutY="549.0" pickOnBounds="true" preserveRatio="true" rotate="45.0" />
+                              <ImageView fx:id="argento" fitHeight="29.0" fitWidth="46.0" layoutX="666.0" layoutY="543.0" pickOnBounds="true" preserveRatio="true" rotate="45.0" />
+                              <ImageView fx:id="king" fitHeight="29.0" fitWidth="46.0" layoutX="703.0" layoutY="485.0" pickOnBounds="true" preserveRatio="true" rotate="45.0" />
+                              <ImageView fx:id="oro" fitHeight="29.0" fitWidth="46.0" layoutX="702.0" layoutY="543.0" pickOnBounds="true" preserveRatio="true" rotate="45.0" />
                               <Pane fx:id="arkon" layoutX="29.609474182128906" layoutY="26.968942642211914" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#handleCittà" prefHeight="56.0" prefWidth="72.0" />
                               <Pane fx:id="burgen" layoutX="15.609474182128906" layoutY="155.9689483642578" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#handleCittà" prefHeight="56.0" prefWidth="72.0" />
                               <Pane fx:id="esti" layoutX="60.609474182128906" layoutY="266.96893310546875" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#handleCittà" prefHeight="56.0" prefWidth="72.0" />
@@ -301,13 +301,13 @@
                               </ScrollPane>
                            </content>
                         </TitledPane>
-                        <TitledPane alignment="CENTER" animated="false" collapsible="false" prefHeight="103.0" prefWidth="525.0" styleClass="titlepane" stylesheets="@../css/game.css" text="Carte Politica">
+                        <TitledPane alignment="CENTER" animated="false" collapsible="false" prefHeight="105.0" prefWidth="526.0" styleClass="titlepane" stylesheets="@../css/game.css" text="Carte Politica">
                            <content>
                               <HBox styleClass="background" stylesheets="@../css/game.css">
                                  <children>
-                                    <ScrollPane maxHeight="-Infinity" prefHeight="95.0" prefViewportHeight="60.0" prefViewportWidth="200.0" prefWidth="424.0" stylesheets="@../css/scroll-bar.css">
+                                    <ScrollPane maxHeight="-Infinity" prefHeight="75.0" prefViewportHeight="60.0" prefViewportWidth="200.0" prefWidth="424.0" stylesheets="@../css/scroll-bar.css">
                                        <content>
-                                          <HBox fx:id="cartePolitica" maxHeight="-Infinity" prefHeight="21.0" prefWidth="422.0" spacing="10.0" styleClass="background">
+                                          <HBox fx:id="cartePolitica" maxHeight="-Infinity" prefHeight="29.0" prefWidth="422.0" spacing="10.0" styleClass="background">
                                              <stylesheets>
                                                 <URL value="@../css/game.css" />
                                                 <URL value="@../css/scroll-bar.css" />
@@ -330,7 +330,10 @@
                            <content>
                               <VBox styleClass="background" stylesheets="@../css/game.css">
                                  <children>
-                                    <TextArea fx:id="message" prefHeight="89.0" prefWidth="501.0" />
+                                    <TextArea fx:id="message" prefHeight="89.0" prefWidth="501.0">
+                                       <VBox.margin>
+                                          <Insets bottom="3.0" />
+                                       </VBox.margin></TextArea>
                                     <TextField fx:id="chat" onKeyPressed="#handleChat" prefHeight="26.0" prefWidth="444.0" />
                                  </children>
                               </VBox>

@@ -63,7 +63,7 @@
                   </ScrollPane>
                   <ScrollPane prefHeight="84.0" prefViewportHeight="80.0" prefViewportWidth="262.0" prefWidth="268.0" stylesheets="@../css/scroll-bar.css">
                      <content>
-                        <HBox fx:id="cartePolitica" prefHeight="78.0" prefWidth="266.0" styleClass="sfondo" stylesheets="@../css/scroll-bar.css">
+                        <HBox fx:id="cartePolitica" prefHeight="78.0" prefWidth="266.0" styleClass="sfondo" stylesheets="@../css/market.css">
                            <VBox.margin>
                               <Insets top="5.0" />
                            </VBox.margin>
