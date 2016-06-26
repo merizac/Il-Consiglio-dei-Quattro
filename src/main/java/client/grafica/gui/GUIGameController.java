@@ -1106,9 +1106,10 @@ public class GUIGameController {
 	}
 
 	public Button getRe() {
-		for (Button b : città)
+
+		for (Button b : città){
 			if ((b.getUserData()).equals(gameStateDTO.getPedinaRE().getCittà()))
-				return b;
+				return b;}
 		return null;
 	}
 
