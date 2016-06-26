@@ -19,6 +19,7 @@ import common.azioniDTO.ElezioneConsigliereDTO;
 import common.azioniDTO.ElezioneConsigliereVeloceDTO;
 import common.azioniDTO.IngaggioAiutanteDTO;
 import common.azioniDTO.PassaDTO;
+import common.azioniDTO.PescaCartaDTO;
 import common.azioniDTO.SecondaAzionePrincipaleDTO;
 import common.gameDTO.AiutanteDTO;
 import common.gameDTO.BalconeDTO;
@@ -215,6 +216,8 @@ public class GUI extends Application implements Grafica {
 		azioni.get(6).setUserData(new ElezioneConsigliereVeloceDTO());
 		azioni.get(7).setUserData(new SecondaAzionePrincipaleDTO());
 		azioni.get(8).setUserData(new PassaDTO());
+		azioni.get(9).setUserData(new PescaCartaDTO());
+		azioni.stream().forEach(a-> System.out.println(a+""+a.getUserData()));
 	}
 
 	private void assegnaRegione() {

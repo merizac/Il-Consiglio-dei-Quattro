@@ -478,12 +478,12 @@ public class GUIGameController {
 							.findAny().orElse(null);
 
 					if (azioneDTO == null) {
-						Alert alert = new Alert(AlertType.ERROR);
+						/*Alert alert = new Alert(AlertType.ERROR);
 						alert.setTitle("Errore");
 						alert.setHeaderText("L'azione non esiste!");
 						alert.setContentText("Ooops, riprova e inserisci un'azione valida!");
 
-						alert.showAndWait();
+						alert.showAndWait();*/
 						//gui.mostraMessaggio("L'azione non esiste \nInserire un'azione valida");
 						for (Button b : getAzioni())
 							b.setDisable(false);
@@ -531,7 +531,7 @@ public class GUIGameController {
 		});
 	}
 
-	@FXML
+/*	@FXML
 	public void pescaCarta(Event event) {
 		PescaCartaDTO pesca = new PescaCartaDTO();
 		try {
@@ -540,7 +540,7 @@ public class GUIGameController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 	@FXML
 	public void acquistoTesseraPermesso(ActionEvent event) {
@@ -1106,7 +1106,7 @@ public class GUIGameController {
 	public List<Button> getAzioni() {
 		return Arrays.asList(elezioneConsigliere, acquistoTesseraPermesso, costruzioneTesseraPermesso,
 				costruzioneAiutoRe, ingaggioAiutante, cambioTesseraPermesso, elezioneConsigliereVeloce,
-				secondaAzionePrincipale, passa);
+				secondaAzionePrincipale, passa, pescaCarta);
 
 	}
 

@@ -15,6 +15,7 @@ import server.Server;
 import server.model.azioni.Azione;
 import server.model.azioni.Chat;
 import server.model.azioni.Exit;
+import server.model.azioni.azioniPrincipali.AcquistoTesseraPermesso;
 import server.model.game.GameState;
 import server.model.game.Giocatore;
 import server.model.notify.MessageNotify;
@@ -98,6 +99,11 @@ public class ServerSocketView extends View implements Runnable {
 					Azione azione = null;
 					try {
 						azione = action.accept(azioneVisitor);
+						if(azione instanceof AcquistoTesseraPermesso){
+							System.out.println(((AcquistoTesseraPermesso) azione).getCarteGiocatore());
+							System.out.println(((AcquistoTesseraPermesso) azione).getRegione());
+							System.out.println(((AcquistoTesseraPermesso) azione).getTesseraScoperta());
+						}
 					} catch (ParameterException e) {
 						update(new MessageNotify(e.getMessage(), Arrays.asList(gameState.getGiocatoreCorrente())));
 						System.out.println("[SERVER] Ricevuta l'azione " + azione + " dal giocatore "

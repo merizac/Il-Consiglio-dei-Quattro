@@ -200,12 +200,12 @@
                                  <content>
                                     <Pane styleClass="background" stylesheets="@../css/game.css">
                                        <children>
-                                          <Button id="transparentbutton" fx:id="pescaCarta" layoutX="28.0" layoutY="1.0" mnemonicParsing="false" prefHeight="99.0" prefWidth="71.0" style="-fx-background-color: transparent;" />
-                                          <ImageView fitHeight="93.0" fitWidth="66.0" layoutX="33.0" layoutY="4.0" onMouseClicked="#pescaCarta" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="93.0" fitWidth="66.0" layoutX="33.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../css/politicCard/Retro.png" />
                                              </image>
                                           </ImageView>
+                                          <Button id="transparentbutton" fx:id="pescaCarta" layoutX="28.0" layoutY="1.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="99.0" prefWidth="71.0" style="-fx-background-color: transparent;" />
                                        </children>
                                     </Pane>
                                  </content>
