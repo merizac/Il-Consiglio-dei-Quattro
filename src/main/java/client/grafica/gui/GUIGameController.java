@@ -1029,7 +1029,7 @@ public class GUIGameController {
 	public List<ImageView> getConsiglieri() {
 
 		return Arrays.asList(consigliere1, consigliere2, consigliere3, consigliere4, consigliere5, consigliere6,
-				consigliere7, consigliere7);
+				consigliere7, consigliere7, consigliere8);
 	}
 
 	public List<HBox> getBalconi() {
@@ -1106,9 +1106,12 @@ public class GUIGameController {
 	}
 
 	public Button getRe() {
-		for (Button b : città)
-			if ((b.getUserData()).equals(gameStateDTO.getPedinaRE().getCittà()))
+		System.out.println("Città in cui si trova il re: -------- "+gameStateDTO.getPedinaRE().getCittà() );
+		for (Button b : città){
+			if ((b.getUserData()).equals(gameStateDTO.getPedinaRE().getCittà())){
 				return b;
+			}
+		}
 		return null;
 	}
 
