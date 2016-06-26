@@ -524,7 +524,7 @@ public class GUIGameController {
 
 		});
 	}
-
+/*
 	@FXML
 	public void elezioneConsigliere(ActionEvent event) {
 		ElezioneConsigliereDTO elezione = new ElezioneConsigliereDTO();
@@ -544,7 +544,7 @@ public class GUIGameController {
 		});
 	}
 
-/*	@FXML
+	@FXML
 	public void pescaCarta(Event event) {
 		PescaCartaDTO pesca = new PescaCartaDTO();
 		try {
@@ -553,7 +553,7 @@ public class GUIGameController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}*/
+	}
 
 	@FXML
 	public void acquistoTesseraPermesso(ActionEvent event) {
@@ -693,7 +693,7 @@ public class GUIGameController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 	public void mostraNomeGiocatore(String nome) {
 		nomeGiocatore.setText(nome);

@@ -45,7 +45,7 @@ public class Stato10 implements Stato {
 				if (gameState.getNumeroTurni() != gameState.getGiocatori().size())
 					gameState.setStato(new StartEnd(gameState));
 				else{
-					gameState.notifyObserver(new MarketNotify(gameState.getGiocatori()));
+					gameState.notifyObserver(new MarketNotify(gameState.getGiocatori(), false));
 					gameState.setStato(new StatoOffertaMarket(gameState));}
 			}
 		} else {

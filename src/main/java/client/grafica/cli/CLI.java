@@ -673,4 +673,10 @@ public class CLI implements Grafica {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void fineMarket() {
+		// TODO Auto-generated method stub
+		
+	}
 }
