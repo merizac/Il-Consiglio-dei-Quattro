@@ -57,7 +57,13 @@ public class BonusGettoneN extends Azione {
 		for (Bonus b : bonus) {
 			b.usaBonus(gameState);
 		}
+		System.out.println("Bonus Nobiltà1: "+gameState.getGiocatoreCorrente().getBonusNobiltà());
+		System.out.println("\nTHIS "+this);
 		gameState.getGiocatoreCorrente().getBonusNobiltà().remove(this);
+		System.out.println("Bonus Nobiltà2: "+gameState.getGiocatoreCorrente().getBonusNobiltà());
+
+		
+		//gameState.getGiocatoreCorrente().getBonusNobiltà().remove(this);
 		gameState.getStato().transizioneBonus(gameState);
 	}
 
@@ -97,5 +103,34 @@ public class BonusGettoneN extends Azione {
 	public void setNumeroGettoni(int numeroGettoni) {
 		this.numeroGettoni = numeroGettoni;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + numeroGettoni;
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		BonusGettoneN other = (BonusGettoneN) obj;
+		if (numeroGettoni != other.numeroGettoni)
+			return false;
+		return true;
+	}
+
 
 }

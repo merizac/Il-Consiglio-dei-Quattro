@@ -17,7 +17,17 @@ public class BonusTesseraAcquistataParametri implements SetterParametri {
 	public void setParametri(Grafica grafica, GameStateDTO gameStateDTO) {
 		TesseraPermessoDTO tesseraPermessoDTO;
 		boolean usata=false;
-		int tessera=grafica.scegliUsataONonUsata();
+		int tessera;
+		if(gameStateDTO.getGiocatoreDTO().getTesserePermesso().isEmpty()){
+			tessera=1;
+		}
+		if(gameStateDTO.getGiocatoreDTO().getTesserePermessoUsate().isEmpty()){
+			tessera =2;
+		}
+		else{
+			tessera=grafica.scegliUsataONonUsata();
+		}
+		
 		if(tessera==1){
 			tesseraPermessoDTO=grafica.scegliTesseraGiocatore(gameStateDTO.getGiocatoreDTO().getTesserePermessoUsate());
 			usata=true;

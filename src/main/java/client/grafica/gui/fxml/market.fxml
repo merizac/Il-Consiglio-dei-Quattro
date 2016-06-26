@@ -24,8 +24,8 @@
                         <HBox prefHeight="37.0" prefWidth="290.0" stylesheets="@../css/market.css">
                            <children>
                               <Label alignment="CENTER" prefHeight="48.0" prefWidth="102.0" text="Giocatore" />
-                              <Label alignment="CENTER" prefHeight="48.0" prefWidth="102.0" text="Oggetto" />
                               <Label alignment="CENTER" prefHeight="48.0" prefWidth="102.0" text="Prezzo" />
+                              <Label alignment="CENTER" prefHeight="48.0" prefWidth="102.0" text="Oggetto" />
                            </children>
                         </HBox>
                         <ScrollPane id="slidebar" prefHeight="348.0" prefViewportHeight="296.0" prefViewportWidth="311.0" prefWidth="311.0">
