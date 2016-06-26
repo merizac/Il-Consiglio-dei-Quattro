@@ -23,6 +23,7 @@ public interface Bonusable {
  * @return true if bonus is instance of of BonusNobiltà, false in other case
  */
 	public default boolean controlloBonus(GameState gameState){
+		System.out.println("\nCONTROLLO BONUS\n");
 		List<Bonus> bonusCasella = gameState.getGiocatoreCorrente().getPunteggioNobiltà().getBonus();
 		
 		

@@ -23,7 +23,7 @@ public class BonusTesseraAcquistataN extends Azione {
 		for (Bonus b : tesseraPermesso.getBonus()) {
 			b.usaBonus(gameState);
 		}
-		gameState.getGiocatoreCorrente().getBonusNobiltà().remove(this);
+		gameState.getGiocatoreCorrente().getBonusNobiltà().remove(this.getClass());
 		gameState.getStato().transizioneBonus(gameState);
 
 	}
@@ -47,5 +47,7 @@ public class BonusTesseraAcquistataN extends Azione {
 	public AzioneDTO getAzioneDTO() {
 		return new BonusTesseraAcquistataNDTO();
 	}
+
+	
 
 }

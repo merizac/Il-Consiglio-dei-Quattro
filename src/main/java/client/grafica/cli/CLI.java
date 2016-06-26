@@ -15,7 +15,6 @@ import client.connessione.ConnessioneSocket;
 import client.grafica.Grafica;
 import common.azioniDTO.AzioneDTO;
 import common.azioniDTO.AzioneParametri;
-import common.azioniDTO.BonusGettoneNDTO;
 import common.azioniDTO.ExitDTO;
 import common.gameDTO.AiutanteDTO;
 import common.gameDTO.BalconeDTO;
@@ -430,7 +429,7 @@ public class CLI implements Grafica {
 			String comando = stdIn.nextLine();
 			CartaPoliticaDTO cartaScelta = ControlloParametriDTO.carteGiocatore(comando, carteGiocatore);
 			while (cartaScelta == null) {
-				System.out.println("la carta selezionanata non è esistente!\n Inserire di nuovo");
+				System.out.println("la carta selezionanata non è esistente!\nInserire di nuovo");
 				comando = stdIn.nextLine();
 				cartaScelta = ControlloParametriDTO.carteGiocatore(comando, carteGiocatore);
 			}
@@ -484,7 +483,7 @@ public class CLI implements Grafica {
 		String comando = stdIn.nextLine();
 		TesseraPermessoDTO tesseraScelta = ControlloParametriDTO.tessereGiocatore(comando, list);
 		while (tesseraScelta == null) {
-			System.out.println("la tessera selezionanata non è esistente!\n Inserire di nuovo");
+			System.out.println("la tessera selezionata non è esistente!\n Inserire di nuovo");
 			comando = stdIn.nextLine();
 			tesseraScelta = ControlloParametriDTO.tessereGiocatore(comando, list);
 		}
