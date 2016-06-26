@@ -46,6 +46,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
@@ -211,6 +212,7 @@ public class GUI extends Application implements Grafica {
 				Map<String, Image> mappaEmpori=controller.getMappaEmpori();
 						
 				for(int i=0;i<città.size()-1;i++){
+					hbox.get(i).getChildren().clear();
 					for(String emporio: città.get(i).getEmpori()){	
 						ImageView imageView=new ImageView();
 						imageView.setImage(mappaEmpori.get(emporio));
@@ -236,7 +238,9 @@ public class GUI extends Application implements Grafica {
 				imageView.setPreserveRatio(true);
 				imageView.setFitHeight(20);
 				controller.getRe().setOpacity(1);
-				
+				imageView.setTranslateX(32);
+				imageView.setTranslateY(-32);
+				imageView.setRotate(40);
 			}
 		});
 	}
@@ -613,7 +617,6 @@ public class GUI extends Application implements Grafica {
 				
 				vbox.getChildren().add(hbox);
 				tab.setContent(vbox);
-//				tab.setStyle("-fx-background-color: red;-fx-alignment: CENTER;-fx-text-fill: white;-fx-font-size: 12px;-fx-font-weight: bold;");
 								
 				HBox tesserePermesso = new HBox();
 				stampaTesserePermesso(tesserePermesso, avversario.getTesserePermesso(),
