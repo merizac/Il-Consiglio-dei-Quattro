@@ -511,14 +511,16 @@ public class GUI extends Application implements Grafica {
 		});
 	}
 	
-	private HBox stampaOfferta(OffertaDTO offerta, String giocatore, MarketableDTO oggetto, int prezzo){
+	private Pane stampaOfferta(OffertaDTO offerta, String giocatore, MarketableDTO oggetto, int prezzo){
 		Map<String, Image> tesserePermesso=controller.getMappaTesserePermesso();
 		Map<String, Image> aiutante=controller.getMappaBonus();
 		Map<String, Image> cartePolitica=controller.getMappaCartePolitica();
 
+		Pane pane=new Pane();
 		HBox hbox=new HBox();
 		Text nome=new Text();
 		nome.setText(giocatore);
+		nome.setWrappingWidth(90);
 		ImageView imageview=new ImageView();
 		Image image=null;
 		imageview.setFitHeight(50);
@@ -539,6 +541,7 @@ public class GUI extends Application implements Grafica {
 		soldi.setText(Integer.toString(prezzo));
 		soldi.setUserData(offerta);
 		soldi.setDisable(true);
+		soldi.setPrefWidth(50);
 		soldi.setOnAction(new EventHandler<ActionEvent>() {
 			
 			@Override
@@ -547,9 +550,11 @@ public class GUI extends Application implements Grafica {
 			}
 		});
 		hbox.getChildren().add(nome);
-		hbox.getChildren().add(imageview);
 		hbox.getChildren().add(soldi);
-		return hbox;
+		hbox.getChildren().add(imageview);
+		hbox.setSpacing(60);
+		pane.getChildren().add(hbox);
+		return pane;
 	}
 	
 	@Override
@@ -938,7 +943,7 @@ public class GUI extends Application implements Grafica {
 	public int scegliOfferta(List<OffertaDTO> offerte) {
 		List<Node> offerteMarket=controllerMarket.getOfferte().getChildren();
 		for(Node offerta: offerteMarket){
-			for(Node node:((HBox)offerta).getChildren()){
+			for(Node node:((HBox)((Pane)offerta).getChildren().get(0)).getChildren()){
 				if(node instanceof Button){
 					node.setDisable(false);
 				}
@@ -957,7 +962,7 @@ public class GUI extends Application implements Grafica {
 		OffertaDTO offertaDTO=(OffertaDTO) parametro;
 		parametro=null;
 		for(Node offerta: offerteMarket){
-			for(Node node:((HBox)offerta).getChildren()){
+			for(Node node:((HBox)((Pane)offerta).getChildren().get(0)).getChildren()){
 				if(node instanceof Button){
 					node.setDisable(true);
 				}
