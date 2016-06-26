@@ -34,6 +34,7 @@ import server.model.game.TesseraPermesso;
 import server.model.macchinaStati.StartEnd;
 import server.model.macchinaStati.Stato11;
 import server.model.macchinaStati.StatoBonus;
+import server.model.notify.BonusNotify;
 import server.model.notify.GameStateNotify;
 import server.model.notify.GiocatoreNotify;
 import server.model.notify.MessageNotify;
@@ -169,8 +170,10 @@ public class AcquistoTesseraPermessoTest {
 		assertEquals(monete - 3, gameState.getGiocatoreCorrente().getPunteggioRicchezza());
 		assertEquals(1 + aiutanti, gameState.getGiocatoreCorrente().getAiutanti().getAiutante());
 
-		assertTrue(notify.get(notify.size() - 2) instanceof GameStateNotify);
-		assertTrue(notify.get(notify.size() - 1) instanceof GiocatoreNotify);
+		System.out.println(notify);
+		assertTrue(notify.get(notify.size() - 3) instanceof GameStateNotify);
+		assertTrue(notify.get(notify.size() - 2) instanceof GiocatoreNotify);
+		assertTrue(notify.get(notify.size() - 1) instanceof MessageNotify);
 	}
 
 	@Test
@@ -238,8 +241,9 @@ public class AcquistoTesseraPermessoTest {
 		assertEquals(aiutanti, gameState.getGiocatoreCorrente().getAiutanti().getAiutante());
 		assertEquals(vittoria, gameState.getGiocatoreCorrente().getPunteggioVittoria());
 
-		assertTrue(notify.get(notify.size() - 2) instanceof GameStateNotify);
-		assertTrue(notify.get(notify.size() - 1) instanceof GiocatoreNotify);
+		assertTrue(notify.get(notify.size() - 3) instanceof GameStateNotify);
+		assertTrue(notify.get(notify.size() - 2) instanceof GiocatoreNotify);
+		assertTrue(notify.get(notify.size() - 1) instanceof MessageNotify);
 	}
 
 	@Test
@@ -316,8 +320,9 @@ public class AcquistoTesseraPermessoTest {
 		assertEquals(aiutanti, gameState.getGiocatoreCorrente().getAiutanti().getAiutante());
 		assertEquals(vittoria+2, gameState.getGiocatoreCorrente().getPunteggioVittoria());
 
-		assertTrue(notify.get(notify.size() - 2) instanceof GameStateNotify);
-		assertTrue(notify.get(notify.size() - 1) instanceof GiocatoreNotify);
+		assertTrue(notify.get(notify.size() - 3) instanceof GameStateNotify);
+		assertTrue(notify.get(notify.size() - 2) instanceof GiocatoreNotify);
+		assertTrue(notify.get(notify.size() - 1) instanceof BonusNotify);
 	}
 	
 	@Test
