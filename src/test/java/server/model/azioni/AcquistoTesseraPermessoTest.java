@@ -171,7 +171,7 @@ public class AcquistoTesseraPermessoTest {
 		assertEquals(1 + aiutanti, gameState.getGiocatoreCorrente().getAiutanti().getAiutante());
 
 		System.out.println(notify);
-		assertTrue(notify.get(notify.size() - 3) instanceof GameStateNotify);
+		assertTrue(notify.get(notify.size() - 4) instanceof GameStateNotify);
 		assertTrue(notify.get(notify.size() - 2) instanceof GiocatoreNotify);
 		assertTrue(notify.get(notify.size() - 1) instanceof MessageNotify);
 	}

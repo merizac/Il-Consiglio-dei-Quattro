@@ -20,7 +20,8 @@ public class SecondaAzionePrincipale extends AzioneVeloce {
 	@Override
 	public void eseguiAzione(GameState gameState) {
 		if(gameState.getGiocatoreCorrente().getAiutanti().getAiutante()>2){
-			gameState.getGiocatoreCorrente().getAiutanti().togliAiutanti(3);	
+			gameState.getGiocatoreCorrente().getAiutanti().togliAiutanti(3);
+			notifyAvversari(gameState);
 			setStatoTransizioneSecondaPrincipale(gameState);
 			gameState.notifyObserver(new AzioniNotify(gameState.getStato().getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
 		}

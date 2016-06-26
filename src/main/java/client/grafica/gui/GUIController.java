@@ -50,7 +50,7 @@ public class GUIController {
 		else if (!socket.isSelected() && !rmi.isSelected()) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Errore");
-			alert.setHeaderText("Non hai inserito la connesione!");
+			alert.setHeaderText("Non hai inserito la connessione!");
 			alert.setContentText("Ooops, riprova!");
 
 			alert.showAndWait();

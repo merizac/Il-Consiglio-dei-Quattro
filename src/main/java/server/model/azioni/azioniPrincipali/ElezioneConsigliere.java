@@ -47,9 +47,7 @@ public class ElezioneConsigliere extends AzionePrincipale {
 		gameState.getConsiglieri().add(consigliereTolto);
 		gameState.getGiocatoreCorrente().aumentaRicchezza(4);
 
-		gameState.notifyObserver(new GameStateNotify(gameState, gameState.getGiocatori()));
-		gameState.notifyObserver(
-				new GiocatoreNotify(gameState.getGiocatoreCorrente(), Arrays.asList(gameState.getGiocatoreCorrente())));
+		notify(gameState);
 
 		setStatoTransizionePrincipale(gameState);
 	}

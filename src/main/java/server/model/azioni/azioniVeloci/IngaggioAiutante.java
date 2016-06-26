@@ -27,9 +27,7 @@ public class IngaggioAiutante extends AzioneVeloce {
 		else {
 			gameState.getGiocatoreCorrente().getAiutanti().aggiungiAiutanti(1);
 
-			gameState.notifyObserver(new GameStateNotify(gameState, gameState.getGiocatori()));
-			gameState.notifyObserver(new GiocatoreNotify(gameState.getGiocatoreCorrente(),
-					Arrays.asList(gameState.getGiocatoreCorrente())));
+			notify(gameState);
 			setStatoTransizioneVeloce(gameState);
 		}
 	}
