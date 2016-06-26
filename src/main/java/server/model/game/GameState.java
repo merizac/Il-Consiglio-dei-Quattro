@@ -273,7 +273,7 @@ public class GameState extends Observable<Notify> {
 				for (int s = 0; s < numeroEmpori; s++) {
 					int rnd = random.nextInt(r.getCittàRegione().size());
 					if (r.getCittàRegione().get(rnd).getEmpori().isEmpty())
-						r.getCittàRegione().get(rnd).aggiungiEmporio(new Emporio(new Colore("A")));
+						r.getCittàRegione().get(rnd).aggiungiEmporio(new Emporio(new Colore("2")));
 					else
 						s--;
 				}

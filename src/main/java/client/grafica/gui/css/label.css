@@ -1,6 +1,5 @@
 .label {
     -fx-font-size: 16.0pt;
-/*  -fx-font-family: "Baskerville Old Face";*/
     -fx-font-family: "Algerian";
     -fx-text-fill: white;
     -fx-opacity: 1.0; 
@@ -18,7 +17,7 @@
 #login {
   -fx-background-image: url('./login.jpg');
   -fx-background-repeat: stretch; 
-  -fx-background-size: 420 300;/*contain */
+  -fx-background-size: 420 300;
   -fx-background-position: center center;
 }
 

@@ -39,6 +39,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import server.model.game.Emporio;
 import utility.AzioneNonEseguibile;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
@@ -58,6 +59,7 @@ public class GUIGameController {
 	private Map<String, Image> mappaConsiglieri = new HashMap<>();
 	private Map<String, Image> mappaConsiglieriRiserva = new HashMap<>();
 	private Map<String, Image> mappaBonus=new HashMap<>();
+	private Map<String, Image> mappaEmpori=new HashMap<>();
 	
 	@FXML
 	private HBox tesserePermesso;
@@ -266,8 +268,19 @@ public class GUIGameController {
 	private TextField chat;
 
 	public GUIGameController() {
+		this.mappaEmpori.put("0", 
+				new Image(getClass().getResource("css/empori/1.png").toExternalForm()));
+		this.mappaEmpori.put("1", 
+				new Image(getClass().getResource("css/empori/2.png").toExternalForm()));
+		this.mappaEmpori.put("2", 
+				new Image(getClass().getResource("css/empori/3.png").toExternalForm()));
+		this.mappaEmpori.put("3", 
+				new Image(getClass().getResource("css/empori/4.png").toExternalForm()));
+		
 		this.mappaBonus.put("Aiutante", 
 				new Image(getClass().getResource("css/Assistant.png").toExternalForm()));
+		this.mappaBonus.put("Re", 
+				new Image(getClass().getResource("css/king.png").toExternalForm()));
 		
 		this.mappaConsiglieri.put("Arancione",
 				new Image(getClass().getResource("css/consiglieri/Arancione.png").toExternalForm()));
@@ -407,7 +420,7 @@ public class GUIGameController {
 		// montagna
 		this.mappaTessere.put("TesseraPermesso  città:[Naris], bonus:[BonusMoneta 7]",
 				new Image(getClass().getResource("css/permitTile/2.1.png").toExternalForm()));
-		this.mappaTessere.put("TesseraPermesso  città:[Naris, Merkatim], bonus:[BonusAzionePrincipale]",
+		this.mappaTessere.put("TesseraPermesso  città:[Merkatim, Naris], bonus:[BonusAzionePrincipale]",
 				new Image(getClass().getResource("css/permitTile/2.14.png").toExternalForm()));
 		this.mappaTessere.put("TesseraPermesso  città:[Kultos], bonus:[BonusCartePolitica 4]",
 				new Image(getClass().getResource("css/permitTile/2.8.png").toExternalForm()));
@@ -779,6 +792,24 @@ public class GUIGameController {
 	public void mostraTesserePermessoUsate(List<TesseraPermessoDTO> tessere) {
 		// stessa cosa delle tessere permesso
 	}
+	
+	public void stampaEmporiCittà(List<CittàDTO> città) {
+		Platform.runLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				List<HBox> hbox=Arrays.asList(emporiArkon,emporiBurgen,emporiCastrum,emporiDorful,emporiEsti,emporiFramek,emporiGraden,emporiHellar,emporiIndur,emporiJuvelar,emporiKultos,emporiLyram,emporiMerkatim,emporiNaris,emporiOsium);
+
+				for(int i=0;i<città.size()-1;i++){
+					for(String emporio: città.get(i).getEmpori()){	
+						ImageView imageView=new ImageView();
+						imageView.setImage(mappaEmpori.get(emporio));
+						hbox.get(i).getChildren().add(imageView);
+					}
+				}
+			}
+		});
+	}
 
 	public void mostraRiserva(List<ConsigliereDTO> consiglieri) {
 
@@ -839,55 +870,7 @@ public class GUIGameController {
 	}
 
 	public void mostraConsiglieriBalcone() {
-		Platform.runLater(new Runnable() {
-
-			@Override
-			public void run() {
-				balconeMare.getChildren().clear();
-				for (ConsigliereDTO c : gameStateDTO.getRegioni().get(0).getBalcone().getConsiglieri()) {
-					ImageView imageView = new ImageView(mappaConsiglieri.get(c.toString()));
-					imageView.setFitHeight(25);
-					imageView.setPreserveRatio(true);
-					balconeMare.getChildren().add(imageView);
-				}
-
-				balconeMare.setUserData(gameStateDTO.getRegioni().get(0).getBalcone());
-				balconeMare.setDisable(true);
-
-				balconeCollina.getChildren().clear();
-				for (ConsigliereDTO c : gameStateDTO.getRegioni().get(1).getBalcone().getConsiglieri()) {
-					ImageView imageView = new ImageView(mappaConsiglieri.get(c.toString()));
-					imageView.setFitHeight(25);
-					imageView.setPreserveRatio(true);
-					balconeCollina.getChildren().add(imageView);
-				}
-
-				balconeCollina.setUserData(gameStateDTO.getRegioni().get(1).getBalcone());
-				balconeCollina.setDisable(true);
-
-				balconeMontagna.getChildren().clear();
-				for (ConsigliereDTO c : gameStateDTO.getRegioni().get(2).getBalcone().getConsiglieri()) {
-					ImageView imageView = new ImageView(mappaConsiglieri.get(c.toString()));
-					imageView.setFitHeight(25);
-					imageView.setPreserveRatio(true);
-					balconeMontagna.getChildren().add(imageView);
-				}
-
-				balconeMontagna.setUserData(gameStateDTO.getRegioni().get(2).getBalcone());
-				balconeMontagna.setDisable(true);
-
-				balconeRe.getChildren().clear();
-				for (ConsigliereDTO c : gameStateDTO.getPlanciaReDTO().getBalconeRe().getConsiglieri()) {
-					ImageView imageView = new ImageView(mappaConsiglieri.get(c.toString()));
-					imageView.setFitHeight(25);
-					imageView.setPreserveRatio(true);
-					balconeRe.getChildren().add(imageView);
-				}
-
-				balconeRe.setUserData(gameStateDTO.getPlanciaReDTO().getBalconeRe());
-				balconeRe.setDisable(true);
-			}
-		});
+		gui.stampaConsiglieriBalcone();
 	}
 
 	public TextArea getMessage() {
@@ -1018,7 +1001,7 @@ public class GUIGameController {
 		osium.setDisable(true);
 		this.città.add(osium);
 	}
-
+	
 	public TabPane getAvversari() {
 		return this.giocatori;
 	}
@@ -1080,6 +1063,18 @@ public class GUIGameController {
 	public List<ImageView> getTessereMontagna() {
 		return Arrays.asList(tesseraMontagna1, tesseraMontagna2);
 	}
+	
+	public List<HBox> getListaEmporiHBox(){
+		return Arrays.asList(emporiArkon,emporiBurgen,emporiCastrum,emporiDorful,emporiEsti,emporiFramek,emporiGraden,emporiHellar,emporiIndur,emporiJuvelar,emporiKultos,emporiLyram,emporiMerkatim,emporiNaris,emporiOsium);
+	}
+	
+
+	/**
+	 * @return the mappaEmpori
+	 */
+	public Map<String, Image> getMappaEmpori() {
+		return mappaEmpori;
+	}
 
 	public List<ImageView> getTesserePermessoRegioni() {
 		List<ImageView> tessere = new ArrayList<>();
@@ -1112,9 +1107,16 @@ public class GUIGameController {
 
 	public Button getRe() {
 		for (Button b : città)
-			if (b.getUserData().equals(gameStateDTO.getPedinaRE()))
+			if ((b.getUserData()).equals(gameStateDTO.getPedinaRE().getCittà()))
 				return b;
 		return null;
+	}
+
+	/**
+	 * @return the mappaConsiglieri
+	 */
+	public Map<String, Image> getMappaConsiglieri() {
+		return mappaConsiglieri;
 	}
 
 }
