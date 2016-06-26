@@ -623,9 +623,7 @@ public class CLI implements Grafica {
 				città.add((CittàBonusDTO) c);
 			}
 		}
-		BonusGettoneNDTO bonus = new BonusGettoneNDTO();
-		bonus.parametri().setParametri(this, gameStateDTO);
-
+		
 		System.out.println("Scegli una città");
 		System.out.println(città.toString());
 		String input = stdIn.nextLine();
@@ -670,6 +668,12 @@ public class CLI implements Grafica {
 
 	@Override
 	public void mostraGiocatoreMarket(GiocatoreDTO giocatoreDTO) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void fineMarket() {
 		// TODO Auto-generated method stub
 		
 	}

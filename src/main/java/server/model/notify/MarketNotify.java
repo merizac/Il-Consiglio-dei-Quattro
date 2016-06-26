@@ -11,9 +11,11 @@ import server.view.clientNotify.MarketClientNotify;
 public class MarketNotify implements Notify {
 	
 	private List<Giocatore> giocatori;
+	private boolean fineMarket;
 
-	public MarketNotify(List<Giocatore> giocatori) {
+	public MarketNotify(List<Giocatore> giocatori, boolean fineMarket) {
 		this.giocatori=giocatori;
+		this.fineMarket=fineMarket;
 	}
 
 	@Override
@@ -30,7 +32,7 @@ public class MarketNotify implements Notify {
 			giocatoriDTO.add(giocatoreDTO);
 		}
 		
-		return new MarketClientNotify(giocatoriDTO);
+		return new MarketClientNotify(fineMarket, giocatoriDTO);
 	}
 
 }
