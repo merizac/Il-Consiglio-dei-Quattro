@@ -20,9 +20,9 @@
                      <children>
                         <AnchorPane prefHeight="590.0" prefWidth="716.0">
                            <children>
-                              <ImageView fx:id="gettoneArkon" fitHeight="590.0" fitWidth="755.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="mappaImmagine" fitHeight="590.0" fitWidth="755.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../css/mappa.jpg" />
+                                    <Image url="@../css/MappaVuota.jpg" />
                                  </image>
                               </ImageView>
                               <AnchorPane layoutX="19.0" layoutY="387.0" prefHeight="70.0" prefWidth="193.0">

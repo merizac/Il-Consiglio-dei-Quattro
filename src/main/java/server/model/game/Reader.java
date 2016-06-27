@@ -79,7 +79,7 @@ public class Reader {
 	public Mazzo<CartaPolitica> letturaCartePolitica() throws IOException {
 
 		List<CartaPolitica> cartaPoliticaList = new ArrayList<>();
-		FileReader cartaPolitica = new FileReader("src/main/resources/mappa1ColoriConsiglieriCartePolitica.txt");
+		FileReader cartaPolitica = new FileReader("src/main/resources/coloriConsiglieriCartePolitica.txt");
 		BufferedReader b;
 		b = new BufferedReader(cartaPolitica);
 		String stringaLetta;
@@ -163,7 +163,7 @@ public class Reader {
 
 	public List<Consigliere> letturaConsigliere() throws IOException {
 
-		FileReader cons = new FileReader("src/main/resources/mappa1ColoriConsiglieriCartePolitica.txt");
+		FileReader cons = new FileReader("src/main/resources/coloriConsiglieriCartePolitica.txt");
 
 		BufferedReader b;
 		b = new BufferedReader(cons);

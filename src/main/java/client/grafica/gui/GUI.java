@@ -196,6 +196,11 @@ public class GUI extends Application implements Grafica {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		System.out.println(gameStateDTO.getNomeMappa());
+		System.out.println(gameStateDTO.getAvversari());
+		System.out.println(gameStateDTO.getPedinaRE());
+		System.out.println(gameStateDTO);
+		controller.getMappaImmagine().setImage(new Image(getClass().getResource("css/"+gameStateDTO.getNomeMappa()+".jpg").toExternalForm()));
 		controller.mostraGettoni(new ArrayList<>(gameStateDTO.getCittà()));
 		controller.mostraTessereBonus();
 		controller.mostraConsiglieriBalcone();

@@ -49,6 +49,8 @@ public class GUIGameController {
 	private Map<String, Image> mappaEmpori=new HashMap<>();
 	
 	@FXML
+	private ImageView mappaImmagine;
+	@FXML
 	private HBox giocatoreGUI;
 	@FXML
 	private HBox tesserePermesso;
@@ -913,6 +915,13 @@ public class GUIGameController {
 	 */
 	public HBox getGiocatoreGUI() {
 		return giocatoreGUI;
+	}
+
+	/**
+	 * @return the mappaImmagine
+	 */
+	public ImageView getMappaImmagine() {
+		return mappaImmagine;
 	}
 	
 
