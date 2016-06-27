@@ -36,8 +36,7 @@ public class ElezioneConsigliereDTOTest {
 		Giocatore giocatore=new Giocatore("Giocatore");
 		giocatori.add(giocatore);
 		gameState=new GameState();
-		gameState.start(giocatori);
-		
+		gameState.start(giocatori, "mappa1");		
 		consigliereDTO=new ConsigliereDTO();
 		balconeDTO=new BalconeDTO();
 		balcone=gameState.getRegioni().get(0).getBalcone();

@@ -224,6 +224,35 @@ public class GiocatoreDTO implements Serializable {
 	public void setBonusNobiltà(List<AzioneDTO> bonus) {
 		this.bonusNobiltà = bonus;
 	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((coloreGiocatore == null) ? 0 : coloreGiocatore.hashCode());
+		return result;
+	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof GiocatoreDTO))
+			return false;
+		GiocatoreDTO other = (GiocatoreDTO) obj;
+		if (coloreGiocatore == null) {
+			if (other.coloreGiocatore != null)
+				return false;
+		} else if (!coloreGiocatore.equals(other.coloreGiocatore))
+			return false;
+		return true;
+	}
 	
 	
 	

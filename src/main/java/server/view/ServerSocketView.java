@@ -7,6 +7,7 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.util.Arrays;
 import common.azioniDTO.AzioneDTO;
+import common.azioniDTO.AzioneMappaDTO;
 import common.azioniDTO.ExitDTO;
 import common.azioniDTO.azioneVisitor.AzioneVisitor;
 import common.azioniDTO.azioneVisitor.AzioneVisitorImpl;
@@ -95,15 +96,14 @@ public class ServerSocketView extends View implements Runnable {
 						this.notifyObserver(exit);
 						return;
 					}
+					if(action instanceof AzioneMappaDTO){
+						Server.setMappa(((AzioneMappaDTO) action).getMappa());
+					}
+					
 					AzioneVisitor azioneVisitor = new AzioneVisitorImpl(gameState, giocatore);
 					Azione azione = null;
 					try {
 						azione = action.accept(azioneVisitor);
-						if(azione instanceof AcquistoTesseraPermesso){
-							System.out.println(((AcquistoTesseraPermesso) azione).getCarteGiocatore());
-							System.out.println(((AcquistoTesseraPermesso) azione).getRegione());
-							System.out.println(((AcquistoTesseraPermesso) azione).getTesseraScoperta());
-						}
 					} catch (ParameterException e) {
 						update(new MessageNotify(e.getMessage(), Arrays.asList(gameState.getGiocatoreCorrente())));
 						System.out.println("[SERVER] Ricevuta l'azione " + azione + " dal giocatore "

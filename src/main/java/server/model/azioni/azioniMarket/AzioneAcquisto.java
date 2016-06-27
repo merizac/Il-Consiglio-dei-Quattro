@@ -21,7 +21,7 @@ public class AzioneAcquisto extends Azione {
 	public void eseguiAzione(GameState gameState){
 		if (!offerta.getMarketable().acquista(acquirente, offerta)){
 			gameState.notifyObserver(new MessageNotify("L'azione non è eseguibile",
-					Arrays.asList(gameState.getGiocatoreCorrente())));
+					Arrays.asList(acquirente)));
 		}
 		else {
 			if (!gameState.getOfferteMarket().isEmpty()) {

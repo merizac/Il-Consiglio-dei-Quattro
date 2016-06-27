@@ -35,8 +35,7 @@ public class CostruzioneTesseraPermessoDTOTest {
 		Giocatore giocatore=new Giocatore("Giocatore");
 		giocatori.add(giocatore);
 		gameState=new GameState();
-		gameState.start(giocatori);
-		
+		gameState.start(giocatori, "mappa1");		
 		tessera=gameState.getRegioni().get(0).getTesserePermessoScoperte().get(0);
 		gameState.getGiocatoreCorrente().aggiungiTesseraPermesso(tessera);
 		tesseraDTO=new TesseraPermessoDTO();

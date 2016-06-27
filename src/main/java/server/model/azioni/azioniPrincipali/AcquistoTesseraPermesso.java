@@ -14,8 +14,6 @@ import server.model.game.Consigliere;
 import server.model.game.GameState;
 import server.model.game.Regione;
 import server.model.game.TesseraPermesso;
-import server.model.notify.GameStateNotify;
-import server.model.notify.GiocatoreNotify;
 import server.model.notify.MessageNotify;
 
 public class AcquistoTesseraPermesso extends AzionePrincipale implements Bonusable {
@@ -82,8 +80,7 @@ public class AcquistoTesseraPermesso extends AzionePrincipale implements Bonusab
 				}
 			}
 		} else {
-			gameState.notifyObserver(new GameStateNotify(gameState, gameState.getGiocatori()));
-			gameState.notifyObserver(new GiocatoreNotify(gameState.getGiocatoreCorrente(), Arrays.asList(gameState.getGiocatoreCorrente())));
+			notify(gameState);
 			setStatoTransizionePrincipale(gameState);
 		}
 			}

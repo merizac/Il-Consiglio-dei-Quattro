@@ -17,8 +17,6 @@ import server.model.game.GameState;
 import server.model.game.Giocatore;
 import server.model.game.Regione;
 import server.model.game.TesseraPermesso;
-import server.model.notify.GameStateNotify;
-import server.model.notify.GiocatoreNotify;
 import server.model.notify.MessageNotify;
 
 public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonusable {
@@ -39,7 +37,7 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonu
 	public void eseguiAzione(GameState gameState) {
 		boolean nob = false;
 		if (!pagoAiutanti(gameState)) {
-			gameState.notifyObserver(new MessageNotify("Errore: i soldi non sono sufficienti",
+			gameState.notifyObserver(new MessageNotify("Errore: gli aiutanti non sono sufficienti",
 					Arrays.asList(gameState.getGiocatoreCorrente())));
 			return;
 		}
@@ -57,9 +55,7 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonu
 			gameState.getGiocatoreCorrente().aumentaPuntiVittoria(3);
 		}
 
-		gameState.notifyObserver(new GameStateNotify(gameState, gameState.getGiocatori()));
-		gameState.notifyObserver(
-				new GiocatoreNotify(gameState.getGiocatoreCorrente(), Arrays.asList(gameState.getGiocatoreCorrente())));
+		notify(gameState);
 
 		List<Bonus> bonusCasella = gameState.getGiocatoreCorrente().getPunteggioNobiltà().getBonus();
 

@@ -40,7 +40,7 @@ public class StartEndTest {
 			}
 		};
 		gameState.registerObserver(observer);
-		gameState.start(giocatori);
+		gameState.start(giocatori, "mappa1");
 	}
 
 	@Test

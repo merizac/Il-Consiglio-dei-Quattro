@@ -42,8 +42,7 @@ public class BonusGettoneNDTOTest {
 		Giocatore giocatore=new Giocatore("Giocatore");
 		giocatori.add(giocatore);
 		gameState=new GameState();
-		gameState.start(giocatori);
-		
+		gameState.start(giocatori, "mappa1");		
 		città=new ArrayList<>();
 		CittàBonusDTO c=new CittàBonusDTO();
 		c.inizializza((CittàBonus)gameState.getRegioni().get(0).getCittàRegione().get(0));

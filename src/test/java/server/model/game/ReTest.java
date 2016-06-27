@@ -28,7 +28,7 @@ public class ReTest {
 		Giocatore giocatore=new Giocatore("Pippo");
 		giocatori=new ArrayList<Giocatore>();
 		giocatori.add(giocatore);
-		gameState.start(giocatori);
+		gameState.start(giocatori, "mappa1");
 //		ArrayList<Consigliere> consiglieri=new ArrayList<Consigliere>();
 //		città=new Città("cittàRe", new Regione("regione", new Mazzo<TesseraPermesso>(), new BonusPuntiVittoria(2), new Balcone(consiglieri)), new Colore("coloreCittàRe"));
 //		re=new Re(città);

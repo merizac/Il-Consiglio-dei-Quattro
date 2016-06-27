@@ -30,7 +30,7 @@ public class RegioneTest {
 		ArrayList<Giocatore> giocatori=new ArrayList<>();
 		Giocatore giocatore=new Giocatore("Giocatore");
 		giocatori.add(giocatore);
-		gameState.start(giocatori);
+		gameState.start(giocatori, "mappa1");
 	}
 
 	@Test

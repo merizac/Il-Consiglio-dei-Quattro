@@ -41,7 +41,7 @@ public class StatoAcquistoMarketTest {
 			}
 		};
 		gameState.registerObserver(observer);
-		gameState.start(giocatori);
+		gameState.start(giocatori, "mappa1");
 	}
 
 	@Test
