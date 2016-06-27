@@ -1,6 +1,7 @@
 package client.grafica.gui;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -12,6 +13,10 @@ import client.connessione.Connessione;
 import client.grafica.Grafica;
 import common.azioniDTO.AcquistoTesseraPermessoDTO;
 import common.azioniDTO.AzioneDTO;
+import common.azioniDTO.AzioneParametri;
+import common.azioniDTO.BonusGettoneNDTO;
+import common.azioniDTO.BonusTesseraAcquistataNDTO;
+import common.azioniDTO.BonusTesseraPermessoNDTO;
 import common.azioniDTO.CambioTesserePermessoDTO;
 import common.azioniDTO.CostruzioneAiutoReDTO;
 import common.azioniDTO.CostruzioneTesseraPermessoDTO;
@@ -62,6 +67,7 @@ import server.model.game.Aiutante;
 import server.model.game.Giocatore;
 import server.model.market.Offerta;
 import server.view.clientNotify.ClientNotify;
+import utility.AzioneNonEseguibile;
 
 public class GUI extends Application implements Grafica {
 
@@ -69,6 +75,7 @@ public class GUI extends Application implements Grafica {
 	private GameStateDTO gameStateDTO;
 	private GUIGameController controller;
 	private GUIMarketController controllerMarket;
+	private GUIMappaController controllerMappa;
 	private Stage finestra;
 	private Stage market;
 	private Stage mappa;
@@ -180,7 +187,18 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public void mostraAzioni(List<AzioneDTO> azioni) {
-
+		if (azioni.get(0) instanceof BonusGettoneNDTO || azioni.get(0) instanceof BonusTesseraAcquistataNDTO
+				|| azioni.get(0) instanceof BonusTesseraPermessoNDTO)
+			try {
+				((AzioneParametri) azioni.get(0)).parametri().setParametri(this, gameStateDTO);
+			} catch (AzioneNonEseguibile e) {
+				this.mostraMessaggio(e.getMessage());
+			}
+		try {
+			connessione.inviaAzione(azioni.get(0));
+		} catch (RemoteException e) {
+			this.mostraMessaggio("Server non raggiungibile!");
+		}
 	}
 
 	@Override
@@ -191,11 +209,10 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public void mostraGame(GameStateDTO gameStateDTO) throws IOException {
-		try {
-			controller.mostraTesserePermessoRegioni(gameStateDTO.getRegioni());
-		} catch (Exception e) {
-			e.printStackTrace();
+		if (controllerMappa != null && mappa.isShowing()) {
+			closeSceltaMappa();
 		}
+		controller.mostraTesserePermessoRegioni(gameStateDTO.getRegioni());
 		controller.mostraGettoni(new ArrayList<>(gameStateDTO.getCittà()));
 		controller.mostraTessereBonus();
 		controller.mostraConsiglieriBalcone();
@@ -997,14 +1014,49 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public List<CittàBonusDTO> scegliUnaCittà() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Pane> cittàBonus = controller.getCittàBonus();
+		for (Pane città : cittàBonus) {
+			città.setDisable(false);
+		}
+		while (parametro == null) {
+			try {
+				lock.wait();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		for (Pane città : cittàBonus) {
+			città.setDisable(true);
+		}
+		CittàBonusDTO cittàBonusDTO = (CittàBonusDTO) parametro;
+		parametro = null;
+		return Arrays.asList(cittàBonusDTO);
 	}
 
 	@Override
 	public List<CittàBonusDTO> scegliDueCittà() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Pane> dueCittàBonus = controller.getCittàBonus();
+		List<CittàBonusDTO> cittàBonusDTO = this.scegliUnaCittà();
+		for (Pane città : dueCittàBonus) {
+			if (!((CittàDTO) città.getUserData()).getNome().equals(cittàBonusDTO.get(0).getNome()))
+				città.setDisable(false);
+		}
+		while (parametro == null) {
+			try {
+				lock.wait();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		for (Pane città : dueCittàBonus) {
+			città.setDisable(true);
+		}
+		CittàBonusDTO città = (CittàBonusDTO) parametro;
+		cittàBonusDTO.add(città);
+		parametro = null;
+		return cittàBonusDTO;
 	}
 
 	@Override
@@ -1026,16 +1078,17 @@ public class GUI extends Application implements Grafica {
 			@Override
 			public void run() {
 				FXMLLoader fxmloader = new FXMLLoader();
-				fxmloader.setLocation(getClass().getClassLoader().getResource("client/grafica/gui/fxml/scegli_mappa.fxml"));
+				fxmloader.setLocation(
+						getClass().getClassLoader().getResource("client/grafica/gui/fxml/scegli_mappa.fxml"));
 
 				Parent root = null;
 				try {
 					root = fxmloader.load();
 					mappa = new Stage();
-					GUIMappaController controllerMappa = fxmloader.getController();
+					controllerMappa = fxmloader.getController();
 					controllerMappa.setGui(GUI.this);
 					controllerMappa.inizializza();
-					mappa.setScene(new Scene(root) );
+					mappa.setScene(new Scene(root));
 					mappa.show();
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
@@ -1045,10 +1098,9 @@ public class GUI extends Application implements Grafica {
 		});
 	}
 
-
 	public void closeSceltaMappa() {
 		Platform.runLater(new Runnable() {
-			
+
 			@Override
 			public void run() {
 				mappa.close();

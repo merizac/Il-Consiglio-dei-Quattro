@@ -53,6 +53,7 @@ public class StatoAcquistoMarket implements Stato {
 	public void transizioneOfferta(GameState gameState) {
 		if (gameState.getOfferteMarket().isEmpty()) {
 			gameState.notifyObserver(new MessageNotify("\nGli oggetti in vendita sono finiti\n", giocatori));
+			gameState.notifyObserver(new MarketNotify(gameState.getGiocatori(), true));
 			gameState.setStato(new StartEnd(gameState));
 		} else {
 			gameState.setStato(this);

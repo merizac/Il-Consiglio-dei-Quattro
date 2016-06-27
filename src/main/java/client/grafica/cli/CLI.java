@@ -16,6 +16,7 @@ import client.grafica.Grafica;
 import common.azioniDTO.AzioneDTO;
 import common.azioniDTO.AzioneMappaDTO;
 import common.azioniDTO.AzioneParametri;
+import common.azioniDTO.ChatDTO;
 import common.azioniDTO.ExitDTO;
 import common.gameDTO.AiutanteDTO;
 import common.gameDTO.BalconeDTO;
@@ -42,6 +43,7 @@ public class CLI implements Grafica {
 	private Connessione connessione;
 	private GameStateDTO gameStateDTO;
 	private Scanner stdIn;
+	private String inputLine;
 
 	public void start() {
 
@@ -75,13 +77,24 @@ public class CLI implements Grafica {
 
 		while (true) {
 
-			String inputLine = stdIn.nextLine();
+			inputLine = stdIn.nextLine();
 
 			AzioneDTO action = gameStateDTO.getAzioniDisponibili().stream()
 					.filter(a -> a.toString().contains(inputLine)).findAny().orElse(null);
-			System.out.println("azioni :"+gameStateDTO.getAzioniDisponibili());
+			System.out.println("azioni :" + gameStateDTO.getAzioniDisponibili());
 
-			if (action == null)
+			if ("Exit".equals(inputLine)) {
+				action=new ExitDTO();
+			}
+
+			else if ("Chat".equals(inputLine)) {
+				System.out.println("Inserisci il messaggio");
+				inputLine = stdIn.nextLine();
+				action = new ChatDTO();
+				((ChatDTO) action).setMessaggio(inputLine);
+			}
+
+			else if (action == null)
 				System.out.println("L'azione non esiste \nInserire un'azione valida");
 
 			else {
@@ -106,7 +119,6 @@ public class CLI implements Grafica {
 			}
 
 		}
-
 	}
 
 	/**
@@ -623,7 +635,7 @@ public class CLI implements Grafica {
 				città.add((CittàBonusDTO) c);
 			}
 		}
-		
+
 		System.out.println("Scegli una città");
 		System.out.println(città.toString());
 		String input = stdIn.nextLine();
@@ -669,13 +681,13 @@ public class CLI implements Grafica {
 	@Override
 	public void mostraGiocatoreMarket(GiocatoreDTO giocatoreDTO) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void fineMarket() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override

@@ -942,4 +942,14 @@ public class GUIGameController {
 		return mappaConsiglieri;
 	}
 
+	public List<Pane> getCittàBonus() {
+		List<Pane> cittàBonusGettone=new ArrayList<>();
+		for(Pane città: this.città){
+			if(città.getUserData() instanceof CittàBonusDTO)
+				cittàBonusGettone.add(città);
+		}
+		
+		return cittàBonusGettone;
+	}
+
 }
