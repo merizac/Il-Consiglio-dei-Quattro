@@ -49,23 +49,15 @@ public class GUIGameController {
 	private Map<String, Image> mappaEmpori=new HashMap<>();
 	
 	@FXML
+	private ImageView mappaImmagine;
+	@FXML
+	private HBox giocatoreGUI;
+	@FXML
 	private HBox tesserePermesso;
 	@FXML
 	private HBox cartePolitica;
 	@FXML
 	private Text nomeGiocatore;
-	@FXML
-	private Text puntiGiocatore;
-	@FXML
-	private Text aiutantiGiocatore;
-	@FXML
-	private Text moneteGiocatore;
-	@FXML
-	private Text emporiGiocatore;
-	@FXML
-	private Text tesserebonusGiocatore;
-	@FXML
-	private Text nobiltàGiocatore;
 	@FXML
 	private ImageView tesseraMare1;
 	@FXML
@@ -521,30 +513,6 @@ public class GUIGameController {
 		nomeGiocatore.setText(nome);
 	}
 
-	public void mostraPuntiGiocatore(int punti) {
-		puntiGiocatore.setText(Integer.toString(punti));
-	}
-
-	public void mostraAiutantiGiocatore(int aiutanti) {
-		aiutantiGiocatore.setText(Integer.toString(aiutanti));
-	}
-
-	public void mostraEmporiGiocatore(int empori) {
-		emporiGiocatore.setText(Integer.toString(empori));
-	}
-
-	public void mostraMoneteGiocatore(int monete) {
-		moneteGiocatore.setText(Integer.toString(monete));
-	}
-
-	public void mostraTessereBonusGiocatore(int punti) {
-		tesserebonusGiocatore.setText(Integer.toString(punti));
-	}
-
-	public void mostraNobiltàGiocatore(int punti) {
-		nobiltàGiocatore.setText(Integer.toString(punti));
-	}
-
 	public void mostraTessereBonus() {
 		mare.setImage(new Image(getClass().getResource("css/tessereBonus/mare.png").toExternalForm()));
 		collina.setImage(new Image(getClass().getResource("css/tessereBonus/collina.png").toExternalForm()));
@@ -942,6 +910,7 @@ public class GUIGameController {
 		return mappaConsiglieri;
 	}
 
+
 	public List<Pane> getCittàBonus() {
 		List<Pane> cittàBonusGettone=new ArrayList<>();
 		for(Pane città: this.città){
@@ -951,5 +920,21 @@ public class GUIGameController {
 		
 		return cittàBonusGettone;
 	}
+
+	/**
+	 * @return the giocatoreGUI
+	 */
+	public HBox getGiocatoreGUI() {
+		return giocatoreGUI;
+	}
+
+	/**
+	 * @return the mappaImmagine
+	 */
+	public ImageView getMappaImmagine() {
+		return mappaImmagine;
+	}
+	
+
 
 }
