@@ -90,6 +90,15 @@ public class GUIGameController {
 	@FXML
 	private ImageView consigliere8;
 
+
+	@FXML
+	private ImageView frecciaMare;
+	@FXML
+	private ImageView frecciaCollina;
+	@FXML
+	private ImageView frecciaMontagna;
+	@FXML
+	private ImageView frecciaRe;
 	@FXML
 	private Button conferma;
 	@FXML
@@ -826,6 +835,10 @@ public class GUIGameController {
 		return Arrays.asList(balconeMare, balconeCollina, balconeMontagna, balconeRe);
 	}
 
+	public List<ImageView> getFrecce(){
+		return Arrays.asList(frecciaMare, frecciaCollina, frecciaMontagna, frecciaRe);
+	}
+	
 	public List<ImageView> getCartePolitica() {
 		List<ImageView> cartePolitica = new ArrayList<>();
 		for (Node i : this.cartePolitica.getChildren()) {
