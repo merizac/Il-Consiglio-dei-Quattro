@@ -30,7 +30,7 @@ public class CartaPoliticaDTOTest {
 		Giocatore giocatore=new Giocatore("Giocatore");
 		giocatori.add(giocatore);
 		gameState=new GameState();
-		gameState.start(giocatori);
+		gameState.start(giocatori, "mappa1");
 
 		colore=new Colore("A");
 		cartaPolitica=new CartaPolitica(colore);

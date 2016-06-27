@@ -37,7 +37,7 @@ public class BonusAiutantiTest {
 		GameState gameState=new GameState();
 		ArrayList<Giocatore> giocatori=new ArrayList<>();
 		giocatori.add(giocatore);
-		gameState.start(giocatori);
+		gameState.start(giocatori, "mappa1");
 		gameState.getGiocatoreCorrente().setAiutanti(new Aiutante(1));
 		BonusAiutanti b=new BonusAiutanti(3);
 		b.usaBonus(gameState);

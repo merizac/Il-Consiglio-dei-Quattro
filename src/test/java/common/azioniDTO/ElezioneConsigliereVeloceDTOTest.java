@@ -37,8 +37,7 @@ public class ElezioneConsigliereVeloceDTOTest {
 		Giocatore giocatore=new Giocatore("Giocatore");
 		giocatori.add(giocatore);
 		gameState=new GameState();
-		gameState.start(giocatori);
-		
+		gameState.start(giocatori, "mappa1");		
 		consigliereDTO=new ConsigliereDTO();
 		balconeDTO=new BalconeDTO();
 		consigliere=gameState.getConsiglieri().get(0);

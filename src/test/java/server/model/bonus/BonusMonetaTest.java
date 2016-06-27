@@ -26,7 +26,7 @@ public class BonusMonetaTest {
 		giocatore=new Giocatore("giocatore");
 		ArrayList<Giocatore> giocatori=new ArrayList<>();
 		giocatori.add(giocatore);
-		gameState.start(giocatori);
+		gameState.start(giocatori, "mappa1");
 		
 	}
 	

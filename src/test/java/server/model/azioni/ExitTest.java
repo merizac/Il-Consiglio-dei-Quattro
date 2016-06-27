@@ -41,7 +41,7 @@ public class ExitTest {
 			}
 		};
 		gameState.registerObserver(observer);
-		gameState.start(giocatori);
+		gameState.start(giocatori, "mappa1");
 		gameState.setGiocatoreCorrente(giocatore);
 	}
 

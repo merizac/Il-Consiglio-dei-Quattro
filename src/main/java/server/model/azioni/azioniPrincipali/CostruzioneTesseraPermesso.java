@@ -37,7 +37,7 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonu
 	public void eseguiAzione(GameState gameState) {
 		boolean nob = false;
 		if (!pagoAiutanti(gameState)) {
-			gameState.notifyObserver(new MessageNotify("Errore: i soldi non sono sufficienti",
+			gameState.notifyObserver(new MessageNotify("Errore: gli aiutanti non sono sufficienti",
 					Arrays.asList(gameState.getGiocatoreCorrente())));
 			return;
 		}

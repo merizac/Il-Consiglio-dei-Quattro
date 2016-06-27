@@ -31,8 +31,7 @@ public class ExitDTOTest {
 		giocatore=new Giocatore("Giocatore");
 		giocatori.add(giocatore);
 		gameState=new GameState();
-		gameState.start(giocatori);
-		giocatoreDTO=new GiocatoreDTO();
+		gameState.start(giocatori, "mappa1");		giocatoreDTO=new GiocatoreDTO();
 		giocatoreDTO.inizializza(giocatore);
 		visitor = new AzioneVisitorImpl(gameState, gameState.getGiocatoreCorrente());
 	}

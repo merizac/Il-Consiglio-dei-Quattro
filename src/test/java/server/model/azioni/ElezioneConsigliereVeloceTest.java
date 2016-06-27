@@ -27,7 +27,7 @@ public class ElezioneConsigliereVeloceTest {
 		Giocatore giocatore=new Giocatore("Giocatore");
 		giocatori.add(giocatore);
 		gameState=new GameState();
-		gameState.start(giocatori);
+		gameState.start(giocatori, "mappa1");
 		regione=gameState.getRegioni().get(0);
 	}
 

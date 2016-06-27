@@ -74,4 +74,6 @@ public interface Grafica {
 	public void mostraGiocatoreMarket(GiocatoreDTO giocatoreDTO);
 
 	public void fineMarket();
+
+	public void scegliMappa();
 }

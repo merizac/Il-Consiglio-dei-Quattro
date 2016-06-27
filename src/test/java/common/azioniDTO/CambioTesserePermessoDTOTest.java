@@ -30,8 +30,7 @@ public class CambioTesserePermessoDTOTest {
 		Giocatore giocatore=new Giocatore("Giocatore");
 		giocatori.add(giocatore);
 		gameState=new GameState();
-		gameState.start(giocatori);
-		
+		gameState.start(giocatori, "mappa1");		
 		regione=gameState.getRegioni().get(0);
 		regioneDTO=new RegioneDTO();
 		regioneDTO.inizializza(regione);

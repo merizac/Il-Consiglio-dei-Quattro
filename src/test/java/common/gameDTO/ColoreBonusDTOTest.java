@@ -24,7 +24,7 @@ public class ColoreBonusDTOTest {
 		Giocatore giocatore=new Giocatore("Giocatore");
 		giocatori.add(giocatore);
 		gameState=new GameState();
-		gameState.start(giocatori);
+		gameState.start(giocatori, "mappa1");
 
 		coloreCittà=new ColoreCittà("A", new BonusPuntiVittoria(2));
 	}

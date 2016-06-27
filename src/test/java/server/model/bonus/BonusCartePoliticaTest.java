@@ -37,7 +37,7 @@ public class BonusCartePoliticaTest {
 		GameState gameState = new GameState();
 		Giocatore giocatore = new Giocatore("nome");
 		giocatori.add(giocatore);
-		gameState.start(giocatori);
+		gameState.start(giocatori, "mappa1");
 		BonusCartePolitica bonus = new BonusCartePolitica(3);
 		bonus.usaBonus(gameState);
 		assertEquals(6+3, giocatore.getCartePolitica().size());

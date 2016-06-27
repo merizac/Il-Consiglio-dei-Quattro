@@ -11,6 +11,7 @@ import server.model.game.Giocatore;
 import server.model.notify.AzioniNotify;
 import server.model.notify.GiocatoreMarketNotify;
 import server.model.notify.MarketNotify;
+import server.model.notify.MessageNotify;
 import server.model.notify.OffertaNotify;
 
 public class StatoOffertaMarket implements Stato {
@@ -18,50 +19,51 @@ public class StatoOffertaMarket implements Stato {
 	private List<Azione> azioni;
 
 	public StatoOffertaMarket(GameState gameState) {
-		this.azioni=Arrays.asList(new AzioneOfferta(),new Passa());
-		System.out.println("[SERVER] Azioni Stato Offerta: "+azioni);
-		for(Giocatore g: gameState.getGiocatori()){
+		this.azioni = Arrays.asList(new AzioneOfferta(), new Passa());
+		System.out.println("[SERVER] Azioni Stato Offerta: " + azioni);
+		for (Giocatore g : gameState.getGiocatori()) {
 			gameState.notifyObserver(new GiocatoreMarketNotify(g, Arrays.asList(g)));
 		}
-		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), 
-					Arrays.asList(gameState.getGiocatoreCorrente())));
+		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
+		gameState.notifyObserver(
+				new MessageNotify("Vuoi fare un offerta?", Arrays.asList(gameState.getGiocatoreCorrente())));
 	}
 
-
 	@Override
-	public void transizionePassa(GameState gameState){
-		System.out.println("NumeroTurno1: "+gameState.getNumeroTurni());
-		
+	public void transizionePassa(GameState gameState) {
+		System.out.println("NumeroTurno1: " + gameState.getNumeroTurni());
+
 		gameState.decrementaTurno();
 		gameState.nextPlayer();
-		System.out.println("NumeroTurno2: "+gameState.getNumeroTurni());
-		
-		if(gameState.getNumeroTurni()!=0){
-			System.out.println("market giocatorecorrente: "+ gameState.getGiocatoreCorrente().getNome());
-			gameState.notifyObserver(new AzioniNotify(this.getAzioni(), 
-					Arrays.asList(gameState.getGiocatoreCorrente())));
+		System.out.println("NumeroTurno2: " + gameState.getNumeroTurni());
+
+		if (gameState.getNumeroTurni() != 0) {
+			System.out.println("market giocatorecorrente: " + gameState.getGiocatoreCorrente().getNome());
+			gameState.notifyObserver(
+					new AzioniNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
 			gameState.setStato(this);
 
-		}
-		else{
-			if(gameState.getOfferteMarket().isEmpty()){
+		} else {
+			if (gameState.getOfferteMarket().isEmpty()) {
 				gameState.notifyObserver(new MarketNotify(gameState.getGiocatori(), true));
-				gameState.setStato(new StartEnd(gameState));}
-			else
-				gameState.setStato(new StatoAcquistoMarket(gameState));}
+				gameState.setStato(new StartEnd(gameState));
+			} else
+				gameState.setStato(new StatoAcquistoMarket(gameState));
+		}
 	}
-	
+
 	@Override
-	public void transizioneOfferta(GameState gameState){
-		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), 
-				Arrays.asList(gameState.getGiocatoreCorrente())));
+	public void transizioneOfferta(GameState gameState) {
+		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
 		gameState.notifyObserver(new OffertaNotify(gameState.getOfferteMarket(), gameState.getGiocatori()));
+		gameState.notifyObserver(
+				new MessageNotify("Vuoi fare un offerta?", Arrays.asList(gameState.getGiocatoreCorrente())));
 		gameState.setStato(this);
 	}
 
 	@Override
 	public List<Azione> getAzioni() {
-		return this.azioni; 
+		return this.azioni;
 	}
 
 }

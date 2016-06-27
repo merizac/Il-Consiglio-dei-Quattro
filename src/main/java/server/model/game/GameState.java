@@ -334,15 +334,16 @@ public class GameState extends Observable<Notify> {
 	 * initialize game
 	 * 
 	 * @param giocatori
+	 * @param mappa 
 	 * @throws IOException
 	 */
-	public void start(List<Giocatore> giocatori) throws IOException {
+	public void start(List<Giocatore> giocatori, String mappa) throws IOException {
 		Reader reader = new Reader();
 		this.consiglieri = reader.letturaConsigliere();
 		this.regioni = reader.letturaRegioni();
 		this.planciaRe = reader.creazionePlanciaRe();
 		this.mazzoCartePolitica = reader.letturaCartePolitica();
-		this.mappa = reader.creazioneMappa("mappa1");
+		this.mappa = reader.creazioneMappa(mappa);
 		this.pedinaRe = reader.creazioneRe();
 		this.giocatori = new ArrayList<>();
 		this.offerteMarket = new ArrayList<>();

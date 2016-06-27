@@ -63,7 +63,8 @@ public class AcquistoTesseraPermessoTest {
 			}
 		};
 		gameState.registerObserver(observer);
-		gameState.start(giocatori);
+		gameState.start(giocatori, "mappa1");
+
 
 		regione = gameState.getRegioni().get(0);
 		tesseraScoperta = regione.getTesserePermessoScoperte().get(0);
