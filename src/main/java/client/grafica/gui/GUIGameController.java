@@ -49,6 +49,8 @@ public class GUIGameController {
 	private Map<String, Image> mappaEmpori=new HashMap<>();
 	
 	@FXML
+	private ImageView mappaImmagine;
+	@FXML
 	private HBox giocatoreGUI;
 	@FXML
 	private HBox tesserePermesso;
@@ -921,12 +923,31 @@ public class GUIGameController {
 		return mappaConsiglieri;
 	}
 
+
+	public List<Pane> getCittàBonus() {
+		List<Pane> cittàBonusGettone=new ArrayList<>();
+		for(Pane città: this.città){
+			if(città.getUserData() instanceof CittàBonusDTO)
+				cittàBonusGettone.add(città);
+		}
+		
+		return cittàBonusGettone;
+	}
+
 	/**
 	 * @return the giocatoreGUI
 	 */
 	public HBox getGiocatoreGUI() {
 		return giocatoreGUI;
 	}
+
+	/**
+	 * @return the mappaImmagine
+	 */
+	public ImageView getMappaImmagine() {
+		return mappaImmagine;
+	}
 	
+
 
 }

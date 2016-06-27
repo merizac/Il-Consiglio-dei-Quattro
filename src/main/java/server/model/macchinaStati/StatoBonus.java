@@ -10,27 +10,31 @@ import server.model.notify.BonusNotify;
 public class StatoBonus implements Stato {
 	private Stato stato;
 	private List<Azione> azioni;
-	
+
 	/**
 	 * @param stato
 	 */
 	public StatoBonus(GameState gameState, Stato stato) {
-		System.out.println("[SERVER] "+this);
-		if (stato==null)
+		System.out.println("[SERVER] " + this);
+		if (stato == null)
 			throw new NullPointerException("Lo stato deve essere lo stato precedente");
 		this.stato = stato;
-		this.azioni= gameState.getGiocatoreCorrente().getBonusNobiltà();
+		this.azioni = gameState.getGiocatoreCorrente().getBonusNobiltà();
 		System.out.println(this.getAzioni().toString());
-		gameState.notifyObserver(new BonusNotify(gameState.getGiocatoreCorrente().getBonusNobiltà(), Arrays.asList(gameState.getGiocatoreCorrente())));
+		gameState.notifyObserver(new BonusNotify(gameState.getGiocatoreCorrente().getBonusNobiltà().get(0),
+				Arrays.asList(gameState.getGiocatoreCorrente())));
 
 	}
-	
+
 	@Override
-	public void transizioneBonus(GameState gameState){
-		if(gameState.getGiocatoreCorrente().getBonusNobiltà().isEmpty()){
+	public void transizioneBonus(GameState gameState) {
+		if (gameState.getGiocatoreCorrente().getBonusNobiltà().isEmpty()) {
 			stato.transizionePrincipale(gameState);
+		} else {
+			gameState.notifyObserver(new BonusNotify(gameState.getGiocatoreCorrente().getBonusNobiltà().get(0),
+					Arrays.asList(gameState.getGiocatoreCorrente())));
+			gameState.setStato(this);
 		}
-		else gameState.setStato(new StatoBonus(gameState, stato));
 	}
 
 	@Override
@@ -40,10 +44,12 @@ public class StatoBonus implements Stato {
 
 	@Override
 	public List<Azione> getAzioni() {
-			return azioni;
+		return azioni;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

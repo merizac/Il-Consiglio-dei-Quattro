@@ -74,7 +74,12 @@ public class ServerRMIView extends View implements ServerRMIViewRemote {
 		AzioneVisitor azioneVisitor = new AzioneVisitorImpl(gameState, this.giocatori.get(connessioneRMIRemota));
 		Azione azione = null;
 
-		if (azioneDTO instanceof AzioneMappaDTO) {
+		if (azioneDTO instanceof ExitDTO) {
+			this.unregister(connessioneRMIRemota);
+			Exit exit = new Exit();
+			exit.setGiocatore(this.giocatori.get(connessioneRMIRemota));
+			this.notifyObserver(exit);
+		} else if (azioneDTO instanceof AzioneMappaDTO) {
 			Server.setMappa(((AzioneMappaDTO) azioneDTO).getMappa());
 		} else {
 			try {
@@ -89,12 +94,7 @@ public class ServerRMIView extends View implements ServerRMIViewRemote {
 			System.out.println("[SERVER] Ricevuta l'azione " + azione + " dal giocatore "
 					+ this.giocatori.get(connessioneRMIRemota).getNome());
 			try {
-				if (azione instanceof Exit) {
-					this.unregister(getConnessione(((Exit) azione).getGiocatore()));
-					this.notifyObserver(azione);
-				}
-
-				else if ((azione.isTurno(this.giocatori.get(connessioneRMIRemota), gameState)
+				if ((azione.isTurno(this.giocatori.get(connessioneRMIRemota), gameState)
 						&& gameState.getStato().daEseguire(gameState.getStato().getAzioni(), azione))
 						|| (azione instanceof Chat)) {
 					System.out.println("[SERVER] Inviata l'azione " + azione);

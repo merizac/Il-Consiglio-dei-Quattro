@@ -88,8 +88,13 @@ public class ServerSocketView extends View implements Runnable {
 				Object object = socketIn.readObject();
 
 				AzioneDTO action = (AzioneDTO) object;
-
-				if (action instanceof AzioneMappaDTO) {
+				if (action instanceof ExitDTO) {
+					disconnetti();
+					Exit exit = new Exit();
+					exit.setGiocatore(giocatore);
+					this.notifyObserver(exit);
+					return;
+				} else if (action instanceof AzioneMappaDTO) {
 					Server.setMappa(((AzioneMappaDTO) action).getMappa());
 				}
 

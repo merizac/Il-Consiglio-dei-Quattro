@@ -40,6 +40,7 @@ public class GameState extends Observable<Notify> {
 	private List<Offerta> offerteMarket;
 	private boolean ultimoGiro = false;
 	private List<Giocatore> giocatoriFinePartita;
+	private String nomeMappa;
 
 	/**
 	 * 
@@ -338,6 +339,7 @@ public class GameState extends Observable<Notify> {
 	 * @throws IOException
 	 */
 	public void start(List<Giocatore> giocatori, String mappa) throws IOException {
+		this.nomeMappa=mappa;
 		Reader reader = new Reader();
 		this.consiglieri = reader.letturaConsigliere();
 		this.regioni = reader.letturaRegioni();
@@ -361,7 +363,6 @@ public class GameState extends Observable<Notify> {
 
 		}
 		this.stato = new StartEnd(this);
-
 	}
 
 	/**
@@ -515,6 +516,13 @@ public class GameState extends Observable<Notify> {
 				+ giocatori + "\ngiocatoreCorrente=" + giocatoreCorrente + "\nstato=" + stato
 				+ "\nBonusAzionePrincipale=" + BonusAzionePrincipale + "\nnumeroTurni=" + numeroTurni
 				+ "\nofferteMarket=" + offerteMarket + "]";
+	}
+
+	/**
+	 * @return the nomeMappa
+	 */
+	public String getNomeMappa() {
+		return nomeMappa;
 	}
 
 }

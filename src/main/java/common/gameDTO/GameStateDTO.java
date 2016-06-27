@@ -29,6 +29,7 @@ public class GameStateDTO implements Serializable {
 	private GiocatoreDTO giocatoreDTO;
 	private List<GiocatoreDTO> avversari;
 	private List<OffertaDTO> offerte;
+	private String nomeMappa;
 
 	public void inizializza(GameState gameState) {
 		
@@ -64,6 +65,7 @@ public class GameStateDTO implements Serializable {
 			consiglieri.add(consigliereDTO);
 		}
 		this.offerte = new ArrayList<>();
+		this.nomeMappa=gameState.getNomeMappa();
 	}
 
 	/**
@@ -198,4 +200,12 @@ public class GameStateDTO implements Serializable {
 				+ planciaReDTO + "\nconsiglieri=" + consiglieri + "]";
 	}
 
+	/**
+	 * @return the nomeMappa
+	 */
+	public String getNomeMappa() {
+		return nomeMappa;
+	}
+
+	
 }
