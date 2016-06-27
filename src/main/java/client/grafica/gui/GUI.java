@@ -50,12 +50,14 @@ import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.effect.Bloom;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import server.model.game.Aiutante;
@@ -680,7 +682,9 @@ public class GUI extends Application implements Grafica {
 		List<ImageView> riserva = controller.getConsiglieri();
 		for (ImageView consigliere : riserva) {
 			consigliere.setDisable(false);
-			consigliere.getParent().getParent().setEffect(new Glow());
+			DropShadow ds= new DropShadow();
+			ds.setColor(Color.web("#FFDB58"));
+			consigliere.setEffect(ds);
 		}
 
 		synchronized (lock) {
