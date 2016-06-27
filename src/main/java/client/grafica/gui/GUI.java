@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import client.connessione.Connessione;
 import client.grafica.Grafica;
@@ -22,6 +24,7 @@ import common.azioniDTO.CostruzioneAiutoReDTO;
 import common.azioniDTO.CostruzioneTesseraPermessoDTO;
 import common.azioniDTO.ElezioneConsigliereDTO;
 import common.azioniDTO.ElezioneConsigliereVeloceDTO;
+import common.azioniDTO.ExitDTO;
 import common.azioniDTO.IngaggioAiutanteDTO;
 import common.azioniDTO.PassaDTO;
 import common.azioniDTO.PescaCartaDTO;
@@ -83,6 +86,9 @@ public class GUI extends Application implements Grafica {
 	private Object parametro;
 	private boolean carteInserite = false;
 	private Map<GiocatoreDTO, Tab> tabAvversari = new HashMap<>();
+	private final int timeout=20000;
+	private Timer timer=new Timer();
+	private TimerTask task;
 
 	@Override
 	public void setConnessione(Connessione connessione) {
@@ -187,17 +193,33 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public void mostraAzioni(List<AzioneDTO> azioni) {
+		task=new TimerTask() {
+			
+			@Override
+			public void run() {
+				try {
+					connessione.inviaAzione(new ExitDTO());
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		};
+		timer.schedule(task, timeout);
+		
 		if (azioni.get(0) instanceof BonusGettoneNDTO || azioni.get(0) instanceof BonusTesseraAcquistataNDTO
-				|| azioni.get(0) instanceof BonusTesseraPermessoNDTO)
+				|| azioni.get(0) instanceof BonusTesseraPermessoNDTO) {
 			try {
 				((AzioneParametri) azioni.get(0)).parametri().setParametri(this, gameStateDTO);
 			} catch (AzioneNonEseguibile e) {
 				this.mostraMessaggio(e.getMessage());
 			}
-		try {
-			connessione.inviaAzione(azioni.get(0));
-		} catch (RemoteException e) {
-			this.mostraMessaggio("Server non raggiungibile!");
+			try {
+				connessione.inviaAzione(azioni.get(0));
+				task.cancel();
+			} catch (RemoteException e) {
+				this.mostraMessaggio("Server non raggiungibile!");
+			}
 		}
 	}
 
@@ -218,7 +240,8 @@ public class GUI extends Application implements Grafica {
 		System.out.println(gameStateDTO.getAvversari());
 		System.out.println(gameStateDTO.getPedinaRE());
 		System.out.println(gameStateDTO);
-		controller.getMappaImmagine().setImage(new Image(getClass().getResource("css/"+gameStateDTO.getNomeMappa()+".jpg").toExternalForm()));
+		controller.getMappaImmagine().setImage(
+				new Image(getClass().getResource("css/" + gameStateDTO.getNomeMappa() + ".jpg").toExternalForm()));
 		controller.mostraGettoni(new ArrayList<>(gameStateDTO.getCittà()));
 		controller.mostraTessereBonus();
 		controller.mostraConsiglieriBalcone();
@@ -297,8 +320,8 @@ public class GUI extends Application implements Grafica {
 				giocatoreDTO.getTesserePermessoUsate().size(), 70);
 		cartePolitica(giocatoreDTO.getCartePolitica());
 		controller.mostraNomeGiocatore(giocatoreDTO.getNome());
-		HBox hbox=controller.getGiocatoreGUI();
-		stampaPuntiAvversario(giocatoreDTO, hbox,50);
+		HBox hbox = controller.getGiocatoreGUI();
+		stampaPuntiAvversario(giocatoreDTO, hbox, 50);
 		hbox.setSpacing(30);
 	}
 
@@ -645,9 +668,9 @@ public class GUI extends Application implements Grafica {
 
 				VBox vbox = new VBox();
 				vbox.setSpacing(5);
-				HBox hbox=new HBox();
-				stampaPuntiAvversario(avversario,hbox, 40);
-				
+				HBox hbox = new HBox();
+				stampaPuntiAvversario(avversario, hbox, 40);
+
 				vbox.getChildren().add(hbox);
 				tab.setContent(vbox);
 
@@ -659,28 +682,34 @@ public class GUI extends Application implements Grafica {
 		});
 	}
 
-	private void stampaPuntiAvversario(GiocatoreDTO avversario, HBox hbox, int heightImage){
+	private void stampaPuntiAvversario(GiocatoreDTO avversario, HBox hbox, int heightImage) {
 		Platform.runLater(new Runnable() {
-			
+
 			@Override
 			public void run() {
-				Map<String, Image> mappaEmpori=controller.getMappaEmpori();
-				Map<String, Image> mappaBonus=controller.getMappaBonus();
+				Map<String, Image> mappaEmpori = controller.getMappaEmpori();
+				Map<String, Image> mappaBonus = controller.getMappaBonus();
 				hbox.getChildren().clear();
 				hbox.setSpacing(15);
-				hbox.setPadding(new Insets(5, 0, 0, 20));	
-				hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("Punto"), Integer.toString(avversario.getPunteggioVittoria()),10,heightImage));
-				hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("Soldo"), Integer.toString(avversario.getPunteggioRicchezza()),10,heightImage));
-				hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("Aiutante"), Integer.toString(avversario.getAiutanti()),4,heightImage));
-				hbox.getChildren().add(stampaPuntoAvversario(mappaEmpori.get(avversario.getColoreGiocatore().getColore()), Integer.toString(avversario.getEmpori()),10,heightImage));
-				hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("Nobiltà"), Integer.toString(avversario.getPunteggioNobiltà()),10,heightImage));
-				hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("BonusGiocatore"), Integer.toString(avversario.getTessereBonus()),10,heightImage));
+				hbox.setPadding(new Insets(5, 0, 0, 20));
+				hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("Punto"),
+						Integer.toString(avversario.getPunteggioVittoria()), 10, heightImage));
+				hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("Soldo"),
+						Integer.toString(avversario.getPunteggioRicchezza()), 10, heightImage));
+				hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("Aiutante"),
+						Integer.toString(avversario.getAiutanti()), 4, heightImage));
+				hbox.getChildren()
+						.add(stampaPuntoAvversario(mappaEmpori.get(avversario.getColoreGiocatore().getColore()),
+								Integer.toString(avversario.getEmpori()), 10, heightImage));
+				hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("Nobiltà"),
+						Integer.toString(avversario.getPunteggioNobiltà()), 10, heightImage));
+				hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("BonusGiocatore"),
+						Integer.toString(avversario.getTessereBonus()), 10, heightImage));
 			}
 		});
 	}
 
-	
-	private Pane stampaPuntoAvversario(Image immagine, String punti, int relocateW, int heightImage){
+	private Pane stampaPuntoAvversario(Image immagine, String punti, int relocateW, int heightImage) {
 		Pane pane = new Pane();
 		ImageView image = new ImageView();
 		image.setImage(immagine);
@@ -688,7 +717,7 @@ public class GUI extends Application implements Grafica {
 		image.setFitHeight(heightImage);
 		Text text = new Text();
 		text.setText(punti);
-		text.relocate(image.getBoundsInParent().getWidth()/4, heightImage/3);
+		text.relocate(image.getBoundsInParent().getWidth() / 4, heightImage / 3);
 		pane.getChildren().add(image);
 		pane.getChildren().add(text);
 		text.setStyle("-fx-font: 17.0px Algerian; -fx-fill: white;");

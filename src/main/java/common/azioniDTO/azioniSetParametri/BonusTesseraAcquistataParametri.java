@@ -1,5 +1,8 @@
 package common.azioniDTO.azioniSetParametri;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import client.grafica.Grafica;
 import common.azioniDTO.BonusTesseraAcquistataNDTO;
 import common.gameDTO.GameStateDTO;
@@ -16,9 +19,12 @@ public class BonusTesseraAcquistataParametri implements SetterParametri {
 	@Override
 	public void setParametri(Grafica grafica, GameStateDTO gameStateDTO) {
 		TesseraPermessoDTO tesseraPermessoDTO;
-		boolean usata=false;
-		int tessera;
-		if(gameStateDTO.getGiocatoreDTO().getTesserePermesso().isEmpty()){
+		//boolean usata=false;
+		//int tessera;
+		List<TesseraPermessoDTO> tessere=new ArrayList<>();
+		tessere.addAll(gameStateDTO.getGiocatoreDTO().getTesserePermesso());
+		tessere.addAll(gameStateDTO.getGiocatoreDTO().getTesserePermessoUsate());
+		/*if(gameStateDTO.getGiocatoreDTO().getTesserePermesso().isEmpty()){
 			tessera=1;
 		}
 		if(gameStateDTO.getGiocatoreDTO().getTesserePermessoUsate().isEmpty()){
@@ -32,10 +38,10 @@ public class BonusTesseraAcquistataParametri implements SetterParametri {
 			tesseraPermessoDTO=grafica.scegliTesseraGiocatore(gameStateDTO.getGiocatoreDTO().getTesserePermessoUsate());
 			usata=true;
 			}
-		else
-			tesseraPermessoDTO=grafica.scegliTesseraGiocatore(gameStateDTO.getGiocatoreDTO().getTesserePermesso());
+		else*/
+		tesseraPermessoDTO=grafica.scegliTesseraGiocatore(tessere);
 		bonusTesseraAcquistataNDTO.setTesseraPermesso(tesseraPermessoDTO);
-		bonusTesseraAcquistataNDTO.setUsata(usata);
+		//bonusTesseraAcquistataNDTO.setUsata(usata);
 	}
 
 }

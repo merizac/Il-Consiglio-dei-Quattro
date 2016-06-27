@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import client.ControlloParametriDTO;
 import client.connessione.Connessione;
@@ -44,6 +46,9 @@ public class CLI implements Grafica {
 	private GameStateDTO gameStateDTO;
 	private Scanner stdIn;
 	private String inputLine;
+	private final int timeout=20000;
+	private Timer timer=new Timer();
+	private TimerTask task;
 
 	public void start() {
 
@@ -111,6 +116,7 @@ public class CLI implements Grafica {
 					}
 				try {
 					connessione.inviaAzione(action);
+					task.cancel();
 				} catch (RemoteException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -189,6 +195,19 @@ public class CLI implements Grafica {
 	 */
 	@Override
 	public void mostraAzioni(List<AzioneDTO> azioni) {
+		task=new TimerTask() {
+			
+			@Override
+			public void run() {
+				try {
+					connessione.inviaAzione(new ExitDTO());
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		};
+		timer.schedule(task, timeout);
 		for (AzioneDTO a : azioni) {
 			System.out.println(a.toString());
 		}

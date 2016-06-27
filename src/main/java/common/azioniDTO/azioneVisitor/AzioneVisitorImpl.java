@@ -23,6 +23,7 @@ import common.azioniDTO.PassaBonusDTO;
 import common.azioniDTO.PassaDTO;
 import common.azioniDTO.PescaCartaDTO;
 import common.azioniDTO.SecondaAzionePrincipaleDTO;
+import common.gameDTO.TesseraPermessoDTO;
 import server.model.azioni.Chat;
 import server.model.azioni.Exit;
 import server.model.azioni.Passa;
@@ -210,13 +211,17 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 	public BonusTesseraAcquistataN visit(BonusTesseraAcquistataNDTO bonusTesseraAcquistataDTO) throws ParameterException {
 		BonusTesseraAcquistataN bonusTesseraAcquistata = new BonusTesseraAcquistataN();
 		TesseraPermesso tesseraPermesso;
-		if (bonusTesseraAcquistataDTO.isUsata()) {
+		List<TesseraPermesso> tessere=new ArrayList<>();
+		tessere.addAll(gameState.getGiocatoreCorrente().getTesserePermesso());
+		tessere.addAll(gameState.getGiocatoreCorrente().getTesserePermessoUsate());
+		tesseraPermesso=ControlloParametri.cercaTesseraPermesso(bonusTesseraAcquistataDTO.getTesseraPermesso(), tessere);
+		/*if (bonusTesseraAcquistataDTO.isUsata()) {
 			tesseraPermesso = ControlloParametri.cercaTesseraPermesso(bonusTesseraAcquistataDTO.getTesseraPermesso(),
 					giocatore.getTesserePermessoUsate());
 		} else
 			tesseraPermesso = ControlloParametri.cercaTesseraPermesso(bonusTesseraAcquistataDTO.getTesseraPermesso(),
 					giocatore.getTesserePermesso());
-
+		*/
 		bonusTesseraAcquistata.setTesseraPermesso(tesseraPermesso);
 		return bonusTesseraAcquistata;
 	}
