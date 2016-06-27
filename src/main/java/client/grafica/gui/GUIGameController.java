@@ -9,20 +9,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
-import common.azioniDTO.AcquistoTesseraPermessoDTO;
 import common.azioniDTO.AzioneDTO;
 import common.azioniDTO.AzioneParametri;
-import common.azioniDTO.CambioTesserePermessoDTO;
 import common.azioniDTO.ChatDTO;
-import common.azioniDTO.CostruzioneAiutoReDTO;
-import common.azioniDTO.CostruzioneTesseraPermessoDTO;
-import common.azioniDTO.ElezioneConsigliereDTO;
-import common.azioniDTO.ElezioneConsigliereVeloceDTO;
-import common.azioniDTO.IngaggioAiutanteDTO;
-import common.azioniDTO.PassaDTO;
-import common.azioniDTO.PescaCartaDTO;
-import common.azioniDTO.SecondaAzionePrincipaleDTO;
 import common.gameDTO.CittàBonusDTO;
 import common.gameDTO.CittàDTO;
 import common.gameDTO.ConsigliereDTO;
@@ -40,15 +29,12 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import server.model.game.Emporio;
 import utility.AzioneNonEseguibile;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 
 public class GUIGameController {
 
@@ -503,8 +489,9 @@ public class GUIGameController {
 
 						alert.showAndWait();*/
 						//gui.mostraMessaggio("L'azione non esiste \nInserire un'azione valida");
-						for (Button b : getAzioni())
+						for (Button b : getAzioni()){
 							b.setDisable(false);
+						}
 						return;
 					} else if (azioneDTO instanceof AzioneParametri) {
 						try {

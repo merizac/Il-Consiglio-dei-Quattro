@@ -50,6 +50,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.effect.Bloom;
+import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -671,6 +673,7 @@ public class GUI extends Application implements Grafica {
 		List<ImageView> riserva = controller.getConsiglieri();
 		for (ImageView consigliere : riserva) {
 			consigliere.setDisable(false);
+			consigliere.getParent().getParent().setEffect(new Glow());
 		}
 
 		synchronized (lock) {
