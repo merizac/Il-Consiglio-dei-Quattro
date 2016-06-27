@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import java.net.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.shape.*?>
@@ -171,6 +172,26 @@
                                     <Insets />
                                  </opaqueInsets>
                               </HBox>
+                              <ImageView fx:id="frecciaRe" fitHeight="35.0" fitWidth="34.0" layoutX="454.0" layoutY="506.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../css/Nobility.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="frecciaCollina" fitHeight="35.0" fitWidth="34.0" layoutX="288.0" layoutY="471.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../css/Nobility.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="frecciaMare" fitHeight="35.0" fitWidth="34.0" layoutX="43.0" layoutY="471.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../css/Nobility.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="frecciaMontagna" fitHeight="35.0" fitWidth="34.0" layoutX="564.0" layoutY="471.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../css/Nobility.png" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </AnchorPane>
                         <HBox>

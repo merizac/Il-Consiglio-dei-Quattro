@@ -39,6 +39,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -60,9 +61,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import server.model.game.Aiutante;
-import server.model.game.Giocatore;
-import server.model.market.Offerta;
 import server.view.clientNotify.ClientNotify;
 
 public class GUI extends Application implements Grafica {
@@ -276,8 +274,8 @@ public class GUI extends Application implements Grafica {
 				giocatoreDTO.getTesserePermessoUsate().size(), 70);
 		cartePolitica(giocatoreDTO.getCartePolitica());
 		controller.mostraNomeGiocatore(giocatoreDTO.getNome());
-		HBox hbox=controller.getGiocatoreGUI();
-		stampaPuntiAvversario(giocatoreDTO, hbox,50);
+		HBox hbox = controller.getGiocatoreGUI();
+		stampaPuntiAvversario(giocatoreDTO, hbox, 50);
 		hbox.setSpacing(30);
 	}
 
@@ -624,9 +622,9 @@ public class GUI extends Application implements Grafica {
 
 				VBox vbox = new VBox();
 				vbox.setSpacing(5);
-				HBox hbox=new HBox();
-				stampaPuntiAvversario(avversario,hbox, 40);
-				
+				HBox hbox = new HBox();
+				stampaPuntiAvversario(avversario, hbox, 40);
+
 				vbox.getChildren().add(hbox);
 				tab.setContent(vbox);
 
@@ -638,28 +636,34 @@ public class GUI extends Application implements Grafica {
 		});
 	}
 
-	private void stampaPuntiAvversario(GiocatoreDTO avversario, HBox hbox, int heightImage){
+	private void stampaPuntiAvversario(GiocatoreDTO avversario, HBox hbox, int heightImage) {
 		Platform.runLater(new Runnable() {
-			
+
 			@Override
 			public void run() {
-				Map<String, Image> mappaEmpori=controller.getMappaEmpori();
-				Map<String, Image> mappaBonus=controller.getMappaBonus();
+				Map<String, Image> mappaEmpori = controller.getMappaEmpori();
+				Map<String, Image> mappaBonus = controller.getMappaBonus();
 				hbox.getChildren().clear();
 				hbox.setSpacing(15);
-				hbox.setPadding(new Insets(5, 0, 0, 20));	
-				hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("Punto"), Integer.toString(avversario.getPunteggioVittoria()),10,heightImage));
-				hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("Soldo"), Integer.toString(avversario.getPunteggioRicchezza()),10,heightImage));
-				hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("Aiutante"), Integer.toString(avversario.getAiutanti()),4,heightImage));
-				hbox.getChildren().add(stampaPuntoAvversario(mappaEmpori.get(avversario.getColoreGiocatore().getColore()), Integer.toString(avversario.getEmpori()),10,heightImage));
-				hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("Nobiltà"), Integer.toString(avversario.getPunteggioNobiltà()),10,heightImage));
-				hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("BonusGiocatore"), Integer.toString(avversario.getTessereBonus()),10,heightImage));
+				hbox.setPadding(new Insets(5, 0, 0, 20));
+				hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("Punto"),
+						Integer.toString(avversario.getPunteggioVittoria()), 10, heightImage));
+				hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("Soldo"),
+						Integer.toString(avversario.getPunteggioRicchezza()), 10, heightImage));
+				hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("Aiutante"),
+						Integer.toString(avversario.getAiutanti()), 4, heightImage));
+				hbox.getChildren()
+						.add(stampaPuntoAvversario(mappaEmpori.get(avversario.getColoreGiocatore().getColore()),
+								Integer.toString(avversario.getEmpori()), 10, heightImage));
+				hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("Nobiltà"),
+						Integer.toString(avversario.getPunteggioNobiltà()), 10, heightImage));
+				hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("BonusGiocatore"),
+						Integer.toString(avversario.getTessereBonus()), 10, heightImage));
 			}
 		});
 	}
 
-	
-	private Pane stampaPuntoAvversario(Image immagine, String punti, int relocateW, int heightImage){
+	private Pane stampaPuntoAvversario(Image immagine, String punti, int relocateW, int heightImage) {
 		Pane pane = new Pane();
 		ImageView image = new ImageView();
 		image.setImage(immagine);
@@ -667,7 +671,7 @@ public class GUI extends Application implements Grafica {
 		image.setFitHeight(heightImage);
 		Text text = new Text();
 		text.setText(punti);
-		text.relocate(image.getBoundsInParent().getWidth()/4, heightImage/3);
+		text.relocate(image.getBoundsInParent().getWidth() / 4, heightImage / 3);
 		pane.getChildren().add(image);
 		pane.getChildren().add(text);
 		text.setStyle("-fx-font: 17.0px Algerian; -fx-fill: white;");
@@ -679,8 +683,12 @@ public class GUI extends Application implements Grafica {
 		List<ImageView> riserva = controller.getConsiglieri();
 		for (ImageView consigliere : riserva) {
 			consigliere.setDisable(false);
-			DropShadow ds= new DropShadow();
-			ds.setColor(Color.web("#FFDB58"));
+			DropShadow ds = new DropShadow();
+			ds.setColor(Color.web("#ffffff"));
+			ds.setRadius(21);
+			ds.setSpread(0.6);
+			ds.setWidth(42.5);
+			ds.setHeight(43.5);
 			consigliere.setEffect(ds);
 		}
 
@@ -698,6 +706,7 @@ public class GUI extends Application implements Grafica {
 			ConsigliereDTO consigliereDTO = (ConsigliereDTO) parametro;
 			for (ImageView consigliere : riserva) {
 				consigliere.setDisable(true);
+				consigliere.setEffect(null);
 				consigliere.setOpacity(1);
 			}
 			parametro = null;
@@ -714,6 +723,9 @@ public class GUI extends Application implements Grafica {
 		List<HBox> balconi = controller.getBalconi();
 		for (HBox balcone : balconi) {
 			balcone.setDisable(false);
+			for (ImageView i : controller.getFrecce()) {
+				i.setEffect(new Glow(1));
+			}
 		}
 
 		synchronized (lock) {
@@ -728,6 +740,9 @@ public class GUI extends Application implements Grafica {
 			BalconeDTO balconeDTO = (BalconeDTO) parametro;
 			for (HBox balcone : balconi) {
 				balcone.setDisable(true);
+				for (ImageView i : controller.getFrecce()) {
+					i.setEffect(null);
+				}
 			}
 			parametro = null;
 			return balconeDTO;
@@ -737,8 +752,12 @@ public class GUI extends Application implements Grafica {
 	@Override
 	public RegioneDTO scegliRegione(List<RegioneDTO> regioni) {
 		List<ImageView> r = controller.getRegioni();
+		DropShadow dp = new DropShadow();
+		dp.setSpread(0.80);
+		dp.setColor(Color.web("#fffefd"));
 		for (ImageView i : r) {
 			i.setDisable(false);
+			i.setEffect(dp);
 		}
 
 		synchronized (lock) {
@@ -763,9 +782,11 @@ public class GUI extends Application implements Grafica {
 
 		for (ImageView i : tessere) {
 			i.setDisable(false);
+			i.setEffect(dp);
 		}
 		for (ImageView i : r) {
 			i.setDisable(true);
+			i.setEffect(null);
 		}
 		parametro = null;
 		return regioneDTO;
@@ -788,6 +809,7 @@ public class GUI extends Application implements Grafica {
 		List<ImageView> tessere = controller.getTesserePermessoRegioni();
 		for (ImageView i : tessere) {
 			i.setDisable(true);
+			i.setEffect(null);
 		}
 		parametro = null;
 		return tesseraPermessoDTO;
@@ -824,8 +846,10 @@ public class GUI extends Application implements Grafica {
 	@Override
 	public CittàDTO scegliCittà(Set<? extends CittàDTO> città, ColoreDTO coloreGiocatore) {
 		List<Pane> cittàCostruzione = controller.getCittàSenzaEmporio(città);
-		for (Pane b : cittàCostruzione)
+		for (Pane b : cittàCostruzione) {
 			b.setDisable(false);
+			b.setEffect(new Glow(0.6));
+		}
 
 		synchronized (lock) {
 			while (parametro == null) {
@@ -846,8 +870,15 @@ public class GUI extends Application implements Grafica {
 	@Override
 	public TesseraPermessoDTO scegliTesseraGiocatore(List<TesseraPermessoDTO> list) {
 		HBox tessere = controller.getTesserePermessoGiocatore();
+		DropShadow ds = new DropShadow();
+		ds.setColor(Color.web("#ffffff"));
+		ds.setRadius(21);
+		ds.setSpread(0.6);
+		ds.setWidth(42.5);
+		ds.setHeight(43.5);
 		for (Node i : tessere.getChildren()) {
 			i.setDisable(false);
+			i.setEffect(ds);
 		}
 
 		synchronized (lock) {
@@ -864,6 +895,7 @@ public class GUI extends Application implements Grafica {
 		parametro = null;
 		for (Node i : tessere.getChildren()) {
 			i.setDisable(true);
+			i.setEffect(null);
 		}
 		return tesseraPermessoDTO;
 	}
@@ -872,8 +904,16 @@ public class GUI extends Application implements Grafica {
 	public List<CartaPoliticaDTO> scegliCarte(List<CartaPoliticaDTO> carteGiocatore) {
 		List<CartaPoliticaDTO> carte = new ArrayList<>();
 		List<ImageView> cartePolitica = this.controller.getCartePolitica();
-		for (ImageView i : cartePolitica)
+		DropShadow ds = new DropShadow();
+		ds.setColor(Color.web("#ffffff"));
+		ds.setRadius(21);
+		ds.setSpread(0.6);
+		ds.setWidth(42.5);
+		ds.setHeight(43.5);
+		for (ImageView i : cartePolitica) {
 			i.setDisable(false);
+			i.setEffect(ds);
+		}
 		while (carte.size() != 4) {
 			synchronized (lock) {
 				while (parametro == null) {
@@ -911,17 +951,26 @@ public class GUI extends Application implements Grafica {
 	@Override
 	public MarketableDTO scegliMarketable() {
 		HBox aiutanti = controllerMarket.getAiutanti();
+		DropShadow ds = new DropShadow();
+		ds.setColor(Color.web("#ffffff"));
+		ds.setRadius(21);
+		ds.setSpread(0.6);
+		ds.setWidth(42.5);
+		ds.setHeight(43.5);
 		for (Node i : aiutanti.getChildren()) {
 			i.setDisable(false);
+			i.setEffect(ds);
 		}
 		HBox cartePolitica = controllerMarket.getCartePolitica();
 		for (Node i : cartePolitica.getChildren()) {
 			i.setDisable(false);
+			i.setEffect(ds);
 		}
 
 		HBox tesserePermesso = controllerMarket.getTesserePermesso();
 		for (Node i : tesserePermesso.getChildren()) {
 			i.setDisable(false);
+			i.setEffect(ds);
 		}
 
 		synchronized (lock) {
@@ -937,14 +986,17 @@ public class GUI extends Application implements Grafica {
 
 		for (Node i : aiutanti.getChildren()) {
 			i.setDisable(true);
+			i.setEffect(null);
 		}
 
 		for (Node i : cartePolitica.getChildren()) {
 			i.setDisable(true);
+			i.setEffect(null);
 		}
 
 		for (Node i : tesserePermesso.getChildren()) {
 			i.setDisable(true);
+			i.setEffect(null);
 		}
 		MarketableDTO marketableDTO = (MarketableDTO) parametro;
 		parametro = null;
@@ -1027,7 +1079,8 @@ public class GUI extends Application implements Grafica {
 			@Override
 			public void run() {
 				FXMLLoader fxmloader = new FXMLLoader();
-				fxmloader.setLocation(getClass().getClassLoader().getResource("client/grafica/gui/fxml/scegli_mappa.fxml"));
+				fxmloader.setLocation(
+						getClass().getClassLoader().getResource("client/grafica/gui/fxml/scegli_mappa.fxml"));
 
 				Parent root = null;
 				try {
@@ -1036,7 +1089,7 @@ public class GUI extends Application implements Grafica {
 					GUIMappaController controllerMappa = fxmloader.getController();
 					controllerMappa.setGui(GUI.this);
 					controllerMappa.inizializza();
-					mappa.setScene(new Scene(root) );
+					mappa.setScene(new Scene(root));
 					mappa.show();
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
@@ -1046,10 +1099,9 @@ public class GUI extends Application implements Grafica {
 		});
 	}
 
-
 	public void closeSceltaMappa() {
 		Platform.runLater(new Runnable() {
-			
+
 			@Override
 			public void run() {
 				mappa.close();
