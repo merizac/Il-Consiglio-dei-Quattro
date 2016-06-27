@@ -920,7 +920,7 @@ public class GUIGameController {
 	public List<Button> getAzioni() {
 		return Arrays.asList(elezioneConsigliere, acquistoTesseraPermesso, costruzioneTesseraPermesso,
 				costruzioneAiutoRe, ingaggioAiutante, cambioTesseraPermesso, elezioneConsigliereVeloce,
-				secondaAzionePrincipale, passa, pescaCarta);
+				secondaAzionePrincipale, passa,pescaCarta);
 
 	}
 

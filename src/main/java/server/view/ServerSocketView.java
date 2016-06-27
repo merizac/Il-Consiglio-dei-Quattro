@@ -86,20 +86,14 @@ public class ServerSocketView extends View implements Runnable {
 
 			try {
 				Object object = socketIn.readObject();
-				if (object instanceof AzioneDTO) {
 
-					AzioneDTO action = (AzioneDTO) object;
-					if(action instanceof ExitDTO){
-						disconnetti();
-						Exit exit = new Exit();
-						exit.setGiocatore(giocatore);
-						this.notifyObserver(exit);
-						return;
-					}
-					if(action instanceof AzioneMappaDTO){
-						Server.setMappa(((AzioneMappaDTO) action).getMappa());
-					}
-					
+				AzioneDTO action = (AzioneDTO) object;
+
+				if (action instanceof AzioneMappaDTO) {
+					Server.setMappa(((AzioneMappaDTO) action).getMappa());
+				}
+
+				else {
 					AzioneVisitor azioneVisitor = new AzioneVisitorImpl(gameState, giocatore);
 					Azione azione = null;
 					try {
@@ -113,9 +107,9 @@ public class ServerSocketView extends View implements Runnable {
 					System.out
 							.println("[SERVER] Ricevuta l'azione " + azione + " dal giocatore " + giocatore.getNome());
 
-					if ((azione.isTurno(giocatore, gameState) 
+					if ((azione.isTurno(giocatore, gameState)
 							&& gameState.getStato().daEseguire(gameState.getStato().getAzioni(), azione))
-							|| (azione instanceof Chat)){
+							|| (azione instanceof Chat)) {
 						this.notifyObserver(azione);
 						System.out.println("[SERVER] Inviata l'azione " + azione);
 					} else {

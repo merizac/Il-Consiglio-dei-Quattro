@@ -8,6 +8,7 @@ import java.util.Map;
 import client.connessione.ConnessioneRMIRemota;
 import common.azioniDTO.AzioneDTO;
 import common.azioniDTO.AzioneMappaDTO;
+import common.azioniDTO.ExitDTO;
 import common.azioniDTO.azioneVisitor.AzioneVisitor;
 import common.azioniDTO.azioneVisitor.AzioneVisitorImpl;
 import common.gameDTO.GiocatoreDTO;
