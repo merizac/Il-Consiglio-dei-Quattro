@@ -273,12 +273,9 @@ public class GUI extends Application implements Grafica {
 				giocatoreDTO.getTesserePermessoUsate().size(), 70);
 		cartePolitica(giocatoreDTO.getCartePolitica());
 		controller.mostraNomeGiocatore(giocatoreDTO.getNome());
-		controller.mostraPuntiGiocatore(giocatoreDTO.getPunteggioVittoria());
-		controller.mostraMoneteGiocatore(giocatoreDTO.getPunteggioRicchezza());
-		controller.mostraAiutantiGiocatore(giocatoreDTO.getAiutanti());
-		controller.mostraEmporiGiocatore(giocatoreDTO.getEmpori());
-		controller.mostraTessereBonusGiocatore(giocatoreDTO.getTessereBonus());
-		controller.mostraNobiltàGiocatore(giocatoreDTO.getPunteggioNobiltà());
+		HBox hbox=controller.getGiocatoreGUI();
+		stampaPuntiAvversario(giocatoreDTO, hbox,50);
+		hbox.setSpacing(30);
 	}
 	
 	private void cartePolitica(List<CartaPoliticaDTO> carte) {
@@ -622,7 +619,8 @@ public class GUI extends Application implements Grafica {
 				
 				VBox vbox = new VBox();
 				vbox.setSpacing(5);
-				HBox hbox=stampaPuntiAvversario(avversario);
+				HBox hbox=new HBox();
+				stampaPuntiAvversario(avversario,hbox, 40);
 				
 				vbox.getChildren().add(hbox);
 				tab.setContent(vbox);
@@ -635,31 +633,35 @@ public class GUI extends Application implements Grafica {
 		});
 	}
 	
-	private HBox stampaPuntiAvversario(GiocatoreDTO avversario){
-		Map<String, Image> mappaEmpori=controller.getMappaEmpori();
-		Map<String, Image> mappaBonus=controller.getMappaBonus();
-		
-		HBox hbox = new HBox();
-		hbox.setSpacing(15);
-		hbox.setPadding(new Insets(5, 0, 0, 20));	
-		hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("Punto"), Integer.toString(avversario.getPunteggioVittoria()),10));
-		hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("Soldo"), Integer.toString(avversario.getPunteggioRicchezza()),10));
-		hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("Aiutante"), Integer.toString(avversario.getAiutanti()),4));
-		hbox.getChildren().add(stampaPuntoAvversario(mappaEmpori.get(avversario.getColoreGiocatore().getColore()), Integer.toString(avversario.getEmpori()),10));
-		hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("Nobiltà"), Integer.toString(avversario.getPunteggioNobiltà()),10));
-		hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("BonusGiocatore"), Integer.toString(avversario.getTessereBonus()),10));
-		return hbox;
+	private void stampaPuntiAvversario(GiocatoreDTO avversario, HBox hbox, int heightImage){
+		Platform.runLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				Map<String, Image> mappaEmpori=controller.getMappaEmpori();
+				Map<String, Image> mappaBonus=controller.getMappaBonus();
+				hbox.getChildren().clear();
+				hbox.setSpacing(15);
+				hbox.setPadding(new Insets(5, 0, 0, 20));	
+				hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("Punto"), Integer.toString(avversario.getPunteggioVittoria()),10,heightImage));
+				hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("Soldo"), Integer.toString(avversario.getPunteggioRicchezza()),10,heightImage));
+				hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("Aiutante"), Integer.toString(avversario.getAiutanti()),4,heightImage));
+				hbox.getChildren().add(stampaPuntoAvversario(mappaEmpori.get(avversario.getColoreGiocatore().getColore()), Integer.toString(avversario.getEmpori()),10,heightImage));
+				hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("Nobiltà"), Integer.toString(avversario.getPunteggioNobiltà()),10,heightImage));
+				hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("BonusGiocatore"), Integer.toString(avversario.getTessereBonus()),10,heightImage));
+			}
+		});
 	}
 	
-	private Pane stampaPuntoAvversario(Image immagine, String punti, int relocateH){
+	private Pane stampaPuntoAvversario(Image immagine, String punti, int relocateW, int heightImage){
 		Pane pane = new Pane();
 		ImageView image = new ImageView();
 		image.setImage(immagine);
 		image.setPreserveRatio(true);
-		image.setFitHeight(40);
+		image.setFitHeight(heightImage);
 		Text text = new Text();
 		text.setText(punti);
-		text.relocate(relocateH, 13);
+		text.relocate(image.getBoundsInParent().getWidth()/4, heightImage/3);
 		pane.getChildren().add(image);
 		pane.getChildren().add(text);
 		text.setStyle("-fx-font: 17.0px Algerian; -fx-fill: white;");
