@@ -64,9 +64,8 @@ public class StartEndTest {
 	public void testGetAzioni() {
 		StartEnd startEnd=new StartEnd(gameState);
 		gameState.setStato(startEnd);
-		assertTrue(startEnd.getAzioni().size()==2);
+		assertTrue(startEnd.getAzioni().size()==1);
 		assertTrue(startEnd.getAzioni().get(0) instanceof PescaCarta);
-		assertTrue(startEnd.getAzioni().get(1) instanceof Exit);
 	}
 
 	@Test

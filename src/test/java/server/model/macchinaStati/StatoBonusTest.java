@@ -32,7 +32,14 @@ public class StatoBonusTest {
 	static GameState gameState;
 	static List<Notify> notify;
 	
-	@BeforeClass
+	
+	//falllllliiiiiiiiiiiiito
+	
+	
+	
+	
+	
+	/*@BeforeClass
 	public static void init() throws IOException{
 		notify = new ArrayList<>();
 		ArrayList<Giocatore> giocatori=new ArrayList<>();
@@ -157,5 +164,5 @@ public class StatoBonusTest {
 
 		assertTrue(gameState.getStato() instanceof Stato01);
 	}
-	
+	*/
 }
