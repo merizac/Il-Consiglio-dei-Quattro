@@ -200,12 +200,12 @@
                                  <content>
                                     <Pane styleClass="background" stylesheets="@../css/game.css">
                                        <children>
-                                          <ImageView fitHeight="93.0" fitWidth="66.0" layoutX="33.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView id="mazzo" fitHeight="93.0" fitWidth="66.0" layoutX="33.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" styleClass="mazzo">
                                              <image>
                                                 <Image url="@../css/politicCard/Retro.png" />
                                              </image>
                                           </ImageView>
-                                          <Button id="transparentbutton" fx:id="pescaCarta" layoutX="28.0" layoutY="1.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="99.0" prefWidth="71.0" style="-fx-background-color: transparent;" />
+                                          <Button id="transparentbutton" fx:id="pescaCarta" layoutX="28.0" layoutY="1.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="99.0" prefWidth="71.0" style="-fx-background-color: transparent;" styleClass="mazzo" stylesheets="@../css/game.css" />
                                        </children>
                                     </Pane>
                                  </content>
@@ -353,10 +353,23 @@
                                     <Button id="transparentbutton" fx:id="elezioneConsigliere" layoutX="6.0" layoutY="161.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="47.0" prefWidth="168.0" stylesheets="@../css/game.css" text="Elezione Consigliere" />
                                     <Button id="transparentbutton" fx:id="secondaAzionePrincipale" layoutX="187.0" layoutY="214.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="46.0" prefWidth="162.0" stylesheets="@../css/game.css" text="Azione Principale" />
                                     <Button id="transparentbutton" fx:id="costruzioneTesseraPermesso" layoutX="3.0" layoutY="214.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="45.0" prefWidth="171.0" stylesheets="@../css/game.css" text="Costruzione Tessera" />
-                                    <VBox layoutX="351.0" layoutY="-1.0" prefHeight="262.0" prefWidth="175.0">
+                                    <VBox layoutX="351.0" layoutY="-1.0" prefHeight="262.0" prefWidth="175.0" stylesheets="@../css/game.css">
                                        <children>
                                           <Button fx:id="quit" mnemonicParsing="false" onAction="#handleAzione" prefHeight="27.0" prefWidth="174.0" stylesheets="@../css/game.css" text="Quit" />
                                           <Button fx:id="passa" mnemonicParsing="false" onAction="#handleAzione" prefHeight="27.0" prefWidth="174.0" styleClass="mybutton" stylesheets="@../css/game.css" text="&gt;&gt; Salta Azione Veloce" />
+                                          <ImageView id="corona" fitHeight="108.0" fitWidth="167.0" pickOnBounds="true" preserveRatio="true" styleClass="corona">
+                                             <image>
+                                                <Image url="@../css/king.png" />
+                                             </image>
+                                             <VBox.margin>
+                                                <Insets left="25.0" top="20.0" />
+                                             </VBox.margin>
+                                          </ImageView>
+                                          <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="175.0" styleClass="corona" stylesheets="@../css/game.css" text="Button">
+                                             <VBox.margin>
+                                                <Insets top="10.0" />
+                                             </VBox.margin>
+                                          </Button>
                                        </children>
                                     </VBox>
                                  </children>

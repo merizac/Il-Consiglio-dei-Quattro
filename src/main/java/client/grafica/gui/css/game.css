@@ -52,6 +52,11 @@
 	-fx-border-color: transparent;
 }
 
+.mazzo:hover{
+  -fx-effect: dropshadow(three-pass-box, black, 20, 0.2, 0, 0); 
+ 
+}
+
 #consiglieriRiserva:hover{
 	-fx-opacity:0.4;
 }
