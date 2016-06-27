@@ -31,8 +31,7 @@ public class BonusTesseraAcquistataNDTOTest {
 		Giocatore giocatore=new Giocatore("Giocatore");
 		giocatori.add(giocatore);
 		gameState=new GameState();
-		gameState.start(giocatori);
-		
+		gameState.start(giocatori, "mappa1");		
 		tessera=gameState.getRegioni().get(0).getTesserePermessoScoperte().get(0);
 		tesseraPermesso=new TesseraPermessoDTO();
 		tesseraPermesso.inizializza(tessera);

@@ -40,7 +40,7 @@ public class CostruzioneAiutoReDTOTest {
 		Giocatore giocatore=new Giocatore("Giocatore");
 		giocatori.add(giocatore);
 		gameState=new GameState();
-		gameState.start(giocatori);
+		gameState.start(giocatori, "mappa1");
 		gameState.getGiocatoreCorrente().aggiungiCartaPolitica(new CartaPolitica(new Colore("Multicolore")));
 		
 		città=gameState.getRegioni().get(0).getCittàRegione().get(0);

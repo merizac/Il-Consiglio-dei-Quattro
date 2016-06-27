@@ -7,6 +7,7 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.util.Arrays;
 import common.azioniDTO.AzioneDTO;
+import common.azioniDTO.AzioneMappaDTO;
 import common.azioniDTO.ExitDTO;
 import common.azioniDTO.azioneVisitor.AzioneVisitor;
 import common.azioniDTO.azioneVisitor.AzioneVisitorImpl;
@@ -85,25 +86,18 @@ public class ServerSocketView extends View implements Runnable {
 
 			try {
 				Object object = socketIn.readObject();
-				if (object instanceof AzioneDTO) {
 
-					AzioneDTO action = (AzioneDTO) object;
-					if(action instanceof ExitDTO){
-						disconnetti();
-						Exit exit = new Exit();
-						exit.setGiocatore(giocatore);
-						this.notifyObserver(exit);
-						return;
-					}
+				AzioneDTO action = (AzioneDTO) object;
+
+				if (action instanceof AzioneMappaDTO) {
+					Server.setMappa(((AzioneMappaDTO) action).getMappa());
+				}
+
+				else {
 					AzioneVisitor azioneVisitor = new AzioneVisitorImpl(gameState, giocatore);
 					Azione azione = null;
 					try {
 						azione = action.accept(azioneVisitor);
-						if(azione instanceof AcquistoTesseraPermesso){
-							System.out.println(((AcquistoTesseraPermesso) azione).getCarteGiocatore());
-							System.out.println(((AcquistoTesseraPermesso) azione).getRegione());
-							System.out.println(((AcquistoTesseraPermesso) azione).getTesseraScoperta());
-						}
 					} catch (ParameterException e) {
 						update(new MessageNotify(e.getMessage(), Arrays.asList(gameState.getGiocatoreCorrente())));
 						System.out.println("[SERVER] Ricevuta l'azione " + azione + " dal giocatore "
@@ -113,9 +107,9 @@ public class ServerSocketView extends View implements Runnable {
 					System.out
 							.println("[SERVER] Ricevuta l'azione " + azione + " dal giocatore " + giocatore.getNome());
 
-					if ((azione.isTurno(giocatore, gameState) 
+					if ((azione.isTurno(giocatore, gameState)
 							&& gameState.getStato().daEseguire(gameState.getStato().getAzioni(), azione))
-							|| (azione instanceof Chat)){
+							|| (azione instanceof Chat)) {
 						this.notifyObserver(azione);
 						System.out.println("[SERVER] Inviata l'azione " + azione);
 					} else {

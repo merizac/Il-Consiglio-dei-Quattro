@@ -37,7 +37,7 @@ public class GameStateTest {
 		giocatori.add(giocatore2);
 
 		gameState = new GameState();
-		gameState.start(giocatori);
+		gameState.start(giocatori, "mappa1");
 	}
 
 /*	@Test

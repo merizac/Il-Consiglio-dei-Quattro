@@ -63,7 +63,8 @@ public class AcquistoTesseraPermessoTest {
 			}
 		};
 		gameState.registerObserver(observer);
-		gameState.start(giocatori);
+		gameState.start(giocatori, "mappa1");
+
 
 		regione = gameState.getRegioni().get(0);
 		tesseraScoperta = regione.getTesserePermessoScoperte().get(0);
@@ -171,7 +172,7 @@ public class AcquistoTesseraPermessoTest {
 		assertEquals(1 + aiutanti, gameState.getGiocatoreCorrente().getAiutanti().getAiutante());
 
 		System.out.println(notify);
-		assertTrue(notify.get(notify.size() - 3) instanceof GameStateNotify);
+		assertTrue(notify.get(notify.size() - 4) instanceof GameStateNotify);
 		assertTrue(notify.get(notify.size() - 2) instanceof GiocatoreNotify);
 		assertTrue(notify.get(notify.size() - 1) instanceof MessageNotify);
 	}

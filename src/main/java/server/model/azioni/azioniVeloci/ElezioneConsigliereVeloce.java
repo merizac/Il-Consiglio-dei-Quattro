@@ -65,12 +65,7 @@ public class ElezioneConsigliereVeloce extends AzioneVeloce {
 
 		else {
 			Consigliere consigliereTolto = this.balcone.aggiungiConsigliere(consigliere);
-			gameState.getConsiglieri().remove(consigliere);
-			gameState.getConsiglieri().add(consigliereTolto);
-
-			gameState.notifyObserver(new GameStateNotify(gameState, gameState.getGiocatori()));
-			gameState.notifyObserver(new GiocatoreNotify(gameState.getGiocatoreCorrente(),
-					Arrays.asList(gameState.getGiocatoreCorrente())));
+			notify(gameState);
 			setStatoTransizioneVeloce(gameState);
 		}
 

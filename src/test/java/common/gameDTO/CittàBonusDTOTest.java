@@ -30,7 +30,7 @@ public class CittàBonusDTOTest {
 		Giocatore giocatore=new Giocatore("Giocatore");
 		giocatori.add(giocatore);
 		gameState=new GameState();
-		gameState.start(giocatori);
+		gameState.start(giocatori, "mappa1");
 		
 		città=(CittàBonus) gameState.getRegioni().get(0).getCittàRegione().get(0);
 		città.aggiungiEmporio(new Emporio(new Colore("A")));

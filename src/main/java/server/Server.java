@@ -9,6 +9,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -22,6 +23,7 @@ import java.util.concurrent.Executors;
 import server.controller.Controller;
 import server.model.game.GameState;
 import server.model.game.Giocatore;
+import server.model.notify.StartGiocatoreNotify;
 import server.view.ServerRMIView;
 import server.view.ServerRMIViewRemote;
 import server.view.ServerSocketView;
@@ -40,6 +42,8 @@ public class Server {
 	private Timer timer;
 	private Registry registry;
 	private static Server instance = new Server();
+	private static String mappa;
+	private boolean primoGiocatore;
 
 	public Server() {
 		Server.partite = new HashMap<>();
@@ -47,6 +51,7 @@ public class Server {
 		this.controller = new Controller(gameState);
 		Server.partite.put(gameState, new HashSet<>());
 		this.giocatori = new ArrayList<>();
+		this.primoGiocatore = true;
 	}
 
 	public static Server getInstance() {
@@ -84,6 +89,10 @@ public class Server {
 
 	public synchronized void aggiungiGiocatore(Giocatore giocatore, View view) {
 		this.giocatori.add(giocatore);
+		if (primoGiocatore) {
+			primoGiocatore = false;
+			view.update(new StartGiocatoreNotify(Arrays.asList(giocatore)));
+		}
 		System.out.println("[SERVER] Si è connesso il giocatore : " + giocatore.getNome());
 		Server.partite.get(gameState).add(view);
 		if (giocatori.size() == 2) {
@@ -106,20 +115,23 @@ public class Server {
 
 	}
 
-	private void creaGioco() {
+	private synchronized void creaGioco() {
+			if(Server.mappa==null)
+				Server.mappa="mappa1";
 		try {
 			for (View v : Server.partite.get(gameState)) {
 				v.setGameState(gameState);
 				this.gameState.registerObserver(v);
 				v.registerObserver(this.controller);
 			}
-			this.gameState.start(giocatori);
+			this.gameState.start(giocatori, Server.mappa);
+			this.primoGiocatore=true;
 			System.out.println("[SERVER] Iniziata una nuova partita");
 			this.giocatori.clear();
 			this.gameState = new GameState();
 			this.controller = new Controller(gameState);
 			Server.partite.put(this.gameState, new HashSet<>());
-			
+
 			ServerRMIViewRemote game = new ServerRMIView();
 			ServerRMIViewRemote gameRemote = (ServerRMIViewRemote) UnicastRemoteObject.exportObject(game, 0);
 
@@ -148,6 +160,10 @@ public class Server {
 			e.printStackTrace();
 		}
 		Server.getInstance().startSocket();
+	}
+
+	public static void setMappa(String mappa) {
+		Server.mappa=mappa;
 	}
 
 }

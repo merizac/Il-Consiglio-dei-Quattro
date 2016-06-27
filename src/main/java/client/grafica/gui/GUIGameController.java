@@ -9,20 +9,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
-import common.azioniDTO.AcquistoTesseraPermessoDTO;
 import common.azioniDTO.AzioneDTO;
 import common.azioniDTO.AzioneParametri;
-import common.azioniDTO.CambioTesserePermessoDTO;
 import common.azioniDTO.ChatDTO;
-import common.azioniDTO.CostruzioneAiutoReDTO;
-import common.azioniDTO.CostruzioneTesseraPermessoDTO;
-import common.azioniDTO.ElezioneConsigliereDTO;
-import common.azioniDTO.ElezioneConsigliereVeloceDTO;
-import common.azioniDTO.IngaggioAiutanteDTO;
-import common.azioniDTO.PassaDTO;
-import common.azioniDTO.PescaCartaDTO;
-import common.azioniDTO.SecondaAzionePrincipaleDTO;
 import common.gameDTO.CittàBonusDTO;
 import common.gameDTO.CittàDTO;
 import common.gameDTO.ConsigliereDTO;
@@ -40,15 +29,12 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import server.model.game.Emporio;
 import utility.AzioneNonEseguibile;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 
 public class GUIGameController {
 
@@ -479,7 +465,6 @@ public class GUIGameController {
 				try {
 					for (Button b : getAzioni())
 						b.setDisable(true);
-					System.out.println("azioni client: " + ((AzioneDTO) ((Button) event.getSource()).getUserData()));
 					AzioneDTO azioneDTO = gameStateDTO.getAzioniDisponibili().stream()
 							.filter(a -> a.getClass()
 									.equals(((AzioneDTO) ((Button) event.getSource()).getUserData()).getClass()))
@@ -493,8 +478,9 @@ public class GUIGameController {
 
 						alert.showAndWait();*/
 						//gui.mostraMessaggio("L'azione non esiste \nInserire un'azione valida");
-						for (Button b : getAzioni())
+						for (Button b : getAzioni()){
 							b.setDisable(false);
+						}
 						return;
 					} else if (azioneDTO instanceof AzioneParametri) {
 						try {
@@ -519,176 +505,7 @@ public class GUIGameController {
 
 		});
 	}
-/*
-	@FXML
-	public void elezioneConsigliere(ActionEvent event) {
-		ElezioneConsigliereDTO elezione = new ElezioneConsigliereDTO();
-		ExecutorService executor = Executors.newSingleThreadExecutor();
-		executor.submit(new Runnable() {
 
-			@Override
-			public void run() {
-				elezione.parametri().setParametri(gui, gameStateDTO);
-				try {
-					gui.getConnessione().inviaAzione(elezione);
-				} catch (RemoteException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	@FXML
-	public void pescaCarta(Event event) {
-		PescaCartaDTO pesca = new PescaCartaDTO();
-		try {
-			gui.getConnessione().inviaAzione(pesca);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	@FXML
-	public void acquistoTesseraPermesso(ActionEvent event) {
-		AcquistoTesseraPermessoDTO acquistoTesseraPermessoDTO = new AcquistoTesseraPermessoDTO();
-		ExecutorService executor = Executors.newSingleThreadExecutor();
-		executor.submit(new Runnable() {
-
-			@Override
-			public void run() {
-				try {
-					acquistoTesseraPermessoDTO.parametri().setParametri(gui, gameStateDTO);
-				} catch (AzioneNonEseguibile e1) {
-					gui.mostraMessaggio(e1.getMessage());
-					return;
-				}
-				try {
-					gui.getConnessione().inviaAzione(acquistoTesseraPermessoDTO);
-				} catch (RemoteException e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	@FXML
-	public void costruzioneTesseraPermesso(ActionEvent event) {
-		CostruzioneTesseraPermessoDTO costruzioneTesseraPermessoDTO = new CostruzioneTesseraPermessoDTO();
-		ExecutorService executor = Executors.newSingleThreadExecutor();
-		executor.submit(new Runnable() {
-
-			@Override
-			public void run() {
-				try {
-					costruzioneTesseraPermessoDTO.parametri().setParametri(gui, gameStateDTO);
-				} catch (AzioneNonEseguibile e1) {
-					gui.mostraMessaggio(e1.getMessage());
-					return;
-				}
-				try {
-					gui.getConnessione().inviaAzione(costruzioneTesseraPermessoDTO);
-				} catch (RemoteException e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	@FXML
-	public void costruzioneAiutoRe(ActionEvent event) {
-		CostruzioneAiutoReDTO costruzioneAiutoReDTO = new CostruzioneAiutoReDTO();
-		ExecutorService executor = Executors.newSingleThreadExecutor();
-		executor.submit(new Runnable() {
-
-			@Override
-			public void run() {
-				try {
-					costruzioneAiutoReDTO.parametri().setParametri(gui, gameStateDTO);
-				} catch (AzioneNonEseguibile e1) {
-					gui.mostraMessaggio(e1.getMessage());
-					return;
-				}
-				try {
-					gui.getConnessione().inviaAzione(costruzioneAiutoReDTO);
-				} catch (RemoteException e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	@FXML
-	public void cambioTesseraPermesso(ActionEvent event) {
-		CambioTesserePermessoDTO cambioTesserePermessoDTO = new CambioTesserePermessoDTO();
-		ExecutorService executor = Executors.newSingleThreadExecutor();
-		executor.submit(new Runnable() {
-
-			@Override
-			public void run() {
-				cambioTesserePermessoDTO.parametri().setParametri(gui, gameStateDTO);
-				try {
-					gui.getConnessione().inviaAzione(cambioTesserePermessoDTO);
-				} catch (RemoteException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-			}
-		});
-	}
-
-	@FXML
-	public void elezioneConsigliereVeloce(ActionEvent event) {
-		ElezioneConsigliereVeloceDTO elezione = new ElezioneConsigliereVeloceDTO();
-		ExecutorService executor = Executors.newSingleThreadExecutor();
-		executor.submit(new Runnable() {
-
-			@Override
-			public void run() {
-				elezione.parametri().setParametri(gui, gameStateDTO);
-				try {
-					gui.getConnessione().inviaAzione(elezione);
-				} catch (RemoteException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	@FXML
-	public void ingaggioAiutante(ActionEvent event) {
-		IngaggioAiutanteDTO ingaggioAiutanteDTO = new IngaggioAiutanteDTO();
-		try {
-			gui.getConnessione().inviaAzione(ingaggioAiutanteDTO);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	public void secondaAzionePrincipale(ActionEvent event) {
-		SecondaAzionePrincipaleDTO secondaAzionePrincipaleDTO = new SecondaAzionePrincipaleDTO();
-		try {
-			gui.getConnessione().inviaAzione(secondaAzionePrincipaleDTO);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	@FXML
-	public void passa(ActionEvent event) {
-		PassaDTO passaDTO = new PassaDTO();
-		try {
-			gui.getConnessione().inviaAzione(passaDTO);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}*/
 
 	public void mostraNomeGiocatore(String nome) {
 		nomeGiocatore.setText(nome);
@@ -1069,7 +886,7 @@ public class GUIGameController {
 	public List<Button> getAzioni() {
 		return Arrays.asList(elezioneConsigliere, acquistoTesseraPermesso, costruzioneTesseraPermesso,
 				costruzioneAiutoRe, ingaggioAiutante, cambioTesseraPermesso, elezioneConsigliereVeloce,
-				secondaAzionePrincipale, passa, pescaCarta);
+				secondaAzionePrincipale, passa,pescaCarta);
 
 	}
 

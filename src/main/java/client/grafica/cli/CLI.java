@@ -14,6 +14,7 @@ import client.connessione.ConnessioneRMI;
 import client.connessione.ConnessioneSocket;
 import client.grafica.Grafica;
 import common.azioniDTO.AzioneDTO;
+import common.azioniDTO.AzioneMappaDTO;
 import common.azioniDTO.AzioneParametri;
 import common.azioniDTO.ExitDTO;
 import common.gameDTO.AiutanteDTO;
@@ -675,5 +676,16 @@ public class CLI implements Grafica {
 	public void fineMarket() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void scegliMappa() {
+		System.out.println("Scelta mappa1");
+		try {
+			connessione.inviaAzione(new AzioneMappaDTO("mappa1"));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

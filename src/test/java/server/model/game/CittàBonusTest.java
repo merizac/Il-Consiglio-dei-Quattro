@@ -35,7 +35,7 @@ public class CittàBonusTest {
 		Giocatore giocatore=new Giocatore("Giocatore");
 		giocatori.add(giocatore);
 		gameState=new GameState();
-		gameState.start(giocatori);
+		gameState.start(giocatori, "mappa1");
 	}
 	
 	@Test

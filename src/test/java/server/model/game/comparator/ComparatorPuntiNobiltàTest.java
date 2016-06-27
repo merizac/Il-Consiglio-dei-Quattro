@@ -21,7 +21,7 @@ public class ComparatorPuntiNobiltàTest {
 		ArrayList<Giocatore> giocatori=new ArrayList<>();
 		giocatori.add(new Giocatore("G1"));
 		gameState=new GameState();
-		gameState.start(giocatori);
+		gameState.start(giocatori, "mappa1");
 	}
 
 	@Test

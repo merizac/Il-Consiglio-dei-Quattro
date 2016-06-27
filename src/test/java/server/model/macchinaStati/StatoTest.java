@@ -34,7 +34,7 @@ public class StatoTest {
 			}
 		};
 		gameState.registerObserver(observer);
-		gameState.start(giocatori);
+		gameState.start(giocatori, "mappa1");
 		
 	}
 	
