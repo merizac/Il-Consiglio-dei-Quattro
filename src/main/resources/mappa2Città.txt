@@ -5,36 +5,36 @@ Blu 5
 Re 
 CITTA
 5
-Arkon Blu
-Burgen Giallo
+Arkon Giallo
+Burgen Bronzo
 Castrum Grigio
-Dorful Grigio
-Esti Bronzo
+Dorful Blu
+Esti Grigio
 5
-Framek Blu
-Graden Grigio
+Framek Giallo
+Graden Re
 Hellar Giallo
 Indur Bronzo
-Juvelar Re
+Juvelar Grigio
 5
 Kultos Giallo
-Lyram Grigio
-Merkatim Blu
+Lyram Blu
+Merkatim Grigio
 Naris Bronzo
 Osium Giallo
 CITTACOLLEGATE
-Arkon Burgen Castrum 
-Burgen Arkon Esti Dorful
-Castrum Arkon Framek 
-Dorful Burgen Graden
+Arkon Castrum
+Burgen Esti
+Castrum Arkon Dorful Framek
+Dorful Castrum Graden
 Esti Burgen Hellar
-Framek Castrum Indur
-Graden Dorful Juvelar
-Hellar Esti Juvelar Merkatim
-Indur Juvelar Framek Kultos
-Juvelar Graden Hellar Lyram Indur
-Kultos Indur Naris
-Lyram Juvelar Osium
-Merkatim Hellar Osium
-Naris Kultos Osium
-Osium Lyram Merkatim Naris
+Framek Castrum Graden Indur
+Graden Dorful Framek Hellar Indur
+Hellar Esti Juvelar Graden
+Indur Graden Framek Kultos
+Juvelar Hellar Lyram Merkatim
+Kultos Indur Lyram
+Lyram Juvelar Naris Kultos
+Merkatim Juvelar Osium
+Naris Lyram
+Osium Merkatim
