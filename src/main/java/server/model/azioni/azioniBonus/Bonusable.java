@@ -1,9 +1,12 @@
 package server.model.azioni.azioniBonus;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import server.model.bonus.Bonus;
 import server.model.game.GameState;
+import server.model.game.Giocatore;
+import server.model.notify.AvversarioNotify;
 import server.model.notify.GameStateNotify;
 import server.model.notify.GiocatoreNotify;
 
@@ -23,7 +26,7 @@ public interface Bonusable {
  * @return true if bonus is instance of of BonusNobiltà, false in other case
  */
 	public default boolean controlloBonus(GameState gameState){
-		System.out.println("\nCONTROLLO BONUS\n");
+
 		List<Bonus> bonusCasella = gameState.getGiocatoreCorrente().getPunteggioNobiltà().getBonus();
 		
 		
@@ -32,6 +35,9 @@ public interface Bonusable {
 			}
 			
 			gameState.notifyObserver(new GameStateNotify(gameState, gameState.getGiocatori()));
+			List<Giocatore> avversari=new ArrayList<>(gameState.getGiocatori());
+			avversari.remove(gameState.getGiocatoreCorrente());
+			gameState.notifyObserver(new AvversarioNotify(gameState.getGiocatoreCorrente(), avversari));
 			gameState.notifyObserver(new GiocatoreNotify(gameState.getGiocatoreCorrente(), Arrays.asList(gameState.getGiocatoreCorrente())));
 			if (gameState.getGiocatoreCorrente().getBonusNobiltà().isEmpty()){
 				return true;

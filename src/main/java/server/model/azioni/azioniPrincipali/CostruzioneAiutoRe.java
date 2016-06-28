@@ -30,13 +30,14 @@ public class CostruzioneAiutoRe extends AzionePrincipale implements Bonusable {
 	private List<CartaPolitica> carteGiocatore;
 
 	/**
-	 * check if the cards of the player are of the same color of consiglieri in the balcony
-	 * check if the player has enough aiutanti in case of in the city there are already emporium
-	 * calculate how many money the player have to pay for the balcony
-	 * move the king in the city in which the player ask to move
-	 * build in that city
-	 * check if the player had finisched emporium, in that case set transition in state pattern for the last round
-	 * check if the player has wins point of nobility, in that case check if casella in nobility track contains bonus
+	 * check if the cards of the player are of the same color of consiglieri in
+	 * the balcony check if the player has enough aiutanti in case of in the
+	 * city there are already emporium calculate how many money the player have
+	 * to pay for the balcony move the king in the city in which the player ask
+	 * to move build in that city check if the player had finisched emporium, in
+	 * that case set transition in state pattern for the last round check if the
+	 * player has wins point of nobility, in that case check if casella in
+	 * nobility track contains bonus
 	 */
 	@Override
 	public void eseguiAzione(GameState gameState) {
@@ -82,19 +83,16 @@ public class CostruzioneAiutoRe extends AzionePrincipale implements Bonusable {
 			gameState.getGiocatoreCorrente().aumentaPuntiVittoria(3);
 		}
 
-		notify(gameState);
-
 		List<Bonus> bonusCasella = gameState.getGiocatoreCorrente().getPunteggioNobiltà().getBonus();
 
-		if (nob) {
-			if (!bonusCasella.isEmpty()) {
-				if (controlloBonus(gameState)) {
-					setStatoTransizionePrincipale(gameState);
-				} else {
-					gameState.getStato().transizioneBonus(gameState);
-				}
+		if (nob && !bonusCasella.isEmpty()) {
+			if (controlloBonus(gameState)) {
+				setStatoTransizionePrincipale(gameState);
+			} else {
+				gameState.getStato().transizioneBonus(gameState);
 			}
 		} else {
+			notify(gameState);
 			setStatoTransizionePrincipale(gameState);
 		}
 	}

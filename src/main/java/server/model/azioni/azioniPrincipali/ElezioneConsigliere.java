@@ -1,14 +1,10 @@
 package server.model.azioni.azioniPrincipali;
 
-import java.util.Arrays;
-
 import common.azioniDTO.AzioneDTO;
 import common.azioniDTO.ElezioneConsigliereDTO;
 import server.model.game.Balcone;
 import server.model.game.Consigliere;
 import server.model.game.GameState;
-import server.model.notify.GameStateNotify;
-import server.model.notify.GiocatoreNotify;
 
 public class ElezioneConsigliere extends AzionePrincipale {
 

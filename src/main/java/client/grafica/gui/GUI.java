@@ -1208,15 +1208,15 @@ public class GUI extends Application implements Grafica {
 		}
 	}
 
-	public void azioneNonValida() {
+	public void azioneNonValida(String header, String content) {
 		Platform.runLater(new Runnable() {
 
 			@Override
 			public void run() {
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Errore");
-				alert.setHeaderText("L'azione non esiste!");
-				alert.setContentText("Ooops, riprova e inserisci un'azione valida!");
+				alert.setHeaderText(header);
+				alert.setContentText(content);
 
 				alert.showAndWait();
 			}
