@@ -1102,7 +1102,7 @@ public class GUI extends Application implements Grafica {
 	@Override
 	public List<CittàBonusDTO> scegliUnaCittà() {
 		this.mostraMessaggio("Scegli una città");
-		List<Pane> cittàBonus = controller.getCittàBonus();
+		List<Pane> cittàBonus = controller.getCittàBonusConEmporio();
 		for (Pane città : cittàBonus) {
 			città.setDisable(false);
 		}
@@ -1126,7 +1126,7 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public List<CittàBonusDTO> scegliDueCittà() {
-		List<Pane> dueCittàBonus = controller.getCittàBonus();
+		List<Pane> dueCittàBonus = controller.getCittàBonusConEmporio();
 		List<CittàBonusDTO> cittàBonusDTO = this.scegliUnaCittà();
 		for (Pane città : dueCittàBonus) {
 			if (!((CittàDTO) città.getUserData()).getNome().equals(cittàBonusDTO.get(0).getNome()))

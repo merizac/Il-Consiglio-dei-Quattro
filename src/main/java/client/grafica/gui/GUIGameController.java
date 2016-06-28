@@ -923,7 +923,7 @@ public class GUIGameController {
 	}
 
 
-	public List<Pane> getCittàBonus() {
+	public List<Pane> getCittàBonusConEmporio() {
 		List<Pane> cittàBonusGettone=new ArrayList<>();
 		for(Pane cittàBonus: città){
 			if(cittàBonus.getUserData() instanceof CittàBonusDTO
