@@ -32,15 +32,11 @@ public abstract class AzioneVeloce extends Azione {
 	}
 	
 	public void notify(GameState gameState){
-		this.notifyAvversari(gameState);
-		gameState.notifyObserver(new GiocatoreNotify(gameState.getGiocatoreCorrente(), Arrays.asList(gameState.getGiocatoreCorrente())));
-	}
-	
-	public void notifyAvversari(GameState gameState){
 		gameState.notifyObserver(new GameStateNotify(gameState, gameState.getGiocatori()));
 		List<Giocatore> avversari=new ArrayList<>(gameState.getGiocatori());
 		avversari.remove(gameState.getGiocatoreCorrente());
 		gameState.notifyObserver(new AvversarioNotify(gameState.getGiocatoreCorrente(), avversari));
+		gameState.notifyObserver(new GiocatoreNotify(gameState.getGiocatoreCorrente(), Arrays.asList(gameState.getGiocatoreCorrente())));
 	}
 
 }

@@ -3,7 +3,6 @@ package server.model.macchinaStati;
 import java.util.Arrays;
 import java.util.List;
 import server.model.azioni.Azione;
-import server.model.azioni.azioniBonus.PassaBonus;
 import server.model.game.GameState;
 import server.model.notify.BonusNotify;
 

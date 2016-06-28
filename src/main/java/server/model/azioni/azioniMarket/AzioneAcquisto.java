@@ -1,6 +1,8 @@
 package server.model.azioni.azioniMarket;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import common.azioniDTO.AzioneAcquistoDTO;
 import common.azioniDTO.AzioneDTO;
@@ -10,6 +12,8 @@ import server.model.game.Giocatore;
 import server.model.macchinaStati.StartEnd;
 import server.model.macchinaStati.StatoAcquistoMarket;
 import server.model.market.Offerta;
+import server.model.notify.AvversarioNotify;
+import server.model.notify.GiocatoreNotify;
 import server.model.notify.MessageNotify;
 
 public class AzioneAcquisto extends Azione {
@@ -18,19 +22,27 @@ public class AzioneAcquisto extends Azione {
 	private Giocatore acquirente;
 
 	@Override
-	public void eseguiAzione(GameState gameState){
 
-		if (!offerta.getMarketable().acquista(acquirente, offerta)){
-			gameState.notifyObserver(new MessageNotify("L'azione non è eseguibile",
-					Arrays.asList(acquirente)));
-		}
-		else {
+	public void eseguiAzione(GameState gameState) {
+		if (!offerta.getMarketable().acquista(acquirente, offerta)) {
+			gameState.notifyObserver(new MessageNotify("L'azione non è eseguibile", Arrays.asList(acquirente)));
+		} else {
 			if (!gameState.getOfferteMarket().isEmpty()) {
+				List<Giocatore> avversari = new ArrayList<>(gameState.getGiocatori());
+				avversari.remove(gameState.getGiocatoreCorrente());
+				gameState.notifyObserver(new AvversarioNotify(gameState.getGiocatoreCorrente(), avversari));
+				gameState.notifyObserver(new GiocatoreNotify(gameState.getGiocatoreCorrente(),
+						Arrays.asList(gameState.getGiocatoreCorrente())));
 				gameState.getOfferteMarket().remove(this.offerta);
 				gameState.getStato().transizioneOfferta(gameState);
-			}
-			else
+			} else {
+				List<Giocatore> avversari = new ArrayList<>(gameState.getGiocatori());
+				avversari.remove(gameState.getGiocatoreCorrente());
+				gameState.notifyObserver(new AvversarioNotify(gameState.getGiocatoreCorrente(), avversari));
+				gameState.notifyObserver(new GiocatoreNotify(gameState.getGiocatoreCorrente(),
+						Arrays.asList(gameState.getGiocatoreCorrente())));
 				gameState.setStato(new StartEnd(gameState));
+			}
 		}
 	}
 
@@ -71,10 +83,12 @@ public class AzioneAcquisto extends Azione {
 
 	@Override
 	public AzioneDTO getAzioneDTO() {
-	return new AzioneAcquistoDTO();
+		return new AzioneAcquistoDTO();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

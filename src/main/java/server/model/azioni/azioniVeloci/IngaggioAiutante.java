@@ -5,8 +5,6 @@ import java.util.Arrays;
 import common.azioniDTO.AzioneDTO;
 import common.azioniDTO.IngaggioAiutanteDTO;
 import server.model.game.GameState;
-import server.model.notify.GameStateNotify;
-import server.model.notify.GiocatoreNotify;
 import server.model.notify.MessageNotify;
 
 public class IngaggioAiutante extends AzioneVeloce {
@@ -26,7 +24,6 @@ public class IngaggioAiutante extends AzioneVeloce {
 
 		else {
 			gameState.getGiocatoreCorrente().getAiutanti().aggiungiAiutanti(1);
-
 			notify(gameState);
 			setStatoTransizioneVeloce(gameState);
 		}

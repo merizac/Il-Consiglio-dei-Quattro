@@ -55,23 +55,16 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonu
 			gameState.getGiocatoreCorrente().aumentaPuntiVittoria(3);
 		}
 
-		notify(gameState);
-
 		List<Bonus> bonusCasella = gameState.getGiocatoreCorrente().getPunteggioNobiltà().getBonus();
 
-		if (nob) {
-			if (!bonusCasella.isEmpty()) {
-				if (controlloBonus(gameState)) {
-					setStatoTransizionePrincipale(gameState);
-				} else {
-					gameState.getStato().transizioneBonus(gameState);
-				}
-			}
-			else {
+		if (nob && !bonusCasella.isEmpty()) {
+			if (controlloBonus(gameState)) {
 				setStatoTransizionePrincipale(gameState);
+			} else {
+				gameState.getStato().transizioneBonus(gameState);
 			}
-		}
-		else {
+		} else {
+			notify(gameState);
 			setStatoTransizionePrincipale(gameState);
 		}
 

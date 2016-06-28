@@ -222,6 +222,7 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 			tesseraPermesso = ControlloParametri.cercaTesseraPermesso(bonusTesseraAcquistataDTO.getTesseraPermesso(),
 					giocatore.getTesserePermesso());
 		*/
+		bonusTesseraAcquistata.setId(1);
 		bonusTesseraAcquistata.setTesseraPermesso(tesseraPermesso);
 		return bonusTesseraAcquistata;
 	}
@@ -234,6 +235,7 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 				bonusTesseraPermessoDTO.getTesseraScoperta(), regione.getTesserePermessoScoperte());
 		bonusTesseraPermesso.setRegione(regione);
 		bonusTesseraPermesso.setTesseraScoperta(tesseraPermesso);
+		bonusTesseraPermesso.setId(2);
 		return bonusTesseraPermesso;
 	}
 
