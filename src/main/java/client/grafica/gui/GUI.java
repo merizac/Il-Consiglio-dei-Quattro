@@ -919,6 +919,7 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public TesseraPermessoDTO scegliTesseraGiocatore(List<TesseraPermessoDTO> list) {
+		stampaTesserePermesso(controller.getTesserePermessoGiocatore(), list, 0, 70);
 		HBox tessere = controller.getTesserePermessoGiocatore();
 		DropShadow ds = new DropShadow();
 		ds.setColor(Color.web("#ffffff"));
