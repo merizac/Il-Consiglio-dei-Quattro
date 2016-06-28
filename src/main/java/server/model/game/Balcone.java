@@ -18,11 +18,20 @@ public class Balcone {
 		List<Consigliere> consiglieriDaAggiungere=pescaConsiglieri(consiglieri, numConsiglieri);
 		this.consiglieri=new ArrayBlockingQueue<>(numConsiglieri, true, consiglieriDaAggiungere);	
 	}
-	
+	/**
+	 * constructor of Balcone
+	 * @param consiglieri consiglieri to add at Balcone
+	 */
 	public Balcone(List<Consigliere> consiglieri){
 		this.consiglieri=new ArrayBlockingQueue<>(4, true, consiglieri);	
 	}
 	
+	/**
+	 * return a consigliere from the riserva of consiglieri
+	 * @param consiglieri the list of riserva consiglieri
+	 * @param numConsiglieri the number of consigieri that return
+	 * @return consiglieri that had taken from the riserva
+	 */
 	private List<Consigliere> pescaConsiglieri(List<Consigliere> consiglieri, int numConsiglieri) {
 		
 		List<Consigliere> consiglieriNuovi=new ArrayList<>();

@@ -10,7 +10,7 @@ public class Aiutante implements Marketable {
 	private int numeroAiutanti;
 
 	/**
-	 * 
+	 * costructor of Aiutante
 	 * @param numeroAiutanti
 	 */
 	public Aiutante(int numeroAiutanti) {
@@ -101,6 +101,9 @@ public class Aiutante implements Marketable {
 		return "Aiutanti:" + numeroAiutanti;
 	}
 
+	/**
+	 * return a new AiutanteDTO for market
+	 */
 	@Override
 	public MarketableDTO instance() {
 		return new AiutanteDTO();
