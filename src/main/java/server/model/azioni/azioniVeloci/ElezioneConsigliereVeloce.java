@@ -3,8 +3,6 @@ package server.model.azioni.azioniVeloci;
 import server.model.game.Balcone;
 import server.model.game.Consigliere;
 import server.model.game.GameState;
-import server.model.notify.GameStateNotify;
-import server.model.notify.GiocatoreNotify;
 import server.model.notify.MessageNotify;
 import java.util.Arrays;
 import common.azioniDTO.AzioneDTO;
@@ -65,6 +63,8 @@ public class ElezioneConsigliereVeloce extends AzioneVeloce {
 
 		else {
 			Consigliere consigliereTolto = this.balcone.aggiungiConsigliere(consigliere);
+			gameState.getConsiglieri().remove(consigliere);
+			gameState.getConsiglieri().add(consigliereTolto);
 			notify(gameState);
 			setStatoTransizioneVeloce(gameState);
 		}

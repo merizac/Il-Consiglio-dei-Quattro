@@ -7,8 +7,6 @@ import common.azioniDTO.CambioTesserePermessoDTO;
 import server.model.game.GameState;
 import server.model.game.Regione;
 import server.model.game.TesseraPermesso;
-import server.model.notify.GameStateNotify;
-import server.model.notify.GiocatoreNotify;
 import server.model.notify.MessageNotify;
 
 public class CambioTesseraPermesso extends AzioneVeloce {

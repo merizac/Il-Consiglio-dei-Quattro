@@ -126,8 +126,7 @@ public class GUIMarketController {
 							.findAny().orElse(null);
 
 					if (azioneDTO == null) {
-						// gui.mostraMessaggio("L'azione non esiste \nInserire
-						// un'azione valida");
+						gui.azioneNonValida("L'azione non esiste!","Ooops, riprova e inserisci un'azione valida!");
 						for (Button b : azioni)
 							b.setDisable(false);
 						return;
@@ -135,12 +134,13 @@ public class GUIMarketController {
 						try {
 							((AzioneParametri) azioneDTO).parametri().setParametri(gui, gameStateDTO);
 						} catch (AzioneNonEseguibile e) {
-							// gui.mostraMessaggio(e.getMessage());
+							gui.azioneNonValida("Azione non eseguibile!", e.getMessage());
 							return;
 						}
 					}
 					try {
 						gui.getConnessione().inviaAzione(azioneDTO);
+						gui.stopTimer();
 						for (Button b : azioni)
 							b.setDisable(false);
 					} catch (RemoteException e) {

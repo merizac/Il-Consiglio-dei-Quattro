@@ -484,8 +484,7 @@ public class GUIGameController {
 							.findAny().orElse(null);
 
 					if (azioneDTO == null) {
-						gui.azioneNonValida();
-						//gui.mostraMessaggio("L'azione non esiste \nInserire un'azione valida");
+						gui.azioneNonValida("L'azione non esiste!","Ooops, riprova e inserisci un'azione valida!");
 						for (Button b : getAzioni()){
 							b.setDisable(false);
 						}

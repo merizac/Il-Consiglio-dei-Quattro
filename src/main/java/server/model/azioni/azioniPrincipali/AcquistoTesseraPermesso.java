@@ -69,22 +69,21 @@ public class AcquistoTesseraPermesso extends AzionePrincipale implements Bonusab
 				nob = true;
 			}
 		}
+		
+		
 		List<Bonus> bonusCasella = gameState.getGiocatoreCorrente().getPunteggioNobiltà().getBonus();
 
-		if (nob) {
-			if (!bonusCasella.isEmpty()) {
-				if (controlloBonus(gameState)) {
-					setStatoTransizionePrincipale(gameState);
-				} else {
-					gameState.getStato().transizioneBonus(gameState);
-				}
+		if (nob && !bonusCasella.isEmpty()) {
+			if (controlloBonus(gameState)) {
+				setStatoTransizionePrincipale(gameState);
+			} else {
+				gameState.getStato().transizioneBonus(gameState);
 			}
-			notify(gameState);
 		} else {
 			notify(gameState);
 			setStatoTransizionePrincipale(gameState);
 		}
-			}
+	}
 
 	/**
 	 * 
