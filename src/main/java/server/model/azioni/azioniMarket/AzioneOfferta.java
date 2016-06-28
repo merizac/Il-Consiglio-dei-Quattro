@@ -32,6 +32,8 @@ public class AzioneOfferta extends Azione {
 	 * @param marketable the marketable to set
 	 */
 	public void setMarketable(Marketable marketable) {
+		if(marketable==null)
+			throw new NullPointerException("L'oggeto in vendita deve essere diverso da null");
 		this.marketable = marketable;
 	}
 
@@ -41,6 +43,8 @@ public class AzioneOfferta extends Azione {
 	 * @param prezzo the prezzo to set
 	 */
 	public void setPrezzo(int prezzo) {
+		if(prezzo<0)
+			throw new IllegalArgumentException("Il prezzo della vendita non può essere negativo");
 		this.prezzo = prezzo;
 	}
 

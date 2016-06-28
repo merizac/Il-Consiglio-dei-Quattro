@@ -3,6 +3,7 @@ package server.model.game;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -16,6 +17,7 @@ import server.model.game.GameState;
 import server.model.game.Giocatore;
 import server.model.game.Regione;
 import server.model.game.TesseraPermesso;
+import server.model.market.Offerta;
 
 public class TesseraPermessoTest {
 
@@ -42,6 +44,21 @@ public class TesseraPermessoTest {
 		tessera=new TesseraPermesso(città, bonus, regione);
 		gameState.getGiocatoreCorrente().aggiungiTesseraPermesso(tessera);
 	}
+	
+	@Test(expected=NullPointerException.class)
+	public void testCittàNull() {
+		new TesseraPermesso(null, bonus, regione);
+	}
+
+	@Test(expected=NullPointerException.class)
+	public void testRegioneNull() {
+		new TesseraPermesso(città, null, regione);
+	}
+
+	@Test(expected=NullPointerException.class)
+	public void testBonusNull() {
+		new TesseraPermesso(città, bonus, null);
+	}
 
 	@Test
 	public void testGetRegione() {
@@ -56,11 +73,6 @@ public class TesseraPermessoTest {
 	@Test
 	public void testGetBonus() {
 		assertTrue(bonus==tessera.getBonus());
-	}
-
-	@Test
-	public void testAcquista() {
-		
 	}
 
 	@Test
@@ -80,7 +92,62 @@ public class TesseraPermessoTest {
 	
 	@Test
 	public void testToString(){
+		assertEquals("TesseraPermesso [ (" + città + "), (" + bonus + ") ]", new TesseraPermesso(città, bonus, regione).toString());
+	}
+	
+	@Test
+	public void testAcquistaTrue() {
+		TesseraPermesso tessera=new TesseraPermesso(città, bonus, regione);
+		Giocatore venditore=new Giocatore("A");
+		venditore.setPunteggioRicchezza(3);
+		venditore.getTesserePermesso().add(tessera);
+		Giocatore acquirente=new Giocatore("A");
+		acquirente.setPunteggioRicchezza(10);
+		Offerta offerta = new Offerta(venditore, tessera, 1);
 		
+		assertTrue(tessera.acquista(acquirente, offerta));
+		assertEquals(1, acquirente.getTesserePermesso().size());
+		assertEquals(0, venditore.getTesserePermesso().size());
+		assertEquals(4, venditore.getPunteggioRicchezza());
+		assertEquals(9, acquirente.getPunteggioRicchezza());
+		assertTrue(acquirente.getTesserePermesso().contains(tessera));
+		assertTrue(!venditore.getTesserePermesso().contains(tessera));
+	}
+	
+	@Test
+	public void testAcquistaFalse() {
+		TesseraPermesso tessera=new TesseraPermesso(città, bonus, regione);
+		Giocatore venditore=new Giocatore("A");
+		venditore.setPunteggioRicchezza(3);
+		venditore.getTesserePermesso().add(tessera);
+		Giocatore acquirente=new Giocatore("A");
+		acquirente.setPunteggioRicchezza(10);
+		Offerta offerta = new Offerta(venditore, tessera, 100);
+		
+		assertTrue(!tessera.acquista(acquirente, offerta));
+		assertEquals(0, acquirente.getTesserePermesso().size());
+		assertEquals(1, venditore.getTesserePermesso().size());
+		assertEquals(3, venditore.getPunteggioRicchezza());
+		assertEquals(10, acquirente.getPunteggioRicchezza());
+		assertTrue(!acquirente.getTesserePermesso().contains(tessera));
+		assertTrue(venditore.getTesserePermesso().contains(tessera));
 	}
 
+	@Test
+	public void testPossiedeFalse() {
+		TesseraPermesso tessera=new TesseraPermesso(città, bonus, regione);
+		Giocatore venditore=new Giocatore("A");
+		venditore.getTesserePermesso().add(new TesseraPermesso(città, Arrays.asList(new BonusAiutanti(1000)), regione));
+		
+		assertTrue(!tessera.possiede(venditore));
+	}
+	
+	@Test
+	public void testPossiedeTrue() {
+		TesseraPermesso tessera=new TesseraPermesso(città, bonus, regione);
+		Giocatore venditore=new Giocatore("A");
+		venditore.getTesserePermesso().add(tessera);
+
+		assertTrue(tessera.possiede(venditore));
+	}
 }

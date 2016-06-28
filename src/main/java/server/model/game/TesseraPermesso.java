@@ -18,9 +18,15 @@ public final class TesseraPermesso implements Marketable {
 	 * @param bonus2
 	 * @param regione
 	 */
-	public TesseraPermesso(List<Città> cit, List<Bonus> bonus, Regione regione) {
-		this.città = cit;
+	public TesseraPermesso(List<Città> città, List<Bonus> bonus, Regione regione) {
+		if(città==null)
+			throw new NullPointerException("Le tessere permesso necessitano di almeno una città non nulla");
+		this.città = città;
+		if(bonus==null)
+			throw new NullPointerException("Le tessere permesso necessitano di almeno un bonus non nullo");
 		this.bonus = bonus;
+		if(regione==null)
+			throw new NullPointerException("Le tessere permesso necessitano di una regione non nulla");
 		this.regione = regione;
 		regione.getMazzoTesserePermesso().getCarte().add(this);
 	}

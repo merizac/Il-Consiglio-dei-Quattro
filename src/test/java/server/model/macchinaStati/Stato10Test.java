@@ -46,6 +46,7 @@ public class Stato10Test {
 		};
 		gameState.registerObserver(observer);
 		gameState.start(giocatori, "mappa1");
+		gameState.setGiocatoreCorrente(giocatore);
 	}
 
 	@Test
@@ -58,7 +59,7 @@ public class Stato10Test {
 		assertTrue(notify.get(1) instanceof AzioniNotify);
 	}
 
-/*	@Test
+	@Test
 	public void testTransizionePrincipaleBonusAzionePrincipaleFalseAndNotUltimoGiroTrue() {
 		Stato10 stato10=new Stato10(gameState);
 		
@@ -67,8 +68,8 @@ public class Stato10Test {
 		
 		stato10.transizionePrincipale(gameState);
 		
-		fail();
-	}*/
+		assertTrue(gameState.getStato() instanceof Stato10);
+	}
 	
 	@Test
 	public void testTransizionePrincipaleBonusAzionePrincipaleFalseAndUltimoGiroTrueAndnotMarket() {
@@ -108,18 +109,22 @@ public class Stato10Test {
 		assertTrue(gameState.getStato() instanceof Stato10);
 	}
 
-	@Test
+/*	@Test
 	public void testTransizioneBonus() {
 		Stato10 stato10=new Stato10(gameState);
+		try{
+			gameState.getGiocatoreCorrente().getBonusNobiltà().add(new )
+			System.out.println("\t"+gameState.getStato());
+			stato10.transizioneBonus(gameState);
+			System.out.println("\t"+gameState.getStato());
+			
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 		
-		
-		//falliiiiiiiiittttttttooooooooooo
-		
-		
-		
-		//stato10.transizioneBonus(gameState);
-		//assertTrue(gameState.getStato() instanceof StatoBonus);
-	}
+		assertTrue(gameState.getStato() instanceof StatoBonus);
+	}*/
 
 	@Test
 	public void testGetAzioni() {

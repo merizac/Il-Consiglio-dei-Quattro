@@ -19,6 +19,7 @@ public class AzioneAcquisto extends Azione {
 
 	@Override
 	public void eseguiAzione(GameState gameState){
+
 		if (!offerta.getMarketable().acquista(acquirente, offerta)){
 			gameState.notifyObserver(new MessageNotify("L'azione non è eseguibile",
 					Arrays.asList(acquirente)));
@@ -65,7 +66,7 @@ public class AzioneAcquisto extends Azione {
 
 	@Override
 	public boolean isTurno(Giocatore giocatore, GameState gameState) {
-		return (giocatore.equals(((StatoAcquistoMarket) gameState.getStato()).getGiocatori().get(0)));
+		return giocatore.equals(((StatoAcquistoMarket) gameState.getStato()).getGiocatori().get(0));
 	}
 
 	@Override
