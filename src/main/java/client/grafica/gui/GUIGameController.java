@@ -926,7 +926,8 @@ public class GUIGameController {
 	public List<Pane> getCittàBonus() {
 		List<Pane> cittàBonusGettone=new ArrayList<>();
 		for(Pane cittàBonus: città){
-			if(cittàBonus.getUserData() instanceof CittàBonusDTO)
+			if(cittàBonus.getUserData() instanceof CittàBonusDTO
+					&& ((CittàDTO)cittàBonus.getUserData()).getEmpori().contains(gameStateDTO.getGiocatoreDTO().getColoreGiocatore()))
 				cittàBonusGettone.add(cittàBonus);
 		}
 		

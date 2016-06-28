@@ -203,7 +203,7 @@ public class GUI extends Application implements Grafica {
 			public void run() {
 				try {
 					connessione.inviaAzione(new ExitDTO());
-					System.out.println("exit :"+gameStateDTO.getGiocatoreDTO().getNome());
+					System.out.println("exit :" + gameStateDTO.getGiocatoreDTO().getNome());
 				} catch (RemoteException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -211,7 +211,6 @@ public class GUI extends Application implements Grafica {
 			}
 		};
 		// timer.schedule(task, timeout);
-
 
 		if (azioni.get(0) instanceof BonusGettoneNDTO || azioni.get(0) instanceof BonusTesseraAcquistataNDTO
 				|| azioni.get(0) instanceof BonusTesseraPermessoNDTO) {
@@ -242,10 +241,10 @@ public class GUI extends Application implements Grafica {
 		}
 
 		controller.mostraTesserePermessoRegioni(gameStateDTO.getRegioni());
-		//System.out.println(gameStateDTO.getNomeMappa());
-		//System.out.println(gameStateDTO.getAvversari());
-		//System.out.println(gameStateDTO.getPedinaRE());
-		//System.out.println(gameStateDTO);
+		// System.out.println(gameStateDTO.getNomeMappa());
+		// System.out.println(gameStateDTO.getAvversari());
+		// System.out.println(gameStateDTO.getPedinaRE());
+		// System.out.println(gameStateDTO);
 		controller.getMappaImmagine().setImage(
 				new Image(getClass().getResource("css/" + gameStateDTO.getNomeMappa() + ".jpg").toExternalForm()));
 		controller.mostraGettoni(new ArrayList<>(gameStateDTO.getCittà()));
@@ -1102,16 +1101,19 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public List<CittàBonusDTO> scegliUnaCittà() {
+		this.mostraMessaggio("Scegli una città");
 		List<Pane> cittàBonus = controller.getCittàBonus();
 		for (Pane città : cittàBonus) {
 			città.setDisable(false);
 		}
-		while (parametro == null) {
-			try {
-				lock.wait();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		synchronized (lock) {
+			while (parametro == null) {
+				try {
+					lock.wait();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 		for (Pane città : cittàBonus) {
@@ -1207,7 +1209,7 @@ public class GUI extends Application implements Grafica {
 
 	public void azioneNonValida() {
 		Platform.runLater(new Runnable() {
-			
+
 			@Override
 			public void run() {
 				Alert alert = new Alert(AlertType.ERROR);
