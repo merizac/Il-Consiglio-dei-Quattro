@@ -31,10 +31,12 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import utility.AzioneNonEseguibile;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 
 public class GUIGameController {
 
@@ -482,12 +484,7 @@ public class GUIGameController {
 							.findAny().orElse(null);
 
 					if (azioneDTO == null) {
-						/*Alert alert = new Alert(AlertType.ERROR);
-						alert.setTitle("Errore");
-						alert.setHeaderText("L'azione non esiste!");
-						alert.setContentText("Ooops, riprova e inserisci un'azione valida!");
-
-						alert.showAndWait();*/
+						gui.azioneNonValida();
 						//gui.mostraMessaggio("L'azione non esiste \nInserire un'azione valida");
 						for (Button b : getAzioni()){
 							b.setDisable(false);
@@ -503,6 +500,7 @@ public class GUIGameController {
 					}
 					try {
 						gui.getConnessione().inviaAzione(azioneDTO);
+						gui.stopTimer();
 						for (Button b : getAzioni())
 							b.setDisable(false);
 					} catch (RemoteException e) {

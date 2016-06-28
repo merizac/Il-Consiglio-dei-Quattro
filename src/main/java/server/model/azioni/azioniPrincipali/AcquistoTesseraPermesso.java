@@ -79,6 +79,7 @@ public class AcquistoTesseraPermesso extends AzionePrincipale implements Bonusab
 					gameState.getStato().transizioneBonus(gameState);
 				}
 			}
+			notify(gameState);
 		} else {
 			notify(gameState);
 			setStatoTransizionePrincipale(gameState);

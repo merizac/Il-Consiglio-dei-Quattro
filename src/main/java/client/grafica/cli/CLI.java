@@ -46,8 +46,8 @@ public class CLI implements Grafica {
 	private GameStateDTO gameStateDTO;
 	private Scanner stdIn;
 	private String inputLine;
-	private final int timeout=20000;
-	private Timer timer=new Timer();
+	private final int timeout = 60000;
+	private Timer timer;
 	private TimerTask task;
 
 	public void start() {
@@ -86,10 +86,9 @@ public class CLI implements Grafica {
 
 			AzioneDTO action = gameStateDTO.getAzioniDisponibili().stream()
 					.filter(a -> a.toString().contains(inputLine)).findAny().orElse(null);
-			System.out.println("azioni :" + gameStateDTO.getAzioniDisponibili());
 
 			if ("Exit".equals(inputLine)) {
-				action=new ExitDTO();
+				action = new ExitDTO();
 			}
 
 			else if ("Chat".equals(inputLine)) {
@@ -102,25 +101,25 @@ public class CLI implements Grafica {
 			else if (action == null)
 				System.out.println("L'azione non esiste \nInserire un'azione valida");
 
-			else {
+			// else {
 
-				if ("Exit".equals(inputLine))
-					action = new ExitDTO(gameStateDTO.getGiocatoreDTO());
+			// if ("Exit".equals(inputLine))
+			// action = new ExitDTO(gameStateDTO.getGiocatoreDTO());
 
-				else if (action instanceof AzioneParametri)
-					try {
-						((AzioneParametri) action).parametri().setParametri(this, gameStateDTO);
-					} catch (AzioneNonEseguibile e1) {
-						this.mostraMessaggio(e1.getMessage());
-						continue;
-					}
+			if (action instanceof AzioneParametri)
 				try {
-					connessione.inviaAzione(action);
-					task.cancel();
-				} catch (RemoteException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					((AzioneParametri) action).parametri().setParametri(this, gameStateDTO);
+				} catch (AzioneNonEseguibile e1) {
+					this.mostraMessaggio(e1.getMessage());
+					continue;
 				}
+			try {
+				connessione.inviaAzione(action);
+				task.cancel();
+				timer.cancel();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 
 			}
 
@@ -195,8 +194,9 @@ public class CLI implements Grafica {
 	 */
 	@Override
 	public void mostraAzioni(List<AzioneDTO> azioni) {
-		task=new TimerTask() {
-			
+		timer = new Timer();
+		task = new TimerTask() {
+
 			@Override
 			public void run() {
 				try {
