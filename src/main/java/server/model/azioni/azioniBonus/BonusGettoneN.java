@@ -57,13 +57,7 @@ public class BonusGettoneN extends Azione {
 		for (Bonus b : bonus) {
 			b.usaBonus(gameState);
 		}
-		System.out.println("Bonus Nobiltà1: "+gameState.getGiocatoreCorrente().getBonusNobiltà());
-		System.out.println("\nTHIS "+this);
 		gameState.getGiocatoreCorrente().getBonusNobiltà().remove(this);
-		System.out.println("Bonus Nobiltà2: "+gameState.getGiocatoreCorrente().getBonusNobiltà());
-
-		
-		//gameState.getGiocatoreCorrente().getBonusNobiltà().remove(this);
 		gameState.getStato().transizioneBonus(gameState);
 	}
 

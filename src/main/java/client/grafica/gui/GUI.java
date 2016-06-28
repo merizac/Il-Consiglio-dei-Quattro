@@ -207,7 +207,7 @@ public class GUI extends Application implements Grafica {
 			}
 		};
 
-		timer.schedule(task, timeout);
+		//timer.schedule(task, timeout);
 		
 		if (azioni.get(0) instanceof BonusGettoneNDTO || azioni.get(0) instanceof BonusTesseraAcquistataNDTO
 				|| azioni.get(0) instanceof BonusTesseraPermessoNDTO) {
@@ -918,6 +918,13 @@ public class GUI extends Application implements Grafica {
 	@Override
 	public TesseraPermessoDTO scegliTesseraGiocatore(List<TesseraPermessoDTO> list) {
 		stampaTesserePermesso(controller.getTesserePermessoGiocatore(), list, 0, 70);
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		HBox tessere = controller.getTesserePermessoGiocatore();
 		DropShadow ds = new DropShadow();
 		ds.setColor(Color.web("#ffffff"));
@@ -953,15 +960,9 @@ public class GUI extends Application implements Grafica {
 	public List<CartaPoliticaDTO> scegliCarte(List<CartaPoliticaDTO> carteGiocatore) {
 		List<CartaPoliticaDTO> carte = new ArrayList<>();
 		List<ImageView> cartePolitica = this.controller.getCartePolitica();
-		DropShadow ds = new DropShadow();
-		ds.setColor(Color.web("#ffffff"));
-		ds.setRadius(21);
-		ds.setSpread(0.6);
-		ds.setWidth(42.5);
-		ds.setHeight(43.5);
 		for (ImageView i : cartePolitica) {
 			i.setDisable(false);
-			i.setEffect(ds);
+			i.setEffect(new Glow(0.6));
 		}
 		while (carte.size() != 4) {
 			synchronized (lock) {
