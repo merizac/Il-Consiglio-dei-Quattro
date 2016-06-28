@@ -54,10 +54,12 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.effect.Bloom;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Glow;
@@ -86,8 +88,8 @@ public class GUI extends Application implements Grafica {
 	private Object parametro;
 	private boolean carteInserite = false;
 	private Map<GiocatoreDTO, Tab> tabAvversari = new HashMap<>();
-	private final int timeout=20000;
-	private Timer timer=new Timer();
+	private final int timeout = 60000;
+	private Timer timer;
 	private TimerTask task;
 
 	@Override
@@ -193,20 +195,22 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public void mostraAzioni(List<AzioneDTO> azioni) {
-		task=new TimerTask() {
-			
+		timer = new Timer();
+		task = new TimerTask() {
+
 			@Override
 			public void run() {
 				try {
 					connessione.inviaAzione(new ExitDTO());
+					System.out.println("exit :"+gameStateDTO.getGiocatoreDTO().getNome());
 				} catch (RemoteException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 		};
-		timer.schedule(task, timeout);
-		
+		//timer.schedule(task, timeout);
+
 		if (azioni.get(0) instanceof BonusGettoneNDTO || azioni.get(0) instanceof BonusTesseraAcquistataNDTO
 				|| azioni.get(0) instanceof BonusTesseraPermessoNDTO) {
 			try {
@@ -216,7 +220,7 @@ public class GUI extends Application implements Grafica {
 			}
 			try {
 				connessione.inviaAzione(azioni.get(0));
-				task.cancel();
+				stopTimer();
 			} catch (RemoteException e) {
 				this.mostraMessaggio("Server non raggiungibile!");
 			}
@@ -236,10 +240,10 @@ public class GUI extends Application implements Grafica {
 		}
 
 		controller.mostraTesserePermessoRegioni(gameStateDTO.getRegioni());
-		System.out.println(gameStateDTO.getNomeMappa());
-		System.out.println(gameStateDTO.getAvversari());
-		System.out.println(gameStateDTO.getPedinaRE());
-		System.out.println(gameStateDTO);
+		//System.out.println(gameStateDTO.getNomeMappa());
+		//System.out.println(gameStateDTO.getAvversari());
+		//System.out.println(gameStateDTO.getPedinaRE());
+		//System.out.println(gameStateDTO);
 		controller.getMappaImmagine().setImage(
 				new Image(getClass().getResource("css/" + gameStateDTO.getNomeMappa() + ".jpg").toExternalForm()));
 		controller.mostraGettoni(new ArrayList<>(gameStateDTO.getCittà()));
@@ -1186,6 +1190,28 @@ public class GUI extends Application implements Grafica {
 			@Override
 			public void run() {
 				mappa.close();
+			}
+		});
+	}
+
+	public void stopTimer() {
+		if (timer != null) {
+			task.cancel();
+			timer.cancel();
+		}
+	}
+
+	public void azioneNonValida() {
+		Platform.runLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Errore");
+				alert.setHeaderText("L'azione non esiste!");
+				alert.setContentText("Ooops, riprova e inserisci un'azione valida!");
+
+				alert.showAndWait();
 			}
 		});
 	}
