@@ -80,7 +80,7 @@
                   </ScrollPane>
                   <HBox>
                      <children>
-                        <TextField fx:id="prezzo" disable="true" onAction="#handlePrezzo" prefHeight="27.0" prefWidth="214.0" promptText="prezzo di vendita" styleClass="mytext-field" stylesheets="@../css/market.css">
+                        <TextField fx:id="prezzo" disable="true" onKeyPressed="#handlePrezzo" prefHeight="27.0" prefWidth="214.0" promptText="prezzo di vendita" styleClass="mytext-field" stylesheets="@../css/market.css">
                            <VBox.margin>
                               <Insets top="7.0" />
                            </VBox.margin>

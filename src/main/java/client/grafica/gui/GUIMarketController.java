@@ -181,6 +181,7 @@ public class GUIMarketController {
 			gui.setParametro(prezzo);
 			gui.getLock().notifyAll();
 			ok.setDisable(true);
+			this.prezzo.clear();
 		}
 	}
 	

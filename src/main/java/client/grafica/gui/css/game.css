@@ -67,12 +67,15 @@
 }
 
 .tab-pane .tab-header-area .tab-header-background {
-    -fx-opacity: 0;
+    -fx-opacity: 1;
+    -fx-background-color:#A0785A;
+    -fx-effect: null;
 }
 
 .tab-pane
 {
     -fx-tab-min-width:90px;
+    -fx-tab-min-height: 17px;
 }
 
 .tab{
@@ -82,7 +85,7 @@
 .tab-pane .tab
 {
     -fx-background-color: #C3B091;
-    -fx-background-radius: 5px; 
+    -fx-background-radius: 5 5 0 0, 4 4 0 0, 3 3 0 0; 
  }
 
 .tab-pane .tab:selected
