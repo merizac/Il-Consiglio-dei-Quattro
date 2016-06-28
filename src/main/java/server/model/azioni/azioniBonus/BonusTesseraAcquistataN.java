@@ -13,7 +13,7 @@ public class BonusTesseraAcquistataN extends Azione {
 	 * anche una di quelle a faccia in giù
 	 */
 	private TesseraPermesso tesseraPermesso;
-
+	private int id;
 	/**
 	 * use bonus in the selected TesseraPermesso that player already choose, and notify
 	 */
@@ -46,6 +46,48 @@ public class BonusTesseraAcquistataN extends Azione {
 	@Override
 	public AzioneDTO getAzioneDTO() {
 		return new BonusTesseraAcquistataNDTO();
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		BonusTesseraAcquistataN other = (BonusTesseraAcquistataN) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	

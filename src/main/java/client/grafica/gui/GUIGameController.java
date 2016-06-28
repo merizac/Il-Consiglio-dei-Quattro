@@ -754,6 +754,7 @@ public class GUIGameController {
 	}
 
 	public void assegnaBottoniCittà(List<CittàDTO> città) {
+		this.città.clear();
 		arkon.setUserData(città.get(0));
 		arkon.setDisable(true);
 		this.città.add(arkon);
@@ -926,9 +927,9 @@ public class GUIGameController {
 
 	public List<Pane> getCittàBonus() {
 		List<Pane> cittàBonusGettone=new ArrayList<>();
-		for(Pane città: this.città){
-			if(città.getUserData() instanceof CittàBonusDTO)
-				cittàBonusGettone.add(città);
+		for(Pane cittàBonus: città){
+			if(cittàBonus.getUserData() instanceof CittàBonusDTO)
+				cittàBonusGettone.add(cittàBonus);
 		}
 		
 		return cittàBonusGettone;
