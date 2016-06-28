@@ -75,9 +75,9 @@ public class ServerRMIView extends View implements ServerRMIViewRemote {
 		Azione azione = null;
 
 		if (azioneDTO instanceof ExitDTO) {
-			this.unregister(connessioneRMIRemota);
 			Exit exit = new Exit();
 			exit.setGiocatore(this.giocatori.get(connessioneRMIRemota));
+			this.unregister(connessioneRMIRemota);
 			this.notifyObserver(exit);
 		} else if (azioneDTO instanceof AzioneMappaDTO) {
 			Server.setMappa(((AzioneMappaDTO) azioneDTO).getMappa());
@@ -132,6 +132,7 @@ public class ServerRMIView extends View implements ServerRMIViewRemote {
 		System.out.println(
 				"[SERVER] Il giocatore " + this.giocatori.get(connessioneRMIRemota).getNome() + " è stato rimosso");
 		this.giocatori.remove(connessioneRMIRemota);
+		System.out.println("mappa :"+ this.giocatori.size());
 	}
 
 	/**

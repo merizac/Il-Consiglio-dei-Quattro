@@ -10,6 +10,7 @@ public class BonusTesseraPermesso extends Bonus {
 	 * 
 	 */
 	private static final long serialVersionUID = 8227026796102581003L;
+	private int id=2;
 
 	public BonusTesseraPermesso() {
 		super();
@@ -20,7 +21,10 @@ public class BonusTesseraPermesso extends Bonus {
 	 * @return the corresponding action
 	 */
 	public Azione getAzioneBonus(){
-		return new BonusTesseraPermessoN();
+		BonusTesseraPermessoN bp = new BonusTesseraPermessoN();
+		bp.setId(id);
+		return bp;
+		
 	}
 
 	/**

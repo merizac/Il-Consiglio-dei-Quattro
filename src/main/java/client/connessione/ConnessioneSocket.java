@@ -84,6 +84,7 @@ public class ConnessioneSocket implements Connessione, Runnable {
 		try {
 			this.socketOut.writeObject(azioneDTO);
 			this.socketOut.flush();
+			this.socketOut.reset();
 		} catch (IOException e) {
 			System.out.println("prova");
 		}

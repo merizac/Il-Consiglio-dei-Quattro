@@ -34,6 +34,7 @@ import server.model.game.TesseraPermesso;
 import server.model.macchinaStati.StartEnd;
 import server.model.macchinaStati.Stato11;
 import server.model.macchinaStati.StatoBonus;
+import server.model.notify.AvversarioNotify;
 import server.model.notify.BonusNotify;
 import server.model.notify.GameStateNotify;
 import server.model.notify.GiocatoreNotify;
@@ -242,9 +243,10 @@ public class AcquistoTesseraPermessoTest {
 		assertEquals(aiutanti, gameState.getGiocatoreCorrente().getAiutanti().getAiutante());
 		assertEquals(vittoria, gameState.getGiocatoreCorrente().getPunteggioVittoria());
 
+		System.out.println("notifiche :"+notify);
 		assertTrue(notify.get(notify.size() - 3) instanceof GameStateNotify);
-		assertTrue(notify.get(notify.size() - 2) instanceof GiocatoreNotify);
-		assertTrue(notify.get(notify.size() - 1) instanceof MessageNotify);
+		assertTrue(notify.get(notify.size() - 1) instanceof GiocatoreNotify);
+		assertTrue(notify.get(notify.size() - 2) instanceof AvversarioNotify);
 	}
 
 	@Test
@@ -307,14 +309,12 @@ public class AcquistoTesseraPermessoTest {
 		Stato11 stato11=new Stato11(gameState);
 		gameState.setStato(stato11);
 		acquisto.eseguiAzione(gameState);
-		System.out.println(gameState.getGiocatoreCorrente().getPunteggioNobiltà());
 
 		assertTrue(numeroCartePolitica + carteP == gameState.getGiocatoreCorrente().getCartePolitica().size());
 		assertTrue(numeroCartePoliticaMazzo + 3 - carteP == gameState.getMazzoCartePolitica().getCarte().size());
 		assertTrue(!(tesseraScoperta == regione.getTesserePermessoScoperte().get(0)));
 		assertTrue(regione.getTesserePermessoScoperte().get(0) != null);
 
-		System.out.println(gameState.getStato());
 		assertTrue(gameState.getStato() instanceof StatoBonus);
 
 		assertEquals(monete - 6, gameState.getGiocatoreCorrente().getPunteggioRicchezza());
@@ -322,8 +322,10 @@ public class AcquistoTesseraPermessoTest {
 		assertEquals(vittoria+2, gameState.getGiocatoreCorrente().getPunteggioVittoria());
 
 		assertTrue(notify.get(notify.size() - 3) instanceof GameStateNotify);
-		assertTrue(notify.get(notify.size() - 2) instanceof GiocatoreNotify);
-		assertTrue(notify.get(notify.size() - 1) instanceof BonusNotify);
+		assertTrue(notify.get(notify.size() - 1) instanceof GiocatoreNotify);
+		assertTrue(notify.get(notify.size() - 4) instanceof BonusNotify);
+		assertTrue(notify.get(notify.size() - 2) instanceof AvversarioNotify);
+		
 	}
 	
 	@Test

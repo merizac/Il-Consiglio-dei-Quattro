@@ -31,10 +31,12 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import utility.AzioneNonEseguibile;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 
 public class GUIGameController {
 
@@ -482,12 +484,7 @@ public class GUIGameController {
 							.findAny().orElse(null);
 
 					if (azioneDTO == null) {
-						/*Alert alert = new Alert(AlertType.ERROR);
-						alert.setTitle("Errore");
-						alert.setHeaderText("L'azione non esiste!");
-						alert.setContentText("Ooops, riprova e inserisci un'azione valida!");
-
-						alert.showAndWait();*/
+						gui.azioneNonValida();
 						//gui.mostraMessaggio("L'azione non esiste \nInserire un'azione valida");
 						for (Button b : getAzioni()){
 							b.setDisable(false);
@@ -503,6 +500,7 @@ public class GUIGameController {
 					}
 					try {
 						gui.getConnessione().inviaAzione(azioneDTO);
+						gui.stopTimer();
 						for (Button b : getAzioni())
 							b.setDisable(false);
 					} catch (RemoteException e) {
@@ -754,6 +752,7 @@ public class GUIGameController {
 	}
 
 	public void assegnaBottoniCittà(List<CittàDTO> città) {
+		this.città.clear();
 		arkon.setUserData(città.get(0));
 		arkon.setDisable(true);
 		this.città.add(arkon);
@@ -924,11 +923,12 @@ public class GUIGameController {
 	}
 
 
-	public List<Pane> getCittàBonus() {
+	public List<Pane> getCittàBonusConEmporio() {
 		List<Pane> cittàBonusGettone=new ArrayList<>();
-		for(Pane città: this.città){
-			if(città.getUserData() instanceof CittàBonusDTO)
-				cittàBonusGettone.add(città);
+		for(Pane cittàBonus: città){
+			if(cittàBonus.getUserData() instanceof CittàBonusDTO
+					&& ((CittàDTO)cittàBonus.getUserData()).getEmpori().contains(gameStateDTO.getGiocatoreDTO().getColoreGiocatore()))
+				cittàBonusGettone.add(cittàBonus);
 		}
 		
 		return cittàBonusGettone;

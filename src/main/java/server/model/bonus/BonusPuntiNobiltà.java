@@ -1,7 +1,10 @@
 package server.model.bonus;
 
+import java.util.Arrays;
+
 import server.model.game.GameState;
 import server.model.game.PunteggioNobiltà;
+import server.model.notify.MessageNotify;
 
 public class BonusPuntiNobiltà extends Bonus {
 
@@ -31,6 +34,8 @@ public class BonusPuntiNobiltà extends Bonus {
 		PunteggioNobiltà nuovaPosizioneNobiltà = gameState.getPlanciaRe().getPercorsoNobiltà().get(puntiNuovi);
 		
 		gameState.getGiocatoreCorrente().setPunteggioNobiltà(nuovaPosizioneNobiltà);
+		gameState.notifyObserver(new MessageNotify((puntiNobiltà==1) ? "Hai vinto "+puntiNobiltà+" punto nobiltà" 
+				:"Hai vinto"+ puntiNobiltà+" punti vittoria", Arrays.asList(gameState.getGiocatoreCorrente())));
 	}
 
 	/* (non-Javadoc)
