@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -62,7 +63,7 @@ public class CostruzioneTesseraPermessoTest {
 		// creo la tessera permesso
 		ArrayList<Città> città = new ArrayList<>();
 		città.add(cittàCostruzione);
-		TesseraPermesso tesseraPermesso = new TesseraPermesso(città, null, regione);
+		TesseraPermesso tesseraPermesso = new TesseraPermesso(città, Arrays.asList(new BonusAiutanti(2)), regione);
 
 		// creo e setto i parametri per l'azione e la eseguo
 		CostruzioneTesseraPermesso azione = new CostruzioneTesseraPermesso();
