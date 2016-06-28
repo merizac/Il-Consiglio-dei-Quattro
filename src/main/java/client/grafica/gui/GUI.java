@@ -195,6 +195,7 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public void mostraAzioni(List<AzioneDTO> azioni) {
+
 		timer = new Timer();
 		task = new TimerTask() {
 
@@ -209,7 +210,8 @@ public class GUI extends Application implements Grafica {
 				}
 			}
 		};
-		//timer.schedule(task, timeout);
+		// timer.schedule(task, timeout);
+
 
 		if (azioni.get(0) instanceof BonusGettoneNDTO || azioni.get(0) instanceof BonusTesseraAcquistataNDTO
 				|| azioni.get(0) instanceof BonusTesseraPermessoNDTO) {
@@ -1129,12 +1131,14 @@ public class GUI extends Application implements Grafica {
 			if (!((CittàDTO) città.getUserData()).getNome().equals(cittàBonusDTO.get(0).getNome()))
 				città.setDisable(false);
 		}
-		while (parametro == null) {
-			try {
-				lock.wait();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		synchronized (lock) {
+			while (parametro == null) {
+				try {
+					lock.wait();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 		for (Pane città : dueCittàBonus) {
