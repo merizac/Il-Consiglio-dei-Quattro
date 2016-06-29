@@ -36,7 +36,7 @@ public class GUIController {
 	}
 
 	@FXML
-	public void button(ActionEvent e) {
+	public void button() {
 		if (nome.getText().isEmpty()) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Errore");

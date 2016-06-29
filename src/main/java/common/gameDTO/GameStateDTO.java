@@ -2,8 +2,6 @@ package common.gameDTO;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -13,7 +11,6 @@ import server.model.game.Città;
 import server.model.game.CittàBonus;
 import server.model.game.Consigliere;
 import server.model.game.GameState;
-import server.model.game.Giocatore;
 import server.model.game.Regione;
 import server.model.game.comparator.ComparatorOrdineAlfabetico;
 
@@ -198,6 +195,10 @@ public class GameStateDTO implements Serializable {
 	public String toString() {
 		return "GameStateDTO [mappa=" + città + "\nregioni=" + regioni + "\npedinaRE=" + pedinaRE + "\nplanciaReDTO="
 				+ planciaReDTO + "\nconsiglieri=" + consiglieri + "]";
+	}
+	
+	public void setNomeMappa(String mappa){
+		this.nomeMappa=mappa;
 	}
 
 	/**

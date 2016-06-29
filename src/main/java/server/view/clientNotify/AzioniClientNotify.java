@@ -18,12 +18,8 @@ public class AzioniClientNotify implements ClientNotify {
 	}
 
 	@Override
-	public void update(GameStateDTO gameStateDTO) {
+	public void stamp(Grafica grafica, GameStateDTO gameStateDTO) {
 		gameStateDTO.setAzioni(azioni);	
-	}
-
-	@Override
-	public void stamp(Grafica grafica) {
 		grafica.mostraAzioni(azioni);
 	}
 

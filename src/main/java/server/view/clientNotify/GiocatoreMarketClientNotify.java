@@ -19,12 +19,10 @@ public class GiocatoreMarketClientNotify implements ClientNotify {
 	}
 
 	@Override
-	public void update(GameStateDTO gameStateDTO) {
+	public void stamp(Grafica grafica, GameStateDTO gameStateDTO) throws IOException {
+		
 		gameStateDTO.setGiocatoreDTO(giocatoreDTO);
-	}
-
-	@Override
-	public void stamp(Grafica grafica) throws IOException {
+		
 		grafica.mostraGiocatoreMarket(giocatoreDTO);
 	}
 

@@ -20,15 +20,10 @@ public class OffertaClientNotify implements ClientNotify {
 	public OffertaClientNotify(List<OffertaDTO> offerte) {
 		this.offerte = offerte;
 	}
-	
 
 	@Override
-	public void update(GameStateDTO gameStateDTO) {
+	public void stamp(Grafica grafica, GameStateDTO gameStateDTO) {
 		gameStateDTO.setOfferte(this.offerte);
-	}
-
-	@Override
-	public void stamp(Grafica grafica) {
 		grafica.mostraOfferte(offerte);
 	}
 

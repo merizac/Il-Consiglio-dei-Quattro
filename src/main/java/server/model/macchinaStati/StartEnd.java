@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import server.model.azioni.Azione;
-import server.model.azioni.Exit;
 import server.model.azioni.PescaCarta;
 import server.model.game.GameState;
 import server.model.notify.AzioniNotify;
@@ -21,7 +20,7 @@ public class StartEnd implements Stato {
 	 */
 	public StartEnd(GameState gameState) {
 		System.out.println("[SERVER] " + this);
-		gameState.notifyObserver(new MessageNotify(gameState.getGiocatoreCorrente().getNome()+ " é il tuo turno!\n"
+		gameState.notifyObserver(new MessageNotify("E' il tuo turno "+gameState.getGiocatoreCorrente().getNome()+"\nPesca una carta!\n"
 				, Arrays.asList(gameState.getGiocatoreCorrente())));
 		azioni = Arrays.asList(new PescaCarta());
 		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));

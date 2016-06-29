@@ -25,14 +25,9 @@ public class PerdenteClientNotify implements ClientNotify {
 		this.giocatoreDTO.inizializza(giocatore);
 	}
 
-	@Override
-	public void update(GameStateDTO gameStateDTO) {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
-	public void stamp(Grafica grafica) {
+	public void stamp(Grafica grafica, GameStateDTO gameStateDTO) {
 		String messaggio=giocatoreDTO.getNome().toUpperCase()+", hai perso!!\n";
 		messaggio= messaggio + "Hai totalizzato "+ giocatoreDTO.getPunteggioVittoria() + " punti!";
 		grafica.mostraMessaggio(messaggio);

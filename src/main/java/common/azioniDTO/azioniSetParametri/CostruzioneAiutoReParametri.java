@@ -23,10 +23,10 @@ public class CostruzioneAiutoReParametri implements SetterParametri {
 		if(gameStateDTO.getGiocatoreDTO().getCartePolitica().isEmpty())
 			throw new AzioneNonEseguibile("Errore: non hai carte politica, seleziona un'altra azione");
 		
-		grafica.mostraMessaggio("Seleziona le carta politica dalla tua mano");
+		grafica.mostraMessaggio("Seleziona le carta politica dalla tua mano\n");
 		List<CartaPoliticaDTO>cartePolitica = grafica
 				.scegliCarte(new ArrayList<>(gameStateDTO.getGiocatoreDTO().getCartePolitica()));
-		grafica.mostraMessaggio("Seleziona la città in cui vuoi costruire");
+		grafica.mostraMessaggio("Seleziona la città in cui vuoi costruire\n");
 		CittàDTO cittàScelta = grafica.scegliCittà(gameStateDTO.getCittà(),
 				gameStateDTO.getGiocatoreDTO().getColoreGiocatore());
 

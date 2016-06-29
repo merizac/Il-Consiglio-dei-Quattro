@@ -12,15 +12,8 @@ public class StartGiocatoreClientNotify implements ClientNotify {
 	 */
 	private static final long serialVersionUID = 3008913317361336935L;
 
-
 	@Override
-	public void update(GameStateDTO gameStateDTO) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void stamp(Grafica grafica) throws IOException {
+	public void stamp(Grafica grafica, GameStateDTO gameStateDTO) throws IOException {
 			grafica.scegliMappa();
 	}
 

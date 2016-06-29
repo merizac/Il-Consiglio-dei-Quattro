@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import server.model.azioni.Azione;
 import server.model.game.GameState;
-import server.model.notify.BonusNotify;
+import server.model.notify.AzioniNotify;
 
 public class StatoBonus implements Stato {
 	private Stato stato;
@@ -19,8 +19,7 @@ public class StatoBonus implements Stato {
 			throw new NullPointerException("Lo stato deve essere lo stato precedente");
 		this.stato = stato;
 		this.azioni = gameState.getGiocatoreCorrente().getBonusNobiltà();
-		System.out.println(this.getAzioni().toString());
-		gameState.notifyObserver(new BonusNotify(gameState.getGiocatoreCorrente().getBonusNobiltà().get(0),
+		gameState.notifyObserver(new AzioniNotify(Arrays.asList(gameState.getGiocatoreCorrente().getBonusNobiltà().get(0)),
 				Arrays.asList(gameState.getGiocatoreCorrente())));
 
 	}
@@ -30,7 +29,7 @@ public class StatoBonus implements Stato {
 		if (gameState.getGiocatoreCorrente().getBonusNobiltà().isEmpty()) {
 			stato.transizionePrincipale(gameState);
 		} else {
-			gameState.notifyObserver(new BonusNotify(gameState.getGiocatoreCorrente().getBonusNobiltà().get(0),
+			gameState.notifyObserver(new AzioniNotify(Arrays.asList(gameState.getGiocatoreCorrente().getBonusNobiltà().get(0)),
 					Arrays.asList(gameState.getGiocatoreCorrente())));
 			gameState.setStato(this);
 		}

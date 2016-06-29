@@ -12,6 +12,7 @@ import java.util.concurrent.Executors;
 import common.azioniDTO.AzioneDTO;
 import common.azioniDTO.AzioneParametri;
 import common.azioniDTO.ChatDTO;
+import common.azioniDTO.ExitDTO;
 import common.gameDTO.CittàBonusDTO;
 import common.gameDTO.CittàDTO;
 import common.gameDTO.ConsigliereDTO;
@@ -31,12 +32,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import utility.AzioneNonEseguibile;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 
 public class GUIGameController {
 
@@ -56,6 +55,8 @@ public class GUIGameController {
 	private HBox giocatoreGUI;
 	@FXML
 	private HBox tesserePermesso;
+	@FXML
+	private HBox tesserePermessoUsate;
 	@FXML
 	private HBox cartePolitica;
 	@FXML
@@ -512,6 +513,18 @@ public class GUIGameController {
 			}
 
 		});
+	}
+	
+	@FXML
+	public void handleExit(ActionEvent event){
+		try {
+			gui.getConnessione().inviaAzione(new ExitDTO());
+			gui.stopTimer();
+			gui.close();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 

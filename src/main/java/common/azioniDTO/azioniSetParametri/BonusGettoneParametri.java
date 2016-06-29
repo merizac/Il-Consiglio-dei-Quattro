@@ -18,6 +18,7 @@ public class BonusGettoneParametri implements SetterParametri {
 	@Override
 	public void setParametri(Grafica grafica, GameStateDTO gameStateDTO) {
 		List<CittàBonusDTO> città;
+		grafica.mostraMessaggio("Hai vinto un bonus gettone!\n");
 		if(bonusGettoneNDTO.getNumeroGettoni()==1)
 			città=grafica.scegliUnaCittà();
 		else

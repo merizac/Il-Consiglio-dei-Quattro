@@ -19,7 +19,8 @@ public class GiocatoreClientNotify implements ClientNotify {
 	}
 
 	@Override
-	public void update(GameStateDTO gameStateDTO) {
+	public void stamp(Grafica grafica, GameStateDTO gameStateDTO) {
+		
 		GiocatoreDTO giocatore=gameStateDTO.getGiocatoreDTO();
 		giocatore.setTesserePermesso(this.giocatoreDTO.getTesserePermesso());
 		giocatore.setTesserePermessoUsate(this.giocatoreDTO.getTesserePermessoUsate());
@@ -30,10 +31,7 @@ public class GiocatoreClientNotify implements ClientNotify {
 		giocatore.setPunteggioNobiltà(this.giocatoreDTO.getPunteggioNobiltà());
 		giocatore.setPunteggioRicchezza(this.giocatoreDTO.getPunteggioRicchezza());
 		giocatore.setPunteggioVittoria(this.giocatoreDTO.getPunteggioVittoria());
-	}
-
-	@Override
-	public void stamp(Grafica grafica) {
+		
 		grafica.mostraGiocatore(giocatoreDTO);
 	}
 

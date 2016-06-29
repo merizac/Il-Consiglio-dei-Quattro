@@ -26,21 +26,20 @@ public class StatoOffertaMarket implements Stato {
 		}
 		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
 		gameState.notifyObserver(
-				new MessageNotify("Vuoi fare un offerta?", Arrays.asList(gameState.getGiocatoreCorrente())));
+				new MessageNotify("Vuoi fare un offerta o passare?\n", Arrays.asList(gameState.getGiocatoreCorrente())));
 	}
 
 	@Override
 	public void transizionePassa(GameState gameState) {
-		System.out.println("NumeroTurno1: " + gameState.getNumeroTurni());
-
+		
 		gameState.decrementaTurno();
 		gameState.nextPlayer();
-		System.out.println("NumeroTurno2: " + gameState.getNumeroTurni());
-
+		
 		if (gameState.getNumeroTurni() != 0) {
-			System.out.println("market giocatorecorrente: " + gameState.getGiocatoreCorrente().getNome());
 			gameState.notifyObserver(
 					new AzioniNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
+			gameState.notifyObserver(
+					new MessageNotify("Vuoi fare un offerta o passare?\n", Arrays.asList(gameState.getGiocatoreCorrente())));
 			gameState.setStato(this);
 
 		} else {
@@ -57,7 +56,7 @@ public class StatoOffertaMarket implements Stato {
 		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
 		gameState.notifyObserver(new OffertaNotify(gameState.getOfferteMarket(), gameState.getGiocatori()));
 		gameState.notifyObserver(
-				new MessageNotify("Vuoi fare un offerta?", Arrays.asList(gameState.getGiocatoreCorrente())));
+				new MessageNotify("Vuoi fare un offerta o passare?\n", Arrays.asList(gameState.getGiocatoreCorrente())));
 		gameState.setStato(this);
 	}
 

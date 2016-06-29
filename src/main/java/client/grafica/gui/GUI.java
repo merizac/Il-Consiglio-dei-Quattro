@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.CountDownLatch;
 
 import client.connessione.Connessione;
 import client.grafica.Grafica;
@@ -67,7 +68,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import server.view.clientNotify.ClientNotify;
 import utility.AzioneNonEseguibile;
 
 public class GUI extends Application implements Grafica {
@@ -182,7 +182,7 @@ public class GUI extends Application implements Grafica {
 		Parent root = fxmloader.load();
 		Scene theScene = new Scene(root);
 
-		controller = fxmloader.getController();
+		GUIGameController controller = fxmloader.getController();
 		controller.setGameStateDTO(this.gameStateDTO);
 		controller.setGui(this);
 		finestra.setScene(theScene);
@@ -207,8 +207,8 @@ public class GUI extends Application implements Grafica {
 			}
 		};
 
-		//timer.schedule(task, timeout);
-		
+		timer.schedule(task, timeout);
+
 		if (azioni.get(0) instanceof BonusGettoneNDTO || azioni.get(0) instanceof BonusTesseraAcquistataNDTO
 				|| azioni.get(0) instanceof BonusTesseraPermessoNDTO) {
 			try {
@@ -227,8 +227,28 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public void mostraClassifica(List<GiocatoreDTO> vincenti, List<GiocatoreDTO> perdenti) {
-		// TODO Auto-generated method stub
+		Platform.runLater(new Runnable() {
 
+			@Override
+			public void run() {
+				String messaggio="";
+				for (GiocatoreDTO g : vincenti) {
+					messaggio=messaggio+
+							 g.getNome().toUpperCase() + " Punteggio " + g.getPunteggioVittoria() + " punti\n";
+				}
+				for (GiocatoreDTO g : perdenti) {
+					messaggio=messaggio+
+							 g.getNome().toUpperCase() + " Punteggio " + g.getPunteggioVittoria() + " punti\n";
+				}
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Classifica");
+				alert.setHeaderText(vincenti.contains(gameStateDTO.getGiocatoreDTO()) ? "Complimenti "+gameStateDTO.getGiocatoreDTO().getNome()+" hai vinto" :
+					"Mi dispiace "+gameStateDTO.getGiocatoreDTO().getNome()+" hai perso");
+				alert.setContentText(messaggio);
+				alert.showAndWait();
+				finestra.close();
+			}
+		});
 	}
 
 	@Override
@@ -238,10 +258,7 @@ public class GUI extends Application implements Grafica {
 		}
 
 		controller.mostraTesserePermessoRegioni(gameStateDTO.getRegioni());
-		// System.out.println(gameStateDTO.getNomeMappa());
-		// System.out.println(gameStateDTO.getAvversari());
-		// System.out.println(gameStateDTO.getPedinaRE());
-		// System.out.println(gameStateDTO);
+
 		controller.getMappaImmagine().setImage(
 				new Image(getClass().getResource("css/" + gameStateDTO.getNomeMappa() + ".jpg").toExternalForm()));
 		controller.mostraGettoni(new ArrayList<>(gameStateDTO.getCittà()));
@@ -369,7 +386,6 @@ public class GUI extends Application implements Grafica {
 			int dimensione) {
 		Platform.runLater(new Runnable() {
 			Map<String, Image> mappaTessere = controller.getMappaTesserePermesso();
-
 			@Override
 			public void run() {
 				tesserePermesso.getChildren().clear();
@@ -403,6 +419,7 @@ public class GUI extends Application implements Grafica {
 					image.setUserData(t);
 					tesserePermesso.getChildren().add(image);
 				}
+				
 			}
 		});
 
@@ -633,17 +650,6 @@ public class GUI extends Application implements Grafica {
 		});
 	}
 
-	@Override
-	public void notify(ClientNotify notify) {
-		notify.update(gameStateDTO);
-		try {
-			notify.stamp(this);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
 
 	public static void main(String[] args) {
 		Application.launch(args);
@@ -918,13 +924,6 @@ public class GUI extends Application implements Grafica {
 	@Override
 	public TesseraPermessoDTO scegliTesseraGiocatore(List<TesseraPermessoDTO> list) {
 		stampaTesserePermesso(controller.getTesserePermessoGiocatore(), list, 0, 70);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
 		HBox tessere = controller.getTesserePermessoGiocatore();
 		DropShadow ds = new DropShadow();
 		ds.setColor(Color.web("#ffffff"));
@@ -1127,6 +1126,7 @@ public class GUI extends Application implements Grafica {
 	public List<CittàBonusDTO> scegliDueCittà() {
 		List<Pane> dueCittàBonus = controller.getCittàBonusConEmporio();
 		List<CittàBonusDTO> cittàBonusDTO = this.scegliUnaCittà();
+		this.mostraMessaggio("Scegli un'altra città");
 		for (Pane città : dueCittàBonus) {
 			if (!((CittàDTO) città.getUserData()).getNome().equals(cittàBonusDTO.get(0).getNome()))
 				città.setDisable(false);
@@ -1217,6 +1217,16 @@ public class GUI extends Application implements Grafica {
 				alert.setContentText(content);
 
 				alert.showAndWait();
+			}
+		});
+	}
+
+	public void close() {
+		Platform.runLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				finestra.close();
 			}
 		});
 	}
