@@ -182,7 +182,7 @@ public class GUI extends Application implements Grafica {
 		Parent root = fxmloader.load();
 		Scene theScene = new Scene(root);
 
-		GUIGameController controller = fxmloader.getController();
+		controller = fxmloader.getController();
 		controller.setGameStateDTO(this.gameStateDTO);
 		controller.setGui(this);
 		finestra.setScene(theScene);
@@ -207,7 +207,7 @@ public class GUI extends Application implements Grafica {
 			}
 		};
 
-		timer.schedule(task, timeout);
+		//timer.schedule(task, timeout);
 
 		if (azioni.get(0) instanceof BonusGettoneNDTO || azioni.get(0) instanceof BonusTesseraAcquistataNDTO
 				|| azioni.get(0) instanceof BonusTesseraPermessoNDTO) {
@@ -231,19 +231,20 @@ public class GUI extends Application implements Grafica {
 
 			@Override
 			public void run() {
-				String messaggio="";
+				String messaggio = "";
 				for (GiocatoreDTO g : vincenti) {
-					messaggio=messaggio+
-							 g.getNome().toUpperCase() + " Punteggio " + g.getPunteggioVittoria() + " punti\n";
+					messaggio = messaggio + g.getNome().toUpperCase() + " Punteggio " + g.getPunteggioVittoria()
+							+ " punti\n";
 				}
 				for (GiocatoreDTO g : perdenti) {
-					messaggio=messaggio+
-							 g.getNome().toUpperCase() + " Punteggio " + g.getPunteggioVittoria() + " punti\n";
+					messaggio = messaggio + g.getNome().toUpperCase() + " Punteggio " + g.getPunteggioVittoria()
+							+ " punti\n";
 				}
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Classifica");
-				alert.setHeaderText(vincenti.contains(gameStateDTO.getGiocatoreDTO()) ? "Complimenti "+gameStateDTO.getGiocatoreDTO().getNome()+" hai vinto" :
-					"Mi dispiace "+gameStateDTO.getGiocatoreDTO().getNome()+" hai perso");
+				alert.setHeaderText(vincenti.contains(gameStateDTO.getGiocatoreDTO())
+						? "Complimenti " + gameStateDTO.getGiocatoreDTO().getNome() + " hai vinto"
+						: "Mi dispiace " + gameStateDTO.getGiocatoreDTO().getNome() + " hai perso");
 				alert.setContentText(messaggio);
 				alert.showAndWait();
 				finestra.close();
@@ -256,7 +257,7 @@ public class GUI extends Application implements Grafica {
 		if (controllerMappa != null && mappa.isShowing()) {
 			closeSceltaMappa();
 		}
-
+		
 		controller.mostraTesserePermessoRegioni(gameStateDTO.getRegioni());
 
 		controller.getMappaImmagine().setImage(
@@ -386,6 +387,7 @@ public class GUI extends Application implements Grafica {
 			int dimensione) {
 		Platform.runLater(new Runnable() {
 			Map<String, Image> mappaTessere = controller.getMappaTesserePermesso();
+
 			@Override
 			public void run() {
 				tesserePermesso.getChildren().clear();
@@ -419,7 +421,7 @@ public class GUI extends Application implements Grafica {
 					image.setUserData(t);
 					tesserePermesso.getChildren().add(image);
 				}
-				
+
 			}
 		});
 
@@ -650,7 +652,6 @@ public class GUI extends Application implements Grafica {
 		});
 	}
 
-
 	public static void main(String[] args) {
 		Application.launch(args);
 	}
@@ -803,6 +804,7 @@ public class GUI extends Application implements Grafica {
 		}
 	}
 
+	// non va bene per cambio tessere permesso veloce
 	@Override
 	public RegioneDTO scegliRegione(List<RegioneDTO> regioni) {
 		List<ImageView> r = controller.getRegioni();
@@ -902,7 +904,7 @@ public class GUI extends Application implements Grafica {
 		List<Pane> cittàCostruzione = controller.getCittàSenzaEmporio(città);
 		for (Pane b : cittàCostruzione) {
 			b.setDisable(false);
-			b.setEffect(new Glow(0.6));
+			// b.setEffect(new Glow(0.6));
 		}
 
 		synchronized (lock) {
@@ -983,15 +985,28 @@ public class GUI extends Application implements Grafica {
 
 				carte.add((CartaPoliticaDTO) parametro);
 
-				if (carte.size() == 1)
+				DropShadow ds = new DropShadow();
+				ds.setColor(Color.web("#ffffff"));
+				ds.setRadius(21);
+				ds.setSpread(0.76);
+				ds.setWidth(27.07);
+				ds.setHeight(27.07);
+				if (carte.size() == 1){
 					controller.getConferma().setDisable(false);
+					controller.getConferma().setEffect(ds);}
+				
 
 				parametro = null;
 			}
 		}
-		for (ImageView i : cartePolitica)
+		for (ImageView i : cartePolitica) {
 			i.setOpacity(1);
+			i.setDisable(true);
+			i.setEffect(null);
+		}
+
 		controller.getConferma().setDisable(true);
+		controller.getConferma().setEffect(null);
 		System.out.println("carte politica" + carte);
 		return carte;
 
@@ -1223,7 +1238,7 @@ public class GUI extends Application implements Grafica {
 
 	public void close() {
 		Platform.runLater(new Runnable() {
-			
+
 			@Override
 			public void run() {
 				finestra.close();

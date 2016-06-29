@@ -22,7 +22,6 @@ public class GameStateClientNotify implements ClientNotify {
 	public void stamp(Grafica grafica, GameStateDTO gameStateDTO) throws IOException {
 		
 		gameStateDTO.setNomeMappa(this.gameStateDTO.getNomeMappa());
-		System.out.println("dentro :"+ gameStateDTO.getNomeMappa());
 		gameStateDTO.setCittà(this.gameStateDTO.getCittà());
 		gameStateDTO.setConsiglieri(this.gameStateDTO.getConsiglieri());
 		gameStateDTO.setPedinaRE(this.gameStateDTO.getPedinaRE());

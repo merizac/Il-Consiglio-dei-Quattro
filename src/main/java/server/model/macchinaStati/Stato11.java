@@ -24,7 +24,7 @@ public class Stato11 implements Stato {
 		System.out.println("[SERVER] "+this);
 		this.azioni=Arrays.asList(new ElezioneConsigliere(), new AcquistoTesseraPermesso(),
 				new CostruzioneTesseraPermesso(), new CostruzioneAiutoRe(), new IngaggioAiutante(), new CambioTesseraPermesso(), 
-				new ElezioneConsigliereVeloce(), new SecondaAzionePrincipale());
+				new ElezioneConsigliereVeloce());
 		gameState.notifyObserver(new MessageNotify("Scegli un'azione principale o un'azione veloce\n", Arrays.asList(gameState.getGiocatoreCorrente())));
 		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
 	}

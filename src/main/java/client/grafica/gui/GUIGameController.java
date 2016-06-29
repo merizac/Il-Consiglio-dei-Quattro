@@ -697,6 +697,7 @@ public class GUIGameController {
 	public void handleCartaPolitica(Event event) {
 		synchronized (gui.getLock()) {
 			((ImageView) event.getSource()).setDisable(true);
+			((ImageView) event.getSource()).setEffect(null);
 			((ImageView) event.getSource()).setOpacity(0.5);
 			gui.setParametro(((ImageView) event.getSource()).getUserData());
 			gui.getLock().notify();
