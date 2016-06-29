@@ -140,7 +140,7 @@ public class GUIMarketController {
 					}
 					try {
 						gui.getConnessione().inviaAzione(azioneDTO);
-						gui.stopTimer();
+						//gui.stopTimer();
 						for (Button b : azioni)
 							b.setDisable(false);
 					} catch (RemoteException e) {

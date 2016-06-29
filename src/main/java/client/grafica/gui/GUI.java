@@ -197,7 +197,7 @@ public class GUI extends Application implements Grafica {
 	@Override
 	public void mostraAzioni(List<AzioneDTO> azioni) {
 
-		timer = new Timer();
+		/*timer = new Timer();
 		task = new TimerTask() {
 
 			@Override
@@ -212,7 +212,7 @@ public class GUI extends Application implements Grafica {
 			}
 		};
 
-		//timer.schedule(task, timeout);
+		timer.schedule(task, timeout);*/
 
 		if (azioni.get(0) instanceof BonusGettoneNDTO || azioni.get(0) instanceof BonusTesseraAcquistataNDTO
 				|| azioni.get(0) instanceof BonusTesseraPermessoNDTO) {
