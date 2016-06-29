@@ -9,7 +9,6 @@ import java.util.Random;
 import java.util.Set;
 
 import server.model.bonus.Bonus;
-import server.model.bonus.BonusPuntiVittoria;
 import server.model.game.comparator.ComparatorClassifica;
 import server.model.game.comparator.ComparatorPuntiNobiltà;
 import server.model.game.comparator.ComparatorTesserePermesso;
