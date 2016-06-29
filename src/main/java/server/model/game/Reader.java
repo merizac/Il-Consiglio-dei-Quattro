@@ -1,6 +1,7 @@
 package server.model.game;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ public class Reader {
 	private List<Consigliere> consiglieri;
 	private List<Regione> regioni;
 	private List<Città> cities;
+	private BufferedReader fileCittà;
 
 	public Reader() {
 		this.consiglieri = new ArrayList<>();
@@ -226,10 +228,39 @@ public class Reader {
 		return regioni;
 	}
 
+	public List<Colore> letturaColoriCittà(String configurazione) throws IOException{
+		List<Colore> coloriCittà = new ArrayList<>();
+		FileReader città = new FileReader("src/main/resources/" + configurazione + "ColoriCittà.txt");
+		fileCittà = new BufferedReader(città);
+		String stringaLetta;
+		stringaLetta = fileCittà.readLine();
+
+		// Creo coloricittà salvati in un arraylist
+		while (!"CITTA".equals(stringaLetta)) {
+			StringTokenizer st = new StringTokenizer(stringaLetta);
+			String colore = st.nextToken();
+			ColoreCittà colorecittà;
+			ColoreRe coloreRe;
+			int puntiBonus;
+			if (!"Re".equals(colore)) {
+				if (st.hasMoreTokens()) {
+					puntiBonus = Integer.parseInt(st.nextToken());
+					colorecittà = new ColoreCittà(colore, new BonusPuntiVittoria(puntiBonus));
+					coloriCittà.add(colorecittà);
+				}
+			} else {
+				coloreRe = new ColoreRe(colore);
+				coloriCittà.add(coloreRe);
+			}
+			stringaLetta = fileCittà.readLine();
+		}
+		return coloriCittà;
+	}
+	
 	public List<Città> letturaCittà(String configurazione) throws IOException {
 
 		List<Colore> coloriCittà = new ArrayList<>();
-		FileReader città = new FileReader("src/main/resources/" + configurazione + "Città.txt");
+/*		FileReader città = new FileReader("src/main/resources/" + configurazione + "Città.txt");
 		BufferedReader b;
 		b = new BufferedReader(città);
 		String stringaLetta;
@@ -254,7 +285,7 @@ public class Reader {
 			}
 			stringaLetta = b.readLine();
 		}
-
+*/
 		// Ciclo le regioni poi i colori e setto la città
 		for (Regione regione : regioni) {
 			String numero = b.readLine();
