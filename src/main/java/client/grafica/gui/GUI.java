@@ -189,7 +189,7 @@ public class GUI extends Application implements Grafica {
 		theScene.setCursor(new ImageCursor(image));
 
 
-		GUIGameController controller = fxmloader.getController();
+		controller = fxmloader.getController();
 		controller.setGameStateDTO(this.gameStateDTO);
 		controller.setGui(this);
 		finestra.setScene(theScene);

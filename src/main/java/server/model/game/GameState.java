@@ -41,7 +41,7 @@ public class GameState extends Observable<Notify> {
 	private List<Offerta> offerteMarket;
 	private boolean ultimoGiro = false;
 	private List<Giocatore> giocatoriFinePartita;
-	private List<ColoreCittà> bonusColore;
+	private List<Colore> bonusColore;
 	private String nomeMappa;
 
 	/**
@@ -141,7 +141,7 @@ public class GameState extends Observable<Notify> {
 	/**
 	 * @return the bonusColore
 	 */
-	public List<ColoreCittà> getBonusColore() {
+	public List<Colore> getBonusColore() {
 		return bonusColore;
 	}
 
@@ -366,7 +366,8 @@ public class GameState extends Observable<Notify> {
 		this.regioni = reader.letturaRegioni();
 		this.planciaRe = reader.creazionePlanciaRe();
 		this.mazzoCartePolitica = reader.letturaCartePolitica();
-		this.mappa = reader.creazioneMappa(mappa);
+		this.bonusColore=reader.letturaColoriCittà(mappa);
+		this.mappa = reader.creazioneMappa(mappa,bonusColore);
 		this.pedinaRe = reader.creazioneRe();
 		this.giocatori = new ArrayList<>();
 		this.offerteMarket = new ArrayList<>();
