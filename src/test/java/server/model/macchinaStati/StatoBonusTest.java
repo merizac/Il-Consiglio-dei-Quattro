@@ -22,7 +22,6 @@ import server.model.game.GameState;
 import server.model.game.Giocatore;
 import server.model.game.PunteggioNobiltà;
 import server.model.notify.AzioniNotify;
-import server.model.notify.BonusNotify;
 import server.model.notify.MessageNotify;
 import server.model.notify.Notify;
 import utility.Observer;
