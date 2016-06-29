@@ -62,8 +62,6 @@ public interface Grafica {
 
 	public int scegliOfferta(List<OffertaDTO> offerte);
 
-	public int scegliUsataONonUsata();
-
 	public List<CittàBonusDTO> scegliUnaCittà();
 
 	public List<CittàBonusDTO> scegliDueCittà();
@@ -75,4 +73,6 @@ public interface Grafica {
 	public void fineMarket();
 
 	public void scegliMappa();
+
+	public TesseraPermessoDTO scegliTesseraPermessoUsataONonUsata(List<TesseraPermessoDTO> tessere, List<TesseraPermessoDTO> tessereUsate);
 }

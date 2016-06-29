@@ -336,7 +336,9 @@ public class GUI extends Application implements Grafica {
 	@Override
 	public void mostraGiocatore(GiocatoreDTO giocatoreDTO) {
 		stampaTesserePermesso(controller.getTesserePermessoGiocatore(), giocatoreDTO.getTesserePermesso(),
-				giocatoreDTO.getTesserePermessoUsate().size(), 70);
+				0, 70, 1);
+		stampaTesserePermesso(controller.getTesserePermessoGiocatoreUsate(), giocatoreDTO.getTesserePermessoUsate(),
+				0, 70, 0.6);
 		cartePolitica(giocatoreDTO.getCartePolitica());
 		controller.mostraNomeGiocatore(giocatoreDTO.getNome());
 		HBox hbox = controller.getGiocatoreGUI();
@@ -383,7 +385,7 @@ public class GUI extends Application implements Grafica {
 	 * @param dimensione
 	 */
 	private void stampaTesserePermesso(HBox tesserePermesso, List<TesseraPermessoDTO> tessere, int tessereUsate,
-			int dimensione) {
+			int dimensione, double opacity) {
 		Platform.runLater(new Runnable() {
 			Map<String, Image> mappaTessere = controller.getMappaTesserePermesso();
 			@Override
@@ -417,6 +419,7 @@ public class GUI extends Application implements Grafica {
 					});
 					image.setDisable(true);
 					image.setUserData(t);
+					image.setOpacity(opacity);
 					tesserePermesso.getChildren().add(image);
 				}
 				
@@ -684,7 +687,7 @@ public class GUI extends Application implements Grafica {
 
 				HBox tesserePermesso = new HBox();
 				stampaTesserePermesso(tesserePermesso, avversario.getTesserePermesso(),
-						avversario.getTesserePermessoUsate().size(), 50);
+						avversario.getTesserePermessoUsate().size(), 50, 1);
 				vbox.getChildren().add(tesserePermesso);
 			}
 		});
@@ -923,7 +926,6 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public TesseraPermessoDTO scegliTesseraGiocatore(List<TesseraPermessoDTO> list) {
-		stampaTesserePermesso(controller.getTesserePermessoGiocatore(), list, 0, 70);
 		HBox tessere = controller.getTesserePermessoGiocatore();
 		DropShadow ds = new DropShadow();
 		ds.setColor(Color.web("#ffffff"));
@@ -951,6 +953,49 @@ public class GUI extends Application implements Grafica {
 		for (Node i : tessere.getChildren()) {
 			i.setDisable(true);
 			i.setEffect(null);
+		}
+		return tesseraPermessoDTO;
+	}
+	
+	@Override
+	public TesseraPermessoDTO scegliTesseraPermessoUsataONonUsata(List<TesseraPermessoDTO> tessere, List<TesseraPermessoDTO> tessereUsate){
+		HBox tessereGiocatore = controller.getTesserePermessoGiocatore();
+		HBox tessereGiocatoreUsate = controller.getTesserePermessoGiocatoreUsate();
+		DropShadow ds = new DropShadow();
+		ds.setColor(Color.web("#ffffff"));
+		ds.setRadius(21);
+		ds.setSpread(0.6);
+		ds.setWidth(42.5);
+		ds.setHeight(43.5);
+		for (Node i : tessereGiocatore.getChildren()) {
+			i.setDisable(false);
+			i.setEffect(ds);
+		}
+		
+		for (Node i : tessereGiocatoreUsate.getChildren()) {
+			i.setDisable(false);
+			i.setEffect(ds);
+		}
+
+		synchronized (lock) {
+			while (parametro == null) {
+				try {
+					lock.wait();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		TesseraPermessoDTO tesseraPermessoDTO = (TesseraPermessoDTO) parametro;
+		parametro = null;
+		for (Node i : tessereGiocatore.getChildren()) {
+			i.setDisable(true);
+			i.setEffect(null);
+		}
+		for (Node i : tessereGiocatoreUsate.getChildren()) {
+			i.setDisable(true);
+			i.setEffect(ds);
 		}
 		return tesseraPermessoDTO;
 	}
@@ -1089,12 +1134,6 @@ public class GUI extends Application implements Grafica {
 	public CittàDTO scegliCittàBonus(Set<CittàBonusDTO> città, ColoreDTO coloreGiocatore, String input) {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public int scegliUsataONonUsata() {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 	@Override
