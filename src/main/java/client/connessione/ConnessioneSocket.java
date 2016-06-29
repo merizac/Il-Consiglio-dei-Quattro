@@ -71,7 +71,12 @@ public class ConnessioneSocket implements Connessione, Runnable {
 					disconnetti();
 					return;
 				}
-				grafica.notify(notify);
+				try {
+					notify.stamp(grafica, gameStateDTO);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 		}
 		
 	}

@@ -2,8 +2,6 @@ package common.gameDTO;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -11,9 +9,9 @@ import java.util.TreeSet;
 import common.azioniDTO.AzioneDTO;
 import server.model.game.Città;
 import server.model.game.CittàBonus;
+import server.model.game.ColoreCittà;
 import server.model.game.Consigliere;
 import server.model.game.GameState;
-import server.model.game.Giocatore;
 import server.model.game.Regione;
 import server.model.game.comparator.ComparatorOrdineAlfabetico;
 
@@ -29,11 +27,21 @@ public class GameStateDTO implements Serializable {
 	private GiocatoreDTO giocatoreDTO;
 	private List<GiocatoreDTO> avversari;
 	private List<OffertaDTO> offerte;
+	private List<ColoreBonusDTO> bonusColore;
 	private String nomeMappa;
 
 	public void inizializza(GameState gameState) {
-		
-		this.avversari=new ArrayList<>();
+
+		this.avversari = new ArrayList<>();
+		this.bonusColore = new ArrayList<>();
+		for (ColoreCittà colore : gameState.getBonusColore()) {
+			if (!colore.isAssegnatoBonus()) {
+				ColoreBonusDTO coloreBonusDTO = new ColoreBonusDTO();
+				coloreBonusDTO.inizializza(colore);
+				this.bonusColore.add(coloreBonusDTO);
+			}
+		}
+
 		this.città = new TreeSet<>(new ComparatorOrdineAlfabetico());
 		for (Città c : gameState.getCittà()) {
 			if (c instanceof CittàBonus) {
@@ -65,7 +73,7 @@ public class GameStateDTO implements Serializable {
 			consiglieri.add(consigliereDTO);
 		}
 		this.offerte = new ArrayList<>();
-		this.nomeMappa=gameState.getNomeMappa();
+		this.nomeMappa = gameState.getNomeMappa();
 	}
 
 	/**
@@ -195,9 +203,9 @@ public class GameStateDTO implements Serializable {
 	public List<OffertaDTO> getOfferte() {
 		return offerte;
 	}
-	
+
 	public List<GiocatoreDTO> getAvversari() {
-		
+
 		return this.avversari;
 	}
 
@@ -218,6 +226,10 @@ public class GameStateDTO implements Serializable {
 				+ planciaReDTO + "\nconsiglieri=" + consiglieri + "]";
 	}
 
+	public void setNomeMappa(String mappa) {
+		this.nomeMappa = mappa;
+	}
+
 	/**
 	 * @return the nomeMappa
 	 */
@@ -225,5 +237,19 @@ public class GameStateDTO implements Serializable {
 		return nomeMappa;
 	}
 
-	
+	/**
+	 * @return the bonusColore
+	 */
+	public List<ColoreBonusDTO> getBonusColore() {
+		return bonusColore;
+	}
+
+	/**
+	 * @param bonusColore
+	 *            the bonusColore to set
+	 */
+	public void setBonusColore(List<ColoreBonusDTO> bonusColore) {
+		this.bonusColore = bonusColore;
+	}
+
 }

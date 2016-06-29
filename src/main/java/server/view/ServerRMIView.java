@@ -132,7 +132,6 @@ public class ServerRMIView extends View implements ServerRMIViewRemote {
 		System.out.println(
 				"[SERVER] Il giocatore " + this.giocatori.get(connessioneRMIRemota).getNome() + " è stato rimosso");
 		this.giocatori.remove(connessioneRMIRemota);
-		System.out.println("mappa :"+ this.giocatori.size());
 	}
 
 	/**

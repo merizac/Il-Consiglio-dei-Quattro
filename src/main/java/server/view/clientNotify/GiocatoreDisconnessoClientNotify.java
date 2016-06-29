@@ -20,12 +20,7 @@ public class GiocatoreDisconnessoClientNotify implements ClientNotify {
 	}
 
 	@Override
-	public void update(GameStateDTO gameStateDTO) {
-
-	}
-
-	@Override
-	public void stamp(Grafica grafica) {
+	public void stamp(Grafica grafica, GameStateDTO gameStateDTO) {
 		String messaggio = "Il giocatore "+giocatoreDisconnesso.getNome()+" ha abbandonato la partita\n";
 		grafica.mostraMessaggio(messaggio);
 	}

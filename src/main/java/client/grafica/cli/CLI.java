@@ -1,6 +1,5 @@
 package client.grafica.cli;
 
-import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -34,7 +33,6 @@ import common.gameDTO.OffertaDTO;
 import common.gameDTO.RegioneDTO;
 import common.gameDTO.TesseraPermessoDTO;
 import server.model.bonus.Bonus;
-import server.view.clientNotify.ClientNotify;
 import utility.AzioneNonEseguibile;
 import utility.Utils;
 
@@ -169,7 +167,7 @@ public class CLI implements Grafica {
 	 */
 	public Connessione scegliConnessione() throws RemoteException {
 		System.out.println("Inserisci connessione\nSocket[1]\nRMI[2]");
-		String connessioneClient = null;
+		String connessioneClient;
 		while (true) {
 			{
 				connessioneClient = stdIn.nextLine();
@@ -308,8 +306,8 @@ public class CLI implements Grafica {
 	 */
 	@Override
 	public void mostraOfferte(List<OffertaDTO> offerte) {
+		int i = 1;
 		for (OffertaDTO o : offerte) {
-			int i = 1;
 			System.out.println("\n" + o.getMarketableDTO() + " prezzo: " + o.getPrezzo() + " [" + i + "]");
 			i++;
 		}
@@ -608,41 +606,21 @@ public class CLI implements Grafica {
 		System.out.println("Tessere permesso " + avversario.getTesserePermesso() + "\n");
 	}
 
-	/**
-	 * update the client after receiving a notify
-	 */
-	@Override
-	public void notify(ClientNotify notify) {
-		notify.update(gameStateDTO);
-		try {
-			notify.stamp(this);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
 	public static void main(String[] args) {
 		CLI cli = new CLI();
 		cli.start();
 	}
 
-	@Override
-	public int scegliUsataONonUsata() {
-		System.out.println("Vuoi prendere i bonus di una tessera già usata [1] o di una scoperta [2] ?");
-		String input = stdIn.nextLine();
-		boolean b = false;
-		while (!b) {
-			while (!Utils.isNumeric(input)) {
-				System.out.println("valore non valido");
-				input = stdIn.nextLine();
-			}
-			if (Integer.parseInt(input) == 1 || Integer.parseInt(input) == 2) {
-				b = true;
-			}
-		}
-
-		return Integer.parseInt(input);
-	}
+	/*
+	 * @Override public int scegliUsataONonUsata() { System.out.println(
+	 * "Vuoi prendere i bonus di una tessera già usata [1] o di una scoperta [2] ?"
+	 * ); inputLine = stdIn.nextLine(); boolean b = false; while (!b) { while
+	 * (!Utils.isNumeric(inputLine)) { System.out.println("valore non valido");
+	 * inputLine = stdIn.nextLine(); } if (Integer.parseInt(inputLine) == 1 ||
+	 * Integer.parseInt(inputLine) == 2) { b = true; } }
+	 * 
+	 * return Integer.parseInt(inputLine); }
+	 */
 
 	@Override
 	public List<CittàBonusDTO> scegliUnaCittà() {
@@ -657,8 +635,9 @@ public class CLI implements Grafica {
 
 		System.out.println("Scegli una città");
 		System.out.println(città.toString());
-		String input = stdIn.nextLine();
-		CittàDTO cittàScelta = this.scegliCittàBonus(città, gameStateDTO.getGiocatoreDTO().getColoreGiocatore(), input);
+		inputLine = stdIn.nextLine();
+		CittàDTO cittàScelta = this.scegliCittàBonus(città, gameStateDTO.getGiocatoreDTO().getColoreGiocatore(),
+				inputLine);
 		List<CittàBonusDTO> cittàb = new ArrayList<>();
 		cittàb.add((CittàBonusDTO) cittàScelta);
 
@@ -679,12 +658,12 @@ public class CLI implements Grafica {
 		}
 
 		System.out.println("Scegli una città");
-		String input = stdIn.nextLine();
+		inputLine = stdIn.nextLine();
 		List<CittàBonusDTO> cittàb = new ArrayList<>();
 		for (int i = 0; i < 2; i++) {
-			input = stdIn.nextLine();
+			inputLine = stdIn.nextLine();
 			CittàDTO cittàScelta = this.scegliCittàBonus(città, gameStateDTO.getGiocatoreDTO().getColoreGiocatore(),
-					input);
+					inputLine);
 			cittàb.add((CittàBonusDTO) cittàScelta);
 			System.out.println("Scegli un'altra città con gettone dei bonus diverso dalla prima");
 		}
@@ -718,5 +697,39 @@ public class CLI implements Grafica {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public TesseraPermessoDTO scegliTesseraPermessoUsataONonUsata(List<TesseraPermessoDTO> tessere,
+			List<TesseraPermessoDTO> tessereUsate) {
+		TesseraPermessoDTO tesseraPermessoDTO = null;
+		
+		System.out.println("Vuoi prendere i bonus di una tessera già usata [1] o di una scoperta [2] ?");
+
+		boolean b = false;
+		if (gameStateDTO.getGiocatoreDTO().getTesserePermesso().isEmpty()) {
+			inputLine = "1";
+		}
+		if (gameStateDTO.getGiocatoreDTO().getTesserePermessoUsate().isEmpty()) {
+			inputLine = "2";
+		} else {
+			inputLine = stdIn.nextLine();
+			while (!b) {
+				while (!Utils.isNumeric(inputLine)) {
+					System.out.println("valore non valido");
+					inputLine = stdIn.nextLine();
+				}
+				if (Integer.parseInt(inputLine) == 1 || Integer.parseInt(inputLine) == 2) {
+					b = true;
+				}
+			}
+		}
+		
+		if ("1".equals(inputLine))
+			tesseraPermessoDTO = this.scegliTesseraGiocatore(tessereUsate);
+		else
+			tesseraPermessoDTO = this.scegliTesseraGiocatore(tessere);
+
+		return tesseraPermessoDTO;
 	}
 }

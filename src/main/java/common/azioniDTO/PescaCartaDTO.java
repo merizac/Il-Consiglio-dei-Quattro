@@ -17,7 +17,7 @@ public class PescaCartaDTO implements AzioneDTO {
 	 */
 	@Override
 	public String toString() {
-		return "Pesca una carta politica per iniziare il turno!  [Pesca]";
+		return "Pesca [Pesca]";
 	}
 
 }

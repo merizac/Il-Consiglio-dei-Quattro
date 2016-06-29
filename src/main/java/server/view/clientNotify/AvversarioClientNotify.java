@@ -19,12 +19,8 @@ public class AvversarioClientNotify implements ClientNotify {
 	}
 
 	@Override
-	public void update(GameStateDTO gameStateDTO) {
+	public void stamp(Grafica grafica, GameStateDTO gameStateDTO) throws IOException {
 		gameStateDTO.getAvversari().add(avversario);
-	}
-
-	@Override
-	public void stamp(Grafica grafica) throws IOException {
 		grafica.mostraAvversario(avversario);
 	}
 

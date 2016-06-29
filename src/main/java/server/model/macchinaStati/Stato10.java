@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import server.model.azioni.Azione;
-import server.model.azioni.Passa;
 import server.model.azioni.azioniPrincipali.AcquistoTesseraPermesso;
 import server.model.azioni.azioniPrincipali.CostruzioneAiutoRe;
 import server.model.azioni.azioniPrincipali.CostruzioneTesseraPermesso;
@@ -23,7 +22,7 @@ public class Stato10 implements Stato {
 		azioni = Arrays.asList(new ElezioneConsigliere(), new AcquistoTesseraPermesso(),
 				new CostruzioneTesseraPermesso(), new CostruzioneAiutoRe());
 		gameState.notifyObserver(
-				new MessageNotify("AZIONI PRINCIPALI", Arrays.asList(gameState.getGiocatoreCorrente())));
+				new MessageNotify("Scegli un'azione principale\n", Arrays.asList(gameState.getGiocatoreCorrente())));
 		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
 	}
 

@@ -17,7 +17,6 @@ import common.gameDTO.MarketableDTO;
 import common.gameDTO.OffertaDTO;
 import common.gameDTO.RegioneDTO;
 import common.gameDTO.TesseraPermessoDTO;
-import server.view.clientNotify.ClientNotify;
 
 public interface Grafica {
 
@@ -37,8 +36,8 @@ public interface Grafica {
 
 	public void mostraOfferte(List<OffertaDTO> offerte);
 
-	public void notify(ClientNotify notify);
 	public void mostraAvversario(GiocatoreDTO avversario);
+
 	public ConsigliereDTO scegliConsigliere(List<ConsigliereDTO> consiglieri);
 
 	public BalconeDTO scegliBalcone(List<RegioneDTO> regioni, BalconeDTO balconeRe);
@@ -63,8 +62,6 @@ public interface Grafica {
 
 	public int scegliOfferta(List<OffertaDTO> offerte);
 
-	public int scegliUsataONonUsata();
-
 	public List<CittàBonusDTO> scegliUnaCittà();
 
 	public List<CittàBonusDTO> scegliDueCittà();
@@ -76,4 +73,6 @@ public interface Grafica {
 	public void fineMarket();
 
 	public void scegliMappa();
+
+	public TesseraPermessoDTO scegliTesseraPermessoUsataONonUsata(List<TesseraPermessoDTO> tessere, List<TesseraPermessoDTO> tessereUsate);
 }

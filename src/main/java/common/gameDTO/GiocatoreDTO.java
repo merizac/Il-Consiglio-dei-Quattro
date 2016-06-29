@@ -180,7 +180,7 @@ public class GiocatoreDTO implements Serializable {
 	}
 	
 	public void inizializza(Giocatore giocatore){
-		System.out.println("giocatore "+giocatore);
+
 		this.setNome(giocatore.getNome());
 		this.setAiutanti(giocatore.getAiutanti().getAiutante());
 		this.cartePolitica=new ArrayList<>();

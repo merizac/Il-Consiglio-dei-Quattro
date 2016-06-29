@@ -25,12 +25,12 @@ public class AcquistoTesseraPermessoParametri implements SetterParametri {
 		if(gameStateDTO.getGiocatoreDTO().getCartePolitica().isEmpty())
 			throw new AzioneNonEseguibile("Errore: non hai carte politica, seleziona un'altra azione");
 		
-		grafica.mostraMessaggio("Seleziona le carta politica dalla tua mano");
+		grafica.mostraMessaggio("Seleziona le carta politica dalla tua mano\n");
 		List<CartaPoliticaDTO> cartePolitica = grafica
 				.scegliCarte(new ArrayList<>(gameStateDTO.getGiocatoreDTO().getCartePolitica()));
-		grafica.mostraMessaggio("Seleziona la regione");
+		grafica.mostraMessaggio("Seleziona la regione\n");
 		RegioneDTO regioneScelta = grafica.scegliRegione(gameStateDTO.getRegioni());
-		grafica.mostraMessaggio("Seleziona la tessera permesso della regione "+ regioneScelta.getNome());
+		grafica.mostraMessaggio("Seleziona la tessera permesso della regione "+ regioneScelta.getNome()+"\n");
 		TesseraPermessoDTO tesseraScelta = grafica.scegliTesseraRegione(regioneScelta.getTesserePermessoScoperte());
 		acquistoTesseraPermessoDTO.setRegione(regioneScelta);
 		acquistoTesseraPermessoDTO.setCarte(cartePolitica);

@@ -24,13 +24,7 @@ public class VincitoreClientNotify implements ClientNotify {
 	}
 
 	@Override
-	public void update(GameStateDTO gameStateDTO) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void stamp(Grafica grafica) {
+	public void stamp(Grafica grafica, GameStateDTO gameStateDTO) {
 		String messaggio ="Complimenti "+giocatoreDTO.getNome().toUpperCase()
 				+ ", hai vinto!!";
 		messaggio= messaggio + "Hai totalizzato "+ giocatoreDTO.getPunteggioVittoria() + " punti!";

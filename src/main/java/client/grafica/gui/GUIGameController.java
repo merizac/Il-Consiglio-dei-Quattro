@@ -12,8 +12,10 @@ import java.util.concurrent.Executors;
 import common.azioniDTO.AzioneDTO;
 import common.azioniDTO.AzioneParametri;
 import common.azioniDTO.ChatDTO;
+import common.azioniDTO.ExitDTO;
 import common.gameDTO.CittàBonusDTO;
 import common.gameDTO.CittàDTO;
+import common.gameDTO.ColoreBonusDTO;
 import common.gameDTO.ConsigliereDTO;
 import common.gameDTO.GameStateDTO;
 import common.gameDTO.RegioneDTO;
@@ -29,14 +31,13 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import server.model.bonus.Bonus;
 import utility.AzioneNonEseguibile;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 
 public class GUIGameController {
 
@@ -47,15 +48,17 @@ public class GUIGameController {
 	private Map<String, Image> mappaGettoni = new HashMap<>();
 	private Map<String, Image> mappaConsiglieri = new HashMap<>();
 	private Map<String, Image> mappaConsiglieriRiserva = new HashMap<>();
-	private Map<String, Image> mappaBonus=new HashMap<>();
-	private Map<String, Image> mappaEmpori=new HashMap<>();
-	
+	private Map<String, Image> mappaBonus = new HashMap<>();
+	private Map<String, Image> mappaEmpori = new HashMap<>();
+
 	@FXML
 	private ImageView mappaImmagine;
 	@FXML
 	private HBox giocatoreGUI;
 	@FXML
 	private HBox tesserePermesso;
+	@FXML
+	private HBox tesserePermessoUsate;
 	@FXML
 	private HBox cartePolitica;
 	@FXML
@@ -91,7 +94,6 @@ public class GUIGameController {
 	private ImageView consigliere7;
 	@FXML
 	private ImageView consigliere8;
-
 
 	@FXML
 	private ImageView frecciaMare;
@@ -258,24 +260,19 @@ public class GUIGameController {
 	private TextField chat;
 
 	public GUIGameController() {
-		this.mappaEmpori.put("0", 
-				new Image(getClass().getResource("css/empori/1.png").toExternalForm()));
-		this.mappaEmpori.put("1", 
-				new Image(getClass().getResource("css/empori/2.png").toExternalForm()));
-		this.mappaEmpori.put("2", 
-				new Image(getClass().getResource("css/empori/3.png").toExternalForm()));
-		this.mappaEmpori.put("3", 
-				new Image(getClass().getResource("css/empori/4.png").toExternalForm()));
-		
-		this.mappaBonus.put("Aiutante", 
-				new Image(getClass().getResource("css/Assistant.png").toExternalForm()));
-		this.mappaBonus.put("Re", 
-				new Image(getClass().getResource("css/king.png").toExternalForm()));
-		this.mappaBonus.put("Punto",new Image(getClass().getResource("css/Point.png").toExternalForm()));
-		this.mappaBonus.put("Nobiltà",new Image(getClass().getResource("css/Nobility.png").toExternalForm()));
-		this.mappaBonus.put("BonusGiocatore",new Image(getClass().getResource("css/BonusGiocatori.png").toExternalForm()));
-		this.mappaBonus.put("Soldo",new Image(getClass().getResource("css/Coins.png").toExternalForm()));
-		
+		this.mappaEmpori.put("0", new Image(getClass().getResource("css/empori/1.png").toExternalForm()));
+		this.mappaEmpori.put("1", new Image(getClass().getResource("css/empori/2.png").toExternalForm()));
+		this.mappaEmpori.put("2", new Image(getClass().getResource("css/empori/3.png").toExternalForm()));
+		this.mappaEmpori.put("3", new Image(getClass().getResource("css/empori/4.png").toExternalForm()));
+
+		this.mappaBonus.put("Aiutante", new Image(getClass().getResource("css/Assistant.png").toExternalForm()));
+		this.mappaBonus.put("Re", new Image(getClass().getResource("css/king.png").toExternalForm()));
+		this.mappaBonus.put("Punto", new Image(getClass().getResource("css/Point.png").toExternalForm()));
+		this.mappaBonus.put("Nobiltà", new Image(getClass().getResource("css/Nobility.png").toExternalForm()));
+		this.mappaBonus.put("BonusGiocatore",
+				new Image(getClass().getResource("css/BonusGiocatori.png").toExternalForm()));
+		this.mappaBonus.put("Soldo", new Image(getClass().getResource("css/Coins.png").toExternalForm()));
+
 		this.mappaConsiglieri.put("Arancione",
 				new Image(getClass().getResource("css/consiglieri/Arancione.png").toExternalForm()));
 		this.mappaConsiglieri.put("Azzurro",
@@ -484,8 +481,8 @@ public class GUIGameController {
 							.findAny().orElse(null);
 
 					if (azioneDTO == null) {
-						gui.azioneNonValida("L'azione non esiste!","Ooops, riprova e inserisci un'azione valida!");
-						for (Button b : getAzioni()){
+						gui.azioneNonValida("L'azione non esiste!", "Ooops, riprova e inserisci un'azione valida!");
+						for (Button b : getAzioni()) {
 							b.setDisable(false);
 						}
 						return;
@@ -514,20 +511,48 @@ public class GUIGameController {
 		});
 	}
 
+	@FXML
+	public void handleExit(ActionEvent event) {
+		try {
+			gui.getConnessione().inviaAzione(new ExitDTO());
+			gui.stopTimer();
+			gui.close();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public void mostraNomeGiocatore(String nome) {
 		nomeGiocatore.setText(nome);
 	}
 
 	public void mostraTessereBonus() {
-		mare.setImage(new Image(getClass().getResource("css/tessereBonus/mare.png").toExternalForm()));
-		collina.setImage(new Image(getClass().getResource("css/tessereBonus/collina.png").toExternalForm()));
-		montagna.setImage(new Image(getClass().getResource("css/tessereBonus/montagna.png").toExternalForm()));
-		oro.setImage(new Image(getClass().getResource("css/tessereBonus/oro.png").toExternalForm()));
-		argento.setImage(new Image(getClass().getResource("css/tessereBonus/argento.png").toExternalForm()));
-		bronzo.setImage(new Image(getClass().getResource("css/tessereBonus/bronzo.png").toExternalForm()));
-		ferro.setImage(new Image(getClass().getResource("css/tessereBonus/ferro.png").toExternalForm()));
-		king.setImage(new Image(getClass().getResource("css/tessereBonus/king_1.png").toExternalForm()));
+		if (gameStateDTO.getRegioni().get(0).getBonusRegione() != null) {
+			mare.setImage(new Image(getClass().getResource("css/tessereBonus/mare.png").toExternalForm()));
+		}
+		if (gameStateDTO.getRegioni().get(1).getBonusRegione() != null) {
+			collina.setImage(new Image(getClass().getResource("css/tessereBonus/collina.png").toExternalForm()));
+		}
+		if (gameStateDTO.getRegioni().get(2).getBonusRegione() != null) {
+			montagna.setImage(new Image(getClass().getResource("css/tessereBonus/montagna.png").toExternalForm()));
+		}
+		for (ColoreBonusDTO b : gameStateDTO.getBonusColore()) {
+
+			if ("Giallo".equals(b.getColore())) {
+				oro.setImage(new Image(getClass().getResource("css/tessereBonus/oro.png").toExternalForm()));
+			} else if ("Grigio".equals(b.getColore())) {
+				argento.setImage(new Image(getClass().getResource("css/tessereBonus/argento.png").toExternalForm()));
+			} else if ("Bronzo".equals(b.getColore())) {
+				bronzo.setImage(new Image(getClass().getResource("css/tessereBonus/bronzo.png").toExternalForm()));
+			} else if ("Blu".equals(b.getColore())) {
+				ferro.setImage(new Image(getClass().getResource("css/tessereBonus/ferro.png").toExternalForm()));
+			} 
+		}
+		if (!gameStateDTO.getPlanciaReDTO().getBonusPremioRe().isEmpty()) {
+			String bonus= String.valueOf(6-gameStateDTO.getPlanciaReDTO().getBonusPremioRe().size());
+			king.setImage(new Image(getClass().getResource("css/tessereBonus/king_"+bonus+".png").toExternalForm()));
+		}
 	}
 
 	public void mostraGettoni(List<CittàDTO> città) {
@@ -588,17 +613,19 @@ public class GUIGameController {
 	public void mostraTesserePermessoUsate(List<TesseraPermessoDTO> tessere) {
 		// stessa cosa delle tessere permesso
 	}
-	
+
 	public void stampaEmporiCittà(List<CittàDTO> città) {
 		Platform.runLater(new Runnable() {
-			
+
 			@Override
 			public void run() {
-				List<HBox> hbox=Arrays.asList(emporiArkon,emporiBurgen,emporiCastrum,emporiDorful,emporiEsti,emporiFramek,emporiGraden,emporiHellar,emporiIndur,emporiJuvelar,emporiKultos,emporiLyram,emporiMerkatim,emporiNaris,emporiOsium);
+				List<HBox> hbox = Arrays.asList(emporiArkon, emporiBurgen, emporiCastrum, emporiDorful, emporiEsti,
+						emporiFramek, emporiGraden, emporiHellar, emporiIndur, emporiJuvelar, emporiKultos, emporiLyram,
+						emporiMerkatim, emporiNaris, emporiOsium);
 
-				for(int i=0;i<città.size()-1;i++){
-					for(String emporio: città.get(i).getEmpori()){	
-						ImageView imageView=new ImageView();
+				for (int i = 0; i < città.size() - 1; i++) {
+					for (String emporio : città.get(i).getEmpori()) {
+						ImageView imageView = new ImageView();
 						imageView.setImage(mappaEmpori.get(emporio));
 						hbox.get(i).getChildren().add(imageView);
 					}
@@ -721,7 +748,7 @@ public class GUIGameController {
 		if (action.getCode() == KeyCode.ENTER) {
 			ChatDTO chat = new ChatDTO();
 			if (!this.chat.getText().isEmpty()) {
-				
+
 				chat.setMessaggio(gameStateDTO.getGiocatoreDTO().getNome() + ": " + this.chat.getText());
 				this.chat.clear();
 				try {
@@ -798,7 +825,7 @@ public class GUIGameController {
 		osium.setDisable(true);
 		this.città.add(osium);
 	}
-	
+
 	public TabPane getAvversari() {
 		return this.giocatori;
 	}
@@ -818,7 +845,7 @@ public class GUIGameController {
 	public Map<String, Image> getMappaCartePolitica() {
 		return this.mappaCarte;
 	}
-	
+
 	public Map<String, Image> getMappaBonus() {
 		return this.mappaBonus;
 	}
@@ -833,10 +860,10 @@ public class GUIGameController {
 		return Arrays.asList(balconeMare, balconeCollina, balconeMontagna, balconeRe);
 	}
 
-	public List<ImageView> getFrecce(){
+	public List<ImageView> getFrecce() {
 		return Arrays.asList(frecciaMare, frecciaCollina, frecciaMontagna, frecciaRe);
 	}
-	
+
 	public List<ImageView> getCartePolitica() {
 		List<ImageView> cartePolitica = new ArrayList<>();
 		for (Node i : this.cartePolitica.getChildren()) {
@@ -864,11 +891,12 @@ public class GUIGameController {
 	public List<ImageView> getTessereMontagna() {
 		return Arrays.asList(tesseraMontagna1, tesseraMontagna2);
 	}
-	
-	public List<HBox> getListaEmporiHBox(){
-		return Arrays.asList(emporiArkon,emporiBurgen,emporiCastrum,emporiDorful,emporiEsti,emporiFramek,emporiGraden,emporiHellar,emporiIndur,emporiJuvelar,emporiKultos,emporiLyram,emporiMerkatim,emporiNaris,emporiOsium);
+
+	public List<HBox> getListaEmporiHBox() {
+		return Arrays.asList(emporiArkon, emporiBurgen, emporiCastrum, emporiDorful, emporiEsti, emporiFramek,
+				emporiGraden, emporiHellar, emporiIndur, emporiJuvelar, emporiKultos, emporiLyram, emporiMerkatim,
+				emporiNaris, emporiOsium);
 	}
-	
 
 	/**
 	 * @return the mappaEmpori
@@ -899,16 +927,16 @@ public class GUIGameController {
 	public List<Button> getAzioni() {
 		return Arrays.asList(elezioneConsigliere, acquistoTesseraPermesso, costruzioneTesseraPermesso,
 				costruzioneAiutoRe, ingaggioAiutante, cambioTesseraPermesso, elezioneConsigliereVeloce,
-				secondaAzionePrincipale, passa,pescaCarta);
+				secondaAzionePrincipale, passa, pescaCarta);
 
 	}
 
 	public Pane getRe() {
-		Pane cittàRe=null;
-		for (Pane b : città){
+		Pane cittàRe = null;
+		for (Pane b : città) {
 			b.getChildren().clear();
-			if (((CittàDTO)b.getUserData()).getNome().equals(gameStateDTO.getPedinaRE().getCittà().getNome())){
-				cittàRe=b;
+			if (((CittàDTO) b.getUserData()).getNome().equals(gameStateDTO.getPedinaRE().getCittà().getNome())) {
+				cittàRe = b;
 			}
 		}
 		return cittàRe;
@@ -921,15 +949,14 @@ public class GUIGameController {
 		return mappaConsiglieri;
 	}
 
-
 	public List<Pane> getCittàBonusConEmporio() {
-		List<Pane> cittàBonusGettone=new ArrayList<>();
-		for(Pane cittàBonus: città){
-			if(cittàBonus.getUserData() instanceof CittàBonusDTO
-					&& ((CittàDTO)cittàBonus.getUserData()).getEmpori().contains(gameStateDTO.getGiocatoreDTO().getColoreGiocatore()))
+		List<Pane> cittàBonusGettone = new ArrayList<>();
+		for (Pane cittàBonus : città) {
+			if (cittàBonus.getUserData() instanceof CittàBonusDTO && ((CittàDTO) cittàBonus.getUserData()).getEmpori()
+					.contains(gameStateDTO.getGiocatoreDTO().getColoreGiocatore()))
 				cittàBonusGettone.add(cittàBonus);
 		}
-		
+
 		return cittàBonusGettone;
 	}
 
@@ -946,7 +973,9 @@ public class GUIGameController {
 	public ImageView getMappaImmagine() {
 		return mappaImmagine;
 	}
-	
 
+	public HBox getTesserePermessoGiocatoreUsate() {
+		return this.tesserePermessoUsate;
+	}
 
 }

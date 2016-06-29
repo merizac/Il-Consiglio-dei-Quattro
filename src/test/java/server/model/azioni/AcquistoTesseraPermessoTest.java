@@ -35,7 +35,6 @@ import server.model.macchinaStati.StartEnd;
 import server.model.macchinaStati.Stato11;
 import server.model.macchinaStati.StatoBonus;
 import server.model.notify.AvversarioNotify;
-import server.model.notify.BonusNotify;
 import server.model.notify.GameStateNotify;
 import server.model.notify.GiocatoreNotify;
 import server.model.notify.MessageNotify;
@@ -243,10 +242,10 @@ public class AcquistoTesseraPermessoTest {
 		assertEquals(aiutanti, gameState.getGiocatoreCorrente().getAiutanti().getAiutante());
 		assertEquals(vittoria, gameState.getGiocatoreCorrente().getPunteggioVittoria());
 
-		System.out.println("notifiche :"+notify);
-		/*assertTrue(notify.get(notify.size() - 3) instanceof GameStateNotify);
-		assertTrue(notify.get(notify.size() - 1) instanceof GiocatoreNotify);
-		assertTrue(notify.get(notify.size() - 2) instanceof AvversarioNotify);*/
+		assertTrue(notify.get(notify.size() - 4) instanceof GameStateNotify);
+		assertTrue(notify.get(notify.size() - 2) instanceof GiocatoreNotify);
+		assertTrue(notify.get(notify.size() - 3) instanceof AvversarioNotify);
+		assertTrue(notify.get(notify.size() - 1) instanceof MessageNotify);
 	}
 
 	@Test

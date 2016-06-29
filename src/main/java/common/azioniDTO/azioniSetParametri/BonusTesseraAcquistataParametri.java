@@ -24,6 +24,7 @@ public class BonusTesseraAcquistataParametri implements SetterParametri {
 		List<TesseraPermessoDTO> tessere=new ArrayList<>();
 		tessere.addAll(gameStateDTO.getGiocatoreDTO().getTesserePermesso());
 		tessere.addAll(gameStateDTO.getGiocatoreDTO().getTesserePermessoUsate());
+		grafica.mostraMessaggio("Hai vinto un bonus tessera permesso!\nScegli una tessera permesso\n");
 		/*if(gameStateDTO.getGiocatoreDTO().getTesserePermesso().isEmpty()){
 			tessera=1;
 		}

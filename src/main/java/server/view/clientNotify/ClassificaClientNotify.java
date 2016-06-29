@@ -34,13 +34,7 @@ public class ClassificaClientNotify implements ClientNotify {
 	}
 
 	@Override
-	public void update(GameStateDTO gameStateDTO) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void stamp(Grafica grafica) {
+	public void stamp(Grafica grafica, GameStateDTO gameStateDTO) {
 		grafica.mostraClassifica(vincenti, perdenti);
 	}
 

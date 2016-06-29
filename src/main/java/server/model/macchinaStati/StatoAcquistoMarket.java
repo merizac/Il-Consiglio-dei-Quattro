@@ -14,7 +14,6 @@ import server.model.notify.AzioniNotify;
 import server.model.notify.MarketNotify;
 import server.model.notify.MessageNotify;
 import server.model.notify.OffertaNotify;
-import server.view.clientNotify.MessageClientNotify;
 
 public class StatoAcquistoMarket implements Stato {
 
@@ -30,9 +29,9 @@ public class StatoAcquistoMarket implements Stato {
 
 	private void inizializzaStato(GameState gameState) {
 		Collections.shuffle(giocatori);
-		gameState.notifyObserver(new OffertaNotify(gameState.getOfferteMarket(), Arrays.asList(giocatori.get(0))));
 		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(giocatori.get(0))));
-		gameState.notifyObserver(new MessageNotify("Vuoi acquistare?", Arrays.asList(giocatori.get(0))));
+		gameState.notifyObserver(new OffertaNotify(gameState.getOfferteMarket(), Arrays.asList(giocatori.get(0))));
+		gameState.notifyObserver(new MessageNotify("Vuoi acquistare\n?", Arrays.asList(giocatori.get(0))));
 	}
 
 	@Override
@@ -41,7 +40,7 @@ public class StatoAcquistoMarket implements Stato {
 		if (!giocatori.isEmpty()) {
 			Collections.shuffle(giocatori);
 			gameState.setStato(this);
-			gameState.notifyObserver(new OffertaNotify(gameState.getOfferteMarket(), Arrays.asList(giocatori.get(0))));
+			gameState.notifyObserver(new OffertaNotify(gameState.getOfferteMarket(), gameState.getGiocatori()));
 			gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(giocatori.get(0))));
 		} else {
 			gameState.getOfferteMarket().clear();
@@ -52,14 +51,14 @@ public class StatoAcquistoMarket implements Stato {
 
 	public void transizioneOfferta(GameState gameState) {
 		if (gameState.getOfferteMarket().isEmpty()) {
-			gameState.notifyObserver(new MessageNotify("\nGli oggetti in vendita sono finiti\n", giocatori));
+			gameState.notifyObserver(new MessageNotify("Gli oggetti in vendita sono finiti\n", giocatori));
 			gameState.notifyObserver(new MarketNotify(gameState.getGiocatori(), true));
 			gameState.setStato(new StartEnd(gameState));
 		} else {
 			gameState.setStato(this);
 			gameState.notifyObserver(new OffertaNotify(gameState.getOfferteMarket(), Arrays.asList(giocatori.get(0))));
 			gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(giocatori.get(0))));
-			gameState.notifyObserver(new MessageNotify("Vuoi acquistare?", Arrays.asList(giocatori.get(0))));
+			gameState.notifyObserver(new MessageNotify("Vuoi acquistare\n?", Arrays.asList(giocatori.get(0))));
 		}
 	}
 

@@ -18,7 +18,6 @@ import common.azioniDTO.PassaBonusDTO;
 import common.azioniDTO.PassaDTO;
 import common.azioniDTO.PescaCartaDTO;
 import common.azioniDTO.SecondaAzionePrincipaleDTO;
-import server.model.azioni.Azione;
 import server.model.azioni.Chat;
 import server.model.azioni.Exit;
 import server.model.azioni.Passa;

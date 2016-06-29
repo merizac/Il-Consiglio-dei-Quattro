@@ -2,7 +2,6 @@ package common.gameDTO;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -94,7 +93,7 @@ public class TesseraPermessoDTO implements Serializable, MarketableDTO {
 	 * order city by name
 	 */
 	public List<String> ordinaCittà(){
-		List<String> nomiCittà=new ArrayList();
+		List<String> nomiCittà=new ArrayList<>();
 		for(CittàDTO c: città){
 			nomiCittà.add(c.getNome());
 		}
