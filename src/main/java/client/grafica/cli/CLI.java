@@ -113,8 +113,8 @@ public class CLI implements Grafica {
 				}
 			try {
 				connessione.inviaAzione(action);
-				task.cancel();
-				timer.cancel();
+				/*task.cancel();
+				timer.cancel();*/
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -192,7 +192,7 @@ public class CLI implements Grafica {
 	 */
 	@Override
 	public void mostraAzioni(List<AzioneDTO> azioni) {
-		timer = new Timer();
+		/*timer = new Timer();
 		task = new TimerTask() {
 
 			@Override
@@ -205,7 +205,7 @@ public class CLI implements Grafica {
 				}
 			}
 		};
-		timer.schedule(task, timeout);
+		timer.schedule(task, timeout);*/
 		for (AzioneDTO a : azioni) {
 			System.out.println(a.toString());
 		}
