@@ -49,6 +49,7 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.ImageCursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -167,6 +168,9 @@ public class GUI extends Application implements Grafica {
 
 		Parent root = fxmloader.load();
 		Scene theScene = new Scene(root);
+		Image image = new Image(getClass().getResource("css/cursore.png").toExternalForm());
+		theScene.setCursor(new ImageCursor(image));
+
 
 		GUIController controller = fxmloader.getController();
 		controller.setGui(this);
@@ -181,6 +185,9 @@ public class GUI extends Application implements Grafica {
 
 		Parent root = fxmloader.load();
 		Scene theScene = new Scene(root);
+		Image image = new Image(getClass().getResource("css/cursore.png").toExternalForm());
+		theScene.setCursor(new ImageCursor(image));
+
 
 		controller = fxmloader.getController();
 		controller.setGameStateDTO(this.gameStateDTO);
@@ -1179,7 +1186,10 @@ public class GUI extends Application implements Grafica {
 					controllerMappa = fxmloader.getController();
 					controllerMappa.setGui(GUI.this);
 					controllerMappa.inizializza();
-					mappa.setScene(new Scene(root));
+					Scene scene=new Scene(root);
+					Image image = new Image(getClass().getResource("css/cursore.png").toExternalForm());
+					scene.setCursor(new ImageCursor(image));
+					mappa.setScene(scene);
 					mappa.show();
 				} catch (Exception e) {
 					// TODO Auto-generated catch block

@@ -80,6 +80,8 @@ public class GameStateDTO implements Serializable {
 	 *            the città to set
 	 */
 	public void setCittà(Set<CittàDTO> città) {
+		if(città==null)
+			throw new NullPointerException("Le città sono null");
 		this.città = città;
 	}
 
@@ -95,6 +97,8 @@ public class GameStateDTO implements Serializable {
 	 *            the regioni to set
 	 */
 	public void setRegioni(List<RegioneDTO> regioni) {
+		if(regioni==null)
+			throw new NullPointerException("Le regioni sono null");
 		this.regioni = regioni;
 	}
 
@@ -110,6 +114,8 @@ public class GameStateDTO implements Serializable {
 	 *            the pedinaRE to set
 	 */
 	public void setPedinaRE(ReDTO pedinaRE) {
+		if(pedinaRE==null)
+			throw new NullPointerException("La pedina del Re è null");
 		this.pedinaRE = pedinaRE;
 	}
 
@@ -125,6 +131,8 @@ public class GameStateDTO implements Serializable {
 	 *            the planciaReDTO to set
 	 */
 	public void setPlanciaReDTO(PlanciaReDTO planciaReDTO) {
+		if(planciaReDTO==null)
+			throw new NullPointerException("La plancia del Re è null");
 		this.planciaReDTO = planciaReDTO;
 	}
 
@@ -140,10 +148,14 @@ public class GameStateDTO implements Serializable {
 	 *            the consiglieri to set
 	 */
 	public void setConsiglieri(List<ConsigliereDTO> consiglieri) {
+		if(consiglieri==null)
+			throw new NullPointerException("I cosiglieri sono null");
 		this.consiglieri = consiglieri;
 	}
 
 	public void setAzioni(List<AzioneDTO> azioni) {
+		if(azioni==null)
+			throw new NullPointerException("La lista di azioni è null");
 		this.azioniDisponibili = azioni;
 	}
 
@@ -163,6 +175,8 @@ public class GameStateDTO implements Serializable {
 	 *            the giocatoreDTO to set
 	 */
 	public void setGiocatoreDTO(GiocatoreDTO giocatoreDTO) {
+		if(giocatoreDTO==null)
+			throw new NullPointerException("Il giocatore è null");
 		this.giocatoreDTO = giocatoreDTO;
 	}
 
@@ -170,6 +184,8 @@ public class GameStateDTO implements Serializable {
 	 * @return the offerte
 	 */
 	public void setOfferte(List<OffertaDTO> offerte) {
+		if(offerte==null)
+			throw new NullPointerException("La lista di offerte è null");
 		this.offerte = offerte;
 	}
 
@@ -186,6 +202,8 @@ public class GameStateDTO implements Serializable {
 	}
 
 	public void setAvversari(List<GiocatoreDTO> avversari) {
+		if(avversari==null)
+			throw new NullPointerException("Ci deve essere almeno un avversario");
 		this.avversari=avversari;
 	}
 
