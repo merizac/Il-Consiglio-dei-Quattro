@@ -104,6 +104,8 @@ public class GiocatoreDTO implements Serializable {
 	 * @param tessereBonus the tessereBonus to set
 	 */
 	public void setTessereBonus(int tessereBonus) {
+		if(tessereBonus<0)
+			throw new IllegalArgumentException("Il valore delle tessere bonus non pò essere negativo");
 		this.tessereBonus = tessereBonus;
 	}
 	/**
@@ -116,6 +118,8 @@ public class GiocatoreDTO implements Serializable {
 	 * @param empori the empori to set
 	 */
 	public void setEmpori(int empori) {
+		if(empori<0)
+			throw new IllegalArgumentException("Il numero degli empori non pò essere negativo");
 		this.empori = empori;
 	}
 	/**
@@ -128,6 +132,8 @@ public class GiocatoreDTO implements Serializable {
 	 * @param aiutanti the aiutanti to set
 	 */
 	public void setAiutanti(int aiutanti) {
+		if(aiutanti<0)
+			throw new IllegalArgumentException("Il numero degli aiutanti non pò essere negativo");
 		this.aiutanti = aiutanti;
 	}
 	/**
@@ -140,6 +146,8 @@ public class GiocatoreDTO implements Serializable {
 	 * @param punteggioVittoria the punteggioVittoria to set
 	 */
 	public void setPunteggioVittoria(int punteggioVittoria) {
+		if(punteggioVittoria<0)
+			throw new IllegalArgumentException("Il valore del punteggio non pò essere negativo");
 		this.punteggioVittoria = punteggioVittoria;
 	}
 	/**
@@ -152,6 +160,8 @@ public class GiocatoreDTO implements Serializable {
 	 * @param punteggioRicchezza the punteggioRicchezza to set
 	 */
 	public void setPunteggioRicchezza(int punteggioRicchezza) {
+		if(punteggioRicchezza<0)
+			throw new IllegalArgumentException("Il valore del punteggio ricchezza non pò essere negativo");
 		this.punteggioRicchezza = punteggioRicchezza;
 	}
 	/**
@@ -164,6 +174,8 @@ public class GiocatoreDTO implements Serializable {
 	 * @param punteggioNobiltà the punteggioNobiltà to set
 	 */
 	public void setPunteggioNobiltà(int punteggioNobiltà) {
+		if(punteggioNobiltà<0)
+			throw new IllegalArgumentException("Il valore del punteggio nobiltà non pò essere negativo");
 		this.punteggioNobiltà = punteggioNobiltà;
 	}
 	
@@ -223,6 +235,8 @@ public class GiocatoreDTO implements Serializable {
 	 * @param bonus the bonusNobiltà to set
 	 */
 	public void setBonusNobiltà(List<AzioneDTO> bonus) {
+		if(bonus==null)
+			throw new NullPointerException("Il bonus nobiltà del giocatore deve essere diverso da null");
 		this.bonusNobiltà = bonus;
 	}
 	/* (non-Javadoc)

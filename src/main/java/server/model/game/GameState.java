@@ -9,6 +9,7 @@ import java.util.Random;
 import java.util.Set;
 
 import server.model.bonus.Bonus;
+import server.model.bonus.BonusPuntiVittoria;
 import server.model.game.comparator.ComparatorClassifica;
 import server.model.game.comparator.ComparatorPuntiNobiltà;
 import server.model.game.comparator.ComparatorTesserePermesso;
@@ -40,6 +41,7 @@ public class GameState extends Observable<Notify> {
 	private List<Offerta> offerteMarket;
 	private boolean ultimoGiro = false;
 	private List<Giocatore> giocatoriFinePartita;
+	private List<Colore> bonusColore;
 	private String nomeMappa;
 
 	/**
@@ -134,6 +136,13 @@ public class GameState extends Observable<Notify> {
 
 	public Set<Città> getCittà() {
 		return this.mappa.getGrafo().vertexSet();
+	}
+
+	/**
+	 * @return the bonusColore
+	 */
+	public List<Colore> getBonusColore() {
+		return bonusColore;
 	}
 
 	/**
@@ -357,7 +366,8 @@ public class GameState extends Observable<Notify> {
 		this.regioni = reader.letturaRegioni();
 		this.planciaRe = reader.creazionePlanciaRe();
 		this.mazzoCartePolitica = reader.letturaCartePolitica();
-		this.mappa = reader.creazioneMappa(mappa);
+		this.bonusColore=reader.letturaColoriCittà(mappa);
+		this.mappa = reader.creazioneMappa(mappa,bonusColore);
 		this.pedinaRe = reader.creazioneRe();
 		this.giocatori = new ArrayList<>();
 		this.offerteMarket = new ArrayList<>();

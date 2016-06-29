@@ -1,0 +1,5 @@
+Giallo 20
+Grigio 12
+Bronzo 8
+Blu 5
+Re

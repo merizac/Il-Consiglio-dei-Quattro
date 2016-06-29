@@ -25,12 +25,11 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonu
 	private Città cittàCostruzione;
 
 	/**
-	 * check if player had enough money
-	 * build in the city that player choose
-	 * win bonus if the city is a bonus city or if it's next to bonus cities of the same player
-	 * notify changes
-	 * check if player win nobility points, in that case check if there are bonus in nobility track.
-	 * set the right transition in state pattern
+	 * check if player had enough money build in the city that player choose win
+	 * bonus if the city is a bonus city or if it's next to bonus cities of the
+	 * same player notify changes check if player win nobility points, in that
+	 * case check if there are bonus in nobility track. set the right transition
+	 * in state pattern
 	 * 
 	 */
 	@Override
@@ -47,8 +46,10 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonu
 		copriTessera(gameState);
 
 		if (cittàCostruzione instanceof CittàBonus)
-			controllaCittàColore(((ColoreCittà) cittàCostruzione.getColoreCittà()), gameState.getGiocatoreCorrente());
-		controllaCittàRegione(cittàCostruzione.getRegione(), gameState.getGiocatoreCorrente());
+			controllaCittàColore(((ColoreCittà) cittàCostruzione.getColoreCittà()), gameState.getGiocatoreCorrente(),
+					gameState.getPlanciaRe().getBonusPremioRe());
+		controllaCittàRegione(cittàCostruzione.getRegione(), gameState.getGiocatoreCorrente(),
+				gameState.getPlanciaRe().getBonusPremioRe());
 
 		if (gameState.getGiocatoreCorrente().getEmpori().isEmpty()) {
 			gameState.setUltimoGiro(true);
@@ -69,30 +70,33 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonu
 		}
 
 	}
-	
+
 	/**
 	 * cheack if player can win bonus of the region
 	 * 
 	 * @param regione
 	 * @param giocatore
 	 */
-	private void controllaCittàRegione(Regione regione, Giocatore giocatore) {
+	private void controllaCittàRegione(Regione regione, Giocatore giocatore, List<Bonus> bonusRe) {
 		for (Città c : regione.getCittàRegione()) {
 			if (!c.emporioColore(giocatore.getColoreGiocatore()))
 				return;
 		}
 		giocatore.getTessereBonus().add(regione.getBonusRegione());
 		regione.setBonusAssegnato(true);
+		if (!bonusRe.isEmpty()) {
+			giocatore.getTessereBonus().add(bonusRe.remove(0));
+		}
 
 	}
-	
+
 	/**
 	 * check if the player can win bonus of color
 	 * 
 	 * @param coloreCittà
 	 * @param giocatore
 	 */
-	private void controllaCittàColore(ColoreCittà coloreCittà, Giocatore giocatore) {
+	private void controllaCittàColore(ColoreCittà coloreCittà, Giocatore giocatore, List<Bonus> bonusRe) {
 		if (coloreCittà.isAssegnatoBonus())
 			return;
 		for (Città c : coloreCittà.getCittà()) {
@@ -101,6 +105,9 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonu
 		}
 		giocatore.getTessereBonus().add(coloreCittà.getBonusColore());
 		coloreCittà.setAssegnatoBonus(true);
+		if (!bonusRe.isEmpty()) {
+			giocatore.getTessereBonus().add(bonusRe.remove(0));
+		}
 	}
 
 	/**
@@ -150,10 +157,10 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonu
 		for (CittàBonus c : cittàCollegate) {
 			for (Bonus b : c.getBonus()) {
 				b.usaBonus(gameState);
-				if(b instanceof BonusPuntiNobiltà){
+				if (b instanceof BonusPuntiNobiltà) {
 					nob = true;
-				}
-				else nob =false;
+				} else
+					nob = false;
 			}
 		}
 		return nob;

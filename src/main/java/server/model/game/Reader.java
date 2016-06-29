@@ -57,8 +57,8 @@ public class Reader {
 	 * @return
 	 * @throws IOException
 	 */
-	public Mappa creazioneMappa(String configurazione) throws IOException {
-		creazioneCittà(configurazione);
+	public Mappa creazioneMappa(String configurazione, List<Colore> coloriCittà) throws IOException {
+		creazioneCittà(configurazione, coloriCittà);
 		Mappa mappa = new Mappa(new HashSet<>(cities));
 		letturaTesserePermesso(cities, regioni);
 		return mappa;
@@ -70,8 +70,8 @@ public class Reader {
 	 * @param configurazione
 	 * @throws IOException
 	 */
-	public void creazioneCittà(String configurazione) throws IOException {
-		cities = letturaCittà(configurazione);
+	public void creazioneCittà(String configurazione, List<Colore> coloriCittà) throws IOException {
+		cities = letturaCittà(configurazione,coloriCittà);
 		letturaBonusTondiCittà();
 
 	}
@@ -226,17 +226,16 @@ public class Reader {
 		return regioni;
 	}
 
-	public List<Città> letturaCittà(String configurazione) throws IOException {
-
+	public List<Colore> letturaColoriCittà(String configurazione) throws IOException{
 		List<Colore> coloriCittà = new ArrayList<>();
-		FileReader città = new FileReader("src/main/resources/" + configurazione + "Città.txt");
+		FileReader colori = new FileReader("src/main/resources/" + configurazione + "ColoriCittà.txt");
 		BufferedReader b;
-		b = new BufferedReader(città);
+		b = new BufferedReader(colori);
 		String stringaLetta;
 		stringaLetta = b.readLine();
 
 		// Creo coloricittà salvati in un arraylist
-		while (!"CITTA".equals(stringaLetta)) {
+		while (stringaLetta!=null) {
 			StringTokenizer st = new StringTokenizer(stringaLetta);
 			String colore = st.nextToken();
 			ColoreCittà colorecittà;
@@ -254,6 +253,15 @@ public class Reader {
 			}
 			stringaLetta = b.readLine();
 		}
+		b.close();
+		return coloriCittà;
+	}
+	
+	public List<Città> letturaCittà(String configurazione, List<Colore> coloriCittà) throws IOException {
+
+		FileReader città = new FileReader("src/main/resources/" + configurazione + "Città.txt");
+		BufferedReader b;
+		b = new BufferedReader(città);
 
 		// Ciclo le regioni poi i colori e setto la città
 		for (Regione regione : regioni) {

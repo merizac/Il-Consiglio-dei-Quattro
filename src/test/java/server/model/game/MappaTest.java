@@ -24,7 +24,7 @@ public class MappaTest {
 	public static void init() throws IOException{
 	reader.letturaConsigliere();
 	reader.letturaRegioni();
-	città = new HashSet <Città> (reader.letturaCittà("mappa1"));
+	città = new HashSet <Città> (reader.letturaCittà("mappa1",reader.letturaColoriCittà("mappa1")));
 	mappa = new Mappa(città);
 	}
 	

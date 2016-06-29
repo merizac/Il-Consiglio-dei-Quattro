@@ -27,7 +27,7 @@ public class CittàCollegateTest {
 	public static void init() throws IOException{
 		reader.letturaConsigliere();
 		reader.letturaRegioni();
-		mappa=reader.creazioneMappa("mappa1");
+		mappa=reader.creazioneMappa("mappa1",reader.letturaColoriCittà("mappa1"));
 		
 		System.out.println("Ho letto la mappa");
 		
