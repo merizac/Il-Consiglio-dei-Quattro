@@ -10,7 +10,9 @@ import server.model.azioni.Passa;
 import server.model.azioni.azioniMarket.AzioneAcquisto;
 import server.model.game.GameState;
 import server.model.game.Giocatore;
+import server.model.notify.AvversarioNotify;
 import server.model.notify.AzioniNotify;
+import server.model.notify.GiocatoreNotify;
 import server.model.notify.MarketNotify;
 import server.model.notify.MessageNotify;
 import server.model.notify.OffertaNotify;
@@ -58,6 +60,11 @@ public class StatoAcquistoMarket implements Stato {
 			gameState.setStato(this);
 			gameState.notifyObserver(new OffertaNotify(gameState.getOfferteMarket(), Arrays.asList(giocatori.get(0))));
 			gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(giocatori.get(0))));
+			List<Giocatore> avversari = new ArrayList<>(gameState.getGiocatori());
+			avversari.remove(gameState.getGiocatoreCorrente());
+			gameState.notifyObserver(new AvversarioNotify(gameState.getGiocatoreCorrente(), avversari));
+			gameState.notifyObserver(new GiocatoreNotify(gameState.getGiocatoreCorrente(),
+					Arrays.asList(gameState.getGiocatoreCorrente())));
 			gameState.notifyObserver(new MessageNotify("Vuoi acquistare\n?", Arrays.asList(giocatori.get(0))));
 		}
 	}

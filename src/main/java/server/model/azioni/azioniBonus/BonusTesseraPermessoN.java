@@ -1,11 +1,18 @@
 package server.model.azioni.azioniBonus;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import common.azioniDTO.AzioneDTO;
 import common.azioniDTO.BonusTesseraPermessoNDTO;
 import server.model.azioni.Azione;
 import server.model.game.GameState;
+import server.model.game.Giocatore;
 import server.model.game.Regione;
 import server.model.game.TesseraPermesso;
+import server.model.notify.AvversarioNotify;
+import server.model.notify.GiocatoreNotify;
 
 public class BonusTesseraPermessoN extends Azione {
 
@@ -28,6 +35,11 @@ public class BonusTesseraPermessoN extends Azione {
 		gameState.getGiocatoreCorrente().getTesserePermesso().add(tesseraScoperta);
 		regione.getTesserePermessoScoperte().add(regione.getMazzoTesserePermesso().pescaCarte());
 		gameState.getGiocatoreCorrente().getBonusNobiltà().remove(this);
+		List<Giocatore> avversari = new ArrayList<>(gameState.getGiocatori());
+		avversari.remove(gameState.getGiocatoreCorrente());
+		gameState.notifyObserver(new AvversarioNotify(gameState.getGiocatoreCorrente(), avversari));
+		gameState.notifyObserver(new GiocatoreNotify(gameState.getGiocatoreCorrente(),
+				Arrays.asList(gameState.getGiocatoreCorrente())));
 		gameState.getStato().transizioneBonus(gameState);
 	}
 

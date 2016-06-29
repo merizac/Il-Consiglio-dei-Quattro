@@ -1,11 +1,18 @@
 package server.model.azioni.azioniBonus;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import common.azioniDTO.AzioneDTO;
 import common.azioniDTO.BonusTesseraAcquistataNDTO;
 import server.model.azioni.Azione;
 import server.model.bonus.Bonus;
 import server.model.game.GameState;
+import server.model.game.Giocatore;
 import server.model.game.TesseraPermesso;
+import server.model.notify.AvversarioNotify;
+import server.model.notify.GiocatoreNotify;
 
 public class BonusTesseraAcquistataN extends Azione {
 	/**
@@ -24,6 +31,11 @@ public class BonusTesseraAcquistataN extends Azione {
 			b.usaBonus(gameState);
 		}
 		gameState.getGiocatoreCorrente().getBonusNobiltà().remove(this.getClass());
+		List<Giocatore> avversari = new ArrayList<>(gameState.getGiocatori());
+		avversari.remove(gameState.getGiocatoreCorrente());
+		gameState.notifyObserver(new AvversarioNotify(gameState.getGiocatoreCorrente(), avversari));
+		gameState.notifyObserver(new GiocatoreNotify(gameState.getGiocatoreCorrente(),
+				Arrays.asList(gameState.getGiocatoreCorrente())));
 		gameState.getStato().transizioneBonus(gameState);
 
 	}

@@ -10,6 +10,9 @@ import server.model.bonus.Bonus;
 import server.model.game.CittàBonus;
 import server.model.game.Emporio;
 import server.model.game.GameState;
+import server.model.game.Giocatore;
+import server.model.notify.AvversarioNotify;
+import server.model.notify.GiocatoreNotify;
 import server.model.notify.MessageNotify;
 
 public class BonusGettoneN extends Azione {
@@ -58,6 +61,11 @@ public class BonusGettoneN extends Azione {
 			b.usaBonus(gameState);
 		}
 		gameState.getGiocatoreCorrente().getBonusNobiltà().remove(this);
+		List<Giocatore> avversari = new ArrayList<>(gameState.getGiocatori());
+		avversari.remove(gameState.getGiocatoreCorrente());
+		gameState.notifyObserver(new AvversarioNotify(gameState.getGiocatoreCorrente(), avversari));
+		gameState.notifyObserver(new GiocatoreNotify(gameState.getGiocatoreCorrente(),
+				Arrays.asList(gameState.getGiocatoreCorrente())));
 		gameState.getStato().transizioneBonus(gameState);
 	}
 
