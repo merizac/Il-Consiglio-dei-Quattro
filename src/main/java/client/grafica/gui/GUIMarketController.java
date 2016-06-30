@@ -18,13 +18,14 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import utility.AzioneNonEseguibile;
 
-public class GUIMarketController {
+public class GUIMarketController implements Controller{
 
 	private GUI gui;
 	private GameStateDTO gameStateDTO;
@@ -46,6 +47,8 @@ public class GUIMarketController {
 	private TextField prezzo;
 	@FXML
 	private Button ok;
+	@FXML
+	private TextArea message;
 
 	private List<Button> azioni;
 
@@ -190,6 +193,12 @@ public class GUIMarketController {
 			gui.setParametro(((Button)event.getSource()).getUserData());
 			gui.getLock().notifyAll();
 		}
+	}
+
+	@Override
+	public TextArea getMessage() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

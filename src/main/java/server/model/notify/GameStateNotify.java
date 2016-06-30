@@ -37,7 +37,8 @@ public class GameStateNotify implements Notify{
 	public ClientNotify notifyToClientNotify() {
 		GameStateDTO gameStateDTO = new GameStateDTO();
 		gameStateDTO.inizializza(gameState);
-		
+		System.out.println("bonus re server :"+ gameState.getPlanciaRe().getBonusPremioRe());
+		System.out.println("bonus re dto server "+ gameStateDTO.getPlanciaReDTO().getBonusPremioRe());		
 		return new GameStateClientNotify(gameStateDTO);
 	}
 	

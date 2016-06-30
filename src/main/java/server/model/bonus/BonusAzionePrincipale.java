@@ -28,8 +28,8 @@ public class BonusAzionePrincipale extends Bonus {
 	@Override
 	public void usaBonus(GameState gameState) {
 		gameState.setBonusAzionePrincipale(true);
-		gameState.notifyObserver(new MessageNotify((numBonus==1) ? "Hai vinto "+numBonus+" azione principale" 
-					:"Hai vinto "+numBonus+" azioni principali" , Arrays.asList(gameState.getGiocatoreCorrente())));
+		gameState.notifyObserver(new MessageNotify((numBonus==1) ? "Hai vinto "+numBonus+" azione principale\n" 
+					:"Hai vinto "+numBonus+" azioni principali\n" , Arrays.asList(gameState.getGiocatoreCorrente())));
 	}
 
 	/* (non-Javadoc)

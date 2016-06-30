@@ -10,7 +10,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.CountDownLatch;
 
 import client.connessione.Connessione;
 import client.grafica.Grafica;
@@ -69,6 +68,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import utility.AzioneNonEseguibile;
 
 public class GUI extends Application implements Grafica {
@@ -78,6 +78,7 @@ public class GUI extends Application implements Grafica {
 	private GUIGameController controller;
 	private GUIMarketController controllerMarket;
 	private GUIMappaController controllerMappa;
+	private Controller controllerCorrente;
 	private Stage finestra;
 	private Stage market;
 	private Stage mappa;
@@ -85,7 +86,7 @@ public class GUI extends Application implements Grafica {
 	private Object parametro;
 	private boolean carteInserite = false;
 	private Map<GiocatoreDTO, Tab> tabAvversari = new HashMap<>();
-	private final int timeout = 60000;
+	private final int timeout = 30000;
 	private Timer timer;
 	private TimerTask task;
 
@@ -190,21 +191,34 @@ public class GUI extends Application implements Grafica {
 		controller = fxmloader.getController();
 		controller.setGameStateDTO(this.gameStateDTO);
 		controller.setGui(this);
+		controllerCorrente=controller;
 		finestra.setScene(theScene);
+		finestra.setOnCloseRequest(new EventHandler<WindowEvent>() {
+			
+			@Override
+			public void handle(WindowEvent event) {
+				try {
+					connessione.inviaAzione(new ExitDTO());
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 		finestra.show();
 	}
 
 	@Override
 	public void mostraAzioni(List<AzioneDTO> azioni) {
 
-		/*timer = new Timer();
+		timer = new Timer();
 		task = new TimerTask() {
 
 			@Override
 			public void run() {
 				try {
 					connessione.inviaAzione(new ExitDTO());
-					System.out.println("exit :" + gameStateDTO.getGiocatoreDTO().getNome());
+					close();
 				} catch (RemoteException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -212,7 +226,7 @@ public class GUI extends Application implements Grafica {
 			}
 		};
 
-		timer.schedule(task, timeout);*/
+		timer.schedule(task, timeout);
 
 		if (azioni.get(0) instanceof BonusGettoneNDTO || azioni.get(0) instanceof BonusTesseraAcquistataNDTO
 				|| azioni.get(0) instanceof BonusTesseraPermessoNDTO) {
@@ -491,7 +505,8 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public void mostraMessaggio(String messaggio) {
-		controller.getMessage().appendText(messaggio);
+		controllerCorrente.getMessage().appendText(messaggio);
+		System.out.println("CONTROLLER :"+controllerCorrente);
 	}
 
 	@Override
@@ -650,6 +665,7 @@ public class GUI extends Application implements Grafica {
 					controllerMarket.setGameStateDTO(gameStateDTO);
 					controllerMarket.setGui(GUI.this);
 					controllerMarket.inizializza();
+					System.out.println("CONTROLLER MARKET :"+controllerCorrente);
 					market.setScene(theScene);
 					market.show();
 				} catch (Exception e) {

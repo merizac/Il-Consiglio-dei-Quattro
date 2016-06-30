@@ -52,6 +52,7 @@ public class ServerSocketView extends View implements Runnable {
 			System.out.println("[SERVER] Inviata notifica " + o + " al giocatore " + giocatore.getNome());
 			try {
 				this.socketOut.writeObject(o.notifyToClientNotify());
+				this.socketOut.reset();
 				this.socketOut.flush();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

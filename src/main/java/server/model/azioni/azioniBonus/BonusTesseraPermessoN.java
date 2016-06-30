@@ -12,6 +12,7 @@ import server.model.game.Giocatore;
 import server.model.game.Regione;
 import server.model.game.TesseraPermesso;
 import server.model.notify.AvversarioNotify;
+import server.model.notify.GameStateNotify;
 import server.model.notify.GiocatoreNotify;
 
 public class BonusTesseraPermessoN extends Azione {
@@ -35,6 +36,7 @@ public class BonusTesseraPermessoN extends Azione {
 		gameState.getGiocatoreCorrente().getTesserePermesso().add(tesseraScoperta);
 		regione.getTesserePermessoScoperte().add(regione.getMazzoTesserePermesso().pescaCarte());
 		gameState.getGiocatoreCorrente().getBonusNobiltà().remove(this);
+		gameState.notifyObserver(new GameStateNotify(gameState, gameState.getGiocatori()));
 		List<Giocatore> avversari = new ArrayList<>(gameState.getGiocatori());
 		avversari.remove(gameState.getGiocatoreCorrente());
 		gameState.notifyObserver(new AvversarioNotify(gameState.getGiocatoreCorrente(), avversari));

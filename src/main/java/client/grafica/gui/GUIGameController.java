@@ -31,7 +31,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import server.model.bonus.Bonus;
 import utility.AzioneNonEseguibile;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -39,7 +38,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-public class GUIGameController {
+public class GUIGameController implements Controller{
 
 	private GameStateDTO gameStateDTO;
 	private GUI gui;
@@ -546,24 +545,22 @@ public class GUIGameController {
 		for (ColoreBonusDTO b : gameStateDTO.getBonusColore()) {
 
 			if ("Giallo".equals(b.getColore())) {
-				System.out.println("GIALLO");
 				oro.setVisible(true);
 				oro.setImage(new Image(getClass().getResource("css/tessereBonus/oro.png").toExternalForm()));
 			} else if ("Grigio".equals(b.getColore())) {
 				argento.setVisible(true);
-				System.out.println("GRIGIO");
 				argento.setImage(new Image(getClass().getResource("css/tessereBonus/argento.png").toExternalForm()));
 			} else if ("Bronzo".equals(b.getColore())) {
 				bronzo.setVisible(true);
-				System.out.println("BRONZO");
 				bronzo.setImage(new Image(getClass().getResource("css/tessereBonus/bronzo.png").toExternalForm()));
 			} else if ("Blu".equals(b.getColore())) {
 				ferro.setVisible(true);
-				System.out.println("BLU");
 				ferro.setImage(new Image(getClass().getResource("css/tessereBonus/ferro.png").toExternalForm()));
 			} 
 		}
 		if (!gameStateDTO.getPlanciaReDTO().getBonusPremioRe().isEmpty()) {
+			System.out.println("giocatore :"+gameStateDTO.getGiocatoreDTO().getNome());
+			System.out.println("size bonus re :"+gameStateDTO.getPlanciaReDTO().getBonusPremioRe());
 			String bonus= String.valueOf(6-gameStateDTO.getPlanciaReDTO().getBonusPremioRe().size());
 			king.setImage(new Image(getClass().getResource("css/tessereBonus/king_"+bonus+".png").toExternalForm()));
 		}

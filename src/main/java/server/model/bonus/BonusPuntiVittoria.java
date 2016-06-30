@@ -31,8 +31,8 @@ public class BonusPuntiVittoria extends Bonus {
 	@Override
 	public void usaBonus(GameState gameState) {
 		gameState.getGiocatoreCorrente().aumentaPuntiVittoria(puntiVittoria);
-		gameState.notifyObserver(new MessageNotify((puntiVittoria==1) ? "Hai vinto "+puntiVittoria+" punto vittoria" 
-				:"Hai vinto"+ puntiVittoria+" punti vittoria", Arrays.asList(gameState.getGiocatoreCorrente())));
+		gameState.notifyObserver(new MessageNotify((puntiVittoria==1) ? "Hai vinto "+puntiVittoria+" punto vittoria\n" 
+				:"Hai vinto"+ puntiVittoria+" punti vittoria\n", Arrays.asList(gameState.getGiocatoreCorrente())));
 	}
 	
 	/* (non-Javadoc)
