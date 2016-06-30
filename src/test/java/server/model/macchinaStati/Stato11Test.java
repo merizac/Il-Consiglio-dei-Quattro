@@ -100,7 +100,7 @@ public class Stato11Test {
 		notify.clear();
 		Stato11 stato11=new Stato11(gameState);
 		gameState.setStato(stato11);
-		assertTrue(stato11.getAzioni().size()==8);
+		assertTrue(stato11.getAzioni().size()==7);
 		assertTrue(stato11.getAzioni().get(0) instanceof ElezioneConsigliere);
 		assertTrue(stato11.getAzioni().get(1) instanceof AcquistoTesseraPermesso);
 		assertTrue(stato11.getAzioni().get(2) instanceof CostruzioneTesseraPermesso);
@@ -108,7 +108,6 @@ public class Stato11Test {
 		assertTrue(stato11.getAzioni().get(4) instanceof IngaggioAiutante);
 		assertTrue(stato11.getAzioni().get(5) instanceof CambioTesseraPermesso);
 		assertTrue(stato11.getAzioni().get(6) instanceof ElezioneConsigliereVeloce);
-		assertTrue(stato11.getAzioni().get(7) instanceof SecondaAzionePrincipale);
 	}
 	
 	@Test
