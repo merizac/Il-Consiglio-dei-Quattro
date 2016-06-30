@@ -52,5 +52,15 @@ public class ColoreDTOTest {
 		
 		assertEquals(colore.getColore(), coloreDTO.getColore());
 	}
+	
+	@Test
+	public void testEquals() {
+		ColoreDTO coloreDTO=new ColoreDTO();
+		coloreDTO.setColore("C");
+		ColoreDTO coloreDTO1=new ColoreDTO();
+		coloreDTO1.setColore("C");
+		
+		assertTrue(coloreDTO.equals(coloreDTO1));
+	}
 
 }

@@ -27,6 +27,8 @@ public class ChatDTO implements AzioneDTO{
 	 * @param messaggio the messaggio to set
 	 */
 	public void setMessaggio(String messaggio) {
+		if(messaggio==null)
+			throw new NullPointerException("Inserisci il messaggio da inviare");
 		this.messaggio = messaggio;
 	}
 

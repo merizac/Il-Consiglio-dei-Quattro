@@ -30,7 +30,7 @@ public class BonusTesseraAcquistataN extends Azione {
 		for (Bonus b : tesseraPermesso.getBonus()) {
 			b.usaBonus(gameState);
 		}
-		gameState.getGiocatoreCorrente().getBonusNobiltà().remove(this.getClass());
+		gameState.getGiocatoreCorrente().getBonusNobiltà().remove(this);
 		List<Giocatore> avversari = new ArrayList<>(gameState.getGiocatori());
 		avversari.remove(gameState.getGiocatoreCorrente());
 		gameState.notifyObserver(new AvversarioNotify(gameState.getGiocatoreCorrente(), avversari));

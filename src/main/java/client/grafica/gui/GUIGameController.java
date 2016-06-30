@@ -536,15 +536,29 @@ public class GUIGameController implements Controller{
 		if (gameStateDTO.getRegioni().get(2).getBonusRegione() != null) {
 			montagna.setImage(new Image(getClass().getResource("css/tessereBonus/montagna.png").toExternalForm()));
 		}
+		
+		oro.setVisible(false);
+		argento.setVisible(false);
+		bronzo.setVisible(false);
+		ferro.setVisible(false);
+
 		for (ColoreBonusDTO b : gameStateDTO.getBonusColore()) {
 
 			if ("Giallo".equals(b.getColore())) {
+				System.out.println("GIALLO");
+				oro.setVisible(true);
 				oro.setImage(new Image(getClass().getResource("css/tessereBonus/oro.png").toExternalForm()));
 			} else if ("Grigio".equals(b.getColore())) {
+				argento.setVisible(true);
+				System.out.println("GRIGIO");
 				argento.setImage(new Image(getClass().getResource("css/tessereBonus/argento.png").toExternalForm()));
 			} else if ("Bronzo".equals(b.getColore())) {
+				bronzo.setVisible(true);
+				System.out.println("BRONZO");
 				bronzo.setImage(new Image(getClass().getResource("css/tessereBonus/bronzo.png").toExternalForm()));
 			} else if ("Blu".equals(b.getColore())) {
+				ferro.setVisible(true);
+				System.out.println("BLU");
 				ferro.setImage(new Image(getClass().getResource("css/tessereBonus/ferro.png").toExternalForm()));
 			} 
 		}

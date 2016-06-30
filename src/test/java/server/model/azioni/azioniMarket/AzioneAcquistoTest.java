@@ -14,8 +14,12 @@ import server.model.game.GameState;
 import server.model.game.Giocatore;
 import server.model.macchinaStati.StartEnd;
 import server.model.market.Offerta;
+import server.model.notify.AvversarioNotify;
+import server.model.notify.AzioniNotify;
+import server.model.notify.GiocatoreNotify;
 import server.model.notify.MessageNotify;
 import server.model.notify.Notify;
+import utility.AzioneNonEseguibile;
 import utility.Observer;
 
 public class AzioneAcquistoTest {
@@ -63,12 +67,27 @@ public class AzioneAcquistoTest {
 	@Test
 	public void testEseguiAzioneNonBuonFineNonCiSonoOfferte() {
 		notify.clear();
-		AzioneAcquisto azione=new AzioneAcquisto();
+		/*AzioneAcquisto azione=new AzioneAcquisto();
 		azione.setOfferta(new Offerta(new Giocatore("B"), new Aiutante(1), 20));
+		azione.setAcquirente(giocatore);*/
+		Giocatore venditore=new Giocatore("B");
+		Offerta offertaMarket=new Offerta(venditore, new Aiutante(1), 1);
+		gameState.getOfferteMarket().clear();
+		AzioneAcquisto azione=new AzioneAcquisto();
+		venditore.setAiutanti(new Aiutante(3));
+		venditore.setPunteggioRicchezza(2);
+		azione.setOfferta(offertaMarket);
 		azione.setAcquirente(giocatore);
-		
+		giocatore.setPunteggioRicchezza(2);
+		giocatore.setAiutanti(new Aiutante(4));
 		azione.eseguiAzione(gameState);
 		
+		System.out.println(notify);
+		assertTrue(notify.get(0) instanceof AvversarioNotify);
+		assertTrue(notify.get(1) instanceof GiocatoreNotify);
+		assertTrue(notify.get(2) instanceof MessageNotify);
+		assertTrue(notify.get(3) instanceof AzioniNotify);
+		assertEquals(4, notify.size());
 		assertTrue(gameState.getStato() instanceof StartEnd);
 	}
 
@@ -86,7 +105,6 @@ public class AzioneAcquistoTest {
 		giocatore.setPunteggioRicchezza(2);
 		giocatore.setAiutanti(new Aiutante(4));
 		gameState.getOfferteMarket().add(offertaMarket);
-		System.out.println("chiamatoio: "+gameState.getOfferteMarket().size());
 		azione.eseguiAzione(gameState);
 		
 		assertEquals(2+1, venditore.getPunteggioRicchezza());
