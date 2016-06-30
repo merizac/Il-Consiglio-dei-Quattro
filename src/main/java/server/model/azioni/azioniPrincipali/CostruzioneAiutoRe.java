@@ -73,9 +73,11 @@ public class CostruzioneAiutoRe extends AzionePrincipale implements Bonusable {
 			costruisci(gameState);
 			nob = prendiBonus(gameState, nob);
 			if (cittàCostruzione instanceof CittàBonus)
-				controllaCittàColore((ColoreCittà) cittàCostruzione.getColoreCittà(),
-						gameState.getGiocatoreCorrente());
-			controllaCittàRegione(cittàCostruzione.getRegione(), gameState.getGiocatoreCorrente());
+
+				controllaCittàColore(((ColoreCittà) cittàCostruzione.getColoreCittà()),
+						gameState.getGiocatoreCorrente(), gameState.getPlanciaRe().getBonusPremioRe());
+			controllaCittàRegione(cittàCostruzione.getRegione(), gameState.getGiocatoreCorrente()
+					, gameState.getPlanciaRe().getBonusPremioRe());
 		}
 
 		if (gameState.getGiocatoreCorrente().getEmpori().isEmpty()) {
@@ -103,13 +105,16 @@ public class CostruzioneAiutoRe extends AzionePrincipale implements Bonusable {
 	 * @param regione
 	 * @param giocatore
 	 */
-	private void controllaCittàRegione(Regione regione, Giocatore giocatore) {
+	private void controllaCittàRegione(Regione regione, Giocatore giocatore, List<Bonus> bonusRe) {
 		for (Città c : regione.getCittàRegione()) {
 			if (!c.emporioColore(giocatore.getColoreGiocatore()))
 				return;
 		}
 		giocatore.getTessereBonus().add(regione.getBonusRegione());
 		regione.setBonusAssegnato(true);
+		if (!bonusRe.isEmpty()) {
+			giocatore.getTessereBonus().add(bonusRe.remove(0));
+		}
 
 	}
 
@@ -119,7 +124,7 @@ public class CostruzioneAiutoRe extends AzionePrincipale implements Bonusable {
 	 * @param coloreCittà
 	 * @param giocatore
 	 */
-	private void controllaCittàColore(ColoreCittà coloreCittà, Giocatore giocatore) {
+	private void controllaCittàColore(ColoreCittà coloreCittà, Giocatore giocatore, List<Bonus> bonusRe) {
 		if (coloreCittà.isAssegnatoBonus())
 			return;
 		for (Città c : coloreCittà.getCittà()) {
@@ -128,6 +133,9 @@ public class CostruzioneAiutoRe extends AzionePrincipale implements Bonusable {
 		}
 		giocatore.getTessereBonus().add(coloreCittà.getBonusColore());
 		coloreCittà.setAssegnatoBonus(true);
+		if (!bonusRe.isEmpty()) {
+			giocatore.getTessereBonus().add(bonusRe.remove(0));
+		}
 	}
 
 	/**
