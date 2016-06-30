@@ -73,7 +73,7 @@ public class CostruzioneAiutoRe extends AzionePrincipale implements Bonusable {
 			costruisci(gameState);
 			nob = prendiBonus(gameState, nob);
 			if (cittàCostruzione instanceof CittàBonus)
-				controllaCittàColore(((ColoreCittà) cittàCostruzione.getColoreCittà()),
+				controllaCittàColore((ColoreCittà) cittàCostruzione.getColoreCittà(),
 						gameState.getGiocatoreCorrente());
 			controllaCittàRegione(cittàCostruzione.getRegione(), gameState.getGiocatoreCorrente());
 		}
@@ -270,6 +270,8 @@ public class CostruzioneAiutoRe extends AzionePrincipale implements Bonusable {
 	 *            the cittàCostruzione to set
 	 */
 	public void setCittàCostruzione(Città cittàCostruzione) {
+		if(cittàCostruzione==null)
+			throw new NullPointerException("La città in cui vuoi costruire non puù essere null");
 		this.cittàCostruzione = cittàCostruzione;
 	}
 
@@ -278,6 +280,8 @@ public class CostruzioneAiutoRe extends AzionePrincipale implements Bonusable {
 	 *            the carteGiocatore to set
 	 */
 	public void setCarteGiocatore(List<CartaPolitica> carteGiocatore) {
+		if(carteGiocatore==null)
+			throw new NullPointerException("Le carte del giocatore non possono essere null");
 		this.carteGiocatore = carteGiocatore;
 	}
 

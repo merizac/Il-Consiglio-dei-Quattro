@@ -13,7 +13,6 @@ import server.model.game.GameState;
 import server.model.game.Giocatore;
 import server.model.macchinaStati.StartEnd;
 import server.model.notify.GiocatoreDisconnessoNotify;
-import server.model.notify.MessageNotify;
 import server.model.notify.Notify;
 import utility.Observer;
 
