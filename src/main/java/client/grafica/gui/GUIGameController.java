@@ -31,7 +31,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import server.model.bonus.Bonus;
 import utility.AzioneNonEseguibile;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -39,7 +38,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-public class GUIGameController {
+public class GUIGameController implements Controller{
 
 	private GameStateDTO gameStateDTO;
 	private GUI gui;

@@ -10,7 +10,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.CountDownLatch;
 
 import client.connessione.Connessione;
 import client.grafica.Grafica;
@@ -25,7 +24,6 @@ import common.azioniDTO.CostruzioneAiutoReDTO;
 import common.azioniDTO.CostruzioneTesseraPermessoDTO;
 import common.azioniDTO.ElezioneConsigliereDTO;
 import common.azioniDTO.ElezioneConsigliereVeloceDTO;
-import common.azioniDTO.ExitDTO;
 import common.azioniDTO.IngaggioAiutanteDTO;
 import common.azioniDTO.PassaDTO;
 import common.azioniDTO.PescaCartaDTO;
@@ -78,6 +76,7 @@ public class GUI extends Application implements Grafica {
 	private GUIGameController controller;
 	private GUIMarketController controllerMarket;
 	private GUIMappaController controllerMappa;
+	private Controller controllerCorrente;
 	private Stage finestra;
 	private Stage market;
 	private Stage mappa;
@@ -190,6 +189,7 @@ public class GUI extends Application implements Grafica {
 		controller = fxmloader.getController();
 		controller.setGameStateDTO(this.gameStateDTO);
 		controller.setGui(this);
+		controllerCorrente=controller;
 		finestra.setScene(theScene);
 		finestra.show();
 	}
@@ -491,7 +491,8 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public void mostraMessaggio(String messaggio) {
-		controller.getMessage().appendText(messaggio);
+		controllerCorrente.getMessage().appendText(messaggio);
+		System.out.println("CONTROLLER :"+controllerCorrente);
 	}
 
 	@Override
@@ -650,6 +651,7 @@ public class GUI extends Application implements Grafica {
 					controllerMarket.setGameStateDTO(gameStateDTO);
 					controllerMarket.setGui(GUI.this);
 					controllerMarket.inizializza();
+					System.out.println("CONTROLLER MARKET :"+controllerCorrente);
 					market.setScene(theScene);
 					market.show();
 				} catch (Exception e) {
