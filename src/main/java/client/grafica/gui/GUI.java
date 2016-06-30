@@ -24,6 +24,7 @@ import common.azioniDTO.CostruzioneAiutoReDTO;
 import common.azioniDTO.CostruzioneTesseraPermessoDTO;
 import common.azioniDTO.ElezioneConsigliereDTO;
 import common.azioniDTO.ElezioneConsigliereVeloceDTO;
+import common.azioniDTO.ExitDTO;
 import common.azioniDTO.IngaggioAiutanteDTO;
 import common.azioniDTO.PassaDTO;
 import common.azioniDTO.PescaCartaDTO;
@@ -67,6 +68,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import utility.AzioneNonEseguibile;
 
 public class GUI extends Application implements Grafica {
@@ -84,7 +86,7 @@ public class GUI extends Application implements Grafica {
 	private Object parametro;
 	private boolean carteInserite = false;
 	private Map<GiocatoreDTO, Tab> tabAvversari = new HashMap<>();
-	private final int timeout = 60000;
+	private final int timeout = 30000;
 	private Timer timer;
 	private TimerTask task;
 
@@ -191,20 +193,32 @@ public class GUI extends Application implements Grafica {
 		controller.setGui(this);
 		controllerCorrente=controller;
 		finestra.setScene(theScene);
+		finestra.setOnCloseRequest(new EventHandler<WindowEvent>() {
+			
+			@Override
+			public void handle(WindowEvent event) {
+				try {
+					connessione.inviaAzione(new ExitDTO());
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 		finestra.show();
 	}
 
 	@Override
 	public void mostraAzioni(List<AzioneDTO> azioni) {
 
-		/*timer = new Timer();
+		timer = new Timer();
 		task = new TimerTask() {
 
 			@Override
 			public void run() {
 				try {
 					connessione.inviaAzione(new ExitDTO());
-					System.out.println("exit :" + gameStateDTO.getGiocatoreDTO().getNome());
+					close();
 				} catch (RemoteException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -212,7 +226,7 @@ public class GUI extends Application implements Grafica {
 			}
 		};
 
-		timer.schedule(task, timeout);*/
+		timer.schedule(task, timeout);
 
 		if (azioni.get(0) instanceof BonusGettoneNDTO || azioni.get(0) instanceof BonusTesseraAcquistataNDTO
 				|| azioni.get(0) instanceof BonusTesseraPermessoNDTO) {
