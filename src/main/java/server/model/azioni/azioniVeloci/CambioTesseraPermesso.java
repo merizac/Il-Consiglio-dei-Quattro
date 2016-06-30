@@ -63,6 +63,8 @@ public class CambioTesseraPermesso extends AzioneVeloce {
 	 *            the regione to set
 	 */
 	public void setRegione(Regione regione) {
+		if(regione==null)
+			throw new NullPointerException("La regione passata è null");
 		this.regione = regione;
 	}
 

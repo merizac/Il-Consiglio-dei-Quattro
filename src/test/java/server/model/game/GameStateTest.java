@@ -40,7 +40,7 @@ public class GameStateTest {
 		gameState.start(giocatori, "mappa1");
 	}
 
-/*	@Test
+	@Test
 	public void testGetConsigliere() {
 		Consigliere consigliereAspettato = new Consigliere(new Colore("A"));
 		gameState.getConsiglieri().add(consigliereAspettato);
@@ -207,7 +207,7 @@ public class GameStateTest {
 		gameState.prossimoTurno();
 
 		assertTrue(turno + 1 == gameState.getNumeroTurni());
-	}*/
+	}
 
 /*	@Test public void testCreaGiocatoriUGUALE2() {
 		gameState.getGiocatori().clear();
@@ -336,7 +336,7 @@ public class GameStateTest {
 	
 	
 	
-/*	
+
 	@Test
 	public void testNextPlayer() {
 		Giocatore fineTurno = gameState.getGiocatori().get(0);
@@ -405,7 +405,7 @@ public class GameStateTest {
 		giocatore1 = new Giocatore("Giocatore1");
 		giocatori.add(giocatore1);
 
-		game.start(giocatori);
+		game.start(giocatori,"mappa1");
 
 		assertTrue(notify.get(0) instanceof GameStateNotify);
 		assertTrue(notify.get(1) instanceof GiocatoreNotify);
@@ -426,7 +426,7 @@ public class GameStateTest {
 		giocatori.add(g1);
 		giocatori.add(g2);
 
-		gameState.start(giocatori);
+		gameState.start(giocatori,"mappa1");
 		gameState.getGiocatoriFinePartita().addAll(giocatori);
 
 		// assegno loro punti vittoria
@@ -482,7 +482,7 @@ public class GameStateTest {
 		giocatori.add(g1);
 		giocatori.add(g2);
 
-		gameState.start(giocatori);
+		gameState.start(giocatori,"mappa1");
 		gameState.getGiocatoriFinePartita().addAll(giocatori);
 
 		// assegno loro punti vittoria
@@ -538,7 +538,7 @@ public class GameStateTest {
 		giocatori.add(g1);
 		giocatori.add(g2);
 
-		gameState.start(giocatori);
+		gameState.start(giocatori,"mappa1");
 		gameState.getGiocatoriFinePartita().addAll(giocatori);
 
 		// assegno loro punti vittoria
@@ -595,7 +595,7 @@ public class GameStateTest {
 		giocatori.add(g1);
 		giocatori.add(g2);
 
-		gameState.start(giocatori);
+		gameState.start(giocatori,"mappa1");
 		gameState.getGiocatoriFinePartita().addAll(giocatori);
 
 		// assegno loro punti vittoria
@@ -652,7 +652,7 @@ public class GameStateTest {
 		giocatori.add(g1);
 		giocatori.add(g2);
 
-		gameState.start(giocatori);
+		gameState.start(giocatori,"mappa1");
 		gameState.getGiocatoriFinePartita().addAll(giocatori);
 
 		// assegno loro punti vittoria
@@ -715,7 +715,7 @@ public class GameStateTest {
 		giocatori.add(g4);
 		GameState gameState = new GameState();
 
-		gameState.start(giocatori);
+		gameState.start(giocatori,"mappa1");
 		gameState.getGiocatoriFinePartita().addAll(giocatori);
 
 		// assegno loro punti vittoria
@@ -804,7 +804,7 @@ public class GameStateTest {
 		giocatori.add(g4);
 		GameState gameState = new GameState();
 
-		gameState.start(giocatori);
+		gameState.start(giocatori,"mappa1");
 		gameState.getGiocatoriFinePartita().addAll(giocatori);
 
 		// assegno loro punti vittoria
@@ -878,7 +878,7 @@ public class GameStateTest {
 		giocatori.add(g4);
 		GameState gameState = new GameState();
 
-		gameState.start(giocatori);
+		gameState.start(giocatori,"mappa1");
 		gameState.getGiocatoriFinePartita().addAll(giocatori);
 
 		// assegno loro punti vittoria
@@ -965,7 +965,7 @@ public class GameStateTest {
 		giocatori.add(g4);
 		GameState gameState = new GameState();
 
-		gameState.start(giocatori);
+		gameState.start(giocatori,"mappa1");
 		gameState.getGiocatoriFinePartita().addAll(giocatori);
 
 		// assegno loro punti vittoria
@@ -1053,7 +1053,7 @@ public class GameStateTest {
 		giocatori.add(g4);
 		GameState gameState = new GameState();
 
-		gameState.start(giocatori);
+		gameState.start(giocatori,"mappa1");
 		gameState.getGiocatoriFinePartita().addAll(giocatori);
 
 		// assegno loro punti vittoria
@@ -1127,5 +1127,5 @@ public class GameStateTest {
 		assertEquals(8, gameState.getGiocatoriFinePartita().get(2).getPunteggioVittoria());
 		assertEquals(8, gameState.getGiocatoriFinePartita().get(1).getPunteggioVittoria());
 	}
-*/
+
 }

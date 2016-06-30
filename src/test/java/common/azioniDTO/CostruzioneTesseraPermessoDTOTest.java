@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.internal.runners.statements.Fail;
 
 import common.azioniDTO.CostruzioneTesseraPermessoDTO;
 import common.azioniDTO.azioneVisitor.AzioneVisitor;
@@ -85,7 +86,7 @@ public class CostruzioneTesseraPermessoDTOTest {
 		costruzione.setCittà(cittàDTO);
 		costruzione.setTesseraPermesso(tesseraDTO);
 
-		
+		System.out.println(tesseraDTO);
 		CostruzioneTesseraPermesso azioneParser=(CostruzioneTesseraPermesso) costruzione.accept(visitor);
 		
 		assertTrue(città==azioneParser.getCittàCostruzione());

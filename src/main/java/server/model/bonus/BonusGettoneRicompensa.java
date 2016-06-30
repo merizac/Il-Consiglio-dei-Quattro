@@ -113,6 +113,8 @@ public class BonusGettoneRicompensa extends Bonus {
 	 * @param cittàGiocatore the cittàGiocatore to set
 	 */
 	public void setCittàGiocatore(List<CittàBonus> cittàGiocatore) {
+		if(cittàGiocatore==null)
+			throw new NullPointerException("La lista di città è null");
 		this.cittàGiocatore = cittàGiocatore;
 	}
 
@@ -127,6 +129,8 @@ public class BonusGettoneRicompensa extends Bonus {
 	 * @param cittàDTO the cittàDTO to set
 	 */
 	public void setCittàDTO(CittàBonusDTO cittàDTO) {
+		if(cittàDTO==null)
+			throw new NullPointerException("La cittàDTO è null");
 		this.cittàDTO = cittàDTO;
 	}
 
@@ -134,7 +138,7 @@ public class BonusGettoneRicompensa extends Bonus {
 	 * @param numeroGettoni the numeroGettoni to set
 	 */
 	public void setNumeroGettoni(int numeroGettoni) {
-		if(numeroGettoni>2) throw new IllegalArgumentException("il bonus può avere al massimo due gettoni");
+		if(numeroGettoni>2 || numeroGettoni<0) throw new IllegalArgumentException("il bonus può avere al massimo due gettoni");
 		this.numeroGettoni = numeroGettoni;
 	}
 }

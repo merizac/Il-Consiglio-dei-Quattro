@@ -1,4 +1,4 @@
-package server.model.azioni;
+package server.model.azioni.azioniPrincipali;
 
 import static org.junit.Assert.*;
 
