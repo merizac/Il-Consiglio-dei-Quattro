@@ -37,7 +37,7 @@ public class BonusTesseraAcquistata extends Bonus {
 		if (gameState.getGiocatoreCorrente().getTesserePermesso().isEmpty()
 				&& gameState.getGiocatoreCorrente().getTesserePermessoUsate().isEmpty())
 		{
-			gameState.notifyObserver(new MessageNotify("Hai vinto un bonus tessera ma non hai tessere permesso! \nNon puoi utilizzare il bonus!", Arrays.asList(gameState.getGiocatoreCorrente())));
+			gameState.notifyObserver(new MessageNotify("Hai vinto un bonus tessera ma non hai tessere permesso! \nNon puoi utilizzare il bonus!\n", Arrays.asList(gameState.getGiocatoreCorrente())));
 		}
 		gameState.getGiocatoreCorrente().getBonusNobiltà().add(this.getAzioneBonus());
 	}

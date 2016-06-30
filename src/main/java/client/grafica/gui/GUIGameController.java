@@ -560,7 +560,7 @@ public class GUIGameController implements Controller{
 		}
 		if (!gameStateDTO.getPlanciaReDTO().getBonusPremioRe().isEmpty()) {
 			System.out.println("giocatore :"+gameStateDTO.getGiocatoreDTO().getNome());
-			System.out.println("size bonus re :"+gameStateDTO.getPlanciaReDTO().getBonusPremioRe().size());
+			System.out.println("size bonus re :"+gameStateDTO.getPlanciaReDTO().getBonusPremioRe());
 			String bonus= String.valueOf(6-gameStateDTO.getPlanciaReDTO().getBonusPremioRe().size());
 			king.setImage(new Image(getClass().getResource("css/tessereBonus/king_"+bonus+".png").toExternalForm()));
 		}
