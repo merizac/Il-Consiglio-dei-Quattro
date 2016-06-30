@@ -107,8 +107,8 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonu
 		coloreCittà.setAssegnatoBonus(true);
 		if (!bonusRe.isEmpty()) {
 			giocatore.getTessereBonus().add(bonusRe.remove(0));
-			System.out.println("\nTESSERE BONUS"+giocatore.getTessereBonus());
 		}
+		System.out.println("\nTESSERE BONUS RE"+bonusRe);
 		
 	}
 

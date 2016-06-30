@@ -210,7 +210,7 @@ public class GiocatoreDTO implements Serializable {
 		}
 		int n=0;
 		for(Bonus b:giocatore.getTessereBonus()){
-			n=((BonusPuntiVittoria) b).getPuntiVittoria();
+			n=n+((BonusPuntiVittoria) b).getPuntiVittoria();
 		}
 		this.setTessereBonus(n);	
 	}
