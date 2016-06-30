@@ -40,11 +40,12 @@ public class GameStateDTO implements Serializable {
 				if (!((ColoreCittà) colore).isAssegnatoBonus()) {
 					ColoreBonusDTO coloreBonusDTO = new ColoreBonusDTO();
 					coloreBonusDTO.inizializza((ColoreCittà)colore);
+					System.out.println("colore bonus :"+coloreBonusDTO);
 					this.bonusColore.add(coloreBonusDTO);
 				}
 			}
 		}
-		System.out.println(this.bonusColore);
+		
 		this.città = new TreeSet<>(new ComparatorOrdineAlfabetico());
 		for (Città c : gameState.getCittà()) {
 			if (c instanceof CittàBonus) {

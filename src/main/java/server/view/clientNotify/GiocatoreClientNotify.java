@@ -31,6 +31,7 @@ public class GiocatoreClientNotify implements ClientNotify {
 		giocatore.setPunteggioNobiltà(this.giocatoreDTO.getPunteggioNobiltà());
 		giocatore.setPunteggioRicchezza(this.giocatoreDTO.getPunteggioRicchezza());
 		giocatore.setPunteggioVittoria(this.giocatoreDTO.getPunteggioVittoria());
+		giocatore.setTessereBonus(this.giocatoreDTO.getTessereBonus());
 		
 		grafica.mostraGiocatore(giocatoreDTO);
 	}
