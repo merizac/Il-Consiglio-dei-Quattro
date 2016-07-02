@@ -21,6 +21,11 @@ public class BonusAzionePrincipaleTest {
 		assertFalse(azionePrincipale);
 		assertTrue(gameState.isBonusAzionePrincipale());
 	}
+	
+	@Test
+	public void testToString(){
+		assertEquals("BonusAzionePrincipale", new BonusAzionePrincipale(1).toString());
+	}
 
 
 }

@@ -57,6 +57,8 @@ public class ElezioneConsigliereVeloceDTO implements AzioneDTO, AzioneParametri 
 	public void setBalcone(BalconeDTO balcone) {
 		this.balcone = balcone;
 	}
+	
+	@Override
 	public ElezioneConsigliereVeloceParametri parametri() {
 		return new ElezioneConsigliereVeloceParametri(this);
 	}

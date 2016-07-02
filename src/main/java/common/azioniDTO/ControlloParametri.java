@@ -28,6 +28,11 @@ import server.model.market.Offerta;
 import utility.ParameterException;
 
 public class ControlloParametri {
+
+
+	public ControlloParametri() {
+	}
+
 	/**
 	 * check if region is a existing region
 	 * 
@@ -44,6 +49,7 @@ public class ControlloParametri {
 		throw new ParameterException("La regione " + regione.getNome() + " è inesistente!");
 	}
 
+	
 	/**
 	 * check if the balcone is a existing balcone
 	 * 
@@ -185,15 +191,10 @@ public class ControlloParametri {
 	 * @param cittàTessera
 	 */
 	private static void ordinaCittà(List<Città> cittàTessera) {
-		Collections.sort(cittàTessera, new Comparator<Città>() {
-
-			@Override
-			public int compare(Città o1, Città o2) {
-				return o1.getNome().compareToIgnoreCase(o2.getNome());
-			}
-
-		});
-
+		Comparator<Città> comparator = (o1, o2) -> {
+			return o1.getNome().compareToIgnoreCase(o2.getNome());
+		};
+		Collections.sort(cittàTessera, comparator);
 	}
 
 	/**
@@ -202,14 +203,10 @@ public class ControlloParametri {
 	 * @param città
 	 */
 	private static void ordinaCittàDTO(List<CittàDTO> città) {
-		Collections.sort(città, new Comparator<CittàDTO>() {
-
-			@Override
-			public int compare(CittàDTO o1, CittàDTO o2) {
-				return o1.getNome().compareToIgnoreCase(o2.getNome());
-			}
-
-		});
+		Comparator<CittàDTO> comparatorDTO = (o1, o2) -> {
+			return o1.getNome().compareToIgnoreCase(o2.getNome());
+		};
+		Collections.sort(città, comparatorDTO);
 
 	}
 
@@ -261,6 +258,7 @@ public class ControlloParametri {
 		return false;
 	}
 
+	
 	/**
 	 * check if counsilior dto is the same councilior in the model
 	 * 
@@ -292,6 +290,7 @@ public class ControlloParametri {
 		throw new ParameterException("L'offerta numero " + offerta + " è inesistente");
 	}
 
+	
 	/**
 	 * check if the dto player is an existing player in the model
 	 * 

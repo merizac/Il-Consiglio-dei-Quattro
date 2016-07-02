@@ -13,6 +13,7 @@ import server.model.notify.GiocatoreMarketNotify;
 import server.model.notify.MarketNotify;
 import server.model.notify.MessageNotify;
 import server.model.notify.OffertaNotify;
+import utility.Utils;
 
 public class StatoOffertaMarket implements Stato {
 
@@ -25,7 +26,7 @@ public class StatoOffertaMarket implements Stato {
 	 */
 	public StatoOffertaMarket(GameState gameState) {
 		this.azioni = Arrays.asList(new AzioneOfferta(), new Passa());
-		System.out.println("[SERVER] Azioni Stato Offerta: " + azioni);
+		Utils.print("[SERVER] Azioni Stato Offerta: " + azioni);
 		for (Giocatore g : gameState.getGiocatori()) {
 			gameState.notifyObserver(new GiocatoreMarketNotify(g, Arrays.asList(g)));
 		}

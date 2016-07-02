@@ -12,6 +12,7 @@ import server.model.game.GameState;
 import server.model.notify.AzioniNotify;
 import server.model.notify.MarketNotify;
 import server.model.notify.MessageNotify;
+import utility.Utils;
 
 public class Stato10 implements Stato {
 
@@ -23,7 +24,7 @@ public class Stato10 implements Stato {
 	 * @param gameState
 	 */
 	public Stato10(GameState gameState) {
-		System.out.println("[SERVER] " + this);
+		Utils.print("[SERVER] " + this);
 		azioni = Arrays.asList(new ElezioneConsigliere(), new AcquistoTesseraPermesso(),
 				new CostruzioneTesseraPermesso(), new CostruzioneAiutoRe());
 		gameState.notifyObserver(
@@ -48,7 +49,7 @@ public class Stato10 implements Stato {
 				}
 			} else {
 				gameState.nextPlayer();
-				System.out.println("[SERVER] numero turno 10: " + gameState.getNumeroTurni());
+				Utils.print("[SERVER] numero turno 10: " + gameState.getNumeroTurni());
 				gameState.prossimoTurno();
 
 				if (gameState.getNumeroTurni() != gameState.getGiocatori().size())

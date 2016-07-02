@@ -4,6 +4,8 @@ import java.rmi.RemoteException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import client.connessione.ConnessioneRMIRemota;
 import common.azioniDTO.AzioneDTO;
@@ -22,11 +24,13 @@ import server.model.notify.MessageNotify;
 import server.model.notify.Notify;
 import server.view.clientNotify.MessageClientNotify;
 import utility.ParameterException;
+import utility.Utils;
 
 public class ServerRMIView extends View implements ServerRMIViewRemote {
 
 	private GameState gameState;
 	private Map<ConnessioneRMIRemota, Giocatore> giocatori;
+	private static final Logger log = Logger.getLogger(ServerRMIView.class.getName());
 
 	/**
 	 * create a ServerRMIView
@@ -55,8 +59,7 @@ public class ServerRMIView extends View implements ServerRMIViewRemote {
 					try {
 						this.unregister(c);
 					} catch (RemoteException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+						log.log(Level.SEVERE, "Errore nell'aggiornamento del client", e1);
 					}
 				}
 			}
@@ -87,22 +90,20 @@ public class ServerRMIView extends View implements ServerRMIViewRemote {
 
 			} catch (ParameterException e1) {
 				update(new MessageNotify(e1.getMessage(), Arrays.asList(gameState.getGiocatoreCorrente())));
-				System.out.println("[SERVER] Ricevuta l'azione " + azione + " dal giocatore "
+				Utils.print("[SERVER] Ricevuta l'azione " + azione + " dal giocatore "
 						+ this.giocatori.get(connessioneRMIRemota).getNome() + " con errore: " + e1.getMessage());
 				return;
 			}
-			System.out.println("[SERVER] Ricevuta l'azione " + azione + " dal giocatore "
+			Utils.print("[SERVER] Ricevuta l'azione " + azione + " dal giocatore "
 					+ this.giocatori.get(connessioneRMIRemota).getNome());
-			try {
-				if ((azione.isTurno(this.giocatori.get(connessioneRMIRemota), gameState)
-						&& gameState.getStato().daEseguire(gameState.getStato().getAzioni(), azione))
-						|| (azione instanceof Chat)) {
-					System.out.println("[SERVER] Inviata l'azione " + azione);
-					this.notifyObserver(azione);
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
+
+			if ((azione.isTurno(this.giocatori.get(connessioneRMIRemota), gameState)
+					&& gameState.getStato().daEseguire(gameState.getStato().getAzioni(), azione))
+					|| (azione instanceof Chat)) {
+				Utils.print("[SERVER] Inviata l'azione " + azione);
+				this.notifyObserver(azione);
 			}
+
 		}
 
 	}
@@ -129,7 +130,7 @@ public class ServerRMIView extends View implements ServerRMIViewRemote {
 	 */
 	@Override
 	public void unregister(ConnessioneRMIRemota connessioneRMIRemota) throws RemoteException {
-		System.out.println(
+		Utils.print(
 				"[SERVER] Il giocatore " + this.giocatori.get(connessioneRMIRemota).getNome() + " è stato rimosso");
 		this.giocatori.remove(connessioneRMIRemota);
 	}
@@ -149,13 +150,13 @@ public class ServerRMIView extends View implements ServerRMIViewRemote {
 	 */
 	@Override
 	public void disconnetti() {
+		this.gameState.unregisterObserver(this);
 		for (ConnessioneRMIRemota c : this.giocatori.keySet()) {
 			try {
 				c.aggiorna(new MessageClientNotify("La partita è finita"));
 				c.disconnetti();
 			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				log.log(Level.SEVERE, "Errore nella disconnessione del client", e);
 			}
 			this.giocatori.remove(c);
 		}

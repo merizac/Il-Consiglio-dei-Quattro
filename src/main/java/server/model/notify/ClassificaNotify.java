@@ -20,8 +20,8 @@ public class ClassificaNotify implements Notify {
 	 * @param giocatori
 	 */
 	public ClassificaNotify(List<Giocatore> vincitori, List<Giocatore> perdenti, List<Giocatore> giocatori) {
-		System.out.println("classifica Notify");
-		if (vincitori == null)
+
+		if(vincitori==null)
 			throw new NullPointerException("La lista di vincitori non può essere null");
 		if (perdenti == null)
 			throw new NullPointerException("La lista di perdenti non può essere null");

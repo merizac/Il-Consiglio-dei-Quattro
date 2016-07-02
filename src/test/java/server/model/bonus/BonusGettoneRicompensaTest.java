@@ -3,7 +3,6 @@ package server.model.bonus;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.junit.BeforeClass;
@@ -12,7 +11,6 @@ import org.junit.Test;
 import common.gameDTO.CittàBonusDTO;
 import server.model.azioni.azioniBonus.BonusGettoneN;
 import server.model.game.CittàBonus;
-import server.model.game.Colore;
 import server.model.game.Emporio;
 import server.model.game.GameState;
 import server.model.game.Giocatore;
@@ -23,7 +21,7 @@ import utility.Observer;
 public class BonusGettoneRicompensaTest {
 
 	static GameState gameState;
-	static List<CittàBonus> cittàGiocatore;
+	static ArrayList<CittàBonus> cittàGiocatore;
 	static CittàBonusDTO cittàDTO;
 	static List<Notify> notify;
 	
@@ -73,7 +71,7 @@ public class BonusGettoneRicompensaTest {
 	@Test
 	public void testUsaBonusNotifica() {
 		BonusGettoneRicompensa bonus=new BonusGettoneRicompensa(1);
-		bonus.setCittàGiocatore(Arrays.asList());
+		bonus.setCittàGiocatore(new ArrayList<>());
 		bonus.setCittàDTO(cittàDTO);
 		
 		notify.clear();

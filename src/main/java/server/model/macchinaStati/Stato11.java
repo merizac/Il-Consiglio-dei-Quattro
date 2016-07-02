@@ -15,6 +15,7 @@ import server.model.azioni.azioniVeloci.SecondaAzionePrincipale;
 import server.model.game.GameState;
 import server.model.notify.AzioniNotify;
 import server.model.notify.MessageNotify;
+import utility.Utils;
 
 public class Stato11 implements Stato {
 
@@ -26,12 +27,12 @@ public class Stato11 implements Stato {
 	 * @param gameState
 	 */
 	public Stato11(GameState gameState) {
-		System.out.println("[SERVER] " + this);
-		this.azioni = Arrays.asList(new ElezioneConsigliere(), new AcquistoTesseraPermesso(),
-				new CostruzioneTesseraPermesso(), new CostruzioneAiutoRe(), new IngaggioAiutante(),
-				new CambioTesseraPermesso(), new ElezioneConsigliereVeloce());
-		gameState.notifyObserver(new MessageNotify("Scegli un'azione principale o un'azione veloce\n",
-				Arrays.asList(gameState.getGiocatoreCorrente())));
+
+		Utils.print("[SERVER] "+this);
+		this.azioni=Arrays.asList(new ElezioneConsigliere(), new AcquistoTesseraPermesso(),
+				new CostruzioneTesseraPermesso(), new CostruzioneAiutoRe(), new IngaggioAiutante(), new CambioTesseraPermesso(), 
+				new ElezioneConsigliereVeloce());
+		gameState.notifyObserver(new MessageNotify("Scegli un'azione principale o un'azione veloce\n", Arrays.asList(gameState.getGiocatoreCorrente())));
 		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
 	}
 

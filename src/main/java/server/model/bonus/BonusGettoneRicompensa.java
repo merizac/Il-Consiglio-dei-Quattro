@@ -1,5 +1,6 @@
 package server.model.bonus;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -21,7 +22,7 @@ public class BonusGettoneRicompensa extends Bonus {
 	 */
 	private static final long serialVersionUID = -7078597933216059193L;
 	private int numeroGettoni;
-	private List<CittàBonus> cittàGiocatore;
+	private ArrayList<CittàBonus> cittàGiocatore;
 	private CittàBonusDTO cittàDTO;
 	
 	public BonusGettoneRicompensa(){
@@ -112,7 +113,7 @@ public class BonusGettoneRicompensa extends Bonus {
 	/**
 	 * @param cittàGiocatore the cittàGiocatore to set
 	 */
-	public void setCittàGiocatore(List<CittàBonus> cittàGiocatore) {
+	public void setCittàGiocatore(ArrayList<CittàBonus> cittàGiocatore) {
 		if(cittàGiocatore==null)
 			throw new NullPointerException("La lista di città è null");
 		this.cittàGiocatore = cittàGiocatore;

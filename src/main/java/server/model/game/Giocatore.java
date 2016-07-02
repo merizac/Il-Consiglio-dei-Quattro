@@ -154,7 +154,7 @@ public class Giocatore {
 	}
 
 	public int getNumeroTesserePermesso() {
-		return (this.getTesserePermesso().size() + this.getTesserePermessoUsate().size());
+		return this.getTesserePermesso().size() + this.getTesserePermessoUsate().size();
 	}
 
 	/**

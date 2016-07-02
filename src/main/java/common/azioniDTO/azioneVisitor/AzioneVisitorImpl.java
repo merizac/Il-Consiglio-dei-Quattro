@@ -19,7 +19,6 @@ import common.azioniDTO.ElezioneConsigliereDTO;
 import common.azioniDTO.ElezioneConsigliereVeloceDTO;
 import common.azioniDTO.ExitDTO;
 import common.azioniDTO.IngaggioAiutanteDTO;
-import common.azioniDTO.PassaBonusDTO;
 import common.azioniDTO.PassaDTO;
 import common.azioniDTO.PescaCartaDTO;
 import common.azioniDTO.SecondaAzionePrincipaleDTO;
@@ -30,7 +29,6 @@ import server.model.azioni.PescaCarta;
 import server.model.azioni.azioniBonus.BonusGettoneN;
 import server.model.azioni.azioniBonus.BonusTesseraAcquistataN;
 import server.model.azioni.azioniBonus.BonusTesseraPermessoN;
-import server.model.azioni.azioniBonus.PassaBonus;
 import server.model.azioni.azioniMarket.AzioneAcquisto;
 import server.model.azioni.azioniMarket.AzioneOfferta;
 import server.model.azioni.azioniPrincipali.AcquistoTesseraPermesso;
@@ -265,16 +263,8 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 		List<TesseraPermesso> tessere = new ArrayList<>();
 		tessere.addAll(gameState.getGiocatoreCorrente().getTesserePermesso());
 		tessere.addAll(gameState.getGiocatoreCorrente().getTesserePermessoUsate());
-		tesseraPermesso = ControlloParametri.cercaTesseraPermesso(bonusTesseraAcquistataDTO.getTesseraPermesso(),
-				tessere);
-		/*
-		 * if (bonusTesseraAcquistataDTO.isUsata()) { tesseraPermesso =
-		 * ControlloParametri.cercaTesseraPermesso(bonusTesseraAcquistataDTO.
-		 * getTesseraPermesso(), giocatore.getTesserePermessoUsate()); } else
-		 * tesseraPermesso =
-		 * ControlloParametri.cercaTesseraPermesso(bonusTesseraAcquistataDTO.
-		 * getTesseraPermesso(), giocatore.getTesserePermesso());
-		 */
+
+		tesseraPermesso=ControlloParametri.cercaTesseraPermesso(bonusTesseraAcquistataDTO.getTesseraPermesso(), tessere);
 		bonusTesseraAcquistata.setId(1);
 		bonusTesseraAcquistata.setTesseraPermesso(tesseraPermesso);
 		return bonusTesseraAcquistata;
@@ -320,9 +310,4 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 		return chat;
 	}
 
-	@Override
-	public PassaBonus visit(PassaBonusDTO passaBonusDTO) throws ParameterException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

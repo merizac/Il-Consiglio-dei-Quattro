@@ -8,6 +8,7 @@ import server.model.azioni.PescaCarta;
 import server.model.game.GameState;
 import server.model.notify.AzioniNotify;
 import server.model.notify.MessageNotify;
+import utility.Utils;
 
 public class StartEnd implements Stato {
 
@@ -19,7 +20,7 @@ public class StartEnd implements Stato {
 	 * @param gameState
 	 */
 	public StartEnd(GameState gameState) {
-		System.out.println("[SERVER] " + this);
+		Utils.print("[SERVER] " + this);
 		gameState.notifyObserver(new MessageNotify("E' il tuo turno "+gameState.getGiocatoreCorrente().getNome()+"\nPesca una carta!\n"
 				, Arrays.asList(gameState.getGiocatoreCorrente())));
 		azioni = Arrays.asList(new PescaCarta());

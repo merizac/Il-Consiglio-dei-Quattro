@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
+import server.Server;
 import server.model.bonus.Bonus;
 import server.model.game.comparator.ComparatorClassifica;
 import server.model.game.comparator.ComparatorPuntiNobiltà;
@@ -334,8 +335,8 @@ public class GameState extends Observable<Notify> {
 	 * @return true if next player is the last
 	 */
 	public boolean lastNextPlayer() {
-		Giocatore ultimoGiro = giocatori.remove(0);
-		giocatoriFinePartita.add(ultimoGiro);
+		Giocatore giocatoreUltimoGiro = giocatori.remove(0);
+		giocatoriFinePartita.add(giocatoreUltimoGiro);
 		if (giocatori.isEmpty()) {
 			return true;
 		} else {
@@ -417,8 +418,6 @@ public class GameState extends Observable<Notify> {
 				break;
 			} else {
 				vincitori.add(g);
-				// giocatoriPerdenti.remove(g);
-
 				if (giocatoritmp.isEmpty())
 					break;
 			}
@@ -483,13 +482,13 @@ public class GameState extends Observable<Notify> {
 	 */
 	private void calcolaPunteggioNobiltà() {
 		Collections.sort(giocatoriFinePartita, new ComparatorPuntiNobiltà());
-		ArrayList<Giocatore> giocatori = new ArrayList<>(giocatoriFinePartita);
+		ArrayList<Giocatore> giocatoriPunteggioNobiltà = new ArrayList<>(giocatoriFinePartita);
 		ArrayList<Giocatore> primo = new ArrayList<>();
-		primo.add(giocatori.get(0));
-		giocatori.remove(primo.get(0));
+		primo.add(giocatoriPunteggioNobiltà.get(0));
+		giocatoriPunteggioNobiltà.remove(primo.get(0));
 		ArrayList<Giocatore> secondo = new ArrayList<>();
 
-		for (Giocatore g : giocatori) {
+		for (Giocatore g : giocatoriPunteggioNobiltà) {
 			int punti = g.getPunteggioNobiltà().getPuntiNobiltà();
 
 			if (punti == primo.get(0).getPunteggioNobiltà().getPuntiNobiltà()) {
@@ -497,7 +496,6 @@ public class GameState extends Observable<Notify> {
 			} else if ((punti != primo.get(0).getPunteggioNobiltà().getPuntiNobiltà() && secondo.isEmpty())
 					|| punti == secondo.get(0).getPunteggioNobiltà().getPuntiNobiltà()) {
 				secondo.add(g);
-				// break;
 			}
 		}
 		assegnaPunti(primo, secondo);

@@ -4,9 +4,10 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.rmi.RemoteException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import client.grafica.Grafica;
 import common.azioniDTO.AzioneDTO;
@@ -23,62 +24,55 @@ public class ConnessioneSocket implements Connessione, Runnable {
 	private ObjectOutputStream socketOut;
 	private ObjectInputStream socketIn;
 	private boolean fine = false;
+	private static final Logger log = Logger.getLogger(ConnessioneSocket.class.getName());
 
 	/**
-	 * create the socket and the stream from the server and to the server
-	 * then listen for update from the server
+	 * create the socket and the stream from the server and to the server then
+	 * listen for update from the server
 	 */
 	@Override
 	public void run() {
 		try {
 			this.socket = new Socket(IP, PORT);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.log(Level.SEVERE, "Errore nella creazione del socket", e);
 		}
 		try {
 			socketOut = new ObjectOutputStream(socket.getOutputStream());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.log(Level.SEVERE, "Errore nella creazione dell'ObjectOutputStream", e);
 		}
 		try {
 			socketIn = new ObjectInputStream(socket.getInputStream());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.log(Level.SEVERE, "Errore nella creazione dell'ObjectInputStream", e);
 		}
-		System.out.println("Connessione socket creata");
 
 		try {
 			socketOut.writeObject(gameStateDTO.getGiocatoreDTO());
 			socketOut.reset();
 			socketOut.flush();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.log(Level.SEVERE, "Errore nell'invio del giocatore al server", e);
 		}
 		listen();
 	}
-	
+
 	private void listen() {
 		while (!fine) {
-			
-				ClientNotify notify;
-				try {
-					notify = (ClientNotify) socketIn.readObject();
-				} catch (ClassNotFoundException | IOException e) {
-					disconnetti();
-					return;
-				}
-				try {
-					notify.stamp(grafica, gameStateDTO);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+
+			try {
+				ClientNotify notify = (ClientNotify) socketIn.readObject();
+				notify.stamp(grafica, gameStateDTO);
+			} catch (ClassNotFoundException e) {
+				log.log(Level.SEVERE, "Errore nel cast della notify, ricevuta un'oggetto di tipo diverso da ClientNotify", e);
+			} catch (IOException e) {
+				disconnetti();
+				log.log(Level.INFO, "Client disconnesso");
+				break;
+			}
 		}
-		
+
 	}
 
 	/**
@@ -91,10 +85,11 @@ public class ConnessioneSocket implements Connessione, Runnable {
 			this.socketOut.flush();
 			this.socketOut.reset();
 		} catch (IOException e) {
-			System.out.println("prova");
+			log.log(Level.SEVERE, "Errore nell'invio dell'azione al server", e);
 		}
 
 	}
+
 	/**
 	 * close the socket of the client
 	 */
@@ -103,13 +98,14 @@ public class ConnessioneSocket implements Connessione, Runnable {
 		try {
 			this.socket.close();
 		} catch (IOException e) {
-			System.out.println("Client chiuso");
+			log.log(Level.INFO, "Socket chiuso");
 		}
 	}
 
 	/**
 	 * set the grafica
-	 * @param grafica 
+	 * 
+	 * @param grafica
 	 */
 	@Override
 	public void setGrafica(Grafica grafica) {
@@ -118,6 +114,7 @@ public class ConnessioneSocket implements Connessione, Runnable {
 
 	/**
 	 * set the gameState
+	 * 
 	 * @param gameStateDTO
 	 */
 	@Override
@@ -129,11 +126,10 @@ public class ConnessioneSocket implements Connessione, Runnable {
 	 * submit this thread with a single thread executor
 	 */
 	@Override
-	public void start() throws RemoteException {
+	public void start() {
 		ExecutorService executor = Executors.newSingleThreadExecutor();
 		executor.submit(this);
 		executor.shutdown();
 	}
-
 
 }

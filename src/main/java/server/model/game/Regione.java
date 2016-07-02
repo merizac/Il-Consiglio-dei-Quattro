@@ -27,7 +27,7 @@ public class Regione  {
 		this.tesserePermessoScoperte = new ArrayList<>();
 		this.bonusRegione = bonusRegione;
 		this.balcone = balcone;
-		this.cittàRegione = new ArrayList<Città>();
+		this.cittàRegione = new ArrayList<>();
 	}
 
 	/**

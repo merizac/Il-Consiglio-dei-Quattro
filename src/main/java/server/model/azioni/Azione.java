@@ -23,7 +23,7 @@ public abstract class Azione {
 			throw new NullPointerException("Il giocatore non può essere null");
 		if(gameState==null)
 			throw new NullPointerException("Il gameState non può essere null");
-		return(giocatore.equals(gameState.getGiocatoreCorrente()));
+		return giocatore.equals(gameState.getGiocatoreCorrente());
 	}
 	
 	/**

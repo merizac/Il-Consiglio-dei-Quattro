@@ -42,11 +42,11 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonu
 		}
 
 		costruisci(gameState);
-		nob = prendiBonus(gameState, nob);
+		prendiBonus(gameState, nob);
 		copriTessera(gameState);
 
 		if (cittàCostruzione instanceof CittàBonus)
-			controllaCittàColore(((ColoreCittà) cittàCostruzione.getColoreCittà()), gameState.getGiocatoreCorrente(),
+			controllaCittàColore((ColoreCittà) cittàCostruzione.getColoreCittà(), gameState.getGiocatoreCorrente(),
 					gameState.getPlanciaRe().getBonusPremioRe());
 		controllaCittàRegione(cittàCostruzione.getRegione(), gameState.getGiocatoreCorrente(),
 				gameState.getPlanciaRe().getBonusPremioRe());
@@ -108,8 +108,7 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonu
 		if (!bonusRe.isEmpty()) {
 			giocatore.getTessereBonus().add(bonusRe.remove(0));
 		}
-		System.out.println("\nTESSERE BONUS RE"+bonusRe);
-		
+
 	}
 
 	/**
@@ -133,11 +132,11 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonu
 			return true;
 		}
 
-		if (!cittàCostruzione.getEmpori().isEmpty()) {
-			if (gameState.getGiocatoreCorrente().getAiutanti().togliAiutanti(numeroEmpori)) {
-				return true;
-			}
+		if (!cittàCostruzione.getEmpori().isEmpty()
+				&& gameState.getGiocatoreCorrente().getAiutanti().togliAiutanti(numeroEmpori)) {
+			return true;
 		}
+
 		return false;
 	}
 
@@ -153,7 +152,7 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonu
 	 * give to the player the bonus of the city connected to the city where the
 	 * player has built
 	 */
-	private boolean prendiBonus(GameState gameState, boolean nob) {
+	private void prendiBonus(GameState gameState, boolean nob) {
 		Colore coloreEmporio = gameState.getGiocatoreCorrente().getColoreGiocatore();
 		Set<CittàBonus> cittàCollegate = gameState.getMappa().trovaCittà(cittàCostruzione, coloreEmporio);
 		for (CittàBonus c : cittàCollegate) {
@@ -165,7 +164,6 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonu
 					nob = false;
 			}
 		}
-		return nob;
 	}
 
 	/**

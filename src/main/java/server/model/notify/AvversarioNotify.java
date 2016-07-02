@@ -39,9 +39,10 @@ public class AvversarioNotify implements Notify {
 	 */
 	@Override
 	public AvversarioClientNotify notifyToClientNotify() {
-		GiocatoreDTO avversario = new GiocatoreDTO();
-		avversario.inizializza(this.avversario);
-		return new AvversarioClientNotify(avversario);
+
+		GiocatoreDTO avversarioDTO= new GiocatoreDTO();
+		avversarioDTO.inizializza(this.avversario);
+		return new AvversarioClientNotify(avversarioDTO);
 	}
 
 }
