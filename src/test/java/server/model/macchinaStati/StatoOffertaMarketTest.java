@@ -13,7 +13,6 @@ import server.model.azioni.azioniMarket.AzioneOfferta;
 import server.model.game.Aiutante;
 import server.model.game.GameState;
 import server.model.game.Giocatore;
-import server.model.market.Marketable;
 import server.model.market.Offerta;
 import server.model.notify.AzioniNotify;
 import server.model.notify.MessageNotify;

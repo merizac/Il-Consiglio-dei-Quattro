@@ -12,7 +12,6 @@ import common.azioniDTO.AzioneOffertaDTO;
 import server.model.game.Aiutante;
 import server.model.game.GameState;
 import server.model.game.Giocatore;
-import server.model.market.Offerta;
 import server.model.notify.MessageNotify;
 import server.model.notify.Notify;
 import utility.Observer;

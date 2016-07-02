@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.plaf.synth.SynthSpinnerUI;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -15,10 +13,8 @@ import server.model.azioni.Passa;
 import server.model.azioni.azioniMarket.AzioneAcquisto;
 import server.model.game.GameState;
 import server.model.game.Giocatore;
-import server.model.notify.AzioniNotify;
 import server.model.notify.MessageNotify;
 import server.model.notify.Notify;
-import server.model.notify.OffertaNotify;
 import utility.Observer;
 
 public class StatoAcquistoMarketTest {

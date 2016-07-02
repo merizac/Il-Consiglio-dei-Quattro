@@ -2,7 +2,6 @@ package server.model.azioni.azioniPrincipali;
 
 import static org.junit.Assert.*;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -203,8 +202,6 @@ public class CostruzioneAiutoReTest {
 		gameState.getGiocatoreCorrente().setAiutanti(new Aiutante(1));
 		CostruzioneAiutoRe costruzioneAiutoRe=new CostruzioneAiutoRe();
 		//set carte che passa il giocatore
-		Balcone balconeRe=gameState.getPlanciaRe().getBalconeRe();
-		Consigliere consigliere=balconeRe.getConsigliere().element();
 		ArrayList<CartaPolitica> carteGiocatore = new ArrayList<CartaPolitica>();
 		carteGiocatore.add(new CartaPolitica(new Colore("a")));
 		
@@ -328,14 +325,8 @@ public class CostruzioneAiutoReTest {
 		costruzioneAiutoRe.eseguiAzione(gameState);
 		
 		//DEVO CONSIDERARE I BONUS CHE POSSONO ESSERE ASSEGNATI
-		int monete=0;
-		int aiutanti=0;
 		int vittoria=0;
 		for(Bonus b: cittàCostruzione.getBonus()){
-			if (b instanceof BonusMoneta)
-				monete=((BonusMoneta) b).getMonete();
-			if(b instanceof BonusAiutanti)
-				aiutanti= ((BonusAiutanti) b).getAiutanti();
 			if(b instanceof BonusPuntiVittoria)
 				vittoria= ((BonusPuntiVittoria) b).getPuntiVittoria();
 		}

@@ -9,7 +9,6 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import common.azioniDTO.CambioTesserePermessoDTO;
 import common.azioniDTO.IngaggioAiutanteDTO;
 import server.model.azioni.azioniVeloci.IngaggioAiutante;
 import server.model.game.Aiutante;

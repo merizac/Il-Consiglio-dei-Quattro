@@ -28,12 +28,12 @@ public class BonusPuntiVittoriaTest {
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void bonusPuntivittoriaNumeroNegativo() {
-		Bonus bonus=new BonusPuntiVittoria(-3);
+		new BonusPuntiVittoria(-3);
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void bonusPuntivittoriaNumeroNullo() {
-		Bonus bonus=new BonusPuntiVittoria(0);
+		new BonusPuntiVittoria(0);
 	}
 	
 	@Test

@@ -8,6 +8,7 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import common.azioniDTO.AzioneAcquistoDTO;
 import common.gameDTO.CittàBonusDTO;
 import server.model.azioni.azioniBonus.BonusGettoneN;
 import server.model.game.CittàBonus;
@@ -143,4 +144,40 @@ public class BonusGettoneRicompensaTest {
 		bonus.setNumeroGettoni(-1);
 	}
 
+	@Test
+	public void equalsObject(){
+		BonusGettoneRicompensa bonus=new BonusGettoneRicompensa(1);
+		assertTrue(bonus.equals(bonus));
+	}
+	
+	@Test
+	public void equalsNull(){
+		BonusGettoneRicompensa bonus=new BonusGettoneRicompensa(1);
+		assertFalse(bonus.equals(null));
+	}
+	
+	@Test
+	public void equalsclasseDiversa(){
+		BonusGettoneRicompensa bonus=new BonusGettoneRicompensa(1);
+		assertFalse(bonus.equals(new AzioneAcquistoDTO()));
+	}
+	
+	@Test
+	public void equalsdueOggettiFalse(){
+		BonusGettoneRicompensa bonus=new BonusGettoneRicompensa(1);
+		assertFalse(bonus.equals(new BonusGettoneRicompensa(10)));
+	}
+	
+	@Test
+	public void equalsdueOggettiTrue(){
+		BonusGettoneRicompensa bonus=new BonusGettoneRicompensa(1);
+		assertTrue(bonus.equals(new BonusGettoneRicompensa(1)));
+	}
+	
+	@Test
+	public void equalsCittàNull(){
+		BonusGettoneRicompensa bonus=new BonusGettoneRicompensa(1);
+		bonus.setCittàDTO(new CittàBonusDTO());
+		assertTrue(bonus.equals(new BonusGettoneRicompensa(1)));
+	}
 }

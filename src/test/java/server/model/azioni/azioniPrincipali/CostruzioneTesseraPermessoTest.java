@@ -2,7 +2,6 @@ package server.model.azioni.azioniPrincipali;
 
 import static org.junit.Assert.*;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -99,7 +98,6 @@ public class CostruzioneTesseraPermessoTest {
 
 		int monete = 0;
 		int aiutanti = 0;
-		int vittoria = 0;
 		// tengo conto dei bonus della città su cui costruisco
 		for (Bonus b : cittàCostruzione.getBonus()) {
 			if (b instanceof BonusAiutanti) {
@@ -108,10 +106,6 @@ public class CostruzioneTesseraPermessoTest {
 			}
 			if (b instanceof BonusMoneta) {
 				monete += ((BonusMoneta) b).getMonete();
-				continue;
-			}
-			if (b instanceof BonusPuntiVittoria) {
-				vittoria += ((BonusPuntiVittoria) b).getPuntiVittoria();
 				continue;
 			}
 		}
@@ -126,21 +120,11 @@ public class CostruzioneTesseraPermessoTest {
 				monete += ((BonusMoneta) b).getMonete();
 				continue;
 			}
-			if (b instanceof BonusPuntiVittoria) {
-				vittoria += ((BonusPuntiVittoria) b).getPuntiVittoria();
-				continue;
-			}
 		}
 
 		gameState.getGiocatoreCorrente().setPunteggioRicchezza(10);
 
 		azione.eseguiAzione(gameState);
-
-		if (gameState.getGiocatoreCorrente().getEmpori().isEmpty())
-			vittoria += 3;
-		if (gameState.getGiocatoreCorrente().getPunteggioNobiltà().getPuntiNobiltà()==2)
-			vittoria += 2;
-		
 
 		assertTrue(cittàCostruzione.getEmpori().size() == 2);
 		assertEquals(aiutanti + 4, gameState.getGiocatoreCorrente().getAiutanti().getAiutante());
@@ -180,48 +164,11 @@ public class CostruzioneTesseraPermessoTest {
 		azione.setCittàCostruzione(cittàCostruzione);
 		azione.setTesseraPermessoScoperta(tesseraPermesso);
 
-		int monete = 0;
-		int aiutanti = 0;
-		int vittoria = 0;
-		// tengo conto dei bonus della città su cui costruisco
-		for (Bonus b : cittàCostruzione.getBonus()) {
-			if (b instanceof BonusAiutanti) {
-				aiutanti += ((BonusAiutanti) b).getAiutanti();
-				continue;
-			}
-			if (b instanceof BonusMoneta) {
-				monete += ((BonusMoneta) b).getMonete();
-				continue;
-			}
-			if (b instanceof BonusPuntiVittoria) {
-				vittoria += ((BonusPuntiVittoria) b).getPuntiVittoria();
-				continue;
-			}
-		}
-
-		// tengo conto dei bonus della città vicina
-		for (Bonus b : cittàVicina.getBonus()) {
-			if (b instanceof BonusAiutanti) {
-				aiutanti += ((BonusAiutanti) b).getAiutanti();
-				continue;
-			}
-			if (b instanceof BonusMoneta) {
-				monete += ((BonusMoneta) b).getMonete();
-				continue;
-			}
-			if (b instanceof BonusPuntiVittoria) {
-				vittoria += ((BonusPuntiVittoria) b).getPuntiVittoria();
-				continue;
-			}
-		}
 
 		gameState.getGiocatoreCorrente().setPunteggioRicchezza(10);
 
 		notify.clear();
 		azione.eseguiAzione(gameState);
-
-		if (gameState.getGiocatoreCorrente().getEmpori().isEmpty())
-			vittoria += 3;
 
 		assertEquals(1, notify.size());
 		assertTrue(notify.get(0) instanceof MessageNotify);

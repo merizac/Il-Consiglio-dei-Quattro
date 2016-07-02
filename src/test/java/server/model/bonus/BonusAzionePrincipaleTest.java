@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import org.junit.Test;
 
+import common.azioniDTO.AzioneAcquistoDTO;
 import server.model.bonus.BonusAzionePrincipale;
 import server.model.game.GameState;
 
@@ -27,5 +28,33 @@ public class BonusAzionePrincipaleTest {
 		assertEquals("BonusAzionePrincipale", new BonusAzionePrincipale(1).toString());
 	}
 
-
+	@Test
+	public void equalsObject(){
+		BonusAzionePrincipale bonus=new BonusAzionePrincipale(1);
+		assertTrue(bonus.equals(bonus));
+	}
+	
+	@Test
+	public void equalsNull(){
+		BonusAzionePrincipale bonus=new BonusAzionePrincipale(1);
+		assertFalse(bonus.equals(null));
+	}
+	
+	@Test
+	public void equalsclasseDiversa(){
+		BonusAzionePrincipale bonus=new BonusAzionePrincipale(1);
+		assertFalse(bonus.equals(new AzioneAcquistoDTO()));
+	}
+	
+	@Test
+	public void equalsdueOggettiFalse(){
+		BonusAzionePrincipale bonus=new BonusAzionePrincipale(1);
+		assertFalse(bonus.equals(new BonusAzionePrincipale(10)));
+	}
+	
+	@Test
+	public void equalsdueOggettiTrue(){
+		BonusAzionePrincipale bonus=new BonusAzionePrincipale(1);
+		assertTrue(bonus.equals(new BonusAzionePrincipale(1)));
+	}	
 }

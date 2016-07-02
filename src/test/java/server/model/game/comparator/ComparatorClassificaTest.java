@@ -7,11 +7,9 @@ import java.util.ArrayList;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import server.model.bonus.BonusPuntiVittoria;
 import server.model.game.Aiutante;
 import server.model.game.GameState;
 import server.model.game.Giocatore;
-import server.model.game.PunteggioNobiltà;
 
 public class ComparatorClassificaTest {
 

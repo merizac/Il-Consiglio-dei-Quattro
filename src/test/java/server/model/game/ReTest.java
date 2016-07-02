@@ -9,7 +9,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import server.model.bonus.BonusPuntiVittoria;
 import server.model.game.Città;
 import server.model.game.ColoreRe;
 import server.model.game.GameState;
@@ -29,9 +28,6 @@ public class ReTest {
 		giocatori=new ArrayList<Giocatore>();
 		giocatori.add(giocatore);
 		gameState.start(giocatori, "mappa1");
-//		ArrayList<Consigliere> consiglieri=new ArrayList<Consigliere>();
-//		città=new Città("cittàRe", new Regione("regione", new Mazzo<TesseraPermesso>(), new BonusPuntiVittoria(2), new Balcone(consiglieri)), new Colore("coloreCittàRe"));
-//		re=new Re(città);
 	}
 	
 	@Before

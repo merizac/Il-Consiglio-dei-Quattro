@@ -9,15 +9,10 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import server.model.azioni.Passa;
 import server.model.azioni.azioniPrincipali.AcquistoTesseraPermesso;
 import server.model.azioni.azioniPrincipali.CostruzioneAiutoRe;
 import server.model.azioni.azioniPrincipali.CostruzioneTesseraPermesso;
 import server.model.azioni.azioniPrincipali.ElezioneConsigliere;
-import server.model.azioni.azioniVeloci.CambioTesseraPermesso;
-import server.model.azioni.azioniVeloci.ElezioneConsigliereVeloce;
-import server.model.azioni.azioniVeloci.IngaggioAiutante;
-import server.model.azioni.azioniVeloci.SecondaAzionePrincipale;
 import server.model.game.GameState;
 import server.model.game.Giocatore;
 import server.model.notify.AzioniNotify;

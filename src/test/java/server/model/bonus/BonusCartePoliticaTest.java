@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 import server.model.bonus.BonusCartePolitica;
-import server.model.game.CartaPolitica;
-import server.model.game.Colore;
 import server.model.game.GameState;
 import server.model.game.Giocatore;
 
