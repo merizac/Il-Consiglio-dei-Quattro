@@ -28,7 +28,19 @@
     -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;
 }
 
+#transparentbutton{
+	-fx-background-radius: 0px;
+	-fx-background-color:transparent;
+	-fx-border-color: transparent;
+	-fx-text-fill: transparent;
+}
 
+#transparentbutton:hover{
+	-fx-background-color:#987961;
+	-fx-opacity: 0.6;
+	-fx-text-fill: white;
+	-fx-border-color: transparent;
+}
 
 .button {
     -fx-border-color: #6b4208;
@@ -44,7 +56,6 @@
 .button:focused{
 	-fx-background-color: #DEB887;
 }
-
 
 .titled-pane {
 	-fx-color: #A0785A; 

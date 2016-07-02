@@ -13,28 +13,36 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="sfondo">
                <children>
-                  <HBox layoutY="48.0" prefHeight="200.0" prefWidth="600.0">
+                  <HBox layoutX="2.0" layoutY="62.0" prefHeight="200.0" prefWidth="600.0">
                      <children>
-                        <ImageView fitHeight="226.0" fitWidth="262.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../css/mappa1.jpg" />
-                           </image>
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                        </ImageView>
-                        <ImageView fitHeight="226.0" fitWidth="262.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../css/mappa2.jpg" />
-                           </image>
-                           <HBox.margin>
-                              <Insets left="40.0" right="20.0" />
-                           </HBox.margin>
-                        </ImageView>
+                        <AnchorPane>
+                           <children>
+                              <ImageView id="transparentbutton" fitHeight="238.0" fitWidth="288.0" pickOnBounds="true" AnchorPane.leftAnchor="10.0">
+                                 <image>
+                                    <Image url="@../css/mappa1.jpg" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <Button id="transparentbutton" fx:id="mappa1" layoutX="10.0" layoutY="-1.0" mnemonicParsing="false" onAction="#handleMappa" prefHeight="239.0" prefWidth="288.0" styleClass="mappa" stylesheets="@../css/market.css" text="Mappa 1" textFill="TRANSPARENT" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="205.0" prefWidth="321.0">
+                           <children>
+                              <ImageView id="mappa" fitHeight="239.0" fitWidth="288.0" pickOnBounds="true" AnchorPane.rightAnchor="10.0">
+                                 <image>
+                                    <Image url="@../css/mappa2.jpg" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets left="40.0" right="20.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <Button id="transparentbutton" fx:id="mappa2" layoutX="4.0" mnemonicParsing="false" onAction="#handleMappa" prefHeight="239.0" prefWidth="288.0" text="Mappa 2" textFill="TRANSPARENT" />
+                           </children>
+                        </AnchorPane>
                      </children>
                   </HBox>
-                  <Button fx:id="mappa1" layoutX="52.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleMappa" prefHeight="43.0" prefWidth="205.0" text="Mappa 1" />
-                  <Button fx:id="mappa2" layoutX="357.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleMappa" prefHeight="43.0" prefWidth="205.0" text="Mappa 2" />
                </children>
             </AnchorPane>
         </content>

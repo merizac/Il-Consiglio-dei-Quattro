@@ -314,7 +314,7 @@
                               </AnchorPane>
                               <AnchorPane prefHeight="262.0" prefWidth="174.0" styleClass="background">
                                  <children>
-                                    <ImageView id="mazzo" fitHeight="159.0" fitWidth="113.0" layoutX="36.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" styleClass="mazzo">
+                                    <ImageView id="mazzo" fx:id="mazzo" fitHeight="159.0" fitWidth="113.0" layoutX="36.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" styleClass="mazzo">
                                        <image>
                                           <Image url="@../css/politicCard/Retro.png" />
                                        </image>

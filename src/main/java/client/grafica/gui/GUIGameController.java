@@ -13,6 +13,7 @@ import common.azioniDTO.AzioneDTO;
 import common.azioniDTO.AzioneParametri;
 import common.azioniDTO.ChatDTO;
 import common.azioniDTO.ExitDTO;
+import common.azioniDTO.PescaCartaDTO;
 import common.gameDTO.CittàBonusDTO;
 import common.gameDTO.CittàDTO;
 import common.gameDTO.ColoreBonusDTO;
@@ -37,6 +38,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.Glow;
 
 public class GUIGameController implements Controller{
 
@@ -483,6 +485,7 @@ public class GUIGameController implements Controller{
 						gui.azioneNonValida("L'azione non esiste!", "Ooops, riprova e inserisci un'azione valida!");
 						for (Button b : getAzioni()) {
 							b.setDisable(false);
+	
 						}
 						return;
 					} else if (azioneDTO instanceof AzioneParametri) {
