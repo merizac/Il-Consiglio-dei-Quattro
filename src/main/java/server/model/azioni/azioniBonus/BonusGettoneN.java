@@ -43,14 +43,12 @@ public class BonusGettoneN extends Azione {
 				return;
 			}
 		}
-		if (numeroGettoni > 1) {
-			if (!città.get(0).getBonus().equals(città.get(1).getBonus())) {
+		if (numeroGettoni > 1 && città.get(0).getBonus().equals(città.get(1).getBonus())) {
 				gameState.notifyObserver(new MessageNotify(
 						"Errore:" + gameState.getGiocatoreCorrente().getNome()
 								+ "devi scegliere due gettoni ricompensa diversi tra loro",
 						Arrays.asList(gameState.getGiocatoreCorrente())));
 				return;
-			}
 		}
 		ArrayList<Bonus> bonus = new ArrayList<>();
 
@@ -81,6 +79,8 @@ public class BonusGettoneN extends Azione {
 	 *            the città to set
 	 */
 	public void setCittà(List<CittàBonus> città) {
+		if(città==null)
+			throw new NullPointerException("La lista di città è null");
 		this.città = città;
 	}
 
@@ -103,6 +103,8 @@ public class BonusGettoneN extends Azione {
 	 *            the numeroGettoni to set
 	 */
 	public void setNumeroGettoni(int numeroGettoni) {
+		if(numeroGettoni<1 || numeroGettoni>2)
+			throw new IllegalArgumentException("Il numero di gettoni è negativo");
 		this.numeroGettoni = numeroGettoni;
 	}
 

@@ -52,6 +52,8 @@ public class BonusTesseraAcquistataN extends Azione {
 	 *            the indiceTesseraPermesso to set
 	 */
 	public void setTesseraPermesso(TesseraPermesso tesseraPermesso) {
+		if(tesseraPermesso==null)
+			throw new NullPointerException("La tessera è null");
 		this.tesseraPermesso = tesseraPermesso;
 	}
 
@@ -99,6 +101,8 @@ public class BonusTesseraAcquistataN extends Azione {
 	 * @param id the id to set
 	 */
 	public void setId(int id) {
+		if(id<1 || id>2)
+			throw new IllegalArgumentException("L'id è errato, scegli 1 o 2");
 		this.id = id;
 	}
 
