@@ -66,6 +66,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -79,7 +80,6 @@ public class GUI extends Application implements Grafica {
 	private GUIGameController controller;
 	private GUIMarketController controllerMarket;
 	private GUIMappaController controllerMappa;
-	private Controller controllerCorrente;
 	private Stage finestra;
 	private Stage market;
 	private Stage mappa;
@@ -87,7 +87,7 @@ public class GUI extends Application implements Grafica {
 	private Object parametro;
 	private boolean carteInserite = false;
 	private Map<GiocatoreDTO, Tab> tabAvversari = new HashMap<>();
-	private final int timeout = 30000;
+	private final int timeout = 180000;
 	private Timer timer;
 	private TimerTask task;
 	private static final Logger log = Logger.getLogger(GUI.class.getName());
@@ -197,7 +197,6 @@ public class GUI extends Application implements Grafica {
 		controller = fxmloader.getController();
 		controller.setGameStateDTO(this.gameStateDTO);
 		controller.setGui(this);
-		controllerCorrente = controller;
 		finestra.setScene(theScene);
 		EventHandler<WindowEvent> onClose = (event) -> {
 			try {
@@ -227,7 +226,7 @@ public class GUI extends Application implements Grafica {
 			}
 		};
 
-		timer.schedule(task, timeout);
+		//timer.schedule(task, timeout);
 
 		if (azioni.get(0) instanceof BonusGettoneNDTO || azioni.get(0) instanceof BonusTesseraAcquistataNDTO
 				|| azioni.get(0) instanceof BonusTesseraPermessoNDTO) {
@@ -330,6 +329,9 @@ public class GUI extends Application implements Grafica {
 
 	private void assegnaAzioni() {
 		List<Button> azioni = controller.getAzioni();
+		EventHandler<Event> onMouseClicked = (Event) -> {
+			
+		};
 		azioni.get(0).setUserData(new ElezioneConsigliereDTO());
 		azioni.get(1).setUserData(new AcquistoTesseraPermessoDTO());
 		azioni.get(2).setUserData(new CostruzioneTesseraPermessoDTO());
@@ -488,8 +490,14 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public void mostraMessaggio(String messaggio) {
-		controllerCorrente.getMessage().appendText(messaggio);
-		System.out.println("CONTROLLER :" + controllerCorrente);
+		Runnable runnable = () -> controller.getMessage().appendText(messaggio);
+		Platform.runLater(runnable);
+	}
+	
+	@Override
+	public void mostraMessaggioMarket(String messaggio){
+		Runnable runnable = () ->controllerMarket.getMessage().appendText(messaggio);
+		Platform.runLater(runnable);
 	}
 
 	@Override
@@ -635,7 +643,6 @@ public class GUI extends Application implements Grafica {
 			controllerMarket.setGameStateDTO(gameStateDTO);
 			controllerMarket.setGui(GUI.this);
 			controllerMarket.inizializza();
-			System.out.println("CONTROLLER MARKET :" + controllerCorrente);
 			market.setScene(theScene);
 			market.show();
 		};
@@ -783,7 +790,6 @@ public class GUI extends Application implements Grafica {
 		}
 	}
 
-	// non va bene per cambio tessere permesso veloce
 	@Override
 	public RegioneDTO scegliRegione(List<RegioneDTO> regioni) {
 		List<ImageView> r = controller.getRegioni();
@@ -1117,11 +1123,6 @@ public class GUI extends Application implements Grafica {
 		return offerte.indexOf(offertaDTO) + 1;
 	}
 
-	@Override
-	public CittàDTO scegliCittàBonus(Set<CittàBonusDTO> città, ColoreDTO coloreGiocatore, String input) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public List<CittàBonusDTO> scegliUnaCittà() {
@@ -1237,7 +1238,9 @@ public class GUI extends Application implements Grafica {
 	}
 
 	public void close() {
-		Runnable runnable = () -> finestra.close();
+		Runnable runnable = () -> {
+			finestra.close();
+			};
 		Platform.runLater(runnable);
 	}
 

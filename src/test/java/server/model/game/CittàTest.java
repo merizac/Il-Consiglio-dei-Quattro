@@ -25,14 +25,51 @@ public class CittàTest {
 	
 	@Before
 	public void testAggiungiEmporio() {
-		System.out.println(città.aggiungiEmporio(new Emporio(new Colore("C"))));
-		System.out.println(città.getEmpori());
-
+		Emporio emporio=new Emporio(new Colore("C"));
+		città.aggiungiEmporio(emporio);
+		assertTrue(città.getEmpori().contains(emporio));
+		assertEquals(1, città.getEmpori().size());
 	}
 
 	@Test
 	public void testEmporioColore() {
 		assertTrue(città.emporioColore(new Colore("C")));
+	}
+	
+	@Test
+	public void testEqualsCittàStessa(){
+		assertTrue(città.equals(città));
+	}
+	
+	@Test
+	public void testEqualsNull(){
+		assertFalse(città.equals(null));
+	}
+	
+	@Test
+	public void testClasseDiversa(){
+		assertFalse(città.equals(new Object()));
+	}
+	
+	@Test
+	public void testEqualsCittàDiversaRegioneUguale(){
+		Regione regione=new Regione("mare", null, null, null);
+		Città cittàTest = new Città("cittàTest", regione, null);
+		assertFalse(città.equals(cittàTest));
+	}
+	
+	@Test
+	public void testEqualsCittàUgualeRegioneDiversa(){
+		Regione regione=new Regione("montagna", null, null, null);
+		Città cittàTest = new Città(città.getNome(), regione, null);
+		assertFalse(città.equals(cittàTest));
+	}
+	
+	@Test
+	public void testEqualsCittàUgualeRegioneUguale(){
+		Regione regione=new Regione("mare", null, null, null);
+		Città cittàTest = new Città(città.getNome(), regione, null);
+		assertTrue(città.equals(cittàTest));
 	}
 
 }

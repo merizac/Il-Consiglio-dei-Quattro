@@ -39,7 +39,7 @@ public class BonusCartePolitica extends Bonus {
 			
 		}
 		gameState.notifyObserver(new MessageNotify((cartePolitica==1) ? "Hai vinto "+cartePolitica+" carta politica\n"+carte 
-					:"Hai vinto "+cartePolitica+" carte politica\n"+carte, Arrays.asList(gameState.getGiocatoreCorrente())));
+					:"Hai vinto "+cartePolitica+" carte politica\n"+carte, Arrays.asList(gameState.getGiocatoreCorrente()), false));
 
 	}
 

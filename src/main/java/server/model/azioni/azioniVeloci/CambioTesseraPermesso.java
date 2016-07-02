@@ -27,7 +27,7 @@ public class CambioTesseraPermesso extends AzioneVeloce {
 			setStatoTransizioneVeloce(gameState);
 		} else {
 			gameState.notifyObserver(new MessageNotify("Errore: non hai abbastanza aiutanti",
-					Arrays.asList(gameState.getGiocatoreCorrente())));
+					Arrays.asList(gameState.getGiocatoreCorrente()), false));
 			return;
 		}
 

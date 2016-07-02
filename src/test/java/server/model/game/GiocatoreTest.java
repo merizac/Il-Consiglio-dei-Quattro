@@ -78,6 +78,22 @@ public class GiocatoreTest {
 		giocatore.rimuoviCartaPolitica(cartaPolitica);
 		assertFalse(giocatore.getCartePolitica().contains(cartaPolitica));
 	}
-
+	
+	@Test
+	public void testEqualsColoreUguale(){
+		Giocatore giocatoreTest= new Giocatore(giocatore.getNome());
+		giocatoreTest.setColoreGiocatore(giocatore.getColoreGiocatore());
+		assertTrue(giocatore.equals(giocatoreTest));
+	}
+	
+	@Test
+	public void testEqualsNull(){
+		assertFalse(giocatore.equals(null));
+	}
+	
+	@Test
+	public void testEqualsNonGiocatore(){
+		assertFalse(giocatore.equals(new Object()));
+	}
 
 }

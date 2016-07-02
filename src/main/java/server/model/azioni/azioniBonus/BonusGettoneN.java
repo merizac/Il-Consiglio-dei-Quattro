@@ -39,7 +39,7 @@ public class BonusGettoneN extends Azione {
 			if (!c.getEmpori().contains(new Emporio(gameState.getGiocatoreCorrente().getColoreGiocatore()))) {
 				gameState.notifyObserver(new MessageNotify(
 						"Errore:" + gameState.getGiocatoreCorrente().getNome() + "non hai un emporio in " + c.getNome(),
-						Arrays.asList(gameState.getGiocatoreCorrente())));
+						Arrays.asList(gameState.getGiocatoreCorrente()), false));
 				return;
 			}
 		}
@@ -47,7 +47,7 @@ public class BonusGettoneN extends Azione {
 				gameState.notifyObserver(new MessageNotify(
 						"Errore:" + gameState.getGiocatoreCorrente().getNome()
 								+ "devi scegliere due gettoni ricompensa diversi tra loro",
-						Arrays.asList(gameState.getGiocatoreCorrente())));
+						Arrays.asList(gameState.getGiocatoreCorrente()), false));
 				return;
 		}
 		ArrayList<Bonus> bonus = new ArrayList<>();

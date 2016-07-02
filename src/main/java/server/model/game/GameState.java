@@ -7,8 +7,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
-
-import server.Server;
 import server.model.bonus.Bonus;
 import server.model.game.comparator.ComparatorClassifica;
 import server.model.game.comparator.ComparatorPuntiNobiltà;
@@ -241,7 +239,7 @@ public class GameState extends Observable<Notify> {
 	 * 
 	 * @param giocatori
 	 */
-	/*public void creaGiocatori(List<Giocatore> giocatori) {
+	public void creaGiocatori(List<Giocatore> giocatori) {
 		int i = 0;
 		for (Giocatore g : giocatori) {
 			g.setAiutanti(new Aiutante(18 + i));
@@ -271,10 +269,10 @@ public class GameState extends Observable<Notify> {
 			}
 		}
 		this.giocatoreCorrente = this.giocatori.get(0);
-	}*/
+	}
 
 	
-	public void creaGiocatori(List<Giocatore> giocatori) {
+	/*public void creaGiocatori(List<Giocatore> giocatori) {
 		int i = 0;
 		for (Giocatore g : giocatori) {
 			g.setAiutanti(new Aiutante(1 + i));
@@ -304,7 +302,7 @@ public class GameState extends Observable<Notify> {
 			}
 		}
 		this.giocatoreCorrente = this.giocatori.get(0);
-	}
+	}*/
 	/**
 	 * set politic cards to each player in the game
 	 * 

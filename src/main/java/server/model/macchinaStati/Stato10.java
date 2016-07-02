@@ -28,7 +28,7 @@ public class Stato10 implements Stato {
 		azioni = Arrays.asList(new ElezioneConsigliere(), new AcquistoTesseraPermesso(),
 				new CostruzioneTesseraPermesso(), new CostruzioneAiutoRe());
 		gameState.notifyObserver(
-				new MessageNotify("Scegli un'azione principale\n", Arrays.asList(gameState.getGiocatoreCorrente())));
+				new MessageNotify("Scegli un'azione principale\n", Arrays.asList(gameState.getGiocatoreCorrente()), false));
 		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
 	}
 

@@ -44,7 +44,7 @@ public class StatoAcquistoMarket implements Stato {
 		Collections.shuffle(giocatori);
 		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(giocatori.get(0))));
 		gameState.notifyObserver(new OffertaNotify(gameState.getOfferteMarket(), Arrays.asList(giocatori.get(0))));
-		gameState.notifyObserver(new MessageNotify("Vuoi acquistare\n?", Arrays.asList(giocatori.get(0))));
+		gameState.notifyObserver(new MessageNotify("Vuoi acquistare?", Arrays.asList(giocatori.get(0)), true));
 	}
 
 	/**
@@ -71,7 +71,7 @@ public class StatoAcquistoMarket implements Stato {
 	@Override
 	public void transizioneOfferta(GameState gameState) {
 		if (gameState.getOfferteMarket().isEmpty()) {
-			gameState.notifyObserver(new MessageNotify("Gli oggetti in vendita sono finiti\n", giocatori));
+			gameState.notifyObserver(new MessageNotify("Gli oggetti in vendita sono finiti\n", giocatori, true));
 			gameState.notifyObserver(new MarketNotify(gameState.getGiocatori(), true));
 			gameState.setStato(new StartEnd(gameState));
 		} else {
@@ -83,7 +83,7 @@ public class StatoAcquistoMarket implements Stato {
 			gameState.notifyObserver(new AvversarioNotify(gameState.getGiocatoreCorrente(), avversari));
 			gameState.notifyObserver(new GiocatoreNotify(gameState.getGiocatoreCorrente(),
 					Arrays.asList(gameState.getGiocatoreCorrente())));
-			gameState.notifyObserver(new MessageNotify("Vuoi acquistare\n?", Arrays.asList(giocatori.get(0))));
+			gameState.notifyObserver(new MessageNotify("Vuoi acquistare?", Arrays.asList(giocatori.get(0)), true));
 		}
 	}
 

@@ -57,7 +57,7 @@ public class ElezioneConsigliereVeloce extends AzioneVeloce {
 
 		if (!gameState.getGiocatoreCorrente().getAiutanti().togliAiutanti(1)) {
 			gameState.notifyObserver(new MessageNotify("Errore: gli aiutanti non sono sufficienti",
-					Arrays.asList(gameState.getGiocatoreCorrente())));
+					Arrays.asList(gameState.getGiocatoreCorrente()), false));
 			return;
 		}
 

@@ -8,18 +8,21 @@ import server.view.clientNotify.MessageClientNotify;
 
 public class MessageNotify implements Notify {
 
-	private String error;
+	private String messaggio;
+	private boolean market;
 	private List<Giocatore> giocatori;
 
 	/**
 	 * notify message to the player
 	 * 
-	 * @param error
+	 * @param messaggio
 	 * @param giocatori
+	 * @param market
 	 */
-	public MessageNotify(String error, List<Giocatore> giocatori) {
-		this.error = error;
+	public MessageNotify(String messaggio, List<Giocatore> giocatori, boolean market) {
+		this.messaggio = messaggio;
 		this.giocatori = giocatori;
+		this.market=market;
 	}
 
 	/**
@@ -38,7 +41,7 @@ public class MessageNotify implements Notify {
 	 */
 	@Override
 	public ClientNotify notifyToClientNotify() {
-		return new MessageClientNotify(error);
+		return new MessageClientNotify(messaggio, market);
 	}
 
 }

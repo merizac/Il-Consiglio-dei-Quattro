@@ -35,7 +35,7 @@ public class BonusPuntiNobiltà extends Bonus {
 		
 		gameState.getGiocatoreCorrente().setPunteggioNobiltà(nuovaPosizioneNobiltà);
 		gameState.notifyObserver(new MessageNotify((puntiNobiltà==1) ? "Hai vinto "+puntiNobiltà+" punto nobiltà\n" 
-				:"Hai vinto"+ puntiNobiltà+" punti nobiltà\n", Arrays.asList(gameState.getGiocatoreCorrente())));
+				:"Hai vinto"+ puntiNobiltà+" punti nobiltà\n", Arrays.asList(gameState.getGiocatoreCorrente()), false));
 	}
 
 	/* (non-Javadoc)

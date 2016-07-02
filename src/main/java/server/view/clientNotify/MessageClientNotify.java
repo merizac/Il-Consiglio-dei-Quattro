@@ -9,17 +9,19 @@ public class MessageClientNotify implements ClientNotify {
 	 * 
 	 */
 	private static final long serialVersionUID = 2793764378317071300L;
-	private String error;
+	private String messaggio;
+	private boolean market;
 
 	/**
 	 * notify messages to player
 	 * 
-	 * @param error
+	 * @param messaggio
 	 */
-	public MessageClientNotify(String error) {
-		if (error == null)
-			throw new NullPointerException("L'errore non può essere null");
-		this.error = error;
+	public MessageClientNotify(String messaggio, boolean market) {
+		if (messaggio == null)
+			throw new NullPointerException("L'messaggioe non può essere null");
+		this.messaggio = messaggio;
+		this.market=market;
 	}
 
 	/**
@@ -27,7 +29,10 @@ public class MessageClientNotify implements ClientNotify {
 	 */
 	@Override
 	public void stamp(Grafica grafica, GameStateDTO gameStateDTO) {
-		grafica.mostraMessaggio(error);
+		if(!market)
+			grafica.mostraMessaggio(messaggio);
+		else
+			grafica.mostraMessaggioMarket(messaggio);
 	}
 
 }
