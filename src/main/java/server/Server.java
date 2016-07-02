@@ -47,8 +47,11 @@ public class Server {
 	private static Server instance = new Server();
 	private static String mappa;
 	private boolean primoGiocatore;
-	private static final Logger log=Logger.getLogger(Server.class.getName());
+	private static final Logger log = Logger.getLogger(Server.class.getName());
 
+	/**
+	 * server
+	 */
 	public Server() {
 		Server.partite = new HashMap<>();
 		this.gameState = new GameState();
@@ -56,12 +59,22 @@ public class Server {
 		Server.partite.put(gameState, new HashSet<>());
 		this.giocatori = new ArrayList<>();
 		this.primoGiocatore = true;
+		// Server.mappa=null;
 	}
 
+	/**
+	 * 
+	 * @return instance
+	 */
 	public static Server getInstance() {
 		return instance;
 	}
 
+	/**
+	 * start socket connection
+	 * 
+	 * @throws IOException
+	 */
 	private void startSocket() throws IOException {
 
 		ExecutorService executor = Executors.newCachedThreadPool();
@@ -79,6 +92,12 @@ public class Server {
 		serverSocket.close();
 	}
 
+	/**
+	 * start rmi connection
+	 * 
+	 * @throws RemoteException
+	 * @throws AlreadyBoundException
+	 */
 	private void startRMI() throws RemoteException, AlreadyBoundException {
 
 		this.registry = LocateRegistry.createRegistry(CONNESSIONERMI);
@@ -91,6 +110,12 @@ public class Server {
 		registry.bind(name, gameRemote);
 	}
 
+	/**
+	 * add players to the current game, until end timeout
+	 * 
+	 * @param giocatore
+	 * @param view
+	 */
 	public synchronized void aggiungiGiocatore(Giocatore giocatore, View view) {
 		this.giocatori.add(giocatore);
 		if (primoGiocatore) {
@@ -112,6 +137,13 @@ public class Server {
 		}
 	}
 
+	/**
+	 * add player with rmi connection
+	 * 
+	 * @param giocatore
+	 * @param view
+	 * @throws RemoteException
+	 */
 	public void aggiungiGiocatoreRMI(Giocatore giocatore, ServerRMIView view) throws RemoteException {
 		this.aggiungiGiocatore(giocatore, view);
 		String name = "GIOCO";
@@ -119,44 +151,51 @@ public class Server {
 
 	}
 
+	/**
+	 * create game
+	 */
 	private synchronized void creaGioco() {
-			if(Server.mappa==null)
-				Server.mappa="mappa1";
-			for (View v : Server.partite.get(gameState)) {
-				v.setGameState(gameState);
-				this.gameState.registerObserver(v);
-				v.registerObserver(this.controller);
-			}
-			try {
-				this.gameState.start(giocatori, Server.mappa);
-			} catch (IOException e) {
-				log.log(Level.SEVERE, "Errore nel caricamento da file del gioco", e);
-			}
-			this.primoGiocatore=true;
-			Utils.print("[SERVER] Iniziata una nuova partita");
-			this.giocatori.clear();
-			this.gameState = new GameState();
-			this.controller = new Controller(gameState);
-			Server.partite.put(this.gameState, new HashSet<>());
+		if (Server.mappa == null)
+			Server.mappa = "mappa1";
+		for (View v : Server.partite.get(gameState)) {
+			v.setGameState(gameState);
+			this.gameState.registerObserver(v);
+			v.registerObserver(this.controller);
+		}
+		try {
+			this.gameState.start(giocatori, Server.mappa);
+		} catch (IOException e) {
+			log.log(Level.SEVERE, "Errore nel caricamento da file del gioco", e);
+		}
+		this.primoGiocatore = true;
+		Utils.print("[SERVER] Iniziata una nuova partita");
+		this.giocatori.clear();
+		this.gameState = new GameState();
+		this.controller = new Controller(gameState);
+		Server.partite.put(this.gameState, new HashSet<>());
 
-			ServerRMIViewRemote game = new ServerRMIView();
-			ServerRMIViewRemote gameRemote=null;
-			try {
-				gameRemote = (ServerRMIViewRemote) UnicastRemoteObject.exportObject(game, 0);
-			} catch (RemoteException e) {
-				log.log(Level.SEVERE, "Errore nell'esportare la serverRMIViewRemote sul registry", e);
-			}
+		ServerRMIViewRemote game = new ServerRMIView();
+		ServerRMIViewRemote gameRemote = null;
+		try {
+			gameRemote = (ServerRMIViewRemote) UnicastRemoteObject.exportObject(game, 0);
+		} catch (RemoteException e) {
+			log.log(Level.SEVERE, "Errore nell'esportare la serverRMIViewRemote sul registry", e);
+		}
 
-			String name = "GIOCO";
-			try {
-				registry.rebind(name, gameRemote);
-			} catch (RemoteException e) {
-				log.log(Level.SEVERE, "Errore nel rebind della serverRMIViewRemote", e);
-			}
-
+		String name = "GIOCO";
+		try {
+			registry.rebind(name, gameRemote);
+		} catch (RemoteException e) {
+			log.log(Level.SEVERE, "Errore nel rebind della serverRMIViewRemote", e);
+		}
 
 	}
 
+	/**
+	 * for disconnetting players from the current play
+	 * 
+	 * @param gameState
+	 */
 	public static void disconnettiClient(GameState gameState) {
 		for (View v : Server.partite.get(gameState)) {
 			v.disconnetti();
@@ -172,8 +211,13 @@ public class Server {
 		Server.getInstance().startSocket();
 	}
 
+	/**
+	 * set map in the current game
+	 * 
+	 * @param mappa
+	 */
 	public static void setMappa(String mappa) {
-		Server.mappa=mappa;
+		Server.mappa = mappa;
 	}
 
 }

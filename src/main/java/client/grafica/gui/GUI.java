@@ -12,6 +12,10 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javax.print.DocFlavor.URL;
+
+
 import client.connessione.Connessione;
 import client.grafica.Grafica;
 import common.azioniDTO.AcquistoTesseraPermessoDTO;
@@ -66,6 +70,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -79,7 +85,6 @@ public class GUI extends Application implements Grafica {
 	private GUIGameController controller;
 	private GUIMarketController controllerMarket;
 	private GUIMappaController controllerMappa;
-	private Controller controllerCorrente;
 	private Stage finestra;
 	private Stage market;
 	private Stage mappa;
@@ -87,7 +92,7 @@ public class GUI extends Application implements Grafica {
 	private Object parametro;
 	private boolean carteInserite = false;
 	private Map<GiocatoreDTO, Tab> tabAvversari = new HashMap<>();
-	private final int timeout = 30000;
+	private final int timeout = 180000;
 	private Timer timer;
 	private TimerTask task;
 	private static final Logger log = Logger.getLogger(GUI.class.getName());
@@ -163,6 +168,7 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public void start(Stage primaryStage) throws IOException {
+		primaryStage.setTitle("Login ");
 		this.gameStateDTO = new GameStateDTO();
 		this.gameStateDTO.setGiocatoreDTO(new GiocatoreDTO());
 		FXMLLoader fxmloader = new FXMLLoader();
@@ -184,7 +190,11 @@ public class GUI extends Application implements Grafica {
 	public void inizializza() {
 		FXMLLoader fxmloader = new FXMLLoader();
 		fxmloader.setLocation(getClass().getClassLoader().getResource("client/grafica/gui/fxml/gameState.fxml"));
-
+		String audioGioco = this.getClass().getResource("css/audioGioco.mp3").toExternalForm();
+		Media media = new Media(audioGioco);
+		MediaPlayer song = new MediaPlayer(media);
+		song.play();
+		song.setVolume(0.2);
 		Parent root = null;
 		try {
 			root = fxmloader.load();
@@ -197,8 +207,8 @@ public class GUI extends Application implements Grafica {
 		controller = fxmloader.getController();
 		controller.setGameStateDTO(this.gameStateDTO);
 		controller.setGui(this);
-		controllerCorrente = controller;
 		finestra.setScene(theScene);
+		finestra.setTitle("Il Consiglio Dei Quattro");
 		EventHandler<WindowEvent> onClose = (event) -> {
 			try {
 				connessione.inviaAzione(new ExitDTO());
@@ -227,7 +237,7 @@ public class GUI extends Application implements Grafica {
 			}
 		};
 
-		timer.schedule(task, timeout);
+		//timer.schedule(task, timeout);
 
 		if (azioni.get(0) instanceof BonusGettoneNDTO || azioni.get(0) instanceof BonusTesseraAcquistataNDTO
 				|| azioni.get(0) instanceof BonusTesseraPermessoNDTO) {
@@ -330,6 +340,13 @@ public class GUI extends Application implements Grafica {
 
 	private void assegnaAzioni() {
 		List<Button> azioni = controller.getAzioni();
+		EventHandler<Event> onMouseClicked = (Event) -> {
+			String audioGioco = this.getClass().getResource("css/Mouse.mp3").toExternalForm();
+			Media media = new Media(audioGioco);
+			MediaPlayer song = new MediaPlayer(media);
+			song.setVolume(1);
+			song.play();
+		};
 		azioni.get(0).setUserData(new ElezioneConsigliereDTO());
 		azioni.get(1).setUserData(new AcquistoTesseraPermessoDTO());
 		azioni.get(2).setUserData(new CostruzioneTesseraPermessoDTO());
@@ -340,6 +357,10 @@ public class GUI extends Application implements Grafica {
 		azioni.get(7).setUserData(new SecondaAzionePrincipaleDTO());
 		azioni.get(8).setUserData(new PassaDTO());
 		azioni.get(9).setUserData(new PescaCartaDTO());
+		
+		for(Button azione: azioni){
+			azione.setOnMouseClicked(onMouseClicked);
+		}
 	}
 
 	private void assegnaRegione() {
@@ -488,8 +509,14 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public void mostraMessaggio(String messaggio) {
-		controllerCorrente.getMessage().appendText(messaggio);
-		System.out.println("CONTROLLER :" + controllerCorrente);
+		Runnable runnable = () -> controller.getMessage().appendText(messaggio);
+		Platform.runLater(runnable);
+	}
+	
+	@Override
+	public void mostraMessaggioMarket(String messaggio){
+		Runnable runnable = () ->controllerMarket.getMessage().appendText(messaggio);
+		Platform.runLater(runnable);
 	}
 
 	@Override
@@ -635,7 +662,6 @@ public class GUI extends Application implements Grafica {
 			controllerMarket.setGameStateDTO(gameStateDTO);
 			controllerMarket.setGui(GUI.this);
 			controllerMarket.inizializza();
-			System.out.println("CONTROLLER MARKET :" + controllerCorrente);
 			market.setScene(theScene);
 			market.show();
 		};
@@ -736,24 +762,19 @@ public class GUI extends Application implements Grafica {
 				try {
 					lock.wait();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.log(Level.SEVERE, "Thread scegli consigliere interrotto", e);
+					Thread.currentThread().interrupt();
 				}
 			}
 		}
-		try {
-			ConsigliereDTO consigliereDTO = (ConsigliereDTO) parametro;
-			for (ImageView consigliere : riserva) {
-				consigliere.setDisable(true);
-				consigliere.setEffect(null);
-				consigliere.setOpacity(1);
-			}
-			parametro = null;
-			return consigliereDTO;
-		} catch (Exception e) {
-			e.printStackTrace();
+		ConsigliereDTO consigliereDTO = (ConsigliereDTO) parametro;
+		for (ImageView consigliere : riserva) {
+			consigliere.setDisable(true);
+			consigliere.setEffect(null);
+			consigliere.setOpacity(1);
 		}
-		return null;
+		parametro = null;
+		return consigliereDTO;
 
 	}
 
@@ -772,8 +793,8 @@ public class GUI extends Application implements Grafica {
 				try {
 					lock.wait();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.log(Level.SEVERE, "Thread scegli balcone interrotto", e);
+					Thread.currentThread().interrupt();
 				}
 			}
 			BalconeDTO balconeDTO = (BalconeDTO) parametro;
@@ -788,29 +809,38 @@ public class GUI extends Application implements Grafica {
 		}
 	}
 
-	// non va bene per cambio tessere permesso veloce
 	@Override
 	public RegioneDTO scegliRegione(List<RegioneDTO> regioni) {
 		List<ImageView> r = controller.getRegioni();
 		DropShadow dp = new DropShadow();
 		dp.setSpread(0.80);
 		dp.setColor(Color.web("#fffefd"));
-		for (ImageView i : r) {
-			i.setDisable(false);
-			i.setEffect(dp);
-		}
 
+		for(ImageView regione: r){
+			regione.setDisable(false);
+			regione.setEffect(dp);
+		}
 		synchronized (lock) {
 			while (parametro == null) {
 				try {
 					lock.wait();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.log(Level.SEVERE, "Thread scegli regione interrotto", e);
+					Thread.currentThread().interrupt();
 				}
 			}
 		}
+		for(ImageView regione: r){
+			regione.setDisable(true);
+			regione.setEffect(null);
+		}
 		RegioneDTO regioneDTO = (RegioneDTO) parametro;
+		parametro = null;
+		return regioneDTO;
+	}
+
+	@Override
+	public TesseraPermessoDTO scegliTesseraRegione(List<TesseraPermessoDTO> tesserePermessoScoperte, RegioneDTO regioneDTO) {
 		List<ImageView> tessere;
 		if ("Mare".equals(regioneDTO.getNome()))
 			tessere = controller.getTessereMare();
@@ -818,33 +848,27 @@ public class GUI extends Application implements Grafica {
 			tessere = controller.getTessereCollina();
 		else
 			tessere = controller.getTessereMontagna();
+		
+		DropShadow dp = new DropShadow();
+		dp.setSpread(0.80);
+		dp.setColor(Color.web("#fffefd"));
 
 		for (ImageView i : tessere) {
 			i.setDisable(false);
 			i.setEffect(dp);
 		}
-		for (ImageView i : r) {
-			i.setDisable(true);
-			i.setEffect(null);
-		}
-		parametro = null;
-		return regioneDTO;
-	}
 
-	@Override
-	public TesseraPermessoDTO scegliTesseraRegione(List<TesseraPermessoDTO> tesserePermessoScoperte) {
 		synchronized (lock) {
 			while (parametro == null) {
 				try {
 					lock.wait();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.log(Level.SEVERE, "Thread scegli tessera regione interrotto", e);
 				}
 			}
 		}
 		TesseraPermessoDTO tesseraPermessoDTO = (TesseraPermessoDTO) parametro;
-		List<ImageView> tessere = controller.getTesserePermessoRegioni();
+		
 		for (ImageView i : tessere) {
 			i.setDisable(true);
 			i.setEffect(null);
@@ -862,8 +886,8 @@ public class GUI extends Application implements Grafica {
 				try {
 					lock.wait();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.log(Level.SEVERE, "Thread scegli prezzo interrotto", e);
+					Thread.currentThread().interrupt();
 				}
 			}
 		}
@@ -893,8 +917,8 @@ public class GUI extends Application implements Grafica {
 				try {
 					lock.wait();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.log(Level.SEVERE, "Thread scegli città interrotto", e);
+					Thread.currentThread().interrupt();
 				}
 			}
 		}
@@ -923,8 +947,8 @@ public class GUI extends Application implements Grafica {
 				try {
 					lock.wait();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.log(Level.SEVERE, "Thread scegli tessera giocatore interrotto", e);
+					Thread.currentThread().interrupt();
 				}
 			}
 		}
@@ -963,8 +987,8 @@ public class GUI extends Application implements Grafica {
 				try {
 					lock.wait();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.log(Level.SEVERE, "Thread scegli tessere permesso azione bonus interrotto", e);
+					Thread.currentThread().interrupt();
 				}
 			}
 		}
@@ -996,8 +1020,8 @@ public class GUI extends Application implements Grafica {
 					try {
 						lock.wait();
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						log.log(Level.SEVERE, "Thread scegli carte interrotto", e);
+						Thread.currentThread().interrupt();
 					}
 				}
 
@@ -1065,8 +1089,8 @@ public class GUI extends Application implements Grafica {
 				try {
 					lock.wait();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.log(Level.SEVERE, "Thread scegli marketable interrotto", e);
+					Thread.currentThread().interrupt();
 				}
 			}
 		}
@@ -1107,8 +1131,8 @@ public class GUI extends Application implements Grafica {
 				try {
 					lock.wait();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.log(Level.SEVERE, "Thread scegli offerta interrotto", e);
+					Thread.currentThread().interrupt();
 				}
 		}
 		OffertaDTO offertaDTO = (OffertaDTO) parametro;
@@ -1123,11 +1147,6 @@ public class GUI extends Application implements Grafica {
 		return offerte.indexOf(offertaDTO) + 1;
 	}
 
-	@Override
-	public CittàDTO scegliCittàBonus(Set<CittàBonusDTO> città, ColoreDTO coloreGiocatore, String input) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public List<CittàBonusDTO> scegliUnaCittà() {
@@ -1141,8 +1160,8 @@ public class GUI extends Application implements Grafica {
 				try {
 					lock.wait();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.log(Level.SEVERE, "Thread scegli una città interrotto", e);
+					Thread.currentThread().interrupt();
 				}
 			}
 		}
@@ -1168,8 +1187,8 @@ public class GUI extends Application implements Grafica {
 				try {
 					lock.wait();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.log(Level.SEVERE, "Thread scegli due città interrotto", e);
+					Thread.currentThread().interrupt();
 				}
 			}
 		}
@@ -1243,7 +1262,9 @@ public class GUI extends Application implements Grafica {
 	}
 
 	public void close() {
-		Runnable runnable = () -> finestra.close();
+		Runnable runnable = () -> {
+			finestra.close();
+			};
 		Platform.runLater(runnable);
 	}
 

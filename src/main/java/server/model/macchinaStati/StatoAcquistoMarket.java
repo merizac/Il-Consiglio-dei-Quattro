@@ -23,6 +23,11 @@ public class StatoAcquistoMarket implements Stato {
 	private List<Giocatore> giocatori;
 	private List<Azione> azioni;
 
+	/**
+	 * state of acquisto in market
+	 * 
+	 * @param gameState
+	 */
 	public StatoAcquistoMarket(GameState gameState) {
 		Utils.print("[SERVER] " + this);
 		this.azioni = Arrays.asList(new AzioneAcquisto(), new Passa());
@@ -30,13 +35,21 @@ public class StatoAcquistoMarket implements Stato {
 		inizializzaStato(gameState);
 	}
 
+	/**
+	 * notify to the player of avaiable actions
+	 * 
+	 * @param gameState
+	 */
 	private void inizializzaStato(GameState gameState) {
 		Collections.shuffle(giocatori);
 		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(giocatori.get(0))));
 		gameState.notifyObserver(new OffertaNotify(gameState.getOfferteMarket(), Arrays.asList(giocatori.get(0))));
-		gameState.notifyObserver(new MessageNotify("Vuoi acquistare\n?", Arrays.asList(giocatori.get(0))));
+		gameState.notifyObserver(new MessageNotify("Vuoi acquistare?", Arrays.asList(giocatori.get(0)), true));
 	}
 
+	/**
+	 * when player choose to don't buy anything players in this state are random
+	 */
 	@Override
 	public void transizionePassa(GameState gameState) {
 		this.giocatori.remove(0);
@@ -52,10 +65,13 @@ public class StatoAcquistoMarket implements Stato {
 		}
 	}
 
+	/**
+	 * when the player choose to do an offert
+	 */
 	@Override
 	public void transizioneOfferta(GameState gameState) {
 		if (gameState.getOfferteMarket().isEmpty()) {
-			gameState.notifyObserver(new MessageNotify("Gli oggetti in vendita sono finiti\n", giocatori));
+			gameState.notifyObserver(new MessageNotify("Gli oggetti in vendita sono finiti\n", giocatori, true));
 			gameState.notifyObserver(new MarketNotify(gameState.getGiocatori(), true));
 			gameState.setStato(new StartEnd(gameState));
 		} else {
@@ -67,10 +83,13 @@ public class StatoAcquistoMarket implements Stato {
 			gameState.notifyObserver(new AvversarioNotify(gameState.getGiocatoreCorrente(), avversari));
 			gameState.notifyObserver(new GiocatoreNotify(gameState.getGiocatoreCorrente(),
 					Arrays.asList(gameState.getGiocatoreCorrente())));
-			gameState.notifyObserver(new MessageNotify("Vuoi acquistare\n?", Arrays.asList(giocatori.get(0))));
+			gameState.notifyObserver(new MessageNotify("Vuoi acquistare?", Arrays.asList(giocatori.get(0)), true));
 		}
 	}
 
+	/**
+	 * get actions
+	 */
 	@Override
 	public List<Azione> getAzioni() {
 		return this.azioni;

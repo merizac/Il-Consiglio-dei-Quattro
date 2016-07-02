@@ -5,15 +5,19 @@ import server.model.azioni.Azione;
 
 public class SecondaAzionePrincipaleDTO implements AzioneDTO {
 
-	
 	private static final long serialVersionUID = 5352888658813031850L;
 
+	/**
+	 * visitor pattern
+	 */
 	@Override
 	public Azione accept(AzioneVisitor azioneVisitor) {
 		return azioneVisitor.visit(this);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

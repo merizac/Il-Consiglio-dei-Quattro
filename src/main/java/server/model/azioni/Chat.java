@@ -10,7 +10,7 @@ public class Chat extends Azione{
 	
 	@Override
 	public void eseguiAzione(GameState gameState) {
-		gameState.notifyObserver(new MessageNotify(messaggio , gameState.getGiocatori()));
+		gameState.notifyObserver(new MessageNotify(messaggio , gameState.getGiocatori(), false));
 		
 	}
 

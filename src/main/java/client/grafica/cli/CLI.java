@@ -480,7 +480,7 @@ public class CLI implements Grafica {
 	 * @return the permit tile DTO selected
 	 */
 	@Override
-	public TesseraPermessoDTO scegliTesseraRegione(List<TesseraPermessoDTO> tessere) {
+	public TesseraPermessoDTO scegliTesseraRegione(List<TesseraPermessoDTO> tessere, RegioneDTO regioneDTO) {
 
 		Utils.print("Seleziona tessera permesso[1/2]");
 		for (TesseraPermessoDTO t : tessere)
@@ -539,8 +539,8 @@ public class CLI implements Grafica {
 		return cittàScelta;
 	}
 
-	@Override
-	public CittàDTO scegliCittàBonus(Set<CittàBonusDTO> città, ColoreDTO coloreGiocatore, String input) {
+	
+	private CittàDTO scegliCittàBonus(Set<CittàBonusDTO> città, ColoreDTO coloreGiocatore, String input) {
 
 		CittàDTO cittàScelta = ControlloParametriDTO.cittàBonus(input, città, coloreGiocatore);
 		while (cittàScelta == null) {
@@ -715,5 +715,10 @@ public class CLI implements Grafica {
 			tesseraPermessoDTO = this.scegliTesseraGiocatore(tessere);
 
 		return tesseraPermessoDTO;
+	}
+
+	@Override
+	public void mostraMessaggioMarket(String messaggio) {
+		mostraMessaggio(messaggio);
 	}
 }

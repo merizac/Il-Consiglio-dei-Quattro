@@ -29,9 +29,18 @@ import utility.ParameterException;
 
 public class ControlloParametri {
 
+
 	public ControlloParametri() {
 	}
 
+	/**
+	 * check if region is a existing region
+	 * 
+	 * @param regione
+	 * @param list
+	 * @return
+	 * @throws ParameterException
+	 */
 	public static Regione cercaRegione(RegioneDTO regione, List<Regione> list) throws ParameterException {
 		for (Regione r : list) {
 			if (r.getNome().equals(regione.getNome()))
@@ -40,6 +49,16 @@ public class ControlloParametri {
 		throw new ParameterException("La regione " + regione.getNome() + " è inesistente!");
 	}
 
+	
+	/**
+	 * check if the balcone is a existing balcone
+	 * 
+	 * @param balconeDTO
+	 * @param balconeRe
+	 * @param regioni
+	 * @return
+	 * @throws ParameterException
+	 */
 	public static Balcone cercaBalcone(BalconeDTO balconeDTO, Balcone balconeRe, List<Regione> regioni)
 			throws ParameterException {
 		for (Regione r : regioni) {
@@ -54,6 +73,13 @@ public class ControlloParametri {
 		}
 	}
 
+	/**
+	 * check color of councilors in balcone
+	 * 
+	 * @param balconeDTO
+	 * @param balcone
+	 * @return
+	 */
 	private static boolean controlloBalcone(BalconeDTO balconeDTO, Balcone balcone) {
 		List<Consigliere> consiglieri = new ArrayList<>(balcone.getConsigliere());
 		for (int i = 0; i < balconeDTO.getConsiglieri().size(); i++) {
@@ -64,6 +90,14 @@ public class ControlloParametri {
 		return true;
 	}
 
+	/**
+	 * check if color of politic cards are the existing cards
+	 * 
+	 * @param carte
+	 * @param cartePolitica
+	 * @return
+	 * @throws ParameterException
+	 */
 	public static List<CartaPolitica> cercaCartePolitica(List<CartaPoliticaDTO> carte,
 			List<CartaPolitica> cartePolitica) throws ParameterException {
 
@@ -84,6 +118,14 @@ public class ControlloParametri {
 		return carteGiocatore;
 	}
 
+	/**
+	 * check if the city is existing
+	 * 
+	 * @param città
+	 * @param cittàGameState
+	 * @return
+	 * @throws ParameterException
+	 */
 	public static Città cercaCittà(CittàDTO città, Set<Città> cittàGameState) throws ParameterException {
 		for (Città c : cittàGameState) {
 			if (c.getNome().equals(città.getNome()))
@@ -92,6 +134,15 @@ public class ControlloParametri {
 		throw new ParameterException("La città " + città.getNome() + " è inesistente!");
 	}
 
+	/**
+	 * check if the city dto is a city with bonus and bonus aren't nobility
+	 * points
+	 * 
+	 * @param città
+	 * @param cittàGameState
+	 * @return
+	 * @throws ParameterException
+	 */
 	public static Città cercaCittàBonus(CittàDTO città, Set<Città> cittàGameState) throws ParameterException {
 
 		for (Città c : cittàGameState) {
@@ -107,6 +158,7 @@ public class ControlloParametri {
 	}
 
 	/**
+	 * check if permit tile dto are the same of permit tile in the model
 	 * 
 	 * @param tesseraPermesso
 	 * @param tesserePermesso
@@ -133,6 +185,11 @@ public class ControlloParametri {
 
 	}
 
+	/**
+	 * order city in alphabetic order
+	 * 
+	 * @param cittàTessera
+	 */
 	private static void ordinaCittà(List<Città> cittàTessera) {
 		Comparator<Città> comparator = (o1, o2) -> {
 			return o1.getNome().compareToIgnoreCase(o2.getNome());
@@ -140,6 +197,11 @@ public class ControlloParametri {
 		Collections.sort(cittàTessera, comparator);
 	}
 
+	/**
+	 * order dto city in alphabetic order
+	 * 
+	 * @param città
+	 */
 	private static void ordinaCittàDTO(List<CittàDTO> città) {
 		Comparator<CittàDTO> comparatorDTO = (o1, o2) -> {
 			return o1.getNome().compareToIgnoreCase(o2.getNome());
@@ -196,6 +258,15 @@ public class ControlloParametri {
 		return false;
 	}
 
+	
+	/**
+	 * check if counsilior dto is the same councilior in the model
+	 * 
+	 * @param consigliereDTO
+	 * @param consiglieri
+	 * @return
+	 * @throws ParameterException
+	 */
 	public static Consigliere cercaConsigliere(ConsigliereDTO consigliereDTO, List<Consigliere> consiglieri)
 			throws ParameterException {
 		for (Consigliere c : consiglieri) {
@@ -205,12 +276,29 @@ public class ControlloParametri {
 		throw new ParameterException("Il consigliere " + consigliereDTO.getColoreConsigliere() + " è inesistente!");
 	}
 
+	/**
+	 * check if the offer are real offer in the model
+	 * 
+	 * @param offerteMarket
+	 * @param offerta
+	 * @return
+	 * @throws ParameterException
+	 */
 	public static Offerta cercaOfferta(List<Offerta> offerteMarket, int offerta) throws ParameterException {
 		if (offerta > 0 && offerta <= offerteMarket.size())
 			return offerteMarket.get(offerta - 1);
 		throw new ParameterException("L'offerta numero " + offerta + " è inesistente");
 	}
 
+	
+	/**
+	 * check if the dto player is an existing player in the model
+	 * 
+	 * @param giocatoreDTO
+	 * @param giocatori
+	 * @return
+	 * @throws ParameterException
+	 */
 	public static Giocatore cercaGiocatore(GiocatoreDTO giocatoreDTO, List<Giocatore> giocatori)
 			throws ParameterException {
 		for (Giocatore g : giocatori) {

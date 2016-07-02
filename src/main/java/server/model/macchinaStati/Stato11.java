@@ -21,42 +21,62 @@ public class Stato11 implements Stato {
 
 	private List<Azione> azioni;
 
+	/**
+	 * state with one main action and one quick action
+	 * 
+	 * @param gameState
+	 */
 	public Stato11(GameState gameState) {
+
 		Utils.print("[SERVER] "+this);
 		this.azioni=Arrays.asList(new ElezioneConsigliere(), new AcquistoTesseraPermesso(),
 				new CostruzioneTesseraPermesso(), new CostruzioneAiutoRe(), new IngaggioAiutante(), new CambioTesseraPermesso(), 
 				new ElezioneConsigliereVeloce());
-		gameState.notifyObserver(new MessageNotify("Scegli un'azione principale o un'azione veloce\n", Arrays.asList(gameState.getGiocatoreCorrente())));
+		gameState.notifyObserver(new MessageNotify("Scegli un'azione principale o un'azione veloce\n", Arrays.asList(gameState.getGiocatoreCorrente()), false));
 		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
 	}
-	
+
+	/**
+	 * when the action is a main action. this transition take in consideration
+	 * if the player win a bonus with a main action.
+	 */
 	@Override
-	public void transizionePrincipale(GameState gameState){
-		if(!gameState.isBonusAzionePrincipale()){
+	public void transizionePrincipale(GameState gameState) {
+		if (!gameState.isBonusAzionePrincipale()) {
 			gameState.setStato(new Stato01(gameState));
-		}
-		else{
+		} else {
 			gameState.setBonusAzionePrincipale(false);
 			gameState.setStato(new Stato11(gameState));
 		}
 	}
-	
+
+	/**
+	 * when the player win a interactive bonus in nobility track
+	 */
 	@Override
-	public void transizioneBonus(GameState gameState){
-		gameState.setStato(new StatoBonus(gameState,this));
+	public void transizioneBonus(GameState gameState) {
+		gameState.setStato(new StatoBonus(gameState, this));
 	}
-	
+
+	/**
+	 * when the action is a quick action
+	 */
 	@Override
-	public void transizioneVeloce(GameState gameState){
+	public void transizioneVeloce(GameState gameState) {
 		gameState.setStato(new Stato10(gameState));
 	}
-	
+
+	/**
+	 * get actions of this state
+	 */
 	@Override
 	public List<Azione> getAzioni() {
 		return this.azioni;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

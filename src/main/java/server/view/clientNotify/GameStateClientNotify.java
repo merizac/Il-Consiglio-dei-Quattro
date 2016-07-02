@@ -10,6 +10,8 @@ public class GameStateClientNotify implements ClientNotify {
 	private GameStateDTO gameStateDTO;
 
 	/**
+	 * gamestate notify
+	 * 
 	 * @param gameStateDTO
 	 */
 	public GameStateClientNotify(GameStateDTO gameStateDTO) {
@@ -18,9 +20,12 @@ public class GameStateClientNotify implements ClientNotify {
 		this.gameStateDTO = gameStateDTO;
 	}
 
+	/**
+	 * show update in gamestate
+	 */
 	@Override
 	public void stamp(Grafica grafica, GameStateDTO gameStateDTO) throws IOException {
-		
+
 		gameStateDTO.setNomeMappa(this.gameStateDTO.getNomeMappa());
 		gameStateDTO.setBonusColore(this.gameStateDTO.getBonusColore());
 		gameStateDTO.setCittà(this.gameStateDTO.getCittà());
@@ -29,7 +34,7 @@ public class GameStateClientNotify implements ClientNotify {
 		gameStateDTO.setPlanciaReDTO(this.gameStateDTO.getPlanciaReDTO());
 		gameStateDTO.setRegioni(this.gameStateDTO.getRegioni());
 		gameStateDTO.setAvversari(this.gameStateDTO.getAvversari());
-		
+
 		grafica.mostraGame(gameStateDTO);
 	}
 }

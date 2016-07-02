@@ -12,16 +12,21 @@ public class CostruzioneTesseraPermessoParametri implements SetterParametri {
 	private CostruzioneTesseraPermessoDTO costruzioneTesseraPermessoDTO;
 
 	public CostruzioneTesseraPermessoParametri(CostruzioneTesseraPermessoDTO costruzioneTesseraPermessoDTO) {
-		this.costruzioneTesseraPermessoDTO=costruzioneTesseraPermessoDTO;
+		this.costruzioneTesseraPermessoDTO = costruzioneTesseraPermessoDTO;
 	}
 
+	/**
+	 * this method set parameters for the action CostruzioneTesseraPermesso in
+	 * particular set a permit tile from the hand of the player and the the city
+	 */
 	@Override
 	public void setParametri(Grafica grafica, GameStateDTO gameStateDTO) throws AzioneNonEseguibile {
-		
-		if(gameStateDTO.getGiocatoreDTO().getTesserePermesso().isEmpty())
+
+		if (gameStateDTO.getGiocatoreDTO().getTesserePermesso().isEmpty())
 			throw new AzioneNonEseguibile("Errore: non hai tessere permesso, seleziona un'altra azione");
 		grafica.mostraMessaggio("Seleziona una tessera permesso\n");
-		TesseraPermessoDTO tesseraScelta = grafica.scegliTesseraGiocatore(gameStateDTO.getGiocatoreDTO().getTesserePermesso());
+		TesseraPermessoDTO tesseraScelta = grafica
+				.scegliTesseraGiocatore(gameStateDTO.getGiocatoreDTO().getTesserePermesso());
 		grafica.mostraMessaggio("Seleziona la città in cui vuoi costruire\n");
 		CittàDTO cittàScelta = grafica.scegliCittà(tesseraScelta.getCittà(),
 				gameStateDTO.getGiocatoreDTO().getColoreGiocatore());

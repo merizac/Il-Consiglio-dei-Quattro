@@ -3,7 +3,7 @@ package common.azioniDTO;
 import common.azioniDTO.azioneVisitor.AzioneVisitor;
 import server.model.azioni.Azione;
 
-public class ChatDTO implements AzioneDTO{
+public class ChatDTO implements AzioneDTO {
 
 	/**
 	 * 
@@ -17,6 +17,8 @@ public class ChatDTO implements AzioneDTO{
 	}
 
 	/**
+	 * get message
+	 * 
 	 * @return the messaggio
 	 */
 	public String getMessaggio() {
@@ -24,10 +26,13 @@ public class ChatDTO implements AzioneDTO{
 	}
 
 	/**
-	 * @param messaggio the messaggio to set
+	 * set message that player wrote
+	 * 
+	 * @param messaggio
+	 *            the messagio to set
 	 */
 	public void setMessaggio(String messaggio) {
-		if(messaggio==null)
+		if (messaggio == null)
 			throw new NullPointerException("Inserisci il messaggio da inviare");
 		this.messaggio = messaggio;
 	}

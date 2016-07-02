@@ -9,12 +9,14 @@ import server.model.game.Giocatore;
 import server.view.clientNotify.AzioniClientNotify;
 import server.view.clientNotify.ClientNotify;
 
-public class AzioniNotify implements Notify{
+public class AzioniNotify implements Notify {
 
 	private List<Azione> azioni;
 	private List<Giocatore> giocatori;
 
 	/**
+	 * for notify avaiable action
+	 * 
 	 * @param azioni
 	 * @param giocatori
 	 */
@@ -28,6 +30,9 @@ public class AzioniNotify implements Notify{
 		this.giocatori = giocatori;
 	}
 
+	/**
+	 * notified players
+	 */
 	@Override
 	public boolean daInviare(Giocatore giocatore) {
 		if (giocatore == null)
@@ -35,10 +40,14 @@ public class AzioniNotify implements Notify{
 		else
 			return giocatori.contains(giocatore);
 	}
+
+	/**
+	 * create client notify
+	 */
 	@Override
 	public ClientNotify notifyToClientNotify() {
-		List<AzioneDTO> azioniDTO=new ArrayList<>();
-		for(Azione a: azioni){
+		List<AzioneDTO> azioniDTO = new ArrayList<>();
+		for (Azione a : azioni) {
 			azioniDTO.add(a.getAzioneDTO());
 		}
 		return new AzioniClientNotify(azioniDTO);

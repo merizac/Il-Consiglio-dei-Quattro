@@ -59,7 +59,7 @@ public class BonusGettoneRicompensa extends Bonus {
 			gameState.getGiocatoreCorrente().getBonusNobiltà().add(this.getAzioneBonus());
 		else
 			gameState.notifyObserver(new MessageNotify("Hai vinto un bonus gettone ricompensa, ma non lo puoi utilizzare!\n"
-						, Arrays.asList(gameState.getGiocatoreCorrente())));
+						, Arrays.asList(gameState.getGiocatoreCorrente()), false));
 	}	
 
 	/* (non-Javadoc)

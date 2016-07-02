@@ -14,20 +14,24 @@ public class VincitoreClientNotify implements ClientNotify {
 	private GiocatoreDTO giocatoreDTO;
 
 	/**
+	 * notify winner player
+	 * 
 	 * @param giocatore
 	 */
 	public VincitoreClientNotify(Giocatore giocatore) {
-		if(giocatore==null)
+		if (giocatore == null)
 			throw new NullPointerException("Il giocatore non può essere null!");
-		this.giocatoreDTO=new GiocatoreDTO();
+		this.giocatoreDTO = new GiocatoreDTO();
 		this.giocatoreDTO.inizializza(giocatore);
 	}
 
+	/**
+	 * show messages that the player is the winner
+	 */
 	@Override
 	public void stamp(Grafica grafica, GameStateDTO gameStateDTO) {
-		String messaggio ="Complimenti "+giocatoreDTO.getNome().toUpperCase()
-				+ ", hai vinto!!";
-		messaggio= messaggio + "Hai totalizzato "+ giocatoreDTO.getPunteggioVittoria() + " punti!";
+		String messaggio = "Complimenti " + giocatoreDTO.getNome().toUpperCase() + ", hai vinto!!";
+		messaggio = messaggio + "Hai totalizzato " + giocatoreDTO.getPunteggioVittoria() + " punti!";
 		grafica.mostraMessaggio(messaggio);
 	}
 

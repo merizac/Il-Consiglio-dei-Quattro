@@ -12,20 +12,24 @@ public class BonusGettoneParametri implements SetterParametri {
 	private BonusGettoneNDTO bonusGettoneNDTO;
 
 	public BonusGettoneParametri(BonusGettoneNDTO bonusGettoneNDTO) {
-		this.bonusGettoneNDTO=bonusGettoneNDTO;
+		this.bonusGettoneNDTO = bonusGettoneNDTO;
 	}
 
+	/**
+	 * this method set parameters for the action BonusGettone in particular set
+	 * city where the player want to take bonus
+	 */
 	@Override
 	public void setParametri(Grafica grafica, GameStateDTO gameStateDTO) {
 		List<CittàBonusDTO> città;
 		grafica.mostraMessaggio("Hai vinto un bonus gettone!\n");
-		if(bonusGettoneNDTO.getNumeroGettoni()==1)
-			città=grafica.scegliUnaCittà();
+		if (bonusGettoneNDTO.getNumeroGettoni() == 1)
+			città = grafica.scegliUnaCittà();
 		else
-			città=grafica.scegliDueCittà();
-		
+			città = grafica.scegliDueCittà();
+
 		bonusGettoneNDTO.setCittà(città);
-			
+
 	}
 
 }

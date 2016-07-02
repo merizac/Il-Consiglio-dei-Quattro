@@ -12,37 +12,37 @@ public interface Stato {
 
 	public default void transizionePrincipale(GameState gameState)  {
 		gameState.notifyObserver(
-				new MessageNotify("azione non eseguibile", Arrays.asList(gameState.getGiocatoreCorrente())));
+				new MessageNotify("azione non eseguibile", Arrays.asList(gameState.getGiocatoreCorrente()), false));
 	}
 
 	public default void transizioneVeloce(GameState gameState) {
 		gameState.notifyObserver(
-				new MessageNotify("azione non eseguibile", Arrays.asList(gameState.getGiocatoreCorrente())));
+				new MessageNotify("azione non eseguibile", Arrays.asList(gameState.getGiocatoreCorrente()), false));
 	};
 
 	public default void transizioneSecondaPrincipale(GameState gameState) {
 		gameState.notifyObserver(
-				new MessageNotify("azione non eseguibile", Arrays.asList(gameState.getGiocatoreCorrente())));
+				new MessageNotify("azione non eseguibile", Arrays.asList(gameState.getGiocatoreCorrente()), false));
 	};
 
 	public default void transizionePescaCarta(GameState gameState) {
 		gameState.notifyObserver(
-				new MessageNotify("azione non eseguibile", Arrays.asList(gameState.getGiocatoreCorrente())));
+				new MessageNotify("azione non eseguibile", Arrays.asList(gameState.getGiocatoreCorrente()), false));
 	};
 
 	public default void transizioneOfferta(GameState gameState) {
 		gameState.notifyObserver(
-				new MessageNotify("azione non eseguibile", Arrays.asList(gameState.getGiocatoreCorrente())));
+				new MessageNotify("azione non eseguibile", Arrays.asList(gameState.getGiocatoreCorrente()), false));
 	};
 
 	public default void transizionePassa(GameState gameState) {
 		gameState.notifyObserver(
-				new MessageNotify("azione non eseguibile", Arrays.asList(gameState.getGiocatoreCorrente())));
+				new MessageNotify("azione non eseguibile", Arrays.asList(gameState.getGiocatoreCorrente()), false));
 	};
 
 	public default void transizioneBonus(GameState gameState) {
 		gameState.notifyObserver(
-				new MessageNotify("azione non eseguibile", Arrays.asList(gameState.getGiocatoreCorrente())));
+				new MessageNotify("azione non eseguibile", Arrays.asList(gameState.getGiocatoreCorrente()), false));
 	};
 
 	public default void transizioneExit(GameState gameState) {

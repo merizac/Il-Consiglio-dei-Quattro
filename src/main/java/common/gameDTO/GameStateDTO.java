@@ -31,6 +31,11 @@ public class GameStateDTO implements Serializable {
 	private List<ColoreBonusDTO> bonusColore;
 	private String nomeMappa;
 
+	/**
+	 * start game
+	 * 
+	 * @param gameState
+	 */
 	public void inizializza(GameState gameState) {
 
 		this.avversari = new ArrayList<>();

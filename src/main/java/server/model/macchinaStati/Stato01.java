@@ -19,15 +19,25 @@ public class Stato01 implements Stato {
 
 	private List<Azione> azioni;
 
+	/**
+	 * state with zero main action and one quick action
+	 * 
+	 * @param gameState
+	 */
 	public Stato01(GameState gameState) {
 		Utils.print("[SERVER] " + this);
 		azioni = Arrays.asList(new IngaggioAiutante(), new CambioTesseraPermesso(), new ElezioneConsigliereVeloce(),
 				new SecondaAzionePrincipale(), new Passa());
-		gameState.notifyObserver(new MessageNotify("Scegli un'azione veloce\n", Arrays.asList(gameState.getGiocatoreCorrente())));
+		gameState.notifyObserver(
+				new MessageNotify("Scegli un'azione veloce\n", Arrays.asList(gameState.getGiocatoreCorrente()), false));
 		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
 
 	}
 
+	/**
+	 * quick transition called by a quick action
+	 * 
+	 */
 	@Override
 	public void transizioneVeloce(GameState gameState) {
 		if (gameState.isUltimoGiro()) {
@@ -53,17 +63,27 @@ public class Stato01 implements Stato {
 
 	}
 
+	/**
+	 * transition called when the action is the quick action with second main
+	 * action
+	 */
 	@Override
 	public void transizioneSecondaPrincipale(GameState gameState) {
 		gameState.setStato(new Stato10(gameState));
 
 	}
 
+	/**
+	 * when the player skip quick action
+	 */
 	@Override
 	public void transizionePassa(GameState gameState) {
 		this.transizioneVeloce(gameState);
 	}
 
+	/**
+	 * get actions
+	 */
 	@Override
 	public List<Azione> getAzioni() {
 		return this.azioni;

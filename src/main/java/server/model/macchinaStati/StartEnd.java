@@ -22,7 +22,7 @@ public class StartEnd implements Stato {
 	public StartEnd(GameState gameState) {
 		Utils.print("[SERVER] " + this);
 		gameState.notifyObserver(new MessageNotify("E' il tuo turno "+gameState.getGiocatoreCorrente().getNome()+"\nPesca una carta!\n"
-				, Arrays.asList(gameState.getGiocatoreCorrente())));
+				, Arrays.asList(gameState.getGiocatoreCorrente()), false));
 		azioni = Arrays.asList(new PescaCarta());
 		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
 	}

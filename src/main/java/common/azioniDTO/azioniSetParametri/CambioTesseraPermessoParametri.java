@@ -10,9 +10,13 @@ public class CambioTesseraPermessoParametri implements SetterParametri {
 	private CambioTesserePermessoDTO cambioTesserePermessoDTO;
 
 	public CambioTesseraPermessoParametri(CambioTesserePermessoDTO cambioTesserePermessoDTO) {
-		this.cambioTesserePermessoDTO=cambioTesserePermessoDTO;
+		this.cambioTesserePermessoDTO = cambioTesserePermessoDTO;
 	}
 
+	/**
+	 * this method set parameters for the action CambioTesserePermesso in
+	 * particular set the region
+	 */
 	@Override
 	public void setParametri(Grafica grafica, GameStateDTO gameStateDTO) {
 		grafica.mostraMessaggio("Seleziona la regione\n");

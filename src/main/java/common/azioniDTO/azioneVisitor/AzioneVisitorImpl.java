@@ -65,8 +65,13 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 		this.giocatore = giocatore;
 	}
 
+	/**
+	 * parsing from AcquistoTesseraPErmessoDTO to AcquistoTesseraPermesso 
+	 * for each parameter check if is an existing parameter, and set to the action
+	 */
 	@Override
-	public AcquistoTesseraPermesso visit(AcquistoTesseraPermessoDTO acquistoTesseraPermessoDTO) throws ParameterException {
+	public AcquistoTesseraPermesso visit(AcquistoTesseraPermessoDTO acquistoTesseraPermessoDTO)
+			throws ParameterException {
 		AcquistoTesseraPermesso acquistoTesseraPermesso = new AcquistoTesseraPermesso();
 		Regione regione = ControlloParametri.cercaRegione(acquistoTesseraPermessoDTO.getRegione(),
 				gameState.getRegioni());
@@ -81,6 +86,10 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 		return acquistoTesseraPermesso;
 	}
 
+	/**
+	 * parsing from CambioTesserePermessoDTO to CambioTesserePermesso .
+	 * for each parameter check if is an existing parameter, and set to the action
+	 */
 	@Override
 	public CambioTesseraPermesso visit(CambioTesserePermessoDTO cambioTesserePermessoDTO) throws ParameterException {
 		CambioTesseraPermesso cambioTesseraPermesso = new CambioTesseraPermesso();
@@ -92,21 +101,31 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 		return cambioTesseraPermesso;
 	}
 
+	/**
+	 * parsing from costruzioneAiutoReDTO to CostruzioneAiutoRe 
+	 * for each parameter check if is an existing parameter, and set to the action
+	 */
 	@Override
 	public CostruzioneAiutoRe visit(CostruzioneAiutoReDTO costruzioneAiutoReDTO) throws ParameterException {
 		CostruzioneAiutoRe costruzioneAiutoRe = new CostruzioneAiutoRe();
 		Città città = ControlloParametri.cercaCittà(costruzioneAiutoReDTO.getCittà(), gameState.getCittà());
 		costruzioneAiutoRe.setCittàCostruzione(città);
 
-		List<CartaPolitica> carte = ControlloParametri.cercaCartePolitica(
-				costruzioneAiutoReDTO.getCarteGiocatore(), new ArrayList<>(giocatore.getCartePolitica()));
+		List<CartaPolitica> carte = ControlloParametri.cercaCartePolitica(costruzioneAiutoReDTO.getCarteGiocatore(),
+				new ArrayList<>(giocatore.getCartePolitica()));
 		costruzioneAiutoRe.setCarteGiocatore(carte);
 
 		return costruzioneAiutoRe;
 	}
 
+	/**
+	 * parsing from CostruzioneTesseraPermessoDTO to CostruzioneTesseraPermesso
+	 * for each parameter check if is an existing parameter, and set to the
+	 * action
+	 */
 	@Override
-	public CostruzioneTesseraPermesso visit(CostruzioneTesseraPermessoDTO costruzioneTesseraPermessoDTO) throws ParameterException {
+	public CostruzioneTesseraPermesso visit(CostruzioneTesseraPermessoDTO costruzioneTesseraPermessoDTO)
+			throws ParameterException {
 		CostruzioneTesseraPermesso costruzioneTesseraPermesso = new CostruzioneTesseraPermesso();
 		TesseraPermesso tesseraPermesso = ControlloParametri.cercaTesseraPermesso(
 				costruzioneTesseraPermessoDTO.getTesseraPermesso(), giocatore.getTesserePermesso());
@@ -119,10 +138,14 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 		return costruzioneTesseraPermesso;
 	}
 
+	/**
+	 * parsing from ElezioneConsigliereDTO to ElezioneConsigliere for
+	 * each parameter check if is an existing parameter, and set to the action
+	 */
 	@Override
 	public ElezioneConsigliere visit(ElezioneConsigliereDTO elezioneConsigliereDTO) throws ParameterException {
 		ElezioneConsigliere elezioneConsigliere = new ElezioneConsigliere();
-		Balcone balcone = ControlloParametri.cercaBalcone(elezioneConsigliereDTO.getBalconeDTO(), 
+		Balcone balcone = ControlloParametri.cercaBalcone(elezioneConsigliereDTO.getBalconeDTO(),
 				gameState.getPlanciaRe().getBalconeRe(), gameState.getRegioni());
 		elezioneConsigliere.setBalcone(balcone);
 		Consigliere consigliere = ControlloParametri.cercaConsigliere(elezioneConsigliereDTO.getConsigliereDTO(),
@@ -131,10 +154,15 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 		return elezioneConsigliere;
 	}
 
+	/**
+	 * parsing from ElezioneConsigliereVeloceDTO to ElezioneConsigliereVeloce 
+	 * for each parameter check if is an existing parameter, and set to the action
+	 */
 	@Override
-	public ElezioneConsigliereVeloce visit(ElezioneConsigliereVeloceDTO elezioneConsigliereVeloceDTO) throws ParameterException {
+	public ElezioneConsigliereVeloce visit(ElezioneConsigliereVeloceDTO elezioneConsigliereVeloceDTO)
+			throws ParameterException {
 		ElezioneConsigliereVeloce elezioneConsigliereVeloce = new ElezioneConsigliereVeloce();
-		Balcone balcone = ControlloParametri.cercaBalcone(elezioneConsigliereVeloceDTO.getBalcone(), 
+		Balcone balcone = ControlloParametri.cercaBalcone(elezioneConsigliereVeloceDTO.getBalcone(),
 				gameState.getPlanciaRe().getBalconeRe(), gameState.getRegioni());
 		elezioneConsigliereVeloce.setBalcone(balcone);
 
@@ -145,26 +173,42 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 		return elezioneConsigliereVeloce;
 	}
 
+	/**
+	 * parsing from IngaggioAiutanteDTO to IngaggioAiutante 
+	 */
 	@Override
 	public IngaggioAiutante visit(IngaggioAiutanteDTO ingaggioAiutanteDTO) {
 		return new IngaggioAiutante();
 	}
-
+	
+	/**
+	 * parsing from SecondaAzionePrincipaleDTO to SecondaAzionePrincipale 
+	 */
 	@Override
 	public SecondaAzionePrincipale visit(SecondaAzionePrincipaleDTO secondaAzionePrincipaleDTO) {
 		return new SecondaAzionePrincipale();
 	}
 
+	/**
+	 * parsing from PescaCartaDTO to PescaCarta 
+	 */
 	@Override
 	public PescaCarta visit(PescaCartaDTO pescaCartaDTO) {
 		return new PescaCarta();
 	}
-
+	
+	/**
+	 * parsing from PassaDTO to Passa 
+	 */
 	@Override
 	public Passa visit(PassaDTO passaDTO) {
 		return new Passa();
 	}
 
+	/**
+	 * parsing from AzioneOffertaDTO to AzioneOfferta
+	 * set parameters to the action 
+	 */
 	@Override
 	public AzioneOfferta visit(AzioneOffertaDTO azioneOffertaDTO) throws ParameterException {
 		AzioneOfferta azioneOfferta = new AzioneOfferta();
@@ -174,22 +218,32 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 		return azioneOfferta;
 	}
 
+	/**
+	 * parsing from AzioneAcquistoDTO to AzioneAcquisto
+	 * and set parameters to the action 
+	 */
 	@Override
 	public AzioneAcquisto visit(AzioneAcquistoDTO azioneAcquistoDTO) throws ParameterException {
 		AzioneAcquisto azioneAcquisto = new AzioneAcquisto();
 		Offerta offerta = ControlloParametri.cercaOfferta(gameState.getOfferteMarket(), azioneAcquistoDTO.getOfferta());
-		Giocatore giocatoreAcquisto = ControlloParametri.cercaGiocatore(azioneAcquistoDTO.getGiocatoreDTO(), gameState.getGiocatori());
+		Giocatore giocatoreAcquisto = ControlloParametri.cercaGiocatore(azioneAcquistoDTO.getGiocatoreDTO(),
+				gameState.getGiocatori());
 		azioneAcquisto.setOfferta(offerta);
 		azioneAcquisto.setAcquirente(giocatoreAcquisto);
 		return azioneAcquisto;
 	}
 
+	/**
+	 * parsing from BonusGettoneNDTO to BonusGettoneN 
+	 * for each parameter check if is an existing parameter, and set to the action
+	 */
 	@Override
 	public BonusGettoneN visit(BonusGettoneNDTO bonusGettoneDTO) throws ParameterException {
 		BonusGettoneN bonusGettone = new BonusGettoneN();
 		bonusGettone.setCittà(new ArrayList<>());
 		for (int i = 0; i < bonusGettoneDTO.getNumeroGettoni(); i++) {
-			CittàBonus città = (CittàBonus) ControlloParametri.cercaCittàBonus(bonusGettoneDTO.getCittà().get(i), gameState.getCittà());
+			CittàBonus città = (CittàBonus) ControlloParametri.cercaCittàBonus(bonusGettoneDTO.getCittà().get(i),
+					gameState.getCittà());
 			bonusGettone.getCittà().add(città);
 		}
 		bonusGettone.setNumeroGettoni(bonusGettoneDTO.getNumeroGettoni());
@@ -197,19 +251,29 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 
 	}
 
+	/**
+	 * parsing from BonusTesseraAcquistataNDTO to BonusTesseraAcquistataN 
+	 * for each parameter check if is an existing parameter, and set to the action
+	 */
 	@Override
-	public BonusTesseraAcquistataN visit(BonusTesseraAcquistataNDTO bonusTesseraAcquistataDTO) throws ParameterException {
+	public BonusTesseraAcquistataN visit(BonusTesseraAcquistataNDTO bonusTesseraAcquistataDTO)
+			throws ParameterException {
 		BonusTesseraAcquistataN bonusTesseraAcquistata = new BonusTesseraAcquistataN();
 		TesseraPermesso tesseraPermesso;
-		List<TesseraPermesso> tessere=new ArrayList<>();
+		List<TesseraPermesso> tessere = new ArrayList<>();
 		tessere.addAll(gameState.getGiocatoreCorrente().getTesserePermesso());
 		tessere.addAll(gameState.getGiocatoreCorrente().getTesserePermessoUsate());
+
 		tesseraPermesso=ControlloParametri.cercaTesseraPermesso(bonusTesseraAcquistataDTO.getTesseraPermesso(), tessere);
 		bonusTesseraAcquistata.setId(1);
 		bonusTesseraAcquistata.setTesseraPermesso(tesseraPermesso);
 		return bonusTesseraAcquistata;
 	}
 
+	/**
+	 * parsing from BonusTesseraPermessoNDTO to BonusTesseraPErmessoN 
+	 * for each parameter check if is an existing parameter, and set to the action
+	 */
 	@Override
 	public BonusTesseraPermessoN visit(BonusTesseraPermessoNDTO bonusTesseraPermessoDTO) throws ParameterException {
 		BonusTesseraPermessoN bonusTesseraPermesso = new BonusTesseraPermessoN();
@@ -222,18 +286,28 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 		return bonusTesseraPermesso;
 	}
 
+	/**
+	 * parsing from ExitDTO to Exit 
+	 * check if the player is an existing player and set to the action
+	 */
 	@Override
 	public Exit visit(ExitDTO exitDTO) throws ParameterException {
-		Exit exit=new Exit();
-		Giocatore giocatoreDisconnesso=ControlloParametri.cercaGiocatore(exitDTO.getGiocatoreDTO(), gameState.getGiocatori());
+		Exit exit = new Exit();
+		Giocatore giocatoreDisconnesso = ControlloParametri.cercaGiocatore(exitDTO.getGiocatoreDTO(),
+				gameState.getGiocatori());
 		exit.setGiocatore(giocatoreDisconnesso);
 		return exit;
 	}
 
+	/**
+	 * parsing from ElezioneConsigliereVeloceDTO to ElezioneConsigliereVeloce 
+	 * for each parameter check if is an existing parameter, and set to the action
+	 */
 	@Override
-	public Chat visit(ChatDTO chatDTO)  {
+	public Chat visit(ChatDTO chatDTO) {
 		Chat chat = new Chat();
 		chat.setMessaggio(chatDTO.getMessaggio());
 		return chat;
 	}
+
 }
