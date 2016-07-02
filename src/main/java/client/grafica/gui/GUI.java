@@ -244,6 +244,7 @@ public class GUI extends Application implements Grafica {
 			try {
 				((AzioneParametri) azioni.get(0)).parametri().setParametri(this, gameStateDTO);
 			} catch (AzioneNonEseguibile e) {
+				log.log(Level.INFO, "Azione non eseguibile", e);
 				this.mostraMessaggio(e.getMessage());
 			}
 			try {
@@ -1062,26 +1063,17 @@ public class GUI extends Application implements Grafica {
 	@Override
 	public MarketableDTO scegliMarketable() {
 		HBox aiutanti = controllerMarket.getAiutanti();
-		DropShadow ds = new DropShadow();
-		ds.setColor(Color.web("#ffffff"));
-		ds.setRadius(21);
-		ds.setSpread(0.6);
-		ds.setWidth(42.5);
-		ds.setHeight(43.5);
 		for (Node i : aiutanti.getChildren()) {
 			i.setDisable(false);
-			i.setEffect(ds);
 		}
 		HBox cartePolitica = controllerMarket.getCartePolitica();
 		for (Node i : cartePolitica.getChildren()) {
 			i.setDisable(false);
-			i.setEffect(ds);
 		}
 
 		HBox tesserePermesso = controllerMarket.getTesserePermesso();
 		for (Node i : tesserePermesso.getChildren()) {
 			i.setDisable(false);
-			i.setEffect(ds);
 		}
 
 		synchronized (lock) {
@@ -1097,17 +1089,14 @@ public class GUI extends Application implements Grafica {
 
 		for (Node i : aiutanti.getChildren()) {
 			i.setDisable(true);
-			i.setEffect(null);
 		}
 
 		for (Node i : cartePolitica.getChildren()) {
 			i.setDisable(true);
-			i.setEffect(null);
 		}
 
 		for (Node i : tesserePermesso.getChildren()) {
 			i.setDisable(true);
-			i.setEffect(null);
 		}
 		MarketableDTO marketableDTO = (MarketableDTO) parametro;
 		parametro = null;

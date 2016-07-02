@@ -56,7 +56,7 @@ public class CLI implements Grafica {
 		stdIn = new Scanner(System.in);
 
 		this.scegliNome();
-
+		
 		Utils.print("CIAO " + gameStateDTO.getGiocatoreDTO().getNome().toUpperCase()
 				+ ", BENVENUTO IN UNA NUOVA PARTITA DEL *Consiglio dei Quattro* !");
 
@@ -103,8 +103,9 @@ public class CLI implements Grafica {
 			if (action instanceof AzioneParametri)
 				try {
 					((AzioneParametri) action).parametri().setParametri(this, gameStateDTO);
-				} catch (AzioneNonEseguibile e1) {
-					this.mostraMessaggio(e1.getMessage());
+				} catch (AzioneNonEseguibile e) {
+					log.log(Level.INFO, "Azione non eseguibile", e);
+					this.mostraMessaggio(e.getMessage());
 					continue;
 				}
 			try {

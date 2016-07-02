@@ -493,6 +493,7 @@ public class GUIGameController implements Controller {
 					((AzioneParametri) azioneDTO).parametri().setParametri(gui, gameStateDTO);
 				} catch (AzioneNonEseguibile e) {
 					gui.mostraMessaggio(e.getMessage());
+					log.log(Level.INFO, "Azione non eseguibile", e);
 					return;
 				}
 			}

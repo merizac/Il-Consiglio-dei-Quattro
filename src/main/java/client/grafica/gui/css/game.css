@@ -1,3 +1,7 @@
+@font-face {
+    src: url("./font1.ttf");
+}
+
 .background {
 	-fx-background-image: url("./carta_macchie.jpg");
 	-fx-border: transparent;
@@ -17,7 +21,7 @@
 
 .label {
     -fx-font-size: 10.0pt;
-    -fx-font-family: "Calibri";
+    -fx-font-family: "Algerian";
     -fx-text-fill: black;
     -fx-opacity: 1.0;   
 }
@@ -29,7 +33,7 @@
 	-fx-background-radius: 5;
     -fx-background-insets: 1;
     -fx-font-size: 11.0pt;
-    -fx-font-family: "Calibri";
+    -fx-font-family: "Algerian";
     -fx-text-fill: black;
     -fx-opacity: 1.0;
 }
@@ -43,6 +47,7 @@
 	-fx-background-color:transparent;
 	-fx-border-color: transparent;
 	-fx-text-fill: transparent;
+	-fx-font: 13.0 Papyrus;
 }
 
 #transparentbutton:hover{
@@ -121,7 +126,7 @@
     -fx-border-radius: 10px;
     -fx-background-radius: 10px;
     -fx-background-color: #C3B091;
-    -fx-font: 13.0 Papyrus;
+    -fx-font: 13.0 "Algerian"/*Papyrus*/;
     -fx-text-fill: #6b4208;
     -fx-background-insets: 0.0 0.0 0.0 0.0, 0.0, 1.0, 2.0;
 }
@@ -135,7 +140,7 @@
 	-fx-color: #A0785A; 
     -fx-text-fill: white;
     -fx-font-size: 10.0pt;
-    -fx-font-family: "Showcard Gothic";
+    -fx-font-family: "Algerian";
 }
 .titled-pane:focused {
     -fx-color: transparent;

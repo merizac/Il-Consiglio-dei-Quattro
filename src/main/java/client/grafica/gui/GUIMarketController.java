@@ -139,6 +139,7 @@ public class GUIMarketController implements Controller {
 					((AzioneParametri) azioneDTO).parametri().setParametri(gui, gameStateDTO);
 				} catch (AzioneNonEseguibile e) {
 					gui.azioneNonValida("Azione non eseguibile!", e.getMessage());
+					log.log(Level.INFO, "Azione non esegubile", e);
 					return;
 				}
 			}

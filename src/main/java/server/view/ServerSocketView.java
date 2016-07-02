@@ -104,6 +104,7 @@ public class ServerSocketView extends View implements Runnable {
 					try {
 						azione = action.accept(azioneVisitor);
 					} catch (ParameterException e) {
+						log.log(Level.INFO, "Azione non corretta", e);
 						update(new MessageNotify(e.getMessage(), Arrays.asList(gameState.getGiocatoreCorrente()), false));
 						Utils.print("[SERVER] Ricevuta l'azione " + azione + " dal giocatore "
 								+ this.giocatore.getNome() + " con errore: " + e.getMessage());
@@ -122,12 +123,15 @@ public class ServerSocketView extends View implements Runnable {
 					}
 
 				}
-			} catch (ClassNotFoundException | IOException e1) {
+			} catch (IOException e1) {
+				log.log(Level.INFO, "Client disconnesso", e1);
 				disconnetti();
 				Exit exit = new Exit();
 				exit.setGiocatore(giocatore);
 				this.notifyObserver(exit);
 				return;
+			} catch (ClassNotFoundException e1) {
+				log.log(Level.SEVERE, "Errore ricevuto un object diverso dal giocatore", e1);
 			}
 
 		}
