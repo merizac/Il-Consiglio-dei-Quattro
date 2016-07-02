@@ -432,7 +432,6 @@ public class GameState extends Observable<Notify> {
 		}
 
 		this.notifyObserver(new ClassificaNotify(vincitori, giocatoriPerdenti, giocatoriFinePartita));
-		Server.disconnettiClient(this);
 		return vincitori;
 	}
 
