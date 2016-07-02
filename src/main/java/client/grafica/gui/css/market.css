@@ -10,9 +10,9 @@
 
 }
 
-  .text-area .content{
-      -fx-background-color: #F7E7CE;
-  }
+.text-area .content{
+   -fx-background-color: #F7E7CE;
+}
 
 
 .text-field {

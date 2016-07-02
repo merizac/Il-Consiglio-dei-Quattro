@@ -57,6 +57,22 @@
 	-fx-border-color: transparent;
 }
 
+#sound{
+	-fx-background-color:transparent;
+	-fx-border-color: transparent;
+    -fx-border-width: 1.0;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+#sound:focused{
+	-fx-background-color:red;
+}
+
+#sound:hover{
+	-fx-background-color:gray;
+}
+
 .mazzo:hover{
   -fx-effect: dropshadow(three-pass-box, black, 20, 0.2, 0, 0); 
  
@@ -154,8 +170,9 @@ titled-pane > .title  > .text{
     -fx-text-fill: #A0785A;
     -fx-font-weight: bold;
 }
+/*#7B3F00 secondo colore */
 .titled-pane:focused > .title {
-    -fx-color: #7B3F00; 
+    -fx-color: #A0785A; 
     -fx-text-fill: white;
 }
 .titled-pane > .title:hover {
