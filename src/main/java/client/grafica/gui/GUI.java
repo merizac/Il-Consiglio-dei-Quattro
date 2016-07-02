@@ -736,24 +736,19 @@ public class GUI extends Application implements Grafica {
 				try {
 					lock.wait();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.log(Level.SEVERE, "Thread scegli consigliere interrotto", e);
+					Thread.currentThread().interrupt();
 				}
 			}
 		}
-		try {
-			ConsigliereDTO consigliereDTO = (ConsigliereDTO) parametro;
-			for (ImageView consigliere : riserva) {
-				consigliere.setDisable(true);
-				consigliere.setEffect(null);
-				consigliere.setOpacity(1);
-			}
-			parametro = null;
-			return consigliereDTO;
-		} catch (Exception e) {
-			e.printStackTrace();
+		ConsigliereDTO consigliereDTO = (ConsigliereDTO) parametro;
+		for (ImageView consigliere : riserva) {
+			consigliere.setDisable(true);
+			consigliere.setEffect(null);
+			consigliere.setOpacity(1);
 		}
-		return null;
+		parametro = null;
+		return consigliereDTO;
 
 	}
 
@@ -772,8 +767,8 @@ public class GUI extends Application implements Grafica {
 				try {
 					lock.wait();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.log(Level.SEVERE, "Thread scegli balcone interrotto", e);
+					Thread.currentThread().interrupt();
 				}
 			}
 			BalconeDTO balconeDTO = (BalconeDTO) parametro;
@@ -805,8 +800,8 @@ public class GUI extends Application implements Grafica {
 				try {
 					lock.wait();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.log(Level.SEVERE, "Thread scegli regione interrotto", e);
+					Thread.currentThread().interrupt();
 				}
 			}
 		}
@@ -838,8 +833,7 @@ public class GUI extends Application implements Grafica {
 				try {
 					lock.wait();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.log(Level.SEVERE, "Thread scegli tessera regione interrotto", e);
 				}
 			}
 		}
@@ -862,8 +856,8 @@ public class GUI extends Application implements Grafica {
 				try {
 					lock.wait();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.log(Level.SEVERE, "Thread scegli prezzo interrotto", e);
+					Thread.currentThread().interrupt();
 				}
 			}
 		}
@@ -893,8 +887,8 @@ public class GUI extends Application implements Grafica {
 				try {
 					lock.wait();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.log(Level.SEVERE, "Thread scegli città interrotto", e);
+					Thread.currentThread().interrupt();
 				}
 			}
 		}
@@ -923,8 +917,8 @@ public class GUI extends Application implements Grafica {
 				try {
 					lock.wait();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.log(Level.SEVERE, "Thread scegli tessera giocatore interrotto", e);
+					Thread.currentThread().interrupt();
 				}
 			}
 		}
@@ -963,8 +957,8 @@ public class GUI extends Application implements Grafica {
 				try {
 					lock.wait();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.log(Level.SEVERE, "Thread scegli tessere permesso azione bonus interrotto", e);
+					Thread.currentThread().interrupt();
 				}
 			}
 		}
@@ -996,8 +990,8 @@ public class GUI extends Application implements Grafica {
 					try {
 						lock.wait();
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						log.log(Level.SEVERE, "Thread scegli carte interrotto", e);
+						Thread.currentThread().interrupt();
 					}
 				}
 
@@ -1065,8 +1059,8 @@ public class GUI extends Application implements Grafica {
 				try {
 					lock.wait();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.log(Level.SEVERE, "Thread scegli marketable interrotto", e);
+					Thread.currentThread().interrupt();
 				}
 			}
 		}
@@ -1107,8 +1101,8 @@ public class GUI extends Application implements Grafica {
 				try {
 					lock.wait();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.log(Level.SEVERE, "Thread scegli offerta interrotto", e);
+					Thread.currentThread().interrupt();
 				}
 		}
 		OffertaDTO offertaDTO = (OffertaDTO) parametro;
@@ -1141,8 +1135,8 @@ public class GUI extends Application implements Grafica {
 				try {
 					lock.wait();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.log(Level.SEVERE, "Thread scegli una città interrotto", e);
+					Thread.currentThread().interrupt();
 				}
 			}
 		}
@@ -1168,8 +1162,8 @@ public class GUI extends Application implements Grafica {
 				try {
 					lock.wait();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.log(Level.SEVERE, "Thread scegli due città interrotto", e);
+					Thread.currentThread().interrupt();
 				}
 			}
 		}
