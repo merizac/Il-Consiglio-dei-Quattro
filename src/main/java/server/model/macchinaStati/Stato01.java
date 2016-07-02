@@ -13,13 +13,14 @@ import server.model.game.GameState;
 import server.model.notify.AzioniNotify;
 import server.model.notify.MarketNotify;
 import server.model.notify.MessageNotify;
+import utility.Utils;
 
 public class Stato01 implements Stato {
 
 	private List<Azione> azioni;
 
 	public Stato01(GameState gameState) {
-		System.out.println("[SERVER] " + this);
+		Utils.print("[SERVER] " + this);
 		azioni = Arrays.asList(new IngaggioAiutante(), new CambioTesseraPermesso(), new ElezioneConsigliereVeloce(),
 				new SecondaAzionePrincipale(), new Passa());
 		gameState.notifyObserver(new MessageNotify("Scegli un'azione veloce\n", Arrays.asList(gameState.getGiocatoreCorrente())));
@@ -40,7 +41,7 @@ public class Stato01 implements Stato {
 		} else {
 			gameState.nextPlayer();
 			gameState.prossimoTurno();
-			System.out.println("[SERVER] numero turno 01: " + gameState.getNumeroTurni());
+			Utils.print("[SERVER] numero turno 01: " + gameState.getNumeroTurni());
 			if (gameState.getNumeroTurni() != gameState.getGiocatori().size())
 				gameState.setStato(new StartEnd(gameState));
 			else {

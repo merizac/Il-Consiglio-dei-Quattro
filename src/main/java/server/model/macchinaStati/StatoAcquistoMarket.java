@@ -16,6 +16,7 @@ import server.model.notify.GiocatoreNotify;
 import server.model.notify.MarketNotify;
 import server.model.notify.MessageNotify;
 import server.model.notify.OffertaNotify;
+import utility.Utils;
 
 public class StatoAcquistoMarket implements Stato {
 
@@ -23,7 +24,7 @@ public class StatoAcquistoMarket implements Stato {
 	private List<Azione> azioni;
 
 	public StatoAcquistoMarket(GameState gameState) {
-		System.out.println("[SERVER] " + this);
+		Utils.print("[SERVER] " + this);
 		this.azioni = Arrays.asList(new AzioneAcquisto(), new Passa());
 		this.giocatori = new ArrayList<>(gameState.getGiocatori());
 		inizializzaStato(gameState);
@@ -51,6 +52,7 @@ public class StatoAcquistoMarket implements Stato {
 		}
 	}
 
+	@Override
 	public void transizioneOfferta(GameState gameState) {
 		if (gameState.getOfferteMarket().isEmpty()) {
 			gameState.notifyObserver(new MessageNotify("Gli oggetti in vendita sono finiti\n", giocatori));

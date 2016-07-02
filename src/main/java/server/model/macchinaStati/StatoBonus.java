@@ -5,6 +5,7 @@ import java.util.List;
 import server.model.azioni.Azione;
 import server.model.game.GameState;
 import server.model.notify.AzioniNotify;
+import utility.Utils;
 
 public class StatoBonus implements Stato {
 	private Stato stato;
@@ -14,7 +15,7 @@ public class StatoBonus implements Stato {
 	 * @param stato
 	 */
 	public StatoBonus(GameState gameState, Stato stato) {
-		System.out.println("[SERVER] " + this);
+		Utils.print("[SERVER] " + this);
 		if (stato == null)
 			throw new NullPointerException("Lo stato deve essere lo stato precedente");
 		this.stato = stato;

@@ -10,7 +10,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import client.connessione.Connessione;
 import client.grafica.Grafica;
 import common.azioniDTO.AcquistoTesseraPermessoDTO;
@@ -89,6 +90,7 @@ public class GUI extends Application implements Grafica {
 	private final int timeout = 30000;
 	private Timer timer;
 	private TimerTask task;
+	private static final Logger log = Logger.getLogger(GUI.class.getName());
 
 	@Override
 	public void setConnessione(Connessione connessione) {
@@ -172,39 +174,39 @@ public class GUI extends Application implements Grafica {
 		Image image = new Image(getClass().getResource("css/cursore.png").toExternalForm());
 		theScene.setCursor(new ImageCursor(image));
 
-
-		GUIController controller = fxmloader.getController();
-		controller.setGui(this);
+		GUIController controllerLogin = fxmloader.getController();
+		controllerLogin.setGui(this);
 
 		finestra.setScene(theScene);
 		finestra.show();
 	}
 
-	public void inizializza() throws IOException {
+	public void inizializza() {
 		FXMLLoader fxmloader = new FXMLLoader();
 		fxmloader.setLocation(getClass().getClassLoader().getResource("client/grafica/gui/fxml/gameState.fxml"));
 
-		Parent root = fxmloader.load();
+		Parent root = null;
+		try {
+			root = fxmloader.load();
+		} catch (IOException e) {
+			log.log(Level.SEVERE, "Errore nel caricamento del file gameState.fxml", e);
+		}
 		Scene theScene = new Scene(root);
 		Image image = new Image(getClass().getResource("css/cursore.png").toExternalForm());
 		theScene.setCursor(new ImageCursor(image));
 		controller = fxmloader.getController();
 		controller.setGameStateDTO(this.gameStateDTO);
 		controller.setGui(this);
-		controllerCorrente=controller;
+		controllerCorrente = controller;
 		finestra.setScene(theScene);
-		finestra.setOnCloseRequest(new EventHandler<WindowEvent>() {
-			
-			@Override
-			public void handle(WindowEvent event) {
-				try {
-					connessione.inviaAzione(new ExitDTO());
-				} catch (RemoteException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+		EventHandler<WindowEvent> onClose = (event) -> {
+			try {
+				connessione.inviaAzione(new ExitDTO());
+			} catch (RemoteException e) {
+				log.log(Level.SEVERE, "Errore nell'invio dell'azione", e);
 			}
-		});
+		};
+		finestra.setOnCloseRequest(onClose);
 		finestra.show();
 	}
 
@@ -220,8 +222,7 @@ public class GUI extends Application implements Grafica {
 					connessione.inviaAzione(new ExitDTO());
 					close();
 				} catch (RemoteException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.log(Level.SEVERE, "Errore nell'invio dell'azione", e);
 				}
 			}
 		};
@@ -239,36 +240,34 @@ public class GUI extends Application implements Grafica {
 				connessione.inviaAzione(azioni.get(0));
 				stopTimer();
 			} catch (RemoteException e) {
-				this.mostraMessaggio("Server non raggiungibile!");
+				log.log(Level.SEVERE, "Errore nell'invio dell'azione", e);
 			}
 		}
 	}
 
 	@Override
 	public void mostraClassifica(List<GiocatoreDTO> vincenti, List<GiocatoreDTO> perdenti) {
-		Platform.runLater(new Runnable() {
-
-			@Override
-			public void run() {
-				String messaggio = "";
-				for (GiocatoreDTO g : vincenti) {
-					messaggio = messaggio + g.getNome().toUpperCase() + " Punteggio " + g.getPunteggioVittoria()
-							+ " punti\n";
-				}
-				for (GiocatoreDTO g : perdenti) {
-					messaggio = messaggio + g.getNome().toUpperCase() + " Punteggio " + g.getPunteggioVittoria()
-							+ " punti\n";
-				}
-				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setTitle("Classifica");
-				alert.setHeaderText(vincenti.contains(gameStateDTO.getGiocatoreDTO())
-						? "Complimenti " + gameStateDTO.getGiocatoreDTO().getNome() + " hai vinto"
-						: "Mi dispiace " + gameStateDTO.getGiocatoreDTO().getNome() + " hai perso");
-				alert.setContentText(messaggio);
-				alert.showAndWait();
-				finestra.close();
+		Runnable runnable = () -> {
+			String messaggio = "";
+			for (GiocatoreDTO g : vincenti) {
+				messaggio = messaggio + g.getNome().toUpperCase() + " Punteggio " + g.getPunteggioVittoria()
+						+ " punti\n";
 			}
-		});
+			for (GiocatoreDTO g : perdenti) {
+				messaggio = messaggio + g.getNome().toUpperCase() + " Punteggio " + g.getPunteggioVittoria()
+						+ " punti\n";
+			}
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Classifica");
+			alert.setHeaderText(vincenti.contains(gameStateDTO.getGiocatoreDTO())
+					? "Complimenti " + gameStateDTO.getGiocatoreDTO().getNome() + " hai vinto"
+					: "Mi dispiace " + gameStateDTO.getGiocatoreDTO().getNome() + " hai perso");
+			alert.setContentText(messaggio);
+			alert.showAndWait();
+			finestra.close();
+		};
+		Platform.runLater(runnable);
+
 	}
 
 	@Override
@@ -276,7 +275,7 @@ public class GUI extends Application implements Grafica {
 		if (controllerMappa != null && mappa.isShowing()) {
 			closeSceltaMappa();
 		}
-		
+
 		controller.mostraTesserePermessoRegioni(gameStateDTO.getRegioni());
 
 		controller.getMappaImmagine().setImage(
@@ -293,43 +292,40 @@ public class GUI extends Application implements Grafica {
 	}
 
 	private void stampaEmporiCittà(List<CittàDTO> città) {
-		Platform.runLater(new Runnable() {
 
-			@Override
-			public void run() {
-				List<HBox> hbox = controller.getListaEmporiHBox();
-				Map<String, Image> mappaEmpori = controller.getMappaEmpori();
+		Runnable runnable = () -> {
+			List<HBox> hbox = controller.getListaEmporiHBox();
+			Map<String, Image> mappaEmpori = controller.getMappaEmpori();
 
-				for (int i = 0; i < città.size() - 1; i++) {
-					hbox.get(i).getChildren().clear();
-					for (String emporio : città.get(i).getEmpori()) {
-						ImageView imageView = new ImageView();
-						imageView.setImage(mappaEmpori.get(emporio));
-						hbox.get(i).getChildren().add(imageView);
-						imageView.setFitHeight(15);
-						imageView.setPreserveRatio(true);
-					}
+			for (int i = 0; i < città.size() - 1; i++) {
+				hbox.get(i).getChildren().clear();
+				for (String emporio : città.get(i).getEmpori()) {
+					ImageView imageView = new ImageView();
+					imageView.setImage(mappaEmpori.get(emporio));
+					hbox.get(i).getChildren().add(imageView);
+					imageView.setFitHeight(15);
+					imageView.setPreserveRatio(true);
 				}
 			}
-		});
+		};
+
+		Platform.runLater(runnable);
 	}
 
 	private void assegnaRe() {
-		Platform.runLater(new Runnable() {
+		Runnable runnable = () -> {
+			Map<String, Image> immagineRe = controller.getMappaBonus();
+			ImageView imageView = new ImageView();
+			imageView.setImage(immagineRe.get("Re"));
+			controller.getRe().getChildren().add(imageView);
+			imageView.setPreserveRatio(true);
+			imageView.setFitHeight(20);
+			imageView.setTranslateX(60);
+			imageView.setTranslateY(-15);
+			imageView.setRotate(40);
+		};
+		Platform.runLater(runnable);
 
-			@Override
-			public void run() {
-				Map<String, Image> immagineRe = controller.getMappaBonus();
-				ImageView imageView = new ImageView();
-				imageView.setImage(immagineRe.get("Re"));
-				controller.getRe().getChildren().add(imageView);
-				imageView.setPreserveRatio(true);
-				imageView.setFitHeight(20);
-				imageView.setTranslateX(60);
-				imageView.setTranslateY(-15);
-				imageView.setRotate(40);
-			}
-		});
 	}
 
 	private void assegnaAzioni() {
@@ -355,10 +351,9 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public void mostraGiocatore(GiocatoreDTO giocatoreDTO) {
-		stampaTesserePermesso(controller.getTesserePermessoGiocatore(), giocatoreDTO.getTesserePermesso(),
-				0, 70, 1);
-		stampaTesserePermesso(controller.getTesserePermessoGiocatoreUsate(), giocatoreDTO.getTesserePermessoUsate(),
-				0, 70, 0.6);
+		stampaTesserePermesso(controller.getTesserePermessoGiocatore(), giocatoreDTO.getTesserePermesso(), 0, 70, 1);
+		stampaTesserePermesso(controller.getTesserePermessoGiocatoreUsate(), giocatoreDTO.getTesserePermessoUsate(), 0,
+				70, 0.6);
 		cartePolitica(giocatoreDTO.getCartePolitica());
 		controller.mostraNomeGiocatore(giocatoreDTO.getNome());
 		HBox hbox = controller.getGiocatoreGUI();
@@ -367,33 +362,29 @@ public class GUI extends Application implements Grafica {
 	}
 
 	private void cartePolitica(List<CartaPoliticaDTO> carte) {
-		Platform.runLater(new Runnable() {
+		Runnable runnable = () -> {
+
 			Map<String, Image> mappaCarte = controller.getMappaCartePolitica();
 			HBox cartePolitica = controller.getCartePoliticaGiocatore();
 
-			@Override
-			public void run() {
-				cartePolitica.getChildren().clear();
-				for (CartaPoliticaDTO c : carte) {
+			cartePolitica.getChildren().clear();
+			for (CartaPoliticaDTO c : carte) {
 
-					ImageView image = new ImageView();
-					image.setFitHeight(72);
-					image.setPreserveRatio(true);
-					image.setImage(mappaCarte.get(c.toString()));
-					image.setDisable(true);
-					image.setUserData(c);
-					cartePolitica.getChildren().add(image);
-					image.setOnMouseClicked(new EventHandler<Event>() {
-
-						@Override
-						public void handle(Event event) {
-							controller.handleCartaPolitica(event);
-						}
-					});
-				}
-
+				ImageView image = new ImageView();
+				image.setFitHeight(72);
+				image.setPreserveRatio(true);
+				image.setImage(mappaCarte.get(c.toString()));
+				image.setDisable(true);
+				image.setUserData(c);
+				cartePolitica.getChildren().add(image);
+				EventHandler<Event> onMouseClicked = (event) -> {
+					controller.handleCartaPolitica(event);
+				};
+				image.setOnMouseClicked(onMouseClicked);
 			}
-		});
+
+		};
+		Platform.runLater(runnable);
 	}
 
 	/**
@@ -406,197 +397,179 @@ public class GUI extends Application implements Grafica {
 	 */
 	private void stampaTesserePermesso(HBox tesserePermesso, List<TesseraPermessoDTO> tessere, int tessereUsate,
 			int dimensione, double opacity) {
-		Platform.runLater(new Runnable() {
+		Runnable runnable = () -> {
+
 			Map<String, Image> mappaTessere = controller.getMappaTesserePermesso();
-
-			@Override
-			public void run() {
-				tesserePermesso.getChildren().clear();
-				if (tessereUsate != 0) {
-					Pane pane = new Pane();
-					ImageView used = new ImageView();
-					Text text = new Text(Integer.toString(tessereUsate));
-					used.setFitHeight(dimensione);
-					used.setPreserveRatio(true);
-					used.setImage(mappaTessere.get("TesseraPermesso"));
-					tesserePermesso.getChildren().add(pane);
-					pane.getChildren().add(used);
-					pane.getChildren().add(text);
-					text.relocate(dimensione / 2, dimensione / 2);
-					text.setStyle("-fx-font: 17.0px Algerian; -fx-fill: white;");
-				}
-
-				for (TesseraPermessoDTO t : tessere) {
-					ImageView image = new ImageView();
-					image.setFitHeight(dimensione);
-					image.setPreserveRatio(true);
-					image.setImage(mappaTessere.get(t.toString()));
-					image.setOnMouseClicked(new EventHandler<Event>() {
-
-						@Override
-						public void handle(Event event) {
-							controller.handleTesseraPermessoGiocatore(event);
-						}
-					});
-					image.setDisable(true);
-					image.setUserData(t);
-					image.setOpacity(opacity);
-					tesserePermesso.getChildren().add(image);
-				}
-
+			tesserePermesso.getChildren().clear();
+			if (tessereUsate != 0) {
+				Pane pane = new Pane();
+				ImageView used = new ImageView();
+				Text text = new Text(Integer.toString(tessereUsate));
+				used.setFitHeight(dimensione);
+				used.setPreserveRatio(true);
+				used.setImage(mappaTessere.get("TesseraPermesso"));
+				tesserePermesso.getChildren().add(pane);
+				pane.getChildren().add(used);
+				pane.getChildren().add(text);
+				text.relocate(dimensione / 2, dimensione / 2);
+				text.setStyle("-fx-font: 17.0px Algerian; -fx-fill: white;");
 			}
-		});
+
+			for (TesseraPermessoDTO t : tessere) {
+				ImageView image = new ImageView();
+				image.setFitHeight(dimensione);
+				image.setPreserveRatio(true);
+				image.setImage(mappaTessere.get(t.toString()));
+				EventHandler<Event> onMouseClicked = (event) -> {
+					controller.handleTesseraPermessoGiocatore(event);
+				};
+				image.setOnMouseClicked(onMouseClicked);
+				image.setDisable(true);
+				image.setUserData(t);
+				image.setOpacity(opacity);
+				tesserePermesso.getChildren().add(image);
+			}
+
+		};
+		Platform.runLater(runnable);
 
 	}
 
 	public void stampaConsiglieriBalcone() {
-		Platform.runLater(new Runnable() {
-
-			@Override
-			public void run() {
-				List<HBox> balconi = controller.getBalconi();
-				Map<String, Image> mappaConsiglieri = controller.getMappaConsiglieri();
-				balconi.get(0).getChildren().clear();
-				for (ConsigliereDTO c : gameStateDTO.getRegioni().get(0).getBalcone().getConsiglieri()) {
-					ImageView imageView = new ImageView(mappaConsiglieri.get(c.toString()));
-					imageView.setFitHeight(25);
-					imageView.setPreserveRatio(true);
-					balconi.get(0).getChildren().add(imageView);
-				}
-
-				balconi.get(0).setUserData(gameStateDTO.getRegioni().get(0).getBalcone());
-				balconi.get(0).setDisable(true);
-
-				balconi.get(1).getChildren().clear();
-				for (ConsigliereDTO c : gameStateDTO.getRegioni().get(1).getBalcone().getConsiglieri()) {
-					ImageView imageView = new ImageView(mappaConsiglieri.get(c.toString()));
-					imageView.setFitHeight(25);
-					imageView.setPreserveRatio(true);
-					balconi.get(1).getChildren().add(imageView);
-				}
-
-				balconi.get(1).setUserData(gameStateDTO.getRegioni().get(1).getBalcone());
-				balconi.get(1).setDisable(true);
-
-				balconi.get(2).getChildren().clear();
-				for (ConsigliereDTO c : gameStateDTO.getRegioni().get(2).getBalcone().getConsiglieri()) {
-					ImageView imageView = new ImageView(mappaConsiglieri.get(c.toString()));
-					imageView.setFitHeight(25);
-					imageView.setPreserveRatio(true);
-					balconi.get(2).getChildren().add(imageView);
-				}
-
-				balconi.get(2).setUserData(gameStateDTO.getRegioni().get(2).getBalcone());
-				balconi.get(2).setDisable(true);
-
-				balconi.get(3).getChildren().clear();
-				for (ConsigliereDTO c : gameStateDTO.getPlanciaReDTO().getBalconeRe().getConsiglieri()) {
-					ImageView imageView = new ImageView(mappaConsiglieri.get(c.toString()));
-					imageView.setFitHeight(25);
-					imageView.setPreserveRatio(true);
-					balconi.get(3).getChildren().add(imageView);
-				}
-
-				balconi.get(3).setUserData(gameStateDTO.getPlanciaReDTO().getBalconeRe());
-				balconi.get(3).setDisable(true);
+		Runnable runnable = () -> {
+			List<HBox> balconi = controller.getBalconi();
+			Map<String, Image> mappaConsiglieri = controller.getMappaConsiglieri();
+			balconi.get(0).getChildren().clear();
+			for (ConsigliereDTO c : gameStateDTO.getRegioni().get(0).getBalcone().getConsiglieri()) {
+				ImageView imageView = new ImageView(mappaConsiglieri.get(c.toString()));
+				imageView.setFitHeight(25);
+				imageView.setPreserveRatio(true);
+				balconi.get(0).getChildren().add(imageView);
 			}
-		});
+
+			balconi.get(0).setUserData(gameStateDTO.getRegioni().get(0).getBalcone());
+			balconi.get(0).setDisable(true);
+
+			balconi.get(1).getChildren().clear();
+			for (ConsigliereDTO c : gameStateDTO.getRegioni().get(1).getBalcone().getConsiglieri()) {
+				ImageView imageView = new ImageView(mappaConsiglieri.get(c.toString()));
+				imageView.setFitHeight(25);
+				imageView.setPreserveRatio(true);
+				balconi.get(1).getChildren().add(imageView);
+			}
+
+			balconi.get(1).setUserData(gameStateDTO.getRegioni().get(1).getBalcone());
+			balconi.get(1).setDisable(true);
+
+			balconi.get(2).getChildren().clear();
+			for (ConsigliereDTO c : gameStateDTO.getRegioni().get(2).getBalcone().getConsiglieri()) {
+				ImageView imageView = new ImageView(mappaConsiglieri.get(c.toString()));
+				imageView.setFitHeight(25);
+				imageView.setPreserveRatio(true);
+				balconi.get(2).getChildren().add(imageView);
+			}
+
+			balconi.get(2).setUserData(gameStateDTO.getRegioni().get(2).getBalcone());
+			balconi.get(2).setDisable(true);
+
+			balconi.get(3).getChildren().clear();
+			for (ConsigliereDTO c : gameStateDTO.getPlanciaReDTO().getBalconeRe().getConsiglieri()) {
+				ImageView imageView = new ImageView(mappaConsiglieri.get(c.toString()));
+				imageView.setFitHeight(25);
+				imageView.setPreserveRatio(true);
+				balconi.get(3).getChildren().add(imageView);
+			}
+
+			balconi.get(3).setUserData(gameStateDTO.getPlanciaReDTO().getBalconeRe());
+			balconi.get(3).setDisable(true);
+		};
+		Platform.runLater(runnable);
 	}
 
 	@Override
 	public void mostraMessaggio(String messaggio) {
 		controllerCorrente.getMessage().appendText(messaggio);
-		System.out.println("CONTROLLER :"+controllerCorrente);
+		System.out.println("CONTROLLER :" + controllerCorrente);
 	}
 
 	@Override
 	public void mostraGiocatoreMarket(GiocatoreDTO giocatore) {
-		Platform.runLater(new Runnable() {
+		Runnable runnable = () -> {
 
-			@Override
-			public void run() {
+			HBox tesserePermesso = controllerMarket.getTesserePermesso();
+			HBox aiutanti = controllerMarket.getAiutanti();
+			HBox cartePolitica = controllerMarket.getCartePolitica();
+			System.out.println("carte: " + cartePolitica);
+			Map<String, Image> carte = controller.getMappaCartePolitica();
+			Map<String, Image> tessere = controller.getMappaTesserePermesso();
+			Map<String, Image> bonus = controller.getMappaBonus();
 
-				HBox tesserePermesso = controllerMarket.getTesserePermesso();
-				HBox aiutanti = controllerMarket.getAiutanti();
-				HBox cartePolitica = controllerMarket.getCartePolitica();
-				System.out.println("carte: " + cartePolitica);
-				Map<String, Image> carte = controller.getMappaCartePolitica();
-				Map<String, Image> tessere = controller.getMappaTesserePermesso();
-				Map<String, Image> bonus = controller.getMappaBonus();
+			cartePolitica.getChildren().clear();
+			for (CartaPoliticaDTO c : giocatore.getCartePolitica()) {
+				ImageView image = new ImageView();
+				image.setFitHeight(60);
+				image.setPreserveRatio(true);
+				image.setImage(carte.get(c.toString()));
+				image.setDisable(true);
+				image.setUserData(c);
+				image.setOnMouseClicked(new EventHandler<Event>() {
 
-				cartePolitica.getChildren().clear();
-				for (CartaPoliticaDTO c : giocatore.getCartePolitica()) {
-					ImageView image = new ImageView();
-					image.setFitHeight(60);
-					image.setPreserveRatio(true);
-					image.setImage(carte.get(c.toString()));
-					image.setDisable(true);
-					image.setUserData(c);
-					image.setOnMouseClicked(new EventHandler<Event>() {
-
-						@Override
-						public void handle(Event event) {
-							controllerMarket.handleOfferta(event);
-						}
-					});
-					cartePolitica.getChildren().add(image);
-				}
-
-				aiutanti.getChildren().clear();
-				for (int i = 0; i < giocatore.getAiutanti(); i++) {
-					ImageView image = new ImageView();
-					image.setFitHeight(60);
-					image.setPreserveRatio(true);
-					image.setImage(bonus.get("Aiutante"));
-					image.setDisable(true);
-					image.setUserData(new AiutanteDTO(1));
-					image.setOnMouseClicked(new EventHandler<Event>() {
-
-						@Override
-						public void handle(Event event) {
-							controllerMarket.handleOfferta(event);
-						}
-					});
-					aiutanti.getChildren().add(image);
-				}
-
-				tesserePermesso.getChildren().clear();
-				for (TesseraPermessoDTO t : giocatore.getTesserePermesso()) {
-					ImageView image = new ImageView();
-					image.setFitHeight(60);
-					image.setPreserveRatio(true);
-					image.setImage(tessere.get(t.toString()));
-					image.setDisable(true);
-					image.setUserData(t);
-					image.setOnMouseClicked(new EventHandler<Event>() {
-
-						@Override
-						public void handle(Event event) {
-							controllerMarket.handleOfferta(event);
-						}
-					});
-					tesserePermesso.getChildren().add(image);
-				}
+					@Override
+					public void handle(Event event) {
+						controllerMarket.handleOfferta(event);
+					}
+				});
+				cartePolitica.getChildren().add(image);
 			}
-		});
+
+			aiutanti.getChildren().clear();
+			for (int i = 0; i < giocatore.getAiutanti(); i++) {
+				ImageView image = new ImageView();
+				image.setFitHeight(60);
+				image.setPreserveRatio(true);
+				image.setImage(bonus.get("Aiutante"));
+				image.setDisable(true);
+				image.setUserData(new AiutanteDTO(1));
+				image.setOnMouseClicked(new EventHandler<Event>() {
+
+					@Override
+					public void handle(Event event) {
+						controllerMarket.handleOfferta(event);
+					}
+				});
+				aiutanti.getChildren().add(image);
+			}
+
+			tesserePermesso.getChildren().clear();
+			for (TesseraPermessoDTO t : giocatore.getTesserePermesso()) {
+				ImageView image = new ImageView();
+				image.setFitHeight(60);
+				image.setPreserveRatio(true);
+				image.setImage(tessere.get(t.toString()));
+				image.setDisable(true);
+				image.setUserData(t);
+				EventHandler<Event> onMouseClicked = (event) -> {
+					controllerMarket.handleOfferta(event);
+				};
+				image.setOnMouseClicked(onMouseClicked);
+				tesserePermesso.getChildren().add(image);
+			}
+		};
+		Platform.runLater(runnable);
 	}
 
 	@Override
 	public void mostraOfferte(List<OffertaDTO> offerte) {
-		Platform.runLater(new Runnable() {
-
+		Runnable runnable = () -> {
 			VBox vbox = controllerMarket.getOfferte();
-
-			@Override
-			public void run() {
-				vbox.getChildren().clear();
-				for (OffertaDTO o : offerte) {
-					Pane pane = stampaOfferta(o, o.getGiocatoreDTO().getNome(), o.getMarketableDTO(), o.getPrezzo());
-					vbox.setMargin(pane, new Insets(5, 0, 0, 3));
-					vbox.getChildren().add(pane);
-				}
+			vbox.getChildren().clear();
+			for (OffertaDTO o : offerte) {
+				Pane pane = stampaOfferta(o, o.getGiocatoreDTO().getNome(), o.getMarketableDTO(), o.getPrezzo());
+				vbox.setMargin(pane, new Insets(5, 0, 0, 3));
+				vbox.getChildren().add(pane);
 			}
-		});
+		};
+		Platform.runLater(runnable);
 	}
 
 	private Pane stampaOfferta(OffertaDTO offerta, String giocatore, MarketableDTO oggetto, int prezzo) {
@@ -630,13 +603,10 @@ public class GUI extends Application implements Grafica {
 		soldi.setUserData(offerta);
 		soldi.setDisable(true);
 		soldi.setPrefWidth(50);
-		soldi.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				controllerMarket.handleAcquisto(event);
-			}
-		});
+		EventHandler<ActionEvent> onAction = (event) -> {
+			controllerMarket.handleAcquisto(event);
+		};
+		soldi.setOnAction(onAction);
 		hbox.setMargin(nome, new Insets(16, 0, 0, 0));
 		hbox.setMargin(soldi, new Insets(4, 0, 0, 0));
 		hbox.getChildren().add(nome);
@@ -649,31 +619,27 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public void startMarket() {
-		Platform.runLater(new Runnable() {
+		Runnable runnable = () -> {
+			FXMLLoader fxmloader = new FXMLLoader();
+			fxmloader.setLocation(getClass().getClassLoader().getResource("client/grafica/gui/fxml/market.fxml"));
 
-			@Override
-			public void run() {
-				FXMLLoader fxmloader = new FXMLLoader();
-				fxmloader.setLocation(getClass().getClassLoader().getResource("client/grafica/gui/fxml/market.fxml"));
-
-				Parent root = null;
-				try {
-					root = fxmloader.load();
-					Scene theScene = new Scene(root);
-					market = new Stage();
-					controllerMarket = fxmloader.getController();
-					controllerMarket.setGameStateDTO(gameStateDTO);
-					controllerMarket.setGui(GUI.this);
-					controllerMarket.inizializza();
-					System.out.println("CONTROLLER MARKET :"+controllerCorrente);
-					market.setScene(theScene);
-					market.show();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+			Parent root = null;
+			try {
+				root = fxmloader.load();
+			} catch (IOException e) {
+				log.log(Level.SEVERE, "Errore nel caricamento del file market.fxml", e);
 			}
-		});
+			Scene theScene = new Scene(root);
+			market = new Stage();
+			controllerMarket = fxmloader.getController();
+			controllerMarket.setGameStateDTO(gameStateDTO);
+			controllerMarket.setGui(GUI.this);
+			controllerMarket.inizializza();
+			System.out.println("CONTROLLER MARKET :" + controllerCorrente);
+			market.setScene(theScene);
+			market.show();
+		};
+		Platform.runLater(runnable);
 	}
 
 	public static void main(String[] args) {
@@ -682,67 +648,61 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public void mostraAvversario(GiocatoreDTO avversario) {
-		Platform.runLater(new Runnable() {
-			Map<String, Image> mappaTessere = controller.getMappaTesserePermesso();
+		Runnable runnable = () -> {
+			TabPane giocatori = controller.getAvversari();
+			Tab tab = null;
 
-			@Override
-			public void run() {
-				TabPane giocatori = controller.getAvversari();
-				Tab tab = null;
-
-				if (!tabAvversari.containsKey(avversario)) {
-					tab = new Tab();
-					tab.setText(avversario.getNome());
-					giocatori.getTabs().add(tab);
-					tabAvversari.put(avversario, tab);
-				} else {
-					tab = tabAvversari.get(avversario);
-				}
-
-				VBox vbox = new VBox();
-				vbox.setSpacing(5);
-				HBox hbox = new HBox();
-				stampaPuntiAvversario(avversario, hbox, 40);
-
-				vbox.getChildren().add(hbox);
-				tab.setContent(vbox);
-
-				HBox tesserePermesso = new HBox();
-				stampaTesserePermesso(tesserePermesso, avversario.getTesserePermesso(),
-						avversario.getTesserePermessoUsate().size(), 50, 1);
-				vbox.getChildren().add(tesserePermesso);
+			if (!tabAvversari.containsKey(avversario)) {
+				tab = new Tab();
+				tab.setText(avversario.getNome());
+				giocatori.getTabs().add(tab);
+				tabAvversari.put(avversario, tab);
+			} else {
+				tab = tabAvversari.get(avversario);
 			}
-		});
+
+			VBox vbox = new VBox();
+			vbox.setSpacing(5);
+			HBox hbox = new HBox();
+			stampaPuntiAvversario(avversario, hbox, 40);
+
+			vbox.getChildren().add(hbox);
+			tab.setContent(vbox);
+
+			HBox tesserePermesso = new HBox();
+			stampaTesserePermesso(tesserePermesso, avversario.getTesserePermesso(),
+					avversario.getTesserePermessoUsate().size(), 50, 1);
+			vbox.getChildren().add(tesserePermesso);
+		};
+
+		Platform.runLater(runnable);
 	}
 
 	private void stampaPuntiAvversario(GiocatoreDTO avversario, HBox hbox, int heightImage) {
-		Platform.runLater(new Runnable() {
+		Runnable runnable = () -> {
+			Map<String, Image> mappaEmpori = controller.getMappaEmpori();
+			Map<String, Image> mappaBonus = controller.getMappaBonus();
+			hbox.getChildren().clear();
+			hbox.setSpacing(15);
+			hbox.setPadding(new Insets(5, 0, 0, 20));
+			hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("Punto"),
+					Integer.toString(avversario.getPunteggioVittoria()), heightImage));
+			hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("Soldo"),
+					Integer.toString(avversario.getPunteggioRicchezza()), heightImage));
+			hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("Aiutante"),
+					Integer.toString(avversario.getAiutanti()), heightImage));
+			hbox.getChildren().add(stampaPuntoAvversario(mappaEmpori.get(avversario.getColoreGiocatore().getColore()),
+					Integer.toString(avversario.getEmpori()), heightImage));
+			hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("Nobiltà"),
+					Integer.toString(avversario.getPunteggioNobiltà()), heightImage));
+			hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("BonusGiocatore"),
+					Integer.toString(avversario.getTessereBonus()), heightImage));
+		};
 
-			@Override
-			public void run() {
-				Map<String, Image> mappaEmpori = controller.getMappaEmpori();
-				Map<String, Image> mappaBonus = controller.getMappaBonus();
-				hbox.getChildren().clear();
-				hbox.setSpacing(15);
-				hbox.setPadding(new Insets(5, 0, 0, 20));
-				hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("Punto"),
-						Integer.toString(avversario.getPunteggioVittoria()), 10, heightImage));
-				hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("Soldo"),
-						Integer.toString(avversario.getPunteggioRicchezza()), 10, heightImage));
-				hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("Aiutante"),
-						Integer.toString(avversario.getAiutanti()), 4, heightImage));
-				hbox.getChildren()
-						.add(stampaPuntoAvversario(mappaEmpori.get(avversario.getColoreGiocatore().getColore()),
-								Integer.toString(avversario.getEmpori()), 10, heightImage));
-				hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("Nobiltà"),
-						Integer.toString(avversario.getPunteggioNobiltà()), 10, heightImage));
-				hbox.getChildren().add(stampaPuntoAvversario(mappaBonus.get("BonusGiocatore"),
-						Integer.toString(avversario.getTessereBonus()), 10, heightImage));
-			}
-		});
+		Platform.runLater(runnable);
 	}
 
-	private Pane stampaPuntoAvversario(Image immagine, String punti, int relocateW, int heightImage) {
+	private Pane stampaPuntoAvversario(Image immagine, String punti, int heightImage) {
 		Pane pane = new Pane();
 		ImageView image = new ImageView();
 		image.setImage(immagine);
@@ -851,8 +811,7 @@ public class GUI extends Application implements Grafica {
 			}
 		}
 		RegioneDTO regioneDTO = (RegioneDTO) parametro;
-		System.out.println(regioneDTO.getNome());
-		List<ImageView> tessere = null;
+		List<ImageView> tessere;
 		if ("Mare".equals(regioneDTO.getNome()))
 			tessere = controller.getTessereMare();
 		else if ("Collina".equals(regioneDTO.getNome()))
@@ -885,7 +844,6 @@ public class GUI extends Application implements Grafica {
 			}
 		}
 		TesseraPermessoDTO tesseraPermessoDTO = (TesseraPermessoDTO) parametro;
-		System.out.println(tesseraPermessoDTO);
 		List<ImageView> tessere = controller.getTesserePermessoRegioni();
 		for (ImageView i : tessere) {
 			i.setDisable(true);
@@ -928,7 +886,6 @@ public class GUI extends Application implements Grafica {
 		List<Pane> cittàCostruzione = controller.getCittàSenzaEmporio(città);
 		for (Pane b : cittàCostruzione) {
 			b.setDisable(false);
-			// b.setEffect(new Glow(0.6));
 		}
 
 		synchronized (lock) {
@@ -979,9 +936,10 @@ public class GUI extends Application implements Grafica {
 		}
 		return tesseraPermessoDTO;
 	}
-	
+
 	@Override
-	public TesseraPermessoDTO scegliTesseraPermessoUsataONonUsata(List<TesseraPermessoDTO> tessere, List<TesseraPermessoDTO> tessereUsate){
+	public TesseraPermessoDTO scegliTesseraPermessoUsataONonUsata(List<TesseraPermessoDTO> tessere,
+			List<TesseraPermessoDTO> tessereUsate) {
 		HBox tessereGiocatore = controller.getTesserePermessoGiocatore();
 		HBox tessereGiocatoreUsate = controller.getTesserePermessoGiocatoreUsate();
 		DropShadow ds = new DropShadow();
@@ -994,7 +952,7 @@ public class GUI extends Application implements Grafica {
 			i.setDisable(false);
 			i.setEffect(ds);
 		}
-		
+
 		for (Node i : tessereGiocatoreUsate.getChildren()) {
 			i.setDisable(false);
 			i.setEffect(ds);
@@ -1057,10 +1015,10 @@ public class GUI extends Application implements Grafica {
 				ds.setSpread(0.76);
 				ds.setWidth(27.07);
 				ds.setHeight(27.07);
-				if (carte.size() == 1){
+				if (carte.size() == 1) {
 					controller.getConferma().setDisable(false);
-					controller.getConferma().setEffect(ds);}
-				
+					controller.getConferma().setEffect(ds);
+				}
 
 				parametro = null;
 			}
@@ -1073,7 +1031,6 @@ public class GUI extends Application implements Grafica {
 
 		controller.getConferma().setDisable(true);
 		controller.getConferma().setEffect(null);
-		System.out.println("carte politica" + carte);
 		return carte;
 
 	}
@@ -1227,54 +1184,42 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public void fineMarket() {
-		Platform.runLater(new Runnable() {
-
-			@Override
-			public void run() {
-				market.close();
-			}
-		});
+		Runnable runnable = () -> market.close();
+		Platform.runLater(runnable);
 
 	}
 
 	@Override
 	public void scegliMappa() {
-		Platform.runLater(new Runnable() {
+		Runnable runnable = () -> {
+			FXMLLoader fxmloader = new FXMLLoader();
+			fxmloader.setLocation(getClass().getClassLoader().getResource("client/grafica/gui/fxml/scegli_mappa.fxml"));
 
-			@Override
-			public void run() {
-				FXMLLoader fxmloader = new FXMLLoader();
-				fxmloader.setLocation(
-						getClass().getClassLoader().getResource("client/grafica/gui/fxml/scegli_mappa.fxml"));
+			Parent root = null;
 
-				Parent root = null;
-				try {
-					root = fxmloader.load();
-					mappa = new Stage();
-					controllerMappa = fxmloader.getController();
-					controllerMappa.setGui(GUI.this);
-					controllerMappa.inizializza();
-					Scene scene=new Scene(root);
-					Image image = new Image(getClass().getResource("css/cursore.png").toExternalForm());
-					scene.setCursor(new ImageCursor(image));
-					mappa.setScene(scene);
-					mappa.show();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+			try {
+				root = fxmloader.load();
+			} catch (IOException e) {
+				log.log(Level.SEVERE, "Errore nel caricamento del file scegli_mappa.fxml", e);
 			}
-		});
+			mappa = new Stage();
+			controllerMappa = fxmloader.getController();
+			controllerMappa.setGui(GUI.this);
+			controllerMappa.inizializza();
+			Scene scene = new Scene(root);
+			Image image = new Image(getClass().getResource("css/cursore.png").toExternalForm());
+			scene.setCursor(new ImageCursor(image));
+			mappa.setScene(scene);
+			mappa.show();
+
+		};
+
+		Platform.runLater(runnable);
 	}
 
 	public void closeSceltaMappa() {
-		Platform.runLater(new Runnable() {
-
-			@Override
-			public void run() {
-				mappa.close();
-			}
-		});
+		Runnable runnable = () -> mappa.close();
+		Platform.runLater(runnable);
 	}
 
 	public void stopTimer() {
@@ -1285,28 +1230,21 @@ public class GUI extends Application implements Grafica {
 	}
 
 	public void azioneNonValida(String header, String content) {
-		Platform.runLater(new Runnable() {
+		Runnable runnable = () -> {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Errore");
+			alert.setHeaderText(header);
+			alert.setContentText(content);
 
-			@Override
-			public void run() {
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Errore");
-				alert.setHeaderText(header);
-				alert.setContentText(content);
+			alert.showAndWait();
+		};
 
-				alert.showAndWait();
-			}
-		});
+		Platform.runLater(runnable);
 	}
 
 	public void close() {
-		Platform.runLater(new Runnable() {
-
-			@Override
-			public void run() {
-				finestra.close();
-			}
-		});
+		Runnable runnable = () -> finestra.close();
+		Platform.runLater(runnable);
 	}
 
 }

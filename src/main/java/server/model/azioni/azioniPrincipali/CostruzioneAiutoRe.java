@@ -71,10 +71,10 @@ public class CostruzioneAiutoRe extends AzionePrincipale implements Bonusable {
 			pagaAiutanti(gameState);
 			gameState.getGiocatoreCorrente().getCartePolitica().removeAll(carteGiocatore);
 			costruisci(gameState);
-			nob = prendiBonus(gameState, nob);
+			prendiBonus(gameState, nob);
 			if (cittàCostruzione instanceof CittàBonus)
 
-				controllaCittàColore(((ColoreCittà) cittàCostruzione.getColoreCittà()),
+				controllaCittàColore((ColoreCittà) cittàCostruzione.getColoreCittà(),
 						gameState.getGiocatoreCorrente(), gameState.getPlanciaRe().getBonusPremioRe());
 			controllaCittàRegione(cittàCostruzione.getRegione(), gameState.getGiocatoreCorrente()
 					, gameState.getPlanciaRe().getBonusPremioRe());
@@ -160,7 +160,7 @@ public class CostruzioneAiutoRe extends AzionePrincipale implements Bonusable {
 	 * give to the player the bonus of the city connected to the city where he
 	 * has built an emporium.
 	 */
-	private boolean prendiBonus(GameState gameState, boolean nob) {
+	private void prendiBonus(GameState gameState, boolean nob) {
 		Colore coloreEmporio = gameState.getGiocatoreCorrente().getColoreGiocatore();
 		Set<CittàBonus> cittàCollegate = gameState.getMappa().trovaCittà(cittàCostruzione, coloreEmporio);
 		for (CittàBonus c : cittàCollegate) {
@@ -172,7 +172,6 @@ public class CostruzioneAiutoRe extends AzionePrincipale implements Bonusable {
 					nob = false;
 			}
 		}
-		return nob;
 	}
 
 	/**

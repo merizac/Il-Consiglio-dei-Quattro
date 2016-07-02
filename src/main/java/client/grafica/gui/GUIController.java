@@ -2,6 +2,8 @@ package client.grafica.gui;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import client.connessione.ConnessioneRMI;
 import client.connessione.ConnessioneSocket;
@@ -26,6 +28,7 @@ public class GUIController {
 	private CheckBox socket;
 	@FXML
 	private CheckBox rmi;
+	private static final Logger log = Logger.getLogger(GUIController.class.getName());
 
 	/**
 	 * @param gui
@@ -76,9 +79,8 @@ public class GUIController {
 		else
 			try {
 				gui.setConnessione(new ConnessioneRMI());
-			} catch (RemoteException e2) {
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
+			} catch (RemoteException e) {
+				log.log(Level.SEVERE, "Errore nel setare la connessione", e);
 			}
 
 		gui.setGiocatoreDTO(giocatoreDTO);
@@ -86,16 +88,10 @@ public class GUIController {
 			gui.getConnessione().setGameStateDTO(gui.getGameStateDTO());
 			gui.getConnessione().setGrafica(gui);
 			gui.getConnessione().start();
-		} catch (RemoteException e1) {
-			e1.printStackTrace();
+		} catch (RemoteException e) {
+			log.log(Level.SEVERE, "Errore nella start della connessione", e);
 		}
-		try {
-			gui.inizializza();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
+		gui.inizializza();
 	}
 
 }

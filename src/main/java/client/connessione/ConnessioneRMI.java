@@ -8,6 +8,9 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import client.grafica.Grafica;
 import common.azioniDTO.AzioneDTO;
 import common.gameDTO.GameStateDTO;
@@ -17,11 +20,12 @@ import server.view.clientNotify.ClientNotify;
 public class ConnessioneRMI extends UnicastRemoteObject implements Serializable, ConnessioneRMIRemota {
 
 	private static final long serialVersionUID = 5904563829768967721L;
-	private Grafica grafica;
+	private transient Grafica grafica;
 	private GameStateDTO gameStateDTO;
 	private transient ServerRMIViewRemote view;
 	private static final int PORT = 1099;
 	private static final String IP = "127.0.0.1";
+	private static final Logger log= Logger.getLogger( ConnessioneRMI.class.getName() );
 
 	/**
 	 * constructor of ConnessioneRMI
@@ -37,31 +41,29 @@ public class ConnessioneRMI extends UnicastRemoteObject implements Serializable,
 	 * player
 	 */
 	@Override
-	public void start() throws RemoteException {
+	public void start() {
 		String name = "GIOCO";
 		Registry registry = null;
 		try {
 			registry = LocateRegistry.getRegistry(IP, PORT);
 		} catch (RemoteException e) {
-			e.printStackTrace();
+			log.log(Level.SEVERE, "Problema nella localizzazione del registry", e);
 		}
 		if (registry != null) {
 			try {
 				view = (ServerRMIViewRemote) registry.lookup(name);
 			} catch (NotBoundException e) {
-				e.printStackTrace();
+				log.log(Level.SEVERE, "L'oggetto remoto GIOCO non è stato trovato sul registry", e);
 			} catch (AccessException e) {
-				e.printStackTrace();
+				log.log(Level.SEVERE, "Non puoi eseguire questa operazione", e);
 			} catch (RemoteException e) {
-				e.printStackTrace();
+				log.log(Level.SEVERE, "Problema nell'invocazione del metodo", e);
 			}
 			try {
-				System.out.println(gameStateDTO.getGiocatoreDTO().getNome());
 				view.register(this, gameStateDTO.getGiocatoreDTO());
 			} catch (RemoteException e) {
-				e.printStackTrace();
+				log.log(Level.SEVERE, "Problema nell'invocazione del metodo", e);
 			}
-			System.out.println("Connessione RMI creata");
 		}
 	}
 
@@ -74,7 +76,7 @@ public class ConnessioneRMI extends UnicastRemoteObject implements Serializable,
 		try {
 			this.view.eseguiAzione(azioneDTO, this);
 		} catch (RemoteException e) {
-			e.printStackTrace();
+			log.log(Level.SEVERE, "Problema nell'invocazione del metodo", e);
 		}
 	}
 
@@ -83,12 +85,10 @@ public class ConnessioneRMI extends UnicastRemoteObject implements Serializable,
 	 */
 	@Override
 	public void aggiorna(ClientNotify notify) throws RemoteException {
-
 		try {
 			notify.stamp(grafica, gameStateDTO);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.log(Level.SEVERE, "Problema nell'apertura nell'apertura dell'Applicazione", e);
 		}
 	}
 

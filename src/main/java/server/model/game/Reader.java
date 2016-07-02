@@ -60,7 +60,7 @@ public class Reader {
 	public Mappa creazioneMappa(String configurazione, List<Colore> coloriCittà) throws IOException {
 		creazioneCittà(configurazione, coloriCittà);
 		Mappa mappa = new Mappa(new HashSet<>(cities));
-		letturaTesserePermesso(cities, regioni);
+		letturaTesserePermesso(regioni);
 		return mappa;
 	}
 
@@ -392,7 +392,7 @@ public class Reader {
 		}
 	}
 
-	public void letturaTesserePermesso(List<Città> cities, List<Regione> regioni) throws IOException {
+	public void letturaTesserePermesso(List<Regione> regioni) throws IOException {
 
 		FileReader t = new FileReader("src/main/resources/tesseraPermesso.txt");
 		BufferedReader b;

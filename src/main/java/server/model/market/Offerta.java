@@ -3,21 +3,27 @@ package server.model.market;
 import server.model.game.Giocatore;
 
 public class Offerta {
-	
+
 	private final Giocatore venditore;
 	private final Marketable marketable;
 	private final int prezzo;
-	
-	public Offerta(Giocatore venditore, Marketable marketable, int prezzo){
-		if(venditore==null)
+
+	public Offerta(Giocatore venditore, Marketable marketable, int prezzo) {
+		if (venditore == null)
 			throw new NullPointerException("Il giocatore venditore non deve essere null");
-		this.venditore=venditore;
-		if(marketable==null)
+		else {
+			this.venditore = venditore;
+		}
+		if (marketable == null)
 			throw new NullPointerException("L'oggetto in vendita non deve essere null");
-		this.marketable=marketable;
-		if(prezzo<0)
+		else {
+			this.marketable = marketable;
+		}
+		if (prezzo < 0) {
 			throw new IllegalArgumentException("Il prezzo dell'oggetto in vendita deve essere non negativo");
-			this.prezzo=prezzo;
+		} else {
+			this.prezzo = prezzo;
+		}
 	}
 
 	/**
@@ -40,6 +46,5 @@ public class Offerta {
 	public int getPrezzo() {
 		return prezzo;
 	}
-	
 
 }

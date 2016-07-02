@@ -5,6 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import common.azioniDTO.AzioneAcquistoDTO;
 import common.azioniDTO.AzioneDTO;
 import common.azioniDTO.AzioneOffertaDTO;
@@ -25,7 +28,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import utility.AzioneNonEseguibile;
 
-public class GUIMarketController implements Controller{
+public class GUIMarketController implements Controller {
 
 	private GUI gui;
 	private GameStateDTO gameStateDTO;
@@ -51,6 +54,7 @@ public class GUIMarketController implements Controller{
 	private TextArea message;
 
 	private List<Button> azioni;
+	private static final Logger log = Logger.getLogger(GUIMarketController.class.getName());
 
 	public void inizializza() {
 		acquisto.setUserData(new AzioneAcquistoDTO());
@@ -116,81 +120,71 @@ public class GUIMarketController implements Controller{
 
 	public void handleAzione(ActionEvent event) {
 		ExecutorService executor = Executors.newSingleThreadExecutor();
-		executor.submit(new Runnable() {
+		Runnable runnable = () -> {
+			for (Button b : azioni)
+				b.setDisable(true);
+			AzioneDTO azioneDTO = gameStateDTO.getAzioniDisponibili().stream()
+					.filter(a -> a.getClass()
+							.equals(((AzioneDTO) ((Button) event.getSource()).getUserData()).getClass()))
+					.findAny().orElse(null);
 
-			@Override
-			public void run() {
+			if (azioneDTO == null) {
+				gui.azioneNonValida("L'azione non esiste!", "Ooops, riprova e inserisci un'azione valida!");
+				for (Button b : azioni)
+					b.setDisable(false);
+				return;
+			} else if (azioneDTO instanceof AzioneParametri) {
 				try {
-					for (Button b : azioni)
-						b.setDisable(true);
-					AzioneDTO azioneDTO = gameStateDTO.getAzioniDisponibili().stream()
-							.filter(a -> a.getClass()
-									.equals(((AzioneDTO) ((Button) event.getSource()).getUserData()).getClass()))
-							.findAny().orElse(null);
-
-					if (azioneDTO == null) {
-						gui.azioneNonValida("L'azione non esiste!","Ooops, riprova e inserisci un'azione valida!");
-						for (Button b : azioni)
-							b.setDisable(false);
-						return;
-					} else if (azioneDTO instanceof AzioneParametri) {
-						try {
-							((AzioneParametri) azioneDTO).parametri().setParametri(gui, gameStateDTO);
-						} catch (AzioneNonEseguibile e) {
-							gui.azioneNonValida("Azione non eseguibile!", e.getMessage());
-							return;
-						}
-					}
-					try {
-						gui.getConnessione().inviaAzione(azioneDTO);
-						//gui.stopTimer();
-						for (Button b : azioni)
-							b.setDisable(false);
-					} catch (RemoteException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
+					((AzioneParametri) azioneDTO).parametri().setParametri(gui, gameStateDTO);
+				} catch (AzioneNonEseguibile e) {
+					gui.azioneNonValida("Azione non eseguibile!", e.getMessage());
+					return;
 				}
 			}
+			try {
+				gui.getConnessione().inviaAzione(azioneDTO);
+				gui.stopTimer();
+				for (Button b : azioni)
+					b.setDisable(false);
+			} catch (RemoteException e) {
+				log.log(Level.SEVERE, "Errore nell'invio dell'azione", e);
+			}
 
-		});
+		};
+		executor.submit(runnable);
 	}
 
 	public void handleOfferta(Event event) {
 		synchronized (gui.getLock()) {
 			gui.setParametro(((ImageView) event.getSource()).getUserData());
-			MarketableDTO marketableDTO=(MarketableDTO) ((ImageView) event.getSource()).getUserData();
-			if(marketableDTO instanceof AiutanteDTO)
+			MarketableDTO marketableDTO = (MarketableDTO) ((ImageView) event.getSource()).getUserData();
+			if (marketableDTO instanceof AiutanteDTO)
 				this.aiutanti.getChildren().remove(event.getSource());
-			else if(marketableDTO instanceof CartaPoliticaDTO)
+			else if (marketableDTO instanceof CartaPoliticaDTO)
 				this.cartePolitica.getChildren().remove(event.getSource());
 			else
 				this.tesserePermesso.getChildren().remove(event.getSource());
-			//((ImageView) event.getSource()).setDisable(true);
-			//((ImageView) event.getSource()).setOpacity(0.5);
 			gui.getLock().notifyAll();
 		}
 	}
 
-	public void handlePrezzo(Event event) {
+	public void handlePrezzo() {
 		ok.setDisable(false);
 	}
 
-	public void handleOk(ActionEvent event) {
+	public void handleOk() {
 		synchronized (gui.getLock()) {
-			String prezzo = this.prezzo.getText();
-			gui.setParametro(prezzo);
+			String prezzoOfferta = this.prezzo.getText();
+			gui.setParametro(prezzoOfferta);
 			gui.getLock().notifyAll();
 			ok.setDisable(true);
 			this.prezzo.clear();
 		}
 	}
-	
-	public void handleAcquisto(ActionEvent event){
-		synchronized(gui.getLock()){
-			gui.setParametro(((Button)event.getSource()).getUserData());
+
+	public void handleAcquisto(ActionEvent event) {
+		synchronized (gui.getLock()) {
+			gui.setParametro(((Button) event.getSource()).getUserData());
 			gui.getLock().notifyAll();
 		}
 	}

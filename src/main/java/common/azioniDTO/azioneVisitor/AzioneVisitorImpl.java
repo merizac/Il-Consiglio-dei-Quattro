@@ -214,13 +214,6 @@ public class AzioneVisitorImpl implements AzioneVisitor {
 		tessere.addAll(gameState.getGiocatoreCorrente().getTesserePermesso());
 		tessere.addAll(gameState.getGiocatoreCorrente().getTesserePermessoUsate());
 		tesseraPermesso=ControlloParametri.cercaTesseraPermesso(bonusTesseraAcquistataDTO.getTesseraPermesso(), tessere);
-		/*if (bonusTesseraAcquistataDTO.isUsata()) {
-			tesseraPermesso = ControlloParametri.cercaTesseraPermesso(bonusTesseraAcquistataDTO.getTesseraPermesso(),
-					giocatore.getTesserePermessoUsate());
-		} else
-			tesseraPermesso = ControlloParametri.cercaTesseraPermesso(bonusTesseraAcquistataDTO.getTesseraPermesso(),
-					giocatore.getTesserePermesso());
-		*/
 		bonusTesseraAcquistata.setId(1);
 		bonusTesseraAcquistata.setTesseraPermesso(tesseraPermesso);
 		return bonusTesseraAcquistata;

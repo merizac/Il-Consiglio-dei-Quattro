@@ -9,6 +9,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import common.azioniDTO.AzioneDTO;
 import common.azioniDTO.AzioneParametri;
 import common.azioniDTO.ChatDTO;
@@ -38,7 +41,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-public class GUIGameController implements Controller{
+public class GUIGameController implements Controller {
 
 	private GameStateDTO gameStateDTO;
 	private GUI gui;
@@ -49,6 +52,7 @@ public class GUIGameController implements Controller{
 	private Map<String, Image> mappaConsiglieriRiserva = new HashMap<>();
 	private Map<String, Image> mappaBonus = new HashMap<>();
 	private Map<String, Image> mappaEmpori = new HashMap<>();
+	private static final Logger log = Logger.getLogger(GUIGameController.class.getName());
 
 	@FXML
 	private ImageView mappaImmagine;
@@ -467,58 +471,49 @@ public class GUIGameController implements Controller{
 	@FXML
 	public void handleAzione(ActionEvent event) {
 		ExecutorService executor = Executors.newSingleThreadExecutor();
-		executor.submit(new Runnable() {
+		Runnable runnable = () -> {
 
-			@Override
-			public void run() {
+			for (Button b : getAzioni())
+				b.setDisable(true);
+			AzioneDTO azioneDTO = gameStateDTO.getAzioniDisponibili().stream()
+					.filter(a -> a.getClass()
+							.equals(((AzioneDTO) ((Button) event.getSource()).getUserData()).getClass()))
+					.findAny().orElse(null);
+
+			if (azioneDTO == null) {
+				gui.azioneNonValida("L'azione non esiste!", "Ooops, riprova e inserisci un'azione valida!");
+				for (Button b : getAzioni()) {
+					b.setDisable(false);
+				}
+				return;
+			} else if (azioneDTO instanceof AzioneParametri) {
 				try {
-					for (Button b : getAzioni())
-						b.setDisable(true);
-					AzioneDTO azioneDTO = gameStateDTO.getAzioniDisponibili().stream()
-							.filter(a -> a.getClass()
-									.equals(((AzioneDTO) ((Button) event.getSource()).getUserData()).getClass()))
-							.findAny().orElse(null);
-
-					if (azioneDTO == null) {
-						gui.azioneNonValida("L'azione non esiste!", "Ooops, riprova e inserisci un'azione valida!");
-						for (Button b : getAzioni()) {
-							b.setDisable(false);
-						}
-						return;
-					} else if (azioneDTO instanceof AzioneParametri) {
-						try {
-							((AzioneParametri) azioneDTO).parametri().setParametri(gui, gameStateDTO);
-						} catch (AzioneNonEseguibile e) {
-							gui.mostraMessaggio(e.getMessage());
-							return;
-						}
-					}
-					try {
-						gui.getConnessione().inviaAzione(azioneDTO);
-						gui.stopTimer();
-						for (Button b : getAzioni())
-							b.setDisable(false);
-					} catch (RemoteException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
+					((AzioneParametri) azioneDTO).parametri().setParametri(gui, gameStateDTO);
+				} catch (AzioneNonEseguibile e) {
+					gui.mostraMessaggio(e.getMessage());
+					return;
 				}
 			}
-
-		});
+			try {
+				gui.getConnessione().inviaAzione(azioneDTO);
+				gui.stopTimer();
+				for (Button b : getAzioni())
+					b.setDisable(false);
+			} catch (RemoteException e) {
+				log.log(Level.SEVERE, "Errore nell'invio dell'azione :" + azioneDTO, e);
+			}
+		};
+		executor.submit(runnable);
 	}
 
 	@FXML
-	public void handleExit(ActionEvent event) {
+	public void handleExit() {
 		try {
 			gui.getConnessione().inviaAzione(new ExitDTO());
 			gui.stopTimer();
 			gui.close();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.log(Level.SEVERE, "Errore nell'invio dell'azione exit", e);
 		}
 	}
 
@@ -536,7 +531,7 @@ public class GUIGameController implements Controller{
 		if (gameStateDTO.getRegioni().get(2).getBonusRegione() != null) {
 			montagna.setImage(new Image(getClass().getResource("css/tessereBonus/montagna.png").toExternalForm()));
 		}
-		
+
 		oro.setVisible(false);
 		argento.setVisible(false);
 		bronzo.setVisible(false);
@@ -556,69 +551,66 @@ public class GUIGameController implements Controller{
 			} else if ("Blu".equals(b.getColore())) {
 				ferro.setVisible(true);
 				ferro.setImage(new Image(getClass().getResource("css/tessereBonus/ferro.png").toExternalForm()));
-			} 
+			}
 		}
 		if (!gameStateDTO.getPlanciaReDTO().getBonusPremioRe().isEmpty()) {
-			System.out.println("giocatore :"+gameStateDTO.getGiocatoreDTO().getNome());
-			System.out.println("size bonus re :"+gameStateDTO.getPlanciaReDTO().getBonusPremioRe());
-			String bonus= String.valueOf(6-gameStateDTO.getPlanciaReDTO().getBonusPremioRe().size());
-			king.setImage(new Image(getClass().getResource("css/tessereBonus/king_"+bonus+".png").toExternalForm()));
+			String bonus = String.valueOf(6 - gameStateDTO.getPlanciaReDTO().getBonusPremioRe().size());
+			king.setImage(
+					new Image(getClass().getResource("css/tessereBonus/king_" + bonus + ".png").toExternalForm()));
 		}
 	}
 
 	public void mostraGettoni(List<CittàDTO> città) {
-		Platform.runLater(new Runnable() {
-
-			@Override
-			public void run() {
-				if (città.get(0) instanceof CittàBonusDTO) {
-					gettoneArkon.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(0)).getBonus().toString()));
-				}
-				if (città.get(1) instanceof CittàBonusDTO) {
-					gettoneBurgen.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(1)).getBonus().toString()));
-				}
-				if (città.get(2) instanceof CittàBonusDTO) {
-					gettoneCastrum.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(2)).getBonus().toString()));
-				}
-				if (città.get(3) instanceof CittàBonusDTO) {
-					gettoneDorful.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(3)).getBonus().toString()));
-				}
-				if (città.get(4) instanceof CittàBonusDTO) {
-					gettoneEsti.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(4)).getBonus().toString()));
-				}
-				if (città.get(5) instanceof CittàBonusDTO) {
-					gettoneFramek.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(5)).getBonus().toString()));
-				}
-				if (città.get(6) instanceof CittàBonusDTO) {
-					gettoneGraden.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(6)).getBonus().toString()));
-				}
-				if (città.get(7) instanceof CittàBonusDTO) {
-					gettoneHellar.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(7)).getBonus().toString()));
-				}
-				if (città.get(8) instanceof CittàBonusDTO) {
-					gettoneIndur.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(8)).getBonus().toString()));
-				}
-				if (città.get(9) instanceof CittàBonusDTO) {
-					gettoneJuvelar.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(9)).getBonus().toString()));
-				}
-				if (città.get(10) instanceof CittàBonusDTO) {
-					gettoneKultos.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(10)).getBonus().toString()));
-				}
-				if (città.get(11) instanceof CittàBonusDTO) {
-					gettoneLyram.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(11)).getBonus().toString()));
-				}
-				if (città.get(12) instanceof CittàBonusDTO) {
-					gettoneMerkatim.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(12)).getBonus().toString()));
-				}
-				if (città.get(13) instanceof CittàBonusDTO) {
-					gettoneNaris.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(13)).getBonus().toString()));
-				}
-				if (città.get(14) instanceof CittàBonusDTO) {
-					gettoneOsium.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(14)).getBonus().toString()));
-				}
-
+		Runnable runnable = () -> {
+			if (città.get(0) instanceof CittàBonusDTO) {
+				gettoneArkon.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(0)).getBonus().toString()));
 			}
-		});
+			if (città.get(1) instanceof CittàBonusDTO) {
+				gettoneBurgen.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(1)).getBonus().toString()));
+			}
+			if (città.get(2) instanceof CittàBonusDTO) {
+				gettoneCastrum.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(2)).getBonus().toString()));
+			}
+			if (città.get(3) instanceof CittàBonusDTO) {
+				gettoneDorful.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(3)).getBonus().toString()));
+			}
+			if (città.get(4) instanceof CittàBonusDTO) {
+				gettoneEsti.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(4)).getBonus().toString()));
+			}
+			if (città.get(5) instanceof CittàBonusDTO) {
+				gettoneFramek.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(5)).getBonus().toString()));
+			}
+			if (città.get(6) instanceof CittàBonusDTO) {
+				gettoneGraden.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(6)).getBonus().toString()));
+			}
+			if (città.get(7) instanceof CittàBonusDTO) {
+				gettoneHellar.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(7)).getBonus().toString()));
+			}
+			if (città.get(8) instanceof CittàBonusDTO) {
+				gettoneIndur.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(8)).getBonus().toString()));
+			}
+			if (città.get(9) instanceof CittàBonusDTO) {
+				gettoneJuvelar.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(9)).getBonus().toString()));
+			}
+			if (città.get(10) instanceof CittàBonusDTO) {
+				gettoneKultos.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(10)).getBonus().toString()));
+			}
+			if (città.get(11) instanceof CittàBonusDTO) {
+				gettoneLyram.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(11)).getBonus().toString()));
+			}
+			if (città.get(12) instanceof CittàBonusDTO) {
+				gettoneMerkatim.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(12)).getBonus().toString()));
+			}
+			if (città.get(13) instanceof CittàBonusDTO) {
+				gettoneNaris.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(13)).getBonus().toString()));
+			}
+			if (città.get(14) instanceof CittàBonusDTO) {
+				gettoneOsium.setImage(mappaGettoni.get(((CittàBonusDTO) città.get(14)).getBonus().toString()));
+			}
+
+		};
+
+		Platform.runLater(runnable);
 	}
 
 	public void mostraTesserePermessoUsate(List<TesseraPermessoDTO> tessere) {
@@ -626,49 +618,47 @@ public class GUIGameController implements Controller{
 	}
 
 	public void stampaEmporiCittà(List<CittàDTO> città) {
-		Platform.runLater(new Runnable() {
+		Runnable runnable = () -> {
+			List<HBox> hbox = Arrays.asList(emporiArkon, emporiBurgen, emporiCastrum, emporiDorful, emporiEsti,
+					emporiFramek, emporiGraden, emporiHellar, emporiIndur, emporiJuvelar, emporiKultos, emporiLyram,
+					emporiMerkatim, emporiNaris, emporiOsium);
 
-			@Override
-			public void run() {
-				List<HBox> hbox = Arrays.asList(emporiArkon, emporiBurgen, emporiCastrum, emporiDorful, emporiEsti,
-						emporiFramek, emporiGraden, emporiHellar, emporiIndur, emporiJuvelar, emporiKultos, emporiLyram,
-						emporiMerkatim, emporiNaris, emporiOsium);
-
-				for (int i = 0; i < città.size() - 1; i++) {
-					for (String emporio : città.get(i).getEmpori()) {
-						ImageView imageView = new ImageView();
-						imageView.setImage(mappaEmpori.get(emporio));
-						hbox.get(i).getChildren().add(imageView);
-					}
+			for (int i = 0; i < città.size() - 1; i++) {
+				for (String emporio : città.get(i).getEmpori()) {
+					ImageView imageView = new ImageView();
+					imageView.setImage(mappaEmpori.get(emporio));
+					hbox.get(i).getChildren().add(imageView);
 				}
 			}
-		});
+		};
+		
+		Platform.runLater(runnable);
 	}
 
 	public void mostraRiserva(List<ConsigliereDTO> consiglieri) {
 
-		consigliere1.setImage(mappaConsiglieriRiserva.get(consiglieri.get(0).getColoreConsigliere().toString()));
+		consigliere1.setImage(mappaConsiglieriRiserva.get(consiglieri.get(0).getColoreConsigliere()));
 		consigliere1.setUserData(consiglieri.get(0));
 		consigliere1.setDisable(true);
-		consigliere2.setImage(mappaConsiglieriRiserva.get(consiglieri.get(1).getColoreConsigliere().toString()));
+		consigliere2.setImage(mappaConsiglieriRiserva.get(consiglieri.get(1).getColoreConsigliere()));
 		consigliere2.setUserData(consiglieri.get(1));
 		consigliere2.setDisable(true);
-		consigliere3.setImage(mappaConsiglieriRiserva.get(consiglieri.get(2).getColoreConsigliere().toString()));
+		consigliere3.setImage(mappaConsiglieriRiserva.get(consiglieri.get(2).getColoreConsigliere()));
 		consigliere3.setUserData(consiglieri.get(2));
 		consigliere3.setDisable(true);
-		consigliere4.setImage(mappaConsiglieriRiserva.get(consiglieri.get(3).getColoreConsigliere().toString()));
+		consigliere4.setImage(mappaConsiglieriRiserva.get(consiglieri.get(3).getColoreConsigliere()));
 		consigliere4.setUserData(consiglieri.get(3));
 		consigliere4.setDisable(true);
-		consigliere5.setImage(mappaConsiglieriRiserva.get(consiglieri.get(4).getColoreConsigliere().toString()));
+		consigliere5.setImage(mappaConsiglieriRiserva.get(consiglieri.get(4).getColoreConsigliere()));
 		consigliere5.setUserData(consiglieri.get(4));
 		consigliere5.setDisable(true);
-		consigliere6.setImage(mappaConsiglieriRiserva.get(consiglieri.get(5).getColoreConsigliere().toString()));
+		consigliere6.setImage(mappaConsiglieriRiserva.get(consiglieri.get(5).getColoreConsigliere()));
 		consigliere6.setUserData(consiglieri.get(5));
 		consigliere6.setDisable(true);
-		consigliere7.setImage(mappaConsiglieriRiserva.get(consiglieri.get(6).getColoreConsigliere().toString()));
+		consigliere7.setImage(mappaConsiglieriRiserva.get(consiglieri.get(6).getColoreConsigliere()));
 		consigliere7.setUserData(consiglieri.get(6));
 		consigliere7.setDisable(true);
-		consigliere8.setImage(mappaConsiglieriRiserva.get(consiglieri.get(7).getColoreConsigliere().toString()));
+		consigliere8.setImage(mappaConsiglieriRiserva.get(consiglieri.get(7).getColoreConsigliere()));
 		consigliere8.setUserData(consiglieri.get(7));
 		consigliere8.setDisable(true);
 	}
@@ -707,6 +697,7 @@ public class GUIGameController implements Controller{
 		gui.stampaConsiglieriBalcone();
 	}
 
+	@Override
 	public TextArea getMessage() {
 		return this.message;
 	}
@@ -730,7 +721,7 @@ public class GUIGameController implements Controller{
 	}
 
 	@FXML
-	public void handleConferma(ActionEvent event) {
+	public void handleConferma() {
 		synchronized (gui.getLock()) {
 			gui.setCarteInserite(true);
 			gui.setParametro(new Object());
@@ -758,16 +749,15 @@ public class GUIGameController implements Controller{
 	@FXML
 	public void handleChat(KeyEvent action) {
 		if (action.getCode() == KeyCode.ENTER) {
-			ChatDTO chat = new ChatDTO();
+			ChatDTO chatMessage = new ChatDTO();
 			if (!this.chat.getText().isEmpty()) {
 
-				chat.setMessaggio(gameStateDTO.getGiocatoreDTO().getNome() + ": " + this.chat.getText());
+				chatMessage.setMessaggio(gameStateDTO.getGiocatoreDTO().getNome() + ": " + this.chat.getText());
 				this.chat.clear();
 				try {
-					gui.getConnessione().inviaAzione(chat);
+					gui.getConnessione().inviaAzione(chatMessage);
 				} catch (RemoteException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.log(Level.SEVERE, "Errore nell'invio dell'azione chat", e);
 				}
 			}
 		}
@@ -877,11 +867,11 @@ public class GUIGameController implements Controller{
 	}
 
 	public List<ImageView> getCartePolitica() {
-		List<ImageView> cartePolitica = new ArrayList<>();
+		List<ImageView> cartePoliticaGiocatore = new ArrayList<>();
 		for (Node i : this.cartePolitica.getChildren()) {
-			cartePolitica.add((ImageView) i);
+			cartePoliticaGiocatore.add((ImageView) i);
 		}
-		return cartePolitica;
+		return cartePoliticaGiocatore;
 	}
 
 	public Button getConferma() {
@@ -928,7 +918,8 @@ public class GUIGameController implements Controller{
 	public List<Pane> getCittàSenzaEmporio(Set<? extends CittàDTO> città) {
 		List<Pane> cittàCostruzione = new ArrayList<>();
 		for (Pane b : this.città) {
-			if (!((CittàDTO) b.getUserData()).getEmpori().contains(gameStateDTO.getGiocatoreDTO().getColoreGiocatore())
+			if (!((CittàDTO) b.getUserData()).getEmpori()
+					.contains(gameStateDTO.getGiocatoreDTO().getColoreGiocatore().getColore())
 					&& città.contains((CittàDTO) b.getUserData())) {
 				cittàCostruzione.add(b);
 			}
@@ -965,7 +956,7 @@ public class GUIGameController implements Controller{
 		List<Pane> cittàBonusGettone = new ArrayList<>();
 		for (Pane cittàBonus : città) {
 			if (cittàBonus.getUserData() instanceof CittàBonusDTO && ((CittàDTO) cittàBonus.getUserData()).getEmpori()
-					.contains(gameStateDTO.getGiocatoreDTO().getColoreGiocatore()))
+					.contains(gameStateDTO.getGiocatoreDTO().getColoreGiocatore().getColore()))
 				cittàBonusGettone.add(cittàBonus);
 		}
 

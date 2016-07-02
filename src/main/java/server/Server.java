@@ -19,6 +19,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import server.controller.Controller;
 import server.model.game.GameState;
@@ -28,6 +30,7 @@ import server.view.ServerRMIView;
 import server.view.ServerRMIViewRemote;
 import server.view.ServerSocketView;
 import server.view.View;
+import utility.Utils;
 
 public class Server {
 
@@ -44,6 +47,7 @@ public class Server {
 	private static Server instance = new Server();
 	private static String mappa;
 	private boolean primoGiocatore;
+	private static final Logger log=Logger.getLogger(Server.class.getName());
 
 	public Server() {
 		Server.partite = new HashMap<>();
@@ -52,7 +56,6 @@ public class Server {
 		Server.partite.put(gameState, new HashSet<>());
 		this.giocatori = new ArrayList<>();
 		this.primoGiocatore = true;
-		//Server.mappa=null;
 	}
 
 	public static Server getInstance() {
@@ -65,7 +68,7 @@ public class Server {
 
 		ServerSocket serverSocket = new ServerSocket(CONNESSIONESOCKET);
 
-		System.out.println("[SERVER] Server pronto sulla porta : " + CONNESSIONESOCKET);
+		Utils.print("[SERVER] Server pronto sulla porta : " + CONNESSIONESOCKET);
 
 		while (!end) {
 			Socket socket = serverSocket.accept();
@@ -79,7 +82,7 @@ public class Server {
 	private void startRMI() throws RemoteException, AlreadyBoundException {
 
 		this.registry = LocateRegistry.createRegistry(CONNESSIONERMI);
-		System.out.println("[SERVER] Server pronto sulla porta : " + CONNESSIONERMI);
+		Utils.print("[SERVER] Server pronto sulla porta : " + CONNESSIONERMI);
 
 		ServerRMIViewRemote game = new ServerRMIView();
 		ServerRMIViewRemote gameRemote = (ServerRMIViewRemote) UnicastRemoteObject.exportObject(game, 0);
@@ -94,7 +97,7 @@ public class Server {
 			primoGiocatore = false;
 			view.update(new StartGiocatoreNotify(Arrays.asList(giocatore)));
 		}
-		System.out.println("[SERVER] Si è connesso il giocatore : " + giocatore.getNome());
+		Utils.print("[SERVER] Si è connesso il giocatore : " + giocatore.getNome());
 		Server.partite.get(gameState).add(view);
 		if (giocatori.size() == 2) {
 			timer = new Timer();
@@ -119,30 +122,38 @@ public class Server {
 	private synchronized void creaGioco() {
 			if(Server.mappa==null)
 				Server.mappa="mappa1";
-		try {
 			for (View v : Server.partite.get(gameState)) {
 				v.setGameState(gameState);
 				this.gameState.registerObserver(v);
 				v.registerObserver(this.controller);
 			}
-			this.gameState.start(giocatori, Server.mappa);
+			try {
+				this.gameState.start(giocatori, Server.mappa);
+			} catch (IOException e) {
+				log.log(Level.SEVERE, "Errore nel caricamento da file del gioco", e);
+			}
 			this.primoGiocatore=true;
-			System.out.println("[SERVER] Iniziata una nuova partita");
+			Utils.print("[SERVER] Iniziata una nuova partita");
 			this.giocatori.clear();
 			this.gameState = new GameState();
 			this.controller = new Controller(gameState);
 			Server.partite.put(this.gameState, new HashSet<>());
 
 			ServerRMIViewRemote game = new ServerRMIView();
-			ServerRMIViewRemote gameRemote = (ServerRMIViewRemote) UnicastRemoteObject.exportObject(game, 0);
+			ServerRMIViewRemote gameRemote=null;
+			try {
+				gameRemote = (ServerRMIViewRemote) UnicastRemoteObject.exportObject(game, 0);
+			} catch (RemoteException e) {
+				log.log(Level.SEVERE, "Errore nell'esportare la serverRMIViewRemote sul registry", e);
+			}
 
 			String name = "GIOCO";
-			registry.rebind(name, gameRemote);
+			try {
+				registry.rebind(name, gameRemote);
+			} catch (RemoteException e) {
+				log.log(Level.SEVERE, "Errore nel rebind della serverRMIViewRemote", e);
+			}
 
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
 	}
 
@@ -150,15 +161,13 @@ public class Server {
 		for (View v : Server.partite.get(gameState)) {
 			v.disconnetti();
 		}
-		Server.partite.remove(gameState);
 	}
 
 	public static void main(String[] args) throws IOException {
 		try {
 			Server.getInstance().startRMI();
 		} catch (AlreadyBoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.log(Level.SEVERE, "Non è possibile fare il bind del game in quanto è già presente sul registy", e);
 		}
 		Server.getInstance().startSocket();
 	}

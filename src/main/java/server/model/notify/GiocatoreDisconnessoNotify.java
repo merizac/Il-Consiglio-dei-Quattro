@@ -30,10 +30,10 @@ public class GiocatoreDisconnessoNotify implements Notify {
 
 	@Override
 	public ClientNotify notifyToClientNotify() {
-		GiocatoreDTO giocatoreDisconnesso= new GiocatoreDTO();
-		giocatoreDisconnesso.inizializza(this.giocatoreDisconnesso);
+		GiocatoreDTO giocatoreDisconnessoDTO= new GiocatoreDTO();
+		giocatoreDisconnessoDTO.inizializza(this.giocatoreDisconnesso);
 		
-		return new GiocatoreDisconnessoClientNotify(giocatoreDisconnesso);
+		return new GiocatoreDisconnessoClientNotify(giocatoreDisconnessoDTO);
 	}
 
 }

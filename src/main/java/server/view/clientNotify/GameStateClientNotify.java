@@ -16,7 +16,6 @@ public class GameStateClientNotify implements ClientNotify {
 		if (gameStateDTO == null)
 			throw new NullPointerException("Il gamestateDTO non può essere null");
 		this.gameStateDTO = gameStateDTO;
-		System.out.println("bonus premio re client notify: "+this.gameStateDTO.getPlanciaReDTO().getBonusPremioRe());
 	}
 
 	@Override
@@ -28,7 +27,6 @@ public class GameStateClientNotify implements ClientNotify {
 		gameStateDTO.setConsiglieri(this.gameStateDTO.getConsiglieri());
 		gameStateDTO.setPedinaRE(this.gameStateDTO.getPedinaRE());
 		gameStateDTO.setPlanciaReDTO(this.gameStateDTO.getPlanciaReDTO());
-		System.out.println("Client bonus re:"+ gameStateDTO.getPlanciaReDTO().getBonusPremioRe());
 		gameStateDTO.setRegioni(this.gameStateDTO.getRegioni());
 		gameStateDTO.setAvversari(this.gameStateDTO.getAvversari());
 		

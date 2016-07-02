@@ -15,13 +15,14 @@ import server.model.azioni.azioniVeloci.SecondaAzionePrincipale;
 import server.model.game.GameState;
 import server.model.notify.AzioniNotify;
 import server.model.notify.MessageNotify;
+import utility.Utils;
 
 public class Stato11 implements Stato {
 
 	private List<Azione> azioni;
 
 	public Stato11(GameState gameState) {
-		System.out.println("[SERVER] "+this);
+		Utils.print("[SERVER] "+this);
 		this.azioni=Arrays.asList(new ElezioneConsigliere(), new AcquistoTesseraPermesso(),
 				new CostruzioneTesseraPermesso(), new CostruzioneAiutoRe(), new IngaggioAiutante(), new CambioTesseraPermesso(), 
 				new ElezioneConsigliereVeloce());

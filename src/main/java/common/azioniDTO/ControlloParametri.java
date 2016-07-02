@@ -29,6 +29,9 @@ import utility.ParameterException;
 
 public class ControlloParametri {
 
+	public ControlloParametri() {
+	}
+
 	public static Regione cercaRegione(RegioneDTO regione, List<Regione> list) throws ParameterException {
 		for (Regione r : list) {
 			if (r.getNome().equals(regione.getNome()))
@@ -37,7 +40,8 @@ public class ControlloParametri {
 		throw new ParameterException("La regione " + regione.getNome() + " è inesistente!");
 	}
 
-	public static Balcone cercaBalcone(BalconeDTO balconeDTO, Balcone balconeRe, List<Regione> regioni) throws ParameterException {
+	public static Balcone cercaBalcone(BalconeDTO balconeDTO, Balcone balconeRe, List<Regione> regioni)
+			throws ParameterException {
 		for (Regione r : regioni) {
 			if (controlloBalcone(balconeDTO, r.getBalcone())) {
 				return r.getBalcone();
@@ -75,7 +79,7 @@ public class ControlloParametri {
 					}
 				}
 			} else
-				throw new ParameterException("La carta "+ c.getColore()+" è inesistente");
+				throw new ParameterException("La carta " + c.getColore() + " è inesistente");
 		}
 		return carteGiocatore;
 	}
@@ -85,21 +89,21 @@ public class ControlloParametri {
 			if (c.getNome().equals(città.getNome()))
 				return c;
 		}
-		throw new ParameterException("La città "+ città.getNome() +" è inesistente!");
+		throw new ParameterException("La città " + città.getNome() + " è inesistente!");
 	}
 
 	public static Città cercaCittàBonus(CittàDTO città, Set<Città> cittàGameState) throws ParameterException {
-		
+
 		for (Città c : cittàGameState) {
 			if (c.getNome().equals(città.getNome()) && (c instanceof CittàBonus)) {
 				for (Bonus b : ((CittàBonus) c).getBonus()) {
 					if (b instanceof BonusPuntiNobiltà)
-						throw new ParameterException("La città "+ c.getNome()+ " contiene un bonus punti nobiltà!");
+						throw new ParameterException("La città " + c.getNome() + " contiene un bonus punti nobiltà!");
 				}
 				return c;
 			}
 		}
-		throw new ParameterException("La città "+ città.getNome()+ " è inesistente!");
+		throw new ParameterException("La città " + città.getNome() + " è inesistente!");
 	}
 
 	/**
@@ -107,7 +111,7 @@ public class ControlloParametri {
 	 * @param tesseraPermesso
 	 * @param tesserePermesso
 	 * @return tessera permesso non DTO
-	 * @throws ParameterException 
+	 * @throws ParameterException
 	 * @throws IllegalArgumentException
 	 */
 	public static TesseraPermesso cercaTesseraPermesso(TesseraPermessoDTO tesseraPermesso,
@@ -125,31 +129,22 @@ public class ControlloParametri {
 				return t;
 		}
 
-		throw new ParameterException("la tessera permesso\n"+tesseraPermesso+"\nè inesistente!");
+		throw new ParameterException("la tessera permesso\n" + tesseraPermesso + "\nè inesistente!");
 
 	}
 
 	private static void ordinaCittà(List<Città> cittàTessera) {
-		Collections.sort(cittàTessera, new Comparator<Città>() {
-
-			@Override
-			public int compare(Città o1, Città o2) {
-				return o1.getNome().compareToIgnoreCase(o2.getNome());
-			}
-
-		});
-
+		Comparator<Città> comparator = (o1, o2) -> {
+			return o1.getNome().compareToIgnoreCase(o2.getNome());
+		};
+		Collections.sort(cittàTessera, comparator);
 	}
 
 	private static void ordinaCittàDTO(List<CittàDTO> città) {
-		Collections.sort(città, new Comparator<CittàDTO>() {
-
-			@Override
-			public int compare(CittàDTO o1, CittàDTO o2) {
-				return o1.getNome().compareToIgnoreCase(o2.getNome());
-			}
-
-		});
+		Comparator<CittàDTO> comparatorDTO = (o1, o2) -> {
+			return o1.getNome().compareToIgnoreCase(o2.getNome());
+		};
+		Collections.sort(città, comparatorDTO);
 
 	}
 
@@ -201,26 +196,28 @@ public class ControlloParametri {
 		return false;
 	}
 
-	public static Consigliere cercaConsigliere(ConsigliereDTO consigliereDTO, List<Consigliere> consiglieri) throws ParameterException {
+	public static Consigliere cercaConsigliere(ConsigliereDTO consigliereDTO, List<Consigliere> consiglieri)
+			throws ParameterException {
 		for (Consigliere c : consiglieri) {
 			if (c.getColore().getColore().equals(consigliereDTO.getColoreConsigliere()))
 				return c;
 		}
-		throw new ParameterException("Il consigliere "+consigliereDTO.getColoreConsigliere()+" è inesistente!");
+		throw new ParameterException("Il consigliere " + consigliereDTO.getColoreConsigliere() + " è inesistente!");
 	}
 
 	public static Offerta cercaOfferta(List<Offerta> offerteMarket, int offerta) throws ParameterException {
 		if (offerta > 0 && offerta <= offerteMarket.size())
 			return offerteMarket.get(offerta - 1);
-		throw new ParameterException("L'offerta numero "+offerta+" è inesistente");
+		throw new ParameterException("L'offerta numero " + offerta + " è inesistente");
 	}
 
-	public static Giocatore cercaGiocatore(GiocatoreDTO giocatoreDTO, List<Giocatore> giocatori) throws ParameterException {
+	public static Giocatore cercaGiocatore(GiocatoreDTO giocatoreDTO, List<Giocatore> giocatori)
+			throws ParameterException {
 		for (Giocatore g : giocatori) {
 			if (g.getNome().equals(giocatoreDTO.getNome()))
 				return g;
 		}
-		throw new ParameterException("Il giocatore "+giocatoreDTO.getNome()+" è inesistente");
+		throw new ParameterException("Il giocatore " + giocatoreDTO.getNome() + " è inesistente");
 	}
 
 }

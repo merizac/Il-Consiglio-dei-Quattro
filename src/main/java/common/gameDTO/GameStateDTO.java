@@ -36,16 +36,13 @@ public class GameStateDTO implements Serializable {
 		this.avversari = new ArrayList<>();
 		this.bonusColore = new ArrayList<>();
 		for (Colore colore : gameState.getBonusColore()) {
-			if (colore instanceof ColoreCittà) {
-				if (!((ColoreCittà) colore).isAssegnatoBonus()) {
-					ColoreBonusDTO coloreBonusDTO = new ColoreBonusDTO();
-					coloreBonusDTO.inizializza((ColoreCittà)colore);
-					System.out.println("colore bonus :"+coloreBonusDTO);
-					this.bonusColore.add(coloreBonusDTO);
-				}
+			if (colore instanceof ColoreCittà && !((ColoreCittà) colore).isAssegnatoBonus()) {
+				ColoreBonusDTO coloreBonusDTO = new ColoreBonusDTO();
+				coloreBonusDTO.inizializza((ColoreCittà) colore);
+				this.bonusColore.add(coloreBonusDTO);
 			}
 		}
-		
+
 		this.città = new TreeSet<>(new ComparatorOrdineAlfabetico());
 		for (Città c : gameState.getCittà()) {
 			if (c instanceof CittàBonus) {
