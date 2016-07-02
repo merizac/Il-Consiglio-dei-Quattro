@@ -96,6 +96,7 @@ public class GUI extends Application implements Grafica {
 	private Timer timer;
 	private TimerTask task;
 	private static final Logger log = Logger.getLogger(GUI.class.getName());
+	private MediaPlayer song;
 
 	@Override
 	public void setConnessione(Connessione connessione) {
@@ -192,7 +193,7 @@ public class GUI extends Application implements Grafica {
 		fxmloader.setLocation(getClass().getClassLoader().getResource("client/grafica/gui/fxml/gameState.fxml"));
 		String audioGioco = this.getClass().getResource("css/audioGioco.mp3").toExternalForm();
 		Media media = new Media(audioGioco);
-		MediaPlayer song = new MediaPlayer(media);
+		song = new MediaPlayer(media);
 		song.play();
 		song.setVolume(0.2);
 		Parent root = null;
@@ -1255,6 +1256,13 @@ public class GUI extends Application implements Grafica {
 			finestra.close();
 			};
 		Platform.runLater(runnable);
+	}
+
+	/**
+	 * @return the song
+	 */
+	public MediaPlayer getSong() {
+		return song;
 	}
 
 }

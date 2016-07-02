@@ -34,6 +34,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.MediaPlayer.Status;
 import javafx.scene.text.Text;
 import utility.AzioneNonEseguibile;
 import javafx.scene.Node;
@@ -731,6 +732,16 @@ public class GUIGameController implements Controller {
 			gui.setParametro(new Object());
 			gui.getLock().notify();
 		}
+	}
+	
+	@FXML
+	public void handleAudio() {
+			if (gui.getSong().getStatus().equals(Status.PLAYING)){
+				gui.getSong().stop();
+			}
+			else {
+				gui.getSong().play();
+			}
 	}
 
 	@FXML
