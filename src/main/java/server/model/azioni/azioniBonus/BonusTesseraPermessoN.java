@@ -57,6 +57,8 @@ public class BonusTesseraPermessoN extends Azione {
 	 *            the regione to set
 	 */
 	public void setRegione(Regione regione) {
+		if(regione==null)
+			throw new NullPointerException("La regione è null");
 		this.regione = regione;
 	}
 
@@ -72,6 +74,8 @@ public class BonusTesseraPermessoN extends Azione {
 	 *            the indiceTesseraScoperta to set
 	 */
 	public void setTesseraScoperta(TesseraPermesso tesseraScoperta) {
+		if(tesseraScoperta==null)
+			throw new NullPointerException("La tessera è null");
 		this.tesseraScoperta = tesseraScoperta;
 	}
 
@@ -119,6 +123,8 @@ public class BonusTesseraPermessoN extends Azione {
 	 * @param id the id to set
 	 */
 	public void setId(int id) {
+		if(id<1 || id>2)
+			throw new IllegalArgumentException("L'id è errato, scegli 1 o 2");
 		this.id = id;
 	}
 

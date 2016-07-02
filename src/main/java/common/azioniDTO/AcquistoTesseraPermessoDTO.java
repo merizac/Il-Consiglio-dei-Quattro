@@ -1,5 +1,4 @@
 package common.azioniDTO;
-
 import java.util.List;
 
 import common.azioniDTO.azioneVisitor.AzioneVisitor;
@@ -7,7 +6,7 @@ import common.azioniDTO.azioniSetParametri.AcquistoTesseraPermessoParametri;
 import common.gameDTO.CartaPoliticaDTO;
 import common.gameDTO.RegioneDTO;
 import common.gameDTO.TesseraPermessoDTO;
-import server.model.azioni.Azione;
+import server.model.azioni.azioniPrincipali.AcquistoTesseraPermesso;
 import utility.ParameterException;
 
 public class AcquistoTesseraPermessoDTO implements AzioneDTO, AzioneParametri {
@@ -48,7 +47,7 @@ public class AcquistoTesseraPermessoDTO implements AzioneDTO, AzioneParametri {
 
 	
 	@Override
-	public Azione accept(AzioneVisitor azioneVisitor) throws ParameterException {
+	public AcquistoTesseraPermesso accept(AzioneVisitor azioneVisitor) throws ParameterException {
 		return azioneVisitor.visit(this);
 		
 	}
