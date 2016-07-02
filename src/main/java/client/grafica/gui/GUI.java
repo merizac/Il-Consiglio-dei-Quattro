@@ -194,7 +194,7 @@ public class GUI extends Application implements Grafica {
 		Media media = new Media(audioGioco);
 		MediaPlayer song = new MediaPlayer(media);
 		song.play();
-		song.setVolume(0.5);
+		song.setVolume(0.2);
 		Parent root = null;
 		try {
 			root = fxmloader.load();
@@ -341,7 +341,11 @@ public class GUI extends Application implements Grafica {
 	private void assegnaAzioni() {
 		List<Button> azioni = controller.getAzioni();
 		EventHandler<Event> onMouseClicked = (Event) -> {
-			
+			String audioGioco = this.getClass().getResource("css/Mouse.mp3").toExternalForm();
+			Media media = new Media(audioGioco);
+			MediaPlayer song = new MediaPlayer(media);
+			song.setVolume(1);
+			song.play();
 		};
 		azioni.get(0).setUserData(new ElezioneConsigliereDTO());
 		azioni.get(1).setUserData(new AcquistoTesseraPermessoDTO());
@@ -353,6 +357,10 @@ public class GUI extends Application implements Grafica {
 		azioni.get(7).setUserData(new SecondaAzionePrincipaleDTO());
 		azioni.get(8).setUserData(new PassaDTO());
 		azioni.get(9).setUserData(new PescaCartaDTO());
+		
+		for(Button azione: azioni){
+			azione.setOnMouseClicked(onMouseClicked);
+		}
 	}
 
 	private void assegnaRegione() {
@@ -807,11 +815,11 @@ public class GUI extends Application implements Grafica {
 		DropShadow dp = new DropShadow();
 		dp.setSpread(0.80);
 		dp.setColor(Color.web("#fffefd"));
-		for (ImageView i : r) {
-			i.setDisable(false);
-			i.setEffect(dp);
-		}
 
+		for(ImageView regione: r){
+			regione.setDisable(false);
+			regione.setEffect(dp);
+		}
 		synchronized (lock) {
 			while (parametro == null) {
 				try {
@@ -822,7 +830,17 @@ public class GUI extends Application implements Grafica {
 				}
 			}
 		}
+		for(ImageView regione: r){
+			regione.setDisable(true);
+			regione.setEffect(null);
+		}
 		RegioneDTO regioneDTO = (RegioneDTO) parametro;
+		parametro = null;
+		return regioneDTO;
+	}
+
+	@Override
+	public TesseraPermessoDTO scegliTesseraRegione(List<TesseraPermessoDTO> tesserePermessoScoperte, RegioneDTO regioneDTO) {
 		List<ImageView> tessere;
 		if ("Mare".equals(regioneDTO.getNome()))
 			tessere = controller.getTessereMare();
@@ -830,21 +848,16 @@ public class GUI extends Application implements Grafica {
 			tessere = controller.getTessereCollina();
 		else
 			tessere = controller.getTessereMontagna();
+		
+		DropShadow dp = new DropShadow();
+		dp.setSpread(0.80);
+		dp.setColor(Color.web("#fffefd"));
 
 		for (ImageView i : tessere) {
 			i.setDisable(false);
 			i.setEffect(dp);
 		}
-		for (ImageView i : r) {
-			i.setDisable(true);
-			i.setEffect(null);
-		}
-		parametro = null;
-		return regioneDTO;
-	}
 
-	@Override
-	public TesseraPermessoDTO scegliTesseraRegione(List<TesseraPermessoDTO> tesserePermessoScoperte) {
 		synchronized (lock) {
 			while (parametro == null) {
 				try {
@@ -855,7 +868,7 @@ public class GUI extends Application implements Grafica {
 			}
 		}
 		TesseraPermessoDTO tesseraPermessoDTO = (TesseraPermessoDTO) parametro;
-		List<ImageView> tessere = controller.getTesserePermessoRegioni();
+		
 		for (ImageView i : tessere) {
 			i.setDisable(true);
 			i.setEffect(null);

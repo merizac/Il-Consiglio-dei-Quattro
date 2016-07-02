@@ -44,7 +44,7 @@ public interface Grafica {
 
 	public RegioneDTO scegliRegione(List<RegioneDTO> regioni);
 
-	public TesseraPermessoDTO scegliTesseraRegione(List<TesseraPermessoDTO> tesserePermessoScoperte);
+	public TesseraPermessoDTO scegliTesseraRegione(List<TesseraPermessoDTO> tesserePermessoScoperte, RegioneDTO regione);
 
 	public int scegliPrezzo();
 

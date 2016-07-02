@@ -480,7 +480,7 @@ public class CLI implements Grafica {
 	 * @return the permit tile DTO selected
 	 */
 	@Override
-	public TesseraPermessoDTO scegliTesseraRegione(List<TesseraPermessoDTO> tessere) {
+	public TesseraPermessoDTO scegliTesseraRegione(List<TesseraPermessoDTO> tessere, RegioneDTO regioneDTO) {
 
 		Utils.print("Seleziona tessera permesso[1/2]");
 		for (TesseraPermessoDTO t : tessere)
