@@ -2,7 +2,6 @@ package common.azioniDTO;
 
 import static org.junit.Assert.*;
 
-import java.awt.List;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -224,15 +223,4 @@ public class ControlloParametriTest {
 
 		assertEquals(consigliere, c);
 	}
-
-	/*	@Test
-	public void testCercaOfferta() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testCercaGiocatore() {
-		fail("Not yet implemented");
-	}
-*/
 }

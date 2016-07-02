@@ -41,7 +41,7 @@ public class PescaCartaDTOTest {
 
 	@Test
 	public void testToString() {
-		PescaCartaDTO pescaDTO=new PescaCartaDTO();
+		assertEquals("Pesca [Pesca]", new PescaCartaDTO().toString());
 	}
 	
 }

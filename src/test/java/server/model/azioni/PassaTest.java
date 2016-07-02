@@ -11,7 +11,7 @@ import org.junit.Test;
 import common.azioniDTO.PassaDTO;
 import server.model.game.GameState;
 import server.model.game.Giocatore;
-import server.model.macchinaStati.StartEnd;
+import server.model.macchinaStati.Stato10;
 import server.model.macchinaStati.StatoAcquistoMarket;
 import server.model.notify.Notify;
 import utility.Observer;
@@ -63,11 +63,11 @@ public class PassaTest {
 	
 	@Test
 	public void testIsTurnoFalse() {
-		StatoAcquistoMarket acquisto=new StatoAcquistoMarket(gameState);
+		Stato10 acquisto=new Stato10(gameState);
 		gameState.setStato(acquisto);
 		gameState.setGiocatoreCorrente(giocatore);
 		Passa passa=new Passa();
-		assertTrue(!passa.isTurno(acquisto.getGiocatori().get(1), gameState));
+		assertTrue(passa.isTurno(giocatore,gameState));
 	}
 
 	@Test

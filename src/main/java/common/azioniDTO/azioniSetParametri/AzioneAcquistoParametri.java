@@ -19,7 +19,7 @@ public class AzioneAcquistoParametri implements SetterParametri {
 	 */
 	@Override
 	public void setParametri(Grafica grafica, GameStateDTO gameStateDTO) {
-		grafica.mostraMessaggio("Seleziona l'oggetto che vuoi acquistare\n");
+		grafica.mostraMessaggioMarket("Seleziona l'oggetto che vuoi acquistare\n");
 		int offertaDTO = grafica.scegliOfferta(gameStateDTO.getOfferte());
 		GiocatoreDTO giocatoreDTO = gameStateDTO.getGiocatoreDTO();
 		azioneAcquistoDTO.setOfferta(offertaDTO);

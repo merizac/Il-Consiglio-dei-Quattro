@@ -36,7 +36,7 @@ public class AcquistoTesseraPermessoParametri implements SetterParametri {
 		grafica.mostraMessaggio("Seleziona la regione\n");
 		RegioneDTO regioneScelta = grafica.scegliRegione(gameStateDTO.getRegioni());
 		grafica.mostraMessaggio("Seleziona la tessera permesso della regione " + regioneScelta.getNome() + "\n");
-		TesseraPermessoDTO tesseraScelta = grafica.scegliTesseraRegione(regioneScelta.getTesserePermessoScoperte());
+		TesseraPermessoDTO tesseraScelta = grafica.scegliTesseraRegione(regioneScelta.getTesserePermessoScoperte(), regioneScelta);
 		acquistoTesseraPermessoDTO.setRegione(regioneScelta);
 		acquistoTesseraPermessoDTO.setCarte(cartePolitica);
 		acquistoTesseraPermessoDTO.setTesseraPermesso(tesseraScelta);

@@ -4,8 +4,6 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import server.model.game.CartaPolitica;
@@ -14,15 +12,8 @@ import server.model.game.Mazzo;
 
 public class MazzoTest {
 
-	private static ArrayList<CartaPolitica> carte;
 	static Mazzo<CartaPolitica> mazzo;
-	
-	@BeforeClass
-	public static void init(){
-//		carte.add(new CartaPolitica(new Colore("1")));
-//		carte.add(new CartaPolitica(new Colore("2")));
-//		mazzo=new Mazzo<CartaPolitica>();
-	}
+
 	
 	@Test
 	public void testAggiungiCarta() {
@@ -68,7 +59,6 @@ public class MazzoTest {
 		carte.add(carta1);
 		carte.add(carta2);
 		Mazzo<CartaPolitica> mazzo=new Mazzo<CartaPolitica>(carte);
-		Mazzo<CartaPolitica> mazzo1=new Mazzo<CartaPolitica>(carte);
 		mazzo.mescolaCarte();
 		int i=-1;
 		for(CartaPolitica c: carte){

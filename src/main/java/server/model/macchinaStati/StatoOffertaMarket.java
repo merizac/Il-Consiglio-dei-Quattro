@@ -32,7 +32,7 @@ public class StatoOffertaMarket implements Stato {
 		}
 		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
 		gameState.notifyObserver(new MessageNotify("Vuoi fare un offerta o passare?\n",
-				Arrays.asList(gameState.getGiocatoreCorrente())));
+				Arrays.asList(gameState.getGiocatoreCorrente()), true));
 	}
 
 	/**
@@ -48,7 +48,7 @@ public class StatoOffertaMarket implements Stato {
 			gameState.notifyObserver(
 					new AzioniNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
 			gameState.notifyObserver(new MessageNotify("Vuoi fare un offerta o passare?\n",
-					Arrays.asList(gameState.getGiocatoreCorrente())));
+					Arrays.asList(gameState.getGiocatoreCorrente()), true));
 			gameState.setStato(this);
 
 		} else {
@@ -68,7 +68,7 @@ public class StatoOffertaMarket implements Stato {
 		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
 		gameState.notifyObserver(new OffertaNotify(gameState.getOfferteMarket(), gameState.getGiocatori()));
 		gameState.notifyObserver(new MessageNotify("Vuoi fare un offerta o passare?\n",
-				Arrays.asList(gameState.getGiocatoreCorrente())));
+				Arrays.asList(gameState.getGiocatoreCorrente()), true));
 		gameState.setStato(this);
 	}
 

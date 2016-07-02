@@ -29,7 +29,7 @@ public class BonusAzionePrincipale extends Bonus {
 	public void usaBonus(GameState gameState) {
 		gameState.setBonusAzionePrincipale(true);
 		gameState.notifyObserver(new MessageNotify((numBonus==1) ? "Hai vinto "+numBonus+" azione principale\n" 
-					:"Hai vinto "+numBonus+" azioni principali\n" , Arrays.asList(gameState.getGiocatoreCorrente())));
+					:"Hai vinto "+numBonus+" azioni principali\n" , Arrays.asList(gameState.getGiocatoreCorrente()), false));
 	}
 
 	/* (non-Javadoc)

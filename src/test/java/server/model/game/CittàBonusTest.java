@@ -5,11 +5,9 @@ import static org.junit.Assert.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import common.gameDTO.ColoreBonusDTO;
 import server.model.bonus.Bonus;
 import server.model.bonus.BonusAiutanti;
 import server.model.bonus.BonusAzionePrincipale;
@@ -26,7 +24,7 @@ public class CittàBonusTest {
 	
 	@Test(expected=NullPointerException.class)
 	public void controlloCreazioneCittàConBonus(){
-		CittàBonus città=new CittàBonus("Nome", gameState.getRegioni().get(0), new ColoreCittà("c", null), null);
+		new CittàBonus("Nome", gameState.getRegioni().get(0), new ColoreCittà("c", null), null);
 	}
 	
 	@BeforeClass
@@ -49,13 +47,7 @@ public class CittàBonusTest {
 		CittàBonus nuovaCittàBonus=new CittàBonus("NOME", regione, colore, bonus);
 		assertTrue(colore.getCittà().contains(nuovaCittàBonus));
 	}	
-		
-		
-	
-	
-	//test sul costruttore per l'aggiunta al colore città
-	
-	
+
 	@Test
 	public void testGetBonus() {
 		ArrayList<Bonus> bonus=new ArrayList<Bonus>();

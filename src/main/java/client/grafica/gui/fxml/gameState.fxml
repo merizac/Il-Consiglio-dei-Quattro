@@ -268,7 +268,7 @@
                            <content>
                               <HBox prefHeight="79.0" prefWidth="510.0" styleClass="background" stylesheets="@../css/game.css">
                                  <children>
-                                    <ScrollPane maxHeight="-Infinity" prefHeight="75.0" prefViewportHeight="60.0" prefViewportWidth="200.0" prefWidth="424.0" stylesheets="@../css/scroll-bar.css">
+                                    <ScrollPane maxHeight="-Infinity" prefHeight="75.0" prefViewportHeight="60.0" prefViewportWidth="200.0" prefWidth="424.0">
                                        <content>
                                           <HBox fx:id="cartePolitica" maxHeight="-Infinity" prefHeight="73.0" prefWidth="422.0" spacing="10.0" styleClass="background">
                                              <stylesheets>
@@ -329,8 +329,8 @@
                                        </image>
                                     </ImageView>
                                     <Button id="transparentbutton" fx:id="pescaCarta" layoutX="28.0" layoutY="4.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="165.0" prefWidth="120.0" style="-fx-background-color: transparent;" styleClass="mazzo" stylesheets="@../css/game.css" />
-                                    <Button fx:id="quit" layoutX="9.0" layoutY="216.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="27.0" prefWidth="160.0" stylesheets="@../css/game.css" text="Quit" />
-                                    <Button fx:id="passa" layoutX="9.0" layoutY="170.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="27.0" prefWidth="160.0" styleClass="mybutton" stylesheets="@../css/game.css" text="&gt;&gt; Salta Azione Veloce" />
+                                    <Button fx:id="quit" layoutX="9.0" layoutY="216.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="35.0" prefWidth="160.0" stylesheets="@../css/game.css" text="Quit" />
+                                    <Button fx:id="passa" layoutX="9.0" layoutY="170.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="35.0" prefWidth="160.0" styleClass="mybutton" stylesheets="@../css/game.css" text="&gt;&gt; Salta Azione Veloce" />
                                  </children>
                               </AnchorPane>
                            </children>

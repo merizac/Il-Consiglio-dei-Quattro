@@ -44,13 +44,11 @@ public interface Grafica {
 
 	public RegioneDTO scegliRegione(List<RegioneDTO> regioni);
 
-	public TesseraPermessoDTO scegliTesseraRegione(List<TesseraPermessoDTO> tesserePermessoScoperte);
+	public TesseraPermessoDTO scegliTesseraRegione(List<TesseraPermessoDTO> tesserePermessoScoperte, RegioneDTO regione);
 
 	public int scegliPrezzo();
 
 	public CartaPoliticaDTO scegliCarta(List<CartaPoliticaDTO> cartePolitica);
-
-	public CittàDTO scegliCittàBonus(Set<CittàBonusDTO> città, ColoreDTO coloreGiocatore, String input);
 
 	public CittàDTO scegliCittà(Set<? extends CittàDTO> città, ColoreDTO coloreGiocatore);
 
@@ -75,4 +73,6 @@ public interface Grafica {
 	public void scegliMappa();
 
 	public TesseraPermessoDTO scegliTesseraPermessoUsataONonUsata(List<TesseraPermessoDTO> tessere, List<TesseraPermessoDTO> tessereUsate);
+
+	void mostraMessaggioMarket(String messaggio);
 }

@@ -56,7 +56,7 @@ public class CLI implements Grafica {
 		stdIn = new Scanner(System.in);
 
 		this.scegliNome();
-
+		
 		Utils.print("CIAO " + gameStateDTO.getGiocatoreDTO().getNome().toUpperCase()
 				+ ", BENVENUTO IN UNA NUOVA PARTITA DEL *Consiglio dei Quattro* !");
 
@@ -103,8 +103,9 @@ public class CLI implements Grafica {
 			if (action instanceof AzioneParametri)
 				try {
 					((AzioneParametri) action).parametri().setParametri(this, gameStateDTO);
-				} catch (AzioneNonEseguibile e1) {
-					this.mostraMessaggio(e1.getMessage());
+				} catch (AzioneNonEseguibile e) {
+					log.log(Level.INFO, "Azione non eseguibile", e);
+					this.mostraMessaggio(e.getMessage());
 					continue;
 				}
 			try {
@@ -480,7 +481,7 @@ public class CLI implements Grafica {
 	 * @return the permit tile DTO selected
 	 */
 	@Override
-	public TesseraPermessoDTO scegliTesseraRegione(List<TesseraPermessoDTO> tessere) {
+	public TesseraPermessoDTO scegliTesseraRegione(List<TesseraPermessoDTO> tessere, RegioneDTO regioneDTO) {
 
 		Utils.print("Seleziona tessera permesso[1/2]");
 		for (TesseraPermessoDTO t : tessere)
@@ -539,8 +540,8 @@ public class CLI implements Grafica {
 		return cittàScelta;
 	}
 
-	@Override
-	public CittàDTO scegliCittàBonus(Set<CittàBonusDTO> città, ColoreDTO coloreGiocatore, String input) {
+	
+	private CittàDTO scegliCittàBonus(Set<CittàBonusDTO> città, ColoreDTO coloreGiocatore, String input) {
 
 		CittàDTO cittàScelta = ControlloParametriDTO.cittàBonus(input, città, coloreGiocatore);
 		while (cittàScelta == null) {
@@ -715,5 +716,10 @@ public class CLI implements Grafica {
 			tesseraPermessoDTO = this.scegliTesseraGiocatore(tessere);
 
 		return tesseraPermessoDTO;
+	}
+
+	@Override
+	public void mostraMessaggioMarket(String messaggio) {
+		mostraMessaggio(messaggio);
 	}
 }

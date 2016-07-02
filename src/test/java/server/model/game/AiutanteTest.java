@@ -12,7 +12,7 @@ public class AiutanteTest {
 
 	@Test(expected=IllegalArgumentException.class)
 	public void testAiutanteNegativo() {
-		Aiutante aiutante=new Aiutante(-5);
+		new Aiutante(-5);
 	}
 	
 	@Test

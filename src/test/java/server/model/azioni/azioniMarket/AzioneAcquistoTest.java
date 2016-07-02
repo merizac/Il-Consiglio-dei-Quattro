@@ -19,7 +19,6 @@ import server.model.notify.AzioniNotify;
 import server.model.notify.GiocatoreNotify;
 import server.model.notify.MessageNotify;
 import server.model.notify.Notify;
-import utility.AzioneNonEseguibile;
 import utility.Observer;
 
 public class AzioneAcquistoTest {

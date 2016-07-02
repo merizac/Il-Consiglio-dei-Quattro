@@ -5,13 +5,14 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import client.grafica.gui.GUI;
 import common.gameDTO.TesseraPermessoDTO;
 import server.model.bonus.Bonus;
 import server.model.bonus.BonusAiutanti;
+import server.model.bonus.BonusTesseraPermesso;
 import server.model.game.Città;
 import server.model.game.GameState;
 import server.model.game.Giocatore;
@@ -150,4 +151,44 @@ public class TesseraPermessoTest {
 
 		assertTrue(tessera.possiede(venditore));
 	}
+	
+	@Test
+	public void testEqualsObject() {
+		TesseraPermesso tessera=new TesseraPermesso(città, bonus, regione);
+		assertTrue(tessera.equals(tessera));
+	}
+	
+	@Test
+	public void testEqualsNull() {
+		assertFalse(tessera.equals(null));
+	}
+	
+	@Test
+	public void testEqualsClass() {
+		assertFalse(tessera.equals(new GUI()));
+	}
+	
+	@Test
+	public void testEqualsBonusDiversi() {
+		TesseraPermesso tesseraPermesso=new TesseraPermesso(città, Arrays.asList(new BonusTesseraPermesso()), regione);	
+		assertFalse(tessera.equals(tesseraPermesso));
+	}
+	
+	@Test
+	public void testEqualsCittàDiversi() {
+		TesseraPermesso tesseraPermesso=new TesseraPermesso(Arrays.asList(gameState.getRegioni().get(0).getCittàRegione().get(3)), bonus, regione);	
+		assertFalse(tessera.equals(tesseraPermesso));
+	}
+	
+	@Test
+	public void testEqualsRegioneDiversi() {
+		TesseraPermesso tesseraPermesso=new TesseraPermesso(città, bonus, gameState.getRegioni().get(2));	
+		assertFalse(tessera.equals(tesseraPermesso));
+	}
+	
+	@Test
+	public void marketableDTO(){
+		assertTrue(tessera.instance() instanceof TesseraPermessoDTO);
+	}
+
 }

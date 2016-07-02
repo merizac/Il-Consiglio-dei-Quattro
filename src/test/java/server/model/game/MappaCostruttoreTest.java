@@ -3,10 +3,7 @@ package server.model.game;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashSet;
-
-import javax.swing.plaf.synth.SynthSpinnerUI;
 
 import org.junit.BeforeClass;
 import org.junit.Test;

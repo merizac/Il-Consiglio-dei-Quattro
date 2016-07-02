@@ -85,7 +85,6 @@ public class GUI extends Application implements Grafica {
 	private GUIGameController controller;
 	private GUIMarketController controllerMarket;
 	private GUIMappaController controllerMappa;
-	private Controller controllerCorrente;
 	private Stage finestra;
 	private Stage market;
 	private Stage mappa;
@@ -93,7 +92,7 @@ public class GUI extends Application implements Grafica {
 	private Object parametro;
 	private boolean carteInserite = false;
 	private Map<GiocatoreDTO, Tab> tabAvversari = new HashMap<>();
-	private final int timeout = 30000;
+	private final int timeout = 180000;
 	private Timer timer;
 	private TimerTask task;
 	private static final Logger log = Logger.getLogger(GUI.class.getName());
@@ -196,7 +195,7 @@ public class GUI extends Application implements Grafica {
 		Media media = new Media(audioGioco);
 		song = new MediaPlayer(media);
 		song.play();
-		song.setVolume(0.5);
+		song.setVolume(0.2);
 		Parent root = null;
 		try {
 			root = fxmloader.load();
@@ -209,7 +208,6 @@ public class GUI extends Application implements Grafica {
 		controller = fxmloader.getController();
 		controller.setGameStateDTO(this.gameStateDTO);
 		controller.setGui(this);
-		controllerCorrente = controller;
 		finestra.setScene(theScene);
 		finestra.setTitle("Il Consiglio Dei Quattro");
 		EventHandler<WindowEvent> onClose = (event) -> {
@@ -240,13 +238,14 @@ public class GUI extends Application implements Grafica {
 			}
 		};
 
-		timer.schedule(task, timeout);
+		//timer.schedule(task, timeout);
 
 		if (azioni.get(0) instanceof BonusGettoneNDTO || azioni.get(0) instanceof BonusTesseraAcquistataNDTO
 				|| azioni.get(0) instanceof BonusTesseraPermessoNDTO) {
 			try {
 				((AzioneParametri) azioni.get(0)).parametri().setParametri(this, gameStateDTO);
 			} catch (AzioneNonEseguibile e) {
+				log.log(Level.INFO, "Azione non eseguibile", e);
 				this.mostraMessaggio(e.getMessage());
 			}
 			try {
@@ -343,6 +342,13 @@ public class GUI extends Application implements Grafica {
 
 	private void assegnaAzioni() {
 		List<Button> azioni = controller.getAzioni();
+		EventHandler<Event> onMouseClicked = (Event) -> {
+			String audioGioco = this.getClass().getResource("css/Mouse.mp3").toExternalForm();
+			Media media = new Media(audioGioco);
+			MediaPlayer song = new MediaPlayer(media);
+			song.setVolume(1);
+			song.play();
+		};
 		azioni.get(0).setUserData(new ElezioneConsigliereDTO());
 		azioni.get(1).setUserData(new AcquistoTesseraPermessoDTO());
 		azioni.get(2).setUserData(new CostruzioneTesseraPermessoDTO());
@@ -353,6 +359,10 @@ public class GUI extends Application implements Grafica {
 		azioni.get(7).setUserData(new SecondaAzionePrincipaleDTO());
 		azioni.get(8).setUserData(new PassaDTO());
 		azioni.get(9).setUserData(new PescaCartaDTO());
+		
+		for(Button azione: azioni){
+			azione.setOnMouseClicked(onMouseClicked);
+		}
 	}
 
 	private void assegnaRegione() {
@@ -501,8 +511,14 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public void mostraMessaggio(String messaggio) {
-		controllerCorrente.getMessage().appendText(messaggio);
-		System.out.println("CONTROLLER :" + controllerCorrente);
+		Runnable runnable = () -> controller.getMessage().appendText(messaggio);
+		Platform.runLater(runnable);
+	}
+	
+	@Override
+	public void mostraMessaggioMarket(String messaggio){
+		Runnable runnable = () ->controllerMarket.getMessage().appendText(messaggio);
+		Platform.runLater(runnable);
 	}
 
 	@Override
@@ -648,7 +664,6 @@ public class GUI extends Application implements Grafica {
 			controllerMarket.setGameStateDTO(gameStateDTO);
 			controllerMarket.setGui(GUI.this);
 			controllerMarket.inizializza();
-			System.out.println("CONTROLLER MARKET :" + controllerCorrente);
 			market.setScene(theScene);
 			market.show();
 		};
@@ -796,18 +811,17 @@ public class GUI extends Application implements Grafica {
 		}
 	}
 
-	// non va bene per cambio tessere permesso veloce
 	@Override
 	public RegioneDTO scegliRegione(List<RegioneDTO> regioni) {
 		List<ImageView> r = controller.getRegioni();
 		DropShadow dp = new DropShadow();
 		dp.setSpread(0.80);
 		dp.setColor(Color.web("#fffefd"));
-		for (ImageView i : r) {
-			i.setDisable(false);
-			i.setEffect(dp);
-		}
 
+		for(ImageView regione: r){
+			regione.setDisable(false);
+			regione.setEffect(dp);
+		}
 		synchronized (lock) {
 			while (parametro == null) {
 				try {
@@ -818,7 +832,17 @@ public class GUI extends Application implements Grafica {
 				}
 			}
 		}
+		for(ImageView regione: r){
+			regione.setDisable(true);
+			regione.setEffect(null);
+		}
 		RegioneDTO regioneDTO = (RegioneDTO) parametro;
+		parametro = null;
+		return regioneDTO;
+	}
+
+	@Override
+	public TesseraPermessoDTO scegliTesseraRegione(List<TesseraPermessoDTO> tesserePermessoScoperte, RegioneDTO regioneDTO) {
 		List<ImageView> tessere;
 		if ("Mare".equals(regioneDTO.getNome()))
 			tessere = controller.getTessereMare();
@@ -826,21 +850,16 @@ public class GUI extends Application implements Grafica {
 			tessere = controller.getTessereCollina();
 		else
 			tessere = controller.getTessereMontagna();
+		
+		DropShadow dp = new DropShadow();
+		dp.setSpread(0.80);
+		dp.setColor(Color.web("#fffefd"));
 
 		for (ImageView i : tessere) {
 			i.setDisable(false);
 			i.setEffect(dp);
 		}
-		for (ImageView i : r) {
-			i.setDisable(true);
-			i.setEffect(null);
-		}
-		parametro = null;
-		return regioneDTO;
-	}
 
-	@Override
-	public TesseraPermessoDTO scegliTesseraRegione(List<TesseraPermessoDTO> tesserePermessoScoperte) {
 		synchronized (lock) {
 			while (parametro == null) {
 				try {
@@ -851,7 +870,7 @@ public class GUI extends Application implements Grafica {
 			}
 		}
 		TesseraPermessoDTO tesseraPermessoDTO = (TesseraPermessoDTO) parametro;
-		List<ImageView> tessere = controller.getTesserePermessoRegioni();
+		
 		for (ImageView i : tessere) {
 			i.setDisable(true);
 			i.setEffect(null);
@@ -1045,26 +1064,17 @@ public class GUI extends Application implements Grafica {
 	@Override
 	public MarketableDTO scegliMarketable() {
 		HBox aiutanti = controllerMarket.getAiutanti();
-		DropShadow ds = new DropShadow();
-		ds.setColor(Color.web("#ffffff"));
-		ds.setRadius(21);
-		ds.setSpread(0.6);
-		ds.setWidth(42.5);
-		ds.setHeight(43.5);
 		for (Node i : aiutanti.getChildren()) {
 			i.setDisable(false);
-			i.setEffect(ds);
 		}
 		HBox cartePolitica = controllerMarket.getCartePolitica();
 		for (Node i : cartePolitica.getChildren()) {
 			i.setDisable(false);
-			i.setEffect(ds);
 		}
 
 		HBox tesserePermesso = controllerMarket.getTesserePermesso();
 		for (Node i : tesserePermesso.getChildren()) {
 			i.setDisable(false);
-			i.setEffect(ds);
 		}
 
 		synchronized (lock) {
@@ -1080,17 +1090,14 @@ public class GUI extends Application implements Grafica {
 
 		for (Node i : aiutanti.getChildren()) {
 			i.setDisable(true);
-			i.setEffect(null);
 		}
 
 		for (Node i : cartePolitica.getChildren()) {
 			i.setDisable(true);
-			i.setEffect(null);
 		}
 
 		for (Node i : tesserePermesso.getChildren()) {
 			i.setDisable(true);
-			i.setEffect(null);
 		}
 		MarketableDTO marketableDTO = (MarketableDTO) parametro;
 		parametro = null;
@@ -1130,11 +1137,6 @@ public class GUI extends Application implements Grafica {
 		return offerte.indexOf(offertaDTO) + 1;
 	}
 
-	@Override
-	public CittàDTO scegliCittàBonus(Set<CittàBonusDTO> città, ColoreDTO coloreGiocatore, String input) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public List<CittàBonusDTO> scegliUnaCittà() {
@@ -1250,7 +1252,9 @@ public class GUI extends Application implements Grafica {
 	}
 
 	public void close() {
-		Runnable runnable = () -> finestra.close();
+		Runnable runnable = () -> {
+			finestra.close();
+			};
 		Platform.runLater(runnable);
 	}
 

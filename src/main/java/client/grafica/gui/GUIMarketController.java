@@ -27,6 +27,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import utility.AzioneNonEseguibile;
+import utility.Utils;
 
 public class GUIMarketController implements Controller {
 
@@ -138,6 +139,7 @@ public class GUIMarketController implements Controller {
 					((AzioneParametri) azioneDTO).parametri().setParametri(gui, gameStateDTO);
 				} catch (AzioneNonEseguibile e) {
 					gui.azioneNonValida("Azione non eseguibile!", e.getMessage());
+					log.log(Level.INFO, "Azione non esegubile", e);
 					return;
 				}
 			}
@@ -175,10 +177,15 @@ public class GUIMarketController implements Controller {
 	public void handleOk() {
 		synchronized (gui.getLock()) {
 			String prezzoOfferta = this.prezzo.getText();
-			gui.setParametro(prezzoOfferta);
-			gui.getLock().notifyAll();
-			ok.setDisable(true);
-			this.prezzo.clear();
+			if (Utils.isNumeric(prezzoOfferta)) {
+				gui.setParametro(prezzoOfferta);
+				gui.getLock().notifyAll();
+				ok.setDisable(true);
+				this.prezzo.clear();
+			} else {
+				gui.azioneNonValida("Prezzo errato", "Inserire un valore intero");
+				this.prezzo.clear();
+			}
 		}
 	}
 
@@ -191,8 +198,7 @@ public class GUIMarketController implements Controller {
 
 	@Override
 	public TextArea getMessage() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.message;
 	}
 
 }

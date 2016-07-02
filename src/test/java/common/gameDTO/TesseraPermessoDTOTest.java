@@ -92,16 +92,6 @@ public class TesseraPermessoDTOTest {
 	}
 
 	@Test
-	public void testCreaMarketable() {
-
-	}
-
-	@Test
-	public void testCreaMarketableDTO() {
-
-	}
-
-	@Test
 	public void testToString() {
 		List<Città> c=new ArrayList<>();
 		c.add(gameState.getRegioni().get(0).getCittàRegione().get(2));

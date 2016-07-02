@@ -13,12 +13,9 @@ import server.model.bonus.BonusPuntiVittoria;
 import server.model.macchinaStati.StartEnd;
 import server.model.macchinaStati.Stato11;
 import server.model.market.Offerta;
-import server.model.notify.ClassificaNotify;
 import server.model.notify.GameStateNotify;
 import server.model.notify.GiocatoreNotify;
 import server.model.notify.Notify;
-import server.model.notify.PerdenteNotify;
-import server.model.notify.VincitoreNotify;
 import utility.Observer;
 
 public class GameStateTest {

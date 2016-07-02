@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.internal.runners.statements.Fail;
 
 import common.azioniDTO.CostruzioneTesseraPermessoDTO;
 import common.azioniDTO.azioneVisitor.AzioneVisitor;

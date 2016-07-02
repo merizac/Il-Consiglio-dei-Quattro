@@ -28,7 +28,7 @@ public class BonusMoneta extends Bonus {
 	public void usaBonus(GameState gameState) {
 		gameState.getGiocatoreCorrente().aumentaRicchezza(monete);
 		gameState.notifyObserver(new MessageNotify((monete==1) ? "Hai vinto "+monete+" moneta\n" :"Hai vinto"+ monete+" monete\n",
-				Arrays.asList(gameState.getGiocatoreCorrente())));
+				Arrays.asList(gameState.getGiocatoreCorrente()), false));
 	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()

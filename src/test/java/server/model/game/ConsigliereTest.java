@@ -22,5 +22,16 @@ public class ConsigliereTest {
 	public void testGetColore() {
 		assertEquals(new Colore("consigliere"), consigliere.getColore());
 	}
+	
+	@Test
+	public void testEqualsNull(){
+		assertNotEquals(consigliere, null);
+	}
+	
+	@Test
+	public void testEqualsObject(){
+		assertNotEquals(consigliere, new Object());
+	}
+	
 
 }

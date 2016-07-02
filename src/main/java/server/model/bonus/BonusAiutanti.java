@@ -30,7 +30,7 @@ public class BonusAiutanti extends Bonus {
 	public void usaBonus(GameState gameState) {
 		gameState.getGiocatoreCorrente().getAiutanti().aggiungiAiutanti(this.aiutanti);
 		gameState.notifyObserver(new MessageNotify((aiutanti==1) ?"Hai vinto "+aiutanti+" aiutante\n" : "Hai vinto "+aiutanti+" aiutanti\n"
-				, Arrays.asList(gameState.getGiocatoreCorrente())));
+				, Arrays.asList(gameState.getGiocatoreCorrente()), false));
 	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()

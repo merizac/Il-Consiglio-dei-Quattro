@@ -23,7 +23,7 @@ public class BonusTesseraPermessoParametri implements SetterParametri {
 		grafica.mostraMessaggio("Hai vinto un bonus tessera permesso!\nScegli una regione\n");
 		RegioneDTO regioneScelta = grafica.scegliRegione(gameStateDTO.getRegioni());
 		grafica.mostraMessaggio("Scegli una tessera permesso della regione " + regioneScelta.getNome() + "\n");
-		TesseraPermessoDTO tesseraScelta = grafica.scegliTesseraRegione(regioneScelta.getTesserePermessoScoperte());
+		TesseraPermessoDTO tesseraScelta = grafica.scegliTesseraRegione(regioneScelta.getTesserePermessoScoperte(), regioneScelta);
 		bonusTesseraPermessoNDTO.setRegione(regioneScelta);
 		bonusTesseraPermessoNDTO.setTesseraScoperta(tesseraScelta);
 	}

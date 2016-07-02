@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import common.azioniDTO.PescaCartaDTO;
 import server.model.azioni.PescaCarta;
 import server.model.game.CartaPolitica;
 import server.model.game.GameState;
@@ -32,5 +34,13 @@ public class PescaCartaTest {
 		int numeroCarte=gameState.getGiocatoreCorrente().getCartePolitica().size();
 		assertTrue(carta==gameState.getGiocatoreCorrente().getCartePolitica().get(numeroCarte-1));
 	}
+	
+	@Test
+	public void testAzioneDTO() {
+		assertTrue(new PescaCarta().getAzioneDTO() instanceof PescaCartaDTO);
+	}
+	
+	
+	
 
 }

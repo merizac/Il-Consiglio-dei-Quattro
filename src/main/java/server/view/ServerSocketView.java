@@ -104,13 +104,13 @@ public class ServerSocketView extends View implements Runnable {
 					try {
 						azione = action.accept(azioneVisitor);
 					} catch (ParameterException e) {
-						update(new MessageNotify(e.getMessage(), Arrays.asList(gameState.getGiocatoreCorrente())));
+						log.log(Level.INFO, "Azione non corretta", e);
+						update(new MessageNotify(e.getMessage(), Arrays.asList(gameState.getGiocatoreCorrente()), false));
 						Utils.print("[SERVER] Ricevuta l'azione " + azione + " dal giocatore "
 								+ this.giocatore.getNome() + " con errore: " + e.getMessage());
 						continue;
 					}
-					System.out
-							.println("[SERVER] Ricevuta l'azione " + azione + " dal giocatore " + giocatore.getNome());
+					Utils.print("[SERVER] Ricevuta l'azione " + azione + " dal giocatore " + giocatore.getNome());
 
 					if ((azione.isTurno(giocatore, gameState)
 							&& gameState.getStato().daEseguire(gameState.getStato().getAzioni(), azione))
@@ -118,17 +118,20 @@ public class ServerSocketView extends View implements Runnable {
 						this.notifyObserver(azione);
 						Utils.print("[SERVER] Inviata l'azione " + azione);
 					} else {
-						this.socketOut.writeObject(new MessageClientNotify("Non è il tuo turno"));
+						this.socketOut.writeObject(new MessageClientNotify("Non è il tuo turno", false));
 						this.socketOut.flush();
 					}
 
 				}
-			} catch (ClassNotFoundException | IOException e1) {
+			} catch (IOException e1) {
+				log.log(Level.INFO, "Client disconnesso", e1);
 				disconnetti();
 				Exit exit = new Exit();
 				exit.setGiocatore(giocatore);
 				this.notifyObserver(exit);
 				return;
+			} catch (ClassNotFoundException e1) {
+				log.log(Level.SEVERE, "Errore ricevuto un object diverso dal giocatore", e1);
 			}
 
 		}
