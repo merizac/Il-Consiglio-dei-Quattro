@@ -11,15 +11,23 @@ public class AzioniClientNotify implements ClientNotify {
 	private static final long serialVersionUID = -4132525333640241505L;
 	private List<AzioneDTO> azioni;
 
+	/**
+	 * actions available notify
+	 * 
+	 * @param azioni
+	 */
 	public AzioniClientNotify(List<AzioneDTO> azioni) {
-		if(azioni==null)
+		if (azioni == null)
 			throw new NullPointerException("Le azioni non possono essere null");
-		this.azioni=azioni;
+		this.azioni = azioni;
 	}
 
+	/**
+	 * show available actions
+	 */
 	@Override
 	public void stamp(Grafica grafica, GameStateDTO gameStateDTO) {
-		gameStateDTO.setAzioni(azioni);	
+		gameStateDTO.setAzioni(azioni);
 		grafica.mostraAzioni(azioni);
 	}
 

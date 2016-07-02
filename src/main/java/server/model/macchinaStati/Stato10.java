@@ -17,6 +17,11 @@ public class Stato10 implements Stato {
 
 	private List<Azione> azioni;
 
+	/**
+	 * state with one main action and zero quick action
+	 * 
+	 * @param gameState
+	 */
 	public Stato10(GameState gameState) {
 		System.out.println("[SERVER] " + this);
 		azioni = Arrays.asList(new ElezioneConsigliere(), new AcquistoTesseraPermesso(),
@@ -26,6 +31,11 @@ public class Stato10 implements Stato {
 		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
 	}
 
+	/**
+	 * when the action is a main action this transition change if player win
+	 * bonus of addicional main action, if is the last round (someone finish
+	 * emporium) , or if it's market time.
+	 */
 	@Override
 	public void transizionePrincipale(GameState gameState) {
 		if (!gameState.isBonusAzionePrincipale()) {
@@ -43,9 +53,10 @@ public class Stato10 implements Stato {
 
 				if (gameState.getNumeroTurni() != gameState.getGiocatori().size())
 					gameState.setStato(new StartEnd(gameState));
-				else{
+				else {
 					gameState.notifyObserver(new MarketNotify(gameState.getGiocatori(), false));
-					gameState.setStato(new StatoOffertaMarket(gameState));}
+					gameState.setStato(new StatoOffertaMarket(gameState));
+				}
 			}
 		} else {
 			gameState.setBonusAzionePrincipale(false);
@@ -53,11 +64,17 @@ public class Stato10 implements Stato {
 		}
 	}
 
+	/**
+	 * if the player win a interactive bonus in nobility track
+	 */
 	@Override
 	public void transizioneBonus(GameState gameState) {
 		gameState.setStato(new StatoBonus(gameState, this));
 	}
 
+	/**
+	 * get azioni
+	 */
 	@Override
 	public List<Azione> getAzioni() {
 		return this.azioni;

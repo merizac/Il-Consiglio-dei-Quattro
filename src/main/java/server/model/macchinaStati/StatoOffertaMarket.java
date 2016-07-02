@@ -18,6 +18,11 @@ public class StatoOffertaMarket implements Stato {
 
 	private List<Azione> azioni;
 
+	/**
+	 * market state with pffer action.
+	 * 
+	 * @param gameState
+	 */
 	public StatoOffertaMarket(GameState gameState) {
 		this.azioni = Arrays.asList(new AzioneOfferta(), new Passa());
 		System.out.println("[SERVER] Azioni Stato Offerta: " + azioni);
@@ -25,21 +30,24 @@ public class StatoOffertaMarket implements Stato {
 			gameState.notifyObserver(new GiocatoreMarketNotify(g, Arrays.asList(g)));
 		}
 		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
-		gameState.notifyObserver(
-				new MessageNotify("Vuoi fare un offerta o passare?\n", Arrays.asList(gameState.getGiocatoreCorrente())));
+		gameState.notifyObserver(new MessageNotify("Vuoi fare un offerta o passare?\n",
+				Arrays.asList(gameState.getGiocatoreCorrente())));
 	}
 
+	/**
+	 * when the player decide to don't do any offers
+	 */
 	@Override
 	public void transizionePassa(GameState gameState) {
-		
+
 		gameState.decrementaTurno();
 		gameState.nextPlayer();
-		
+
 		if (gameState.getNumeroTurni() != 0) {
 			gameState.notifyObserver(
 					new AzioniNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
-			gameState.notifyObserver(
-					new MessageNotify("Vuoi fare un offerta o passare?\n", Arrays.asList(gameState.getGiocatoreCorrente())));
+			gameState.notifyObserver(new MessageNotify("Vuoi fare un offerta o passare?\n",
+					Arrays.asList(gameState.getGiocatoreCorrente())));
 			gameState.setStato(this);
 
 		} else {
@@ -51,15 +59,21 @@ public class StatoOffertaMarket implements Stato {
 		}
 	}
 
+	/**
+	 * when the player decide to offer something
+	 */
 	@Override
 	public void transizioneOfferta(GameState gameState) {
 		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
 		gameState.notifyObserver(new OffertaNotify(gameState.getOfferteMarket(), gameState.getGiocatori()));
-		gameState.notifyObserver(
-				new MessageNotify("Vuoi fare un offerta o passare?\n", Arrays.asList(gameState.getGiocatoreCorrente())));
+		gameState.notifyObserver(new MessageNotify("Vuoi fare un offerta o passare?\n",
+				Arrays.asList(gameState.getGiocatoreCorrente())));
 		gameState.setStato(this);
 	}
 
+	/**
+	 * get action avaiable in this state
+	 */
 	@Override
 	public List<Azione> getAzioni() {
 		return this.azioni;

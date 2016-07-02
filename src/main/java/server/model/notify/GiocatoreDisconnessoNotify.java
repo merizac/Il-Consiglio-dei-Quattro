@@ -8,13 +8,13 @@ import server.view.clientNotify.ClientNotify;
 import server.view.clientNotify.GiocatoreDisconnessoClientNotify;
 
 public class GiocatoreDisconnessoNotify implements Notify {
-	
+
 	private Giocatore giocatoreDisconnesso;
 	private List<Giocatore> giocatori;
-	
-	
 
 	/**
+	 * notify if one player exit the game
+	 * 
 	 * @param giocatoreDisconnesso
 	 * @param giocatori
 	 */
@@ -23,16 +23,22 @@ public class GiocatoreDisconnessoNotify implements Notify {
 		this.giocatori = giocatori;
 	}
 
+	/**
+	 * notified players
+	 */
 	@Override
 	public boolean daInviare(Giocatore giocatore) {
 		return giocatori.contains(giocatore);
 	}
 
+	/**
+	 * client notify
+	 */
 	@Override
 	public ClientNotify notifyToClientNotify() {
-		GiocatoreDTO giocatoreDisconnesso= new GiocatoreDTO();
+		GiocatoreDTO giocatoreDisconnesso = new GiocatoreDTO();
 		giocatoreDisconnesso.inizializza(this.giocatoreDisconnesso);
-		
+
 		return new GiocatoreDisconnessoClientNotify(giocatoreDisconnesso);
 	}
 

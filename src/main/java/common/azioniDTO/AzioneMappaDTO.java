@@ -18,8 +18,12 @@ public class AzioneMappaDTO implements AzioneDTO {
 	public AzioneMappaDTO(String mappa) {
 		this.mappa = mappa;
 	}
-	
-	public String getMappa(){
+
+	/**
+	 * 
+	 * @return mappa
+	 */
+	public String getMappa() {
 		return this.mappa;
 	}
 

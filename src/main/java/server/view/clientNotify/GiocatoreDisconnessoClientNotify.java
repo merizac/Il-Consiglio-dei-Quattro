@@ -13,15 +13,20 @@ public class GiocatoreDisconnessoClientNotify implements ClientNotify {
 	private GiocatoreDTO giocatoreDisconnesso;
 
 	/**
+	 * notify when one player exit the game
+	 * 
 	 * @param giocatoreDisconnesso
 	 */
 	public GiocatoreDisconnessoClientNotify(GiocatoreDTO giocatoreDisconnesso) {
 		this.giocatoreDisconnesso = giocatoreDisconnesso;
 	}
 
+	/**
+	 * show message
+	 */
 	@Override
 	public void stamp(Grafica grafica, GameStateDTO gameStateDTO) {
-		String messaggio = "Il giocatore "+giocatoreDisconnesso.getNome()+" ha abbandonato la partita\n";
+		String messaggio = "Il giocatore " + giocatoreDisconnesso.getNome() + " ha abbandonato la partita\n";
 		grafica.mostraMessaggio(messaggio);
 	}
 

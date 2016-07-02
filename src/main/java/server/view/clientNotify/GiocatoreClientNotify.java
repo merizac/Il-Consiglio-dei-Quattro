@@ -10,18 +10,23 @@ public class GiocatoreClientNotify implements ClientNotify {
 	private GiocatoreDTO giocatoreDTO;
 
 	/**
+	 * player notify
+	 * 
 	 * @param giocatoreDTO
 	 */
 	public GiocatoreClientNotify(GiocatoreDTO giocatoreDTO) {
-		if(giocatoreDTO==null)
+		if (giocatoreDTO == null)
 			throw new NullPointerException("Il giocatoreDTO non può essere null");
 		this.giocatoreDTO = giocatoreDTO;
 	}
 
+	/**
+	 * show player update
+	 */
 	@Override
 	public void stamp(Grafica grafica, GameStateDTO gameStateDTO) {
-		
-		GiocatoreDTO giocatore=gameStateDTO.getGiocatoreDTO();
+
+		GiocatoreDTO giocatore = gameStateDTO.getGiocatoreDTO();
 		giocatore.setTesserePermesso(this.giocatoreDTO.getTesserePermesso());
 		giocatore.setTesserePermessoUsate(this.giocatoreDTO.getTesserePermessoUsate());
 		giocatore.setAiutanti(this.giocatoreDTO.getAiutanti());
@@ -32,7 +37,7 @@ public class GiocatoreClientNotify implements ClientNotify {
 		giocatore.setPunteggioRicchezza(this.giocatoreDTO.getPunteggioRicchezza());
 		giocatore.setPunteggioVittoria(this.giocatoreDTO.getPunteggioVittoria());
 		giocatore.setTessereBonus(this.giocatoreDTO.getTessereBonus());
-		
+
 		grafica.mostraGiocatore(giocatoreDTO);
 	}
 

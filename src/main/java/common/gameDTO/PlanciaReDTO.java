@@ -12,6 +12,7 @@ public class PlanciaReDTO implements Serializable {
 
 	private BalconeDTO balconeRe;
 	private List<Bonus> bonusPremioRe;
+
 	/**
 	 * @return the balconeRe
 	 */
@@ -19,40 +20,46 @@ public class PlanciaReDTO implements Serializable {
 	public BalconeDTO getBalconeRe() {
 		return balconeRe;
 	}
+
 	/**
-	 * @param balconeRe the balconeRe to set
+	 * @param balconeRe
+	 *            the balconeRe to set
 	 */
 
 	public void setBalconeRe(BalconeDTO balconeRe) {
 		this.balconeRe = balconeRe;
 	}
+
 	/**
 	 * @return the bonusPremioRe
 	 */
 	public List<Bonus> getBonusPremioRe() {
 		return bonusPremioRe;
 	}
+
 	/**
-	 * @param bonusPremioRe the bonusPremioRe to set
+	 * @param bonusPremioRe
+	 *            the bonusPremioRe to set
 	 */
 	public void setBonusPremioRe(List<Bonus> bonusPremioRe) {
 		this.bonusPremioRe = bonusPremioRe;
 	}
 
-	
-	public void inizializza(PlanciaRe planciaRe){
-		this.balconeRe=new BalconeDTO();
+	/**
+	 * plancia re inizialisation
+	 * 
+	 * @param planciaRe
+	 */
+	public void inizializza(PlanciaRe planciaRe) {
+		this.balconeRe = new BalconeDTO();
 		this.balconeRe.inizializza(planciaRe.getBalconeRe());
 		this.setBonusPremioRe(planciaRe.getBonusPremioRe());
-		
+
 	}
-	
+
 	@Override
 	public String toString() {
 		return "PlanciaReDTO [balconeRe=" + balconeRe + ", bonusPremioRe=" + bonusPremioRe + "]";
 	}
-	
-	
-	
 
 }

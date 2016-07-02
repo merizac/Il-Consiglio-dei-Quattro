@@ -15,12 +15,16 @@ public class OffertaClientNotify implements ClientNotify {
 	private List<OffertaDTO> offerte;
 
 	/**
+	 * notify market's offer to players
 	 * @param offerte
 	 */
 	public OffertaClientNotify(List<OffertaDTO> offerte) {
 		this.offerte = offerte;
 	}
 
+	/**
+	 * show offers
+	 */
 	@Override
 	public void stamp(Grafica grafica, GameStateDTO gameStateDTO) {
 		gameStateDTO.setOfferte(this.offerte);

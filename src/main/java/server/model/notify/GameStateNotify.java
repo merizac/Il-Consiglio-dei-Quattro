@@ -8,23 +8,29 @@ import server.model.game.Giocatore;
 import server.view.clientNotify.ClientNotify;
 import server.view.clientNotify.GameStateClientNotify;
 
-
-public class GameStateNotify implements Notify{
+public class GameStateNotify implements Notify {
 
 	private GameState gameState;
 	private List<Giocatore> giocatori;
+
 	/**
+	 * notify the cheange in gameState
+	 * 
 	 * @param gameStateDTO
 	 * @param giocatori
 	 */
 	public GameStateNotify(GameState gameState, List<Giocatore> giocatori) {
-		if(gameState==null)
+		if (gameState == null)
 			throw new NullPointerException("Il gamestate non può essere null ");
-		if(giocatori==null)
+		if (giocatori == null)
 			throw new NullPointerException("I giocatori non possono essere null ");
 		this.gameState = gameState;
 		this.giocatori = giocatori;
 	}
+
+	/**
+	 * notified players
+	 */
 	@Override
 	public boolean daInviare(Giocatore giocatore) {
 		if (giocatore == null)
@@ -32,19 +38,17 @@ public class GameStateNotify implements Notify{
 		else
 			return giocatori.contains(giocatore);
 	}
-	
+
+	/**
+	 * create client notify
+	 */
 	@Override
 	public ClientNotify notifyToClientNotify() {
 		GameStateDTO gameStateDTO = new GameStateDTO();
 		gameStateDTO.inizializza(gameState);
-		System.out.println("bonus re server :"+ gameState.getPlanciaRe().getBonusPremioRe());
-		System.out.println("bonus re dto server "+ gameStateDTO.getPlanciaReDTO().getBonusPremioRe());		
+		System.out.println("bonus re server :" + gameState.getPlanciaRe().getBonusPremioRe());
+		System.out.println("bonus re dto server " + gameStateDTO.getPlanciaReDTO().getBonusPremioRe());
 		return new GameStateClientNotify(gameStateDTO);
 	}
-	
-	
-	
-	
+
 }
-
-

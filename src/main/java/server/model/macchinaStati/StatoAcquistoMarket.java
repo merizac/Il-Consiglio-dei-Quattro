@@ -22,6 +22,11 @@ public class StatoAcquistoMarket implements Stato {
 	private List<Giocatore> giocatori;
 	private List<Azione> azioni;
 
+	/**
+	 * state of acquisto in market
+	 * 
+	 * @param gameState
+	 */
 	public StatoAcquistoMarket(GameState gameState) {
 		System.out.println("[SERVER] " + this);
 		this.azioni = Arrays.asList(new AzioneAcquisto(), new Passa());
@@ -29,6 +34,11 @@ public class StatoAcquistoMarket implements Stato {
 		inizializzaStato(gameState);
 	}
 
+	/**
+	 * notify to the player of avaiable actions
+	 * 
+	 * @param gameState
+	 */
 	private void inizializzaStato(GameState gameState) {
 		Collections.shuffle(giocatori);
 		gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(giocatori.get(0))));
@@ -36,6 +46,9 @@ public class StatoAcquistoMarket implements Stato {
 		gameState.notifyObserver(new MessageNotify("Vuoi acquistare\n?", Arrays.asList(giocatori.get(0))));
 	}
 
+	/**
+	 * when player choose to don't buy anything players in this state are random
+	 */
 	@Override
 	public void transizionePassa(GameState gameState) {
 		this.giocatori.remove(0);
@@ -51,6 +64,9 @@ public class StatoAcquistoMarket implements Stato {
 		}
 	}
 
+	/**
+	 * when the player choos to do an offert
+	 */
 	public void transizioneOfferta(GameState gameState) {
 		if (gameState.getOfferteMarket().isEmpty()) {
 			gameState.notifyObserver(new MessageNotify("Gli oggetti in vendita sono finiti\n", giocatori));
@@ -69,6 +85,9 @@ public class StatoAcquistoMarket implements Stato {
 		}
 	}
 
+	/**
+	 * get actions
+	 */
 	@Override
 	public List<Azione> getAzioni() {
 		return this.azioni;
