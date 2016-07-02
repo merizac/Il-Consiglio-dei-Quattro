@@ -12,6 +12,10 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javax.print.DocFlavor.URL;
+
+
 import client.connessione.Connessione;
 import client.grafica.Grafica;
 import common.azioniDTO.AcquistoTesseraPermessoDTO;
@@ -66,6 +70,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -163,6 +169,7 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public void start(Stage primaryStage) throws IOException {
+		primaryStage.setTitle("Login ");
 		this.gameStateDTO = new GameStateDTO();
 		this.gameStateDTO.setGiocatoreDTO(new GiocatoreDTO());
 		FXMLLoader fxmloader = new FXMLLoader();
@@ -184,7 +191,11 @@ public class GUI extends Application implements Grafica {
 	public void inizializza() {
 		FXMLLoader fxmloader = new FXMLLoader();
 		fxmloader.setLocation(getClass().getClassLoader().getResource("client/grafica/gui/fxml/gameState.fxml"));
-
+		String audioGioco = this.getClass().getResource("css/audioGioco.mp3").toExternalForm();
+		Media media = new Media(audioGioco);
+		MediaPlayer song = new MediaPlayer(media);
+		song.play();
+		song.setVolume(0.5);
 		Parent root = null;
 		try {
 			root = fxmloader.load();
@@ -199,6 +210,7 @@ public class GUI extends Application implements Grafica {
 		controller.setGui(this);
 		controllerCorrente = controller;
 		finestra.setScene(theScene);
+		finestra.setTitle("Il Consiglio Dei Quattro");
 		EventHandler<WindowEvent> onClose = (event) -> {
 			try {
 				connessione.inviaAzione(new ExitDTO());
