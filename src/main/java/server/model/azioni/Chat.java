@@ -31,6 +31,8 @@ public class Chat extends Azione{
 	 * @param messaggio the messaggio to set
 	 */
 	public void setMessaggio(String messaggio) {
+		if(messaggio==null)
+			throw new NullPointerException("Non puoi spedire un messaggio vuoto");
 		this.messaggio = messaggio;
 	}
 
