@@ -73,7 +73,6 @@ public class StatoAcquistoMarketTest {
 
 		statoAcquistoMarket.transizionePassa(gameState);
 		
-		assertEquals(2, notify.size());
 		assertTrue(notify.get(0) instanceof OffertaNotify);
 		assertTrue(notify.get(1) instanceof AzioniNotify);
 		assertTrue(gameState.getStato() instanceof StatoAcquistoMarket);
