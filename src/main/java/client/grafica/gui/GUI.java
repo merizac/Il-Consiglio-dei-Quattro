@@ -89,7 +89,7 @@ public class GUI extends Application implements Grafica {
 	private Object parametro;
 	private boolean carteInserite = false;
 	private Map<GiocatoreDTO, Tab> tabAvversari = new HashMap<>();
-	private final int timeout = 180000;
+	private final int timeout = 30000;
 	private Timer timer;
 	private TimerTask task;
 	private static final Logger log = Logger.getLogger(GUI.class.getName());
@@ -277,7 +277,7 @@ public class GUI extends Application implements Grafica {
 			}
 		};
 
-		// timer.schedule(task, timeout);
+		//timer.schedule(task, timeout);
 
 		if (azioni.get(0) instanceof BonusGettoneNDTO || azioni.get(0) instanceof BonusTesseraAcquistataNDTO
 				|| azioni.get(0) instanceof BonusTesseraPermessoNDTO) {

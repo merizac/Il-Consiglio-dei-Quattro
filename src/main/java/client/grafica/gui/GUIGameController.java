@@ -524,8 +524,8 @@ public class GUIGameController implements Controller {
 	public void handleExit() {
 		try {
 			gui.getConnessione().inviaAzione(new ExitDTO());
-			gui.stopTimer();
 			gui.close();
+			gui.stopTimer();
 		} catch (RemoteException e) {
 			log.log(Level.SEVERE, "Errore nell'invio dell'azione exit", e);
 		}

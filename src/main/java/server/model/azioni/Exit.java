@@ -2,6 +2,7 @@ package server.model.azioni;
 
 import common.azioniDTO.AzioneDTO;
 import common.azioniDTO.ExitDTO;
+import server.Server;
 import server.model.game.GameState;
 import server.model.game.Giocatore;
 import server.model.notify.GiocatoreDisconnessoNotify;
@@ -11,18 +12,25 @@ public class Exit extends Azione {
 	private Giocatore giocatore;
 
 	/**
-	 * when a player request the exit action, he is going out of the game.
-	 * this method remove the player from the list of players and add in GiocatoriFinePartita
-	 * notify the disconnession of the player
-	 * set transition in state pattern
+	 * when a player request the exit action, he is going out of the game. this
+	 * method remove the player from the list of players and add in
+	 * GiocatoriFinePartita notify the disconnession of the player set
+	 * transition in state pattern
 	 */
 	@Override
-	public void eseguiAzione(GameState gameState){
+	public void eseguiAzione(GameState gameState) {
 		gameState.getGiocatori().remove(giocatore);
 		gameState.getGiocatoriFinePartita().add(giocatore);
-		gameState.notifyObserver(new GiocatoreDisconnessoNotify(giocatore, gameState.getGiocatori()));
-		if (giocatore.equals(gameState.getGiocatoreCorrente())) {
-			gameState.getStato().transizioneExit(gameState);
+		if (gameState.getGiocatori().size() == 1) {
+			Giocatore g = gameState.getGiocatori().remove(0);
+			gameState.getGiocatoriFinePartita().add(g);
+			gameState.calcolaVincitore();
+			Server.disconnettiClient(gameState);
+		} else {
+			gameState.notifyObserver(new GiocatoreDisconnessoNotify(giocatore, gameState.getGiocatori()));
+			if (giocatore.equals(gameState.getGiocatoreCorrente())) {
+				gameState.getStato().transizioneExit(gameState);
+			}
 		}
 	}
 
