@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.Timer;
@@ -548,6 +549,7 @@ public class CLI implements Grafica {
 
 	/**
 	 * choose city with bonus
+	 * 
 	 * @param città
 	 * @param coloreGiocatore
 	 * @param input
@@ -694,7 +696,10 @@ public class CLI implements Grafica {
 
 	@Override
 	public void mostraGiocatoreMarket(GiocatoreDTO giocatoreDTO) {
-		// TODO Auto-generated method stub
+		Utils.print(giocatoreDTO.getNome());
+		Utils.print("\nNumero aiutanti: " + giocatoreDTO.getAiutanti());
+		Utils.print("Carte Politica: " + giocatoreDTO.getCartePolitica());
+		Utils.print("Tessere Permesso: " + giocatoreDTO.getTesserePermesso() + "\n");
 
 	}
 
@@ -711,9 +716,12 @@ public class CLI implements Grafica {
 	 */
 	@Override
 	public void scegliMappa() {
-		Utils.print("Scelta mappa1");
+
+		Random random = new Random();
+		int numeroMappa = random.nextInt(2) + 1;
+		Utils.print("Scelta mappa"+numeroMappa);
 		try {
-			connessione.inviaAzione(new AzioneMappaDTO("mappa1"));
+			connessione.inviaAzione(new AzioneMappaDTO("mappa"+numeroMappa));
 		} catch (RemoteException e) {
 			log.log(Level.SEVERE, "Errore nell'invio dell'azione al server", e);
 		}

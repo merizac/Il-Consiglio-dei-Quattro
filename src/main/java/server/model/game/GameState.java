@@ -239,7 +239,7 @@ public class GameState extends Observable<Notify> {
 	 * 
 	 * @param giocatori
 	 */
-	public void creaGiocatori(List<Giocatore> giocatori) {
+	/*public void creaGiocatori(List<Giocatore> giocatori) {
 		int i = 0;
 		for (Giocatore g : giocatori) {
 			g.setAiutanti(new Aiutante(18 + i));
@@ -259,6 +259,7 @@ public class GameState extends Observable<Notify> {
 				int numeroEmpori = random.nextInt(3) + 1;
 
 				for (int s = 0; s < numeroEmpori; s++) {
+					System.out.println("size regioneeeeee :"+r.getCittàRegione().size());
 					int rnd = random.nextInt(r.getCittàRegione().size());
 					if (r.getCittàRegione().get(rnd).getEmpori().isEmpty())
 						r.getCittàRegione().get(rnd).aggiungiEmporio(new Emporio(new Colore("2")));
@@ -269,10 +270,10 @@ public class GameState extends Observable<Notify> {
 			}
 		}
 		this.giocatoreCorrente = this.giocatori.get(0);
-	}
+	}*/
 
 	
-	/*public void creaGiocatori(List<Giocatore> giocatori) {
+	public void creaGiocatori(List<Giocatore> giocatori) {
 		int i = 0;
 		for (Giocatore g : giocatori) {
 			g.setAiutanti(new Aiutante(1 + i));
@@ -302,7 +303,7 @@ public class GameState extends Observable<Notify> {
 			}
 		}
 		this.giocatoreCorrente = this.giocatori.get(0);
-	}*/
+	}
 	/**
 	 * set politic cards to each player in the game
 	 * 

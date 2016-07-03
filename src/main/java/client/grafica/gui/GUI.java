@@ -358,7 +358,7 @@ public class GUI extends Application implements Grafica {
 			List<HBox> hbox = controller.getListaEmporiHBox();
 			Map<String, Image> mappaEmpori = controller.getMappaEmpori();
 
-			for (int i = 0; i < città.size() - 1; i++) {
+			for (int i = 0; i < città.size(); i++) {
 				hbox.get(i).getChildren().clear();
 				for (String emporio : città.get(i).getEmpori()) {
 					ImageView imageView = new ImageView();
@@ -1104,13 +1104,17 @@ public class GUI extends Application implements Grafica {
 		ds.setSpread(0.6);
 		ds.setWidth(42.5);
 		ds.setHeight(43.5);
-		for (Node i : tessereGiocatore.getChildren()) {
-			i.setDisable(false);
-			i.setEffect(ds);
+		if (!tessereGiocatore.getChildren().isEmpty()) {
+			for (Node i : tessereGiocatore.getChildren()) {
+				i.setDisable(false);
+				i.setEffect(ds);
+			}
 		}
-		for (Node i : tessereGiocatoreUsate.getChildren()) {
-			i.setDisable(false);
-			i.setEffect(ds);
+		if (!tessereGiocatoreUsate.getChildren().isEmpty()) {
+			for (Node i : tessereGiocatoreUsate.getChildren()) {
+				i.setDisable(false);
+				i.setEffect(ds);
+			}
 		}
 		System.out.println("abilitati");
 		synchronized (lock) {

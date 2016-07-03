@@ -69,6 +69,7 @@ public class CostruzioneAiutoRe extends AzionePrincipale implements Bonusable {
 		else {
 			gameState.getPedinaRe().setCittà(cittàCostruzione);
 			pagaAiutanti(gameState);
+
 			for (CartaPolitica c : carteGiocatore) {
 				gameState.getGiocatoreCorrente().getCartePolitica().remove(c);
 				gameState.getMazzoCartePolitica().getCarte().add(c);
