@@ -397,13 +397,6 @@ public class GUI extends Application implements Grafica {
 	 */
 	private void assegnaAzioni() {
 		List<Button> azioni = controller.getAzioni();
-		EventHandler<Event> onMouseClicked = (Event) -> {
-			String audioGioco = this.getClass().getResource("css/Mouse.mp3").toExternalForm();
-			Media media = new Media(audioGioco);
-			MediaPlayer song = new MediaPlayer(media);
-			song.setVolume(1);
-			song.play();
-		};
 		azioni.get(0).setUserData(new ElezioneConsigliereDTO());
 		azioni.get(1).setUserData(new AcquistoTesseraPermessoDTO());
 		azioni.get(2).setUserData(new CostruzioneTesseraPermessoDTO());
@@ -414,11 +407,6 @@ public class GUI extends Application implements Grafica {
 		azioni.get(7).setUserData(new SecondaAzionePrincipaleDTO());
 		azioni.get(8).setUserData(new PassaDTO());
 		azioni.get(9).setUserData(new PescaCartaDTO());
-
-		/*
-		 * for(Button azione: azioni){ azione.setOnMouseClicked(onMouseClicked);
-		 * }
-		 */
 	}
 
 	/**
