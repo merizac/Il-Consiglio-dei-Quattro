@@ -7,6 +7,7 @@ import java.util.List;
 import common.azioniDTO.AzioneDTO;
 import common.azioniDTO.BonusTesseraPermessoNDTO;
 import server.model.azioni.Azione;
+import server.model.bonus.Bonus;
 import server.model.game.GameState;
 import server.model.game.Giocatore;
 import server.model.game.Regione;
@@ -32,9 +33,9 @@ public class BonusTesseraPermessoN extends Azione {
 	@Override
 	public void eseguiAzione(GameState gameState) {
 
-		regione.getTesserePermessoScoperte().remove(tesseraScoperta);
-		gameState.getGiocatoreCorrente().getTesserePermesso().add(tesseraScoperta);
-		regione.getTesserePermessoScoperte().add(regione.getMazzoTesserePermesso().pescaCarte());
+		for (Bonus b : tesseraScoperta.getBonus()) {
+			b.usaBonus(gameState);
+		}
 		gameState.getGiocatoreCorrente().getBonusNobiltà().remove(this);
 		gameState.notifyObserver(new GameStateNotify(gameState, gameState.getGiocatori()));
 		List<Giocatore> avversari = new ArrayList<>(gameState.getGiocatori());

@@ -561,8 +561,7 @@ public class CLI implements Grafica {
 	 * @param stdIn
 	 * @return the politic card DTO
 	 */
-	@Override
-	public CartaPoliticaDTO scegliCarta(List<CartaPoliticaDTO> cartePolitica) {
+	private CartaPoliticaDTO scegliCarta(List<CartaPoliticaDTO> cartePolitica) {
 		Utils.print("Seleziona la carta politica");
 		Utils.print(cartePolitica.toString());
 		String comando = stdIn.nextLine();

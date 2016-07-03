@@ -48,8 +48,6 @@ public interface Grafica {
 
 	public int scegliPrezzo();
 
-	public CartaPoliticaDTO scegliCarta(List<CartaPoliticaDTO> cartePolitica);
-
 	public CittàDTO scegliCittà(Set<? extends CittàDTO> città, ColoreDTO coloreGiocatore);
 
 	public TesseraPermessoDTO scegliTesseraGiocatore(List<TesseraPermessoDTO> list);
