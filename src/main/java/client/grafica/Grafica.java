@@ -111,15 +111,7 @@ public interface Grafica {
 	 */
 	public int scegliPrezzo();
 
-	/**
-	 * this method let the player to chose a politic card from the politic cards
-	 * of his hand
-	 * 
-	 * @param cartePolitica
-	 * @param stdIn
-	 * @return the politic card DTO
-	 */
-	public CartaPoliticaDTO scegliCarta(List<CartaPoliticaDTO> cartePolitica);
+
 
 	/**
 	 * this method let the player chose a city where he want to build an

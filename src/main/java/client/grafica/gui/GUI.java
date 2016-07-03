@@ -1019,12 +1019,6 @@ public class GUI extends Application implements Grafica {
 		return prezzo;
 	}
 
-	@Override
-	public CartaPoliticaDTO scegliCarta(List<CartaPoliticaDTO> cartePolitica) {
-
-		return null;
-	}
-
 	/**
 	 * choose city in the map
 	 * @return cittàDTO
@@ -1097,6 +1091,7 @@ public class GUI extends Application implements Grafica {
 			List<TesseraPermessoDTO> tessereUsate) {
 		HBox tessereGiocatore = controller.getTesserePermessoGiocatore();
 		HBox tessereGiocatoreUsate = controller.getTesserePermessoGiocatoreUsate();
+
 		DropShadow ds = new DropShadow();
 		ds.setColor(Color.web("#ffffff"));
 		ds.setRadius(21);
@@ -1107,12 +1102,10 @@ public class GUI extends Application implements Grafica {
 			i.setDisable(false);
 			i.setEffect(ds);
 		}
-
 		for (Node i : tessereGiocatoreUsate.getChildren()) {
 			i.setDisable(false);
 			i.setEffect(ds);
 		}
-
 		synchronized (lock) {
 			while (parametro == null) {
 				try {

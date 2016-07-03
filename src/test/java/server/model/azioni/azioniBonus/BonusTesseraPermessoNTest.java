@@ -16,6 +16,7 @@ import server.model.macchinaStati.StartEnd;
 import server.model.notify.AvversarioNotify;
 import server.model.notify.GameStateNotify;
 import server.model.notify.GiocatoreNotify;
+import server.model.notify.MessageNotify;
 import server.model.notify.Notify;
 import utility.Observer;
 
@@ -57,13 +58,13 @@ public class BonusTesseraPermessoNTest {
 		bonus.eseguiAzione(gameState);
 		
 		System.out.println(notify);
-		assertTrue(!gameState.getRegioni().get(0).getTesserePermessoScoperte().contains(tessera));
-		assertTrue(giocatore.getTesserePermesso().contains(tessera));
 		assertEquals(2, gameState.getRegioni().get(0).getTesserePermessoScoperte().size());
 		assertTrue(!giocatore.getBonusNobiltà().contains(bonus));
-		assertTrue(notify.get(0) instanceof GameStateNotify);
-		assertTrue(notify.get(1) instanceof AvversarioNotify);
-		assertTrue(notify.get(2) instanceof GiocatoreNotify);
+		int size=notify.size();
+		assertTrue(notify.get(size-4) instanceof GameStateNotify);
+		assertTrue(notify.get(size-3) instanceof AvversarioNotify);
+		assertTrue(notify.get(size-2) instanceof GiocatoreNotify);
+		assertTrue(notify.get(size-1) instanceof MessageNotify);
 		assertTrue(gameState.getStato() instanceof StartEnd);
 	}
 
