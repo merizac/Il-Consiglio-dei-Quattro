@@ -1,6 +1,5 @@
 package client.grafica.cli;
 
-
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -51,12 +50,15 @@ public class CLI implements Grafica {
 	private TimerTask task;
 	private static final Logger log = Logger.getLogger(CLI.class.getName());
 
+	/**
+	 * start game. set name and start connection
+	 */
 	public void start() {
 
 		stdIn = new Scanner(System.in);
 
 		this.scegliNome();
-		
+
 		Utils.print("CIAO " + gameStateDTO.getGiocatoreDTO().getNome().toUpperCase()
 				+ ", BENVENUTO IN UNA NUOVA PARTITA DEL *Consiglio dei Quattro* !");
 
@@ -412,8 +414,7 @@ public class CLI implements Grafica {
 		boolean ok = false;
 		Utils.print("Scegli il balcone");
 		for (RegioneDTO regione : regioni) {
-			Utils.print(
-					"Balcone " + regione.getNome() + ": " + regione.getBalcone() + "[" + regione.getNome() + "]");
+			Utils.print("Balcone " + regione.getNome() + ": " + regione.getBalcone() + "[" + regione.getNome() + "]");
 		}
 		Utils.print("Balcone re: " + balconeRe + "[Re]");
 
@@ -540,7 +541,6 @@ public class CLI implements Grafica {
 		return cittàScelta;
 	}
 
-	
 	private CittàDTO scegliCittàBonus(Set<CittàBonusDTO> città, ColoreDTO coloreGiocatore, String input) {
 
 		CittàDTO cittàScelta = ControlloParametriDTO.cittàBonus(input, città, coloreGiocatore);
@@ -592,6 +592,9 @@ public class CLI implements Grafica {
 		return Integer.parseInt(comando);
 	}
 
+	/**
+	 * show players that aren't the current player
+	 */
 	@Override
 	public void mostraAvversario(GiocatoreDTO avversario) {
 		Utils.print("\nGiocatore :" + avversario.getNome());
@@ -603,12 +606,20 @@ public class CLI implements Grafica {
 		Utils.print("Tessere permesso " + avversario.getTesserePermesso() + "\n");
 	}
 
+	/**
+	 * start cli
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		CLI cli = new CLI();
 		cli.start();
 	}
 
-
+	/**
+	 * choose one city with bonus where the player has build.
+	 * for interactive nobility bonus
+	 */
 	@Override
 	public List<CittàBonusDTO> scegliUnaCittà() {
 
@@ -632,6 +643,11 @@ public class CLI implements Grafica {
 
 	}
 
+	/**
+	 * choose two city with bonus where the player has build.
+	 * bonus can not be the same.
+	 * for interactive bonus of nobility track
+	 */
 	@Override
 	public List<CittàBonusDTO> scegliDueCittà() {
 
@@ -658,22 +674,32 @@ public class CLI implements Grafica {
 		return cittàb;
 	}
 
+	/**
+	 * notify start of market state
+	 */
 	@Override
 	public void startMarket() {
 		Utils.print("Il market è iniziato!\n");
 	}
 
+	
 	@Override
 	public void mostraGiocatoreMarket(GiocatoreDTO giocatoreDTO) {
 		// TODO Auto-generated method stub
 
 	}
 
+	/**
+	 * notify the end of market state
+	 */
 	@Override
 	public void fineMarket() {
 		Utils.print("Il market è finito!\n");
 	}
 
+	/**
+	 * choose map for start game
+	 */
 	@Override
 	public void scegliMappa() {
 		Utils.print("Scelta mappa1");
@@ -684,6 +710,10 @@ public class CLI implements Grafica {
 		}
 	}
 
+	/**
+	 * player can choose if win bonus from one of his discovery or covery permit tile.
+	 * For interactive bonus in nobility track
+	 */
 	@Override
 	public TesseraPermessoDTO scegliTesseraPermessoUsataONonUsata(List<TesseraPermessoDTO> tessere,
 			List<TesseraPermessoDTO> tessereUsate) {
@@ -718,6 +748,9 @@ public class CLI implements Grafica {
 		return tesseraPermessoDTO;
 	}
 
+	/**
+	 * shoe message of market
+	 */
 	@Override
 	public void mostraMessaggioMarket(String messaggio) {
 		mostraMessaggio(messaggio);

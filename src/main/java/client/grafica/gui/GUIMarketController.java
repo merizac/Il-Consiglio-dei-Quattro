@@ -57,6 +57,9 @@ public class GUIMarketController implements Controller {
 	private List<Button> azioni;
 	private static final Logger log = Logger.getLogger(GUIMarketController.class.getName());
 
+	/**
+	 * initializes action of market
+	 */
 	public void inizializza() {
 		acquisto.setUserData(new AzioneAcquistoDTO());
 		offerta.setUserData(new AzioneOffertaDTO());
@@ -64,6 +67,10 @@ public class GUIMarketController implements Controller {
 		azioni = Arrays.asList(acquisto, offerta, passa);
 	}
 
+	/**
+	 * 
+	 * @return offerte
+	 */
 	public VBox getOfferte() {
 		return offerte;
 	}
@@ -119,6 +126,10 @@ public class GUIMarketController implements Controller {
 		return ok;
 	}
 
+	/**
+	 * handle action of market
+	 * @param event
+	 */
 	public void handleAzione(ActionEvent event) {
 		ExecutorService executor = Executors.newSingleThreadExecutor();
 		Runnable runnable = () -> {
@@ -156,6 +167,10 @@ public class GUIMarketController implements Controller {
 		executor.submit(runnable);
 	}
 
+	/**
+	 * handle offers action
+	 * @param event
+	 */
 	public void handleOfferta(Event event) {
 		synchronized (gui.getLock()) {
 			gui.setParametro(((ImageView) event.getSource()).getUserData());
@@ -170,10 +185,16 @@ public class GUIMarketController implements Controller {
 		}
 	}
 
+	/**
+	 * handle setting of price
+	 */
 	public void handlePrezzo() {
 		ok.setDisable(false);
 	}
 
+	/**
+	 * handle action on 'ok' button
+	 */
 	public void handleOk() {
 		synchronized (gui.getLock()) {
 			String prezzoOfferta = this.prezzo.getText();
@@ -189,6 +210,10 @@ public class GUIMarketController implements Controller {
 		}
 	}
 
+	/**
+	 * handle acquisto action
+	 * @param event
+	 */
 	public void handleAcquisto(ActionEvent event) {
 		synchronized (gui.getLock()) {
 			gui.setParametro(((Button) event.getSource()).getUserData());
@@ -196,6 +221,9 @@ public class GUIMarketController implements Controller {
 		}
 	}
 
+	/**
+	 * get message
+	 */
 	@Override
 	public TextArea getMessage() {
 		return this.message;

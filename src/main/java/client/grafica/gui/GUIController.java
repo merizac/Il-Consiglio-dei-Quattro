@@ -1,6 +1,5 @@
 package client.grafica.gui;
 
-import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -8,7 +7,6 @@ import java.util.logging.Logger;
 import client.connessione.ConnessioneRMI;
 import client.connessione.ConnessioneSocket;
 import common.gameDTO.GiocatoreDTO;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -38,6 +36,9 @@ public class GUIController {
 		this.gui = gui;
 	}
 
+	/**
+	 * login button 'gioca'
+	 */
 	@FXML
 	public void button() {
 		if (nome.getText().isEmpty()) {

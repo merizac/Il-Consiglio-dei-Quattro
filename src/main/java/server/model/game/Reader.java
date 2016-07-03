@@ -150,7 +150,7 @@ public class Reader {
 						bonus.add(new BonusCartePolitica(quantità));
 					} else if ("BonusMoneta".equals(tmp)) {
 						int quantità = Integer.parseInt(st.nextToken());
-						bonus.add(new BonusCartePolitica(quantità));
+						bonus.add(new BonusMoneta(quantità));
 					}
 				}
 			}
