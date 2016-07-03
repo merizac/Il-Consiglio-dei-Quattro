@@ -18,15 +18,28 @@ public class GUIMappaController {
 	private GUI gui;
 	private static final Logger log=Logger.getLogger(GUIMappaController.class.getName());
 	
+	/**
+	 * initializes map
+	 */
 	public void inizializza(){
 		mappa1.setUserData("mappa1");
 		mappa2.setUserData("mappa2");
 	}
 	
+	/**
+	 * set gui
+	 * 
+	 * @param gui
+	 */
 	public void setGui(GUI gui){
 		this.gui=gui;
 	}
 	
+	/**
+	 * handle action on map
+	 * 
+	 * @param event
+	 */
 	@FXML
 	public void handleMappa(ActionEvent event){
 		try {
