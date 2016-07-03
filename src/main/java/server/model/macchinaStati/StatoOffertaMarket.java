@@ -17,10 +17,13 @@ import utility.Utils;
 
 public class StatoOffertaMarket implements Stato {
 
+	/**
+	 * list of action available in this state
+	 */
 	private List<Azione> azioni;
 
 	/**
-	 * market state with pffer action.
+	 * market state with offer action.
 	 * 
 	 * @param gameState
 	 */

@@ -10,10 +10,16 @@ import utility.ParameterException;
 public class BonusTesseraPermessoNDTO implements AzioneDTO, AzioneParametri {
 
 	/**
-	 * 
+	 * serial version for serializable object
 	 */
 	private static final long serialVersionUID = 5768338832160630143L;
+	/**
+	 * region 
+	 */
 	private RegioneDTO regione;
+	/**
+	 * permit tile from the region selected
+	 */
 	private TesseraPermessoDTO tesseraScoperta;
 
 	
@@ -52,6 +58,9 @@ public class BonusTesseraPermessoNDTO implements AzioneDTO, AzioneParametri {
 	}
 	
 
+	/**
+	 * visitor pattern
+	 */
 	@Override
 	public Azione accept(AzioneVisitor azioneVisitor) throws ParameterException {
 		return azioneVisitor.visit(this);	
@@ -59,8 +68,8 @@ public class BonusTesseraPermessoNDTO implements AzioneDTO, AzioneParametri {
 
 
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/*
+	 * to string
 	 */
 	@Override
 	public String toString() {
@@ -68,6 +77,9 @@ public class BonusTesseraPermessoNDTO implements AzioneDTO, AzioneParametri {
 	}
 
 
+	/**
+	 * set parameter
+	 */
 	@Override
 	public BonusTesseraPermessoParametri parametri() {
 		return new BonusTesseraPermessoParametri(this);

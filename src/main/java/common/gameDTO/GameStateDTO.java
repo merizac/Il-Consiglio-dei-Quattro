@@ -18,17 +18,53 @@ import server.model.game.comparator.ComparatorOrdineAlfabetico;
 
 public class GameStateDTO implements Serializable {
 
+	/**
+	 * serial version for serializable object
+	 */
 	private static final long serialVersionUID = -8629825962043239713L;
+	/**
+	 * cities in the map
+	 */
 	private Set<CittàDTO> città;
+	/**
+	 * region in the map
+	 */
 	private List<RegioneDTO> regioni;
+	/**
+	 * king
+	 */
 	private ReDTO pedinaRE;
+	/**
+	 * plancia of king
+	 */
 	private PlanciaReDTO planciaReDTO;
+	/**
+	 * Counselor
+	 */
 	private List<ConsigliereDTO> consiglieri;
+	/**
+	 * available action
+	 */
 	private List<AzioneDTO> azioniDisponibili;
+	/**
+	 * player
+	 */
 	private GiocatoreDTO giocatoreDTO;
+	/**
+	 * players that aren't the current player
+	 */
 	private List<GiocatoreDTO> avversari;
+	/**
+	 * offer
+	 */
 	private List<OffertaDTO> offerte;
+	/**
+	 * color bonus tile
+	 */
 	private List<ColoreBonusDTO> bonusColore;
+	/**
+	 * name of map
+	 */
 	private String nomeMappa;
 
 	/**
@@ -222,9 +258,7 @@ public class GameStateDTO implements Serializable {
 	}
 
 	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
+	 * to string
 	 */
 	@Override
 	public String toString() {

@@ -17,6 +17,9 @@ import utility.Utils;
 
 public class Stato01 implements Stato {
 
+	/**
+	 * list of action available in this state
+	 */
 	private List<Azione> azioni;
 
 	/**
@@ -90,9 +93,7 @@ public class Stato01 implements Stato {
 	}
 
 	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
+	 * to string
 	 */
 	@Override
 	public String toString() {

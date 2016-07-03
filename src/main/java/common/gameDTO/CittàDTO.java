@@ -7,26 +7,39 @@ import java.util.Set;
 import server.model.game.Città;
 import server.model.game.Emporio;
 
+public class CittàDTO implements Serializable {
 
-public class CittàDTO implements Serializable{
-
+	/**
+	 * serial version for serializable object
+	 */
 	private static final long serialVersionUID = -2915919940093407446L;
+	/**
+	 * name of city
+	 */
 	private String nome;
+	/**
+	 * color of the city
+	 */
 	private ColoreDTO ColoreDTO;
+	/**
+	 * emporium in the city
+	 */
 	private Set<String> empori;
+
 	/**
 	 * @return the nome
 	 */
 	public String getNome() {
 		return nome;
 	}
+
 	/**
-	 * @param nome the nome to set
+	 * @param nome
+	 *            the nome to set
 	 */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
 
 	/**
 	 * @return the ColoreDTO
@@ -34,20 +47,25 @@ public class CittàDTO implements Serializable{
 	public ColoreDTO getColoreDTO() {
 		return ColoreDTO;
 	}
+
 	/**
-	 * @param ColoreDTO the ColoreDTO to set
+	 * @param ColoreDTO
+	 *            the ColoreDTO to set
 	 */
 	public void setColoreDTO(ColoreDTO ColoreDTO) {
 		this.ColoreDTO = ColoreDTO;
 	}
+
 	/**
 	 * @return the empori
 	 */
 	public Set<String> getEmpori() {
 		return empori;
 	}
+
 	/**
-	 * @param empori the empori to set
+	 * @param empori
+	 *            the empori to set
 	 */
 	public void setEmpori(Set<String> empori) {
 		this.empori = empori;
@@ -55,22 +73,22 @@ public class CittàDTO implements Serializable{
 
 	/**
 	 * map a città into a cittàDTO
+	 * 
 	 * @param città
 	 */
-	public void inizializza(Città città){
+	public void inizializza(Città città) {
 		this.setNome(città.getNome());
-		ColoreDTO coloreDTO=new ColoreDTO();
+		ColoreDTO coloreDTO = new ColoreDTO();
 		coloreDTO.inizializza(città.getColoreCittà());
 		this.setColoreDTO(coloreDTO);
 		this.setEmpori(new HashSet<>());
-		for(Emporio e: città.getEmpori()){
+		for (Emporio e : città.getEmpori()) {
 			this.getEmpori().add(e.getColore().getColore());
 		}
 	}
-	
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
+	/*
+	 * hashcode
 	 */
 	@Override
 	public int hashCode() {
@@ -79,8 +97,9 @@ public class CittàDTO implements Serializable{
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		return result;
 	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
+
+	/*
+	 * equals
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -99,12 +118,12 @@ public class CittàDTO implements Serializable{
 		return true;
 	}
 
-
+	/**
+	 * to string
+	 */
 	@Override
 	public String toString() {
-		return nome + " Colore:" + ColoreDTO
-				+ " Empori:" + empori ;
+		return nome + " Colore:" + ColoreDTO + " Empori:" + empori;
 	}
-	
-	
+
 }

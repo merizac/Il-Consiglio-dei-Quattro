@@ -8,7 +8,14 @@ import server.model.notify.AzioniNotify;
 import utility.Utils;
 
 public class StatoBonus implements Stato {
+	/**
+	 * memorize the previous state
+	 */
 	private Stato stato;
+	
+	/**
+	 * list of action available in this state
+	 */
 	private List<Azione> azioni;
 
 	/**
@@ -61,9 +68,7 @@ public class StatoBonus implements Stato {
 	}
 
 	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
+	 * to string
 	 */
 	@Override
 	public String toString() {

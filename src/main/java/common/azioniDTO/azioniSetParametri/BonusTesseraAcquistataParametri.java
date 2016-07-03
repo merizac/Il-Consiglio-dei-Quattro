@@ -9,6 +9,11 @@ public class BonusTesseraAcquistataParametri implements SetterParametri {
 
 	private BonusTesseraAcquistataNDTO bonusTesseraAcquistataNDTO;
 
+	/**
+	 * action of BonusTesseraAcquistata
+	 * 
+	 * @param bonusTesseraAcquistataNDTO
+	 */
 	public BonusTesseraAcquistataParametri(BonusTesseraAcquistataNDTO bonusTesseraAcquistataNDTO) {
 		this.bonusTesseraAcquistataNDTO = bonusTesseraAcquistataNDTO;
 	}

@@ -9,6 +9,11 @@ public class AzioneAcquistoParametri implements SetterParametri {
 
 	private AzioneAcquistoDTO azioneAcquistoDTO;
 
+	/**
+	 * action AzioneAcquisto
+	 * 
+	 * @param azioneAcquistoDTO
+	 */
 	public AzioneAcquistoParametri(AzioneAcquistoDTO azioneAcquistoDTO) {
 		this.azioneAcquistoDTO = azioneAcquistoDTO;
 	}

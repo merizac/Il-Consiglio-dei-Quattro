@@ -10,6 +10,11 @@ public class ElezioneConsigliereParametri implements SetterParametri {
 
 	private ElezioneConsigliereDTO azione;
 
+	/**
+	 * action of ElezioneConsigliere
+	 * 
+	 * @param azione
+	 */
 	public ElezioneConsigliereParametri(ElezioneConsigliereDTO azione) {
 		this.azione = azione;
 	}

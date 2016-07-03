@@ -10,9 +10,12 @@ public class BonusTesseraAcquistataNDTO implements AzioneDTO, AzioneParametri{
 
 	private boolean usata;
 	/**
-	 * 
+	 * serial version for serializable object
 	 */
 	private static final long serialVersionUID = -1866697657818100542L;
+	/**
+	 * permit tile from the player
+	 */
 	private TesseraPermessoDTO tesseraPermesso;
 	
 	
@@ -33,8 +36,8 @@ public class BonusTesseraAcquistataNDTO implements AzioneDTO, AzioneParametri{
 	public Azione accept(AzioneVisitor azioneVisitor) throws ParameterException {
 		return azioneVisitor.visit(this);	
 	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/*
+	 * to string
 	 */
 	@Override
 	public String toString() {

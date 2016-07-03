@@ -10,10 +10,25 @@ import server.model.game.TesseraPermesso;
 
 public class RegioneDTO implements Serializable {
 
+	/**
+	 * serial version for serializable object
+	 */
 	private static final long serialVersionUID = 8912658420067177656L;
+	/**
+	 * name of region
+	 */
 	private String nome;
+	/**
+	 * discovery permit tile in each region
+	 */
 	private List<TesseraPermessoDTO> tesserePermessoScoperte;
+	/**
+	 * bonus of region
+	 */
 	private Bonus bonusRegione;
+	/**
+	 * balcony of region
+	 */
 	private BalconeDTO balcone;
 
 	/**
@@ -98,9 +113,7 @@ public class RegioneDTO implements Serializable {
 	}
 
 	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
+	 * to string
 	 */
 	@Override
 	public String toString() {

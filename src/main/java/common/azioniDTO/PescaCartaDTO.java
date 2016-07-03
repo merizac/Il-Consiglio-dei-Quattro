@@ -5,6 +5,9 @@ import server.model.azioni.Azione;
 
 public class PescaCartaDTO implements AzioneDTO {
 
+	/**
+	 * serial version for serializable object
+	 */
 	private static final long serialVersionUID = 4395569912555731424L;
 
 	/**
@@ -16,9 +19,8 @@ public class PescaCartaDTO implements AzioneDTO {
 	}
 
 	/*
-	 * (non-Javadoc)
 	 * 
-	 * @see java.lang.Object#toString()
+	 * to string
 	 */
 	@Override
 	public String toString() {

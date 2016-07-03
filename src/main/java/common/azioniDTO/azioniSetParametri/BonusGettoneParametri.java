@@ -11,6 +11,11 @@ public class BonusGettoneParametri implements SetterParametri {
 
 	private BonusGettoneNDTO bonusGettoneNDTO;
 
+	/**
+	 * action of BonusGettoneParametri
+	 * 
+	 * @param bonusGettoneNDTO
+	 */
 	public BonusGettoneParametri(BonusGettoneNDTO bonusGettoneNDTO) {
 		this.bonusGettoneNDTO = bonusGettoneNDTO;
 	}

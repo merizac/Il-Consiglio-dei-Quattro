@@ -12,10 +12,16 @@ import utility.ParameterException;
 public class BonusGettoneNDTO implements AzioneDTO, AzioneParametri {
 
 	/**
-	 * 
+	 * serial version for serializable object
 	 */
 	private static final long serialVersionUID = -5454333598048906851L;
+	/**
+	 * list of cities with bonus
+	 */
 	private List<CittàBonusDTO> città;
+	/**
+	 * how many bonus of cities the player can win. can be one or two
+	 */
 	private int numeroGettoni;
 
 	/**
@@ -56,15 +62,16 @@ public class BonusGettoneNDTO implements AzioneDTO, AzioneParametri {
 	}
 
 	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
+	 * to string
+	  */
 	@Override
 	public String toString() {
 			return "Bonus Gettone [B3]";
 	}
 
+	/**
+	 * set parameter
+	 */
 	@Override
 	public BonusGettoneParametri parametri() {
 		return new BonusGettoneParametri(this);

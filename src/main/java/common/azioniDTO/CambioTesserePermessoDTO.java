@@ -9,9 +9,12 @@ import utility.ParameterException;
 public class CambioTesserePermessoDTO implements AzioneDTO, AzioneParametri {
 
 	/**
-	 * 
+	 * serial version for serializable object
 	 */
 	private static final long serialVersionUID = 2237104774390257699L;
+	/**
+	 * region
+	 */
 	private RegioneDTO regione;
 
 
@@ -34,14 +37,17 @@ public class CambioTesserePermessoDTO implements AzioneDTO, AzioneParametri {
 		return azioneVisitor.visit(this);
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/* 
+	 * to string
 	 */
 	@Override
 	public String toString() {
 		return "Cambiare le tessere permesso  [V2]";
 	}
 
+	/**
+	 * set parameter
+	 */
 	@Override
 	public CambioTesseraPermessoParametri parametri() {
 		return new CambioTesseraPermessoParametri(this);

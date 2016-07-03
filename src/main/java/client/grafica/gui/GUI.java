@@ -745,7 +745,7 @@ public class GUI extends Application implements Grafica {
 			controllerMarket.setGui(GUI.this);
 			controllerMarket.inizializza();
 			market.setScene(theScene);
-			market.setTitle("Market "+ gameStateDTO.getGiocatoreDTO());
+			market.setTitle("Market "+ gameStateDTO.getGiocatoreDTO().getNome());
 			market.show();
 		};
 		Platform.runLater(runnable);
