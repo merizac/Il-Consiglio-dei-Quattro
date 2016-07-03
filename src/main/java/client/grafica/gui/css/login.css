@@ -1,5 +1,5 @@
 @font-face {
-    src: url("./font1.ttf");
+    src: url("./font.ttf");
 }
 
 .label {
@@ -19,8 +19,7 @@
 }
 
 .button{
-	    -fx-font-family: "Algerian";
-	
+	-fx-font-family: "Algerian";
 }
 
 #login {

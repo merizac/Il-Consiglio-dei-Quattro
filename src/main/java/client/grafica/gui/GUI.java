@@ -196,6 +196,7 @@ public class GUI extends Application implements Grafica {
 		song = new MediaPlayer(media);
 		song.play();
 		song.setVolume(0.2);
+		song.setCycleCount(MediaPlayer.INDEFINITE);
 		Parent root = null;
 		try {
 			root = fxmloader.load();

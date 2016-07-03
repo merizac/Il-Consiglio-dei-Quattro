@@ -246,7 +246,7 @@
                            <tabs>
                               <Tab closable="false" text="Tessere Permesso">
                                  <content>
-                                    <ScrollPane maxHeight="-Infinity" prefHeight="73.0" prefViewportHeight="60.0" prefViewportWidth="56.0" stylesheets="@../css/scroll-bar.css">
+                                    <ScrollPane maxHeight="-Infinity" prefHeight="73.0" prefViewportHeight="60.0" prefViewportWidth="56.0">
                                        <content>
                                           <HBox fx:id="tesserePermesso" prefHeight="73.0" prefWidth="525.0" spacing="20.0" styleClass="background" stylesheets="@../css/game.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </content>
@@ -255,7 +255,7 @@
                               </Tab>
                               <Tab closable="false" text="Tessere Permesso Usate">
                                  <content>
-                                    <ScrollPane maxHeight="-Infinity" prefHeight="73.0" prefViewportHeight="60.0" prefViewportWidth="56.0" stylesheets="@../css/scroll-bar.css">
+                                    <ScrollPane maxHeight="-Infinity" prefHeight="73.0" prefViewportHeight="60.0" prefViewportWidth="56.0">
                                        <content>
                                           <HBox fx:id="tesserePermessoUsate" prefHeight="71.0" prefWidth="523.0" spacing="20.0" styleClass="background" stylesheets="@../css/game.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </content>
