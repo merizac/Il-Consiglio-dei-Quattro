@@ -43,20 +43,6 @@ public class StatoTest {
 	}
 	
 	@Test
-	public void azioniNonEseguibiliTransizioneExitConUnGiocatoreandNotLastGiro() {
-		notify.clear();
-		Giocatore giocatore=gameState.getGiocatoreCorrente();
-		giocatore.setPunteggioVittoria(100);
-		StartEnd startEnd=new StartEnd(gameState);
-		gameState.setUltimoGiro(false);
-		while(gameState.getGiocatori().size()>1){
-			gameState.getGiocatori().remove(gameState.getGiocatori().size()-1);
-		}
-		
-		gameState.getGiocatoriFinePartita().contains(giocatore);
-	}
-	
-	@Test
 	public void azioniNonEseguibiliTransizioneExitLastGiroGiocatoriNonFiniti() {
 		notify.clear();
 		StartEnd startEnd=new StartEnd(gameState);

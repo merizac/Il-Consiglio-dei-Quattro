@@ -42,7 +42,7 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonu
 		}
 
 		costruisci(gameState);
-		prendiBonus(gameState, nob);
+		nob=prendiBonus(gameState, nob);
 		copriTessera(gameState);
 
 		if (cittàCostruzione instanceof CittàBonus)
@@ -152,7 +152,7 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonu
 	 * give to the player the bonus of the city connected to the city where the
 	 * player has built
 	 */
-	private void prendiBonus(GameState gameState, boolean nob) {
+	private boolean prendiBonus(GameState gameState, boolean nob) {
 		Colore coloreEmporio = gameState.getGiocatoreCorrente().getColoreGiocatore();
 		Set<CittàBonus> cittàCollegate = gameState.getMappa().trovaCittà(cittàCostruzione, coloreEmporio);
 		for (CittàBonus c : cittàCollegate) {
@@ -164,6 +164,8 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonu
 					nob = false;
 			}
 		}
+		
+		return nob;
 	}
 
 	/**

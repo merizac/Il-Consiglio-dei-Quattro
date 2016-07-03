@@ -284,7 +284,6 @@ public class GUI extends Application implements Grafica {
 			try {
 				((AzioneParametri) azioni.get(0)).parametri().setParametri(this, gameStateDTO);
 			} catch (AzioneNonEseguibile e) {
-				log.log(Level.INFO, "Azione non eseguibile", e);
 				this.mostraMessaggio(e.getMessage());
 			}
 			try {
@@ -1129,13 +1128,17 @@ public class GUI extends Application implements Grafica {
 		synchronized (lock) {
 			while (parametro == null) {
 				try {
+					System.out.println("waiting");
 					lock.wait();
+					System.out.println("sbloccato");
 				} catch (InterruptedException e) {
 					log.log(Level.SEVERE, "Thread scegli tessere permesso azione bonus interrotto", e);
 					Thread.currentThread().interrupt();
 				}
 			}
 		}
+
+		System.out.println(parametro);
 		TesseraPermessoDTO tesseraPermessoDTO = (TesseraPermessoDTO) parametro;
 		parametro = null;
 		for (Node i : tessereGiocatore.getChildren()) {
@@ -1294,7 +1297,7 @@ public class GUI extends Application implements Grafica {
 	 */
 	@Override
 	public List<CittàBonusDTO> scegliUnaCittà() {
-		this.mostraMessaggio("Scegli una città");
+		this.mostraMessaggio("Scegli una città\n");
 		List<Pane> cittàBonus = controller.getCittàBonusConEmporio();
 		for (Pane città : cittàBonus) {
 			città.setDisable(false);
@@ -1314,7 +1317,9 @@ public class GUI extends Application implements Grafica {
 		}
 		CittàBonusDTO cittàBonusDTO = (CittàBonusDTO) parametro;
 		parametro = null;
-		return Arrays.asList(cittàBonusDTO);
+		List<CittàBonusDTO> cittàScelta=new ArrayList<>();
+		cittàScelta.add(cittàBonusDTO);
+		return cittàScelta;
 	}
 
 	/**
@@ -1326,27 +1331,33 @@ public class GUI extends Application implements Grafica {
 	public List<CittàBonusDTO> scegliDueCittà() {
 		List<Pane> dueCittàBonus = controller.getCittàBonusConEmporio();
 		List<CittàBonusDTO> cittàBonusDTO = this.scegliUnaCittà();
-		this.mostraMessaggio("Scegli un'altra città");
-		for (Pane città : dueCittàBonus) {
-			if (!((CittàDTO) città.getUserData()).getNome().equals(cittàBonusDTO.get(0).getNome()))
-				città.setDisable(false);
-		}
-		synchronized (lock) {
-			while (parametro == null) {
-				try {
-					lock.wait();
-				} catch (InterruptedException e) {
-					log.log(Level.SEVERE, "Thread scegli due città interrotto", e);
-					Thread.currentThread().interrupt();
+		if (gameStateDTO.getGiocatoreDTO().getEmpori() < 9) {
+			this.mostraMessaggio("Scegli un'altra città\n");
+			for (Pane città : dueCittàBonus) {
+				if (!((CittàDTO) città.getUserData()).getNome().equals(cittàBonusDTO.get(0).getNome()))
+					città.setDisable(false);
+			}
+			synchronized (lock) {
+				while (parametro == null) {
+					try {
+						lock.wait();
+					} catch (InterruptedException e) {
+						log.log(Level.SEVERE, "Thread scegli due città interrotto", e);
+						Thread.currentThread().interrupt();
+					}
 				}
 			}
+			for (Pane città : dueCittàBonus) {
+				città.setDisable(true);
+			}
+			try{
+			CittàBonusDTO città = (CittàBonusDTO) parametro;
+			cittàBonusDTO.add(città);
+			parametro = null;}
+			catch(Exception e){
+				e.printStackTrace();
+			}
 		}
-		for (Pane città : dueCittàBonus) {
-			città.setDisable(true);
-		}
-		CittàBonusDTO città = (CittàBonusDTO) parametro;
-		cittàBonusDTO.add(città);
-		parametro = null;
 		return cittàBonusDTO;
 	}
 

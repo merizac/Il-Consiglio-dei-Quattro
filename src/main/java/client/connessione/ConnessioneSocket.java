@@ -68,7 +68,6 @@ public class ConnessioneSocket implements Connessione, Runnable {
 				log.log(Level.SEVERE, "Errore nel cast della notify, ricevuta un'oggetto di tipo diverso da ClientNotify", e);
 			} catch (IOException e) {
 				disconnetti();
-				log.log(Level.INFO, "Client disconnesso", e);
 				break;
 			}
 		}
@@ -98,7 +97,7 @@ public class ConnessioneSocket implements Connessione, Runnable {
 		try {
 			this.socket.close();
 		} catch (IOException e) {
-			log.log(Level.INFO, "Socket chiuso", e);
+			grafica.mostraMessaggio("Connessione chiusa");
 		}
 	}
 

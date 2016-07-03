@@ -55,18 +55,6 @@ public class Stato10Test {
 		assertTrue(notify.get(0) instanceof MessageNotify);
 		assertTrue(notify.get(1) instanceof AzioniNotify);
 	}
-
-	@Test
-	public void testTransizionePrincipaleBonusAzionePrincipaleFalseAndNotUltimoGiroTrue() {
-		Stato10 stato10=new Stato10(gameState);
-		
-		gameState.setBonusAzionePrincipale(false);
-		gameState.setUltimoGiro(true);
-		
-		stato10.transizionePrincipale(gameState);
-		
-		assertTrue(gameState.getStato() instanceof Stato10);
-	}
 	
 	@Test
 	public void testTransizionePrincipaleBonusAzionePrincipaleFalseAndUltimoGiroTrueAndnotMarket() {

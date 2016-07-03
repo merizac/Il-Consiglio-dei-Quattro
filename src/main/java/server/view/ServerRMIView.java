@@ -56,7 +56,6 @@ public class ServerRMIView extends View implements ServerRMIViewRemote {
 				try {
 					c.aggiorna(o.notifyToClientNotify());
 				} catch (RemoteException e) {
-					log.log(Level.INFO, "Client disconnesso", e);
 					try {
 						this.unregister(c);
 					} catch (RemoteException e1) {
@@ -90,7 +89,6 @@ public class ServerRMIView extends View implements ServerRMIViewRemote {
 				azione = azioneDTO.accept(azioneVisitor);
 
 			} catch (ParameterException e1) {
-				log.log(Level.INFO, "Azione sbagliata", e1);
 				update(new MessageNotify(e1.getMessage(), Arrays.asList(gameState.getGiocatoreCorrente()), false));
 				Utils.print("[SERVER] Ricevuta l'azione " + azione + " dal giocatore "
 						+ this.giocatori.get(connessioneRMIRemota).getNome() + " con errore: " + e1.getMessage());
