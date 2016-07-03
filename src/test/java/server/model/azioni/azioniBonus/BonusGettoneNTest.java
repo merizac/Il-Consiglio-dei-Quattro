@@ -121,8 +121,6 @@ public class BonusGettoneNTest {
 		notify.clear();
 		bonus.eseguiAzione(gameState);
 
-		assertTrue(notify.get(notify.size() - 3) instanceof AvversarioNotify);
-		assertTrue(notify.get(notify.size() - 2) instanceof GiocatoreNotify);
 		assertTrue(gameState.getStato() instanceof StartEnd);
 		assertTrue(!giocatore.getBonusNobiltà().contains(bonus));
 

@@ -40,7 +40,7 @@
 
 
 .balcone{
-	-fx-background-image: url("./balcone.png");
+	-fx-background-image: url("./balcone.jpg");
 }
 
 #transparentbutton{
@@ -92,7 +92,7 @@
 .tab-pane
 {
     -fx-tab-min-width:90px;
-    -fx-tab-min-height: 17px;
+    -fx-tab-min-height: 16px; 
 }
 
 .tab{
@@ -144,9 +144,12 @@
 }
 
 .button:focused{
-	-fx-background-color: #DEB887;
+	-fx-background-color: #C3B091;
 }
 
+.button:hover{
+	-fx-background-color: #DEB887;
+}
 
 .titled-pane {
 	-fx-color: #A0785A; 
@@ -159,7 +162,7 @@
     -fx-text-fill: white;
 }
 .titled-pane > .title {
-    -fx-text-fill:   #A0785A;
+    -fx-text-fill: #A0785A;
     -fx-font-weight: bold;
 }
 titled-pane > .title  > .text{

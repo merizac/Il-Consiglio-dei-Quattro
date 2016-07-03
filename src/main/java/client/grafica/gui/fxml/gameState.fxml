@@ -74,7 +74,7 @@
       
                                     <HBox fx:id="balconeMare" layoutX="79.0" layoutY="473.0" onMouseClicked="#handleBalcone" prefHeight="30.0" prefWidth="90.0" spacing="3.0" styleClass="balcone" stylesheets="@../css/game.css">
                                  <padding>
-                                    <Insets left="1.0" right="1.0" top="5.0" />
+                                    <Insets bottom="3.0" left="1.0" right="1.0" top="3.0" />
                                  </padding>
                                  <opaqueInsets>
                                     <Insets />
@@ -90,7 +90,7 @@
                               </HBox>
                               <HBox fx:id="balconeRe" layoutX="486.0" layoutY="504.0" onMouseClicked="#handleBalcone" prefHeight="30.0" prefWidth="92.0" spacing="3.0" styleClass="balcone" stylesheets="@../css/game.css">
                                  <padding>
-                                    <Insets left="1.0" right="1.0" top="5.0" />
+                                    <Insets bottom="3.0" left="1.0" right="1.0" top="3.0" />
                                  </padding>
                                  <opaqueInsets>
                                     <Insets />
@@ -163,10 +163,9 @@
                               <HBox fx:id="emporiLyram" layoutX="540.0" layoutY="225.0" prefHeight="20.0" prefWidth="80.0" />
                               <HBox fx:id="emporiKultos" layoutX="558.0" layoutY="102.0" prefHeight="20.0" prefWidth="80.0" />
                               <HBox fx:id="emporiNaris" layoutX="652.0" layoutY="169.0" prefHeight="20.0" prefWidth="80.0" />
-                              <HBox fx:id="emporiOsium" layoutX="664.0" layoutY="297.0" prefHeight="20.0" prefWidth="80.0" />
                               <HBox fx:id="balconeMontagna" layoutX="599.0" layoutY="473.0" onMouseClicked="#handleBalcone" prefHeight="30.0" prefWidth="91.0" spacing="3.0" styleClass="balcone" stylesheets="@../css/game.css">
                                  <padding>
-                                    <Insets left="1.0" right="1.0" top="5.0" />
+                                    <Insets bottom="3.0" left="1.0" right="1.0" top="3.0" />
                                  </padding>
                                  <opaqueInsets>
                                     <Insets />
@@ -201,6 +200,7 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
+                              <HBox fx:id="emporiOsium" layoutX="664.0" layoutY="297.0" prefHeight="20.0" prefWidth="80.0" />
                            </children>
                         </AnchorPane>
                         <HBox>
@@ -246,18 +246,18 @@
                            <tabs>
                               <Tab closable="false" text="Tessere Permesso">
                                  <content>
-                                    <ScrollPane maxHeight="-Infinity" prefHeight="73.0" prefViewportHeight="60.0" prefViewportWidth="56.0">
+                                    <ScrollPane maxHeight="-Infinity" maxWidth="525.0" prefHeight="75.0" prefViewportHeight="60.0" prefViewportWidth="56.0" prefWidth="525.0">
                                        <content>
-                                          <HBox fx:id="tesserePermesso" prefHeight="73.0" prefWidth="525.0" spacing="20.0" styleClass="background" stylesheets="@../css/game.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <HBox fx:id="tesserePermesso" maxHeight="-Infinity" maxWidth="525.0" prefHeight="75.0" prefWidth="524.0" spacing="20.0" styleClass="background" stylesheets="@../css/game.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </content>
                                     </ScrollPane>
                                  </content>
                               </Tab>
                               <Tab closable="false" text="Tessere Permesso Usate">
                                  <content>
-                                    <ScrollPane maxHeight="-Infinity" prefHeight="73.0" prefViewportHeight="60.0" prefViewportWidth="56.0">
+                                    <ScrollPane maxHeight="-Infinity" maxWidth="525.0" prefHeight="75.0" prefViewportHeight="60.0" prefViewportWidth="56.0" prefWidth="525.0">
                                        <content>
-                                          <HBox fx:id="tesserePermessoUsate" prefHeight="71.0" prefWidth="523.0" spacing="20.0" styleClass="background" stylesheets="@../css/game.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <HBox fx:id="tesserePermessoUsate" maxWidth="524.0" prefHeight="75.0" prefWidth="524.0" spacing="20.0" styleClass="background" stylesheets="@../css/game.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </content>
                                     </ScrollPane>
                                  </content>
@@ -268,9 +268,9 @@
                            <content>
                               <HBox prefHeight="79.0" prefWidth="510.0" styleClass="background" stylesheets="@../css/game.css">
                                  <children>
-                                    <ScrollPane maxHeight="-Infinity" prefHeight="75.0" prefViewportHeight="60.0" prefViewportWidth="200.0" prefWidth="424.0">
+                                    <ScrollPane maxHeight="-Infinity" prefHeight="80.0" prefViewportHeight="60.0" prefViewportWidth="200.0" prefWidth="424.0">
                                        <content>
-                                          <HBox fx:id="cartePolitica" maxHeight="-Infinity" prefHeight="73.0" prefWidth="422.0" spacing="10.0" styleClass="background">
+                                          <HBox fx:id="cartePolitica" maxHeight="-Infinity" prefHeight="76.0" prefWidth="422.0" spacing="10.0" styleClass="background">
                                              <stylesheets>
                                                 <URL value="@../css/game.css" />
                                                 <URL value="@../css/scroll-bar.css" />
@@ -330,7 +330,7 @@
                                     </ImageView>
                                     <Button id="transparentbutton" fx:id="pescaCarta" layoutX="28.0" layoutY="4.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="165.0" prefWidth="120.0" style="-fx-background-color: transparent;" styleClass="mazzo" stylesheets="@../css/game.css" />
                                     <Button fx:id="quit" layoutX="9.0" layoutY="216.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="35.0" prefWidth="160.0" stylesheets="@../css/game.css" text="Quit" />
-                                    <Button fx:id="passa" layoutX="9.0" layoutY="170.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="35.0" prefWidth="160.0" styleClass="mybutton" stylesheets="@../css/game.css" text="&gt;&gt; Salta Azione Veloce" />
+                                    <Button fx:id="passa" layoutX="9.0" layoutY="170.0" mnemonicParsing="false" onAction="#handleAzione" prefHeight="35.0" prefWidth="160.0" styleClass="mybutton" stylesheets="@../css/game.css" text="Passa" />
                                  </children>
                               </AnchorPane>
                            </children>

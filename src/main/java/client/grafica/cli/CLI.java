@@ -107,7 +107,6 @@ public class CLI implements Grafica {
 				try {
 					((AzioneParametri) action).parametri().setParametri(this, gameStateDTO);
 				} catch (AzioneNonEseguibile e) {
-					log.log(Level.INFO, "Azione non eseguibile", e);
 					this.mostraMessaggio(e.getMessage());
 					continue;
 				}
@@ -204,7 +203,7 @@ public class CLI implements Grafica {
 				}
 			}
 		};
-		timer.schedule(task, timeout);
+		//timer.schedule(task, timeout);
 
 		for (AzioneDTO a : azioni) {
 			Utils.print(a.toString());

@@ -9,6 +9,7 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import server.model.azioni.azioniBonus.BonusGettoneN;
 import server.model.azioni.azioniPrincipali.AcquistoTesseraPermesso;
 import server.model.azioni.azioniPrincipali.CostruzioneAiutoRe;
 import server.model.azioni.azioniPrincipali.CostruzioneTesseraPermesso;
@@ -24,12 +25,13 @@ public class Stato10Test {
 
 	static GameState gameState;
 	static List<Notify> notify;
+	static Giocatore giocatore;
 	
 	@BeforeClass
 	public static void init() throws IOException{
 		ArrayList<Giocatore> giocatori=new ArrayList<>();
 		notify = new ArrayList<>();
-		Giocatore giocatore=new Giocatore("Giocatore");
+		giocatore=new Giocatore("Giocatore");
 		giocatori.add(giocatore);
 		gameState=new GameState();
 		Observer<Notify> observer = new Observer<Notify>() {
@@ -53,18 +55,6 @@ public class Stato10Test {
 		assertTrue(notify.get(0) instanceof MessageNotify);
 		assertTrue(notify.get(1) instanceof AzioniNotify);
 	}
-
-	@Test
-	public void testTransizionePrincipaleBonusAzionePrincipaleFalseAndNotUltimoGiroTrue() {
-		Stato10 stato10=new Stato10(gameState);
-		
-		gameState.setBonusAzionePrincipale(false);
-		gameState.setUltimoGiro(true);
-		
-		stato10.transizionePrincipale(gameState);
-		
-		assertTrue(gameState.getStato() instanceof Stato10);
-	}
 	
 	@Test
 	public void testTransizionePrincipaleBonusAzionePrincipaleFalseAndUltimoGiroTrueAndnotMarket() {
@@ -77,6 +67,22 @@ public class Stato10Test {
 		
 		stato10.transizionePrincipale(gameState);
 		
+		assertTrue(gameState.getStato() instanceof StartEnd);
+	}	
+	
+	@Test
+	public void testTransizionePrincipaleBonusAzionePrincipaleFalseAndUltimoGiroTrueAndnotLastPlayer() {
+		Stato10 stato10=new Stato10(gameState);
+		gameState.getGiocatori().add(new Giocatore("A"));
+		gameState.setBonusAzionePrincipale(false);
+		gameState.setUltimoGiro(true);
+		gameState.setNumeroTurni(gameState.getGiocatori().size());
+		gameState.setGiocatoreCorrente(giocatore);
+		gameState.setStato(stato10);
+		
+		stato10.transizionePrincipale(gameState);
+		
+		assertNotEquals(giocatore, gameState.getGiocatoreCorrente());
 		assertTrue(gameState.getStato() instanceof StartEnd);
 	}	
 	
@@ -104,22 +110,13 @@ public class Stato10Test {
 		assertTrue(gameState.getStato() instanceof Stato10);
 	}
 
-/*	@Test
+	@Test
 	public void testTransizioneBonus() {
+		gameState.getGiocatoreCorrente().getBonusNobiltà().add(new BonusGettoneN());
 		Stato10 stato10=new Stato10(gameState);
-		try{
-			gameState.getGiocatoreCorrente().getBonusNobiltà().add(new )
-			System.out.println("\t"+gameState.getStato());
-			stato10.transizioneBonus(gameState);
-			System.out.println("\t"+gameState.getStato());
-			
-		}
-		catch(Exception e){
-			e.printStackTrace();
-		}
-		
+		stato10.transizioneBonus(gameState);
 		assertTrue(gameState.getStato() instanceof StatoBonus);
-	}*/
+	}
 
 	@Test
 	public void testGetAzioni() {

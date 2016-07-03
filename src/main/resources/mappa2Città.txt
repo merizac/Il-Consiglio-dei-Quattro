@@ -1,9 +1,3 @@
-Giallo 20
-Grigio 12
-Bronzo 8
-Blu 5
-Re 
-CITTA
 5
 Arkon Giallo
 Burgen Bronzo

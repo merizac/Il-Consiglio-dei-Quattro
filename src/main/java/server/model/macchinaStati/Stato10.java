@@ -3,6 +3,7 @@ package server.model.macchinaStati;
 import java.util.Arrays;
 import java.util.List;
 
+import server.Server;
 import server.model.azioni.Azione;
 import server.model.azioni.azioniPrincipali.AcquistoTesseraPermesso;
 import server.model.azioni.azioniPrincipali.CostruzioneAiutoRe;
@@ -44,8 +45,10 @@ public class Stato10 implements Stato {
 	public void transizionePrincipale(GameState gameState) {
 		if (!gameState.isBonusAzionePrincipale()) {
 			if (gameState.isUltimoGiro()) {
-				if (gameState.lastNextPlayer())
+				if (gameState.lastNextPlayer()){
 					gameState.calcolaVincitore();
+					Server.disconnettiClient(gameState);
+				}
 				else {
 					gameState.nextPlayer();
 					gameState.setStato(new StartEnd(gameState));
