@@ -3,6 +3,7 @@ package server.model.macchinaStati;
 import java.util.Arrays;
 import java.util.List;
 
+import server.Server;
 import server.model.azioni.Azione;
 import server.model.game.GameState;
 import server.model.game.Giocatore;
@@ -90,6 +91,7 @@ public interface Stato {
 			Giocatore g = gameState.getGiocatori().remove(0);
 			gameState.getGiocatoriFinePartita().add(g);
 			gameState.calcolaVincitore();
+			Server.disconnettiClient(gameState);
 		} else {
 			if (gameState.isUltimoGiro()) {
 				if (!gameState.getGiocatori().isEmpty()) {
