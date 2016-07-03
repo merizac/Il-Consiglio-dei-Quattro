@@ -8,9 +8,18 @@ import server.model.game.PlanciaRe;
 
 public class PlanciaReDTO implements Serializable {
 
+	/**
+	 * serial version for serializable object
+	 */
 	private static final long serialVersionUID = -1277703422395979043L;
 
+	/**
+	 * king's balcony
+	 */
 	private BalconeDTO balconeRe;
+	/**
+	 * king's bonus
+	 */
 	private List<Bonus> bonusPremioRe;
 
 	/**
@@ -57,6 +66,9 @@ public class PlanciaReDTO implements Serializable {
 
 	}
 
+	/**
+	 * to string
+	 */
 	@Override
 	public String toString() {
 		return "PlanciaReDTO [balconeRe=" + balconeRe + ", bonusPremioRe=" + bonusPremioRe + "]";

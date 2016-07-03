@@ -6,7 +6,13 @@ import server.model.game.Re;
 
 public class ReDTO implements Serializable {
 
+	/**
+	 * serial version for serializable object
+	 */
 	private static final long serialVersionUID = -151592428460349836L;
+	/**
+	 * king's city
+	 */
 	private CittàDTO città;
 
 	/**
@@ -25,9 +31,7 @@ public class ReDTO implements Serializable {
 	}
 
 	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
+	 * to string
 	 */
 	@Override
 	public String toString() {

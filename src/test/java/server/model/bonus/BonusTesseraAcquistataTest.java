@@ -66,7 +66,6 @@ public class BonusTesseraAcquistataTest {
 	public void testGetAzioneBonus() {
 		BonusTesseraAcquistata bonus=new BonusTesseraAcquistata();
 		BonusTesseraAcquistataN bonusN=new BonusTesseraAcquistataN();
-		bonusN.setId(1);
 		assertEquals(bonusN, bonus.getAzioneBonus());
 	}
 

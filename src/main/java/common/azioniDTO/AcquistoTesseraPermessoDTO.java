@@ -12,11 +12,21 @@ import utility.ParameterException;
 public class AcquistoTesseraPermessoDTO implements AzioneDTO, AzioneParametri {
 
 	/**
-	 * 
+	 * serial version for serializable object
 	 */
 	private static final long serialVersionUID = 2837487620338099231L;
+	
+	/**
+	 * region where take the permit tile
+	 */
 	private RegioneDTO regione;
+	/**
+	 * list of cards that have to match with color of balcony
+	 */
 	private List<CartaPoliticaDTO> carte;
+	/**
+	 * permit tile that the player want
+	 */
 	private TesseraPermessoDTO tesseraPermesso;
 	
 	
@@ -51,8 +61,8 @@ public class AcquistoTesseraPermessoDTO implements AzioneDTO, AzioneParametri {
 		return azioneVisitor.visit(this);
 		
 	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/* 
+	 * to string
 	 */
 	@Override
 	public String toString() {
@@ -70,6 +80,9 @@ public class AcquistoTesseraPermessoDTO implements AzioneDTO, AzioneParametri {
 	public void setTesseraPermesso(TesseraPermessoDTO tesseraPermesso) {
 		this.tesseraPermesso = tesseraPermesso;
 	}
+	/**
+	 * set parameter
+	 */
 	@Override
 	public AcquistoTesseraPermessoParametri parametri() {
 		return new AcquistoTesseraPermessoParametri(this);

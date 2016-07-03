@@ -14,6 +14,11 @@ public class CostruzioneAiutoReParametri implements SetterParametri {
 
 	private CostruzioneAiutoReDTO costruzioneAiutoReDTO;
 
+	/**
+	 * action of CostruzioneAiutoRe
+	 * 
+	 * @param costruzioneAiutoReDTO
+	 */
 	public CostruzioneAiutoReParametri(CostruzioneAiutoReDTO costruzioneAiutoReDTO) {
 		this.costruzioneAiutoReDTO = costruzioneAiutoReDTO;
 	}

@@ -46,13 +46,13 @@ public class CostruzioneAiutoRe extends AzionePrincipale implements Bonusable {
 		Mappa mappa = gameState.getMappa();
 		if (!controllaColori()) {
 			gameState.notifyObserver(
-					new MessageNotify("Errore: i colori delle carte scelte non corrispondono con quelli del balcone!",
+					new MessageNotify("Errore: i colori delle carte scelte non corrispondono con quelli del balcone!\n",
 							Arrays.asList(gameState.getGiocatoreCorrente()), false));
 			return;
 		}
 
 		if (!pagoAiutanti(gameState)) {
-			gameState.notifyObserver(new MessageNotify("Errore: gli aiutanti non sono sufficienti!",
+			gameState.notifyObserver(new MessageNotify("Errore: gli aiutanti non sono sufficienti!\n",
 					Arrays.asList(gameState.getGiocatoreCorrente()), false));
 			return;
 		}
@@ -61,7 +61,7 @@ public class CostruzioneAiutoRe extends AzionePrincipale implements Bonusable {
 				+ 2 * mappa.minimaDistanza(gameState.getPedinaRe().getCittà(), cittàCostruzione);
 
 		if (!paga(moneteDovute, gameState)) {
-			gameState.notifyObserver(new MessageNotify("Errore: i soldi non sono sufficienti!",
+			gameState.notifyObserver(new MessageNotify("Errore: i soldi non sono sufficienti!\n",
 					Arrays.asList(gameState.getGiocatoreCorrente()), false));
 			return;
 		}

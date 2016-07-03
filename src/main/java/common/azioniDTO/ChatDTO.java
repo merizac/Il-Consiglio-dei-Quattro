@@ -6,11 +6,17 @@ import server.model.azioni.Azione;
 public class ChatDTO implements AzioneDTO {
 
 	/**
-	 * 
+	 * serial version for serializable object
 	 */
 	private static final long serialVersionUID = -3055982333932543751L;
+	/**
+	 * message to stamp
+	 */
 	private String messaggio;
 
+	/**
+	 * visitor pattern
+	 */
 	@Override
 	public Azione accept(AzioneVisitor azioneVisitor) {
 		return azioneVisitor.visit(this);

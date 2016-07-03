@@ -5,9 +5,9 @@ import java.util.Comparator;
 import server.model.game.Giocatore;
 
 public class ComparatorPuntiNobiltà implements Comparator<Giocatore> {
+
 	/**
 	 * compare and order players by nobility points
-	 * 
 	 */
 	@Override
 	public int compare(Giocatore g1, Giocatore g2) {

@@ -9,6 +9,11 @@ public class CambioTesseraPermessoParametri implements SetterParametri {
 
 	private CambioTesserePermessoDTO cambioTesserePermessoDTO;
 
+	/**
+	 * ACTION OF CAMBIOTESSERAPERMESSO
+	 * 
+	 * @param cambioTesserePermessoDTO
+	 */
 	public CambioTesseraPermessoParametri(CambioTesserePermessoDTO cambioTesserePermessoDTO) {
 		this.cambioTesserePermessoDTO = cambioTesserePermessoDTO;
 	}

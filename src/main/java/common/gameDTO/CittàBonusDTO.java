@@ -8,51 +8,61 @@ import server.model.bonus.Bonus;
 import server.model.game.CittàBonus;
 import server.model.game.Emporio;
 
-public class CittàBonusDTO extends CittàDTO implements Serializable{
+public class CittàBonusDTO extends CittàDTO implements Serializable {
 
+	/**
+	 * serial version for serializable object
+	 */
 	private static final long serialVersionUID = 6054052021956866160L;
+	/**
+	 * list of bonus in the city
+	 */
 	private List<Bonus> bonus;
-	
+
 	/**
 	 * @return the bonus
 	 */
 	public List<Bonus> getBonus() {
 		return bonus;
 	}
+
 	/**
-	 * @param bonus the bonus to set
+	 * @param bonus
+	 *            the bonus to set
 	 */
 	public void setBonus(List<Bonus> bonus) {
 		this.bonus = bonus;
 	}
-	
+
 	/**
 	 * map a cittàBonus into a cittàBonusDTO
+	 * 
 	 * @param cittàBonus
 	 */
-	public void inizializza(CittàBonus cittàBonus){
+	public void inizializza(CittàBonus cittàBonus) {
 		this.setNome(cittàBonus.getNome());
-		ColoreDTO coloreDTO=new ColoreDTO();
+		ColoreDTO coloreDTO = new ColoreDTO();
 		coloreDTO.inizializza(cittàBonus.getColoreCittà());
 		this.setColoreDTO(coloreDTO);
 		this.setEmpori(new HashSet<>());
-		for(Emporio e: cittàBonus.getEmpori()){
+		for (Emporio e : cittàBonus.getEmpori()) {
 			this.getEmpori().add(e.getColore().getColore());
 		}
 
 		this.setBonus(cittàBonus.getBonus());
 	}
-	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+
+	/*
+	 * to string
 	 */
 	@Override
 	public String toString() {
-		return this.getNome()+" Colore: "+this.getColoreDTO().getColore()
-				+" Empori: "+this.getEmpori()+" Bonus : "+bonus;
+		return this.getNome() + " Colore: " + this.getColoreDTO().getColore() + " Empori: " + this.getEmpori()
+				+ " Bonus : " + bonus;
 	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
+
+	/*
+	 * hashcode
 	 */
 	@Override
 	public int hashCode() {
@@ -61,8 +71,9 @@ public class CittàBonusDTO extends CittàDTO implements Serializable{
 		result = prime * result + ((bonus == null) ? 0 : bonus.hashCode());
 		return result;
 	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
+
+	/*
+	 * equals
 	 */
 	@Override
 	public boolean equals(Object obj) {

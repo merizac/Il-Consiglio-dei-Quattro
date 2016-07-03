@@ -10,10 +10,16 @@ import utility.ParameterException;
 public class CostruzioneTesseraPermessoDTO implements AzioneDTO, AzioneParametri {
 
 	/**
-	 * 
+	 * serial version for serializable object
 	 */
 	private static final long serialVersionUID = -2520930894055638122L;
+	/**
+	 * permit tile 
+	 */
 	private TesseraPermessoDTO tesseraPermesso;
+	/**
+	 * city from the permit tile
+	 */
 	private CittàDTO città;
 	
 	
@@ -41,18 +47,25 @@ public class CostruzioneTesseraPermessoDTO implements AzioneDTO, AzioneParametri
 	public void setCittà(CittàDTO città) {
 		this.città = città;
 	}
+	
+	/**
+	 * visitor 
+	 */
 	@Override
 	public Azione accept(AzioneVisitor azioneVisitor) throws ParameterException {
 		return azioneVisitor.visit(this);
 	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/* 
+	 * to string
 	 */
 	@Override
 	public String toString() {
 		return "Costruire con una tessera permesso  [P3]";
 	}
 	
+	/**
+	 * set parameter
+	 */
 	@Override
 	public CostruzioneTesseraPermessoParametri parametri() {
 		return new CostruzioneTesseraPermessoParametri(this);

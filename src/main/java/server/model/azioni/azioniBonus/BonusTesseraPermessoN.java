@@ -7,6 +7,7 @@ import java.util.List;
 import common.azioniDTO.AzioneDTO;
 import common.azioniDTO.BonusTesseraPermessoNDTO;
 import server.model.azioni.Azione;
+import server.model.bonus.Bonus;
 import server.model.game.GameState;
 import server.model.game.Giocatore;
 import server.model.game.Regione;
@@ -22,7 +23,7 @@ public class BonusTesseraPermessoN extends Azione {
 	 */
 	private Regione regione;
 	private TesseraPermesso tesseraScoperta;
-	private int id;
+	private final int id=2;
 
 	/**
 	 * take one tesseraPermesso from the selected region. (so remove that from
@@ -32,9 +33,9 @@ public class BonusTesseraPermessoN extends Azione {
 	@Override
 	public void eseguiAzione(GameState gameState) {
 
-		regione.getTesserePermessoScoperte().remove(tesseraScoperta);
-		gameState.getGiocatoreCorrente().getTesserePermesso().add(tesseraScoperta);
-		regione.getTesserePermessoScoperte().add(regione.getMazzoTesserePermesso().pescaCarte());
+		for (Bonus b : tesseraScoperta.getBonus()) {
+			b.usaBonus(gameState);
+		}
 		gameState.getGiocatoreCorrente().getBonusNobiltà().remove(this);
 		gameState.notifyObserver(new GameStateNotify(gameState, gameState.getGiocatori()));
 		List<Giocatore> avversari = new ArrayList<>(gameState.getGiocatori());
@@ -110,22 +111,6 @@ public class BonusTesseraPermessoN extends Azione {
 		if (id != other.id)
 			return false;
 		return true;
-	}
-
-	/**
-	 * @return the id
-	 */
-	public int getId() {
-		return id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(int id) {
-		if(id<1 || id>2)
-			throw new IllegalArgumentException("L'id è errato, scegli 1 o 2");
-		this.id = id;
 	}
 
 }

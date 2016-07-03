@@ -80,30 +80,4 @@ public class BonusTesseraAcquistataNTest {
 		bonus.setTesseraPermesso(null);
 	}
 
-	@Test
-	public void testGetId1() {
-		BonusTesseraAcquistataN bonus=new BonusTesseraAcquistataN();
-		bonus.setId(1);
-		assertEquals(1, bonus.getId());
-	}
-	
-	@Test
-	public void testGetId2() {
-		BonusTesseraAcquistataN bonus=new BonusTesseraAcquistataN();
-		bonus.setId(2);
-		assertEquals(2, bonus.getId());
-	}
-
-	@Test(expected=IllegalArgumentException.class)
-	public void testSetId0() {
-		BonusTesseraAcquistataN bonus=new BonusTesseraAcquistataN();
-		bonus.setId(0);
-	}
-	
-	@Test(expected=IllegalArgumentException.class)
-	public void testSetId3() {
-		BonusTesseraAcquistataN bonus=new BonusTesseraAcquistataN();
-		bonus.setId(3);
-	}
-
 }

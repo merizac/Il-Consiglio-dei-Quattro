@@ -20,9 +20,8 @@ public class Utils {
 		}
 	}
 
-	
-	public static void print(String messaggio){
+	public static void print(String messaggio) {
 		System.out.println(messaggio);
 	}
-	
+
 }

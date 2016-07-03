@@ -6,8 +6,14 @@ import server.model.notify.MessageNotify;
 
 public class Chat extends Azione{
 
+	/**
+	 * message to stamp
+	 */
 	private String messaggio;
 	
+	/**
+	 * execute action
+	 */
 	@Override
 	public void eseguiAzione(GameState gameState) {
 		gameState.notifyObserver(new MessageNotify(messaggio , gameState.getGiocatori(), false));

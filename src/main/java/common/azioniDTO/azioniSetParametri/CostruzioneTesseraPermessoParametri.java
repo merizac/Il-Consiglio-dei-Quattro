@@ -11,6 +11,10 @@ public class CostruzioneTesseraPermessoParametri implements SetterParametri {
 
 	private CostruzioneTesseraPermessoDTO costruzioneTesseraPermessoDTO;
 
+	/**
+	 * action of costruzioneTesseraPermesso
+	 * @param costruzioneTesseraPermessoDTO
+	 */
 	public CostruzioneTesseraPermessoParametri(CostruzioneTesseraPermessoDTO costruzioneTesseraPermessoDTO) {
 		this.costruzioneTesseraPermessoDTO = costruzioneTesseraPermessoDTO;
 	}

@@ -9,6 +9,11 @@ public class AzioneOffertaParametri implements SetterParametri {
 
 	private AzioneOffertaDTO azioneOffertaDTO;
 
+	/**
+	 * action AzioneOfferta of market
+	 * 
+	 * @param azioneOffertaDTO
+	 */
 	public AzioneOffertaParametri(AzioneOffertaDTO azioneOffertaDTO) {
 		this.azioneOffertaDTO = azioneOffertaDTO;
 	}

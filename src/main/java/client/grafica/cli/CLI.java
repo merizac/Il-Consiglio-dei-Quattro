@@ -312,6 +312,9 @@ public class CLI implements Grafica {
 		}
 	}
 
+	/**
+	 * choose offer
+	 */
 	@Override
 	public int scegliOfferta(List<OffertaDTO> offerte) {
 		Utils.print("Che cosa vuoi acquistare?");
@@ -332,6 +335,9 @@ public class CLI implements Grafica {
 
 	}
 
+	/**
+	 * player choose which object want to buy
+	 */
 	@Override
 	public MarketableDTO scegliMarketable() {
 		Utils.print("Cosa vuoi vendere?\n");
@@ -541,6 +547,13 @@ public class CLI implements Grafica {
 		return cittàScelta;
 	}
 
+	/**
+	 * choose city with bonus
+	 * @param città
+	 * @param coloreGiocatore
+	 * @param input
+	 * @return
+	 */
 	private CittàDTO scegliCittàBonus(Set<CittàBonusDTO> città, ColoreDTO coloreGiocatore, String input) {
 
 		CittàDTO cittàScelta = ControlloParametriDTO.cittàBonus(input, città, coloreGiocatore);
@@ -561,8 +574,7 @@ public class CLI implements Grafica {
 	 * @param stdIn
 	 * @return the politic card DTO
 	 */
-	@Override
-	public CartaPoliticaDTO scegliCarta(List<CartaPoliticaDTO> cartePolitica) {
+	private CartaPoliticaDTO scegliCarta(List<CartaPoliticaDTO> cartePolitica) {
 		Utils.print("Seleziona la carta politica");
 		Utils.print(cartePolitica.toString());
 		String comando = stdIn.nextLine();
@@ -617,8 +629,8 @@ public class CLI implements Grafica {
 	}
 
 	/**
-	 * choose one city with bonus where the player has build.
-	 * for interactive nobility bonus
+	 * choose one city with bonus where the player has build. for interactive
+	 * nobility bonus
 	 */
 	@Override
 	public List<CittàBonusDTO> scegliUnaCittà() {
@@ -644,9 +656,8 @@ public class CLI implements Grafica {
 	}
 
 	/**
-	 * choose two city with bonus where the player has build.
-	 * bonus can not be the same.
-	 * for interactive bonus of nobility track
+	 * choose two city with bonus where the player has build. bonus can not be
+	 * the same. for interactive bonus of nobility track
 	 */
 	@Override
 	public List<CittàBonusDTO> scegliDueCittà() {
@@ -682,7 +693,6 @@ public class CLI implements Grafica {
 		Utils.print("Il market è iniziato!\n");
 	}
 
-	
 	@Override
 	public void mostraGiocatoreMarket(GiocatoreDTO giocatoreDTO) {
 		// TODO Auto-generated method stub
@@ -711,8 +721,8 @@ public class CLI implements Grafica {
 	}
 
 	/**
-	 * player can choose if win bonus from one of his discovery or covery permit tile.
-	 * For interactive bonus in nobility track
+	 * player can choose if win bonus from one of his discovery or covery permit
+	 * tile. For interactive bonus in nobility track
 	 */
 	@Override
 	public TesseraPermessoDTO scegliTesseraPermessoUsataONonUsata(List<TesseraPermessoDTO> tessere,

@@ -5,6 +5,9 @@ import server.model.azioni.Azione;
 
 public class SecondaAzionePrincipaleDTO implements AzioneDTO {
 
+	/**
+	 * serial version for serializable object
+	 */
 	private static final long serialVersionUID = 5352888658813031850L;
 
 	/**
@@ -16,9 +19,7 @@ public class SecondaAzionePrincipaleDTO implements AzioneDTO {
 	}
 
 	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
+	 * to string
 	 */
 	@Override
 	public String toString() {

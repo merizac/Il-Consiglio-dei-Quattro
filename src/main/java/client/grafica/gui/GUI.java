@@ -1,6 +1,7 @@
 package client.grafica.gui;
 
 import java.io.IOException;
+import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -212,8 +213,8 @@ public class GUI extends Application implements Grafica {
 	public void inizializza() {
 		FXMLLoader fxmloader = new FXMLLoader();
 		fxmloader.setLocation(getClass().getClassLoader().getResource("client/grafica/gui/fxml/gameState.fxml"));
-		String audioGioco = this.getClass().getResource("css/audioGioco.mp3").toExternalForm();
-		Media media = new Media(audioGioco);
+		URL audioGioco = getClass().getResource("css/audioGioco.mp3");
+		Media media = new Media(audioGioco.toString());
 		song = new MediaPlayer(media);
 		song.play();
 		song.setVolume(0.2);
@@ -401,9 +402,9 @@ public class GUI extends Application implements Grafica {
 		azioni.get(8).setUserData(new PassaDTO());
 		azioni.get(9).setUserData(new PescaCartaDTO());
 		
-		for(Button azione: azioni){
+		/*for(Button azione: azioni){
 			azione.setOnMouseClicked(onMouseClicked);
-		}
+		}*/
 	}
 
 	/**
@@ -593,7 +594,6 @@ public class GUI extends Application implements Grafica {
 			HBox tesserePermesso = controllerMarket.getTesserePermesso();
 			HBox aiutanti = controllerMarket.getAiutanti();
 			HBox cartePolitica = controllerMarket.getCartePolitica();
-			System.out.println("carte: " + cartePolitica);
 			Map<String, Image> carte = controller.getMappaCartePolitica();
 			Map<String, Image> tessere = controller.getMappaTesserePermesso();
 			Map<String, Image> bonus = controller.getMappaBonus();
@@ -745,7 +745,7 @@ public class GUI extends Application implements Grafica {
 			controllerMarket.setGui(GUI.this);
 			controllerMarket.inizializza();
 			market.setScene(theScene);
-			market.setTitle("Market "+ gameStateDTO.getGiocatoreDTO());
+			market.setTitle("Market "+ gameStateDTO.getGiocatoreDTO().getNome());
 			market.show();
 		};
 		Platform.runLater(runnable);
@@ -1019,12 +1019,6 @@ public class GUI extends Application implements Grafica {
 		return prezzo;
 	}
 
-	@Override
-	public CartaPoliticaDTO scegliCarta(List<CartaPoliticaDTO> cartePolitica) {
-
-		return null;
-	}
-
 	/**
 	 * choose city in the map
 	 * @return cittàDTO
@@ -1097,6 +1091,7 @@ public class GUI extends Application implements Grafica {
 			List<TesseraPermessoDTO> tessereUsate) {
 		HBox tessereGiocatore = controller.getTesserePermessoGiocatore();
 		HBox tessereGiocatoreUsate = controller.getTesserePermessoGiocatoreUsate();
+
 		DropShadow ds = new DropShadow();
 		ds.setColor(Color.web("#ffffff"));
 		ds.setRadius(21);
@@ -1107,12 +1102,10 @@ public class GUI extends Application implements Grafica {
 			i.setDisable(false);
 			i.setEffect(ds);
 		}
-
 		for (Node i : tessereGiocatoreUsate.getChildren()) {
 			i.setDisable(false);
 			i.setEffect(ds);
 		}
-
 		synchronized (lock) {
 			while (parametro == null) {
 				try {

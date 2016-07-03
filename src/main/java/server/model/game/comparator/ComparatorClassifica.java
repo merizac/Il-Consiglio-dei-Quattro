@@ -4,11 +4,12 @@ import java.util.Comparator;
 
 import server.model.game.Giocatore;
 
-public class ComparatorClassifica implements Comparator<Giocatore>{
-/**
- * compare puntiVittoria and number of aiutanti.
- * order players by this values for chose the winner
- */
+public class ComparatorClassifica implements Comparator<Giocatore> {
+	
+	/**
+	 * compare puntiVittoria and number of aiutanti. order players by this
+	 * values for chose the winner
+	 */
 	@Override
 	public int compare(Giocatore g1, Giocatore g2) {
 		int puntiVittoria1 = g1.getPunteggioVittoria();
@@ -20,24 +21,23 @@ public class ComparatorClassifica implements Comparator<Giocatore>{
 
 		if (puntiVittoria2 < puntiVittoria1)
 			return -1;
-		else if (puntiVittoria1 == puntiVittoria2){
-			if(numeroAiutanti2<numeroAiutanti1)
+		else if (puntiVittoria1 == puntiVittoria2) {
+			if (numeroAiutanti2 < numeroAiutanti1)
 				return -1;
-			else if(numeroAiutanti2>numeroAiutanti1)
+			else if (numeroAiutanti2 > numeroAiutanti1)
 				return 1;
-			else
-			{
-				if(cartePolitica2<cartePolitica1)
+			else {
+				if (cartePolitica2 < cartePolitica1)
 					return -1;
-				else if(cartePolitica2==cartePolitica1)
+				else if (cartePolitica2 == cartePolitica1)
 					return 0;
 				else
 					return 1;
 			}
 		}
-			
+
 		else
 			return 1;
 	}
-	
+
 }

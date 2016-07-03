@@ -20,7 +20,14 @@ import utility.Utils;
 
 public class StatoAcquistoMarket implements Stato {
 
+	/**
+	 * list of player
+	 */
 	private List<Giocatore> giocatori;
+	
+	/**
+	 * list of action available in this state
+	 */
 	private List<Azione> azioni;
 
 	/**
@@ -58,6 +65,7 @@ public class StatoAcquistoMarket implements Stato {
 			gameState.setStato(this);
 			gameState.notifyObserver(new OffertaNotify(gameState.getOfferteMarket(), gameState.getGiocatori()));
 			gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(giocatori.get(0))));
+			gameState.notifyObserver(new MessageNotify("Vuoi acquistare?\n", Arrays.asList(giocatori.get(0)), true));
 		} else {
 			gameState.getOfferteMarket().clear();
 			gameState.notifyObserver(new MarketNotify(gameState.getGiocatori(), true));
@@ -83,7 +91,7 @@ public class StatoAcquistoMarket implements Stato {
 			gameState.notifyObserver(new AvversarioNotify(gameState.getGiocatoreCorrente(), avversari));
 			gameState.notifyObserver(new GiocatoreNotify(gameState.getGiocatoreCorrente(),
 					Arrays.asList(gameState.getGiocatoreCorrente())));
-			gameState.notifyObserver(new MessageNotify("Vuoi acquistare?", Arrays.asList(giocatori.get(0)), true));
+			gameState.notifyObserver(new MessageNotify("Vuoi acquistare\n?", Arrays.asList(giocatori.get(0)), true));
 		}
 	}
 
@@ -103,9 +111,7 @@ public class StatoAcquistoMarket implements Stato {
 	}
 
 	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
+	 * to string
 	 */
 	@Override
 	public String toString() {

@@ -35,20 +35,20 @@ public class AcquistoTesseraPermesso extends AzionePrincipale implements Bonusab
 		boolean nob = false;
 
 		if (carteGiocatore.isEmpty()) {
-			gameState.notifyObserver(new MessageNotify("Errore: non sono presenti carte",
+			gameState.notifyObserver(new MessageNotify("Errore: non sono presenti carte\n",
 					Arrays.asList(gameState.getGiocatoreCorrente()), false));
 			return;
 		}
 
 		if (!controllaColori()) {
 			gameState.notifyObserver(
-					new MessageNotify("Errore: i colori delle carte scelte non corrispondono con quelle del balcone!",
+					new MessageNotify("Errore: i colori delle carte scelte non corrispondono con quelle del balcone!\n",
 							Arrays.asList(gameState.getGiocatoreCorrente()), false));
 			return;
 		}
 
 		if (!paga(calcolaMonete(), gameState)) {
-			gameState.notifyObserver(new MessageNotify("Errore: i soldi non sono sufficienti!",
+			gameState.notifyObserver(new MessageNotify("Errore: i soldi non sono sufficienti!\n",
 					Arrays.asList(gameState.getGiocatoreCorrente()), false));
 			return;
 		}

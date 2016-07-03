@@ -544,14 +544,23 @@ public class GUIGameController implements Controller {
 	 * show bonus tiles
 	 */
 	public void mostraTessereBonus() {
+		
+		mare.setVisible(false);
+		collina.setVisible(false);
+		montagna.setVisible(false);
+		
+		
 		if (gameStateDTO.getRegioni().get(0).getBonusRegione() != null) {
 			mare.setImage(new Image(getClass().getResource("css/tessereBonus/mare.png").toExternalForm()));
+			mare.setVisible(true);
 		}
 		if (gameStateDTO.getRegioni().get(1).getBonusRegione() != null) {
 			collina.setImage(new Image(getClass().getResource("css/tessereBonus/collina.png").toExternalForm()));
+			collina.setVisible(true);
 		}
 		if (gameStateDTO.getRegioni().get(2).getBonusRegione() != null) {
 			montagna.setImage(new Image(getClass().getResource("css/tessereBonus/montagna.png").toExternalForm()));
+			montagna.setVisible(true);
 		}
 
 		oro.setVisible(false);
@@ -575,10 +584,13 @@ public class GUIGameController implements Controller {
 				ferro.setImage(new Image(getClass().getResource("css/tessereBonus/ferro.png").toExternalForm()));
 			}
 		}
+		
+		king.setVisible(false);
 		if (!gameStateDTO.getPlanciaReDTO().getBonusPremioRe().isEmpty()) {
 			String bonus = String.valueOf(6 - gameStateDTO.getPlanciaReDTO().getBonusPremioRe().size());
 			king.setImage(
 					new Image(getClass().getResource("css/tessereBonus/king_" + bonus + ".png").toExternalForm()));
+			king.setVisible(true);
 		}
 	}
 

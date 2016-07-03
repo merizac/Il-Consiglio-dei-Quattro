@@ -12,6 +12,9 @@ import utility.Utils;
 
 public class StartEnd implements Stato {
 
+	/**
+	 * list of action available in this state
+	 */
 	private List<Azione> azioni;
 
 	/**
@@ -37,7 +40,7 @@ public class StartEnd implements Stato {
 	}
 	
 	/**
-	 * get avaiable action
+	 * get available action
 	 */
 	@Override
 	public List<Azione> getAzioni() {
@@ -45,9 +48,7 @@ public class StartEnd implements Stato {
 	}
 
 	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
+	 * to string
 	 */
 	@Override
 	public String toString() {

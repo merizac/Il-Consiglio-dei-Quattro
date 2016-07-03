@@ -30,6 +30,9 @@ import utility.ParameterException;
 public class ControlloParametri {
 
 
+	/**
+	 * constructor
+	 */
 	public ControlloParametri() {
 	}
 

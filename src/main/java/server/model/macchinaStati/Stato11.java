@@ -11,7 +11,6 @@ import server.model.azioni.azioniPrincipali.ElezioneConsigliere;
 import server.model.azioni.azioniVeloci.CambioTesseraPermesso;
 import server.model.azioni.azioniVeloci.ElezioneConsigliereVeloce;
 import server.model.azioni.azioniVeloci.IngaggioAiutante;
-import server.model.azioni.azioniVeloci.SecondaAzionePrincipale;
 import server.model.game.GameState;
 import server.model.notify.AzioniNotify;
 import server.model.notify.MessageNotify;
@@ -19,6 +18,9 @@ import utility.Utils;
 
 public class Stato11 implements Stato {
 
+	/**
+	 * list of action available in this state
+	 */
 	private List<Azione> azioni;
 
 	/**
@@ -75,9 +77,7 @@ public class Stato11 implements Stato {
 	}
 
 	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
+	 * to string
 	 */
 	@Override
 	public String toString() {

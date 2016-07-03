@@ -13,21 +13,63 @@ import server.model.game.TesseraPermesso;
 
 public class GiocatoreDTO implements Serializable {
 
+	/**
+	 * serial version for serializable object
+	 */
 	private static final long serialVersionUID = -2107420956593617286L;
 
+	/*
+	 * + name of the player
+	 */
 	private String nome;
+	/**
+	 * color of the player
+	 */
 	private ColoreDTO coloreGiocatore;
+	/**
+	 * politic cards of the player
+	 */
 	private List<CartaPoliticaDTO> cartePolitica;
+	/**
+	 * discovery permit tile of the player
+	 */
 	private List<TesseraPermessoDTO> tesserePermesso;
+	/**
+	 * covery permit tile of the player
+	 */
 	private List<TesseraPermessoDTO> tesserePermessoUsate;
+	/**
+	 * bonus tiles
+	 */
 	private int tessereBonus;
+	/**
+	 * emporiums of the player
+	 */
 	private int empori;
+	/**
+	 * helpers of the player
+	 */
 	private int aiutanti;
+	/**
+	 * victory points of the player
+	 */
 	private int punteggioVittoria;
+	/**
+	 * richness points of the player
+	 */
 	private int punteggioRicchezza;
+	/**
+	 * nobility points of the players
+	 */
 	private int punteggioNobiltà;
+	/**
+	 * interactive bonus of nobility track available
+	 */
 	private List<AzioneDTO> bonusNobiltà;
 
+	/**
+	 * initializing permit tile and politic cards
+	 */
 	public GiocatoreDTO() {
 		this.cartePolitica = new ArrayList<>();
 		this.tesserePermesso = new ArrayList<>();
@@ -284,9 +326,8 @@ public class GiocatoreDTO implements Serializable {
 	}
 
 	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
+	 *
+	 * hashcode
 	 */
 	@Override
 	public int hashCode() {
@@ -297,9 +338,7 @@ public class GiocatoreDTO implements Serializable {
 	}
 
 	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
+	 * equals
 	 */
 	@Override
 	public boolean equals(Object obj) {
