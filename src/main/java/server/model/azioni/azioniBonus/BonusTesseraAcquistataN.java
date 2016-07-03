@@ -20,7 +20,7 @@ public class BonusTesseraAcquistataN extends Azione {
 	 * anche una di quelle a faccia in giù
 	 */
 	private TesseraPermesso tesseraPermesso;
-	private int id;
+	private final int id=1;
 	/**
 	 * use bonus in the selected TesseraPermesso that player already choose, and notify
 	 */
@@ -88,24 +88,6 @@ public class BonusTesseraAcquistataN extends Azione {
 		if (id != other.id)
 			return false;
 		return true;
-	}
-
-	/**
-	 * @return the id
-	 */
-	public int getId() {
-		return id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(int id) {
-		if(id<1 || id>2)
-			throw new IllegalArgumentException("L'id è errato, scegli 1 o 2");
-		this.id = id;
-	}
-
-	
+	}	
 
 }

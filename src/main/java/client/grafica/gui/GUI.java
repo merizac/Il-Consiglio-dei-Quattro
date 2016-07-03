@@ -1,6 +1,7 @@
 package client.grafica.gui;
 
 import java.io.IOException;
+import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,10 +13,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import javax.print.DocFlavor.URL;
-
-
 import client.connessione.Connessione;
 import client.grafica.Grafica;
 import common.azioniDTO.AcquistoTesseraPermessoDTO;
@@ -191,8 +188,8 @@ public class GUI extends Application implements Grafica {
 	public void inizializza() {
 		FXMLLoader fxmloader = new FXMLLoader();
 		fxmloader.setLocation(getClass().getClassLoader().getResource("client/grafica/gui/fxml/gameState.fxml"));
-		String audioGioco = this.getClass().getResource("css/audioGioco.mp3").toExternalForm();
-		Media media = new Media(audioGioco);
+		URL audioGioco = getClass().getResource("css/audioGioco.mp3");
+		Media media = new Media(audioGioco.toString());
 		song = new MediaPlayer(media);
 		song.play();
 		song.setVolume(0.2);
@@ -361,9 +358,9 @@ public class GUI extends Application implements Grafica {
 		azioni.get(8).setUserData(new PassaDTO());
 		azioni.get(9).setUserData(new PescaCartaDTO());
 		
-		for(Button azione: azioni){
+		/*for(Button azione: azioni){
 			azione.setOnMouseClicked(onMouseClicked);
-		}
+		}*/
 	}
 
 	private void assegnaRegione() {
@@ -529,7 +526,6 @@ public class GUI extends Application implements Grafica {
 			HBox tesserePermesso = controllerMarket.getTesserePermesso();
 			HBox aiutanti = controllerMarket.getAiutanti();
 			HBox cartePolitica = controllerMarket.getCartePolitica();
-			System.out.println("carte: " + cartePolitica);
 			Map<String, Image> carte = controller.getMappaCartePolitica();
 			Map<String, Image> tessere = controller.getMappaTesserePermesso();
 			Map<String, Image> bonus = controller.getMappaBonus();

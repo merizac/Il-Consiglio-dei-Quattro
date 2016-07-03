@@ -13,20 +13,16 @@ public class BonusTesseraAcquistata extends Bonus {
 	 * 
 	 */
 	private static final long serialVersionUID = 5973987175289643213L;
-	private int id= 1;
 
 	public BonusTesseraAcquistata() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	/**
 	 * @return the corresponding action
 	 */
 	public Azione getAzioneBonus(){
-		BonusTesseraAcquistataN bt = new BonusTesseraAcquistataN();
-		bt.setId(id);
-		return bt;
+		return new BonusTesseraAcquistataN();
 	}
 
 	/**

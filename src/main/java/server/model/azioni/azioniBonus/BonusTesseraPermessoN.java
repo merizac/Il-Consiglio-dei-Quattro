@@ -22,7 +22,7 @@ public class BonusTesseraPermessoN extends Azione {
 	 */
 	private Regione regione;
 	private TesseraPermesso tesseraScoperta;
-	private int id;
+	private final int id=2;
 
 	/**
 	 * take one tesseraPermesso from the selected region. (so remove that from
@@ -110,22 +110,6 @@ public class BonusTesseraPermessoN extends Azione {
 		if (id != other.id)
 			return false;
 		return true;
-	}
-
-	/**
-	 * @return the id
-	 */
-	public int getId() {
-		return id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(int id) {
-		if(id<1 || id>2)
-			throw new IllegalArgumentException("L'id è errato, scegli 1 o 2");
-		this.id = id;
 	}
 
 }

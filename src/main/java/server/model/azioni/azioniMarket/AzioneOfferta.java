@@ -19,7 +19,7 @@ public class AzioneOfferta extends Azione {
 	@Override
 	public void eseguiAzione(GameState gameState){
 		if(!marketable.possiede(gameState.getGiocatoreCorrente()))
-			gameState.notifyObserver(new MessageNotify("Questa offerta non è effettuabile",
+			gameState.notifyObserver(new MessageNotify("Questa offerta non è effettuabile\n",
 					Arrays.asList(gameState.getGiocatoreCorrente()), true));
 		else{
 			gameState.getOfferteMarket().add(new Offerta(gameState.getGiocatoreCorrente(), marketable, prezzo));

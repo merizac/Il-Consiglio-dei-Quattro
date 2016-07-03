@@ -17,7 +17,7 @@ public class IngaggioAiutante extends AzioneVeloce {
 	@Override
 	public void eseguiAzione(GameState gameState) {
 		if (!gameState.getGiocatoreCorrente().diminuisciRicchezza(3)) {
-			gameState.notifyObserver(new MessageNotify("Errore: i soldi non sono sufficienti",
+			gameState.notifyObserver(new MessageNotify("Errore: i soldi non sono sufficienti\n",
 					Arrays.asList(gameState.getGiocatoreCorrente()), false));
 			return;
 		}
