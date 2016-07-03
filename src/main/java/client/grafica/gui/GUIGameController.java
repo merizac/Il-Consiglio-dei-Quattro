@@ -16,7 +16,6 @@ import common.azioniDTO.AzioneDTO;
 import common.azioniDTO.AzioneParametri;
 import common.azioniDTO.ChatDTO;
 import common.azioniDTO.ExitDTO;
-import common.azioniDTO.PescaCartaDTO;
 import common.gameDTO.CittàBonusDTO;
 import common.gameDTO.CittàDTO;
 import common.gameDTO.ColoreBonusDTO;
@@ -42,7 +41,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.effect.Glow;
 
 public class GUIGameController implements Controller {
 
@@ -265,6 +263,9 @@ public class GUIGameController implements Controller {
 	@FXML
 	private TextField chat;
 
+	/**
+	 * map image with button or imageView
+	 */
 	public GUIGameController() {
 		this.mappaEmpori.put("0", new Image(getClass().getResource("css/empori/1.png").toExternalForm()));
 		this.mappaEmpori.put("1", new Image(getClass().getResource("css/empori/2.png").toExternalForm()));
@@ -471,6 +472,11 @@ public class GUIGameController implements Controller {
 		this.gui = gui;
 	}
 
+	/**
+	 * handle action that are send from the player
+	 * 
+	 * @param event
+	 */
 	@FXML
 	public void handleAzione(ActionEvent event) {
 		ExecutorService executor = Executors.newSingleThreadExecutor();
@@ -511,6 +517,9 @@ public class GUIGameController implements Controller {
 		executor.submit(runnable);
 	}
 
+	/**
+	 * handle exit action
+	 */
 	@FXML
 	public void handleExit() {
 		try {
@@ -522,10 +531,18 @@ public class GUIGameController implements Controller {
 		}
 	}
 
+	/**
+	 * show name player
+	 * 
+	 * @param nome
+	 */
 	public void mostraNomeGiocatore(String nome) {
 		nomeGiocatore.setText(nome);
 	}
 
+	/**
+	 * show bonus tiles
+	 */
 	public void mostraTessereBonus() {
 		if (gameStateDTO.getRegioni().get(0).getBonusRegione() != null) {
 			mare.setImage(new Image(getClass().getResource("css/tessereBonus/mare.png").toExternalForm()));
@@ -565,6 +582,10 @@ public class GUIGameController implements Controller {
 		}
 	}
 
+	/**
+	 * show bonus of the cities
+	 * @param città
+	 */
 	public void mostraGettoni(List<CittàDTO> città) {
 		Runnable runnable = () -> {
 			if (città.get(0) instanceof CittàBonusDTO) {
@@ -622,6 +643,11 @@ public class GUIGameController implements Controller {
 		// stessa cosa delle tessere permesso
 	}
 
+	/**
+	 * show emporium in cities
+	 * 
+	 * @param città
+	 */
 	public void stampaEmporiCittà(List<CittàDTO> città) {
 		Runnable runnable = () -> {
 			List<HBox> hbox = Arrays.asList(emporiArkon, emporiBurgen, emporiCastrum, emporiDorful, emporiEsti,
@@ -640,6 +666,10 @@ public class GUIGameController implements Controller {
 		Platform.runLater(runnable);
 	}
 
+	/**
+	 * show counselors in stock
+	 * @param consiglieri
+	 */
 	public void mostraRiserva(List<ConsigliereDTO> consiglieri) {
 
 		consigliere1.setImage(mappaConsiglieriRiserva.get(consiglieri.get(0).getColoreConsigliere()));
@@ -668,6 +698,10 @@ public class GUIGameController implements Controller {
 		consigliere8.setDisable(true);
 	}
 
+	/**
+	 * show permit tile of region
+	 * @param regioni
+	 */
 	public void mostraTesserePermessoRegioni(List<RegioneDTO> regioni) {
 
 		tesseraCollina1.setImage(this.mappaTessere.get(regioni.get(1).getTesserePermessoScoperte().get(0).toString()));
@@ -689,6 +723,10 @@ public class GUIGameController implements Controller {
 		tesseraMontagna2.setUserData(regioni.get(2).getTesserePermessoScoperte().get(1));
 	}
 
+	/**
+	 * handle action on click of permit tile
+	 * @param event
+	 */
 	@FXML
 	public void handleTesseraPermessoRegione(Event event) {
 		synchronized (gui.getLock()) {
@@ -698,15 +736,26 @@ public class GUIGameController implements Controller {
 
 	}
 
+	/**
+	 * show balcony councillors
+	 */
 	public void mostraConsiglieriBalcone() {
 		gui.stampaConsiglieriBalcone();
 	}
 
+	/**
+	 * get message
+	 */
 	@Override
 	public TextArea getMessage() {
 		return this.message;
 	}
 
+	/**
+	 * handle action on balcony
+	 * 
+	 * @param event
+	 */
 	public void handleBalcone(Event event) {
 		synchronized (gui.getLock()) {
 			gui.setParametro(((HBox) event.getSource()).getUserData());
@@ -714,6 +763,11 @@ public class GUIGameController implements Controller {
 		}
 	}
 
+	/**
+	 * handle action on politic card
+	 * 
+	 * @param event
+	 */
 	@FXML
 	public void handleCartaPolitica(Event event) {
 		synchronized (gui.getLock()) {
@@ -725,6 +779,9 @@ public class GUIGameController implements Controller {
 		}
 	}
 
+	/**
+	 * handle action on conferma button
+	 */
 	@FXML
 	public void handleConferma() {
 		synchronized (gui.getLock()) {
@@ -734,6 +791,9 @@ public class GUIGameController implements Controller {
 		}
 	}
 	
+	/**
+	 * handle audio on button of volume
+	 */
 	@FXML
 	public void handleAudio() {
 			if (gui.getSong().getStatus().equals(Status.PLAYING)){
@@ -744,6 +804,10 @@ public class GUIGameController implements Controller {
 			}
 	}
 
+	/**
+	 * handle action on stock councillor
+	 * @param event
+	 */
 	@FXML
 	public void handleConsigliereRiserva(Event event) {
 		synchronized (gui.getLock()) {
@@ -753,6 +817,10 @@ public class GUIGameController implements Controller {
 		}
 	}
 
+	/**
+	 * handle action on region button
+	 * @param event
+	 */
 	@FXML
 	public void handleRegione(Event event) {
 		synchronized (gui.getLock()) {
@@ -761,6 +829,10 @@ public class GUIGameController implements Controller {
 		}
 	}
 
+	/**
+	 * handle action on chat text area
+	 * @param action
+	 */
 	@FXML
 	public void handleChat(KeyEvent action) {
 		if (action.getCode() == KeyCode.ENTER) {
@@ -778,6 +850,11 @@ public class GUIGameController implements Controller {
 		}
 	}
 
+	/**
+	 * handle player permit tile
+	 * 
+	 * @param event
+	 */
 	@FXML
 	public void handleTesseraPermessoGiocatore(Event event) {
 		synchronized (gui.getLock()) {
@@ -786,6 +863,10 @@ public class GUIGameController implements Controller {
 		}
 	}
 
+	/**
+	 * handle action on city
+	 * @param event
+	 */
 	@FXML
 	public void handleCittà(Event event) {
 		synchronized (gui.getLock()) {
@@ -794,6 +875,11 @@ public class GUIGameController implements Controller {
 		}
 	}
 
+	/**
+	 * assigns button on each city
+	 * 
+	 * @param città
+	 */
 	public void assegnaBottoniCittà(List<CittàDTO> città) {
 		this.città.clear();
 		arkon.setUserData(città.get(0));
@@ -843,44 +929,84 @@ public class GUIGameController implements Controller {
 		this.città.add(osium);
 	}
 
+	/**
+	 * 
+	 * @return giocatori
+	 */
 	public TabPane getAvversari() {
 		return this.giocatori;
 	}
 
+	/**
+	 * 
+	 * @return tessere permesso
+	 */
 	public HBox getTesserePermessoGiocatore() {
 		return this.tesserePermesso;
 	}
 
+	/**
+	 * 
+	 * @return carte politica
+	 */
 	public HBox getCartePoliticaGiocatore() {
 		return this.cartePolitica;
 	}
 
+	/**
+	 * 
+	 * @return mappaTessere
+	 */
 	public Map<String, Image> getMappaTesserePermesso() {
 		return this.mappaTessere;
 	}
 
+	/**
+	 * 
+	 * @return mappaCarte
+	 */
 	public Map<String, Image> getMappaCartePolitica() {
 		return this.mappaCarte;
 	}
 
+	/**
+	 * 
+	 * @return mappaBonus
+	 */
 	public Map<String, Image> getMappaBonus() {
 		return this.mappaBonus;
 	}
 
+	/**
+	 * 
+	 * @return list of imageView of councillor
+	 */
 	public List<ImageView> getConsiglieri() {
 
 		return Arrays.asList(consigliere1, consigliere2, consigliere3, consigliere4, consigliere5, consigliere6,
 				consigliere7, consigliere7, consigliere8);
 	}
 
+	/**
+	 * 
+	 * @return list of balcony
+	 */
 	public List<HBox> getBalconi() {
 		return Arrays.asList(balconeMare, balconeCollina, balconeMontagna, balconeRe);
 	}
 
+	/**
+	 * 
+	 * @return arrow of balcony
+	 */
 	public List<ImageView> getFrecce() {
 		return Arrays.asList(frecciaMare, frecciaCollina, frecciaMontagna, frecciaRe);
 	}
 
+	/**
+	 * 
+	 * @return cartePoliticaGiocatore
+	 */
 	public List<ImageView> getCartePolitica() {
 		List<ImageView> cartePoliticaGiocatore = new ArrayList<>();
 		for (Node i : this.cartePolitica.getChildren()) {
@@ -889,26 +1015,50 @@ public class GUIGameController implements Controller {
 		return cartePoliticaGiocatore;
 	}
 
+	/**
+	 * 
+	 * @return conferma
+	 */
 	public Button getConferma() {
 		return this.conferma;
 	}
 
+	/**
+	 * 
+	 * @return list of region
+	 */
 	public List<ImageView> getRegioni() {
 		return Arrays.asList(regioneMare, regioneCollina, regioneMontagna);
 	}
 
+	/**
+	 * 
+	 * @return list of sea permit tile
+	 */
 	public List<ImageView> getTessereMare() {
 		return Arrays.asList(tesseraMare1, tesseraMare2);
 	}
 
+	/**
+	 * 
+	 * @return list of hill permit tile
+	 */
 	public List<ImageView> getTessereCollina() {
 		return Arrays.asList(tesseraCollina1, tesseraCollina2);
 	}
 
+	/**
+	 * 
+	 * @return list of mountain permit tile
+	 */
 	public List<ImageView> getTessereMontagna() {
 		return Arrays.asList(tesseraMontagna1, tesseraMontagna2);
 	}
 
+	/**
+	 * 
+	 * @return list of emporium of each city
+	 */
 	public List<HBox> getListaEmporiHBox() {
 		return Arrays.asList(emporiArkon, emporiBurgen, emporiCastrum, emporiDorful, emporiEsti, emporiFramek,
 				emporiGraden, emporiHellar, emporiIndur, emporiJuvelar, emporiKultos, emporiLyram, emporiMerkatim,
@@ -922,6 +1072,10 @@ public class GUIGameController implements Controller {
 		return mappaEmpori;
 	}
 
+	/**
+	 * 
+	 * @return list of permit tile
+	 */
 	public List<ImageView> getTesserePermessoRegioni() {
 		List<ImageView> tessere = new ArrayList<>();
 		tessere.addAll(this.getTessereCollina());
@@ -930,6 +1084,11 @@ public class GUIGameController implements Controller {
 		return tessere;
 	}
 
+	/**
+	 * 
+	 * @param città
+	 * @return city without emporium
+	 */
 	public List<Pane> getCittàSenzaEmporio(Set<? extends CittàDTO> città) {
 		List<Pane> cittàCostruzione = new ArrayList<>();
 		for (Pane b : this.città) {
@@ -942,6 +1101,10 @@ public class GUIGameController implements Controller {
 		return cittàCostruzione;
 	}
 
+	/**
+	 * 
+	 * @return list of action
+	 */
 	public List<Button> getAzioni() {
 		return Arrays.asList(elezioneConsigliere, acquistoTesseraPermesso, costruzioneTesseraPermesso,
 				costruzioneAiutoRe, ingaggioAiutante, cambioTesseraPermesso, elezioneConsigliereVeloce,
@@ -949,6 +1112,10 @@ public class GUIGameController implements Controller {
 
 	}
 
+	/**
+	 * 
+	 * @return king's city
+	 */
 	public Pane getRe() {
 		Pane cittàRe = null;
 		for (Pane b : città) {
@@ -967,6 +1134,10 @@ public class GUIGameController implements Controller {
 		return mappaConsiglieri;
 	}
 
+	/**
+	 * 
+	 * @return list of city where the player has emporiums
+	 */
 	public List<Pane> getCittàBonusConEmporio() {
 		List<Pane> cittàBonusGettone = new ArrayList<>();
 		for (Pane cittàBonus : città) {
@@ -992,6 +1163,10 @@ public class GUIGameController implements Controller {
 		return mappaImmagine;
 	}
 
+	/**
+	 * 
+	 * @return tesserePermessoUsate
+	 */
 	public HBox getTesserePermessoGiocatoreUsate() {
 		return this.tesserePermessoUsate;
 	}

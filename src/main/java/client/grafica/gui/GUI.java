@@ -12,10 +12,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import javax.print.DocFlavor.URL;
-
-
 import client.connessione.Connessione;
 import client.grafica.Grafica;
 import common.azioniDTO.AcquistoTesseraPermessoDTO;
@@ -98,6 +94,9 @@ public class GUI extends Application implements Grafica {
 	private static final Logger log = Logger.getLogger(GUI.class.getName());
 	private MediaPlayer song;
 
+	/**
+	 * set connection 
+	 */
 	@Override
 	public void setConnessione(Connessione connessione) {
 		this.connessione = connessione;
@@ -148,25 +147,43 @@ public class GUI extends Application implements Grafica {
 		this.carteInserite = carteInserite;
 	}
 
+	/**
+	 * set gameState
+	 */
 	@Override
 	public void setGameStateDTO(GameStateDTO gameStateDTO) {
 		this.gameStateDTO = gameStateDTO;
 	}
 
+	/**
+	 * 
+	 * @return gameState
+	 */
 	public GameStateDTO getGameStateDTO() {
 		return this.gameStateDTO;
 	}
 
+	/**
+	 * set giocatore dto
+	 * @param giocatoreDTO
+	 */
 	public void setGiocatoreDTO(GiocatoreDTO giocatoreDTO) {
 		if (giocatoreDTO == null)
 			throw new IllegalArgumentException("Giocatore null");
 		this.gameStateDTO.setGiocatoreDTO(giocatoreDTO);
 	}
 
+	/**
+	 * 
+	 * @return connessione
+	 */
 	public Connessione getConnessione() {
 		return this.connessione;
 	}
 
+	/**
+	 * start the main stage. Ask for name and connection
+	 */
 	@Override
 	public void start(Stage primaryStage) throws IOException {
 		primaryStage.setTitle("Login ");
@@ -188,6 +205,10 @@ public class GUI extends Application implements Grafica {
 		finestra.show();
 	}
 
+	/**
+	 * set the new scene of the game. Start audio and set cursore.
+	 * 
+	 */
 	public void inizializza() {
 		FXMLLoader fxmloader = new FXMLLoader();
 		fxmloader.setLocation(getClass().getClassLoader().getResource("client/grafica/gui/fxml/gameState.fxml"));
@@ -222,6 +243,9 @@ public class GUI extends Application implements Grafica {
 		finestra.show();
 	}
 
+	/**
+	 * show available actions and set timer for execute action
+	 */
 	@Override
 	public void mostraAzioni(List<AzioneDTO> azioni) {
 
@@ -258,6 +282,9 @@ public class GUI extends Application implements Grafica {
 		}
 	}
 
+	/**
+	 * show final ranking
+	 */
 	@Override
 	public void mostraClassifica(List<GiocatoreDTO> vincenti, List<GiocatoreDTO> perdenti) {
 		Runnable runnable = () -> {
@@ -283,6 +310,9 @@ public class GUI extends Application implements Grafica {
 
 	}
 
+	/**
+	 * close window of sceltaMappa and show all components of gameState
+	 */
 	@Override
 	public void mostraGame(GameStateDTO gameStateDTO) throws IOException {
 		if (controllerMappa != null && mappa.isShowing()) {
@@ -304,6 +334,10 @@ public class GUI extends Application implements Grafica {
 		stampaEmporiCittà(new ArrayList<>(gameStateDTO.getCittà()));
 	}
 
+	/**
+	 * show emporium of cities
+	 * @param città
+	 */
 	private void stampaEmporiCittà(List<CittàDTO> città) {
 
 		Runnable runnable = () -> {
@@ -325,6 +359,9 @@ public class GUI extends Application implements Grafica {
 		Platform.runLater(runnable);
 	}
 
+	/**
+	 * set king in king's city
+	 */
 	private void assegnaRe() {
 		Runnable runnable = () -> {
 			Map<String, Image> immagineRe = controller.getMappaBonus();
@@ -341,6 +378,9 @@ public class GUI extends Application implements Grafica {
 
 	}
 
+	/**
+	 * associate action and button
+	 */
 	private void assegnaAzioni() {
 		List<Button> azioni = controller.getAzioni();
 		EventHandler<Event> onMouseClicked = (Event) -> {
@@ -366,6 +406,9 @@ public class GUI extends Application implements Grafica {
 		}
 	}
 
+	/**
+	 * associate imageView and region
+	 */
 	private void assegnaRegione() {
 		List<ImageView> regioni = controller.getRegioni();
 		for (int i = 0; i < regioni.size(); i++) {
@@ -373,6 +416,9 @@ public class GUI extends Application implements Grafica {
 		}
 	}
 
+	/**
+	 * show all info of current player
+	 */
 	@Override
 	public void mostraGiocatore(GiocatoreDTO giocatoreDTO) {
 		stampaTesserePermesso(controller.getTesserePermessoGiocatore(), giocatoreDTO.getTesserePermesso(), 0, 70, 1);
@@ -385,6 +431,10 @@ public class GUI extends Application implements Grafica {
 		hbox.setSpacing(30);
 	}
 
+	/**
+	 * set politic cards
+	 * @param carte
+	 */
 	private void cartePolitica(List<CartaPoliticaDTO> carte) {
 		Runnable runnable = () -> {
 
@@ -412,6 +462,8 @@ public class GUI extends Application implements Grafica {
 	}
 
 	/**
+	 * show permit tile
+	 * 
 	 * @param tesserePermesso
 	 *            HBox where it stamp tessere
 	 * @param tessere
@@ -459,6 +511,9 @@ public class GUI extends Application implements Grafica {
 
 	}
 
+	/**
+	 * show counselors in balcony in each region
+	 */
 	public void stampaConsiglieriBalcone() {
 		Runnable runnable = () -> {
 			List<HBox> balconi = controller.getBalconi();
@@ -510,18 +565,27 @@ public class GUI extends Application implements Grafica {
 		Platform.runLater(runnable);
 	}
 
+	/**
+	 * show message
+	 */
 	@Override
 	public void mostraMessaggio(String messaggio) {
 		Runnable runnable = () -> controller.getMessage().appendText(messaggio);
 		Platform.runLater(runnable);
 	}
 	
+	/**
+	 * show market message
+	 */
 	@Override
 	public void mostraMessaggioMarket(String messaggio){
 		Runnable runnable = () ->controllerMarket.getMessage().appendText(messaggio);
 		Platform.runLater(runnable);
 	}
 
+	/**
+	 * show player in market state
+	 */
 	@Override
 	public void mostraGiocatoreMarket(GiocatoreDTO giocatore) {
 		Runnable runnable = () -> {
@@ -588,6 +652,9 @@ public class GUI extends Application implements Grafica {
 		Platform.runLater(runnable);
 	}
 
+	/**
+	 * show the current offers
+	 */
 	@Override
 	public void mostraOfferte(List<OffertaDTO> offerte) {
 		Runnable runnable = () -> {
@@ -602,6 +669,15 @@ public class GUI extends Application implements Grafica {
 		Platform.runLater(runnable);
 	}
 
+	/**
+	 * show offers 
+	 * 
+	 * @param offerta
+	 * @param giocatore
+	 * @param oggetto
+	 * @param prezzo
+	 * @return
+	 */
 	private Pane stampaOfferta(OffertaDTO offerta, String giocatore, MarketableDTO oggetto, int prezzo) {
 		Map<String, Image> tesserePermesso = controller.getMappaTesserePermesso();
 		Map<String, Image> aiutante = controller.getMappaBonus();
@@ -647,6 +723,9 @@ public class GUI extends Application implements Grafica {
 		return pane;
 	}
 
+	/**
+	 * start market and open market window
+	 */
 	@Override
 	public void startMarket() {
 		Runnable runnable = () -> {
@@ -666,15 +745,23 @@ public class GUI extends Application implements Grafica {
 			controllerMarket.setGui(GUI.this);
 			controllerMarket.inizializza();
 			market.setScene(theScene);
+			market.setTitle("Market "+ gameStateDTO.getGiocatoreDTO());
 			market.show();
 		};
 		Platform.runLater(runnable);
 	}
 
+	/**
+	 * start apllication
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		Application.launch(args);
 	}
 
+	/**
+	 * show info of players that aren't current player
+	 */
 	@Override
 	public void mostraAvversario(GiocatoreDTO avversario) {
 		Runnable runnable = () -> {
@@ -707,6 +794,13 @@ public class GUI extends Application implements Grafica {
 		Platform.runLater(runnable);
 	}
 
+	/**
+	 * show points of players that aren't current player
+	 * 
+	 * @param avversario
+	 * @param hbox
+	 * @param heightImage
+	 */
 	private void stampaPuntiAvversario(GiocatoreDTO avversario, HBox hbox, int heightImage) {
 		Runnable runnable = () -> {
 			Map<String, Image> mappaEmpori = controller.getMappaEmpori();
@@ -731,6 +825,14 @@ public class GUI extends Application implements Grafica {
 		Platform.runLater(runnable);
 	}
 
+	/**
+	 * show point of players that aren't current player
+	 * 
+	 * @param immagine
+	 * @param punti
+	 * @param heightImage
+	 * @return
+	 */
 	private Pane stampaPuntoAvversario(Image immagine, String punti, int heightImage) {
 		Pane pane = new Pane();
 		ImageView image = new ImageView();
@@ -746,6 +848,9 @@ public class GUI extends Application implements Grafica {
 		return pane;
 	}
 
+	/**
+	 * choose  from stock
+	 */
 	@Override
 	public ConsigliereDTO scegliConsigliere(List<ConsigliereDTO> consiglieri) {
 		List<ImageView> riserva = controller.getConsiglieri();
@@ -781,6 +886,9 @@ public class GUI extends Application implements Grafica {
 
 	}
 
+	/**
+	 * choose region balcony
+	 */
 	@Override
 	public BalconeDTO scegliBalcone(List<RegioneDTO> regioni, BalconeDTO balconeRe) {
 		List<HBox> balconi = controller.getBalconi();
@@ -812,6 +920,9 @@ public class GUI extends Application implements Grafica {
 		}
 	}
 
+	/**
+	 * choose region 
+	 */
 	@Override
 	public RegioneDTO scegliRegione(List<RegioneDTO> regioni) {
 		List<ImageView> r = controller.getRegioni();
@@ -842,6 +953,9 @@ public class GUI extends Application implements Grafica {
 		return regioneDTO;
 	}
 
+	/**
+	 * choose permit tile from region
+	 */
 	@Override
 	public TesseraPermessoDTO scegliTesseraRegione(List<TesseraPermessoDTO> tesserePermessoScoperte, RegioneDTO regioneDTO) {
 		List<ImageView> tessere;
@@ -880,6 +994,9 @@ public class GUI extends Application implements Grafica {
 		return tesseraPermessoDTO;
 	}
 
+	/**
+	 * choose price for buy object in market
+	 */
 	@Override
 	public int scegliPrezzo() {
 
@@ -904,10 +1021,14 @@ public class GUI extends Application implements Grafica {
 
 	@Override
 	public CartaPoliticaDTO scegliCarta(List<CartaPoliticaDTO> cartePolitica) {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 
+	/**
+	 * choose city in the map
+	 * @return cittàDTO
+	 */
 	@Override
 	public CittàDTO scegliCittà(Set<? extends CittàDTO> città, ColoreDTO coloreGiocatore) {
 		List<Pane> cittàCostruzione = controller.getCittàSenzaEmporio(città);
@@ -931,6 +1052,9 @@ public class GUI extends Application implements Grafica {
 		return cittàDTO;
 	}
 
+	/**
+	 * choose current player permit tile
+	 */
 	@Override
 	public TesseraPermessoDTO scegliTesseraGiocatore(List<TesseraPermessoDTO> list) {
 		HBox tessere = controller.getTesserePermessoGiocatore();
@@ -964,6 +1088,10 @@ public class GUI extends Application implements Grafica {
 		return tesseraPermessoDTO;
 	}
 
+	/**
+	 * choose one of the discovery or covery permit tile of the current player and take bonus.
+	 * For interactive bonus in nobility track
+	 */
 	@Override
 	public TesseraPermessoDTO scegliTesseraPermessoUsataONonUsata(List<TesseraPermessoDTO> tessere,
 			List<TesseraPermessoDTO> tessereUsate) {
@@ -1008,6 +1136,9 @@ public class GUI extends Application implements Grafica {
 		return tesseraPermessoDTO;
 	}
 
+	/**
+	 * choose politc cards from the hand of current player
+	 */
 	@Override
 	public List<CartaPoliticaDTO> scegliCarte(List<CartaPoliticaDTO> carteGiocatore) {
 		List<CartaPoliticaDTO> carte = new ArrayList<>();
@@ -1062,6 +1193,9 @@ public class GUI extends Application implements Grafica {
 
 	}
 
+	/**
+	 * choose marketable object for the market
+	 */
 	@Override
 	public MarketableDTO scegliMarketable() {
 		HBox aiutanti = controllerMarket.getAiutanti();
@@ -1106,6 +1240,9 @@ public class GUI extends Application implements Grafica {
 
 	}
 
+	/** 
+	 * choose offer from other players in market state
+	 */
 	@Override
 	public int scegliOfferta(List<OffertaDTO> offerte) {
 		List<Node> offerteMarket = controllerMarket.getOfferte().getChildren();
@@ -1139,6 +1276,10 @@ public class GUI extends Application implements Grafica {
 	}
 
 
+	/**
+	 * choose one city with player's emporium with bonus and win bonus.
+	 * For interactive bonus in nobility track
+	 */
 	@Override
 	public List<CittàBonusDTO> scegliUnaCittà() {
 		this.mostraMessaggio("Scegli una città");
@@ -1164,6 +1305,11 @@ public class GUI extends Application implements Grafica {
 		return Arrays.asList(cittàBonusDTO);
 	}
 
+	/**
+	 * choose two cities with player's emporium with bonus. Bonus need to be different each other.
+	 * the player win bonus of these two cities. 
+	 * Uses in interactive bonus in nobility track
+	 */
 	@Override
 	public List<CittàBonusDTO> scegliDueCittà() {
 		List<Pane> dueCittàBonus = controller.getCittàBonusConEmporio();
@@ -1192,6 +1338,9 @@ public class GUI extends Application implements Grafica {
 		return cittàBonusDTO;
 	}
 
+	/**
+	 * notify the end of market
+	 */
 	@Override
 	public void fineMarket() {
 		Runnable runnable = () -> market.close();
@@ -1199,6 +1348,9 @@ public class GUI extends Application implements Grafica {
 
 	}
 
+	/**
+	 * choose map 
+	 */
 	@Override
 	public void scegliMappa() {
 		Runnable runnable = () -> {
@@ -1227,6 +1379,9 @@ public class GUI extends Application implements Grafica {
 		Platform.runLater(runnable);
 	}
 
+	/**
+	 * close window of choice of map
+	 */
 	public void closeSceltaMappa() {
 		Runnable runnable = () -> mappa.close();
 		Platform.runLater(runnable);
@@ -1239,6 +1394,11 @@ public class GUI extends Application implements Grafica {
 		}
 	}
 
+	/**
+	 * info of not available action
+	 * @param header
+	 * @param content
+	 */
 	public void azioneNonValida(String header, String content) {
 		Runnable runnable = () -> {
 			Alert alert = new Alert(AlertType.ERROR);
@@ -1252,6 +1412,9 @@ public class GUI extends Application implements Grafica {
 		Platform.runLater(runnable);
 	}
 
+	/**
+	 * close window
+	 */
 	public void close() {
 		Runnable runnable = () -> {
 			finestra.close();
