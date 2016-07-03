@@ -203,7 +203,7 @@ public class CLI implements Grafica {
 				}
 			}
 		};
-		//timer.schedule(task, timeout);
+		// timer.schedule(task, timeout);
 
 		for (AzioneDTO a : azioni) {
 			Utils.print(a.toString());
@@ -673,17 +673,18 @@ public class CLI implements Grafica {
 		}
 
 		Utils.print("Scegli una città");
-		inputLine = stdIn.nextLine();
-		List<CittàBonusDTO> cittàb = new ArrayList<>();
+		List<CittàBonusDTO> cittàBonusDTO = new ArrayList<>();
 		for (int i = 0; i < 2; i++) {
 			inputLine = stdIn.nextLine();
 			CittàDTO cittàScelta = this.scegliCittàBonus(città, gameStateDTO.getGiocatoreDTO().getColoreGiocatore(),
 					inputLine);
-			cittàb.add((CittàBonusDTO) cittàScelta);
-			Utils.print("Scegli un'altra città con gettone dei bonus diverso dalla prima");
+			cittàBonusDTO.add((CittàBonusDTO) cittàScelta);
+			if (i == 0) {
+				Utils.print("Scegli un'altra città con gettone dei bonus diverso dalla prima");
+			}
 		}
 
-		return cittàb;
+		return cittàBonusDTO;
 	}
 
 	/**
@@ -719,9 +720,9 @@ public class CLI implements Grafica {
 
 		Random random = new Random();
 		int numeroMappa = random.nextInt(2) + 1;
-		Utils.print("Scelta mappa"+numeroMappa);
+		Utils.print("Scelta mappa" + numeroMappa);
 		try {
-			connessione.inviaAzione(new AzioneMappaDTO("mappa"+numeroMappa));
+			connessione.inviaAzione(new AzioneMappaDTO("mappa" + numeroMappa));
 		} catch (RemoteException e) {
 			log.log(Level.SEVERE, "Errore nell'invio dell'azione al server", e);
 		}
