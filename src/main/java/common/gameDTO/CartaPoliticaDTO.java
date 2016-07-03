@@ -9,7 +9,13 @@ import server.model.market.Marketable;
 
 public class CartaPoliticaDTO implements Serializable, MarketableDTO {
 
+	/**
+	 * serial version for serializable object
+	 */
 	private static final long serialVersionUID = 6234645852702284026L;
+	/**
+	 * color
+	 */
 	private String colore;
 
 	/**
@@ -34,7 +40,7 @@ public class CartaPoliticaDTO implements Serializable, MarketableDTO {
 	public CartaPolitica creaMarketable(Giocatore giocatore) {
 		return new CartaPolitica(new Colore(this.colore));
 	}
-	
+
 	/**
 	 * create an object marketableDTO from a marketable
 	 */
@@ -47,6 +53,7 @@ public class CartaPoliticaDTO implements Serializable, MarketableDTO {
 
 	/**
 	 * map cartaPolitica carta to cartaPoliticaDTO
+	 * 
 	 * @param carta
 	 */
 	public void inizializza(CartaPolitica carta) {
@@ -54,9 +61,7 @@ public class CartaPoliticaDTO implements Serializable, MarketableDTO {
 	}
 
 	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
+	 * to string
 	 */
 	@Override
 	public String toString() {

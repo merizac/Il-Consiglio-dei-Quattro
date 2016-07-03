@@ -8,8 +8,17 @@ import utility.ParameterException;
 
 public class AzioneAcquistoDTO implements AzioneDTO, AzioneParametri {
 
+	/**
+	 * serial version for serializable object
+	 */
 	private static final long serialVersionUID = -7696287909942735586L;
+	/**
+	 * offer of the market
+	 */
 	private int offertaDTO;
+	/**
+	 * player that is playing his turn
+	 */
 	private GiocatoreDTO giocatoreDTO;
 
 	/**
@@ -32,8 +41,8 @@ public class AzioneAcquistoDTO implements AzioneDTO, AzioneParametri {
 		return azioneVisitor.visit(this);
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/* 
+	 * to string
 	 */
 	@Override
 	public String toString() {
@@ -58,6 +67,9 @@ public class AzioneAcquistoDTO implements AzioneDTO, AzioneParametri {
 		this.giocatoreDTO = giocatoreDTO;
 	}
 
+	/**
+	 * set parameter
+	 */
 	@Override
 	public AzioneAcquistoParametri parametri() {
 		return new AzioneAcquistoParametri(this);

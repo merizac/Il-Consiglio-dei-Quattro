@@ -2,18 +2,15 @@ package utility;
 
 public class Utils {
 
-	
 	/**
 	 * check if is a number
 	 * 
 	 * @param numero
 	 * @return
 	 */
-
-	
-	public Utils(){
+	public Utils() {
 	}
-	
+
 	public static boolean isNumeric(String numero) {
 		try {
 			Integer.parseInt(numero);
@@ -23,9 +20,8 @@ public class Utils {
 		}
 	}
 
-	
-	public static void print(String messaggio){
+	public static void print(String messaggio) {
 		System.out.println(messaggio);
 	}
-	
+
 }

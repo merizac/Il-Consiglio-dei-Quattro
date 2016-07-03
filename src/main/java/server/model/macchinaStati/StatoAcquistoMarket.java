@@ -20,7 +20,14 @@ import utility.Utils;
 
 public class StatoAcquistoMarket implements Stato {
 
+	/**
+	 * list of player
+	 */
 	private List<Giocatore> giocatori;
+	
+	/**
+	 * list of action available in this state
+	 */
 	private List<Azione> azioni;
 
 	/**
@@ -104,9 +111,7 @@ public class StatoAcquistoMarket implements Stato {
 	}
 
 	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
+	 * to string
 	 */
 	@Override
 	public String toString() {

@@ -6,17 +6,20 @@ import server.model.azioni.Azione;
 public class IngaggioAiutanteDTO implements AzioneDTO {
 
 	/**
-	 * 
+	 * serial version for serializable object
 	 */
 	private static final long serialVersionUID = 8961689927032439392L;
 
+	/**
+	 * visitor
+	 */
 	@Override
 	public Azione accept(AzioneVisitor azioneVisitor) {
 		return azioneVisitor.visit(this);
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/*
+	 * to string
 	 */
 	@Override
 	public String toString() {

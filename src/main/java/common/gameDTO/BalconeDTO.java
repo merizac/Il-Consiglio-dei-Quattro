@@ -7,9 +7,15 @@ import java.util.List;
 import server.model.game.Balcone;
 import server.model.game.Consigliere;
 
-public class BalconeDTO implements Serializable{
+public class BalconeDTO implements Serializable {
 
+	/**
+	 * serial version for serializable object
+	 */
 	private static final long serialVersionUID = -6523476700234911129L;
+	/**
+	 * list of counselors
+	 */
 	private List<ConsigliereDTO> consiglieri;
 
 	/**
@@ -20,27 +26,29 @@ public class BalconeDTO implements Serializable{
 	}
 
 	/**
-	 * @param consiglieri the consiglieri to set
+	 * @param consiglieri
+	 *            the consiglieri to set
 	 */
 	public void setConsiglieri(List<ConsigliereDTO> consiglieri) {
 		this.consiglieri = consiglieri;
 	}
-	
+
 	/**
 	 * map the balcone to the balconeDTO
+	 * 
 	 * @param balcone
 	 */
-	public void inizializza(Balcone balcone){
-		this.consiglieri=new ArrayList<>();
-		for(Consigliere c: balcone.getConsigliere()){
+	public void inizializza(Balcone balcone) {
+		this.consiglieri = new ArrayList<>();
+		for (Consigliere c : balcone.getConsigliere()) {
 			ConsigliereDTO consigliereDTO = new ConsigliereDTO();
 			consigliereDTO.inizializza(c);
 			this.getConsiglieri().add(consigliereDTO);
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/*
+	 * to string
 	 */
 	@Override
 	public String toString() {

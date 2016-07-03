@@ -9,10 +9,16 @@ import utility.ParameterException;
 public class AzioneOffertaDTO implements AzioneDTO, AzioneParametri {
 
 	/**
-	 * 
+	 * serial version for serializable object
 	 */
 	private static final long serialVersionUID = -909674011488773839L;
+	/**
+	 * price for sell the object
+	 */
 	private int prezzo;
+	/**
+	 * object that can be sell in the market
+	 */
 	private MarketableDTO marketableDTO;
 
 
@@ -36,8 +42,8 @@ public class AzioneOffertaDTO implements AzioneDTO, AzioneParametri {
 	}
 
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/* 
+	 * to string 
 	 */
 	@Override
 	public String toString() {
@@ -64,6 +70,9 @@ public class AzioneOffertaDTO implements AzioneDTO, AzioneParametri {
 		this.marketableDTO = marketableDTO;
 	}
 
+	/**
+	 * set parameter
+	 */
 	@Override
 	public AzioneOffertaParametri parametri() {
 		return new AzioneOffertaParametri(this);

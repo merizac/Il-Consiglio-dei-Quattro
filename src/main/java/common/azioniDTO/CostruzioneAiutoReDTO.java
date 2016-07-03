@@ -12,10 +12,16 @@ import utility.ParameterException;
 public class CostruzioneAiutoReDTO implements AzioneDTO, AzioneParametri {
 
 	/**
-	 * 
+	 * serial version for serializable object
 	 */
 	private static final long serialVersionUID = -6608314626155739931L;
+	/**
+	 * list of politic card from the player
+	 */
 	private List<CartaPoliticaDTO> carteGiocatore;
+	/**
+	 * city that the player had to choose
+	 */
 	private CittàDTO città;
 	
 	
@@ -47,14 +53,17 @@ public class CostruzioneAiutoReDTO implements AzioneDTO, AzioneParametri {
 	public Azione accept(AzioneVisitor azioneVisitor) throws ParameterException {
 		return azioneVisitor.visit(this);
 	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/* 
+	 * to string
 	 */
 	@Override
 	public String toString() {
 		return "Costruire con l'aiuto del re  [P4]";
 	}
 	
+	/**
+	 * set parameter
+	 */
 	@Override
 	public CostruzioneAiutoReParametri parametri() {
 		return new CostruzioneAiutoReParametri(this);

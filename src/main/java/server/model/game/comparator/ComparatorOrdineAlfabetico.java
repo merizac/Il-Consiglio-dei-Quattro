@@ -12,6 +12,9 @@ public class ComparatorOrdineAlfabetico implements Comparator<CittàDTO>, Serial
 	 */
 	private static final long serialVersionUID = 1640007559415803090L;
 
+	/**
+	 * compare name of cities and order in alphabetic order
+	 */
 	@Override
 	public int compare(CittàDTO c1, CittàDTO c2) {
 		String nome1= c1.getNome();

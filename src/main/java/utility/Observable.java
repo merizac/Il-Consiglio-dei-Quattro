@@ -5,6 +5,9 @@ import java.util.List;
 
 public abstract class Observable<C> {
 
+	/**
+	 * list of observers
+	 */
 	private List<Observer<C>> observers;
 
 	public Observable() {

@@ -18,8 +18,17 @@ import utility.ParameterException;
 
 public class TesseraPermessoDTO implements Serializable, MarketableDTO {
 
+	/**
+	 * serial version for serializable object
+	 */
 	private static final long serialVersionUID = 251246647055835184L;
+	/**
+	 * city of permit tile
+	 */
 	private Set<CittàDTO> città = new HashSet<>();
+	/**
+	 * bonus in permit tile
+	 */
 	private List<Bonus> bonus;
 
 	/**
@@ -53,9 +62,7 @@ public class TesseraPermessoDTO implements Serializable, MarketableDTO {
 	}
 
 	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
+	 * to string
 	 */
 	@Override
 	public String toString() {
@@ -89,11 +96,17 @@ public class TesseraPermessoDTO implements Serializable, MarketableDTO {
 		this.setBonus(t.getBonus());
 	}
 
+	/**
+	 * create marketable object
+	 */
 	@Override
 	public TesseraPermesso creaMarketable(Giocatore giocatore) throws ParameterException {
 		return ControlloParametri.cercaTesseraPermesso(this, giocatore.getTesserePermesso());
 	}
 
+	/**
+	 * initializing dto marketable
+	 */
 	@Override
 	public void creaMarketableDTO(Marketable marketable) {
 		TesseraPermesso t = (TesseraPermesso) marketable;

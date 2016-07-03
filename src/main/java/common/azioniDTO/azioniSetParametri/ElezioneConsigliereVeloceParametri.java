@@ -10,6 +10,11 @@ public class ElezioneConsigliereVeloceParametri implements SetterParametri {
 
 	private ElezioneConsigliereVeloceDTO elezioneConsigliereVeloceDTO;
 
+	/**
+	 * action of ElezioneConsigliereVeloce
+	 * 
+	 * @param elezioneConsigliereVeloceDTO
+	 */
 	public ElezioneConsigliereVeloceParametri(ElezioneConsigliereVeloceDTO elezioneConsigliereVeloceDTO) {
 		this.elezioneConsigliereVeloceDTO = elezioneConsigliereVeloceDTO;
 	}
