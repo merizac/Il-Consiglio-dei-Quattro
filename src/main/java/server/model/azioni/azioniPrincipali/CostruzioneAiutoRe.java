@@ -70,6 +70,7 @@ public class CostruzioneAiutoRe extends AzionePrincipale implements Bonusable {
 			gameState.getPedinaRe().setCittà(cittàCostruzione);
 			pagaAiutanti(gameState);
 			gameState.getGiocatoreCorrente().getCartePolitica().removeAll(carteGiocatore);
+
 			costruisci(gameState);
 			prendiBonus(gameState, nob);
 			if (cittàCostruzione instanceof CittàBonus)

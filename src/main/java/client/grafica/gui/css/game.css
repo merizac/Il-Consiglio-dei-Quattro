@@ -75,7 +75,7 @@
 }
 
 #consiglieriRiserva:hover{
-	-fx-opacity:0.2;
+	-fx-opacity:0.75;
 }
 
 #quit:hover{
