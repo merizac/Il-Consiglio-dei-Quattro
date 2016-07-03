@@ -29,7 +29,7 @@ import utility.Observer;
 
 public class CostruzioneTesseraPermessoTest {
 
-	/*static GameState gameState;
+	static GameState gameState;
 	static Giocatore giocatore;
 	static List<Notify> notify;
 	static Regione regione;
@@ -68,6 +68,9 @@ public class CostruzioneTesseraPermessoTest {
 		gameState.getGiocatoreCorrente()
 				.aggiungiEmpori(Arrays.asList(new Emporio(gameState.getGiocatoreCorrente().getColoreGiocatore())));
 		gameState.getGiocatoreCorrente().setPunteggioVittoria(0);
+		gameState.getGiocatoreCorrente().setPunteggioRicchezza(10);
+		gameState.getGiocatoreCorrente().setPunteggioNobiltà(gameState.getPlanciaRe().getPercorsoNobiltà().get(1));
+
 		// perndo le città per il test
 		CittàBonus cittàCostruzione = null;
 		CittàBonus cittàVicina = null;
@@ -109,9 +112,9 @@ public class CostruzioneTesseraPermessoTest {
 				continue;
 			}
 		}
-
 		// tengo conto dei bonus della città vicina
 		for (Bonus b : cittàVicina.getBonus()) {
+			
 			if (b instanceof BonusAiutanti) {
 				aiutanti += ((BonusAiutanti) b).getAiutanti();
 				continue;
@@ -122,13 +125,11 @@ public class CostruzioneTesseraPermessoTest {
 			}
 		}
 
-		gameState.getGiocatoreCorrente().setPunteggioRicchezza(10);
 
 		azione.eseguiAzione(gameState);
 
 		assertTrue(cittàCostruzione.getEmpori().size() == 2);
 		assertEquals(aiutanti + 4, gameState.getGiocatoreCorrente().getAiutanti().getAiutante());
-		assertEquals(10 + monete, gameState.getGiocatoreCorrente().getPunteggioRicchezza());
 		assertTrue(gameState.getGiocatoreCorrente().getTesserePermessoUsate().contains(tesseraPermesso));
 		assertTrue(gameState.getGiocatoreCorrente().getTesserePermesso().size() == 0);
 	}
@@ -176,9 +177,7 @@ public class CostruzioneTesseraPermessoTest {
 
 	@Test
 	public void giocatoreRiceveBonusRegione() {
-		int monete = 0;
 		int aiutanti = 0;
-		int vittoria = 0;
 
 		// rimuovo tutti gli empori da tutte le città della regione
 		for (Città c : gameState.getRegioni().get(0).getCittàRegione()) {
@@ -193,13 +192,13 @@ public class CostruzioneTesseraPermessoTest {
 						new Emporio(gameState.getGiocatoreCorrente().getColoreGiocatore())));
 		gameState.getGiocatoreCorrente().setPunteggioRicchezza(10);
 
-		// perndo le città per il test
+		// prendo le città per il test
 		CittàBonus cittàCostruzione = null;
 		for (Città c : regione.getCittàRegione()) {
 			if (c.getNome().equals("Arkon")) {
 				cittàCostruzione = (CittàBonus) c;
 				continue;
-			} else
+			} else{
 				c.aggiungiEmporio(new Emporio(gameState.getGiocatoreCorrente().getColoreGiocatore()));
 			// tengo conto dei bonus delle città della regione
 			if (c instanceof CittàBonus) {
@@ -208,15 +207,7 @@ public class CostruzioneTesseraPermessoTest {
 						aiutanti += ((BonusAiutanti) b).getAiutanti();
 						continue;
 					}
-					if (b instanceof BonusMoneta) {
-						monete += ((BonusMoneta) b).getMonete();
-						continue;
-					}
-					if (b instanceof BonusPuntiVittoria) {
-						vittoria += ((BonusPuntiVittoria) b).getPuntiVittoria();
-						continue;
-					}
-				}
+				}}
 			}
 
 		}
@@ -229,8 +220,6 @@ public class CostruzioneTesseraPermessoTest {
 		for (TesseraPermesso tessera : regione.getMazzoTesserePermesso().getCarte()) {
 			if (tessera.getCittà().contains(cittàCostruzione)) {
 				tesseraPermesso = tessera;
-				
-				System.out.println("Tessera: "+tesseraPermesso.getBonus());
 				break;
 			}
 		}
@@ -246,30 +235,17 @@ public class CostruzioneTesseraPermessoTest {
 				aiutanti += ((BonusAiutanti) b).getAiutanti();
 				continue;
 			}
-			if (b instanceof BonusMoneta) {
-				monete += ((BonusMoneta) b).getMonete();
-				continue;
-			}
-			if (b instanceof BonusPuntiVittoria) {
-				vittoria += ((BonusPuntiVittoria) b).getPuntiVittoria();
-				continue;
-			}
 		}
 
 		gameState.getGiocatoreCorrente().setPunteggioRicchezza(10);
 
 		Bonus bonusPremioRe=gameState.getPlanciaRe().getBonusPremioRe().get(0);
 		int nbonusRe=gameState.getPlanciaRe().getBonusPremioRe().size();
-		
 		azione.eseguiAzione(gameState);
-		
-		if (gameState.getGiocatoreCorrente().getEmpori().isEmpty())
-			vittoria += 3;
-		
+
 		assertTrue(cittàCostruzione.getEmpori().size() == 2);
 		assertEquals(aiutanti,gameState.getGiocatoreCorrente().getAiutanti().getAiutante());
-		assertEquals(10 + monete,gameState.getGiocatoreCorrente().getPunteggioRicchezza());
-		assertEquals(vittoria,gameState.getGiocatoreCorrente().getPunteggioVittoria());
+		assertEquals(aiutanti, gameState.getGiocatoreCorrente().getAiutanti().getAiutante());
 		assertTrue(gameState.getGiocatoreCorrente().getTesserePermessoUsate().contains(tesseraPermesso));
 		assertTrue(gameState.getGiocatoreCorrente().getTesserePermesso().size()== 0);
 		assertEquals(2, gameState.getGiocatoreCorrente().getTessereBonus().size());
@@ -304,5 +280,5 @@ public class CostruzioneTesseraPermessoTest {
 	public void testGetAzioneDTO() {
 		CostruzioneTesseraPermesso costruzioneTesseraPermesso = new CostruzioneTesseraPermesso();
 		assertTrue(costruzioneTesseraPermesso.getAzioneDTO() instanceof CostruzioneTesseraPermessoDTO);
-	}*/
+	}
 }

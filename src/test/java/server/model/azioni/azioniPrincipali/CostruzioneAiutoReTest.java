@@ -30,7 +30,7 @@ import utility.Observer;
 
 public class CostruzioneAiutoReTest {
 
-	/*static GameState gameState;
+	static GameState gameState;
 	static Giocatore giocatore;
 	static List<Notify> notify;
 
@@ -352,6 +352,6 @@ public class CostruzioneAiutoReTest {
 	public void testSetCarteGiocatore() {
 		CostruzioneAiutoRe costruzione=new CostruzioneAiutoRe();
 		costruzione.setCarteGiocatore(null);
-	}*/
+	}
 
 }
