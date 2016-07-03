@@ -25,12 +25,13 @@ public class Stato01Test {
 
 	static GameState gameState;
 	static List<Notify> notify;
+	static Giocatore giocatore;
 	
 	@BeforeClass
 	public static void init() throws IOException{
 		notify = new ArrayList<>();
 		ArrayList<Giocatore> giocatori=new ArrayList<>();
-		Giocatore giocatore=new Giocatore("Giocatore");
+		giocatore=new Giocatore("Giocatore");
 		giocatori.add(giocatore);
 		gameState=new GameState();
 		Observer<Notify> observer = new Observer<Notify>() {
@@ -68,7 +69,7 @@ public class Stato01Test {
 		assertTrue(gameState.getStato() instanceof StartEnd);
 	}
 	
-/*	@Test
+	@Test
 	public void testTransizioneVeloceUltimoGiroANDNextPlayerIsTheLast() {
 		notify.clear();
 		Stato01 stato01=new Stato01(gameState);
@@ -76,8 +77,8 @@ public class Stato01Test {
 		
 		stato01.transizioneVeloce(gameState);
 		
-		assertTrue(gameState.getStato() instanceof StatoFinePartita);
-	}*/
+		assertTrue(gameState.getGiocatoriFinePartita().contains(giocatore));
+	}
 	
 	@Test
 	public void testTransizioneVeloceNotUltimoGiroANDNotMarket() {
@@ -98,8 +99,7 @@ public class Stato01Test {
 		
 		assertTrue(gameState.getStato() instanceof StatoOffertaMarket);
 	}
-	
-
+		
 	@Test
 	public void testTransizioneSecondaPrincipale() {
 		Stato01 stato01=new Stato01(gameState);
@@ -114,8 +114,19 @@ public class Stato01Test {
 		Stato01 stato01=new Stato01(gameState);
 		
 		stato01.transizioneVeloce(gameState);
+		
+		assertTrue(gameState.getStato() instanceof StartEnd);
 	}
 
+	@Test
+	public void testTransizioneVeloce() {
+		Stato01 stato01=new Stato01(gameState);
+		
+		stato01.transizioneVeloce(gameState);
+		
+		assertTrue(gameState.getStato() instanceof StartEnd);
+	}
+	
 	@Test
 	public void testGetAzioni() {
 		notify.clear();

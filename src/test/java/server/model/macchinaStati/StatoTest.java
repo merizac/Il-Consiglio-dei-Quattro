@@ -4,11 +4,15 @@ import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import server.model.azioni.azioniPrincipali.AcquistoTesseraPermesso;
+import server.model.azioni.azioniPrincipali.ElezioneConsigliere;
+import server.model.azioni.azioniVeloci.SecondaAzionePrincipale;
 import server.model.game.GameState;
 import server.model.game.Giocatore;
 import server.model.notify.Notify;
@@ -38,17 +42,19 @@ public class StatoTest {
 		
 	}
 	
-/*	@Test
+	@Test
 	public void azioniNonEseguibiliTransizioneExitConUnGiocatoreandNotLastGiro() {
 		notify.clear();
 		Giocatore giocatore=gameState.getGiocatoreCorrente();
+		giocatore.setPunteggioVittoria(100);
 		StartEnd startEnd=new StartEnd(gameState);
 		gameState.setUltimoGiro(false);
 		while(gameState.getGiocatori().size()>1){
 			gameState.getGiocatori().remove(gameState.getGiocatori().size()-1);
 		}
 		
-	}*/
+		gameState.getGiocatoriFinePartita().contains(giocatore);
+	}
 	
 	@Test
 	public void azioniNonEseguibiliTransizioneExitLastGiroGiocatoriNonFiniti() {
@@ -91,6 +97,18 @@ public class StatoTest {
 		startEnd.transizioneExit(gameState);
 		
 		assertTrue(gameState.getStato() instanceof StatoOffertaMarket);
+	}
+	
+	@Test
+	public void testdaEseguireTrue(){
+		StartEnd startEnd=new StartEnd(gameState);
+		assertTrue(startEnd.daEseguire(Arrays.asList(new AcquistoTesseraPermesso(),new ElezioneConsigliere()), new ElezioneConsigliere()));
+	}
+
+	@Test
+	public void testdaEseguireFalse(){
+		StartEnd startEnd=new StartEnd(gameState);
+		assertFalse(startEnd.daEseguire(Arrays.asList(new AcquistoTesseraPermesso(),new ElezioneConsigliere()), new SecondaAzionePrincipale()));
 	}
 
 }
