@@ -96,7 +96,7 @@ public class GUI extends Application implements Grafica {
 	private MediaPlayer song;
 
 	/**
-	 * set connection 
+	 * set connection
 	 */
 	@Override
 	public void setConnessione(Connessione connessione) {
@@ -166,6 +166,7 @@ public class GUI extends Application implements Grafica {
 
 	/**
 	 * set giocatore dto
+	 * 
 	 * @param giocatoreDTO
 	 */
 	public void setGiocatoreDTO(GiocatoreDTO giocatoreDTO) {
@@ -201,7 +202,10 @@ public class GUI extends Application implements Grafica {
 
 		GUIController controllerLogin = fxmloader.getController();
 		controllerLogin.setGui(this);
-
+		finestra.setMinHeight(320);
+		finestra.setMinWidth(420);
+		finestra.setMaxHeight(300);
+		finestra.setMaxWidth(420);
 		finestra.setScene(theScene);
 		finestra.show();
 	}
@@ -238,8 +242,17 @@ public class GUI extends Application implements Grafica {
 				connessione.inviaAzione(new ExitDTO());
 			} catch (RemoteException e) {
 				log.log(Level.SEVERE, "Errore nell'invio dell'azione", e);
+			} catch (NullPointerException e) {
+				finestra.close();
 			}
 		};
+		finestra.setMinHeight(400);
+		finestra.setMinWidth(600);
+		finestra.setHeight(744);
+		finestra.setWidth(1283);
+		finestra.setMaxHeight(744);
+		finestra.setMaxWidth(1283);
+		finestra.centerOnScreen();
 		finestra.setOnCloseRequest(onClose);
 		finestra.show();
 	}
@@ -264,7 +277,7 @@ public class GUI extends Application implements Grafica {
 			}
 		};
 
-		//timer.schedule(task, timeout);
+		// timer.schedule(task, timeout);
 
 		if (azioni.get(0) instanceof BonusGettoneNDTO || azioni.get(0) instanceof BonusTesseraAcquistataNDTO
 				|| azioni.get(0) instanceof BonusTesseraPermessoNDTO) {
@@ -337,6 +350,7 @@ public class GUI extends Application implements Grafica {
 
 	/**
 	 * show emporium of cities
+	 * 
 	 * @param città
 	 */
 	private void stampaEmporiCittà(List<CittàDTO> città) {
@@ -401,10 +415,11 @@ public class GUI extends Application implements Grafica {
 		azioni.get(7).setUserData(new SecondaAzionePrincipaleDTO());
 		azioni.get(8).setUserData(new PassaDTO());
 		azioni.get(9).setUserData(new PescaCartaDTO());
-		
-		/*for(Button azione: azioni){
-			azione.setOnMouseClicked(onMouseClicked);
-		}*/
+
+		/*
+		 * for(Button azione: azioni){ azione.setOnMouseClicked(onMouseClicked);
+		 * }
+		 */
 	}
 
 	/**
@@ -434,6 +449,7 @@ public class GUI extends Application implements Grafica {
 
 	/**
 	 * set politic cards
+	 * 
 	 * @param carte
 	 */
 	private void cartePolitica(List<CartaPoliticaDTO> carte) {
@@ -574,13 +590,13 @@ public class GUI extends Application implements Grafica {
 		Runnable runnable = () -> controller.getMessage().appendText(messaggio);
 		Platform.runLater(runnable);
 	}
-	
+
 	/**
 	 * show market message
 	 */
 	@Override
-	public void mostraMessaggioMarket(String messaggio){
-		Runnable runnable = () ->controllerMarket.getMessage().appendText(messaggio);
+	public void mostraMessaggioMarket(String messaggio) {
+		Runnable runnable = () -> controllerMarket.getMessage().appendText(messaggio);
 		Platform.runLater(runnable);
 	}
 
@@ -670,7 +686,7 @@ public class GUI extends Application implements Grafica {
 	}
 
 	/**
-	 * show offers 
+	 * show offers
 	 * 
 	 * @param offerta
 	 * @param giocatore
@@ -745,7 +761,7 @@ public class GUI extends Application implements Grafica {
 			controllerMarket.setGui(GUI.this);
 			controllerMarket.inizializza();
 			market.setScene(theScene);
-			market.setTitle("Market "+ gameStateDTO.getGiocatoreDTO().getNome());
+			market.setTitle("Market " + gameStateDTO.getGiocatoreDTO().getNome());
 			market.show();
 		};
 		Platform.runLater(runnable);
@@ -753,6 +769,7 @@ public class GUI extends Application implements Grafica {
 
 	/**
 	 * start apllication
+	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
@@ -849,7 +866,7 @@ public class GUI extends Application implements Grafica {
 	}
 
 	/**
-	 * choose  from stock
+	 * choose from stock
 	 */
 	@Override
 	public ConsigliereDTO scegliConsigliere(List<ConsigliereDTO> consiglieri) {
@@ -921,7 +938,7 @@ public class GUI extends Application implements Grafica {
 	}
 
 	/**
-	 * choose region 
+	 * choose region
 	 */
 	@Override
 	public RegioneDTO scegliRegione(List<RegioneDTO> regioni) {
@@ -930,7 +947,7 @@ public class GUI extends Application implements Grafica {
 		dp.setSpread(0.80);
 		dp.setColor(Color.web("#fffefd"));
 
-		for(ImageView regione: r){
+		for (ImageView regione : r) {
 			regione.setDisable(false);
 			regione.setEffect(dp);
 		}
@@ -944,7 +961,7 @@ public class GUI extends Application implements Grafica {
 				}
 			}
 		}
-		for(ImageView regione: r){
+		for (ImageView regione : r) {
 			regione.setDisable(true);
 			regione.setEffect(null);
 		}
@@ -957,7 +974,8 @@ public class GUI extends Application implements Grafica {
 	 * choose permit tile from region
 	 */
 	@Override
-	public TesseraPermessoDTO scegliTesseraRegione(List<TesseraPermessoDTO> tesserePermessoScoperte, RegioneDTO regioneDTO) {
+	public TesseraPermessoDTO scegliTesseraRegione(List<TesseraPermessoDTO> tesserePermessoScoperte,
+			RegioneDTO regioneDTO) {
 		List<ImageView> tessere;
 		if ("Mare".equals(regioneDTO.getNome()))
 			tessere = controller.getTessereMare();
@@ -965,7 +983,7 @@ public class GUI extends Application implements Grafica {
 			tessere = controller.getTessereCollina();
 		else
 			tessere = controller.getTessereMontagna();
-		
+
 		DropShadow dp = new DropShadow();
 		dp.setSpread(0.80);
 		dp.setColor(Color.web("#fffefd"));
@@ -985,7 +1003,7 @@ public class GUI extends Application implements Grafica {
 			}
 		}
 		TesseraPermessoDTO tesseraPermessoDTO = (TesseraPermessoDTO) parametro;
-		
+
 		for (ImageView i : tessere) {
 			i.setDisable(true);
 			i.setEffect(null);
@@ -1021,6 +1039,7 @@ public class GUI extends Application implements Grafica {
 
 	/**
 	 * choose city in the map
+	 * 
 	 * @return cittàDTO
 	 */
 	@Override
@@ -1083,8 +1102,8 @@ public class GUI extends Application implements Grafica {
 	}
 
 	/**
-	 * choose one of the discovery or covery permit tile of the current player and take bonus.
-	 * For interactive bonus in nobility track
+	 * choose one of the discovery or covery permit tile of the current player
+	 * and take bonus. For interactive bonus in nobility track
 	 */
 	@Override
 	public TesseraPermessoDTO scegliTesseraPermessoUsataONonUsata(List<TesseraPermessoDTO> tessere,
@@ -1106,6 +1125,7 @@ public class GUI extends Application implements Grafica {
 			i.setDisable(false);
 			i.setEffect(ds);
 		}
+		System.out.println("abilitati");
 		synchronized (lock) {
 			while (parametro == null) {
 				try {
@@ -1233,7 +1253,7 @@ public class GUI extends Application implements Grafica {
 
 	}
 
-	/** 
+	/**
 	 * choose offer from other players in market state
 	 */
 	@Override
@@ -1268,10 +1288,9 @@ public class GUI extends Application implements Grafica {
 		return offerte.indexOf(offertaDTO) + 1;
 	}
 
-
 	/**
-	 * choose one city with player's emporium with bonus and win bonus.
-	 * For interactive bonus in nobility track
+	 * choose one city with player's emporium with bonus and win bonus. For
+	 * interactive bonus in nobility track
 	 */
 	@Override
 	public List<CittàBonusDTO> scegliUnaCittà() {
@@ -1299,9 +1318,9 @@ public class GUI extends Application implements Grafica {
 	}
 
 	/**
-	 * choose two cities with player's emporium with bonus. Bonus need to be different each other.
-	 * the player win bonus of these two cities. 
-	 * Uses in interactive bonus in nobility track
+	 * choose two cities with player's emporium with bonus. Bonus need to be
+	 * different each other. the player win bonus of these two cities. Uses in
+	 * interactive bonus in nobility track
 	 */
 	@Override
 	public List<CittàBonusDTO> scegliDueCittà() {
@@ -1342,7 +1361,7 @@ public class GUI extends Application implements Grafica {
 	}
 
 	/**
-	 * choose map 
+	 * choose map
 	 */
 	@Override
 	public void scegliMappa() {
@@ -1389,6 +1408,7 @@ public class GUI extends Application implements Grafica {
 
 	/**
 	 * info of not available action
+	 * 
 	 * @param header
 	 * @param content
 	 */
@@ -1411,7 +1431,7 @@ public class GUI extends Application implements Grafica {
 	public void close() {
 		Runnable runnable = () -> {
 			finestra.close();
-			};
+		};
 		Platform.runLater(runnable);
 	}
 

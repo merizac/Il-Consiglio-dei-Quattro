@@ -651,10 +651,6 @@ public class GUIGameController implements Controller {
 		Platform.runLater(runnable);
 	}
 
-	public void mostraTesserePermessoUsate(List<TesseraPermessoDTO> tessere) {
-		// stessa cosa delle tessere permesso
-	}
-
 	/**
 	 * show emporium in cities
 	 * 
