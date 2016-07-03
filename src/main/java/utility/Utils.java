@@ -2,6 +2,8 @@ package utility;
 
 public class Utils {
 
+	public Utils(){
+	}
 	
 	/**
 	 * check if is a number
@@ -9,11 +11,6 @@ public class Utils {
 	 * @param numero
 	 * @return
 	 */
-
-	
-	public Utils(){
-	}
-	
 	public static boolean isNumeric(String numero) {
 		try {
 			Integer.parseInt(numero);

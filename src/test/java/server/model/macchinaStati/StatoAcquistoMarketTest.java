@@ -11,22 +11,30 @@ import org.junit.Test;
 
 import server.model.azioni.Passa;
 import server.model.azioni.azioniMarket.AzioneAcquisto;
+import server.model.game.Aiutante;
 import server.model.game.GameState;
 import server.model.game.Giocatore;
+import server.model.market.Offerta;
+import server.model.notify.AvversarioNotify;
+import server.model.notify.AzioniNotify;
+import server.model.notify.GiocatoreNotify;
+import server.model.notify.MarketNotify;
 import server.model.notify.MessageNotify;
 import server.model.notify.Notify;
+import server.model.notify.OffertaNotify;
 import utility.Observer;
 
 public class StatoAcquistoMarketTest {
 
 	static GameState gameState;
 	static List<Notify> notify;
+	static Giocatore giocatore;
 	
 	@BeforeClass
 	public static void init() throws IOException{
 		notify = new ArrayList<>();
 		ArrayList<Giocatore> giocatori=new ArrayList<>();
-		Giocatore giocatore=new Giocatore("Giocatore");
+		giocatore=new Giocatore("Giocatore");
 		giocatori.add(giocatore);
 		gameState=new GameState();
 		Observer<Notify> observer = new Observer<Notify>() {
@@ -46,67 +54,78 @@ public class StatoAcquistoMarketTest {
 		StatoAcquistoMarket statoAcquistoMarket=new StatoAcquistoMarket(gameState);
 		gameState.setStato(statoAcquistoMarket);
 		assertTrue(gameState.getStato() instanceof StatoAcquistoMarket);
-		
-		//faillllllllllllll
-		
-		
-		
-		//assertTrue(notify.get(0) instanceof OffertaNotify);
-		//assertTrue(notify.get(1) instanceof AzioniNotify);
+		assertTrue(statoAcquistoMarket.getGiocatori().contains(giocatore));
+		assertEquals(1, statoAcquistoMarket.getGiocatori().size());
+		assertEquals(3, notify.size());
+		assertTrue(notify.get(0) instanceof AzioniNotify);
+		assertTrue(notify.get(1) instanceof OffertaNotify);
+		assertTrue(notify.get(2) instanceof MessageNotify);
 	}
 
 	@Test
 	public void testTransizionePassaConGiocatori() {
-		StatoAcquistoMarket statoAcquistoMarket=new StatoAcquistoMarket(gameState);
-		gameState.setStato(statoAcquistoMarket);
-		
 		gameState.getGiocatori().add(new Giocatore("A"));
 		gameState.getGiocatori().add(new Giocatore("B"));
-		
+
+		StatoAcquistoMarket statoAcquistoMarket=new StatoAcquistoMarket(gameState);
+		gameState.setStato(statoAcquistoMarket);
+		notify.clear();
+
 		statoAcquistoMarket.transizionePassa(gameState);
-			
-		assertTrue(gameState.getStato() instanceof StartEnd);
+		
+		assertEquals(2, notify.size());
+		assertTrue(notify.get(0) instanceof OffertaNotify);
+		assertTrue(notify.get(1) instanceof AzioniNotify);
+		assertTrue(gameState.getStato() instanceof StatoAcquistoMarket);
 	}
 	
 	@Test
 	public void testTransizionePassaSenzaGiocatori() {
-		notify.clear();
-		StatoAcquistoMarket statoAcquistoMarket=new StatoAcquistoMarket(gameState);
-		gameState.setStato(statoAcquistoMarket);
-		
 		while(gameState.getGiocatori().size()>1){
 			gameState.getGiocatori().remove(gameState.getGiocatori().size()-1);
 		}
-
-		
-		statoAcquistoMarket.transizionePassa(gameState);
-		
-		assertTrue(gameState.getStato() instanceof StatoAcquistoMarket);
-		
-		//faiiiiiiiiiiiiiiiiil
-		
-		
-		//assertTrue(notify.get(0) instanceof OffertaNotify);
-		//assertTrue(notify.get(1) instanceof AzioniNotify);
-	}
-
-	@Test
-	public void testTransizioneOfferta() {
-		notify.clear();
 		StatoAcquistoMarket statoAcquistoMarket=new StatoAcquistoMarket(gameState);
 		gameState.setStato(statoAcquistoMarket);
 		
+		notify.clear();
+
+		statoAcquistoMarket.transizionePassa(gameState);
+		
+		assertEquals(3, notify.size());
+		assertTrue(notify.get(0) instanceof MarketNotify);
+		assertTrue(gameState.getStato() instanceof StartEnd);
+	}
+
+	@Test
+	public void testTransizioneOffertaOfferteFinite() {
+		StatoAcquistoMarket statoAcquistoMarket=new StatoAcquistoMarket(gameState);
+		gameState.setStato(statoAcquistoMarket);
+		notify.clear();
+
+		statoAcquistoMarket.transizioneOfferta(gameState);
+
+		assertEquals(4, notify.size());
+		assertTrue(gameState.getStato() instanceof StartEnd);
+		assertTrue(notify.get(0) instanceof MessageNotify);
+		assertTrue(notify.get(1) instanceof MarketNotify);
+	}
+	
+	@Test
+	public void testTransizioneOffertaTrue() {
+		gameState.getOfferteMarket().add(new Offerta(new Giocatore("venditore"), new Aiutante(1), 2));
+		StatoAcquistoMarket statoAcquistoMarket=new StatoAcquistoMarket(gameState);
+		gameState.setStato(statoAcquistoMarket);
+		notify.clear();
+
 		statoAcquistoMarket.transizioneOfferta(gameState);
 		
-		
-		//faaaaaaaaaaaaaaillllllllll
-		
-		
-		
-		
-//		assertTrue(gameState.getStato() instanceof StatoAcquistoMarket);
-		//assertTrue(notify.get(0) instanceof OffertaNotify);
-		//assertTrue(notify.get(1) instanceof AzioniNotify);
+		assertEquals(5, notify.size());
+		assertTrue(gameState.getStato() instanceof StatoAcquistoMarket);
+		assertTrue(notify.get(0) instanceof OffertaNotify);
+		assertTrue(notify.get(1) instanceof AzioniNotify);
+		assertTrue(notify.get(2) instanceof AvversarioNotify);
+		assertTrue(notify.get(3) instanceof GiocatoreNotify);
+		assertTrue(notify.get(4) instanceof MessageNotify);
 	}
 
 	@Test
@@ -166,6 +185,10 @@ public class StatoAcquistoMarketTest {
 		StatoAcquistoMarket statoAcquistoMarket=new StatoAcquistoMarket(gameState);
 		statoAcquistoMarket.transizioneBonus(gameState);
 		assertTrue(notify.get(notify.size()-1) instanceof MessageNotify);
-
+	}
+	
+	@Test
+	public void testToString(){
+		assertEquals("StatoAcquistoMarket", new StatoAcquistoMarket(gameState).toString());
 	}
 }
