@@ -26,7 +26,7 @@ public class SecondaAzionePrincipale extends AzioneVeloce {
 			gameState.notifyObserver(new AzioniNotify(gameState.getStato().getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
 		}
 		else{
-			gameState.notifyObserver(new MessageNotify("Errore: non hai abbastanza aiutanti",
+			gameState.notifyObserver(new MessageNotify("Errore: non hai abbastanza aiutanti\n",
 					Arrays.asList(gameState.getGiocatoreCorrente()), false));
 			return;
 		}

@@ -11,7 +11,6 @@ import server.model.azioni.azioniPrincipali.ElezioneConsigliere;
 import server.model.azioni.azioniVeloci.CambioTesseraPermesso;
 import server.model.azioni.azioniVeloci.ElezioneConsigliereVeloce;
 import server.model.azioni.azioniVeloci.IngaggioAiutante;
-import server.model.azioni.azioniVeloci.SecondaAzionePrincipale;
 import server.model.game.GameState;
 import server.model.notify.AzioniNotify;
 import server.model.notify.MessageNotify;

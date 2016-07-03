@@ -40,7 +40,6 @@ public class BonusTesseraPermessoTest {
 	public void testGetAzioneBonus() {
 		BonusTesseraPermesso bonus=new BonusTesseraPermesso();
 		BonusTesseraPermessoN bonusN=new BonusTesseraPermessoN();
-		bonusN.setId(2);
 		assertEquals(bonusN, bonus.getAzioneBonus());
 	}
 
