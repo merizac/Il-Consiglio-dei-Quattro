@@ -277,7 +277,7 @@ public class GUI extends Application implements Grafica {
 			}
 		};
 
-		// timer.schedule(task, timeout);
+		timer.schedule(task, timeout);
 
 		if (azioni.get(0) instanceof BonusGettoneNDTO || azioni.get(0) instanceof BonusTesseraAcquistataNDTO
 				|| azioni.get(0) instanceof BonusTesseraPermessoNDTO) {
@@ -359,7 +359,7 @@ public class GUI extends Application implements Grafica {
 			List<HBox> hbox = controller.getListaEmporiHBox();
 			Map<String, Image> mappaEmpori = controller.getMappaEmpori();
 
-			for (int i = 0; i < città.size() - 1; i++) {
+			for (int i = 0; i < città.size(); i++) {
 				hbox.get(i).getChildren().clear();
 				for (String emporio : città.get(i).getEmpori()) {
 					ImageView imageView = new ImageView();

@@ -102,6 +102,7 @@ public class CostruzioneAiutoReTest {
 		assertEquals(4+monete, gameState.getGiocatoreCorrente().getPunteggioRicchezza());
 		//pago 1 aiutanete per l'emporio gia presente in hellar
 		assertEquals(0+aiutanti, gameState.getGiocatoreCorrente().getAiutanti().getAiutante());
+		assertTrue(!giocatore.getCartePolitica().containsAll(carteGiocatore));
 	}
 	
 	@Test

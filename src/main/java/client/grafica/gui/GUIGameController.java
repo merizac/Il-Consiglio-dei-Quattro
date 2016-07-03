@@ -656,7 +656,7 @@ public class GUIGameController implements Controller {
 	 * 
 	 * @param città
 	 */
-	public void stampaEmporiCittà(List<CittàDTO> città) {
+/*	public void stampaEmporiCittà(List<CittàDTO> città) {
 		Runnable runnable = () -> {
 			List<HBox> hbox = Arrays.asList(emporiArkon, emporiBurgen, emporiCastrum, emporiDorful, emporiEsti,
 					emporiFramek, emporiGraden, emporiHellar, emporiIndur, emporiJuvelar, emporiKultos, emporiLyram,
@@ -672,7 +672,7 @@ public class GUIGameController implements Controller {
 		};
 
 		Platform.runLater(runnable);
-	}
+	}*/
 
 	/**
 	 * show counselors in stock
