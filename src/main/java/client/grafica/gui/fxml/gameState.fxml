@@ -191,15 +191,14 @@
                                     <Image url="@../css/Nobility.png" />
                                  </image>
                               </ImageView>
-                              <Button id="sound" layoutX="9.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleAudio" prefHeight="26.0" prefWidth="22.0" stylesheets="@../css/game.css" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <Button id="sound" fx:id="audio" layoutX="9.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleAudio" prefHeight="26.0" prefWidth="22.0" stylesheets="@../css/game.css" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <graphic>
                                     <ImageView id="sound" fitHeight="25.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../css/muto.png" />
                                        </image>
                                     </ImageView>
-                                 </graphic>
-                              </Button>
+                                 </graphic></Button>
                               <HBox fx:id="emporiOsium" layoutX="664.0" layoutY="297.0" prefHeight="20.0" prefWidth="80.0" />
                            </children>
                         </AnchorPane>
