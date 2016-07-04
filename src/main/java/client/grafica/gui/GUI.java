@@ -308,6 +308,7 @@ public class GUI extends Application implements Grafica {
 				messaggio = messaggio + g.getNome().toUpperCase() + " Punteggio " + g.getPunteggioVittoria()
 						+ " punti\n";
 			}
+			mostraMessaggio(messaggio);
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Classifica");
 			alert.setHeaderText(vincenti.contains(gameStateDTO.getGiocatoreDTO())
