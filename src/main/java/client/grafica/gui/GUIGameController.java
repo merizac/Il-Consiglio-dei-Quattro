@@ -12,6 +12,8 @@ import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.sun.prism.paint.Color;
+
 import common.azioniDTO.AzioneDTO;
 import common.azioniDTO.AzioneParametri;
 import common.azioniDTO.ChatDTO;
@@ -30,6 +32,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.MediaPlayer.Status;
@@ -128,6 +132,8 @@ public class GUIGameController implements Controller {
 	private Button ingaggioAiutante;
 	@FXML
 	private Button secondaAzionePrincipale;
+	@FXML
+	private Button audio;
 
 	@FXML
 	private ImageView regioneMare;
@@ -782,9 +788,15 @@ public class GUIGameController implements Controller {
 	public void handleAudio() {
 			if (gui.getSong().getStatus().equals(Status.PLAYING)){
 				gui.getSong().stop();
+				audio.setStyle("-fx-background-color: #FF0000;");
+
+				
+				
 			}
 			else {
 				gui.getSong().play();
+				audio.setStyle("-fx-background-color: transparent;");
+
 			}
 	}
 

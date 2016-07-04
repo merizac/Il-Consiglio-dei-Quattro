@@ -1099,7 +1099,7 @@ public class GUI extends Application implements Grafica {
 			}
 		}
 
-		synchronized (lock) {
+		//synchronized (lock) {
 			while (parametro == null) {
 				try {
 
@@ -1109,7 +1109,7 @@ public class GUI extends Application implements Grafica {
 					log.log(Level.SEVERE, "Thread scegli tessere permesso azione bonus interrotto", e);
 					Thread.currentThread().interrupt();
 				}
-			}
+		//	}
 		}
 
 		TesseraPermessoDTO tesseraPermessoDTO = (TesseraPermessoDTO) parametro;
