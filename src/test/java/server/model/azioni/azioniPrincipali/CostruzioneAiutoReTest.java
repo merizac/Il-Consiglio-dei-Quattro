@@ -137,17 +137,12 @@ public class CostruzioneAiutoReTest {
 		costruzioneAiutoRe.eseguiAzione(gameState);
 		
 		//DEVO CONSIDERARE I BONUS CHE POSSONO ESSERE ASSEGNATI
-		int monete=0;
 		int aiutanti=0;
 		for(Bonus b: cittàCostruzione.getBonus()){
-			if (b instanceof BonusMoneta)
-				monete=((BonusMoneta) b).getMonete();
 			if(b instanceof BonusAiutanti)
 				aiutanti= ((BonusAiutanti) b).getAiutanti();
 		}
 		
-		//pago 8 monete
-		//assertEquals(0+monete, gameState.getGiocatoreCorrente().getPunteggioRicchezza());
 		//pago 1 aiutanete per l'emporio gia presente in hellar
 		assertEquals(0+aiutanti, gameState.getGiocatoreCorrente().getAiutanti().getAiutante());
 	}
