@@ -239,6 +239,7 @@ public class GUI extends Application implements Grafica {
 		EventHandler<WindowEvent> onClose = (event) -> {
 			try {
 				connessione.inviaAzione(new ExitDTO());
+				close();
 			} catch (RemoteException e) {
 				log.log(Level.SEVERE, "Errore nell'invio dell'azione", e);
 			} catch (NullPointerException e) {

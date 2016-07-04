@@ -30,8 +30,8 @@ public class VincitoreClientNotify implements ClientNotify {
 	 */
 	@Override
 	public void stamp(Grafica grafica, GameStateDTO gameStateDTO) {
-		String messaggio = "Complimenti " + giocatoreDTO.getNome().toUpperCase() + ", hai vinto!!";
-		messaggio = messaggio + "Hai totalizzato " + giocatoreDTO.getPunteggioVittoria() + " punti!";
+		String messaggio = "Complimenti " + giocatoreDTO.getNome().toUpperCase() + ", hai vinto!!\n";
+		messaggio = messaggio + "Hai totalizzato " + giocatoreDTO.getPunteggioVittoria() + " punti!\n";
 		grafica.mostraMessaggio(messaggio);
 	}
 
