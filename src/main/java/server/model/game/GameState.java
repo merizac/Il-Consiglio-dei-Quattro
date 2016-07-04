@@ -239,39 +239,6 @@ public class GameState extends Observable<Notify> {
 	 * 
 	 * @param giocatori
 	 */
-	/*public void creaGiocatori(List<Giocatore> giocatori) {
-		int i = 0;
-		for (Giocatore g : giocatori) {
-			g.setAiutanti(new Aiutante(18 + i));
-			g.setPunteggioNobiltà(this.getPlanciaRe().getPercorsoNobiltà().get(13));
-			g.setPunteggioRicchezza(19 + i);
-			g.setPunteggioVittoria(0);
-			g.setColoreGiocatore(new Colore(String.valueOf(i)));
-			g.creaEmpori(g.getColoreGiocatore());
-			g.getCartePolitica().addAll(assegnaCartePolitica(15));
-			this.giocatori.add(g);
-			i++;
-		}
-
-		if (giocatori.size() == 2) {
-			for (Regione r : getRegioni()) {
-				Random random = new Random();
-				int numeroEmpori = random.nextInt(3) + 1;
-
-				for (int s = 0; s < numeroEmpori; s++) {
-					int rnd = random.nextInt(r.getCittàRegione().size());
-					if (r.getCittàRegione().get(rnd).getEmpori().isEmpty())
-						r.getCittàRegione().get(rnd).aggiungiEmporio(new Emporio(new Colore("2")));
-					else
-						s--;
-				}
-
-			}
-		}
-		this.giocatoreCorrente = this.giocatori.get(0);
-	}*/
-
-	
 	public void creaGiocatori(List<Giocatore> giocatori) {
 		int i = 0;
 		for (Giocatore g : giocatori) {

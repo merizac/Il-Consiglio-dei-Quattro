@@ -1,8 +1,11 @@
 package client.grafica.gui;
 
 import java.rmi.RemoteException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -835,8 +838,13 @@ public class GUIGameController implements Controller {
 		if (action.getCode() == KeyCode.ENTER) {
 			ChatDTO chatMessage = new ChatDTO();
 			if (!this.chat.getText().isEmpty()) {
+				
+				DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+				Date date = new Date();
+				String messaggio=dateFormat.format(date)+"  ";
+				messaggio=messaggio + gameStateDTO.getGiocatoreDTO().getNome() + ": " + this.chat.getText();
 
-				chatMessage.setMessaggio(gameStateDTO.getGiocatoreDTO().getNome() + ": " + this.chat.getText());
+				chatMessage.setMessaggio(messaggio);
 				this.chat.clear();
 				try {
 					gui.getConnessione().inviaAzione(chatMessage);

@@ -1,7 +1,10 @@
 package client.grafica.cli;
 
 import java.rmi.RemoteException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
@@ -95,6 +98,10 @@ public class CLI implements Grafica {
 
 			else if ("Chat".equals(inputLine)) {
 				Utils.print("Inserisci il messaggio");
+				DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+				Date date = new Date();
+				String messaggio=dateFormat.format(date)+"  ";
+				inputLine= inputLine + messaggio;
 				inputLine = "[" + gameStateDTO.getGiocatoreDTO().getNome() + "] : ";
 				inputLine = inputLine + stdIn.nextLine();
 				action = new ChatDTO();

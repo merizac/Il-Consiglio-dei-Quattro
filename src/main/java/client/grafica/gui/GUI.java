@@ -396,7 +396,7 @@ public class GUI extends Application implements Grafica {
 	 * associate action and button
 	 */
 	private void assegnaAzioni() {
-		EventHandler<Event> onMouseClicked= (event) -> {
+		EventHandler<ActionEvent> onMouseClicked= (event) -> {
 			URL audioGioco = getClass().getResource("css/MouseClick.mp3");
 			Media media = new Media(audioGioco.toString());
 			song = new MediaPlayer(media);
@@ -415,7 +415,7 @@ public class GUI extends Application implements Grafica {
 		azioni.get(8).setUserData(new PassaDTO());
 		azioni.get(9).setUserData(new PescaCartaDTO());
 		for(Button azione : azioni){
-			azione.setOnMouseClicked(onMouseClicked);
+			azione.setOnAction(onMouseClicked);
 		}
 	}
 
