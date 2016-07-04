@@ -219,8 +219,8 @@ public class GUI extends Application implements Grafica {
 		URL audioGioco = getClass().getResource("css/audioGioco.mp3");
 		Media media = new Media(audioGioco.toString());
 		song = new MediaPlayer(media);
-		song.play();
 		song.setVolume(0.2);
+		song.play();
 		song.setCycleCount(MediaPlayer.INDEFINITE);
 		Parent root = null;
 		try {
@@ -239,7 +239,7 @@ public class GUI extends Application implements Grafica {
 		EventHandler<WindowEvent> onClose = (event) -> {
 			try {
 				connessione.inviaAzione(new ExitDTO());
-				close();
+				finestra.close();
 			} catch (RemoteException e) {
 				log.log(Level.SEVERE, "Errore nell'invio dell'azione", e);
 			} catch (NullPointerException e) {
@@ -315,7 +315,7 @@ public class GUI extends Application implements Grafica {
 					: "Mi dispiace " + gameStateDTO.getGiocatoreDTO().getNome() + " hai perso");
 			alert.setContentText(messaggio);
 			alert.showAndWait();
-			if (market.isShowing())
+			if (market != null && market.isShowing())
 				market.close();
 			finestra.close();
 		};
@@ -396,6 +396,13 @@ public class GUI extends Application implements Grafica {
 	 * associate action and button
 	 */
 	private void assegnaAzioni() {
+		EventHandler<Event> onMouseClicked= (event) -> {
+			URL audioGioco = getClass().getResource("css/MouseClick.mp3");
+			Media media = new Media(audioGioco.toString());
+			song = new MediaPlayer(media);
+			song.setVolume(1);
+			song.play();
+		};
 		List<Button> azioni = controller.getAzioni();
 		azioni.get(0).setUserData(new ElezioneConsigliereDTO());
 		azioni.get(1).setUserData(new AcquistoTesseraPermessoDTO());
@@ -407,6 +414,9 @@ public class GUI extends Application implements Grafica {
 		azioni.get(7).setUserData(new SecondaAzionePrincipaleDTO());
 		azioni.get(8).setUserData(new PassaDTO());
 		azioni.get(9).setUserData(new PescaCartaDTO());
+		for(Button azione : azioni){
+			azione.setOnMouseClicked(onMouseClicked);
+		}
 	}
 
 	/**
@@ -605,7 +615,7 @@ public class GUI extends Application implements Grafica {
 				image.setImage(carte.get(c.toString()));
 				image.setDisable(true);
 				image.setUserData(c);
-				EventHandler<Event> onMouseClicked= (event) -> controllerMarket.handleOfferta(event);
+				EventHandler<Event> onMouseClicked = (event) -> controllerMarket.handleOfferta(event);
 				image.setOnMouseClicked(onMouseClicked);
 				cartePolitica.getChildren().add(image);
 			}
@@ -618,7 +628,7 @@ public class GUI extends Application implements Grafica {
 				image.setImage(bonus.get("Aiutante"));
 				image.setDisable(true);
 				image.setUserData(new AiutanteDTO(1));
-				EventHandler<Event> onMouseClicked= (event) -> controllerMarket.handleOfferta(event);
+				EventHandler<Event> onMouseClicked = (event) -> controllerMarket.handleOfferta(event);
 				image.setOnMouseClicked(onMouseClicked);
 				aiutanti.getChildren().add(image);
 			}
@@ -631,7 +641,7 @@ public class GUI extends Application implements Grafica {
 				image.setImage(tessere.get(t.toString()));
 				image.setDisable(true);
 				image.setUserData(t);
-				EventHandler<Event> onMouseClicked= (event) -> controllerMarket.handleOfferta(event);
+				EventHandler<Event> onMouseClicked = (event) -> controllerMarket.handleOfferta(event);
 				image.setOnMouseClicked(onMouseClicked);
 				tesserePermesso.getChildren().add(image);
 			}
@@ -1077,6 +1087,14 @@ public class GUI extends Application implements Grafica {
 	@Override
 	public TesseraPermessoDTO scegliTesseraPermessoUsataONonUsata(List<TesseraPermessoDTO> tessere,
 			List<TesseraPermessoDTO> tessereUsate) {
+
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			log.log(Level.SEVERE, "Thread interrotto", e);
+			Thread.currentThread().interrupt();
+		}
+
 		HBox tessereGiocatore = controller.getTesserePermessoGiocatore();
 		HBox tessereGiocatoreUsate = controller.getTesserePermessoGiocatoreUsate();
 
@@ -1411,7 +1429,7 @@ public class GUI extends Application implements Grafica {
 	 */
 	public void close() {
 		Runnable runnable = () -> {
-			if (market.isShowing()) {
+			if (market != null && market.isShowing()) {
 				market.close();
 			}
 			finestra.close();
