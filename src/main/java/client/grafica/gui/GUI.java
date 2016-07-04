@@ -1417,6 +1417,12 @@ public class GUI extends Application implements Grafica {
 			alert.setTitle("Errore");
 			alert.setHeaderText(header);
 			alert.setContentText(content);
+		
+			URL audioErrore = getClass().getResource("css/errore.mp3");
+			Media media = new Media(audioErrore.toString());
+			song = new MediaPlayer(media);
+			song.setVolume(1);
+			song.play();
 
 			alert.showAndWait();
 		};
