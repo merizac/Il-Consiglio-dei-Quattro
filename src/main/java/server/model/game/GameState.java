@@ -243,7 +243,7 @@ public class GameState extends Observable<Notify> {
 		int i = 0;
 		for (Giocatore g : giocatori) {
 			g.setAiutanti(new Aiutante(18 + i));
-			g.setPunteggioNobiltà(this.getPlanciaRe().getPercorsoNobiltà().get(15));
+			g.setPunteggioNobiltà(this.getPlanciaRe().getPercorsoNobiltà().get(3));
 			g.setPunteggioRicchezza(19 + i);
 			g.setPunteggioVittoria(0);
 			g.setColoreGiocatore(new Colore(String.valueOf(i)));
@@ -259,7 +259,6 @@ public class GameState extends Observable<Notify> {
 				int numeroEmpori = random.nextInt(3) + 1;
 
 				for (int s = 0; s < numeroEmpori; s++) {
-					System.out.println("size regioneeeeee :"+r.getCittàRegione().size());
 					int rnd = random.nextInt(r.getCittàRegione().size());
 					if (r.getCittàRegione().get(rnd).getEmpori().isEmpty())
 						r.getCittàRegione().get(rnd).aggiungiEmporio(new Emporio(new Colore("2")));
