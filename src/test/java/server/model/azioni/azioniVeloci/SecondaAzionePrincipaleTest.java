@@ -14,7 +14,6 @@ import server.model.game.Aiutante;
 import server.model.game.GameState;
 import server.model.game.Giocatore;
 import server.model.macchinaStati.StartEnd;
-import server.model.notify.AzioniNotify;
 import server.model.notify.MessageNotify;
 import server.model.notify.Notify;
 import utility.Observer;
@@ -50,10 +49,10 @@ public class SecondaAzionePrincipaleTest {
 		
 		azione.eseguiAzione(gameState);
 
+		System.out.println(notify);
 		assertTrue(gameState.getStato() instanceof StartEnd);
 		assertEquals(10-3, gameState.getGiocatoreCorrente().getAiutanti().getAiutante());
-		assertEquals(5, notify.size());
-		assertTrue(notify.get(4) instanceof AzioniNotify);
+		assertEquals(4, notify.size());
 	}
 	
 	@Test

@@ -33,7 +33,8 @@ public class ControlloParametri {
 	/**
 	 * constructor
 	 */
-	public ControlloParametri() {
+	private ControlloParametri() {
+		super();
 	}
 
 	/**
@@ -194,9 +195,7 @@ public class ControlloParametri {
 	 * @param cittàTessera
 	 */
 	private static void ordinaCittà(List<Città> cittàTessera) {
-		Comparator<Città> comparator = (o1, o2) -> {
-			return o1.getNome().compareToIgnoreCase(o2.getNome());
-		};
+		Comparator<Città> comparator = (o1, o2) ->  o1.getNome().compareToIgnoreCase(o2.getNome());
 		Collections.sort(cittàTessera, comparator);
 	}
 
@@ -206,9 +205,7 @@ public class ControlloParametri {
 	 * @param città
 	 */
 	private static void ordinaCittàDTO(List<CittàDTO> città) {
-		Comparator<CittàDTO> comparatorDTO = (o1, o2) -> {
-			return o1.getNome().compareToIgnoreCase(o2.getNome());
-		};
+		Comparator<CittàDTO> comparatorDTO = (o1, o2) ->  o1.getNome().compareToIgnoreCase(o2.getNome());
 		Collections.sort(città, comparatorDTO);
 
 	}

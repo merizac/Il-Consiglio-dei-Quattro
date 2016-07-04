@@ -128,6 +128,7 @@ public class GUIMarketController implements Controller {
 
 	/**
 	 * handle action of market
+	 * 
 	 * @param event
 	 */
 	public void handleAzione(ActionEvent event) {
@@ -150,13 +151,12 @@ public class GUIMarketController implements Controller {
 					((AzioneParametri) azioneDTO).parametri().setParametri(gui, gameStateDTO);
 				} catch (AzioneNonEseguibile e) {
 					gui.azioneNonValida("Azione non eseguibile!", e.getMessage());
-					log.log(Level.INFO, "Azione non esegubile", e);
 					return;
 				}
 			}
 			try {
-				gui.getConnessione().inviaAzione(azioneDTO);
 				gui.stopTimer();
+				gui.getConnessione().inviaAzione(azioneDTO);
 				for (Button b : azioni)
 					b.setDisable(false);
 			} catch (RemoteException e) {
@@ -169,6 +169,7 @@ public class GUIMarketController implements Controller {
 
 	/**
 	 * handle offers action
+	 * 
 	 * @param event
 	 */
 	public void handleOfferta(Event event) {
@@ -212,6 +213,7 @@ public class GUIMarketController implements Controller {
 
 	/**
 	 * handle acquisto action
+	 * 
 	 * @param event
 	 */
 	public void handleAcquisto(ActionEvent event) {

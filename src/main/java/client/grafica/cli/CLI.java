@@ -46,8 +46,8 @@ public class CLI implements Grafica {
 	private GameStateDTO gameStateDTO;
 	private Scanner stdIn;
 	private String inputLine;
-	private final int timeout = 60000;
-	private Timer timer;
+	private final int timeout = 30000;
+	private Timer timer = new Timer();
 	private TimerTask task;
 	private static final Logger log = Logger.getLogger(CLI.class.getName());
 
@@ -95,25 +95,28 @@ public class CLI implements Grafica {
 
 			else if ("Chat".equals(inputLine)) {
 				Utils.print("Inserisci il messaggio");
-				inputLine = stdIn.nextLine();
+				inputLine = "[" + gameStateDTO.getGiocatoreDTO().getNome() + "] : ";
+				inputLine = inputLine + stdIn.nextLine();
 				action = new ChatDTO();
 				((ChatDTO) action).setMessaggio(inputLine);
 			}
 
-			else if (action == null)
+			else if (action == null) {
 				Utils.print("L'azione non esiste \nInserire un'azione valida");
+				continue;
+			}
 
-			if (action instanceof AzioneParametri)
+			else if (action instanceof AzioneParametri) {
 				try {
 					((AzioneParametri) action).parametri().setParametri(this, gameStateDTO);
 				} catch (AzioneNonEseguibile e) {
 					this.mostraMessaggio(e.getMessage());
 					continue;
 				}
+			}
 			try {
+				stopTimer();
 				connessione.inviaAzione(action);
-				task.cancel();
-				timer.cancel();
 
 			} catch (RemoteException e) {
 				log.log(Level.SEVERE, "Errore nell'invio dell'azione al server", e);
@@ -121,6 +124,13 @@ public class CLI implements Grafica {
 			}
 
 		}
+	}
+
+	private void stopTimer() {
+		if (task == null)
+			return;
+		task.cancel();
+		task = null;
 	}
 
 	/**
@@ -191,7 +201,6 @@ public class CLI implements Grafica {
 	@Override
 	public void mostraAzioni(List<AzioneDTO> azioni) {
 
-		timer = new Timer();
 		task = new TimerTask() {
 
 			@Override
@@ -203,7 +212,8 @@ public class CLI implements Grafica {
 				}
 			}
 		};
-		// timer.schedule(task, timeout);
+
+		timer.schedule(task, timeout);
 
 		for (AzioneDTO a : azioni) {
 			Utils.print(a.toString());
@@ -720,7 +730,7 @@ public class CLI implements Grafica {
 
 		Random random = new Random();
 		int numeroMappa = random.nextInt(2) + 1;
-		Utils.print("Scelta mappa" + numeroMappa);
+		Utils.print("Scelta mappa random numero : " + numeroMappa);
 		try {
 			connessione.inviaAzione(new AzioneMappaDTO("mappa" + numeroMappa));
 		} catch (RemoteException e) {

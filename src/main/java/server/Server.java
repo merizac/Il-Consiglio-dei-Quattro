@@ -59,7 +59,6 @@ public class Server {
 		Server.partite.put(gameState, new HashSet<>());
 		this.giocatori = new ArrayList<>();
 		this.primoGiocatore = true;
-		// Server.mappa=null;
 	}
 
 	/**

@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -35,7 +34,6 @@ import utility.ParameterException;
 public class ControlloParametriTest {
 
 	static GameState gameState;
-	ControlloParametri controlloParametri;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws IOException {
@@ -45,10 +43,6 @@ public class ControlloParametriTest {
 		gameState=new GameState();
 		gameState.start(giocatori, "mappa1");	}
 	
-	@Before
-	public void berfortest(){
-		controlloParametri=new ControlloParametri();
-	}
 
 	@Test(expected=ParameterException.class)
 	public void testCercaRegioneConRegioneNonEsistente() throws ParameterException {
@@ -61,7 +55,7 @@ public class ControlloParametriTest {
 		regioneDTO.setBonusRegione(gameState.getRegioni().get(0).getBonusRegione());
 		regioneDTO.setNome("A");
 		
-		controlloParametri.cercaRegione(regioneDTO, gameState.getRegioni());
+		ControlloParametri.cercaRegione(regioneDTO, gameState.getRegioni());
 	}
 	
 	@Test
@@ -70,7 +64,7 @@ public class ControlloParametriTest {
 		RegioneDTO regioneDTO=new RegioneDTO();
 		regioneDTO.inizializza(regione);
 		
-		Regione r=controlloParametri.cercaRegione(regioneDTO, gameState.getRegioni());
+		Regione r=ControlloParametri.cercaRegione(regioneDTO, gameState.getRegioni());
 		
 		assertTrue(r==regione);
 	}
@@ -78,7 +72,7 @@ public class ControlloParametriTest {
 	@Test(expected=ParameterException.class)
 	public void testCercaBalconeConBalconeNonEsistente() throws ParameterException {
 		BalconeDTO balconeDTO=new BalconeDTO();
-		ArrayList<ConsigliereDTO> consiglieriDTO=new ArrayList();
+		ArrayList<ConsigliereDTO> consiglieriDTO=new ArrayList<>();
 		ConsigliereDTO consigliere=new ConsigliereDTO();
 		consigliere.setColoreConsigliere("A");
 		consiglieriDTO.add(consigliere);
@@ -87,7 +81,7 @@ public class ControlloParametriTest {
 		consiglieriDTO.add(consigliere);
 		balconeDTO.setConsiglieri(consiglieriDTO);
 		
-		controlloParametri.cercaBalcone(balconeDTO,  gameState.getPlanciaRe().getBalconeRe(), gameState.getRegioni());
+		ControlloParametri.cercaBalcone(balconeDTO,  gameState.getPlanciaRe().getBalconeRe(), gameState.getRegioni());
 	}
 
 	@Test
@@ -96,7 +90,7 @@ public class ControlloParametriTest {
 		BalconeDTO balconeDTO=new BalconeDTO();
 		balconeDTO.inizializza(balcone);
 		
-		Balcone b=controlloParametri.cercaBalcone(balconeDTO, gameState.getPlanciaRe().getBalconeRe(), gameState.getRegioni());
+		Balcone b=ControlloParametri.cercaBalcone(balconeDTO, gameState.getPlanciaRe().getBalconeRe(), gameState.getRegioni());
 		
 		assertTrue(b==balcone);
 	}
@@ -112,7 +106,7 @@ public class ControlloParametriTest {
 		cartePolitica.add(gameState.getMazzoCartePolitica().getCarte().get(0));
 		cartePoliticaDTO.add(cartaDTO);
 		
-		controlloParametri.cercaCartePolitica(cartePoliticaDTO, cartePolitica);
+		ControlloParametri.cercaCartePolitica(cartePoliticaDTO, cartePolitica);
 	}
 	
 	@Test
@@ -134,7 +128,7 @@ public class ControlloParametriTest {
 		cartePolitica.add(gameState.getMazzoCartePolitica().getCarte().get(1));
 		cartePolitica.add(gameState.getMazzoCartePolitica().getCarte().get(2));
 		
-		ArrayList<CartaPolitica> carte=(ArrayList<CartaPolitica>) controlloParametri.cercaCartePolitica(cartePoliticaDTO, cartePolitica);
+		ArrayList<CartaPolitica> carte=(ArrayList<CartaPolitica>) ControlloParametri.cercaCartePolitica(cartePoliticaDTO, cartePolitica);
 		ArrayList<CartaPolitica> vuoto=new ArrayList<>();
 		
 		assertEquals(vuoto, cartePolitica);
@@ -148,7 +142,7 @@ public class ControlloParametriTest {
 		cittàDTO.setColoreDTO(coloreDTO);
 		cittàDTO.setNome("A");
 		
-		controlloParametri.cercaCittà(cittàDTO, gameState.getCittà());
+		ControlloParametri.cercaCittà(cittàDTO, gameState.getCittà());
 	}
 	
 	@Test
@@ -157,7 +151,7 @@ public class ControlloParametriTest {
 		CittàDTO cittàDTO=new CittàDTO();
 		cittàDTO.inizializza(città);
 		
-		Città c=controlloParametri.cercaCittà(cittàDTO, gameState.getCittà());
+		Città c=ControlloParametri.cercaCittà(cittàDTO, gameState.getCittà());
 		
 		assertTrue(città==c);
 	}
@@ -173,7 +167,7 @@ public class ControlloParametriTest {
 		bonus.add(new BonusAiutanti(1));
 		cittàBonusDTO.setBonus(bonus);
 		
-		controlloParametri.cercaCittà(cittàBonusDTO, gameState.getCittà());
+		ControlloParametri.cercaCittà(cittàBonusDTO, gameState.getCittà());
 	}
 	
 	@Test
@@ -192,7 +186,7 @@ public class ControlloParametriTest {
 		TesseraPermessoDTO tesseraPermessoDTO=new TesseraPermessoDTO();
 		tesseraPermessoDTO.inizializza(gameState.getRegioni().get(1).getTesserePermessoScoperte().get(0));
 		
-		controlloParametri.cercaTesseraPermesso(tesseraPermessoDTO, gameState.getRegioni().get(0).getTesserePermessoScoperte());
+		ControlloParametri.cercaTesseraPermesso(tesseraPermessoDTO, gameState.getRegioni().get(0).getTesserePermessoScoperte());
 	}
 	
 	@Test
@@ -201,7 +195,7 @@ public class ControlloParametriTest {
 		TesseraPermessoDTO tesseraPermessoDTO=new TesseraPermessoDTO();
 		tesseraPermessoDTO.inizializza(tesseraPermesso);
 
-		controlloParametri.cercaTesseraPermesso(tesseraPermessoDTO, gameState.getRegioni().get(0).getTesserePermessoScoperte());
+		ControlloParametri.cercaTesseraPermesso(tesseraPermessoDTO, gameState.getRegioni().get(0).getTesserePermessoScoperte());
 	}
 
 	@Test(expected=ParameterException.class)
@@ -210,7 +204,7 @@ public class ControlloParametriTest {
 		ConsigliereDTO consigliereDTO=new ConsigliereDTO();
 		consigliereDTO.inizializza(consigliere);
 		
-		controlloParametri.cercaConsigliere(consigliereDTO, gameState.getConsiglieri());
+		ControlloParametri.cercaConsigliere(consigliereDTO, gameState.getConsiglieri());
 	}
 
 	@Test
@@ -219,7 +213,7 @@ public class ControlloParametriTest {
 		ConsigliereDTO consigliereDTO=new ConsigliereDTO();
 		consigliereDTO.inizializza(consigliere);
 		
-		Consigliere c=controlloParametri.cercaConsigliere(consigliereDTO, gameState.getConsiglieri());
+		Consigliere c=ControlloParametri.cercaConsigliere(consigliereDTO, gameState.getConsiglieri());
 
 		assertEquals(consigliere, c);
 	}

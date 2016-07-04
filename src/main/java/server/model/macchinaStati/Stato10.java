@@ -55,7 +55,6 @@ public class Stato10 implements Stato {
 				}
 			} else {
 				gameState.nextPlayer();
-				Utils.print("[SERVER] numero turno 10: " + gameState.getNumeroTurni());
 				gameState.prossimoTurno();
 
 				if (gameState.getNumeroTurni() != gameState.getGiocatori().size())

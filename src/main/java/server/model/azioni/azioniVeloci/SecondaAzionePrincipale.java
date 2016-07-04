@@ -5,7 +5,6 @@ import java.util.Arrays;
 import common.azioniDTO.AzioneDTO;
 import common.azioniDTO.SecondaAzionePrincipaleDTO;
 import server.model.game.GameState;
-import server.model.notify.AzioniNotify;
 import server.model.notify.MessageNotify;
 
 public class SecondaAzionePrincipale extends AzioneVeloce {
@@ -23,7 +22,6 @@ public class SecondaAzionePrincipale extends AzioneVeloce {
 			gameState.getGiocatoreCorrente().getAiutanti().togliAiutanti(3);
 			notify(gameState);
 			setStatoTransizioneSecondaPrincipale(gameState);
-			gameState.notifyObserver(new AzioniNotify(gameState.getStato().getAzioni(), Arrays.asList(gameState.getGiocatoreCorrente())));
 		}
 		else{
 			gameState.notifyObserver(new MessageNotify("Errore: non hai abbastanza aiutanti\n",
