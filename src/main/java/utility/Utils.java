@@ -2,7 +2,8 @@ package utility;
 
 public class Utils {
 
-	public Utils(){
+	private Utils(){
+		super();
 	}
 	
 	/**

@@ -22,7 +22,6 @@ import common.gameDTO.ColoreBonusDTO;
 import common.gameDTO.ConsigliereDTO;
 import common.gameDTO.GameStateDTO;
 import common.gameDTO.RegioneDTO;
-import common.gameDTO.TesseraPermessoDTO;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -505,8 +504,8 @@ public class GUIGameController implements Controller {
 				}
 			}
 			try {
-				gui.getConnessione().inviaAzione(azioneDTO);
 				gui.stopTimer();
+				gui.getConnessione().inviaAzione(azioneDTO);
 				for (Button b : getAzioni())
 					b.setDisable(false);
 			} catch (RemoteException e) {
@@ -650,29 +649,6 @@ public class GUIGameController implements Controller {
 
 		Platform.runLater(runnable);
 	}
-
-	/**
-	 * show emporium in cities
-	 * 
-	 * @param città
-	 */
-/*	public void stampaEmporiCittà(List<CittàDTO> città) {
-		Runnable runnable = () -> {
-			List<HBox> hbox = Arrays.asList(emporiArkon, emporiBurgen, emporiCastrum, emporiDorful, emporiEsti,
-					emporiFramek, emporiGraden, emporiHellar, emporiIndur, emporiJuvelar, emporiKultos, emporiLyram,
-					emporiMerkatim, emporiNaris, emporiOsium);
-
-			for (int i = 0; i < città.size() - 1; i++) {
-				for (String emporio : città.get(i).getEmpori()) {
-					ImageView imageView = new ImageView();
-					imageView.setImage(mappaEmpori.get(emporio));
-					hbox.get(i).getChildren().add(imageView);
-				}
-			}
-		};
-
-		Platform.runLater(runnable);
-	}*/
 
 	/**
 	 * show counselors in stock

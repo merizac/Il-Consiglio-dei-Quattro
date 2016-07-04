@@ -56,6 +56,7 @@ public class ConnessioneSocket implements Connessione, Runnable {
 			log.log(Level.SEVERE, "Errore nell'invio del giocatore al server", e);
 		}
 		listen();
+		
 	}
 
 	private void listen() {

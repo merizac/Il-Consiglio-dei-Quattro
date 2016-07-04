@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -90,7 +89,7 @@ public class GUI extends Application implements Grafica {
 	private boolean carteInserite = false;
 	private Map<GiocatoreDTO, Tab> tabAvversari = new HashMap<>();
 	private final int timeout = 30000;
-	private Timer timer;
+	private Timer timer = new Timer();;
 	private TimerTask task;
 	private static final Logger log = Logger.getLogger(GUI.class.getName());
 	private MediaPlayer song;
@@ -263,7 +262,6 @@ public class GUI extends Application implements Grafica {
 	@Override
 	public void mostraAzioni(List<AzioneDTO> azioni) {
 
-		timer = new Timer();
 		task = new TimerTask() {
 
 			@Override
@@ -276,8 +274,7 @@ public class GUI extends Application implements Grafica {
 				}
 			}
 		};
-
-		//timer.schedule(task, timeout);
+		timer.schedule(task, timeout);
 
 		if (azioni.get(0) instanceof BonusGettoneNDTO || azioni.get(0) instanceof BonusTesseraAcquistataNDTO
 				|| azioni.get(0) instanceof BonusTesseraPermessoNDTO) {
@@ -317,6 +314,8 @@ public class GUI extends Application implements Grafica {
 					: "Mi dispiace " + gameStateDTO.getGiocatoreDTO().getNome() + " hai perso");
 			alert.setContentText(messaggio);
 			alert.showAndWait();
+			if (market.isShowing())
+				market.close();
 			finestra.close();
 		};
 		Platform.runLater(runnable);
@@ -455,9 +454,7 @@ public class GUI extends Application implements Grafica {
 				image.setDisable(true);
 				image.setUserData(c);
 				cartePolitica.getChildren().add(image);
-				EventHandler<Event> onMouseClicked = (event) -> {
-					controller.handleCartaPolitica(event);
-				};
+				EventHandler<Event> onMouseClicked = (event) -> controller.handleCartaPolitica(event);
 				image.setOnMouseClicked(onMouseClicked);
 			}
 
@@ -500,9 +497,7 @@ public class GUI extends Application implements Grafica {
 				image.setFitHeight(dimensione);
 				image.setPreserveRatio(true);
 				image.setImage(mappaTessere.get(t.toString()));
-				EventHandler<Event> onMouseClicked = (event) -> {
-					controller.handleTesseraPermessoGiocatore(event);
-				};
+				EventHandler<Event> onMouseClicked = (event) -> controller.handleTesseraPermessoGiocatore(event);
 				image.setOnMouseClicked(onMouseClicked);
 				image.setDisable(true);
 				image.setUserData(t);
@@ -609,13 +604,8 @@ public class GUI extends Application implements Grafica {
 				image.setImage(carte.get(c.toString()));
 				image.setDisable(true);
 				image.setUserData(c);
-				image.setOnMouseClicked(new EventHandler<Event>() {
-
-					@Override
-					public void handle(Event event) {
-						controllerMarket.handleOfferta(event);
-					}
-				});
+				EventHandler<Event> onMouseClicked= (event) -> controllerMarket.handleOfferta(event);
+				image.setOnMouseClicked(onMouseClicked);
 				cartePolitica.getChildren().add(image);
 			}
 
@@ -627,13 +617,8 @@ public class GUI extends Application implements Grafica {
 				image.setImage(bonus.get("Aiutante"));
 				image.setDisable(true);
 				image.setUserData(new AiutanteDTO(1));
-				image.setOnMouseClicked(new EventHandler<Event>() {
-
-					@Override
-					public void handle(Event event) {
-						controllerMarket.handleOfferta(event);
-					}
-				});
+				EventHandler<Event> onMouseClicked= (event) -> controllerMarket.handleOfferta(event);
+				image.setOnMouseClicked(onMouseClicked);
 				aiutanti.getChildren().add(image);
 			}
 
@@ -645,9 +630,7 @@ public class GUI extends Application implements Grafica {
 				image.setImage(tessere.get(t.toString()));
 				image.setDisable(true);
 				image.setUserData(t);
-				EventHandler<Event> onMouseClicked = (event) -> {
-					controllerMarket.handleOfferta(event);
-				};
+				EventHandler<Event> onMouseClicked= (event) -> controllerMarket.handleOfferta(event);
 				image.setOnMouseClicked(onMouseClicked);
 				tesserePermesso.getChildren().add(image);
 			}
@@ -712,9 +695,7 @@ public class GUI extends Application implements Grafica {
 		soldi.setUserData(offerta);
 		soldi.setDisable(true);
 		soldi.setPrefWidth(50);
-		EventHandler<ActionEvent> onAction = (event) -> {
-			controllerMarket.handleAcquisto(event);
-		};
+		EventHandler<ActionEvent> onAction = (event) -> controllerMarket.handleAcquisto(event);
 		soldi.setOnAction(onAction);
 		hbox.setMargin(nome, new Insets(16, 0, 0, 0));
 		hbox.setMargin(soldi, new Insets(4, 0, 0, 0));
@@ -1116,13 +1097,13 @@ public class GUI extends Application implements Grafica {
 				i.setEffect(ds);
 			}
 		}
-		System.out.println("abilitati");
+
 		synchronized (lock) {
 			while (parametro == null) {
 				try {
-					System.out.println("waiting");
+
 					lock.wait();
-					System.out.println("sbloccato");
+
 				} catch (InterruptedException e) {
 					log.log(Level.SEVERE, "Thread scegli tessere permesso azione bonus interrotto", e);
 					Thread.currentThread().interrupt();
@@ -1130,7 +1111,6 @@ public class GUI extends Application implements Grafica {
 			}
 		}
 
-		System.out.println(parametro);
 		TesseraPermessoDTO tesseraPermessoDTO = (TesseraPermessoDTO) parametro;
 		parametro = null;
 		for (Node i : tessereGiocatore.getChildren()) {
@@ -1309,7 +1289,7 @@ public class GUI extends Application implements Grafica {
 		}
 		CittàBonusDTO cittàBonusDTO = (CittàBonusDTO) parametro;
 		parametro = null;
-		List<CittàBonusDTO> cittàScelta=new ArrayList<>();
+		List<CittàBonusDTO> cittàScelta = new ArrayList<>();
 		cittàScelta.add(cittàBonusDTO);
 		return cittàScelta;
 	}
@@ -1342,14 +1322,11 @@ public class GUI extends Application implements Grafica {
 			for (Pane città : dueCittàBonus) {
 				città.setDisable(true);
 			}
-			try{
 			CittàBonusDTO città = (CittàBonusDTO) parametro;
 			cittàBonusDTO.add(città);
-			parametro = null;}
-			catch(Exception e){
-				e.printStackTrace();
-			}
+			parametro = null;
 		}
+
 		return cittàBonusDTO;
 	}
 
@@ -1403,10 +1380,10 @@ public class GUI extends Application implements Grafica {
 	}
 
 	public void stopTimer() {
-		if (timer != null) {
-			task.cancel();
-			timer.cancel();
-		}
+		if (task == null)
+			return;
+		task.cancel();
+		task = null;
 	}
 
 	/**
@@ -1433,6 +1410,9 @@ public class GUI extends Application implements Grafica {
 	 */
 	public void close() {
 		Runnable runnable = () -> {
+			if (market.isShowing()) {
+				market.close();
+			}
 			finestra.close();
 		};
 		Platform.runLater(runnable);

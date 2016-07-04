@@ -155,8 +155,8 @@ public class GUIMarketController implements Controller {
 				}
 			}
 			try {
-				gui.getConnessione().inviaAzione(azioneDTO);
 				gui.stopTimer();
+				gui.getConnessione().inviaAzione(azioneDTO);
 				for (Button b : azioni)
 					b.setDisable(false);
 			} catch (RemoteException e) {

@@ -51,8 +51,7 @@ public class ServerRMIView extends View implements ServerRMIViewRemote {
 	public void update(Notify o) {
 		for (ConnessioneRMIRemota c : giocatori.keySet()) {
 			if (o.daInviare(this.giocatori.get(c))) {
-				System.out
-						.println("[SERVER] Inviata notifica " + o + " al giocatore " + this.giocatori.get(c).getNome());
+				Utils.print("[SERVER] Inviata notifica " + o + " al giocatore " + this.giocatori.get(c).getNome());
 				try {
 					c.aggiorna(o.notifyToClientNotify());
 				} catch (RemoteException e) {
