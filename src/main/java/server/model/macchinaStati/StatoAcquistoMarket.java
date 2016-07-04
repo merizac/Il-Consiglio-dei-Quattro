@@ -91,7 +91,7 @@ public class StatoAcquistoMarket implements Stato {
 			gameState.notifyObserver(new AvversarioNotify(gameState.getGiocatoreCorrente(), avversari));
 			gameState.notifyObserver(new GiocatoreNotify(gameState.getGiocatoreCorrente(),
 					Arrays.asList(gameState.getGiocatoreCorrente())));
-			gameState.notifyObserver(new MessageNotify("Vuoi acquistare\n?", Arrays.asList(giocatori.get(0)), true));
+			gameState.notifyObserver(new MessageNotify("Vuoi acquistare?\n", Arrays.asList(giocatori.get(0)), true));
 		}
 	}
 
