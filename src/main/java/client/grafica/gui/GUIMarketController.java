@@ -1,5 +1,6 @@
 package client.grafica.gui;
 
+import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.Arrays;
 import java.util.List;
@@ -19,6 +20,7 @@ import common.gameDTO.GameStateDTO;
 import common.gameDTO.MarketableDTO;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -26,6 +28,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import utility.AzioneNonEseguibile;
 import utility.Utils;
 
@@ -61,10 +65,22 @@ public class GUIMarketController implements Controller {
 	 * initializes action of market
 	 */
 	public void inizializza() {
+		
 		acquisto.setUserData(new AzioneAcquistoDTO());
 		offerta.setUserData(new AzioneOffertaDTO());
 		passa.setUserData(new PassaDTO());
 		azioni = Arrays.asList(acquisto, offerta, passa);
+		EventHandler<Event> onMouseClicked= (event) -> {
+			URL audioGioco = getClass().getResource("css/MouseClick.mp3");
+			Media media = new Media(audioGioco.toString());
+			MediaPlayer song = new MediaPlayer(media);
+			song.setVolume(1);
+			song.play();
+		};
+		acquisto.setOnMouseClicked(onMouseClicked);
+		offerta.setOnMouseClicked(onMouseClicked);
+		passa.setOnMouseClicked(onMouseClicked);
+		
 	}
 
 	/**
