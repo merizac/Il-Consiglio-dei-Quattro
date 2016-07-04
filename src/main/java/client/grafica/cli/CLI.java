@@ -326,7 +326,6 @@ public class CLI implements Grafica {
 	 */
 	@Override
 	public int scegliOfferta(List<OffertaDTO> offerte) {
-		Utils.print("Che cosa vuoi acquistare?");
 		String comando = stdIn.nextLine();
 		boolean ok = false;
 		while (!ok) {
@@ -349,8 +348,7 @@ public class CLI implements Grafica {
 	 */
 	@Override
 	public MarketableDTO scegliMarketable() {
-		Utils.print("Cosa vuoi vendere?\n");
-		Utils.print("Aiutante[1]\nCarta Politica[2]\nTesseraPermesso[3]");
+		Utils.print("Aiutante[1]\nCarta Politica[2]\nTesseraPermesso[3]\n");
 		String comando = stdIn.nextLine();
 		boolean ok = false;
 		while (!ok) {
@@ -381,7 +379,6 @@ public class CLI implements Grafica {
 	 */
 	@Override
 	public ConsigliereDTO scegliConsigliere(List<ConsigliereDTO> consiglieri) {
-		Utils.print("scegli consigliere");
 		Utils.print(consiglieri.toString());
 		String comando = stdIn.nextLine();
 		ConsigliereDTO consigliereScelto = ControlloParametriDTO.consiglieri(comando, consiglieri);
@@ -402,7 +399,6 @@ public class CLI implements Grafica {
 	@Override
 	public RegioneDTO scegliRegione(List<RegioneDTO> regioni) {
 
-		Utils.print("Scegli la regione");
 		Utils.print(regioni.toString());
 		String comando = stdIn.nextLine();
 		RegioneDTO regioneScelta = ControlloParametriDTO.regioni(comando, regioni);
@@ -427,7 +423,6 @@ public class CLI implements Grafica {
 	public BalconeDTO scegliBalcone(List<RegioneDTO> regioni, BalconeDTO balconeRe) {
 		BalconeDTO balconeScelto = null;
 		boolean ok = false;
-		Utils.print("Scegli il balcone");
 		for (RegioneDTO regione : regioni) {
 			Utils.print("Balcone " + regione.getNome() + ": " + regione.getBalcone() + "[" + regione.getNome() + "]");
 		}
@@ -467,7 +462,6 @@ public class CLI implements Grafica {
 		int numeroCarte = 4;
 		while (numeroCarte != 0) {
 			numeroCarte--;
-			Utils.print("Scegli il colore delle carte politica nella tua mano");
 			Utils.print(carteGiocatore.toString());
 			String comando = stdIn.nextLine();
 			CartaPoliticaDTO cartaScelta = ControlloParametriDTO.carteGiocatore(comando, carteGiocatore);
@@ -521,8 +515,10 @@ public class CLI implements Grafica {
 	 */
 	@Override
 	public TesseraPermessoDTO scegliTesseraGiocatore(List<TesseraPermessoDTO> list) {
-		Utils.print("Seleziona l'indice di una tessera permesso non ancora usata");
-		Utils.print(list.toString());
+		for(int i=0; i<list.size(); i++){
+			int tessera=i+1;
+			Utils.print(list.get(i)+" ["+tessera+"]");
+		}
 		String comando = stdIn.nextLine();
 		TesseraPermessoDTO tesseraScelta = ControlloParametriDTO.tessereGiocatore(comando, list);
 		while (tesseraScelta == null) {
@@ -544,7 +540,6 @@ public class CLI implements Grafica {
 	 */
 	@Override
 	public CittàDTO scegliCittà(Set<? extends CittàDTO> città, ColoreDTO coloreGiocatore) {
-		Utils.print("Seleziona la città");
 		Utils.print(città.toString());
 		String comando = stdIn.nextLine();
 		CittàDTO cittàScelta = ControlloParametriDTO.città(comando, città, coloreGiocatore);
@@ -605,7 +600,7 @@ public class CLI implements Grafica {
 	 */
 	@Override
 	public int scegliPrezzo() {
-		Utils.print("A quale prezzo?");
+		
 		String comando = stdIn.nextLine();
 		while (!Utils.isNumeric(comando)) {
 			Utils.print("inserire un numero");
@@ -745,8 +740,6 @@ public class CLI implements Grafica {
 			List<TesseraPermessoDTO> tessereUsate) {
 		TesseraPermessoDTO tesseraPermessoDTO;
 
-		Utils.print("Vuoi prendere i bonus di una tessera già usata [1] o di una scoperta [2] ?");
-
 		boolean b = false;
 		if (gameStateDTO.getGiocatoreDTO().getTesserePermesso().isEmpty()) {
 			inputLine = "1";
@@ -755,6 +748,7 @@ public class CLI implements Grafica {
 			inputLine = "2";
 		} else {
 			inputLine = stdIn.nextLine();
+			Utils.print("Vuoi prendere i bonus di una tessera già usata [1] o di una scoperta [2] ?");
 			while (!b) {
 				while (!Utils.isNumeric(inputLine)) {
 					Utils.print("valore non valido");
