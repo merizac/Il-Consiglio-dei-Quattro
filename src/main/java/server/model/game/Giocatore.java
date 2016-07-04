@@ -260,7 +260,7 @@ public class Giocatore {
 	 * @param colore
 	 */
 	public void creaEmpori(Colore colore) {
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < 10; i++) {
 			Emporio emporio = new Emporio(colore);
 			empori.add(emporio);
 		}
