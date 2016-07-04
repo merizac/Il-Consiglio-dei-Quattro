@@ -88,7 +88,7 @@ public class GUI extends Application implements Grafica {
 	private Object parametro;
 	private boolean carteInserite = false;
 	private Map<GiocatoreDTO, Tab> tabAvversari = new HashMap<>();
-	private final int timeout = 30000;
+	private final int timeout = 60000;
 	private Timer timer = new Timer();;
 	private TimerTask task;
 	private static final Logger log = Logger.getLogger(GUI.class.getName());

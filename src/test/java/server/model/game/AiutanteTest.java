@@ -91,7 +91,6 @@ public class AiutanteTest {
 		venditore.setAiutanti(new Aiutante(2));
 		acquirente.setAiutanti(new Aiutante(3));
 
-				
 		assertTrue(!aiutante.acquista(acquirente, offerta));
 		assertEquals(3, acquirente.getAiutanti().getAiutante());
 		assertEquals(2, venditore.getAiutanti().getAiutante());

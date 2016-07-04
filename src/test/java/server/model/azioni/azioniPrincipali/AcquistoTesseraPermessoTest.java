@@ -164,7 +164,6 @@ public class AcquistoTesseraPermessoTest {
 		assertEquals(monete - 3, gameState.getGiocatoreCorrente().getPunteggioRicchezza());
 		assertEquals(1 + aiutanti, gameState.getGiocatoreCorrente().getAiutanti().getAiutante());
 
-		System.out.println(notify);
 		assertTrue(notify.get(notify.size() - 4) instanceof GameStateNotify);
 		assertTrue(notify.get(notify.size() - 2) instanceof GiocatoreNotify);
 		assertTrue(notify.get(notify.size() - 1) instanceof MessageNotify);
@@ -295,9 +294,6 @@ public class AcquistoTesseraPermessoTest {
 				continue;
 			}
 		}
-		System.out.println(gameState.getGiocatoreCorrente().getPunteggioNobiltà());
-		System.out.println(gameState.getStato());
-		
 		Stato11 stato11=new Stato11(gameState);
 		gameState.setStato(stato11);
 		acquisto.eseguiAzione(gameState);
@@ -312,12 +308,6 @@ public class AcquistoTesseraPermessoTest {
 		assertEquals(monete - 6, gameState.getGiocatoreCorrente().getPunteggioRicchezza());
 		assertEquals(aiutanti, gameState.getGiocatoreCorrente().getAiutanti().getAiutante());
 		assertEquals(vittoria+2, gameState.getGiocatoreCorrente().getPunteggioVittoria());
-
-		/*assertTrue(notify.get(notify.size() - 3) instanceof GameStateNotify);
-		assertTrue(notify.get(notify.size() - 1) instanceof GiocatoreNotify);
-		assertTrue(notify.get(notify.size() - 4) instanceof BonusNotify);
-		assertTrue(notify.get(notify.size() - 2) instanceof AvversarioNotify);*/
-		
 	}
 	
 	@Test

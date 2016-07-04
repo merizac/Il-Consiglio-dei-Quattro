@@ -12,8 +12,6 @@ import org.junit.Test;
 import common.azioniDTO.CostruzioneTesseraPermessoDTO;
 import server.model.bonus.Bonus;
 import server.model.bonus.BonusAiutanti;
-import server.model.bonus.BonusMoneta;
-import server.model.bonus.BonusPuntiVittoria;
 import server.model.game.Aiutante;
 import server.model.game.Città;
 import server.model.game.CittàBonus;
@@ -99,16 +97,11 @@ public class CostruzioneTesseraPermessoTest {
 		azione.setCittàCostruzione(cittàCostruzione);
 		azione.setTesseraPermessoScoperta(tesseraPermesso);
 
-		int monete = 0;
 		int aiutanti = 0;
 		// tengo conto dei bonus della città su cui costruisco
 		for (Bonus b : cittàCostruzione.getBonus()) {
 			if (b instanceof BonusAiutanti) {
 				aiutanti += ((BonusAiutanti) b).getAiutanti();
-				continue;
-			}
-			if (b instanceof BonusMoneta) {
-				monete += ((BonusMoneta) b).getMonete();
 				continue;
 			}
 		}
@@ -117,10 +110,6 @@ public class CostruzioneTesseraPermessoTest {
 			
 			if (b instanceof BonusAiutanti) {
 				aiutanti += ((BonusAiutanti) b).getAiutanti();
-				continue;
-			}
-			if (b instanceof BonusMoneta) {
-				monete += ((BonusMoneta) b).getMonete();
 				continue;
 			}
 		}

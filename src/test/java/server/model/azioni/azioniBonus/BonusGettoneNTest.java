@@ -17,8 +17,6 @@ import server.model.game.Emporio;
 import server.model.game.GameState;
 import server.model.game.Giocatore;
 import server.model.macchinaStati.StartEnd;
-import server.model.notify.AvversarioNotify;
-import server.model.notify.GiocatoreNotify;
 import server.model.notify.MessageNotify;
 import server.model.notify.Notify;
 import utility.Observer;
