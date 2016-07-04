@@ -24,11 +24,9 @@ public class BonusTesseraAcquistataParametri implements SetterParametri {
 	 */
 	@Override
 	public void setParametri(Grafica grafica, GameStateDTO gameStateDTO) {
-		TesseraPermessoDTO tesseraPermessoDTO;
-
 		grafica.mostraMessaggio("Hai vinto un bonus tessera permesso!\nScegli una tessera permesso\n");
 
-		tesseraPermessoDTO = grafica.scegliTesseraPermessoUsataONonUsata(
+		TesseraPermessoDTO tesseraPermessoDTO = grafica.scegliTesseraPermessoUsataONonUsata(
 				gameStateDTO.getGiocatoreDTO().getTesserePermesso(),
 				gameStateDTO.getGiocatoreDTO().getTesserePermessoUsate());
 		bonusTesseraAcquistataNDTO.setTesseraPermesso(tesseraPermessoDTO);
