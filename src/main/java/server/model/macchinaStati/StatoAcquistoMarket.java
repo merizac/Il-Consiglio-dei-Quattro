@@ -24,7 +24,7 @@ public class StatoAcquistoMarket implements Stato {
 	 * list of player
 	 */
 	private List<Giocatore> giocatori;
-	
+
 	/**
 	 * list of action available in this state
 	 */
@@ -81,16 +81,28 @@ public class StatoAcquistoMarket implements Stato {
 		if (gameState.getOfferteMarket().isEmpty()) {
 			gameState.notifyObserver(new MessageNotify("Gli oggetti in vendita sono finiti\n", giocatori, true));
 			gameState.notifyObserver(new MarketNotify(gameState.getGiocatori(), true));
+			
+			gameState.notifyObserver(new GiocatoreNotify(giocatori.get(0), Arrays.asList(giocatori.get(0))));
+			List<Giocatore> avversari = new ArrayList<>(gameState.getGiocatori());
+			avversari.remove(giocatori.get(0));
+			for (Giocatore g : avversari) {
+				gameState.notifyObserver(new AvversarioNotify(g, Arrays.asList(giocatori.get(0))));
+			}
+			
+			gameState.notifyObserver(new AvversarioNotify(giocatori.get(0), avversari));
 			gameState.setStato(new StartEnd(gameState));
 		} else {
 			gameState.setStato(this);
 			gameState.notifyObserver(new OffertaNotify(gameState.getOfferteMarket(), Arrays.asList(giocatori.get(0))));
 			gameState.notifyObserver(new AzioniNotify(this.getAzioni(), Arrays.asList(giocatori.get(0))));
+			gameState.notifyObserver(new GiocatoreNotify(giocatori.get(0), Arrays.asList(giocatori.get(0))));
 			List<Giocatore> avversari = new ArrayList<>(gameState.getGiocatori());
-			avversari.remove(gameState.getGiocatoreCorrente());
-			gameState.notifyObserver(new AvversarioNotify(gameState.getGiocatoreCorrente(), avversari));
-			gameState.notifyObserver(new GiocatoreNotify(gameState.getGiocatoreCorrente(),
-					Arrays.asList(gameState.getGiocatoreCorrente())));
+			avversari.remove(giocatori.get(0));
+			for (Giocatore g : avversari) {
+				gameState.notifyObserver(new AvversarioNotify(g, Arrays.asList(giocatori.get(0))));
+			}
+			
+			gameState.notifyObserver(new AvversarioNotify(giocatori.get(0), avversari));
 			gameState.notifyObserver(new MessageNotify("Vuoi acquistare?\n", Arrays.asList(giocatori.get(0)), true));
 		}
 	}

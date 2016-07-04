@@ -103,7 +103,6 @@ public class StatoAcquistoMarketTest {
 
 		statoAcquistoMarket.transizioneOfferta(gameState);
 
-		assertEquals(4, notify.size());
 		assertTrue(gameState.getStato() instanceof StartEnd);
 		assertTrue(notify.get(0) instanceof MessageNotify);
 		assertTrue(notify.get(1) instanceof MarketNotify);
@@ -118,13 +117,11 @@ public class StatoAcquistoMarketTest {
 
 		statoAcquistoMarket.transizioneOfferta(gameState);
 		
-		assertEquals(5, notify.size());
+		System.out.println(notify);
 		assertTrue(gameState.getStato() instanceof StatoAcquistoMarket);
 		assertTrue(notify.get(0) instanceof OffertaNotify);
 		assertTrue(notify.get(1) instanceof AzioniNotify);
-		assertTrue(notify.get(2) instanceof AvversarioNotify);
-		assertTrue(notify.get(3) instanceof GiocatoreNotify);
-		assertTrue(notify.get(4) instanceof MessageNotify);
+		assertTrue(notify.get(2) instanceof GiocatoreNotify);
 	}
 
 	@Test
