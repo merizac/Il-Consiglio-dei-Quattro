@@ -72,7 +72,7 @@ public class CostruzioneTesseraPermesso extends AzionePrincipale implements Bonu
 	}
 
 	/**
-	 * cheack if player can win bonus of the region
+	 * check if player can win bonus of the region
 	 * 
 	 * @param regione
 	 * @param giocatore
