@@ -17,3 +17,4 @@
   ._*
 
 /target/
+.DS_Store

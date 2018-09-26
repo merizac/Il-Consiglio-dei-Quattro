@@ -1,0 +1,1 @@
+Lanciare la classe Server(main/java/server/Server.java) situata nel package server, successivamente lanciare la classe CLI o GUI a seconda della grafica che si vuole utilizzare situate rispettivamente nel package main/java/client/grafica/cli e nel package main/java/client/grafica/gui. 
